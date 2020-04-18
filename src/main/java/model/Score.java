@@ -1,0 +1,17 @@
+package model;
+
+import model.users.User;
+
+public class Score {
+    private User user;
+    private int score;
+    private Product product;
+
+    public Score(User user, int score, Product product) {
+        this.user = user;
+        this.score = score;
+        this.product = product;
+    }
+
+
+}
