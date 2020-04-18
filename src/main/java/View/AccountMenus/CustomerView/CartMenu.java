@@ -3,6 +3,8 @@ package View.AccountMenus.CustomerView;
 import View.Menu;
 
 public class CartMenu extends Menu {
+    CustomerAccountController customerAccountController;
+
     public CartMenu(Menu parentMenu) {
         super("Customer Cart Menu", parentMenu);
     }

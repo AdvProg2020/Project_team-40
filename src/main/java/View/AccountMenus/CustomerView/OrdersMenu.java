@@ -3,7 +3,9 @@ package View.AccountMenus.CustomerView;
 import View.Menu;
 
 public class OrdersMenu extends Menu {
-    public OrdersMenu(String name, Menu parentMenu) {
+    CustomerAccountController customerAccountController;
+
+    public OrdersMenu(Menu parentMenu) {
         super("Orders Menu", parentMenu);
     }
 

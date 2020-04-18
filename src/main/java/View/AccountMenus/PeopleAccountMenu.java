@@ -8,11 +8,7 @@ public abstract class PeopleAccountMenu extends Menu {
         super(name, parentMenu);
     }
 
-    public Menu getShowInfo(){
+    public abstract Menu getShowInfo();
 
-    }
-
-    public Menu getEditInfo(){
-
-    }
+    public abstract Menu getEditInfo();
 }
