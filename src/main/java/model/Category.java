@@ -31,6 +31,8 @@ public class Category {
 
     public void addProduct(Product product){}
 
+    public boolean doesProductExist(Product product){return false;}
+
     public void removeProduct(Product product){}
 
     public static Category getCategoryByName(String name){return null;}
@@ -42,8 +44,6 @@ public class Category {
     public ArrayList<Category> getAllCategories() {
         return allCategories;
     }
-
-    public boolean doesCategoryExist(Category category){return false;}
 
     public static void loadData(){}
 
