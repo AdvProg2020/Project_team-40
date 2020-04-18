@@ -1,4 +1,5 @@
-import model.Product;
+package model;
+
 import model.users.Costumer;
 
 import java.util.ArrayList;
