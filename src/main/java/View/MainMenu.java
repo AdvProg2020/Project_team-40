@@ -1,19 +1,23 @@
 package View;
 
+import Controller.Accounts.CustomerAccountController;
+import Controller.Accounts.ManagerAccountController;
+import Controller.Accounts.SellerAccountController;
+
 public class MainMenu extends Menu{
     SellerAccountController sellerAccountController;
-    MangerAccountController mangerAccountController;
+    ManagerAccountController mangerAccountController;
     CustomerAccountController customerAccountController;
 
     public MainMenu( Menu parentMenu) {
         super("Main Menu", parentMenu);
     }
 
-    public void Menu getRegister() {
-
+    public Menu getRegister() {
+        return null;
     }
 
-    public void Menu getLogin() {
-
+    public Menu getLogin() {
+        return null;
     }
 }
