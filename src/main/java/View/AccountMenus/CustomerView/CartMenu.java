@@ -6,7 +6,7 @@ public class CartMenu extends Menu {
     CustomerAccountController customerAccountController;
 
     public CartMenu(Menu parentMenu) {
-        super("Customer Cart Menu", parentMenu);
+        super("Customer model.Cart Menu", parentMenu);
     }
 
     public Menu getShowChosenProducts(){
