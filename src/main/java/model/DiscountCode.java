@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DiscountCode {
-    private static ArrayList<DiscountCode> AllDiscountCodes;
+    private static ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private String code;
     private Date startDate;
     private Date endDate;
@@ -26,18 +26,23 @@ public class DiscountCode {
     }
 
     public static ArrayList<DiscountCode> getAllDiscountCodes() {
-        return AllDiscountCodes;
+        return allDiscountCodes;
     }
 
     public ArrayList<Costumer> getIncludedCostumers() {
         return includedCostumers;
     }
 
-    public boolean checkIfExpired(){return false;}
+    public boolean checkIfExpired(){
+        Date today = new Date();
+        return !today.after(startDate) && today.before(endDate);
+    }
 
     private void generateCode(){}
 
-    public void addCostumer(Costumer costumer){}
+    public void addCostumer(Costumer costumer){
+        includedCostumers.add(costumer);
+    }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
@@ -59,9 +64,20 @@ public class DiscountCode {
         this.countPerUser = countPerUser;
     }
 
-    public static DiscountCode getDiscountCodeByCode(String code){return null;}
+    public boolean isCostumerValid(Costumer costumer){return includedCostumers.contains(costumer);}
 
-    public static void removeDiscountCode(DiscountCode discountCode){}
+    public static DiscountCode getDiscountCodeByCode(String code){
+        for (DiscountCode discountCode : allDiscountCodes) {
+            if (discountCode.code.equals(code))
+                return discountCode;
+        }
+        return null;
+    }
+
+    public static void removeDiscountCode(DiscountCode discountCode){
+        DiscountCode code = getDiscountCodeByCode(discountCode.code);
+        allDiscountCodes.remove(code);
+    }
 
     public static void loadData(){}
 
