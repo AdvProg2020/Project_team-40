@@ -16,7 +16,9 @@ public class Manager extends User {
         return requests;
     }
 
-    public void addRequest(Request request){}
+    public static void addRequest(Request request){
+        requests.add(request);
+    }
 
     public static void loadData(){}
 
