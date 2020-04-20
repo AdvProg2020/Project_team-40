@@ -1,5 +1,6 @@
 package View.ShopingMenus.Product;
 
+import Controller.Menus.ProductController;
 import View.Menu;
 
 public class ProductMenu extends Menu {
@@ -9,11 +10,11 @@ public class ProductMenu extends Menu {
         super("Product Menu", parentMenu);
     }
 
-    public Menu getShowAttributes() {
+    public void getShowAttributes() {
 
     }
 
-    public Menu getCompare() {
+    public void getCompare() {
 
     }
 }

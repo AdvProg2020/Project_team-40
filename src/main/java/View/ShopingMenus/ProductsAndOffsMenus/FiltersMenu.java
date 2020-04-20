@@ -1,5 +1,7 @@
 package View.ShopingMenus.ProductsAndOffsMenus;
 
+import Controller.Menus.AllProductsController;
+import Controller.Menus.OffMenuController;
 import View.Menu;
 
 public class FiltersMenu extends Menu {
@@ -10,19 +12,19 @@ public class FiltersMenu extends Menu {
         super("Filters Menu", parentMenu);
     }
 
-    public Menu getShowFilters(){
+    public void getShowFilters(){
 
     }
 
-    public Menu getFilter(){
+    public void getFilter(){
 
     }
 
-    public Menu getShowCurrentFilters(){
+    public void getShowCurrentFilters(){
 
     }
 
-    public Menu getDisableFilters(){
+    public void getDisableFilters(){
 
     }
 }

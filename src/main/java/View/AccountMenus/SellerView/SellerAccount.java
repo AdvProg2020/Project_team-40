@@ -1,5 +1,6 @@
 package View.AccountMenus.SellerView;
 
+import Controller.Accounts.SellerAccountController;
 import View.AccountMenus.PeopleAccountMenu;
 import View.Menu;
 
@@ -10,33 +11,35 @@ public class SellerAccount extends PeopleAccountMenu {
         super("Seller Account", parentMenu);
     }
 
-    public Menu getCompanyInfo(){
+    public void getCompanyInfo(){
 
     }
 
-    public Menu getSalesHistory(){
+    public void getSalesHistory(){
 
     }
 
-    public Menu getAddProduct(){
+    public void getAddProduct(){
 
     }
 
-    public Menu getRemove(){
+    public void getRemove(){
 
     }
 
-    public Menu getShowCategories(){
+    public void getShowCategories(){
 
     }
 
-    public Menu getCompanyInfo(){
+    public void getViewBalance(){
 
     }
 
-    public Menu getViewBalance(){
+    public void getShowInfo(){
 
     }
 
+    public void getEditInfo(){
 
+    }
 }

@@ -1,5 +1,6 @@
 package View.AccountMenus.CustomerView;
 
+import Controller.Accounts.CustomerAccountController;
 import View.Menu;
 
 public class CustomerAccount extends Menu {
@@ -9,15 +10,15 @@ public class CustomerAccount extends Menu {
         super("Customer Account", parentMenu);
     }
 
-    public Menu getViewOrders(){
+    public void getViewOrders(){
 
     }
 
-    public Menu getViewBalance(){
+    public void getViewBalance(){
 
     }
 
-    public Menu getViewDiscountCodes(){
+    public void getViewDiscountCodes(){
 
     }
 }

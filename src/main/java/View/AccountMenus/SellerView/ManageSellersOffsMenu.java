@@ -1,5 +1,6 @@
 package View.AccountMenus.SellerView;
 
+import Controller.Accounts.SellerAccountController;
 import View.Menu;
 
 public class ManageSellersOffsMenu extends Menu {
@@ -9,15 +10,15 @@ public class ManageSellersOffsMenu extends Menu {
         super("Manage Seller's Offs Menu", parentMenu);
     }
 
-    public Menu getViewOff(){
+    public void getViewOff(){
 
     }
 
-    public Menu getEditOff(){
+    public void getEditOff(){
 
     }
 
-    public Menu getAddOff(){
+    public void getAddOff(){
 
     }
 }

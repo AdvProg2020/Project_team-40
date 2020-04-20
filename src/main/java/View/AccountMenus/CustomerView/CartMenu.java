@@ -1,5 +1,6 @@
 package View.AccountMenus.CustomerView;
 
+import Controller.Accounts.CustomerAccountController;
 import View.Menu;
 
 public class CartMenu extends Menu {
@@ -9,39 +10,39 @@ public class CartMenu extends Menu {
         super("Customer model.Cart Menu", parentMenu);
     }
 
-    public Menu getShowChosenProducts(){
+    public void getShowChosenProducts(){
 
     }
 
-    public Menu getViewChosenProducts(){
+    public void getViewChosenProducts(){
 
     }
 
-    public Menu getIncreaseChosenProduct(){
+    public void getIncreaseChosenProduct(){
 
     }
 
-    public Menu getDecreaseChosenProduct(){
+    public void getDecreaseChosenProduct(){
 
     }
 
-    public Menu getShowTotalPrice(){
+    public void getShowTotalPrice(){
 
     }
 
-    public Menu getPurchase(){
+    public void getPurchase(){
 
     }
 
-    public Menu getReceiveInfo(){
+    public void getReceiveInfo(){
 
     }
 
-    public Menu getEnterDiscountCode(){
+    public void getEnterDiscountCode(){
 
     }
 
-    public Menu getPayment(){
+    public void getPayment(){
 
     }
 }

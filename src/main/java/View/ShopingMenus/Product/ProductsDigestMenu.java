@@ -1,5 +1,6 @@
 package View.ShopingMenus.Product;
 
+import Controller.Accounts.CustomerAccountController;
 import View.Menu;
 
 public class ProductsDigestMenu extends Menu {
@@ -9,11 +10,11 @@ public class ProductsDigestMenu extends Menu {
         super("Product's Digest Menu", parentMenu);
     }
 
-    public Menu getAddToCart(){
+    public void getAddToCart(){
 
     }
 
-    public Menu getSelectSeller(){
+    public void getSelectSeller(){
 
     }
 }

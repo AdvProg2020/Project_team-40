@@ -1,5 +1,6 @@
 package View.AccountMenus.ManagrView;
 
+import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 
 public class CategoryMenu extends Menu {
@@ -9,27 +10,27 @@ public class CategoryMenu extends Menu {
         super("Manage Category Menu", parentMenu);
     }
 
-    public Menu getEditCategories(){
+    public void getEditCategories(){
 
     }
 
-    public Menu getEditSubcategories(){
+    public void getEditSubcategories(){
 
     }
 
-    public Menu getAddCategories(){
+    public void getAddCategories(){
 
     }
 
-    public Menu getSubCategories(){
+    public void getSubCategories(){
 
     }
 
-    public Menu getRemoveCategories(){
+    public void getRemoveCategories(){
 
     }
 
-    public Menu getRemoveSubcategories(){
+    public void getRemoveSubcategories(){
 
     }
 }

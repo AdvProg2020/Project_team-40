@@ -1,5 +1,6 @@
 package View.AccountMenus.ManagrView;
 
+import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 
 public class RequestMenu extends Menu {
@@ -9,15 +10,15 @@ public class RequestMenu extends Menu {
         super("Manage Requests Menu", parentMenu);
     }
 
-    public Menu getRequestDetails(){
+    public void getRequestDetails(){
 
     }
 
-    public Menu getAccept(){
+    public void getAccept(){
 
     }
 
-    public Menu getDecline(){
+    public void getDecline(){
 
     }
 }

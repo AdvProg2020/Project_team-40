@@ -1,5 +1,6 @@
 package View.AccountMenus.ManagrView;
 
+import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 
 public class DiscountsMenu extends Menu {
@@ -9,19 +10,19 @@ public class DiscountsMenu extends Menu {
         super("Manage Discounts Menu", parentMenu);
     }
 
-    public Manu getCreateDiscount(){
+    public void getCreateDiscount(){
 
     }
 
-    public Manu getViewDiscount(){
+    public void getViewDiscount(){
 
     }
 
-    public Manu getEditDiscount(){
+    public void getEditDiscount(){
 
     }
 
-    public Manu getRemoveDiscount(){
+    public void getRemoveDiscount(){
 
     }
 }

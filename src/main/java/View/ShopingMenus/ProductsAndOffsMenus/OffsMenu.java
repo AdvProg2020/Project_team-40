@@ -1,5 +1,6 @@
 package View.ShopingMenus.ProductsAndOffsMenus;
 
+import Controller.Menus.OffMenuController;
 import View.Menu;
 
 public class OffsMenu extends Menu {
@@ -9,11 +10,11 @@ public class OffsMenu extends Menu {
         super("Offs Menu", parentMenu);
     }
 
-    public Menu getShowProductsWithOff(){
+    public void getShowProductsWithOff(){
 
     }
 
-    public Menu getShowProduct(){
+    public void getShowProduct(){
 
     }
 }

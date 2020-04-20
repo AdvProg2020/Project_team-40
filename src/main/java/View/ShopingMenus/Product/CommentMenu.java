@@ -1,5 +1,6 @@
 package View.ShopingMenus.Product;
 
+import Controller.Accounts.CustomerAccountController;
 import View.Menu;
 
 public class CommentMenu extends Menu {
@@ -8,7 +9,7 @@ public class CommentMenu extends Menu {
         super("Comment Menu", parentMenu);
     }
 
-    public Menu getAddComment(){
+    public void getAddComment(){
 
     }
 }

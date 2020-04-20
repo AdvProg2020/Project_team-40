@@ -1,5 +1,6 @@
 package View.AccountMenus.ManagrView;
 
+import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 
 public class ManageProductsMenu extends Menu {

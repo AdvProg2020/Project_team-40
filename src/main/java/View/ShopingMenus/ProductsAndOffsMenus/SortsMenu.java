@@ -1,5 +1,7 @@
 package View.ShopingMenus.ProductsAndOffsMenus;
 
+import Controller.Menus.AllProductsController;
+import Controller.Menus.OffMenuController;
 import View.Menu;
 
 public class SortsMenu extends Menu {
@@ -10,19 +12,19 @@ public class SortsMenu extends Menu {
         super("Filters Menu", parentMenu);
     }
 
-    public Menu getShowSorts(){
+    public void getShowSorts(){
 
     }
 
-    public Menu getSortByField(){
+    public void getSortByField(){
 
     }
 
-    public Menu getShowCurrentSort(){
+    public void getShowCurrentSort(){
 
     }
 
-    public Menu getDisableSort() {
+    public void getDisableSort() {
 
     }
 }

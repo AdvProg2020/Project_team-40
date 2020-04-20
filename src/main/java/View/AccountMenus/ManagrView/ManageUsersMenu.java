@@ -1,23 +1,24 @@
 package View.AccountMenus.ManagrView;
 
+import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 
 public class ManageUsersMenu extends Menu {
-    ManagerAccountAccountController managerAccountAccountController;
+    ManagerAccountController managerAccountAccountController;
 
     public ManageUsersMenu(Menu parentMenu) {
         super("Manage Users Menu", parentMenu);
     }
 
-    public Manu getViewUser(){
+    public void getViewUser(){
 
     }
 
-    public Menu getDeleteUser(){
+    public void getDeleteUser(){
 
     }
 
-    public Menu getCreateManager(){
+    public void getCreateManager(){
 
     }
 }
