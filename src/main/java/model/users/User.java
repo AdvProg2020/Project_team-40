@@ -1,5 +1,7 @@
 package model.users;
 
+import model.Loader;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

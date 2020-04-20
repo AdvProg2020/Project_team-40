@@ -1,4 +1,8 @@
 package model.log;
+
+import model.Loader;
+import model.Utility;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,9 +19,8 @@ public abstract class Log {
         this.cost = cost;
         this.discount = discount;
         this.productNames = productNames;
+        id = Utility.generateId();
     }
-
-    public void generateId(){}
 
     public String getId(){
         return id;
