@@ -25,6 +25,9 @@ public class Manager extends User {
 
     @Override
     public String toString() {
-        return null;
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "Username: " + username + "\n" +
+                "Email Address: " + email + "\n" +
+                "Phone Number: " + phoneNo + "\n";
     }
 }

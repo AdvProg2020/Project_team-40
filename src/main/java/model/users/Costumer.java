@@ -2,7 +2,7 @@ package model.users;
 
 import model.DiscountCode;
 import model.Product;
-import model.log.PurchaseLog;
+import model.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class Costumer extends User{
     private ArrayList<Product> cart;
     private ArrayList<DiscountCode> discountCodes;
     private double credit;
-    private HashMap<String, PurchaseLog> logs;
+    private HashMap<String, Log> logs;
     private ArrayList<Product> products;
 
     public Costumer(String username, String password, String firstName, String lastName,
@@ -36,7 +36,7 @@ public class Costumer extends User{
         return credit;
     }
 
-    public HashMap<String, PurchaseLog> getLogs() {
+    public HashMap<String, Log> getLogs() {
         return logs;
     }
 
@@ -48,7 +48,7 @@ public class Costumer extends User{
         discountCodes.add(discountCode);
     }
 
-    public void addLog(PurchaseLog purchaseLog){
+    public void addLog(Log purchaseLog){
         logs.put(purchaseLog.getId(), purchaseLog);
     }
 
@@ -60,7 +60,7 @@ public class Costumer extends User{
         products.remove(product);
     }
 
-    public PurchaseLog getLogById(String id){
+    public Log getLogById(String id){
         return logs.get(id);
     }
 
@@ -70,7 +70,9 @@ public class Costumer extends User{
 
     @Override
     public String toString() {
-        return null;
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "Username: " + username + "\n" +
+                "Email Address: " + email + "\n" +
+                "Phone Number: " + phoneNo + "\n";
     }
-    //TODO: toString
 }

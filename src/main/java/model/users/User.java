@@ -8,12 +8,12 @@ import java.util.HashMap;
 public abstract class  User {
     private static HashMap<String, User> allUsers = new HashMap<>();
     private static User loggedInUser;
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNo;
+    protected String username;
+    protected String password;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String phoneNo;
 
     public User(String username, String password, String firstName,
                 String lastName, String email, String phoneNo) {
@@ -101,7 +101,7 @@ public abstract class  User {
         }
     }
 
-    public static void loadData(){
+    public static void loadData() {
 
     }
     //TODO: Save and load must be completed
