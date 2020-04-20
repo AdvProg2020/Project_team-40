@@ -1,15 +1,29 @@
 package model;
 
+import model.users.User;
+
 public class Loader {
-    private Loader loader;
+    private static Loader loader = new Loader();
 
-    private Loader(){}
+    private Loader(){
+        this.loadData();
+    }
 
-    public void loadData(){}
+    public void loadData(){
+        Category.loadData();
+        Product.loadData();
+        DiscountCode.loadData();
+        User.loadData();
+    }
 
-    public void saveData(){}
+    public void saveData(){
+        Category.saveData();
+        Product.saveData();
+        DiscountCode.saveData();
+        User.saveData();
+    }
 
-    public Loader getLoader() {
+    public static Loader getLoader() {
         return loader;
     }
 }

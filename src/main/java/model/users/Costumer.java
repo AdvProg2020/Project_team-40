@@ -60,7 +60,7 @@ public class Costumer extends User{
         products.remove(product);
     }
 
-    public  PurchaseLog getLogById(String id){
+    public PurchaseLog getLogById(String id){
         return logs.get(id);
     }
 
