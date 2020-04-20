@@ -1,14 +1,13 @@
 package model.users;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class  User {
-    private static ArrayList<User> allUsers;
+    private static HashMap<String, User> allUsers = new HashMap<>();
     private static User loggedInUser;
     private String username;
-
     private String password;
-
     private String firstName;
     private String lastName;
     private String email;
@@ -22,6 +21,7 @@ public abstract class  User {
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
+        allUsers.put(this.username, this);
     }
 
     public String getUsername() {
@@ -68,27 +68,42 @@ public abstract class  User {
         this.phoneNo = phoneNo;
     }
 
-
     public boolean checkPassword(String password){
-        return false;
+        if(password.equals(this.password)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public abstract String toString();
 
-    public static void getUserByUsername(String username){}
+    public static User getUserByUsername(String username){
+        return allUsers.get(username);
+    }
 
-    public static void deleteUser(User user){}
+    public static void deleteUser(User user){
+        allUsers.remove(user.getUsername());
+    }
 
     public static void setLoggedInUser(User loggedInUser) {
         User.loggedInUser = loggedInUser;
     }
 
     public static boolean isUserLoggedIn(){
-        return false;
+        if(User.loggedInUser == null){
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public static void loadData(){}
+    public static void loadData(){
 
-    public  static void saveData(){}
+    }
+    //TODO: Save and load must be completed
+    public  static void saveData(){
+
+    }
 }

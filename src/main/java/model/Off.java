@@ -53,6 +53,10 @@ public class Off {
         return allOffs;
     }
 
+    public String getId(){
+        return this.id;
+    }
+
     public static void loadData(){}
 
     public static void saveData(){}

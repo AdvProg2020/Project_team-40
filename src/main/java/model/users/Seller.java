@@ -5,11 +5,12 @@ import model.Product;
 import model.log.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Seller extends User{
     private String companyInfo;
-    private ArrayList<Product> products;
-    private ArrayList<Off> offs;
+    private HashMap<String, Product> products;
+    private HashMap<String, Off> offs;
     private double credit;
     private ArrayList<Log> logs;
     private boolean managerPermission;
@@ -21,13 +22,16 @@ public class Seller extends User{
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
         this.companyInfo = companyInfo;
+        products = new HashMap<>();
+        offs = new HashMap<>();
+        logs = new ArrayList<>();
     }
 
-    public ArrayList<Product> getProducts() {
+    public HashMap<String, Product> getProducts() {
         return products;
     }
 
-    public ArrayList<Off> getOffs() {
+    public HashMap<String, Off> getOffs() {
         return offs;
     }
 
@@ -43,28 +47,45 @@ public class Seller extends User{
         return managerPermission;
     }
 
-
     public void addLog(Log log){}
 
-    public void addProduct(Product product){}
+    public void addProduct(Product product){
+        products.put(product.getProductId(), product);
+    }
 
-    public void deleteProduct(Product product){}
+    public void deleteProduct(Product product){
+        products.remove(product.getProductId());
+    }
 
-    public boolean doesProductExist(Product product){return false;}
+    public boolean doesProductExist(Product product){}
 
-    public void addOff(Off off){}
+    public void addOff(Off off){
+        offs.put(off.getId(), off);
+    }
 
-    public void deleteOff(Off off){}
+    public void deleteOff(Off off){
+        offs.remove(off.getId());
+    }
 
-    public boolean doesOffExist(Off off){return false;}
+    public boolean doesOffExist(Off off){
+        return offs.containsValue(off);
+    }
 
-    public Product getProductById(String id){return null;}
+    public Product getProductById(String id){
+        return products.get(id);
+    }
 
-    public Off getOffById(String id){return null;}
+    public Off getOffById(String id){
+        return offs.get(id);
+    }
 
-    public void increaseCredit(int credit){}
+    public void increaseCredit(int credit){
+        this.credit += credit;
+    }
 
-    public void decreaseCredit(int credit){}
+    public void decreaseCredit(int credit){
+        this.credit -= credit;
+    }
 
     @Override
     public String toString() {
