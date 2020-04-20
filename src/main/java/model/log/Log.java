@@ -19,6 +19,10 @@ public abstract class Log {
 
     public void generateId(){}
 
+    public String getId(){
+        return id;
+    }
+
     @Override
     public abstract String toString();
 }

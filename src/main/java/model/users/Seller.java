@@ -47,7 +47,9 @@ public class Seller extends User{
         return managerPermission;
     }
 
-    public void addLog(Log log){}
+    public void addLog(Log log){
+        logs.add(log);
+    }
 
     public void addProduct(Product product){
         products.put(product.getProductId(), product);
@@ -57,7 +59,9 @@ public class Seller extends User{
         products.remove(product.getProductId());
     }
 
-    public boolean doesProductExist(Product product){}
+    public boolean doesProductExist(Product product){
+        return products.containsValue(product);
+    }
 
     public void addOff(Off off){
         offs.put(off.getId(), off);

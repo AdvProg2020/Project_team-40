@@ -5,18 +5,23 @@ import model.Product;
 import model.log.PurchaseLog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Costumer extends User{
     private ArrayList<Product> cart;
     private ArrayList<DiscountCode> discountCodes;
     private double credit;
-    private ArrayList<PurchaseLog> logs;
-    private  ArrayList<Product> products;
+    private HashMap<String, PurchaseLog> logs;
+    private ArrayList<Product> products;
 
     public Costumer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
+        logs = new HashMap<>();
+        products = new ArrayList<>();
+        cart = new ArrayList<>();
+        discountCodes = new ArrayList<>();
     }
 
     public ArrayList<Product> getCart() {
@@ -31,7 +36,7 @@ public class Costumer extends User{
         return credit;
     }
 
-    public ArrayList<PurchaseLog> getLogs() {
+    public HashMap<String, PurchaseLog> getLogs() {
         return logs;
     }
 
@@ -39,21 +44,33 @@ public class Costumer extends User{
         return products;
     }
 
-    public void addDiscountCode(DiscountCode discountCode){}
+    public void addDiscountCode(DiscountCode discountCode){
+        discountCodes.add(discountCode);
+    }
 
-    public void addLog(PurchaseLog purchaseLog){}
+    public void addLog(PurchaseLog purchaseLog){
+        logs.put(purchaseLog.getId(), purchaseLog);
+    }
 
-    public void addProduct(Product product){}
+    public void addProduct(Product product){
+        products.add(product);
+    }
 
-    public void deleteProduct(Product product){}
+    public void deleteProduct(Product product){
+        products.remove(product);
+    }
 
-    public  PurchaseLog getLogById(String id){return null;}
+    public  PurchaseLog getLogById(String id){
+        return logs.get(id);
+    }
 
-    public double getTotalPriceOfCart() {return 0;}
-
+    public double getTotalPriceOfCart() {return 0;
+        //TODO: is cart an object in this class or an arrayList of products?
+    }
 
     @Override
     public String toString() {
         return null;
     }
+    //TODO: toString
 }
