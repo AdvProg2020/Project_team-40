@@ -12,6 +12,7 @@ public class Seller extends User{
     private ArrayList<Off> offs;
     private double credit;
     private ArrayList<Log> logs;
+
     private boolean managerPermission;
 
 
@@ -39,10 +40,14 @@ public class Seller extends User{
         return logs;
     }
 
-    public boolean isManagerPermission() {
+    public boolean doesHaveManagerPermission() {
         return managerPermission;
     }
 
+
+    public void setManagerPermission(boolean managerPermission) {
+        this.managerPermission = managerPermission;
+    }
 
     public void addLog(Log log){}
 

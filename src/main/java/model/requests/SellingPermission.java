@@ -10,12 +10,18 @@ public class SellingPermission extends Request{
     }
 
     @Override
-    public void action() {
+    protected void generateId() {
+        this.requestId = "sp";
+    }
 
+    @Override
+    public void action() {
+        if(isAccepted)
+            seller.setManagerPermission(true);
     }
 
     @Override
     public String toString() {
-        return null;
+        return super.toString() + " Seller: " + seller;
     }
 }

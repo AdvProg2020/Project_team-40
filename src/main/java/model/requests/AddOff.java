@@ -9,17 +9,21 @@ public class AddOff extends Request{
         this.off = off;
     }
 
-    public Off getOff() {
-        return off;
+    @Override
+    protected void generateId() {
+        this.requestId = "af";
     }
 
     @Override
     public void action() {
-
+        if(isAccepted){
+            off.getSeller().deleteOff(off);
+            Off.addOff(off);
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return super.toString() + "Off: " + off;
     }
 }
