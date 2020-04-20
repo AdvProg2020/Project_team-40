@@ -35,7 +35,7 @@ public class DiscountCode {
 
     public boolean checkIfExpired(){
         Date today = new Date();
-        return !today.after(startDate) && today.before(endDate);
+        return !(today.after(startDate) && today.before(endDate));
     }
 
     private void generateCode(){}
