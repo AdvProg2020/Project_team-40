@@ -25,6 +25,7 @@ public class DiscountCode {
         this.maxAmount = maxAmount;
         this.countPerUser = countPerUser;
         this.includedCostumers = new HashMap<>();
+        allDiscountCodes.add(this);
     }
 
     public static ArrayList<DiscountCode> getAllDiscountCodes() {
