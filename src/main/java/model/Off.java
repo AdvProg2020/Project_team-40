@@ -1,6 +1,7 @@
 package model;
 
 import model.enumerations.SetUpStatus;
+import model.users.Seller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,13 +13,16 @@ public class Off {
     private SetUpStatus status;
     private Date startDate;
     private Date endDate;
+
+    private Seller seller;
+
     private int discountPercentage;
     private ArrayList<Product> products;
-
-    public Off(Date startDate, Date endDate, int discountPercentage) {
+    public Off(Date startDate, Date endDate, int discountPercentage, Seller seller) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.discountPercentage = discountPercentage;
+        this.seller = seller;
     }
 
     public void setStatus(SetUpStatus status) {
@@ -49,12 +53,20 @@ public class Off {
 
     public Product getProductById(String productId){return null;}
 
+    public Seller getSeller() {
+        return seller;
+    }
+
     public static ArrayList<Off> getAllOffs() {
         return allOffs;
     }
 
     public String getId(){
         return this.id;
+    }
+
+    public static void addOff(Off off){
+        allOffs.add(off);
     }
 
     public static void loadData(){}

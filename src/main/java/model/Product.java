@@ -129,6 +129,8 @@ public class Product {
 
     public static void removeProduct(Product product){}
 
+    public static void addProduct(Product product){}
+
     public static Product getProductById(String id){return null;}
 
     public static void loadData(){}

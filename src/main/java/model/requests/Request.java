@@ -1,17 +1,23 @@
 package model.requests;
 
 public abstract class Request {
-    private String requestId;
-    private boolean isAccepted;
+    protected String requestId;
+    protected boolean isAccepted;
 
     public void setAccepted(boolean accepted) {
         isAccepted = accepted;
     }
 
-    private void generateId(){}
+    protected abstract void generateId();
 
     public abstract void action();
 
     @Override
-    public abstract String toString();
+    public  String toString(){
+        String status = "Declined";
+        if (isAccepted)
+            status = "Accepted";
+        return "requestId : " + requestId + "\n"
+                + "Status :" + status + "\n";
+    }
 }

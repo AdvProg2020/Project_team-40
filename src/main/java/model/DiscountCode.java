@@ -4,6 +4,8 @@ import model.users.Costumer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DiscountCode {
     private static ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
@@ -13,7 +15,7 @@ public class DiscountCode {
     private int percentage;
     private double maxAmount;
     private int countPerUser;
-    private ArrayList<Costumer> includedCostumers;
+    private Map<Costumer, Integer> includedCostumers;
 
     public DiscountCode(Date startDate, Date endDate,
                         int percentage, double maxAmount, int countPerUser) {
@@ -22,26 +24,27 @@ public class DiscountCode {
         this.percentage = percentage;
         this.maxAmount = maxAmount;
         this.countPerUser = countPerUser;
-        this.includedCostumers = new ArrayList<>();
+        this.includedCostumers = new HashMap<>();
     }
 
     public static ArrayList<DiscountCode> getAllDiscountCodes() {
         return allDiscountCodes;
     }
 
-    public ArrayList<Costumer> getIncludedCostumers() {
+    public Map<Costumer, Integer> getIncludedCostumers() {
         return includedCostumers;
     }
 
     public boolean checkIfExpired(){
         Date today = new Date();
-        return !today.after(startDate) && today.before(endDate);
+        return !(today.after(startDate) && today.before(endDate));
     }
 
     private void generateCode(){}
 
     public void addCostumer(Costumer costumer){
-        includedCostumers.add(costumer);
+        includedCostumers.put(costumer, countPerUser);
+        costumer.addDiscountCode(this);
     }
 
     public void setStartDate(Date startDate) {
@@ -60,11 +63,23 @@ public class DiscountCode {
         this.maxAmount = maxAmount;
     }
 
-    public void setCountPerUser(int countPerUser) {
-        this.countPerUser = countPerUser;
+    public void decreaseCountPerUser(Costumer costumer) {
+        int newCount = includedCostumers.get(costumer) - 1;
+        if (newCount < 0)
+            newCount = 0;
+        includedCostumers.replace(costumer, newCount);
     }
 
-    public boolean isCostumerValid(Costumer costumer){return includedCostumers.contains(costumer);}
+    public double calculatePriceAfterDiscount(double price){
+        double newPrice = price * (1 - this.percentage*0.01) * price;
+        if (newPrice > this.maxAmount)
+            newPrice = this.maxAmount;
+        return newPrice;
+    }
+
+    public boolean isCountRemained(Costumer costumer){
+        return includedCostumers.get(costumer) >= 0;
+    }
 
     public static DiscountCode getDiscountCodeByCode(String code){
         for (DiscountCode discountCode : allDiscountCodes) {
@@ -75,8 +90,10 @@ public class DiscountCode {
     }
 
     public static void removeDiscountCode(DiscountCode discountCode){
-        DiscountCode code = getDiscountCodeByCode(discountCode.code);
-        allDiscountCodes.remove(code);
+        for (Costumer costumer : discountCode.includedCostumers.keySet()) {
+            costumer.getDiscountCodes().remove(discountCode);
+        }
+        allDiscountCodes.remove(discountCode);
     }
 
     public static void loadData(){}

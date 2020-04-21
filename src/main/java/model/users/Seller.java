@@ -43,7 +43,7 @@ public class Seller extends User{
         return logs;
     }
 
-    public boolean isManagerPermission() {
+    public boolean doesHaveManagerPermission() {
         return managerPermission;
     }
 
@@ -53,6 +53,9 @@ public class Seller extends User{
 
     public void addProduct(Product product){
         products.put(product.getProductId(), product);
+    }
+    public void setManagerPermission(boolean managerPermission) {
+        this.managerPermission = managerPermission;
     }
 
     public void deleteProduct(Product product){

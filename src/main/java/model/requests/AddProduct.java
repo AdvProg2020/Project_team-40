@@ -9,17 +9,21 @@ public class AddProduct extends Request{
         this.product = product;
     }
 
-    public Product getProduct() {
-        return product;
+    @Override
+    protected void generateId() {
+        this.requestId = "ap";
     }
 
     @Override
     public void action() {
-
+        if(isAccepted) {
+            product.getSeller().addProduct(product);
+            Product.addProduct(product);
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return super.toString() + "Product: " + product;
     }
 }

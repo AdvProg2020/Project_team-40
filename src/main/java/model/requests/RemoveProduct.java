@@ -10,12 +10,20 @@ public class RemoveProduct extends Request{
     }
 
     @Override
-    public void action() {
+    protected void generateId() {
+        this.requestId = "rp";
+    }
 
+    @Override
+    public void action() {
+        if(isAccepted) {
+            product.getSeller().deleteProduct(product);
+            Product.removeProduct(product);
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return super.toString() + "Product: " + product;
     }
 }
