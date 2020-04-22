@@ -1,6 +1,7 @@
 package model;
 
 import model.users.Costumer;
+import model.users.User;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +16,7 @@ public class DiscountCode {
     private int percentage;
     private double maxAmount;
     private int countPerUser;
-    private Map<Costumer, Integer> includedCostumers;
+    private Map<String, Integer> includedCostumers;
 
     public DiscountCode(Date startDate, Date endDate,
                         int percentage, double maxAmount, int countPerUser) {
@@ -32,7 +33,7 @@ public class DiscountCode {
         return allDiscountCodes;
     }
 
-    public Map<Costumer, Integer> getIncludedCostumers() {
+    public Map<String, Integer> getIncludedCostumers() {
         return includedCostumers;
     }
 
@@ -44,7 +45,7 @@ public class DiscountCode {
     private void generateCode(){}
 
     public void addCostumer(Costumer costumer){
-        includedCostumers.put(costumer, countPerUser);
+        includedCostumers.put(costumer.getUsername(), countPerUser);
         costumer.addDiscountCode(this);
     }
 
@@ -65,10 +66,10 @@ public class DiscountCode {
     }
 
     public void decreaseCountPerUser(Costumer costumer) {
-        int newCount = includedCostumers.get(costumer) - 1;
+        int newCount = includedCostumers.get(costumer.getUsername()) - 1;
         if (newCount < 0)
             newCount = 0;
-        includedCostumers.replace(costumer, newCount);
+        includedCostumers.replace(costumer.getUsername(), newCount);
     }
 
     public double calculatePriceAfterDiscount(double price){
@@ -79,7 +80,7 @@ public class DiscountCode {
     }
 
     public boolean isCountRemained(Costumer costumer){
-        return includedCostumers.get(costumer) >= 0;
+        return includedCostumers.get(costumer.getUsername()) >= 0;
     }
 
     public static DiscountCode getDiscountCodeByCode(String code){
@@ -91,8 +92,8 @@ public class DiscountCode {
     }
 
     public static void removeDiscountCode(DiscountCode discountCode){
-        for (Costumer costumer : discountCode.includedCostumers.keySet()) {
-            costumer.getDiscountCodes().remove(discountCode);
+        for (String costumer : discountCode.includedCostumers.keySet()) {
+            ((Costumer)(User.getUserByUsername(costumer))).getDiscountCodes().remove(discountCode);
         }
         allDiscountCodes.remove(discountCode);
     }
