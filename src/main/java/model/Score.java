@@ -13,5 +13,11 @@ public class Score {
         this.product = product;
     }
 
+    public User getUser(){
+        return user;
+    }
 
+    public int getScore(){
+        return score;
+    }
 }
