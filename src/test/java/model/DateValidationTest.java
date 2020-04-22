@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DiscountCodeTest {
+public class DateValidationTest {
     @Test
     public void testDateValidation() throws ParseException {
         Date start = new SimpleDateFormat("yyyy-mm-dd").parse("2020-03-25");

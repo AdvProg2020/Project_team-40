@@ -3,12 +3,16 @@ package model;
 import model.users.Costumer;
 import model.users.User;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DiscountCode {
+public class DiscountCode implements Serializable {
     private static ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private String code;
     private Date startDate;
@@ -26,6 +30,7 @@ public class DiscountCode {
         this.maxAmount = maxAmount;
         this.countPerUser = countPerUser;
         this.includedCostumers = new HashMap<>();
+        generateCode();
         allDiscountCodes.add(this);
     }
 
@@ -42,7 +47,9 @@ public class DiscountCode {
         return !(today.after(startDate) && today.before(endDate));
     }
 
-    private void generateCode(){}
+    private void generateCode(){
+        this.code = Utility.generateId();
+    }
 
     public void addCostumer(Costumer costumer){
         includedCostumers.put(costumer.getUsername(), countPerUser);
@@ -100,7 +107,21 @@ public class DiscountCode {
 
     public static void loadData(){}
 
-    public static void saveData(){}
+    public static void saveData(){
+        String path = "src/main/resources/discount codes/";
+        for (DiscountCode discountCode : allDiscountCodes) {
+            try {
+                FileOutputStream file = new FileOutputStream(path + discountCode.code);
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(discountCode);
+                file.close();
+                outputStream.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public String toString() {
