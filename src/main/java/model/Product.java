@@ -2,13 +2,16 @@ package model;
 
 import model.enumerations.SetUpStatus;
 import model.properties.Property;
+import model.properties.StringProperty;
+import model.properties.ValueProperty;
 import model.users.Costumer;
 import model.users.Seller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Product {
-    private static ArrayList<Product> allProducts;
+    private static HashMap<String, Product> allProducts = new HashMap<>();
     private String productId;
     private SetUpStatus status;
     private String name;
@@ -19,7 +22,6 @@ public class Product {
     private Category category;
     private String explanation;
     private ArrayList<Score> allScores;
-    private double averageScore;
     private ArrayList<Comment> comments;
     private boolean isInOff;
     private ArrayList<Costumer> allBuyers;
@@ -38,9 +40,9 @@ public class Product {
         this.allScores = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.extraProperties = new ArrayList<>();
+        productId = Utility.generateId();
+        allProducts.put(productId, this);
     }
-
-    private void generateId(){}
 
     public String getProductId() {
         return productId;
@@ -86,52 +88,56 @@ public class Product {
         this.status = status;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public void setCount(int count) {}
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
     }
 
-    public void setAverageScore(double averageScore) {}
+    public double getAverageScore(){
+        double sum = 0.0;
+        for(Score score : allScores) {
+            sum += score.getScore();
+        }
+        return sum / allScores.size();
+    }
 
     public void setInOff(boolean inOff) {
         isInOff = inOff;
     }
 
-    public void increaseVisitCount(int visitCount) {}
-
-    public void addProperty(Property property){}
-
-    public void addComment(Comment comment){}
-
-    public void addScore(Score score){}
-
-    @Override
-    public String toString() {
-        return "Product{}";
+    public void increaseVisitCount(int visitCount) {
+        visitCount++;
     }
 
-    public static void removeProduct(Product product){}
+    public void addProperty(Property property){
+        if(property instanceof ValueProperty)
+            extraProperties.add((ValueProperty) property);
+        else
+            extraProperties.add((StringProperty) property);
+    }
 
-    public static void addProduct(Product product){}
+    public void addComment(Comment comment){
+        comments.add(comment);
+    }
 
-    public static Product getProductById(String id){return null;}
+    public void addScore(Score score){
+        allScores.add(score);
+    }
+
+    public static void removeProduct(String id){
+        allProducts.remove(id);
+    }
+
+    public static Product getProductById(String id){
+        return allProducts.get(id);
+    }
 
     public static void loadData(){}
 
