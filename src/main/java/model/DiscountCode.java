@@ -3,10 +3,7 @@ package model;
 import model.users.Costumer;
 import model.users.User;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -105,7 +102,25 @@ public class DiscountCode implements Serializable {
         allDiscountCodes.remove(discountCode);
     }
 
-    public static void loadData(){}
+    public static void loadData() throws IOException {
+        String directoryPath = "src/main/resources/discount codes/";
+        File directory = new File(directoryPath);
+        String[] pathNames = directory.list();
+        assert pathNames != null;
+        for (String path: pathNames) {
+            FileInputStream file = new FileInputStream(directoryPath + path);
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            try {
+                allDiscountCodes.add((DiscountCode)inputStream.readObject());
+                file.close();
+                inputStream.close();
+                //TODO: IMPLEMENT DELETING FILES AFTER LOADING DATA
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     public static void saveData(){
         String path = "src/main/resources/discount codes/";

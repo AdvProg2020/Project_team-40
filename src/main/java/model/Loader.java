@@ -12,7 +12,7 @@ public class Loader {
     public void loadData(){
         Category.loadData();
         Product.loadData();
-        DiscountCode.loadData();
+//        DiscountCode.loadData();
         User.loadData();
     }
 
