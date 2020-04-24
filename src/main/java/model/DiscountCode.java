@@ -114,7 +114,8 @@ public class DiscountCode implements Serializable {
                 allDiscountCodes.add((DiscountCode)inputStream.readObject());
                 file.close();
                 inputStream.close();
-                //TODO: IMPLEMENT DELETING FILES AFTER LOADING DATA
+                new File(directoryPath + path).delete();
+                //TODO:IMPLEMENT PROPER EXCEPTION
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
