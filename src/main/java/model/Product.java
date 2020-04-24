@@ -41,7 +41,10 @@ public class Product {
         this.comments = new ArrayList<>();
         this.extraProperties = new ArrayList<>();
         productId = Utility.generateId();
-        allProducts.put(productId, this);
+    }
+
+    public static void addProduct(Product product){
+        allProducts.put(product.productId, product);
     }
 
     public String getProductId() {
