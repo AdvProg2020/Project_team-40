@@ -1,9 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Category {
-    private ArrayList<Category> allCategories;
+    private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
     private Category parentCategory;
     private ArrayList<Product> products;
@@ -13,6 +14,10 @@ public class Category {
     public Category(String name, Category parentCategory) {
         this.name = name;
         this.parentCategory = parentCategory;
+    }
+
+    public static void addCategory(Category category){
+        allCategories.put(category.name, category);
     }
 
     public ArrayList<Product> getProducts() {
@@ -27,21 +32,31 @@ public class Category {
         this.name = name;
     }
 
-    public void addSubCategory(Category category){}
+    public void addSubCategory(Category category){
+        subCategories.add(category);
+    }
 
-    public void addProduct(Product product){}
+    public void addProduct(Product product){
+        products.add(product);
+    }
 
-    public boolean doesProductExist(Product product){return false;}
+    public boolean hasProduct(Product product){
+        return products.contains(product);
+    }
 
-    public void removeProduct(Product product){}
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
 
-    public static Category getCategoryByName(String name){return null;}
+    public static Category getCategoryByName(String name){
+        return allCategories.get(name);
+    }
 
-    public static void addCategory(Category category){}
+    public static void removeCategory(Category category){
+        allCategories.remove(category);
+    }
 
-    public static void removeCategory(Category category){}
-
-    public ArrayList<Category> getAllCategories() {
+    public HashMap<String, Category> getAllCategories() {
         return allCategories;
     }
 
