@@ -18,7 +18,7 @@ public class RemoveProduct extends Request{
     public void action() {
         if(isAccepted) {
             product.getSeller().deleteProduct(product);
-            Product.removeProduct(product);
+            Product.removeProduct(product.getProductId());
         }
     }
 

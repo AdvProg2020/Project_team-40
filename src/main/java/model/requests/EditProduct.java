@@ -6,6 +6,11 @@ public class EditProduct extends Request{
 
 
     @Override
+    protected void generateId() {
+
+    }
+
+    @Override
     public void action() {
 
     }
