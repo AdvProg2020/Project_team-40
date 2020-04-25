@@ -6,12 +6,8 @@ public class AddProduct extends Request{
     private Product product;
 
     public AddProduct(Product product) {
+        super("Add Product");
         this.product = product;
-    }
-
-    @Override
-    protected void generateId() {
-        this.requestId = "ap";
     }
 
     @Override

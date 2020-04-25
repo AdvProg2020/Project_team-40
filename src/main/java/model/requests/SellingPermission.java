@@ -6,12 +6,8 @@ public class SellingPermission extends Request{
     private Seller seller;
 
     public SellingPermission(Seller seller) {
+        super("Selling Permission");
         this.seller = seller;
-    }
-
-    @Override
-    protected void generateId() {
-        this.requestId = "sp";
     }
 
     @Override

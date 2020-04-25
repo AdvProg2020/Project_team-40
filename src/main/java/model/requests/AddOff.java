@@ -6,12 +6,8 @@ public class AddOff extends Request{
     private Off off;
 
     public AddOff(Off off) {
+        super("Add Off");
         this.off = off;
-    }
-
-    @Override
-    protected void generateId() {
-        this.requestId = "af";
     }
 
     @Override

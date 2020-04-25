@@ -1,14 +1,17 @@
 package model.requests;
 
 public abstract class Request {
+    protected String type;
     protected String requestId;
     protected boolean isAccepted;
+
+    public Request(String type) {
+        this.type = type;
+    }
 
     public void setAccepted(boolean accepted) {
         isAccepted = accepted;
     }
-
-    protected abstract void generateId();
 
     public abstract void action();
 
@@ -18,6 +21,7 @@ public abstract class Request {
         if (isAccepted)
             status = "Accepted";
         return "requestId : " + requestId + "\n"
-                + "Status :" + status + "\n";
+                + "Status :" + status + "\n"
+                + "Type : " + type + "\n";
     }
 }

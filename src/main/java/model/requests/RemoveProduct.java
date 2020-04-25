@@ -6,12 +6,8 @@ public class RemoveProduct extends Request{
     private Product product;
 
     public RemoveProduct(Product product) {
+        super("Remove Product");
         this.product = product;
-    }
-
-    @Override
-    protected void generateId() {
-        this.requestId = "rp";
     }
 
     @Override
