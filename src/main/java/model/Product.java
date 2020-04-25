@@ -1,14 +1,12 @@
 package model;
 
 import model.enumerations.SetUpStatus;
-import model.properties.Property;
-import model.properties.StringProperty;
-import model.properties.ValueProperty;
 import model.users.Costumer;
 import model.users.Seller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Product {
     private static HashMap<String, Product> allProducts = new HashMap<>();
@@ -25,7 +23,8 @@ public class Product {
     private ArrayList<Comment> comments;
     private boolean isInOff;
     private ArrayList<Costumer> allBuyers;
-    private ArrayList<Property> extraProperties;
+    private HashMap<String, String> extraStringProperties;
+    private HashMap<String, Double> extraValueProperties;
     private int visitCount;
 
     public Product(String name, String company, double price,
@@ -39,7 +38,8 @@ public class Product {
         this.allBuyers = new ArrayList<>();
         this.allScores = new ArrayList<>();
         this.comments = new ArrayList<>();
-        this.extraProperties = new ArrayList<>();
+        this.extraStringProperties = new HashMap<>();
+        this.extraValueProperties = new HashMap<>();
         productId = Utility.generateId();
     }
 
@@ -63,6 +63,30 @@ public class Product {
         return seller;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public String getCompany(){
+        return company;
+    }
+
+    public String getExplanation(){
+        return explanation;
+    }
+
+    public static HashMap<String, Product> getAllProducts(){
+        return allProducts;
+    }
+
+    public int getVisitCount(){
+        return visitCount;
+    }
+
+    public SetUpStatus getStatus(){
+        return status;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -79,8 +103,20 @@ public class Product {
         return isInOff;
     }
 
-    public ArrayList<Property> getExtraProperties() {
-        return extraProperties;
+    public HashMap<String, Double> getExtraValueProperties(){
+        return extraValueProperties;
+    }
+
+    public HashMap<String, String> getExtraStringProperties(){
+        return extraStringProperties;
+    }
+
+    public String getStringProperty(String name){
+        return extraStringProperties.get(name);
+    }
+
+    public Double getValueProperty(String name){
+        return extraValueProperties.get(name);
     }
 
     public ArrayList<Costumer> getAllBuyers() {
@@ -119,11 +155,12 @@ public class Product {
         visitCount++;
     }
 
-    public void addProperty(Property property){
-        if(property instanceof ValueProperty)
-            extraProperties.add((ValueProperty) property);
-        else
-            extraProperties.add((StringProperty) property);
+    public void addExtraProperty(String name, Double value){
+        extraValueProperties.put(name, value);
+    }
+
+    public void addExtraProperty(String name, String value){
+        extraStringProperties.put(name, value);
     }
 
     public void addComment(Comment comment){
