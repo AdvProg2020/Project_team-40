@@ -7,25 +7,20 @@ import model.log.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Costumer extends User{
-    private ArrayList<Product> cart;
+public class Customer extends User{
     private ArrayList<DiscountCode> discountCodes;
     private double credit;
     private HashMap<String, Log> logs;
     private ArrayList<Product> products;
 
-    public Costumer(String username, String password, String firstName, String lastName,
+    //TODO: FIGURE OUT IF A CART ARRAY LIST IS NEEDED OR NOT
+    public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
         logs = new HashMap<>();
         products = new ArrayList<>();
-        cart = new ArrayList<>();
         discountCodes = new ArrayList<>();
-    }
-
-    public ArrayList<Product> getCart() {
-        return cart;
     }
 
     public ArrayList<DiscountCode> getDiscountCodes() {

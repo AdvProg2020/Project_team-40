@@ -4,7 +4,7 @@ import model.enumerations.SetUpStatus;
 import model.properties.Property;
 import model.properties.StringProperty;
 import model.properties.ValueProperty;
-import model.users.Costumer;
+import model.users.Customer;
 import model.users.Seller;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Product {
     private ArrayList<Score> allScores;
     private ArrayList<Comment> comments;
     private boolean isInOff;
-    private ArrayList<Costumer> allBuyers;
+    private ArrayList<Customer> allBuyers;
     private ArrayList<Property> extraProperties;
     private int visitCount;
 
@@ -83,7 +83,7 @@ public class Product {
         return extraProperties;
     }
 
-    public ArrayList<Costumer> getAllBuyers() {
+    public ArrayList<Customer> getAllBuyers() {
         return allBuyers;
     }
 
