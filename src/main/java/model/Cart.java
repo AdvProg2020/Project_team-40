@@ -25,7 +25,7 @@ public class Cart {
     }
 
     public void moveProductsToCustomerCart(Customer customer){
-        customer.getProducts().addAll(temporaryCart.products);
+        customer.getCart().addAll(temporaryCart.products);
         temporaryCart.products.clear();
     }
 

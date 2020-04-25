@@ -139,7 +139,5 @@ public abstract class  User implements Serializable {
                 exception.printStackTrace();
             }
         }
-
-
     }
 }
