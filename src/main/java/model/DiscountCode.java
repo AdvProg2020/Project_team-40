@@ -119,7 +119,6 @@ public class DiscountCode implements Serializable {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
