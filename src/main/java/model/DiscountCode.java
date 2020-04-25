@@ -141,6 +141,16 @@ public class DiscountCode implements Serializable {
 
     @Override
     public String toString() {
-        return "DiscountCode{}";
+        StringBuilder customerList = new StringBuilder();
+        for (String username : includedCostumers.keySet()) {
+            customerList.append(username).append("\n");
+        }
+        return "Code: " + code + "\n"
+                + "Start Date: " + startDate + "\n"
+                + "End Date: " + endDate + "\n"
+                + "Percentage: " + percentage + "\n"
+                + "Maximum discount amount: "+ maxAmount + "\n"
+                + "Count per user: " + countPerUser + "\n"
+                + "List of customers: " + customerList;
     }
 }
