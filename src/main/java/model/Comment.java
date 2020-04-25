@@ -29,7 +29,7 @@ public class Comment  {
         this.doesSuggest = doesSuggest;
         this.pros = pros;
         this.cons = cons;
-        this.lastUpdate = Date.from(Instant.now());
+        this.lastUpdate = new Date();
     }
 
     public void setStatus(Status status) {
@@ -78,7 +78,7 @@ public class Comment  {
 
     public void updateText(String update){
         numberOfUpdates++;
-        lastUpdate = Date.from(Instant.now());
+        lastUpdate = new Date();
         text = text + "\nEdit " + numberOfUpdates + " : " + update;
     }
 }
