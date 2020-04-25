@@ -28,8 +28,20 @@ public class Category {
         return extraProperties;
     }
 
+    public ArrayList<Category> getSubCategories(){
+        return subCategories;
+    }
+
+    public Category getParentCategory(){
+        return parentCategory;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void addSubCategory(Category category){

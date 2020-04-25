@@ -104,29 +104,30 @@ public abstract class  User implements Serializable {
         }
     }
 
-    public static void loadData() throws IOException {
-        String usersDirectoryPath = "src/main/resources/Users/";
+    public static void loadData() throws IOException{
+        String usersDirectoryPath = "src/main/resources/users/";
         File usersDirectory = new File(usersDirectoryPath);
         String[] pathNames = usersDirectory.list();
-        for(String path: pathNames){
+        assert pathNames != null;
+        for(String path: pathNames) {
             FileInputStream file = new FileInputStream(usersDirectoryPath + path);
             ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
-                allUsers.put(((User)inputStream.readObject()).getUsername(), (User)inputStream.readObject());
+                User user = (User)inputStream.readObject();
+                allUsers.put(user.getUsername(), user);
                 file.close();
                 inputStream.close();
                 new File(usersDirectoryPath + path).delete();
-                //TODO:IMPLEMENT PROPER EXCEPTION
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
     public  static void saveData() {
-        String usersDirectoryPath = "src/main/resources/Users/";
+        String usersDirectoryPath = "src/main/resources/users/";
         for(Map.Entry<String, User> entry: allUsers.entrySet()) {
-            //TODO: HOW CAN FILENOTFOUNDEXCEPTION BE HANDLED
             try {
                 User user = entry.getValue();
                 FileOutputStream file = new
