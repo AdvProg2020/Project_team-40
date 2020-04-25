@@ -1,9 +1,8 @@
 package model;
 
-import model.users.Costumer;
+import model.users.Customer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Cart {
     private ArrayList<Product> products;
@@ -25,8 +24,8 @@ public class Cart {
         products.add(product);
     }
 
-    public void moveProductsToCustomerCart(Costumer costumer){
-        costumer.getCart().addAll(temporaryCart.products);
+    public void moveProductsToCustomerCart(Customer customer){
+        customer.getCart().addAll(temporaryCart.products);
         temporaryCart.products.clear();
     }
 

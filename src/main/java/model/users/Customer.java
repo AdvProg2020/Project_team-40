@@ -7,25 +7,20 @@ import model.log.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Costumer extends User{
-    private ArrayList<Product> cart;
+public class Customer extends User{
     private ArrayList<DiscountCode> discountCodes;
     private double credit;
     private HashMap<String, Log> logs;
-    private ArrayList<Product> products;
+    private ArrayList<Product> cart;
 
-    public Costumer(String username, String password, String firstName, String lastName,
+    //TODO: FIGURE OUT IF A CART ARRAY LIST IS NEEDED OR NOT
+    public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
         logs = new HashMap<>();
-        products = new ArrayList<>();
         cart = new ArrayList<>();
         discountCodes = new ArrayList<>();
-    }
-
-    public ArrayList<Product> getCart() {
-        return cart;
     }
 
     public ArrayList<DiscountCode> getDiscountCodes() {
@@ -40,8 +35,8 @@ public class Costumer extends User{
         return logs;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public ArrayList<Product> getCart() {
+        return cart;
     }
 
     public void addDiscountCode(DiscountCode discountCode){
@@ -53,19 +48,27 @@ public class Costumer extends User{
     }
 
     public void addProduct(Product product){
-        products.add(product);
+        cart.add(product);
     }
 
     public void deleteProduct(Product product){
-        products.remove(product);
+        cart.remove(product);
     }
 
     public Log getLogById(String id){
         return logs.get(id);
     }
 
-    public double getTotalPriceOfCart() {return 0;
-        //TODO: is cart an object in this class or an arrayList of products?
+    public void removeAllProducts(){
+        cart.removeAll(cart);
+    }
+
+    public double getTotalPriceOfCart() {
+        double totalPriceOfCart = 0;
+        for(Product product: cart){
+            totalPriceOfCart += product.getPrice();
+        }
+        return totalPriceOfCart;
     }
 
     @Override

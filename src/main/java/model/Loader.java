@@ -2,6 +2,8 @@ package model;
 
 import model.users.User;
 
+import java.io.IOException;
+
 public class Loader {
     private static Loader loader = new Loader();
 
@@ -9,11 +11,11 @@ public class Loader {
         this.loadData();
     }
 
-    public void loadData(){
+    public void loadData() {
         Category.loadData();
         Product.loadData();
 //        DiscountCode.loadData();
-        User.loadData();
+  //      User.loadData();
     }
 
     public void saveData(){

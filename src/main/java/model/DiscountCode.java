@@ -1,6 +1,6 @@
 package model;
 
-import model.users.Costumer;
+import model.users.Customer;
 import model.users.User;
 
 import java.io.*;
@@ -48,9 +48,9 @@ public class DiscountCode implements Serializable {
         this.code = Utility.generateId();
     }
 
-    public void addCostumer(Costumer costumer){
-        includedCostumers.put(costumer.getUsername(), countPerUser);
-        costumer.addDiscountCode(this);
+    public void addCostumer(Customer customer){
+        includedCostumers.put(customer.getUsername(), countPerUser);
+        customer.addDiscountCode(this);
     }
 
     public void setStartDate(Date startDate) {
@@ -69,11 +69,11 @@ public class DiscountCode implements Serializable {
         this.maxAmount = maxAmount;
     }
 
-    public void decreaseCountPerUser(Costumer costumer) {
-        int newCount = includedCostumers.get(costumer.getUsername()) - 1;
+    public void decreaseCountPerUser(Customer customer) {
+        int newCount = includedCostumers.get(customer.getUsername()) - 1;
         if (newCount < 0)
             newCount = 0;
-        includedCostumers.replace(costumer.getUsername(), newCount);
+        includedCostumers.replace(customer.getUsername(), newCount);
     }
 
     public double calculatePriceAfterDiscount(double price){
@@ -83,8 +83,8 @@ public class DiscountCode implements Serializable {
         return newPrice;
     }
 
-    public boolean isCountRemained(Costumer costumer){
-        return includedCostumers.get(costumer.getUsername()) >= 0;
+    public boolean isCountRemained(Customer customer){
+        return includedCostumers.get(customer.getUsername()) >= 0;
     }
 
     public static DiscountCode getDiscountCodeByCode(String code){
@@ -97,7 +97,7 @@ public class DiscountCode implements Serializable {
 
     public static void removeDiscountCode(DiscountCode discountCode){
         for (String costumer : discountCode.includedCostumers.keySet()) {
-            ((Costumer)(User.getUserByUsername(costumer))).getDiscountCodes().remove(discountCode);
+            ((Customer)(User.getUserByUsername(costumer))).getDiscountCodes().remove(discountCode);
         }
         allDiscountCodes.remove(discountCode);
     }
@@ -114,7 +114,8 @@ public class DiscountCode implements Serializable {
                 allDiscountCodes.add((DiscountCode)inputStream.readObject());
                 file.close();
                 inputStream.close();
-                //TODO: IMPLEMENT DELETING FILES AFTER LOADING DATA
+                new File(directoryPath + path).delete();
+                //TODO:IMPLEMENT PROPER EXCEPTION
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

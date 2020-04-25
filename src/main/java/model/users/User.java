@@ -1,11 +1,14 @@
 package model.users;
 
+import model.DiscountCode;
 import model.Loader;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public abstract class  User {
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class  User implements Serializable {
     private static HashMap<String, User> allUsers = new HashMap<>();
     private static User loggedInUser;
     protected String username;
@@ -101,11 +104,40 @@ public abstract class  User {
         }
     }
 
-    public static void loadData() {
-
+    public static void loadData() throws IOException {
+        String usersDirectoryPath = "src/main/resources/Users/";
+        File usersDirectory = new File(usersDirectoryPath);
+        String[] pathNames = usersDirectory.list();
+        for(String path: pathNames){
+            FileInputStream file = new FileInputStream(usersDirectoryPath + path);
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            try {
+                allUsers.put(((User)inputStream.readObject()).getUsername(), (User)inputStream.readObject());
+                file.close();
+                inputStream.close();
+                new File(usersDirectoryPath + path).delete();
+                //TODO:IMPLEMENT PROPER EXCEPTION
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
-    //TODO: Save and load must be completed
-    public  static void saveData(){
 
+    public  static void saveData() {
+        String usersDirectoryPath = "src/main/resources/Users/";
+        for(Map.Entry<String, User> entry: allUsers.entrySet()) {
+            //TODO: HOW CAN FILENOTFOUNDEXCEPTION BE HANDLED
+            try {
+                User user = entry.getValue();
+                FileOutputStream file = new
+                        FileOutputStream(usersDirectoryPath + user.getFirstName() + " " + user.getLastName());
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(user);
+                file.close();
+                outputStream.close();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
     }
 }

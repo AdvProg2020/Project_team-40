@@ -6,6 +6,11 @@ import model.Off;
 public class EditOff extends Request {
 
     @Override
+    protected void generateId() {
+
+    }
+
+    @Override
     public void action() {
 
     }
