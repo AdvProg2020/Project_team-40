@@ -12,6 +12,7 @@ public class LogTest {
 
     @Test
     public void saveLog() throws IOException {
+        //TODO: TEST IT, IT HAS A PROBLEM
         ArrayList<String> productsName = new ArrayList<>();
         productsName.add("aaaaa");
         Date date = new Date();
