@@ -7,6 +7,7 @@ import model.Loader;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class  User implements Serializable {
     private static HashMap<String, User> allUsers = new HashMap<>();
@@ -74,11 +75,7 @@ public abstract class  User implements Serializable {
     }
 
     public boolean checkPassword(String password){
-        if(password.equals(this.password)){
-            return true;
-        } else {
-            return false;
-        }
+        return password.equals(this.password);
     }
 
     @Override
@@ -92,16 +89,20 @@ public abstract class  User implements Serializable {
         allUsers.remove(user.getUsername());
     }
 
+    public static boolean doesUserExist(String username){
+        return allUsers.get(username) != null;
+    }
+
+    public static Set<String> getAllUsernames(){
+        return allUsers.keySet();
+    }
+
     public static void setLoggedInUser(User loggedInUser) {
         User.loggedInUser = loggedInUser;
     }
 
     public static boolean isUserLoggedIn(){
-        if(User.loggedInUser == null){
-            return false;
-        } else {
-            return true;
-        }
+        return User.loggedInUser != null;
     }
 
     public static void loadData() throws IOException{
