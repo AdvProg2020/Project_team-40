@@ -77,12 +77,22 @@ public class ManagerAccountController extends AccountController{
         addCustomers(discountCode, listOfUsernames);
     }
 
-    public ArrayList<String> getAllDiscountCodes(){
-        return null;
+    public ArrayList<DiscountCode> getAllDiscountCodes(){
+        return DiscountCode.getAllDiscountCodes();
     }
 
-    public DiscountCode getDiscount(String code){
-        return null;
+    public DiscountCode getDiscount(String code) throws AccountsException {
+        DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
+        if(discountCode == null)
+            throw new AccountsException("Discount code not found.");
+        return discountCode;
+    }
+
+    public void removeDiscount(String code) throws AccountsException{
+        DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
+        if (discountCode == null)
+            throw new AccountsException("Discount code not found.");
+        DiscountCode.removeDiscountCode(discountCode);
     }
 
     public void editDiscount(String code, String field, String newField){
