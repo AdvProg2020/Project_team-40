@@ -101,7 +101,7 @@ public class DiscountCode implements Serializable {
 
     public static void removeDiscountCode(DiscountCode discountCode){
         for (String costumer : discountCode.includedCostumers.keySet()) {
-            ((Customer)(User.getUserByUsername(costumer))).getDiscountCodes().remove(discountCode);
+            ((Customer)(User.getUserByUsername(costumer))).getDiscountCodes().remove(discountCode.code);
         }
         allDiscountCodes.remove(discountCode);
     }
