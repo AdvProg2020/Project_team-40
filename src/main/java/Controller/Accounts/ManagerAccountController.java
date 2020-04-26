@@ -1,8 +1,10 @@
 package Controller.Accounts;
 
+import exceptions.AccountsException;
 import model.Category;
 import model.DiscountCode;
 import model.requests.Request;
+import model.users.Manager;
 import model.users.User;
 
 import java.util.ArrayList;
@@ -12,20 +14,29 @@ public class ManagerAccountController extends AccountController{
 
     private static ManagerAccountController managerAccountController;
 
-    public void createManagerAccount(String username, String password, String firstName, String lastName, String email, String phoneNumber){
-
+    public void createManagerAccount(String username, String password, String firstName, String lastName, String email, String phoneNumber) throws AccountsException {
+        if(User.doesUserExist(username))
+            throw new AccountsException("User exists with this username.");
+        new Manager(username, password, firstName, lastName, email, phoneNumber);
     }
 
     public ArrayList<String> getAllUserNames(){
-        return null;
+        return new ArrayList<>(User.getAllUsernames());
     }
 
-    public User getUser(String username){
-        return null;
+    public User getUser(String username) throws AccountsException {
+        User user = User.getUserByUsername(username);
+        if(user == null)
+            throw new AccountsException("User not found");
+        return user;
+
     }
 
-    public void deleteUser(String username){
-
+    public void deleteUser(String username) throws AccountsException {
+        User user = User.getUserByUsername(username);
+        if(user == null)
+            throw new AccountsException("User not found.");
+        User.deleteUser(user);
     }
 
     public void removeProduct(String productID){
