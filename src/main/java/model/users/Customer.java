@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Customer extends User{
     private ArrayList<String> discountCodes;
     private double credit;
-    private HashMap<String, Log> logs;
+    private ArrayList<String> logsId;
     private ArrayList<String> cart;
     //Key Of products is ID
 
@@ -18,7 +18,7 @@ public class Customer extends User{
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
-        logs = new HashMap<>();
+        logsId = new ArrayList<>();
         cart = new ArrayList<>();
         discountCodes = new ArrayList<>();
     }
@@ -31,8 +31,8 @@ public class Customer extends User{
         return credit;
     }
 
-    public HashMap<String, Log> getLogs() {
-        return logs;
+    public ArrayList<String> getLogsId() {
+        return logsId;
     }
 
     public ArrayList<String> getCart() {
@@ -44,7 +44,7 @@ public class Customer extends User{
     }
 
     public void addLog(Log purchaseLog){
-        logs.put(purchaseLog.getId(), purchaseLog);
+        logsId.add(purchaseLog.getId());
     }
 
     public void addProduct(Product product){
@@ -56,7 +56,11 @@ public class Customer extends User{
     }
 
     public Log getLogById(String id){
-        return logs.get(id);
+        if(logsId.contains(id)) {
+            return Log.getLogById(id);
+        } else {
+            return null;
+        }
     }
 
     public void removeAllProducts(){

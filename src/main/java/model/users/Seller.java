@@ -5,15 +5,13 @@ import model.Product;
 import model.log.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Seller extends User{
     private String companyInfo;
     private ArrayList<String> productsId;
     private ArrayList<String> offsId;
     private double credit;
-    private ArrayList<Log> logs;
+    private ArrayList<String> logsName;
     private boolean managerPermission;
 
 
@@ -25,7 +23,7 @@ public class Seller extends User{
         this.companyInfo = companyInfo;
         productsId = new ArrayList<>();
         offsId = new ArrayList<>();
-        logs = new ArrayList<>();
+        logsName = new ArrayList<>();
     }
 
     public ArrayList<String> getProductsId() {
@@ -40,8 +38,8 @@ public class Seller extends User{
         return credit;
     }
 
-    public ArrayList<Log> getLogs() {
-        return logs;
+    public ArrayList<String> getLogsName() {
+        return logsName;
     }
 
     public boolean doesHaveManagerPermission() {
@@ -49,7 +47,7 @@ public class Seller extends User{
     }
 
     public void addLog(Log log){
-        logs.add(log);
+        logsName.add(log.getId());
     }
 
     public void addProduct(Product product){
@@ -91,6 +89,14 @@ public class Seller extends User{
     public Off getOffById(String id){
         if(offsId.contains(id)) {
             return Off.getAllOffs().get(id);
+        } else {
+            return null;
+        }
+    }
+
+    public Log getLogById(String id){
+        if(logsName.contains(id)) {
+            return Log.getLogById(id);
         } else {
             return null;
         }

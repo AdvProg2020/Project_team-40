@@ -1,4 +1,4 @@
-package model.UserTest;
+package model.SaveAndLoadTest;
 
 import model.users.Customer;
 import model.users.User;
@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class SaveAndLoadTest {
+public class UserTest {
     @Test
     public void testSaveUser(){
         Customer customer = new Customer("A", "100", "b", "c",

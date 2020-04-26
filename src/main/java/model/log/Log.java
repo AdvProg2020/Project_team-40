@@ -2,8 +2,11 @@ package model.log;
 
 import model.Utility;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Log {
     private String id;
@@ -13,10 +16,11 @@ public class Log {
     private String sellerName;
     private String buyerName;
     private boolean isDelivered;
-    private ArrayList<String> productNames;
+    private ArrayList<String> productId;
+    private static HashMap<String, Log> allLogs;
 
     public Log(Date date, double cost, double discount,
-               ArrayList<String> productNames, String buyerName,
+               ArrayList<String> productId, String buyerName,
                String sellerName, boolean isDelivered) {
         this.isDelivered = isDelivered;
         this.sellerName = sellerName;
@@ -24,8 +28,17 @@ public class Log {
         this.date = date;
         this.cost = cost;
         this.discount = discount;
-        this.productNames = productNames;
+        this.productId = productId;
         id = Utility.generateId();
+        allLogs.put(id, this);
+    }
+
+    public static Log getLogById(String id){
+        return allLogs.get(id);
+    }
+
+    public static HashMap<String, Log> getLogs(){
+        return allLogs;
     }
 
     public void setDelivered(boolean delivered) {
@@ -47,7 +60,7 @@ public class Log {
     public String toString() {
         String deliveryStatus = getStatus();
         String productNamesInOneString = "Products:\n";
-            for(String name: productNames){
+            for(String name: productId){
             productNamesInOneString = productNamesInOneString + name + "\n";
         }
         return "Log ID: " + id + "\n" +
@@ -61,4 +74,42 @@ public class Log {
     }
 
     //TODO: WRITE A LOAD AND A SAVE METHOD FOR THIS CLASS TO PREVENT CREATION OF DUPLICATE OBJECTS IN SELLER AND CUSTOMER
+
+    public static void loadData() throws IOException {
+        String usersDirectoryPath = "src/main/resources/logs/";
+        File logsDirectory = new File(usersDirectoryPath);
+        String[] pathNames = logsDirectory.list();
+        assert pathNames != null;
+        for(String path: pathNames) {
+            FileInputStream file = new FileInputStream(usersDirectoryPath + path);
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            try {
+                Log log = (Log) inputStream.readObject();
+                allLogs.put(log.getId(), log);
+                file.close();
+                inputStream.close();
+                new File(usersDirectoryPath + path).delete();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public  static void saveData() {
+        String logsDirectoryPath = "src/main/resources/logs/";
+        for(Map.Entry<String, Log> entry: allLogs.entrySet()) {
+            try {
+                Log log = entry.getValue();
+                FileOutputStream file = new FileOutputStream(logsDirectoryPath + log.getId());
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(log);
+                file.close();
+                outputStream.close();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
 }
