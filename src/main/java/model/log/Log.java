@@ -59,4 +59,6 @@ public class Log {
                 "Status: " + deliveryStatus + "\n" +
                 productNamesInOneString;
     }
+
+    //TODO: WRITE A LOAD AND A SAVE METHOD FOR THIS CLASS TO PREVENT CREATION OF DUPLICATE OBJECTS IN SELLER AND CUSTOMER
 }

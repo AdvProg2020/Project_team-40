@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Customer extends User{
-    private ArrayList<DiscountCode> discountCodes;
+    private ArrayList<String> discountCodes;
     private double credit;
     private HashMap<String, Log> logs;
-    private ArrayList<Product> cart;
+    private ArrayList<String> cart;
+    //Key Of products is ID
 
     public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
@@ -22,7 +23,7 @@ public class Customer extends User{
         discountCodes = new ArrayList<>();
     }
 
-    public ArrayList<DiscountCode> getDiscountCodes() {
+    public ArrayList<String> getDiscountCodes() {
         return discountCodes;
     }
 
@@ -34,12 +35,12 @@ public class Customer extends User{
         return logs;
     }
 
-    public ArrayList<Product> getCart() {
+    public ArrayList<String> getCart() {
         return cart;
     }
 
     public void addDiscountCode(DiscountCode discountCode){
-        discountCodes.add(discountCode);
+        discountCodes.add(discountCode.getCode());
     }
 
     public void addLog(Log purchaseLog){
@@ -47,11 +48,11 @@ public class Customer extends User{
     }
 
     public void addProduct(Product product){
-        cart.add(product);
+        cart.add(product.getProductId());
     }
 
     public void deleteProduct(Product product){
-        cart.remove(product);
+        cart.remove(product.getProductId());
     }
 
     public Log getLogById(String id){
@@ -64,8 +65,9 @@ public class Customer extends User{
 
     public double getTotalPriceOfCart() {
         double totalPriceOfCart = 0;
-        for(Product product: cart){
-            totalPriceOfCart += product.getPrice();
+        HashMap<String, Product> allProducts = Product.getAllProducts();
+        for(String productId: cart){
+            totalPriceOfCart += allProducts.get(productId).getPrice();
         }
         return totalPriceOfCart;
     }

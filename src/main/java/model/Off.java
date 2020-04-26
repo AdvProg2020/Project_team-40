@@ -5,10 +5,12 @@ import model.users.Seller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.Phaser;
 import java.util.zip.DataFormatException;
 
 public class Off {
-    private static ArrayList<Off> allOffs;
+    private static HashMap<String, Off> allOffs;
     private String id;
     private SetUpStatus status;
     private Date startDate;
@@ -57,7 +59,7 @@ public class Off {
         return seller;
     }
 
-    public static ArrayList<Off> getAllOffs() {
+    public static HashMap<String, Off> getAllOffs() {
         return allOffs;
     }
 
@@ -66,7 +68,7 @@ public class Off {
     }
 
     public static void addOff(Off off){
-        allOffs.add(off);
+        allOffs.put(off.getId(), off);
     }
 
     public static void loadData(){}

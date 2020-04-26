@@ -87,6 +87,10 @@ public class DiscountCode implements Serializable {
         return includedCostumers.get(customer.getUsername()) >= 0;
     }
 
+    public String getCode(){
+        return code;
+    }
+
     public static DiscountCode getDiscountCodeByCode(String code){
         for (DiscountCode discountCode : allDiscountCodes) {
             if (discountCode.code.equals(code))

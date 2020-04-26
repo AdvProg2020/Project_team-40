@@ -6,11 +6,12 @@ import model.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Seller extends User{
     private String companyInfo;
-    private HashMap<String, Product> products;
-    private HashMap<String, Off> offs;
+    private ArrayList<String> productsId;
+    private ArrayList<String> offsId;
     private double credit;
     private ArrayList<Log> logs;
     private boolean managerPermission;
@@ -22,17 +23,17 @@ public class Seller extends User{
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
         this.companyInfo = companyInfo;
-        products = new HashMap<>();
-        offs = new HashMap<>();
+        productsId = new ArrayList<>();
+        offsId = new ArrayList<>();
         logs = new ArrayList<>();
     }
 
-    public HashMap<String, Product> getProducts() {
-        return products;
+    public ArrayList<String> getProductsId() {
+        return productsId;
     }
 
-    public HashMap<String, Off> getOffs() {
-        return offs;
+    public ArrayList<String> getOffIds() {
+        return offsId;
     }
 
     public double getCredit() {
@@ -52,38 +53,47 @@ public class Seller extends User{
     }
 
     public void addProduct(Product product){
-        products.put(product.getProductId(), product);
+        productsId.add(product.getProductId());
     }
+
     public void setManagerPermission(boolean managerPermission) {
         this.managerPermission = managerPermission;
     }
 
     public void deleteProduct(Product product){
-        products.remove(product.getProductId());
+        productsId.remove(product.getProductId());
     }
 
     public boolean doesProductExist(Product product){
-        return products.containsValue(product);
+        return productsId.contains(product.getProductId());
     }
 
     public void addOff(Off off){
-        offs.put(off.getId(), off);
+        offsId.add(off.getId());
     }
 
     public void deleteOff(Off off){
-        offs.remove(off.getId());
+        offsId.remove(off.getId());
     }
 
     public boolean doesOffExist(Off off){
-        return offs.containsValue(off);
+        return offsId.contains(off.getId());
     }
 
     public Product getProductById(String id){
-        return products.get(id);
+        if(productsId.contains(id)) {
+            return Product.getAllProducts().get(id);
+        } else {
+            return null;
+        }
     }
 
     public Off getOffById(String id){
-        return offs.get(id);
+        if(offsId.contains(id)) {
+            return Off.getAllOffs().get(id);
+        } else {
+            return null;
+        }
     }
 
     public void increaseCredit(int credit){
