@@ -1,6 +1,7 @@
 package model.log;
 
 import model.Utility;
+import model.users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Log {
+public class Log implements Serializable {
     private String id;
     private Date date;
     private double cost;
@@ -17,7 +18,7 @@ public class Log {
     private String buyerName;
     private boolean isDelivered;
     private ArrayList<String> productId;
-    private static HashMap<String, Log> allLogs;
+    private static HashMap<String, Log> allLogs = new HashMap<>();
 
     public Log(Date date, double cost, double discount,
                ArrayList<String> productId, String buyerName,
@@ -73,8 +74,6 @@ public class Log {
                 productNamesInOneString;
     }
 
-    //TODO: WRITE A LOAD AND A SAVE METHOD FOR THIS CLASS TO PREVENT CREATION OF DUPLICATE OBJECTS IN SELLER AND CUSTOMER
-
     public static void loadData() throws IOException {
         String usersDirectoryPath = "src/main/resources/logs/";
         File logsDirectory = new File(usersDirectoryPath);
@@ -96,7 +95,7 @@ public class Log {
         }
     }
 
-    public  static void saveData() {
+    public static void saveData() {
         String logsDirectoryPath = "src/main/resources/logs/";
         for(Map.Entry<String, Log> entry: allLogs.entrySet()) {
             try {
@@ -111,5 +110,6 @@ public class Log {
             }
         }
     }
+
 
 }

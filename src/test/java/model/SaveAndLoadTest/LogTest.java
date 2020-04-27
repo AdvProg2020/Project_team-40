@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class LogTest {
 
@@ -22,7 +23,6 @@ public class LogTest {
         Log.saveData();
         Log.getLogs().remove(idBeforeSaving);
         Log.loadData();
-        Log logAfterSaving = Log.getLogs().get(idBeforeSaving);
-        Assert.assertEquals(log, logAfterSaving);
+        Assert.assertEquals(log.toString(), Log.getLogById(idBeforeSaving).toString());
     }
 }
