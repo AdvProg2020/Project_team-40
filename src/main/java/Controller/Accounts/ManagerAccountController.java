@@ -133,15 +133,25 @@ public class ManagerAccountController extends AccountController{
         return null;
     }
 
-    public void addProductToCategory(String categoryName, String productID){
-
+    public void editCategory(String categoryName, String field, String newField) throws AccountsException {
+        Category category = Category.getCategoryByName(categoryName);
+        if (category == null)
+            throw new AccountsException("Category not found.");
+        if (field.equalsIgnoreCase("name")){
+            if (Category.getCategoryByName(newField) == null)
+                throw new AccountsException("A category exists with this name.");
+            category.setName(newField);
+        }
+        else if (!category.getExtraProperties().contains(field))
+            throw new AccountsException("There is no field with this name.");
+        else{
+            int fieldIndex = category.getExtraProperties().indexOf(field);
+            category.getExtraProperties().set(fieldIndex, newField);
+        }
+        //TODO: How to change products properties after editing category
     }
 
-    public void editCategory(String categoryName, String field, String newField){
-
-    }
-
-    public void createCategory(String categoryName){
+    public void createCategory(String categoryName,ArrayList<String> properties){
 
     }
 

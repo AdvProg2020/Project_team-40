@@ -16,16 +16,16 @@ public class Category {
         this.parentCategory = parentCategory;
     }
 
-    public static void addCategory(Category category){
-        allCategories.put(category.name, category);
-    }
-
     public ArrayList<Product> getProducts() {
         return products;
     }
 
     public ArrayList<String> getExtraProperties() {
         return extraProperties;
+    }
+
+    public void addProperty(String name){
+        extraProperties.add(name);
     }
 
     public ArrayList<Category> getSubCategories(){
@@ -64,11 +64,15 @@ public class Category {
         return allCategories.get(name);
     }
 
-    public static void removeCategory(Category category){
-        allCategories.remove(category);
+    public static void addCategory(Category category){
+        allCategories.put(category.name, category);
     }
 
-    public HashMap<String, Category> getAllCategories() {
+    public static void removeCategory(Category category){
+        allCategories.remove(category.name);
+    }
+
+    public static HashMap<String, Category> getAllCategories() {
         return allCategories;
     }
 
