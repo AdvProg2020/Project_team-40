@@ -1,5 +1,6 @@
 package model.requests;
 
+import model.Utility;
 public abstract class Request {
     protected String type;
     protected String requestId;
@@ -7,6 +8,7 @@ public abstract class Request {
 
     public Request(String type) {
         this.type = type;
+        requestId = Utility.generateId();
     }
 
     public void setAccepted(boolean accepted) {
@@ -15,13 +17,7 @@ public abstract class Request {
 
     public abstract void action();
 
-    @Override
-    public  String toString(){
-        String status = "Declined";
-        if (isAccepted)
-            status = "Accepted";
-        return "requestId : " + requestId + "\n"
-                + "Status :" + status + "\n"
-                + "Type : " + type + "\n";
+    public String getRequestId() {
+        return requestId;
     }
 }
