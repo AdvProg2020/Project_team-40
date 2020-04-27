@@ -99,20 +99,30 @@ public class ManagerAccountController extends AccountController{
 
     }
 
-    public ArrayList<String> getALlRequests(){
-        return null;
+    public ArrayList<Request> getALlRequests(){
+        return Manager.getRequests();
     }
 
-    public Request getRequest(String requestID){
-        return null;
+    public Request getRequest(String requestID) throws AccountsException {
+        Request request = Manager.getRequestById(requestID);
+        if (request == null)
+            throw new AccountsException("Request not found.");
+        return request;
     }
 
-    public void acceptRequest(String requestID){
-
+    public void acceptRequest(String requestID) throws AccountsException {
+        Request request = Manager.getRequestById(requestID);
+        if (request == null)
+            throw new AccountsException("Request not found.");
+        request.setAccepted(true);
+        request.action();
     }
 
-    public void declineRequest(String requestID){
-
+    public void declineRequest(String requestID) throws AccountsException {
+        Request request = Manager.getRequestById(requestID);
+        if (request == null)
+            throw new AccountsException("Request not found.");
+        request.setAccepted(false);
     }
 
     public HashMap<String, String> getAllCategories(){

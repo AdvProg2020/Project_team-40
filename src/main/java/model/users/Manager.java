@@ -20,6 +20,14 @@ public class Manager extends User {
         requests.add(request);
     }
 
+    public static Request getRequestById(String id){
+        for (Request request : requests) {
+            if (request.getRequestId().equals(id))
+                return request;
+        }
+        return null;
+    }
+
     public static void loadData(){}
 
     public static void saveData(){}
