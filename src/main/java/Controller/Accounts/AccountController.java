@@ -4,6 +4,7 @@ import model.Cart;
 import model.users.User;
 
 public abstract class AccountController{
+    protected User user;
 
     public static void login (String username, String password){
 

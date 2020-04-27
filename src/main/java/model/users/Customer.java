@@ -6,20 +6,21 @@ import model.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Customer extends User{
     private ArrayList<String> discountCodes;
     private double credit;
     private ArrayList<String> logsId;
-    private ArrayList<String> cart;
-    //Key Of products is ID
+    private HashMap<String, Integer> cart;
+    //Key Of products is ID, the value is the quantity of product
 
     public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.credit = credit;
         logsId = new ArrayList<>();
-        cart = new ArrayList<>();
+        cart = new HashMap<>();
         discountCodes = new ArrayList<>();
     }
 
@@ -35,7 +36,7 @@ public class Customer extends User{
         return logsId;
     }
 
-    public ArrayList<String> getCart() {
+    public HashMap<String, Integer> getCart() {
         return cart;
     }
 
@@ -47,8 +48,20 @@ public class Customer extends User{
         logsId.add(purchaseLog.getId());
     }
 
-    public void addProduct(Product product){
-        cart.add(product.getProductId());
+    public void addProduct(Product product, int quantity){
+        cart.put(product.getProductId(), quantity);
+    }
+
+    public void addProductsQuantity(String productId) {
+        Integer quantity = cart.get(productId);
+        cart.remove(productId);
+        cart.put(productId, quantity + 1);
+    }
+
+    public void decreaseProductsQuantity(String productId) {
+        Integer quantity = cart.get(productId);
+        cart.remove(productId);
+        cart.put(productId, quantity + 1);
     }
 
     public void deleteProduct(Product product){
@@ -63,15 +76,25 @@ public class Customer extends User{
         }
     }
 
+    public Product getProductById(String id){
+        if(cart.containsKey(id)) {
+            return Product.getProductById(id);
+        } else {
+            return null;
+        }
+    }
+
     public void removeAllProducts(){
-        cart.removeAll(cart);
+        cart.clear();
     }
 
     public double getTotalPriceOfCart() {
         double totalPriceOfCart = 0;
         HashMap<String, Product> allProducts = Product.getAllProducts();
-        for(String productId: cart){
-            totalPriceOfCart += allProducts.get(productId).getPrice();
+        for(Map.Entry<String, Integer> entry: cart.entrySet()){
+            String productId = entry.getKey();
+            int quantity = entry.getValue();
+            totalPriceOfCart += allProducts.get(productId).getPrice() * quantity;
         }
         return totalPriceOfCart;
     }

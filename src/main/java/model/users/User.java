@@ -77,6 +77,10 @@ public abstract class  User implements Serializable {
     @Override
     public abstract String toString();
 
+    public static void addUser(User user) {
+        allUsers.put(user.getUsername(), user);
+    }
+
     public static User getUserByUsername(String username){
         return allUsers.get(username);
     }
