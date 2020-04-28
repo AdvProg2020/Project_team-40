@@ -5,11 +5,13 @@ import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
 
+import java.util.ArrayList;
+
 public class AccountController{
     private static AccountController accountController = new AccountController();
     protected User user;
 
-    protected AccountController(){}
+    private AccountController(){}
 
     public static AccountController getInstance(){
         return accountController;
@@ -60,8 +62,18 @@ public class AccountController{
         }
     }
 
-    public String getFields(){
-        return null;
+    public ArrayList<String> getFields(){
+        ArrayList<String> fields = new ArrayList<>();
+        fields.add("Username");
+        fields.add("Password");
+        fields.add("First name");
+        fields.add("Last name");
+        fields.add("Email");
+        fields.add("Phone number");
+        if(user instanceof Customer || user instanceof Seller){
+            fields.add("credit");
+        }
+        return fields;
     }
 
     public void logout() {
