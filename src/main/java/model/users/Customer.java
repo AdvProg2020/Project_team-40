@@ -24,6 +24,10 @@ public class Customer extends User{
         discountCodes = new ArrayList<>();
     }
 
+    public void setCredit(double credit) {
+        this.credit = credit;
+    }
+
     public ArrayList<String> getDiscountCodes() {
         return discountCodes;
     }

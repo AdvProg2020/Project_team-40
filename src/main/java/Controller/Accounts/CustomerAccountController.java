@@ -1,5 +1,6 @@
 package Controller.Accounts;
 
+import exceptions.AccountsException;
 import model.Cart;
 import model.Product;
 import model.log.Log;
@@ -9,13 +10,16 @@ import model.users.User;
 import java.util.ArrayList;
 
 public class CustomerAccountController extends AccountController{
-    private static CustomerAccountController customerAccountController;
+    private static CustomerAccountController customerAccountController = new CustomerAccountController();
 
-    public void createCustomerAccount(String username, String password, String firstName,
-                                      String lastName, String email, String phoneNumber, double credit){
+    private CustomerAccountController(){}
+
+    public void createCustomerAccount(String username, String password, String firstName, String lastName,
+                                      String email, String phoneNumber, double credit) throws AccountsException {
+        if(User.doesUserExist(username)) {
+            throw new AccountsException("User exists with this username.");
+        }
         Customer customer = new Customer(username, password, firstName, lastName, email, phoneNumber, credit);
-        User.addUser(customer);
-        this.user = (User) customer;
     }
 
     public Cart getCart(){
@@ -84,10 +88,6 @@ public class CustomerAccountController extends AccountController{
 
     public ArrayList<String> getDiscountCodes(){
         return ((Customer) user).getDiscountCodes();
-    }
-
-    private CustomerAccountController(){
-
     }
 
     public static CustomerAccountController getInstance(){

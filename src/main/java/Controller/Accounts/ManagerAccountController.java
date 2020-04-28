@@ -18,7 +18,8 @@ public class ManagerAccountController extends AccountController{
 
     private static ManagerAccountController managerAccountController;
 
-    public void createManagerAccount(String username, String password, String firstName, String lastName, String email, String phoneNumber) throws AccountsException {
+    public void createManagerAccount(String username, String password, String firstName, String lastName,
+                                     String email, String phoneNumber) throws AccountsException {
         if(User.doesUserExist(username))
             throw new AccountsException("User exists with this username.");
         new Manager(username, password, firstName, lastName, email, phoneNumber);
@@ -58,8 +59,9 @@ public class ManagerAccountController extends AccountController{
             discountCode.addCostumer((Customer)user);
         }
     }
-    public void createDiscount(String startDate, String endDate, int percentage, double maxDiscount, int countForEachUser,
-                              ArrayList<String> listOfUsernames) throws AccountsException {
+
+    public void createDiscount(String startDate, String endDate, int percentage, double maxDiscount,
+                               int countForEachUser, ArrayList<String> listOfUsernames) throws AccountsException {
         SimpleDateFormat startFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         SimpleDateFormat endFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         Date start;

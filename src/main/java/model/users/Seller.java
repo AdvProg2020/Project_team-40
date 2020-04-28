@@ -26,6 +26,14 @@ public class Seller extends User{
         logsName = new ArrayList<>();
     }
 
+    public void setCompanyInfo(String companyInfo) {
+        this.companyInfo = companyInfo;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
+    }
+
     public ArrayList<String> getProductsId() {
         return productsId;
     }
