@@ -8,6 +8,8 @@ import model.users.Customer;
 import model.users.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
@@ -22,8 +24,15 @@ public class CustomerAccountController extends AccountController{
         Customer customer = new Customer(username, password, firstName, lastName, email, phoneNumber, credit);
     }
 
-    public Cart getCart(){
-        return null;
+    public HashMap<Product, Integer> getCart(){
+        HashMap<Product, Integer> productsWithQuantity = new HashMap<>();
+        Customer customer = (Customer) user;
+        for(Map.Entry<String, Integer> entry: customer.getCart().entrySet()) {
+            String productId = entry.getKey();
+            int quantity = entry.getValue();
+            productsWithQuantity.put(Product.getProductById(productId), quantity);
+        }
+        return productsWithQuantity;
     }
 
     public Product getChosenProduct(String productId){

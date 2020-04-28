@@ -11,7 +11,7 @@ public class AccountController{
     private static AccountController accountController = new AccountController();
     protected User user;
 
-    private AccountController(){}
+    protected AccountController(){}
 
     public static AccountController getInstance(){
         return accountController;
