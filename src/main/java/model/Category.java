@@ -14,6 +14,7 @@ public class Category {
     public Category(String name, Category parentCategory) {
         this.name = name;
         this.parentCategory = parentCategory;
+        parentCategory.addSubCategory(this);
     }
 
     public static void addCategory(Category category){
@@ -26,6 +27,10 @@ public class Category {
 
     public ArrayList<String> getExtraProperties() {
         return extraProperties;
+    }
+
+    public void addProperty(String property){
+        extraProperties.add(property);
     }
 
     public ArrayList<Category> getSubCategories(){
@@ -52,6 +57,11 @@ public class Category {
         productIDs.add(productID);
     }
 
+    private void removeSubCategory(Category category){
+        subCategories.remove(category);
+    }
+
+
     public boolean hasProduct(String productID){
         return productIDs.contains(productID);
     }
@@ -65,10 +75,15 @@ public class Category {
     }
 
     public static void removeCategory(Category category){
-        allCategories.remove(category);
+        for (String productId : category.getProductIDs()) {
+            Product.removeProduct(productId);
+        }
+        category.getParentCategory().removeSubCategory(category);
+        allCategories.remove(category.getName());
+
     }
 
-    public HashMap<String, Category> getAllCategories() {
+    public static HashMap<String, Category> getAllCategories() {
         return allCategories;
     }
 

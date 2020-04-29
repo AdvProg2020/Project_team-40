@@ -13,10 +13,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Set;
 
 public class ManagerAccountController extends AccountController{
-
     private static ManagerAccountController managerAccountController;
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+    private ManagerAccountController(){}
+
+    public static ManagerAccountController getInstance(){
+        if(managerAccountController == null)
+            managerAccountController = new ManagerAccountController();
+
+        return managerAccountController;
+    }
 
     public void createManagerAccount(String username, String password, String firstName, String lastName,
                                      String email, String phoneNumber) throws AccountsException {
@@ -62,13 +72,11 @@ public class ManagerAccountController extends AccountController{
 
     public void createDiscount(String startDate, String endDate, int percentage, double maxDiscount,
                                int countForEachUser, ArrayList<String> listOfUsernames) throws AccountsException {
-        SimpleDateFormat startFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        SimpleDateFormat endFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         Date start;
         Date end;
         try {
-            start = startFormat.parse(startDate);
-            end = endFormat.parse(endDate);
+            start = DATE_FORMAT.parse(startDate);
+            end = DATE_FORMAT.parse(endDate);
         }
         catch (Exception e){
             throw new AccountsException("Invalid date format");
@@ -97,8 +105,55 @@ public class ManagerAccountController extends AccountController{
         DiscountCode.removeDiscountCode(discountCode);
     }
 
-    public void editDiscount(String code, String field, String newField){
+    private void setNewStartDate(String newValue, DiscountCode discountCode) throws AccountsException {
+        Date newStart;
+        try {
+            newStart = DATE_FORMAT.parse(newValue);
+        }
+        catch (Exception e){
+            throw new AccountsException("Date format is not valid.");
+        }
+        if (!discountCode.isStartDateValid(newStart))
+            throw new AccountsException("Invalid date.");
+        discountCode.setStartDate(newStart);
+    }
 
+    private void setNewEndDate(String newValue, DiscountCode discountCode) throws AccountsException {
+        Date newEnd;
+        try {
+            newEnd = DATE_FORMAT.parse(newValue);
+        }
+        catch (Exception e){
+            throw new AccountsException("Date format is not valid.");
+        }
+        if (!discountCode.isEndDateValid(newEnd))
+            throw new AccountsException("Invalid date.");
+        discountCode.setStartDate(newEnd);
+    }
+
+    public void editDiscount(String code, String field, String newValue) throws AccountsException {
+        DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
+        if (discountCode == null)
+            throw new AccountsException("Discount code not found.");
+        switch (field){
+            case "Percentage":
+                discountCode.setPercentage(Integer.parseInt(newValue));
+                break;
+            case "Start date":
+                setNewStartDate(newValue, discountCode);
+                break;
+            case "End date":
+                setNewEndDate(newValue, discountCode);
+            case "Maximum amount":
+                discountCode.setMaxAmount(Double.parseDouble(newValue));
+                break;
+            case "Count per user":
+                discountCode.setMaxAmount(Integer.parseInt(newValue));
+                break;
+            default:
+                throw new AccountsException("Field not found.");
+
+        }
     }
 
     public ArrayList<Request> getALlRequests(){
@@ -127,12 +182,8 @@ public class ManagerAccountController extends AccountController{
         request.setAccepted(false);
     }
 
-    public HashMap<String, String> getAllCategories(){
-        return null;
-    }
-
-    public Category getCategory(String categoryName){
-        return null;
+    public Set<String> getAllCategories(){
+        return Category.getAllCategories().keySet();
     }
 
     public void editCategory(String categoryName, String field, String newField) throws AccountsException {
@@ -153,30 +204,22 @@ public class ManagerAccountController extends AccountController{
         //TODO: How to change products properties after editing category
     }
 
-    public void createCategory(String categoryName,ArrayList<String> properties){
+    public void createCategory(String categoryName, String parentCategory, ArrayList<String> properties) throws AccountsException {
+        if (Category.getCategoryByName(categoryName) != null)
+            throw new AccountsException("Category exists with this name");
+        if (parentCategory != null && Category.getCategoryByName(parentCategory) == null)
+            throw new AccountsException("Parent category not found.");
+        Category category = new Category(categoryName, Category.getCategoryByName(parentCategory));
+        Category.addCategory(category);
+        for (String property : properties) {
+            category.addProperty(property);
+        }
 
     }
 
-    public void removeCategory(String categoryName){
-
-    }
-
-    public void addSubCategory(String parentName, String subName){
-
-    }
-
-    public void removeSubCategory(String parentName, String subName){
-
-    }
-
-    private ManagerAccountController(){
-
-    }
-
-    public static ManagerAccountController getInstance(){
-        if(managerAccountController == null)
-            managerAccountController = new ManagerAccountController();
-
-        return managerAccountController;
+    public void removeCategory(String categoryName) throws AccountsException {
+        if (Category.getCategoryByName(categoryName) == null)
+            throw new AccountsException("Category not found.");
+        Category.removeCategory(Category.getCategoryByName(categoryName));
     }
 }
