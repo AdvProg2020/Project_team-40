@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Product implements Serializable{
+
     private static final String PATH = "src/main/resources/products/";
     private static HashMap<String, Product> allProducts = new HashMap<>();
     private String productId;
@@ -60,8 +61,8 @@ public class Product implements Serializable{
         return count;
     }
 
-    public String getSeller() {
-        return seller;
+    public Seller getSeller() {
+        return (Seller)Seller.getUserByUsername(seller);
     }
 
     public String getName(){

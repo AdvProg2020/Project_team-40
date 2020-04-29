@@ -82,7 +82,7 @@ public class ProductFilter{
         ArrayList<Product> filteredProduct = new ArrayList<>();
 
         for(Product product : products) {
-            if(category != null && !product.getCategory().getName().contains(category.getName())){
+            if(category != null && !product.getCategory().contains(category.getName())){
                 continue;
             }
             if(productName != null && !product.getName().contains(productName)){
