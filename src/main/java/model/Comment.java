@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Comment  {
-    private User user;
-    private Product product;
+    private String username;
+    private String productID;
     private String text;
     private Status status;
     private boolean hasBought;
@@ -20,10 +20,10 @@ public class Comment  {
     private ArrayList<String> pros;
     private int upvotes;
 
-    public Comment(User user, Product product, String text, boolean isBought,
+    public Comment(String username, String productID, String text, boolean isBought,
                    boolean doesSuggest, ArrayList<String> pros, ArrayList<String> cons) {
-        this.user = user;
-        this.product = product;
+        this.username = username;
+        this.productID = productID;
         this.text = text;
         this.hasBought = isBought;
         this.doesSuggest = doesSuggest;
@@ -40,8 +40,8 @@ public class Comment  {
         return status;
     }
 
-    public User getUser(){
-        return user;
+    public String getUsername(){
+        return username;
     }
 
     public String getText() {

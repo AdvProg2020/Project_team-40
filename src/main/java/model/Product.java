@@ -4,11 +4,12 @@ import model.enumerations.SetUpStatus;
 import model.users.Customer;
 import model.users.Seller;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-public class Product {
+public class Product implements Serializable{
+    private static final String PATH = "src/main/resources/products/";
     private static HashMap<String, Product> allProducts = new HashMap<>();
     private String productId;
     private SetUpStatus status;
@@ -16,19 +17,19 @@ public class Product {
     private String company;
     private double price;
     private int count;
-    private Seller seller;
-    private Category category;
+    private String seller;
+    private String category;
     private String explanation;
     private ArrayList<Score> allScores;
     private ArrayList<Comment> comments;
     private boolean isInOff;
-    private ArrayList<Customer> allBuyers;
+    private ArrayList<String> allBuyers;
     private HashMap<String, String> extraStringProperties;
     private HashMap<String, Double> extraValueProperties;
     private int visitCount;
 
     public Product(String name, String company, double price,
-                   int count, Seller seller, Category category) {
+                   int count, String seller, String category) {
         this.name = name;
         this.company = company;
         this.price = price;
@@ -59,7 +60,7 @@ public class Product {
         return count;
     }
 
-    public Seller getSeller() {
+    public String getSeller() {
         return seller;
     }
 
@@ -87,7 +88,7 @@ public class Product {
         return status;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -119,7 +120,7 @@ public class Product {
         return extraValueProperties.get(name);
     }
 
-    public ArrayList<Customer> getAllBuyers() {
+    public ArrayList<String> getAllBuyers() {
         return allBuyers;
     }
 
@@ -145,6 +146,10 @@ public class Product {
             sum += score.getScore();
         }
         return sum / allScores.size();
+    }
+
+    public void decreaseNumber(int decreament){
+        count -= decreament;
     }
 
     public void setInOff(boolean inOff) {
@@ -179,8 +184,38 @@ public class Product {
         return allProducts.get(id);
     }
 
-    public static void loadData(){}
+    public static void loadData() throws IOException{
+        File directory = new File(PATH);
+        String[] pathNames = directory.list();
+        assert pathNames != null;
+        for (String path: pathNames) {
+            FileInputStream file = new FileInputStream(PATH + path);
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            try {
+                allProducts.put(((Product)inputStream.readObject()).getProductId(), (Product) inputStream.readObject());
+                file.close();
+                inputStream.close();
+                new File(PATH + path).delete();
+                //TODO:IMPLEMENT PROPER EXCEPTION
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
 
-    public static void saveData(){}
+        }
+    }
+
+    public static void saveData(){
+        for (Product product : allProducts.values()) {
+            try {
+                FileOutputStream file = new FileOutputStream(PATH + product.getProductId());
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(product);
+                file.close();
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

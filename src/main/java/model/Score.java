@@ -1,23 +1,25 @@
 package model;
 
-import model.users.User;
-
 public class Score {
-    private User user;
+    private String username;
     private int score;
-    private Product product;
+    private String productID;
 
-    public Score(User user, int score, Product product) {
-        this.user = user;
+    public Score(String username, int score, String productID) {
+        this.username = username;
         this.score = score;
-        this.product = product;
+        this.productID = productID;
     }
 
-    public User getUser(){
-        return user;
+    public String getUserName(){
+        return username;
     }
 
     public int getScore(){
         return score;
+    }
+
+    public void setScore(int score){
+        this.score = score;
     }
 }

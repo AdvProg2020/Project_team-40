@@ -7,7 +7,7 @@ public class Category {
     private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
     private Category parentCategory;
-    private ArrayList<Product> products;
+    private ArrayList<String> productIDs;
     private ArrayList<Category> subCategories;
     private ArrayList<String> extraProperties;
 
@@ -16,16 +16,16 @@ public class Category {
         this.parentCategory = parentCategory;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public static void addCategory(Category category){
+        allCategories.put(category.name, category);
+    }
+
+    public ArrayList<String> getProductIDs() {
+        return productIDs;
     }
 
     public ArrayList<String> getExtraProperties() {
         return extraProperties;
-    }
-
-    public void addProperty(String name){
-        extraProperties.add(name);
     }
 
     public ArrayList<Category> getSubCategories(){
@@ -48,31 +48,27 @@ public class Category {
         subCategories.add(category);
     }
 
-    public void addProduct(Product product){
-        products.add(product);
+    public void addProduct(String productID){
+        productIDs.add(productID);
     }
 
-    public boolean hasProduct(Product product){
-        return products.contains(product);
+    public boolean hasProduct(String productID){
+        return productIDs.contains(productID);
     }
 
-    public void removeProduct(Product product){
-        products.remove(product);
+    public void removeProduct(String productID){
+        productIDs.remove(productID);
     }
 
     public static Category getCategoryByName(String name){
         return allCategories.get(name);
     }
 
-    public static void addCategory(Category category){
-        allCategories.put(category.name, category);
-    }
-
     public static void removeCategory(Category category){
-        allCategories.remove(category.name);
+        allCategories.remove(category);
     }
 
-    public static HashMap<String, Category> getAllCategories() {
+    public HashMap<String, Category> getAllCategories() {
         return allCategories;
     }
 

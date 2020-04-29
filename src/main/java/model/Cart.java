@@ -3,34 +3,30 @@ package model;
 import model.users.Customer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class Cart {
-    private HashMap<String, Integer> products;
+    private ArrayList<String> productIDs;
     private static Cart temporaryCart;
 
     private Cart(){
-        this.products = new HashMap<>();
+        this.productIDs = new ArrayList<>();
     }
 
-    public HashMap<String, Integer> getProducts() {
-        return products;
+    public ArrayList<String> getProducts() {
+        return productIDs;
     }
 
-    public void addProduct(Product product){
-        products.put(product.getProductId(), 1);
+    public void addProduct(String productID){
+        productIDs.add(productID);
     }
 
-    public void removeProduct(Product product){
-        products.remove(product.getProductId());
+    public void removeProduct(String productID){
+        productIDs.add(productID);
     }
-
-    //TODO: WRITE THE ADD AND REDUCE QUANTITY OF PRODUCTS METHOD
 
     public void moveProductsToCustomerCart(Customer customer){
-        customer.getCart().putAll(temporaryCart.products);
-        temporaryCart.products.clear();
+        //customer.getCart().addAll(temporaryCart.productIDs);
+        //temporaryCart.products.clear();
     }
 
     public static Cart getTemporaryCart(){
