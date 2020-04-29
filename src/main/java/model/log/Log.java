@@ -1,7 +1,6 @@
 package model.log;
 
 import model.Utility;
-import model.users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,11 +16,11 @@ public class Log implements Serializable {
     private String sellerName;
     private String buyerName;
     private boolean isDelivered;
-    private ArrayList<String> productId;
+    private ArrayList<String> productsId;
     private static HashMap<String, Log> allLogs = new HashMap<>();
 
     public Log(Date date, double cost, double discount,
-               ArrayList<String> productId, String buyerName,
+               ArrayList<String> productsId, String buyerName,
                String sellerName, boolean isDelivered) {
         this.isDelivered = isDelivered;
         this.sellerName = sellerName;
@@ -29,7 +28,7 @@ public class Log implements Serializable {
         this.date = date;
         this.cost = cost;
         this.discount = discount;
-        this.productId = productId;
+        this.productsId = productsId;
         id = Utility.generateId();
         allLogs.put(id, this);
     }
@@ -50,6 +49,18 @@ public class Log implements Serializable {
         return id;
     }
 
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public ArrayList<String> getProductsId() {
+        return productsId;
+    }
+
     private String getStatus(){
         if(isDelivered){
             return "Delivered";
@@ -61,7 +72,7 @@ public class Log implements Serializable {
     public String toString() {
         String deliveryStatus = getStatus();
         String productNamesInOneString = "Products:\n";
-            for(String name: productId){
+            for(String name: productsId){
             productNamesInOneString = productNamesInOneString + name + "\n";
         }
         return "Log ID: " + id + "\n" +

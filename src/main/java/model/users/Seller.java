@@ -46,6 +46,10 @@ public class Seller extends User{
         return credit;
     }
 
+    public String getCompanyInfo() {
+        return companyInfo;
+    }
+
     public ArrayList<String> getLogsName() {
         return logsName;
     }

@@ -124,6 +124,18 @@ public class Product implements Serializable{
         return allBuyers;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public void setStatus(SetUpStatus status) {
         this.status = status;
     }
