@@ -6,36 +6,34 @@ import model.users.Seller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.concurrent.Phaser;
-import java.util.zip.DataFormatException;
 
 public class Off {
     private static HashMap<String, Off> allOffs;
+    private ArrayList<String> productIDs;
     private String id;
     private SetUpStatus status;
-    private Date startDate;
-    private Date endDate;
-
-    private Seller seller;
-
+    private String startDate;
+    private String endDate;
+    private String seller;
     private int discountPercentage;
-    private ArrayList<Product> products;
-    public Off(Date startDate, Date endDate, int discountPercentage, Seller seller) {
+
+    public Off(String startDate, String endDate, int discountPercentage, String seller) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.discountPercentage = discountPercentage;
         this.seller = seller;
+        productIDs = new ArrayList<>();
     }
 
     public void setStatus(SetUpStatus status) {
         this.status = status;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -43,19 +41,23 @@ public class Off {
         this.discountPercentage = discountPercentage;
     }
 
-    public void addProduct(Product product){}
-
-    public void removeProduct(Product product){}
-
-    public boolean doesProductExist(Product product){return false;}
-
-    public ArrayList<Product> getProducts() {
-        return products;
+    public void addProduct(String productID){
+        productIDs.add(productID);
     }
 
-    public Product getProductById(String productId){return null;}
+    public void removeProduct(String productID){
+        productIDs.remove(productID);
+    }
 
-    public Seller getSeller() {
+    public boolean doesProductExist(String productID){
+        return productIDs.contains(productID);
+    }
+
+    public ArrayList<String> getProductIDs() {
+        return productIDs;
+    }
+
+    public String getSeller() {
         return seller;
     }
 
