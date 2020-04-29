@@ -1,7 +1,6 @@
 package model;
 
 import model.enumerations.SetUpStatus;
-import model.users.Customer;
 import model.users.Seller;
 
 import java.io.*;
