@@ -182,7 +182,11 @@ public class Product implements Serializable{
     }
 
     public static Product getProductById(String id){
-        return allProducts.get(id);
+        if(allProducts.containsKey(id)){
+            return allProducts.get(id);
+        }else {
+            return null;
+        }
     }
 
     public static void loadData() throws IOException{

@@ -109,6 +109,18 @@ public class Off implements Serializable{
         allOffs.put(off.getId(), off);
     }
 
+    public static void removeOff(String offID){
+        allOffs.remove(offID);
+    }
+
+    public static Off getOffByID(String offID){
+        if(allOffs.containsKey(offID)){
+            return allOffs.get(offID);
+        }else{
+            return null;
+        }
+    }
+
     public static void loadData() throws IOException{
         File directory = new File(PATH);
         String[] pathNames = directory.list();
