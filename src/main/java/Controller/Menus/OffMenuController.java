@@ -1,62 +1,35 @@
 package Controller.Menus;
 
+import exceptions.AccountsException;
+import model.Off;
 import model.Product;
-import model.properties.Property;
+import model.enumerations.SortTypes;
+import model.search.ProductFilter;
+import model.search.ProductSort;
+import model.search.Range;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OffMenuController{
     private static OffMenuController offMenuController;
-    private ArrayList<Property> currentFilters;
+    private HashMap<String, String> currentStringFilters;
+    private HashMap<String, Range> currentIntegerFilters;
     private String currentSort;
-    private ArrayList<Product> allProductsProccessed;
+    private ArrayList<Product> offedProducts;
+    private ArrayList<Product> productsToShow;
+    private ProductFilter productFilter;
 
-    public ArrayList<String> getProductsWithOff(){
-        return null;
-    }
-
-    public ArrayList<String> getAvailableFilters(){
-        return null;
-    }
-
-    public void addValuePropertyToFilter(String type, double minValue, double maxValue){
-
-    }
-
-    public void addStringPropertyToFilter(String type, String value){
-
-    }
-
-    public void disableFilter(String type){
-
-    }
-
-    public ArrayList<Property> getCurrentFilters(){
-        return null;
-    }
-
-    public ArrayList<String> getAvailableSorts(){
-        return null;
-    }
-
-    public void addSort(String type){
-
-    }
-
-    public void disableSort(){
-
-    }
-
-    public String getCurrentSort(){
-        return null;
-    }
-
-    public Product getProduct(String productID){
-        return null;
-    }
 
     private OffMenuController(){
-
+        currentStringFilters = new HashMap<>();
+        currentIntegerFilters = new HashMap<>();
+        offedProducts = new ArrayList<>();
+        for (Off off : Off.getAllOffs().values()) {
+            offedProducts.addAll(off.getProducts());
+        }
+        productFilter = null;
+        productsToShow = offedProducts;
     }
 
     public static OffMenuController getInstance(){
@@ -65,4 +38,55 @@ public class OffMenuController{
 
         return offMenuController;
     }
+
+    public ArrayList<Product> getProductsWithOff(){
+        return productsToShow;
+    }
+
+    public Product getProduct(String productID) throws AccountsException {
+        Product product = Product.getProductById(productID);
+        if (product == null)
+            throw new AccountsException("Product not found.");
+        return product;
+    }
+
+    public ArrayList<String> getAvailableFilters(){
+        return ProductFilter.getAvailableFilters();
+    }
+
+    public ArrayList<Product> filter(String name, String value) throws AccountsException {
+        if (!getAvailableFilters().contains(name))
+            throw new AccountsException("This filter is not available.");
+        currentStringFilters.put(name, value);
+        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
+        productsToShow = productFilter.getFilter();
+        return productsToShow;
+    }
+
+    public ArrayList<Product> filter(String name, double min, double max) throws AccountsException {
+        if (!getAvailableFilters().contains(name))
+            throw new AccountsException("This filter is not available.");
+        currentIntegerFilters.put(name, new Range(min, max));
+        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
+        productsToShow = productFilter.getFilter();
+        return productsToShow;
+    }
+
+    public void disableFilter(String selectedField) throws AccountsException {
+        if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
+            throw new AccountsException("This field wax not selected.");
+        currentStringFilters.remove(selectedField);
+        currentIntegerFilters.remove(selectedField);
+        productFilter.disableFilter(selectedField);
+        productsToShow = productFilter.getFilter();
+    }
+
+    public ArrayList<String> getCurrentFilters(){
+        ArrayList<String> currentFilters = new ArrayList<>();
+        currentFilters.addAll(currentStringFilters.keySet());
+        currentFilters.addAll(currentIntegerFilters.keySet());
+        return currentFilters;
+    }
+
+
 }

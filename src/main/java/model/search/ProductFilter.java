@@ -2,8 +2,8 @@ package model.search;
 
 import model.Category;
 import model.Product;
+import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
-import model.users.Seller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,14 +15,14 @@ public class ProductFilter{
     private String productName;
     private String productCompany;
     private String sellerName;
-    private Status status;
+    private SetUpStatus status;
     private Range price;
     private HashMap<String , String> stringProperties;
     private HashMap<String, Range> valueProperties;
     private HashMap<String , Boolean> availableExtraProperties;
 
     public ProductFilter(ArrayList<Product> products, Category category, String productName, String productCompany,
-                         String sellerName, Status status, Range price){
+                         String sellerName, SetUpStatus status, Range price){
         this.products = products;
         this.category = category;
         this.productName = productName;
@@ -49,8 +49,19 @@ public class ProductFilter{
         availableExtraProperties.put(name, Boolean.TRUE);
     }
 
-    public HashMap<String, Boolean> getAvailableExtraProperties(){
+    private HashMap<String, Boolean> getAvailableExtraProperties(){
         return availableExtraProperties;
+    }
+
+    public static ArrayList<String> getAvailableFilters(){
+        ArrayList<String> availableFilters = new ArrayList<>();
+        availableFilters.add("Name");
+        availableFilters.add("Category");
+        availableFilters.add("Company");
+        availableFilters.add("Seller");
+        availableFilters.add("Status");
+        availableFilters.add("Price");
+        return availableFilters;
     }
 
     public void disableFilter(String name){
@@ -115,5 +126,33 @@ public class ProductFilter{
         }
 
         return filteredProduct;
+    }
+
+    public static ProductFilter getInstance(ArrayList<Product> products, HashMap<String, String> stringFilters, HashMap<String,Range> integerFilters){
+        Category category = null;
+        String productName = null;
+        String productCompany = null;
+        String sellerName = null;
+        SetUpStatus status = null;
+        Range range = null;
+        for (String filter : stringFilters.keySet()) {
+            if (filter.equalsIgnoreCase("name"))
+                productName = stringFilters.get(filter);
+            else if (filter.equalsIgnoreCase("category"))
+                category = Category.getCategoryByName(stringFilters.get(filter));
+            else if (filter.equalsIgnoreCase("company"))
+                productCompany = stringFilters.get(filter);
+            else if (filter.equalsIgnoreCase("seller"))
+                sellerName = stringFilters.get(filter);
+            else if (filter.equalsIgnoreCase("status"))
+                status = SetUpStatus.valueOf(stringFilters.get(filter));
+        }
+
+        for (String filter : integerFilters.keySet()) {
+            if (filter.equalsIgnoreCase("price"))
+                range = integerFilters.get(filter);
+        }
+
+        return new ProductFilter(products, category, productName, productCompany, sellerName, status, range);
     }
 }

@@ -61,8 +61,13 @@ public class Off implements Serializable{
         return productIDs.contains(productID);
     }
 
-    public ArrayList<String> getProductIDs() {
-        return productIDs;
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        for (String productID : productIDs) {
+            Product product = Product.getProductById(productID);
+            products.add(product);
+        }
+        return products;
     }
 
     public SetUpStatus getStatus(){
@@ -91,7 +96,7 @@ public class Off implements Serializable{
             end = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(endDate);
         }catch(ParseException e){
           e.printStackTrace();
-        };
+        }
 
 
         return status.equals(SetUpStatus.Confirmed) && now.compareTo(start) > 0 && now.compareTo(end) < 0;
@@ -118,11 +123,7 @@ public class Off implements Serializable{
     }
 
     public static Off getOffByID(String offID){
-        if(allOffs.containsKey(offID)){
-            return allOffs.get(offID);
-        }else{
-            return null;
-        }
+        return allOffs.get(offID);
     }
 
     public static void loadData() throws IOException{
