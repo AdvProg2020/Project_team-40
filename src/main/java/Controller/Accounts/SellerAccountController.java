@@ -47,7 +47,7 @@ public class SellerAccountController extends AccountController{
         return ((Seller)user).getProductsId();
     }
 
-    public Product getProductDetails(String productID){
+    public Product getProductDetails(String productID) {
         Product product;
         Seller seller = (Seller) user;
         if(seller.getProductById(productID) == null) {
@@ -70,17 +70,19 @@ public class SellerAccountController extends AccountController{
         return buyers;
     }
 
-    public void createNewProduct(String name, String company, double price, int quantity, String categoryName,
-                                 String description){
+    private boolean createNewProduct(String name, String company, double price, int quantity, String categoryName,
+                                 String description) {
         Seller seller = (Seller) user;
-        Product product = new Product(name, company, price, quantity, seller.getUsername(),
-                categoryName);
-        product.setExplanation(description);
-        Product.addProduct(product);
-    }
-
-    public HashMap<String, String> getProductRequiredProperties(String productID){
-        return null;
+        if(seller.isManagerPermission()) {
+            Product product = new Product(name, company, price, quantity, seller.getUsername(),
+                    categoryName);
+            product.setExplanation(description);
+            Product.addProduct(product);
+            seller.setManagerPermission(false);
+            return true;
+        }
+        return false;
+        //TODO: SEE IF METHOD FOR SENDING REQUEST TO MANAGER IS NEEDED OF NOT
     }
 
     public void editProduct(String productId, String field, String newField){
@@ -96,8 +98,8 @@ public class SellerAccountController extends AccountController{
         } else if(field.equalsIgnoreCase("category")) {
             product.setCategory(newField);
         } else if(field.equalsIgnoreCase("status")) {
-            if(newField.equalsIgnoreCase("production")) {
-                product.setStatus(SetUpStatus.Production);
+            if(newField.equalsIgnoreCase("creating")) {
+                product.setStatus(SetUpStatus.Creating);
             } else if(newField.equalsIgnoreCase("editing")) {
                 product.setStatus(SetUpStatus.Editing);
             } else if(newField.equalsIgnoreCase("confirmed")) {
@@ -106,36 +108,70 @@ public class SellerAccountController extends AccountController{
         }
     }
 
-    public void finalizeAddingProduct(String productID){
+    public void finalizeAddingProduct(String productID) {
+        //TODO: SEE IF METHOD FOR SENDING REQUEST TO MANAGER IS NEEDED OF NOT
         //It is used after manager accepted the request
+        ((Seller) user).setManagerPermission(true);
     }
 
-    public void removeProductFromSeller(String productID){
-
+    public void removeProductFromSeller(String productID) {
+        ((Seller) user).getProductsId().remove(productID);
+        Product.removeProduct(productID);
     }
 
     public HashMap<String, Category> getAllCategories(){
         return Category.getAllCategories();
     }
 
-    public ArrayList<String> getAllOffs(){
-        return null;
+    public HashMap<String, Off> getAllOffs() {
+        HashMap<String, Off> sellersAllOffs = new HashMap<>();
+        Seller seller = (Seller) user;
+        for(String offId: seller.getOffIds()) {
+            Off off = Off.getOffByID(offId);
+            sellersAllOffs.put(off.getId(), off);
+        }
+        return sellersAllOffs;
     }
 
     public Off getOffDetails(String offID){
-        return null;
+        Seller seller = (Seller) user;
+        if(seller.getOffIds().contains(offID)) {
+            return Off.getOffByID(offID);
+        } else {
+            return null;
+        }
     }
 
     public void editOff(String offID, String field, String newField){
-
+        Off off = Off.getOffByID(offID);
+        if(field.equals("discount percentage")) {
+            off.setDiscountPercentage(Double.parseDouble(newField));
+        } else if(field.equals("start date")) {
+            off.setStartDate(newField);
+        } else if(field.equals("end date")) {
+            off.setEndDate(newField);
+        } else if(field.equals("status")) {
+            if(newField.equals("creating")) {
+                off.setStatus(SetUpStatus.Creating);
+            } else if(newField.equals("editing")) {
+                off.setStatus(SetUpStatus.Editing);
+            } else if(newField.equals("confirmed")) {
+                off.setStatus(SetUpStatus.Confirmed);
+            }
+        }
     }
 
     public void removeOff(String offID){
-
+        ((Seller) user).deleteOff(Off.getOffByID(offID));
+        Off.removeOff(offID);
     }
 
     public void addOffToSeller(ArrayList<String> productIDs, String startDate, String endDate, double percentage){
-
+        Seller seller = (Seller) user;
+        Off off = new Off(startDate, endDate, percentage, seller.getUsername());
+        off.addAllProducts(productIDs);
+        seller.addOff(off);
+        Off.addOff(off);
     }
 
     public double getBalance(){

@@ -66,6 +66,10 @@ public class Seller extends User{
         productsId.add(product.getProductId());
     }
 
+    public boolean isManagerPermission() {
+        return managerPermission;
+    }
+
     public void setManagerPermission(boolean managerPermission) {
         this.managerPermission = managerPermission;
     }

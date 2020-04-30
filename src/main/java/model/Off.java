@@ -49,6 +49,10 @@ public class Off implements Serializable{
         productIDs.add(productID);
     }
 
+    public void addAllProducts(ArrayList<String> productsId) {
+        this.productIDs.addAll(productsId);
+    }
+
     public void removeProduct(String productID){
         productIDs.remove(productID);
     }
@@ -154,7 +158,4 @@ public class Off implements Serializable{
             }
         }
     }
-
-
-
 }
