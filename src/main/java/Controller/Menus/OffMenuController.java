@@ -19,6 +19,7 @@ public class OffMenuController{
     private ArrayList<Product> offedProducts;
     private ArrayList<Product> productsToShow;
     private ProductFilter productFilter;
+    private ProductSort productSort;
 
 
     private OffMenuController(){
@@ -28,8 +29,9 @@ public class OffMenuController{
         for (Off off : Off.getAllOffs().values()) {
             offedProducts.addAll(off.getProducts());
         }
-        productFilter = null;
         productsToShow = offedProducts;
+        productFilter = null;
+        productSort = new ProductSort(productsToShow, null);
     }
 
     public static OffMenuController getInstance(){
@@ -98,20 +100,21 @@ public class OffMenuController{
     }
 
     public void addSort(String sort) throws AccountsException {
-        if (currentSort != null)
-            throw new AccountsException("A sort is already exists.");
         if (!getAvailableSorts().contains(sort))
             throw new AccountsException("This sort is not available.");
-        ProductSort productSort = new ProductSort(productsToShow, SortTypes.valueOf(sort));
+        currentSort = sort;
+        productSort.setSortType(SortTypes.valueOf(sort));
         productsToShow = productSort.getSortedProducts();
     }
 
     public void disableSort(){
-
+        currentSort = null;
+        productSort.setSortType(null);
+        productsToShow = productSort.getSortedProducts();
     }
 
     public String getCurrentSort(){
-        return null;
+        return currentSort;
     }
 
 
