@@ -88,5 +88,31 @@ public class OffMenuController{
         return currentFilters;
     }
 
+    public ArrayList<String> getAvailableSorts(){
+        ArrayList<String> sorts = new ArrayList<>();
+        sorts.add("MOST_EXPENSIVE");
+        sorts.add("CHEAPEST");
+        sorts.add("MOST_VISITED");
+        sorts.add("HIGHEST_SCORE");
+        return sorts;
+    }
+
+    public void addSort(String sort) throws AccountsException {
+        if (currentSort != null)
+            throw new AccountsException("A sort is already exists.");
+        if (!getAvailableSorts().contains(sort))
+            throw new AccountsException("This sort is not available.");
+        ProductSort productSort = new ProductSort(productsToShow, SortTypes.valueOf(sort));
+        productsToShow = productSort.getSortedProducts();
+    }
+
+    public void disableSort(){
+
+    }
+
+    public String getCurrentSort(){
+        return null;
+    }
+
 
 }
