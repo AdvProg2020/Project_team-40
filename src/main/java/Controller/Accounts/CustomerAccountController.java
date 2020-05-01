@@ -22,6 +22,13 @@ public class CustomerAccountController extends AccountController{
 
     private CustomerAccountController(){}
 
+    public static CustomerAccountController getInstance(){
+        if(customerAccountController == null)
+            customerAccountController = new CustomerAccountController();
+
+        return customerAccountController;
+    }
+
     public void createCustomerAccount(String username, String password, String firstName, String lastName,
                                       String email, String phoneNumber, double credit) throws AccountsException {
         if(User.doesUserExist(username)) {
@@ -41,30 +48,38 @@ public class CustomerAccountController extends AccountController{
         return productsWithQuantity;
     }
 
-    public Product getChosenProduct(String productId) throws Exception {
+    public Product getChosenProduct(String productId) throws AccountsException {
         Customer customer = (Customer) user;
         if(customer.getCart().containsKey(productId)) {
             return customer.getProductById(productId);
         } else {
-            throw new Exception("Product has not been chosen by customer");
+            throw new AccountsException("Product has not been chosen by customer");
         }
     }
 
-    public void increaseChosenProductQuantity(String productId) {
+    public void increaseChosenProductsQuantity(String productId) throws AccountsException {
         Customer customer = (Customer) user;
-        customer.addProductsQuantity(productId);
+        if(customer.getCart().containsKey(productId)) {
+            customer.addProductsQuantity(productId);
+        } else {
+            throw new AccountsException("Product has not been chosen by customer");
+        }
     }
 
-    public void decreaseChosenProductQuantity(String productId){
+    public void decreaseChosenProductQuantity(String productId) throws AccountsException {
         Customer customer = (Customer) user;
-        customer.decreaseProductsQuantity(productId);
+        if(customer.getCart().containsKey(productId)) {
+            customer.decreaseProductsQuantity(productId);
+        } else {
+            throw new AccountsException("Product has not been chosen by customer");
+        }
     }
 
     public double getCartTotalPrice(){
         return ((Customer) user).getTotalPriceOfCart();
     }
 
-    public Log purchase() {
+    private Log purchase() {
         Customer customer = (Customer) user;
         Log log = new Log(new Date(), priceAfterDiscount, discount, customer.getCart(),
                 customer.getUsername(), false);
@@ -76,38 +91,42 @@ public class CustomerAccountController extends AccountController{
         return log;
     }
 
-    public void getReceiveInfo(String address){
+    public void getReceiverInfo(String address){
         this.address = address;
     }
 
-    public void setPriceAfterDiscount() {
+    //If customer doesn't have any discount this method must be called:
+    public void setPriceWithoutDiscount() {
         this.priceAfterDiscount = ((Customer) user).getTotalPriceOfCart();
-        //If customer doesn't have any discount this method must be called
     }
 
-    public void enterDiscountCode(String code) {
+    public void enterDiscountCode(String code) throws AccountsException{
         Customer customer = (Customer) user;
         DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
         if(!customer.getDiscountCodes().contains(code)) {
-            //TODO: THROW PROPER EXCEPTION
+            throw new AccountsException("Invalid discount code.");
         } else if(!discountCode.isCountRemained(customer)) {
-            //TODO: THROW PROPER EXCEPTION
+            throw new AccountsException("Discount code has been used.");
         } else if(discountCode.isExpired()) {
-            //TODO: THROW PROPER EXCEPTION
+            throw new AccountsException("Date Expire");
         } else {
             priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
         }
     }
 
-    public Log makePayment() {
+    public Log makePayment() throws AccountsException{
         Customer customer = (Customer) user;
         if(this.priceAfterDiscount > customer.getCredit()) {
-            //TODO: THROW EXCEPTION
-            return null;
+            throw new AccountsException("Credit not enough.");
         } else {
             customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
             return purchase();
         }
+    }
+
+    public void addToCredit(double money) {
+        Customer customer = (Customer) user;
+        customer.setCredit(customer.getCredit() + money);
     }
 
     public ArrayList<Log> getOrders() {
@@ -119,12 +138,12 @@ public class CustomerAccountController extends AccountController{
         return logs;
     }
 
-    public Log getOrder(String orderID){
+    public Log getOrder(String orderID) throws AccountsException {
         Customer customer = (Customer) user;
         if(customer.getLogsId().contains(orderID)) {
             return customer.getLogById(orderID);
         } else {
-            return null;
+            throw new AccountsException("Customer doesn't have an Order with this ID.");
         }
     }
 
@@ -138,14 +157,12 @@ public class CustomerAccountController extends AccountController{
         return ((Customer) user).getCredit();
     }
 
-    public ArrayList<String> getDiscountCodes(){
-        return ((Customer) user).getDiscountCodes();
-    }
-
-    public static CustomerAccountController getInstance(){
-        if(customerAccountController == null)
-            customerAccountController = new CustomerAccountController();
-
-        return customerAccountController;
+    public ArrayList<DiscountCode> getCustomersDiscountCodes() {
+        ArrayList<DiscountCode> customersDiscountCodes = new ArrayList<>();
+        Customer customer = (Customer) user;
+        for(String code: customer.getDiscountCodes()) {
+            customersDiscountCodes.add(DiscountCode.getDiscountCodeByCode(code));
+        }
+        return customersDiscountCodes;
     }
 }
