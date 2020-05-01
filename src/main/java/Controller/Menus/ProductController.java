@@ -2,7 +2,6 @@ package Controller.Menus;
 
 import model.Comment;
 import model.Product;
-import model.properties.Property;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,7 @@ public class ProductController{
 
     }
 
-    public ArrayList<Property> getProductAttributes(String productID){
+    public ArrayList<String> getProductAttributes(String productID){
         return null;
     }
 

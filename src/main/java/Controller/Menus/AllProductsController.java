@@ -1,14 +1,13 @@
 package Controller.Menus;
 
 import model.Product;
-import model.properties.Property;
 
 import java.util.ArrayList;
 
 public class AllProductsController{
 
     private static AllProductsController allProductsController;
-    private ArrayList<Property> currentFilters;
+    private ArrayList<String> currentFilters;
     private String currentSort;
     private ArrayList<Product> allProductsProccessed;
 
@@ -36,7 +35,7 @@ public class AllProductsController{
 
     }
 
-    public ArrayList<Property> getCurrentFilters(){
+    public ArrayList<String> getCurrentFilters(){
         return null;
     }
 
