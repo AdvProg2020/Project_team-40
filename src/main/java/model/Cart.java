@@ -2,35 +2,39 @@ package model;
 
 import model.users.Customer;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
 
 
-public class Cart implements Serializable{
-    private static final String PATH = "src/main/resources/";
-    private HashMap<String, Integer> products;
+public class Cart{
+    private static Cart thisCart;
+    private static HashMap<String, Integer> products;
     //Key : productID, Value : count
 
-    public Cart(){
+    private Cart(){
         products = new HashMap<>();
     }
 
-    public HashMap<String, Integer> getProductIDs() {
+    public static HashMap<String, Integer> getProductIDs() {
         return products;
     }
 
-    public void addProduct(String productID, int count){
+    public static void addProduct(String productID, int count){
         products.put(productID, count);
     }
 
-    public void removeProduct(String productID){
+    public static void removeProduct(String productID){
         products.remove(productID);
     }
 
-    public void moveProductsToCustomerCart(Customer customer){
-        //customer.getCart().addAll(temporaryCart.productIDs);
-        //temporaryCart.products.clear();
+    public static void moveProductsToCustomerCart(Customer customer){
+        customer.getCart().putAll(products);
+        products.clear();
+    }
+
+    public static Cart getThisCart(){
+        if(thisCart == null)
+            thisCart = new Cart();
+
+        return thisCart;
     }
 }
