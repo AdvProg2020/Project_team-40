@@ -1,5 +1,6 @@
 package model.log;
 
+import model.Product;
 import model.Utility;
 
 import java.io.*;
@@ -13,17 +14,15 @@ public class Log implements Serializable {
     private Date date;
     private double cost;
     private double discount;
-    private String sellerName;
     private String buyerName;
+    private String address;
     private boolean isDelivered;
-    private ArrayList<String> productsId;
+    private HashMap<String, Integer> productsId;
     private static HashMap<String, Log> allLogs = new HashMap<>();
 
     public Log(Date date, double cost, double discount,
-               ArrayList<String> productsId, String buyerName,
-               String sellerName, boolean isDelivered) {
+               HashMap<String, Integer> productsId, String buyerName, boolean isDelivered) {
         this.isDelivered = isDelivered;
-        this.sellerName = sellerName;
         this.buyerName = buyerName;
         this.date = date;
         this.cost = cost;
@@ -49,15 +48,11 @@ public class Log implements Serializable {
         return id;
     }
 
-    public String getSellerName() {
-        return sellerName;
-    }
-
     public String getBuyerName() {
         return buyerName;
     }
 
-    public ArrayList<String> getProductsId() {
+    public HashMap<String, Integer> getProductsId() {
         return productsId;
     }
 
@@ -69,18 +64,28 @@ public class Log implements Serializable {
         }
     }
 
+    private String showProductsWithQuantityAndSellers() {
+        String productsWithQuantityAndSellers = "Products:\n";
+        for(Map.Entry<String, Integer> entry: productsId.entrySet()){
+            String id = entry.getKey();
+            int quantity = entry.getValue();
+            Product product = Product.getProductById(id);
+            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Product: " + product.getName() + "\n";
+            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: " + product.getSeller() + "\n";
+            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Quantity: " + quantity + "\n";
+        }
+        return productsWithQuantityAndSellers;
+    }
+
     public String toString() {
         String deliveryStatus = getStatus();
-        String productNamesInOneString = "Products:\n";
-            for(String name: productsId){
-            productNamesInOneString = productNamesInOneString + name + "\n";
-        }
+        String productNamesInOneString = showProductsWithQuantityAndSellers();
         return "Log ID: " + id + "\n" +
                 "Date: " + date + "\n" +
                 "Cost: " + cost + "\n" +
                 "Discount" + discount + "\n" +
                 "Buyer: " + buyerName + "\n" +
-                "Seller: " + sellerName + "\n" +
+                "Address: " + address + "\n" +
                 "Status: " + deliveryStatus + "\n" +
                 productNamesInOneString;
     }
@@ -121,6 +126,4 @@ public class Log implements Serializable {
             }
         }
     }
-
-
 }

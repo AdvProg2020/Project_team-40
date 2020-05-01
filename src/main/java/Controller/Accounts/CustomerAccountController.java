@@ -2,17 +2,23 @@ package Controller.Accounts;
 
 import exceptions.AccountsException;
 import model.Cart;
+import model.DiscountCode;
 import model.Product;
+import model.Score;
 import model.log.Log;
 import model.users.Customer;
 import model.users.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
+    private String address;
+    private double priceAfterDiscount;
+    private double discount;
 
     private CustomerAccountController(){}
 
@@ -35,12 +41,12 @@ public class CustomerAccountController extends AccountController{
         return productsWithQuantity;
     }
 
-    public Product getChosenProduct(String productId){
+    public Product getChosenProduct(String productId) throws Exception {
         Customer customer = (Customer) user;
         if(customer.getCart().containsKey(productId)) {
             return customer.getProductById(productId);
         } else {
-            return null;
+            throw new Exception("Product has not been chosen by customer");
         }
     }
 
@@ -58,24 +64,59 @@ public class CustomerAccountController extends AccountController{
         return ((Customer) user).getTotalPriceOfCart();
     }
 
-    public void purchase(){
-
+    public Log purchase() {
+        Customer customer = (Customer) user;
+        Log log = new Log(new Date(), priceAfterDiscount, discount, customer.getCart(),
+                customer.getUsername(), false);
+        customer.getLogsId().add(log.getId());
+        Log.getLogs().put(log.getId(), log);
+        address = null;
+        priceAfterDiscount = -1;
+        discount = -1;
+        return log;
     }
 
-    public Log getReceiveInfo(){
-        return null;
+    public void getReceiveInfo(String address){
+        this.address = address;
     }
 
-    public void enterDiscountCode(String code){
-
+    public void setPriceAfterDiscount() {
+        this.priceAfterDiscount = ((Customer) user).getTotalPriceOfCart();
+        //If customer doesn't have any discount this method must be called
     }
 
-    public void makePayment(){
-
+    public void enterDiscountCode(String code) {
+        Customer customer = (Customer) user;
+        DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
+        if(!customer.getDiscountCodes().contains(code)) {
+            //TODO: THROW PROPER EXCEPTION
+        } else if(!discountCode.isCountRemained(customer)) {
+            //TODO: THROW PROPER EXCEPTION
+        } else if(discountCode.isExpired()) {
+            //TODO: THROW PROPER EXCEPTION
+        } else {
+            priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
+        }
     }
 
-    public ArrayList<String> getOrders(){
-        return null;
+    public Log makePayment() {
+        Customer customer = (Customer) user;
+        if(this.priceAfterDiscount > customer.getCredit()) {
+            //TODO: THROW EXCEPTION
+            return null;
+        } else {
+            customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
+            return purchase();
+        }
+    }
+
+    public ArrayList<Log> getOrders() {
+        Customer customer = (Customer) user;
+        ArrayList<Log> logs = new ArrayList<>();
+        for(String logId: customer.getLogsId()) {
+            logs.add(Log.getLogById(logId));
+        }
+        return logs;
     }
 
     public Log getOrder(String orderID){
@@ -87,8 +128,10 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public void rateProduct(String productID, int rate){
-
+    public void rateProduct(String productID, int rate) {
+        Product product = Product.getProductById(productID);
+        Score score = new Score(user.getUsername(), rate, productID);
+        product.addScore(score);
     }
 
     public double getBalance(){
