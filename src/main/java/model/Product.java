@@ -30,6 +30,7 @@ public class Product implements Serializable{
 
     public Product(String name, String company, double price,
                    int count, String seller, String category) {
+        //TODO: DOESNT IT NEED TO SAVE SUBCATEGORY?
         this.name = name;
         this.company = company;
         this.price = price;
@@ -189,6 +190,7 @@ public class Product implements Serializable{
     }
 
     public static void removeProduct(String id){
+        Product.getProductById(id).getSeller().getProductsId().remove(id);
         allProducts.remove(id);
     }
 

@@ -1,24 +1,21 @@
 package Controller.Accounts;
 
 import exceptions.AccountsException;
-import model.Cart;
 import model.DiscountCode;
 import model.Product;
 import model.Score;
 import model.log.Log;
 import model.users.Customer;
+import model.users.Seller;
 import model.users.User;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
     private String address;
     private double priceAfterDiscount;
-    private double discount;
+    private double costWithoutDiscount;
 
     private CustomerAccountController(){}
 
@@ -81,13 +78,15 @@ public class CustomerAccountController extends AccountController{
 
     private Log purchase() {
         Customer customer = (Customer) user;
-        Log log = new Log(new Date(), priceAfterDiscount, discount, customer.getCart(),
+        Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
                 customer.getUsername(), false);
         customer.getLogsId().add(log.getId());
         Log.getLogs().put(log.getId(), log);
+        customer.addLog(log);
+        addLogToSellers(log);
         address = null;
         priceAfterDiscount = -1;
-        discount = -1;
+        costWithoutDiscount = -1;
         return log;
     }
 
@@ -110,6 +109,7 @@ public class CustomerAccountController extends AccountController{
         } else if(discountCode.isExpired()) {
             throw new AccountsException("Date Expire");
         } else {
+            costWithoutDiscount = customer.getTotalPriceOfCart();
             priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
         }
     }
@@ -121,6 +121,26 @@ public class CustomerAccountController extends AccountController{
         } else {
             customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
             return purchase();
+        }
+    }
+
+    private void addLogToSellers(Log log) {
+        HashSet<Seller> sellers = new HashSet<>();
+        for(Map.Entry<String, Integer> entry: log.getProductsId().entrySet()) {
+            sellers.add(Product.getProductById(entry.getKey()).getSeller());
+        }
+        for(Seller seller: sellers) {
+            HashMap<String, Integer> productsId = new HashMap<>();
+            double sellersProfit = 0;
+            for(Map.Entry<String, Integer> entry: log.getProductsId().entrySet()) {
+                Product product = Product.getProductById(entry.getKey());
+                if(product.getSeller().equals(seller)) {
+                    productsId.put(product.getProductId(), log.getProductsId().get(product.getProductId()));
+                    sellersProfit += product.getPrice();
+                }
+            }
+            seller.addLog(new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
+                    sellersProfit, productsId, log.getBuyerName(), false));
         }
     }
 
@@ -164,5 +184,14 @@ public class CustomerAccountController extends AccountController{
             customersDiscountCodes.add(DiscountCode.getDiscountCodeByCode(code));
         }
         return customersDiscountCodes;
+    }
+
+    public void deliver(String logId) throws AccountsException {
+        Customer customer = (Customer) user;
+        if(customer.getLogsId().contains(logId)) {
+            Log.getLogById(logId).setDelivered(true);
+        } else {
+            throw new AccountsException("Customer doesn't have a log with this ID.");
+        }
     }
 }

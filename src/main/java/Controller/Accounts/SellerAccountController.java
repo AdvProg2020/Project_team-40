@@ -6,6 +6,8 @@ import model.Off;
 import model.Product;
 import model.enumerations.SetUpStatus;
 import model.log.Log;
+import model.requests.AddProduct;
+import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
 
@@ -35,7 +37,7 @@ public class SellerAccountController extends AccountController{
         ((Seller) user).setCompanyInfo(companyInfo);
     }
 
-    public ArrayList<Log> getSalesHistory(){
+    public ArrayList<Log> getSalesHistory() {
         ArrayList<Log> logs = new ArrayList<>();
         for(String logName: ((Seller)user).getLogsName()) {
             logs.add(Log.getLogById(logName));
@@ -47,42 +49,39 @@ public class SellerAccountController extends AccountController{
         return ((Seller)user).getProductsId();
     }
 
-    public Product getProductDetails(String productID) {
+    public Product getProductDetails(String productID) throws AccountsException {
         Product product;
         Seller seller = (Seller) user;
-        if(seller.getProductById(productID) == null) {
-            return null;
+        if(!seller.getProductsId().contains(productID)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
         } else {
             return seller.getProductById(productID);
         }
     }
 
-    public TreeSet<String> getProductBuyers(Product product){
+    public TreeSet<String> getProductBuyers(String productId) throws AccountsException{
+        Seller seller = (Seller) user;
+        if(!seller.getProductsId().contains(productId)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
+        }
         ArrayList<Log> logs = getSalesHistory();
         TreeSet<String> buyers = new TreeSet<String>();
         for(Log log: logs) {
-            for(String productId: log.getProductsId()) {
-                if(productId.equals(product.getProductId())){
-                    buyers.add(log.getBuyerName());
-                }
+            if(log.getProductsId().containsKey(productId)) {
+                buyers.add(log.getBuyerName());
             }
         }
         return buyers;
     }
 
-    private boolean createNewProduct(String name, String company, double price, int quantity, String categoryName,
+    private void createNewProduct(String name, String company, double price, int quantity, String categoryName,
                                  String description) {
         Seller seller = (Seller) user;
         if(seller.isManagerPermission()) {
-            Product product = new Product(name, company, price, quantity, seller.getUsername(),
-                    categoryName);
+            Product product = new Product(name, company, price, quantity, seller.getUsername(), categoryName);
             product.setExplanation(description);
-            Product.addProduct(product);
-            seller.setManagerPermission(false);
-            return true;
+            Manager.addRequest(new AddProduct(product));
         }
-        return false;
-        //TODO: SEE IF METHOD FOR SENDING REQUEST TO MANAGER IS NEEDED OF NOT
     }
 
     public void editProduct(String productId, String field, String newField){
@@ -109,7 +108,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public void finalizeAddingProduct(String productID) {
-        //TODO: SEE IF METHOD FOR SENDING REQUEST TO MANAGER IS NEEDED OF NOT
+        //TODO: WHERE IS THIS METHOD USED? WHERE IS SETANAGERPERMISSION USED?
         //It is used after manager accepted the request
         ((Seller) user).setManagerPermission(true);
     }

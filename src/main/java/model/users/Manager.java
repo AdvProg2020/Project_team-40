@@ -28,11 +28,6 @@ public class Manager extends User {
         return null;
     }
 
-    public static void loadData(){}
-
-    public static void saveData(){}
-
-
     @Override
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\n" +

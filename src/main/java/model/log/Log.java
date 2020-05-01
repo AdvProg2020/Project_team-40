@@ -4,7 +4,6 @@ import model.Product;
 import model.Utility;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,20 +12,20 @@ public class Log implements Serializable {
     private String id;
     private Date date;
     private double cost;
-    private double discount;
+    private double costWithoutDiscount;
     private String buyerName;
     private String address;
     private boolean isDelivered;
     private HashMap<String, Integer> productsId;
     private static HashMap<String, Log> allLogs = new HashMap<>();
 
-    public Log(Date date, double cost, double discount,
+    public Log(Date date, double cost, double costWithoutDiscount,
                HashMap<String, Integer> productsId, String buyerName, boolean isDelivered) {
         this.isDelivered = isDelivered;
         this.buyerName = buyerName;
         this.date = date;
         this.cost = cost;
-        this.discount = discount;
+        this.costWithoutDiscount = costWithoutDiscount;
         this.productsId = productsId;
         id = Utility.generateId();
         allLogs.put(id, this);
@@ -50,6 +49,26 @@ public class Log implements Serializable {
 
     public String getBuyerName() {
         return buyerName;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public double getCostWithoutDiscount() {
+        return costWithoutDiscount;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public boolean isDelivered() {
+        return isDelivered;
     }
 
     public HashMap<String, Integer> getProductsId() {
@@ -83,7 +102,7 @@ public class Log implements Serializable {
         return "Log ID: " + id + "\n" +
                 "Date: " + date + "\n" +
                 "Cost: " + cost + "\n" +
-                "Discount" + discount + "\n" +
+                "Discount" + costWithoutDiscount + "\n" +
                 "Buyer: " + buyerName + "\n" +
                 "Address: " + address + "\n" +
                 "Status: " + deliveryStatus + "\n" +
