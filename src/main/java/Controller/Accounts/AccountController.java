@@ -1,5 +1,6 @@
 package Controller.Accounts;
 
+import exceptions.AccountsException;
 import model.Cart;
 import model.users.Customer;
 import model.users.Seller;
@@ -17,16 +18,23 @@ public class AccountController{
         return accountController;
     }
 
-    public boolean login(String username, String password){
-        User user = User.getUserByUsername(username); //TODO: NEEDS TESTING, DOES IT THROW EXCEPTION IF USER DOESNT EXIST?
+    public void login(String username, String password) throws AccountsException {
+        if(!User.getAllUsernames().contains(username)) {
+            throw new AccountsException("User with this name doesn't exist.");
+        }
+        User tempUser = User.getUserByUsername(username);
+        if(!tempUser.getPassword().equals(password)) {
+            throw new AccountsException("Wrong password");
+        }
+        this.user = tempUser;
+    }
+
+    public boolean isLogin() {
         if(user == null) {
             return false;
+        } else {
+            return true;
         }
-        if(!user.getPassword().equals(password)) {
-            return false;
-        }
-        this.user = user;
-        return true;
     }
 
     public Cart getThisCart(){
