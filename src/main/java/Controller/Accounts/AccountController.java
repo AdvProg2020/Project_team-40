@@ -28,10 +28,10 @@ public class AccountController{
         this.user = user;
         return true;
     }
-//
-//    public Cart getThisCart(){
-//        return Cart.getTemporaryCart();
-//    }
+
+    public Cart getThisCart(){
+        return Cart.getThisCart();
+    }
 
     public User getThisUser(){
         return user;
