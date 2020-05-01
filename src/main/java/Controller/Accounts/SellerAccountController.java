@@ -7,6 +7,7 @@ import model.Product;
 import model.enumerations.SetUpStatus;
 import model.log.Log;
 import model.requests.AddProduct;
+import model.requests.EditProduct;
 import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
@@ -84,27 +85,8 @@ public class SellerAccountController extends AccountController{
         }
     }
 
-    public void editProduct(String productId, String field, String newField){
-        Product product = Product.getProductById(productId);
-        if(field.equals("name")) {
-            product.setName(newField);
-        } else if(field.equalsIgnoreCase("company")) {
-            product.setCompany(newField);
-        } else if(field.equalsIgnoreCase("price")) {
-            product.setPrice(Double.parseDouble(newField));
-        } else if(field.equalsIgnoreCase("count")) {
-            product.setCount(Integer.parseInt(newField));
-        } else if(field.equalsIgnoreCase("category")) {
-            product.setCategory(newField);
-        } else if(field.equalsIgnoreCase("status")) {
-            if(newField.equalsIgnoreCase("creating")) {
-                product.setStatus(SetUpStatus.Creating);
-            } else if(newField.equalsIgnoreCase("editing")) {
-                product.setStatus(SetUpStatus.Editing);
-            } else if(newField.equalsIgnoreCase("confirmed")) {
-                product.setStatus(SetUpStatus.Confirmed);
-            }
-        }
+    public void editProduct(String productId, String field, String newField) {
+        Manager.addRequest(new EditProduct(productId, field, newField));
     }
 
     public void finalizeAddingProduct(String productID) {

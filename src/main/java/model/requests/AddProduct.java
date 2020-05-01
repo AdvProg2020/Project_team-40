@@ -20,6 +20,6 @@ public class AddProduct extends Request{
 
     @Override
     public String toString() {
-        return super.toString() + "Product: " + product;
+        return super.toString() + "Added product: " + product;
     }
 }
