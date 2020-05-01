@@ -6,8 +6,7 @@ import model.Off;
 import model.Product;
 import model.enumerations.SetUpStatus;
 import model.log.Log;
-import model.requests.AddProduct;
-import model.requests.EditProduct;
+import model.requests.*;
 import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
@@ -32,6 +31,7 @@ public class SellerAccountController extends AccountController{
             throw new AccountsException("User exists with this username.");
         }
         Seller seller = new Seller(username, password, firstName, lastName, email, phoneNumber, credit, companyInfo);
+        Manager.addRequest(new SellingPermission(seller));
     }
 
     public void setCompanyInfo(String companyInfo){
@@ -76,8 +76,11 @@ public class SellerAccountController extends AccountController{
     }
 
     private void createNewProduct(String name, String company, double price, int quantity, String categoryName,
-                                 String description) {
+                                 String description) throws AccountsException {
         Seller seller = (Seller) user;
+        if(!seller.isManagerPermission()) {
+            throw new AccountsException("Seller doesn't have permission.");
+        }
         if(seller.isManagerPermission()) {
             Product product = new Product(name, company, price, quantity, seller.getUsername(), categoryName);
             product.setExplanation(description);
@@ -85,19 +88,18 @@ public class SellerAccountController extends AccountController{
         }
     }
 
-    public void editProduct(String productId, String field, String newField) {
+    public void editProduct(String productId, String field, String newField) throws AccountsException{
+        if(!((Seller)user).getProductsId().contains(productId)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
+        }
         Manager.addRequest(new EditProduct(productId, field, newField));
     }
 
-    public void finalizeAddingProduct(String productID) {
-        //TODO: WHERE IS THIS METHOD USED? WHERE IS SETANAGERPERMISSION USED?
-        //It is used after manager accepted the request
-        ((Seller) user).setManagerPermission(true);
-    }
-
-    public void removeProductFromSeller(String productID) {
-        ((Seller) user).getProductsId().remove(productID);
-        Product.removeProduct(productID);
+    public void removeProductFromSeller(String productID) throws AccountsException {
+        if(!((Seller)user).getProductsId().contains(productID)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
+        }
+        Manager.addRequest(new RemoveProduct(Product.getProductById(productID)));
     }
 
     public HashMap<String, Category> getAllCategories(){
@@ -114,45 +116,39 @@ public class SellerAccountController extends AccountController{
         return sellersAllOffs;
     }
 
-    public Off getOffDetails(String offID){
+    public Off getOffDetails(String offID) throws AccountsException{
         Seller seller = (Seller) user;
         if(seller.getOffIds().contains(offID)) {
             return Off.getOffByID(offID);
         } else {
-            return null;
+            throw new AccountsException("Seller doesn't have an off with this ID.");
         }
     }
 
-    public void editOff(String offID, String field, String newField){
-        Off off = Off.getOffByID(offID);
-        if(field.equals("discount percentage")) {
-            off.setDiscountPercentage(Double.parseDouble(newField));
-        } else if(field.equals("start date")) {
-            off.setStartDate(newField);
-        } else if(field.equals("end date")) {
-            off.setEndDate(newField);
-        } else if(field.equals("status")) {
-            if(newField.equals("creating")) {
-                off.setStatus(SetUpStatus.Creating);
-            } else if(newField.equals("editing")) {
-                off.setStatus(SetUpStatus.Editing);
-            } else if(newField.equals("confirmed")) {
-                off.setStatus(SetUpStatus.Confirmed);
-            }
+    public void editOff(String offID, String field, String newField) throws AccountsException {
+        if(!((Seller)user).getOffIds().contains(offID)) {
+            throw new AccountsException("Seller doesn't have an off with this ID.");
         }
+        Manager.addRequest(new EditOff(offID, field, newField));
     }
 
-    public void removeOff(String offID){
+    public void removeOff(String offID) throws AccountsException {
+        if(!((Seller)user).getOffIds().contains(offID)) {
+            throw new AccountsException("Seller doesn't have an off with this ID.");
+        }
         ((Seller) user).deleteOff(Off.getOffByID(offID));
         Off.removeOff(offID);
     }
 
-    public void addOffToSeller(ArrayList<String> productIDs, String startDate, String endDate, double percentage){
+    public void addOffToSeller(ArrayList<String> productIDs, String startDate, String endDate, double percentage)
+            throws AccountsException {
         Seller seller = (Seller) user;
+        if(!seller.isManagerPermission()) {
+            throw new AccountsException("Seller doesn't have permission.");
+        }
         Off off = new Off(startDate, endDate, percentage, seller.getUsername());
         off.addAllProducts(productIDs);
-        seller.addOff(off);
-        Off.addOff(off);
+        Manager.addRequest(new AddOff(off));
     }
 
     public double getBalance(){

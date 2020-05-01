@@ -13,7 +13,7 @@ public class AddOff extends Request{
     @Override
     public void action() {
         if(isAccepted){
-            off.getSeller().deleteOff(off);
+            off.getSeller().addOff(off);
             Off.addOff(off);
         }
     }
