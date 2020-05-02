@@ -2,19 +2,23 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Category {
     private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
-    private Category parentCategory;
+    private String parentCategoryName;
     private ArrayList<String> productIDs;
-    private ArrayList<Category> subCategories;
+    private ArrayList<String> subCategoriesNames;
     private ArrayList<String> extraProperties;
 
-    public Category(String name, Category parentCategory) {
+    public Category(String name, String parentCategory) {
         this.name = name;
-        this.parentCategory = parentCategory;
-        parentCategory.addSubCategory(this);
+        this.parentCategoryName = parentCategory;
+        this.subCategoriesNames = new ArrayList<>();
+        this.productIDs = new ArrayList<>();
+        this.extraProperties = new ArrayList<>();
+        Category.getCategoryByName(parentCategory).addSubCategoryName(name);
     }
 
     public static void addCategory(Category category){
@@ -34,11 +38,17 @@ public class Category {
     }
 
     public ArrayList<Category> getSubCategories(){
+        ArrayList<Category> subCategories = new ArrayList<>();
+        for(Map.Entry<String, Category> entry: allCategories.entrySet()) {
+            if(subCategoriesNames.contains(entry.getKey())) {
+                subCategories.add(entry.getValue());
+            }
+        }
         return subCategories;
     }
 
     public Category getParentCategory(){
-        return parentCategory;
+        return allCategories.get(parentCategoryName);
     }
 
     public void setName(String name) {
@@ -49,18 +59,17 @@ public class Category {
         return name;
     }
 
-    public void addSubCategory(Category category){
-        subCategories.add(category);
+    public void addSubCategoryName(String categoryName){
+        subCategoriesNames.add(categoryName);
     }
 
     public void addProduct(String productID){
         productIDs.add(productID);
     }
 
-    private void removeSubCategory(Category category){
-        subCategories.remove(category);
+    private void removeSubCategory(String category){
+        subCategoriesNames.remove(category);
     }
-
 
     public boolean hasProduct(String productID){
         return productIDs.contains(productID);
@@ -78,17 +87,20 @@ public class Category {
         for (String productId : category.getProductIDs()) {
             Product.removeProduct(productId);
         }
-        category.getParentCategory().removeSubCategory(category);
+        category.getParentCategory().removeSubCategory(category.getName());
         allCategories.remove(category.getName());
-
     }
 
     public static HashMap<String, Category> getAllCategories() {
         return allCategories;
     }
 
-    public static void loadData(){}
+    public static void loadData(){
+        //TODO:IMPLEMENT
+    }
 
-    public static void saveData(){}
+    public static void saveData(){
+        //TODO:IMPLEMENT
+    }
 
 }
