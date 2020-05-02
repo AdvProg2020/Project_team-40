@@ -209,7 +209,7 @@ public class ManagerAccountController extends AccountController{
             throw new AccountsException("Category exists with this name");
         if (parentCategory != null && Category.getCategoryByName(parentCategory) == null)
             throw new AccountsException("Parent category not found.");
-        Category category = new Category(categoryName, Category.getCategoryByName(parentCategory));
+        Category category = new Category(categoryName, parentCategory);
         Category.addCategory(category);
         for (String property : properties) {
             category.addProperty(property);

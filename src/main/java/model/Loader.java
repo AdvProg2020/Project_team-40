@@ -16,9 +16,7 @@ public class Loader {
         }
     }
 
-    private Loader() throws IOException {
-        this.loadData();
-    }
+    private Loader() throws IOException {}
 
     public void loadData() throws IOException {
         //TODO:HANDLE IO EXCEPTION
