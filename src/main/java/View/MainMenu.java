@@ -1,10 +1,12 @@
 package View;
 
+import Controller.Accounts.AccountController;
 import Controller.Accounts.CustomerAccountController;
 import Controller.Accounts.ManagerAccountController;
 import Controller.Accounts.SellerAccountController;
 import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
+import exceptions.AccountsException;
 
 import java.util.HashMap;
 
@@ -16,8 +18,8 @@ public class MainMenu extends Menu{
     public MainMenu( Menu parentMenu) {
         super("Main Menu", parentMenu);
         HashMap<Integer, Menu> subMenus = new HashMap<>();
-        subMenus.put(2, new ProductsMenu(this));
-        subMenus.put(3, new OffsMenu(this));
+        subMenus.put(1, new ProductsMenu(this));
+        subMenus.put(2, new OffsMenu(this));
         this.setSubMenus(subMenus);
     }
 
@@ -34,9 +36,11 @@ public class MainMenu extends Menu{
             public void execute() {
                 int chosenNumber = getNumberOfNextMenu();
                 if(chosenNumber == 1) {
-                    getRegister();
+                    getRegister().show();
+                    getRegister().execute();
                 } else if(chosenNumber == 2) {
-                    getLogin();
+                    getLogin().show();
+                    getLogin().execute();
                 } else if(chosenNumber == 3) {
                     parentMenu.show();
                     parentMenu.execute();
@@ -63,10 +67,43 @@ public class MainMenu extends Menu{
     }
 
     public Menu getRegister() {
-        return null;
+        return new Menu("Register", this) {
+            @Override
+            public void show() {
+                //TODO
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
+            }
+        };
     }
 
     public Menu getLogin() {
-        return null;
+        return new Menu("Login", this) {
+            @Override
+            public void show() {}
+
+            @Override
+            public void execute() {
+                while (true) {
+                System.out.println("Enter your username:");
+                String username = scanner.nextLine();
+                System.out.println("Enter your password:");
+                String password = scanner.nextLine();
+                    try {
+                        AccountController.getInstance().login(username, password);
+                        parentMenu.show();
+                        parentMenu.execute();
+                    } catch (AccountsException e) {
+                        e.printStackTrace();
+                        //TODO: HANDLE EXCEPTION PROPERLY
+                        System.out.println("Error");
+                        continue;
+                    }
+                }
+            }
+        };
     }
 }
