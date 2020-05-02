@@ -4,7 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum ConsoleCommand {
-    INTEGER("\\d+");
+    INTEGER("\\d+"),
+    PHONE_NUMBER("\\d+"),
+    EMAIL_ADDRESS(".+@\\w+\\.\\w+"),
+    NAME("(\\w|\\s)+"),
+    DOUBLE("\\d+\\.*\\d+");
 
     private final Pattern commandPattern;
 

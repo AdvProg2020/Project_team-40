@@ -27,10 +27,7 @@ public class CustomerAccountController extends AccountController{
     }
 
     public void createCustomerAccount(String username, String password, String firstName, String lastName,
-                                      String email, String phoneNumber, double credit) throws AccountsException {
-        if(User.doesUserExist(username)) {
-            throw new AccountsException("User exists with this username.");
-        }
+                                      String email, String phoneNumber, double credit) {
         Customer customer = new Customer(username, password, firstName, lastName, email, phoneNumber, credit);
     }
 

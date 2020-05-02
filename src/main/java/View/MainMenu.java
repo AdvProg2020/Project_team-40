@@ -7,24 +7,25 @@ import Controller.Accounts.SellerAccountController;
 import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import exceptions.AccountsException;
+import model.users.Customer;
+import model.users.Manager;
 
+import javax.swing.*;
 import java.util.HashMap;
 
 public class MainMenu extends Menu{
-    SellerAccountController sellerAccountController;
-    ManagerAccountController mangerAccountController;
-    CustomerAccountController customerAccountController;
+    enum Role{CUSTOMER, MANAGER, SELLER;}
 
-    public MainMenu( Menu parentMenu) {
-        super("Main Menu", parentMenu);
+    public MainMenu() {
+        super("Main Menu", null);
         HashMap<Integer, Menu> subMenus = new HashMap<>();
         subMenus.put(1, new ProductsMenu(this));
         subMenus.put(2, new OffsMenu(this));
         this.setSubMenus(subMenus);
     }
 
-    public Menu getRegisterOrLogin() {
-        return new Menu("Register And Login", this) {
+    public Menu getRegisterOrLogin(Menu menu) {
+        return new Menu("Register And Login", menu) {
             @Override
             public void show() {
                 System.out.println("1. Register\n" +
@@ -34,75 +35,115 @@ public class MainMenu extends Menu{
 
             @Override
             public void execute() {
-                int chosenNumber = getNumberOfNextMenu();
+                int chosenNumber = getNumberOfNextMenu(3);
                 if(chosenNumber == 1) {
-                    getRegister().show();
-                    getRegister().execute();
+                    getRegister(this).show();
+                    getRegister(this).execute();
                 } else if(chosenNumber == 2) {
-                    getLogin().show();
-                    getLogin().execute();
+                    getLogin(this).show();
+                    getLogin(this).execute();
                 } else if(chosenNumber == 3) {
                     parentMenu.show();
                     parentMenu.execute();
                 }
             }
-
-            @Override
-            public int getNumberOfNextMenu() {
-                int chosenMenu;
-                while(true) {
-                    while (!ConsoleCommand.INTEGER.getStringMatcher(input = scanner.nextLine().trim()).matches()) {
-                        System.out.println("Please write the number of one of the options.");
-                    }
-                    chosenMenu = Integer.parseInt(input);
-                    if(chosenMenu <= 3) {
-                        break;
-                    } else {
-                        System.out.println("Please write the number of one of the options.");
-                    }
-                }
-                return chosenMenu;
-            }
         };
     }
 
-    public Menu getRegister() {
-        return new Menu("Register", this) {
-            @Override
-            public void show() {
-                //TODO
-            }
-
-            @Override
-            public void execute() {
-                super.execute();
-            }
-        };
-    }
-
-    public Menu getLogin() {
-        return new Menu("Login", this) {
+    public Menu getRegister(Menu menu) {
+        return new Menu("Register", menu) {
             @Override
             public void show() {}
 
             @Override
             public void execute() {
-                while (true) {
+                System.out.println("Enter username:");
+                String username = scanner.nextLine();
+                System.out.println("Enter password:");
+                String password = scanner.nextLine();
+                if(AccountController.getInstance().doesUserExistWithThisUsername(username)) {
+                    System.out.println("User exists with this username.");
+                    parentMenu.show();
+                    parentMenu.execute();
+                }
+                Role role = getRole();
+                getRemainingInformation(username, password, role);
+                parentMenu.show();
+                parentMenu.execute();
+            }
+
+            private Role getRole() {
+                System.out.println("Enter your role:\n" +
+                        "1. Customer\n" +
+                        "2. Seller\n" +
+                        "3. Manager\n");
+                int chosenRole = getNumberOfNextMenu(3);
+                if(chosenRole == 1) {
+                    return Role.CUSTOMER;
+                } else if(chosenRole == 2) {
+                    return Role.SELLER;
+                } else {
+                    return Role.MANAGER;
+                }
+            }
+
+            private void getRemainingInformation(String username, String password, Role role) {//TODO: NEEDS TESTING
+                System.out.println("First name:");
+                String firstName = getValidInput(ConsoleCommand.NAME,
+                        "Your name can only contain alphabetic characters.");
+                System.out.println("Last name:");
+                String lastName = getValidInput(ConsoleCommand.NAME,
+                        "Your name can only contain alphabetic characters.");
+                System.out.println("Email address:");
+                String email = getValidInput(ConsoleCommand.EMAIL_ADDRESS, "Invalid email address");
+                System.out.println("Phone number:");
+                String phoneNumber = getValidInput(ConsoleCommand.PHONE_NUMBER, "Invalid phone number");
+                createAccount(username, password, firstName, lastName, email, phoneNumber, role);
+            }
+
+            private void createAccount(String username, String password, String firstName, String lastName,
+                                       String email, String phoneNumber, Role role) {//TODO:TEST
+                if(role.equals(Role.CUSTOMER)) {
+                    System.out.println("Enter credit:");
+                    double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                            "Enter a valid number."));
+                    CustomerAccountController.getInstance().createCustomerAccount(username, password, firstName, lastName,
+                            email, phoneNumber, credit);
+                } else if(role.equals(Role.MANAGER)) {
+                    ManagerAccountController.getInstance().createManagerAccount(username, password, firstName,
+                            lastName, email, phoneNumber);
+                } else if(role.equals(Role.SELLER)){
+                    System.out.println("Enter credit:");
+                    double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                            "Enter a valid number."));
+                    System.out.println("Enter your company's information.");
+                    String companyInfo = scanner.nextLine().trim();
+                    SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
+                            lastName, email, phoneNumber, credit, companyInfo);
+                }
+            }
+        };
+    }
+
+    public Menu getLogin(Menu menu) {
+        return new Menu("Login", menu) {
+            @Override
+            public void show() {}
+
+            @Override
+            public void execute() {
                 System.out.println("Enter your username:");
                 String username = scanner.nextLine();
                 System.out.println("Enter your password:");
                 String password = scanner.nextLine();
-                    try {
-                        AccountController.getInstance().login(username, password);
-                        parentMenu.show();
-                        parentMenu.execute();
-                    } catch (AccountsException e) {
-                        e.printStackTrace();
-                        //TODO: HANDLE EXCEPTION PROPERLY
-                        System.out.println("Error");
-                        continue;
-                    }
+                try {
+                    AccountController.getInstance().login(username, password);
+                    System.out.println("Welcome!");
+                } catch (AccountsException e) {
+                    System.out.println(e.getMessage());
                 }
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }

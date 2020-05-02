@@ -13,7 +13,7 @@ public class Main {
     private static void run() throws IOException {
         //TODO: FIX SAVE AND LOAD
 //        Loader.getLoader().loadData();
-        MainMenu mainMenu = new MainMenu(null);
+        MainMenu mainMenu = new MainMenu();
         Menu.setScanner(new Scanner(System.in));
         mainMenu.show();
         mainMenu.execute();

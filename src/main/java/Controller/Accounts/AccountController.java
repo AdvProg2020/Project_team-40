@@ -18,6 +18,10 @@ public class AccountController{
         return accountController;
     }
 
+    public boolean doesUserExistWithThisUsername(String username) {
+        return User.doesUserExist(username);
+    }
+
     public void login(String username, String password) throws AccountsException {
         if(!User.getAllUsernames().contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");

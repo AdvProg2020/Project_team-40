@@ -72,12 +72,12 @@ public abstract class Menu {
 
     public void execute(){
         Menu nextMenu = null;
-        int chosenMenu = getNumberOfNextMenu();
+        int chosenMenu = getNumberOfNextMenu(subMenus.size() + 2);
         if(chosenMenu == subMenus.size() + 1) {
             if(AccountController.getInstance().isLogin()) {
                 logout();
             } else {
-                nextMenu = new MainMenu(this).getRegisterOrLogin();
+                nextMenu = new MainMenu().getRegisterOrLogin(this);
             }
         } else if(chosenMenu == subMenus.size() + 2){
             if(parentMenu == null) {
@@ -93,20 +93,26 @@ public abstract class Menu {
         nextMenu.execute();
     }
 
-    public int getNumberOfNextMenu() {
+    public int getNumberOfNextMenu(int numberOfSubmenus) {
         int chosenMenu;
         while(true) {
-            while (!ConsoleCommand.INTEGER.getStringMatcher(input = scanner.nextLine().trim()).matches()) {
-                System.out.println("Please write the number of one of the options.");
-            }
-            chosenMenu = Integer.parseInt(input);
-            if(chosenMenu <= subMenus.size() + 2) {
+            chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                    "Please write the number of one of the options."));
+            if(chosenMenu <= numberOfSubmenus) {
                 break;
             } else {
                 System.out.println("Please write the number of one of the options.");
             }
         }
         return chosenMenu;
+    }
+
+    protected String getValidInput(ConsoleCommand regex, String message) {
+        String input;
+        while (!regex.getStringMatcher(input = scanner.nextLine().trim()).matches()) {
+            System.out.println(message);
+        }
+        return input;
     }
 
     public void logout(){
