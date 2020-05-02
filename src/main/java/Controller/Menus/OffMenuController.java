@@ -1,6 +1,6 @@
 package Controller.Menus;
 
-import exceptions.AccountsException;
+import exceptions.MenuException;
 import model.Off;
 import model.Product;
 import model.enumerations.SortTypes;
@@ -45,10 +45,10 @@ public class OffMenuController{
         return productsToShow;
     }
 
-    public Product getProduct(String productID) throws AccountsException {
+    public Product getProduct(String productID) throws MenuException {
         Product product = Product.getProductById(productID);
         if (product == null)
-            throw new AccountsException("Product not found.");
+            throw new MenuException("Product not found.");
         return product;
     }
 
@@ -56,27 +56,27 @@ public class OffMenuController{
         return ProductFilter.getAvailableFilters();
     }
 
-    public ArrayList<Product> filter(String name, String value) throws AccountsException {
+    public ArrayList<Product> filter(String name, String value) throws MenuException {
         if (!getAvailableFilters().contains(name))
-            throw new AccountsException("This filter is not available.");
+            throw new MenuException("This filter is not available.");
         currentStringFilters.put(name, value);
         productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }
 
-    public ArrayList<Product> filter(String name, double min, double max) throws AccountsException {
+    public ArrayList<Product> filter(String name, double min, double max) throws MenuException {
         if (!getAvailableFilters().contains(name))
-            throw new AccountsException("This filter is not available.");
+            throw new MenuException("This filter is not available.");
         currentIntegerFilters.put(name, new Range(min, max));
         productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }
 
-    public void disableFilter(String selectedField) throws AccountsException {
+    public void disableFilter(String selectedField) throws MenuException {
         if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
-            throw new AccountsException("This field wax not selected.");
+            throw new MenuException("This field wax not selected.");
         currentStringFilters.remove(selectedField);
         currentIntegerFilters.remove(selectedField);
         productFilter.disableFilter(selectedField);
@@ -99,9 +99,9 @@ public class OffMenuController{
         return sorts;
     }
 
-    public void addSort(String sort) throws AccountsException {
+    public void addSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
-            throw new AccountsException("This sort is not available.");
+            throw new MenuException("This sort is not available.");
         currentSort = sort;
         productSort.setSortType(SortTypes.valueOf(sort));
         productsToShow = productSort.getSortedProducts();
