@@ -8,7 +8,7 @@ public enum ConsoleCommand {
     PHONE_NUMBER("\\d+"),
     EMAIL_ADDRESS(".+@\\w+\\.\\w+"),
     NAME("(\\w|\\s)+"),
-    DOUBLE("\\d+\\.*\\d+");
+    DOUBLE("\\d+\\.{0,1}\\d*");
 
     private final Pattern commandPattern;
 

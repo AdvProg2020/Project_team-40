@@ -85,6 +85,9 @@ public class AccountController{
         if(user instanceof Customer || user instanceof Seller){
             fields.add("credit");
         }
+        if(user instanceof Seller) {
+            fields.add("Company information");
+        }
         return fields;
     }
 

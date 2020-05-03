@@ -1,11 +1,19 @@
 package View;
 
 import Controller.Accounts.AccountController;
+import View.AccountMenus.CustomerView.CustomerAccount;
+import View.AccountMenus.ManagrView.ManagersAccount;
 import View.AccountMenus.PeopleAccountMenu;
+import View.AccountMenus.SellerView.SellerAccount;
 import View.ShopingMenus.Product.ProductMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import model.Loader;
+import model.Off;
+import model.users.Customer;
+import model.users.Manager;
+import model.users.Seller;
+import model.users.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +24,8 @@ public abstract class Menu {
     protected String input;
     protected Menu parentMenu;
     protected HashMap<Integer, Menu> subMenus;
+    protected int numberOfOptions;
+    //numberOfOptions tell the total number of next options including submenus, login and logout, back and exit etc.
     public static Scanner scanner;
     protected static ArrayList<Menu> allMenus;
 
@@ -42,11 +52,11 @@ public abstract class Menu {
 
     public void show(){//TODO: TEST IT!
         System.out.println(this.name + ":");
-        int numberOfOptions = subMenus.size() + 1;
+        numberOfOptions = subMenus.size() + 1;
         for(Integer menuNumber: subMenus.keySet()) {
             System.out.println(menuNumber + ". " + subMenus.get(menuNumber).getName());
         }
-/*        if(!(this instanceof PeopleAccountMenu)) {
+        if(!(this instanceof PeopleAccountMenu) && AccountController.getInstance().isLogin()) {
             System.out.println(numberOfOptions + ". My Account");
             numberOfOptions++;
         }
@@ -58,7 +68,6 @@ public abstract class Menu {
             System.out.println(numberOfOptions + ". Off Menu");
             numberOfOptions++;
         }
- */
         if(AccountController.getInstance().isLogin())
             System.out.println(numberOfOptions + ". Logout");
         else
@@ -72,14 +81,14 @@ public abstract class Menu {
 
     public void execute(){
         Menu nextMenu = null;
-        int chosenMenu = getNumberOfNextMenu(subMenus.size() + 2);
-        if(chosenMenu == subMenus.size() + 1) {
+        int chosenMenu = getNumberOfNextMenu(numberOfOptions);
+        if(chosenMenu == numberOfOptions - 1) {
             if(AccountController.getInstance().isLogin()) {
                 logout();
             } else {
                 nextMenu = new MainMenu().getRegisterOrLogin(this);
             }
-        } else if(chosenMenu == subMenus.size() + 2){
+        } else if(chosenMenu == numberOfOptions){
             if(parentMenu == null) {
                 //TODO:HANDLE SAVE AND LOAD PROBLEMS
             //    Loader.getLoader().saveData();
@@ -87,10 +96,48 @@ public abstract class Menu {
             } else {
                 nextMenu = parentMenu;
             }
+        } else if(chosenMenu > subMenus.size()) {
+            nextMenu = goToShoppingOrAccountMenus(chosenMenu);
         } else
             nextMenu = subMenus.get(chosenMenu);
         nextMenu.show();
         nextMenu.execute();
+    }
+
+    private Menu goToShoppingOrAccountMenus(int chosenMenu) {
+        if(!(this instanceof PeopleAccountMenu) && AccountController.getInstance().isLogin()) {
+            if(chosenMenu == subMenus.size() + 1) {
+                return goToAccount();
+            }
+        }
+        if(!(this instanceof ProductsMenu)) {
+            if(!(this instanceof OffsMenu)) {
+                if(chosenMenu == numberOfOptions - 3) {
+                    return new ProductsMenu(this);
+                }
+            } else {
+                if(chosenMenu == numberOfOptions - 2) {
+                    return new ProductsMenu(this);
+                }
+            }
+        }
+        if(!(this instanceof OffsMenu)) {
+            if(chosenMenu == numberOfOptions - 2) {
+                return new OffsMenu(this);
+            }
+        }
+        return null;
+    }
+
+    private Menu goToAccount() {
+        User user = AccountController.getInstance().getThisUser();
+        if(user instanceof Customer) {
+            return new CustomerAccount(this);
+        } else if(user instanceof Seller) {
+            return new SellerAccount(this);
+        } else {
+            return new ManagersAccount(this);
+        }
     }
 
     public int getNumberOfNextMenu(int numberOfSubmenus) {
@@ -117,6 +164,7 @@ public abstract class Menu {
 
     public void logout(){
         AccountController.getInstance().logout();
+        System.out.println("Have a nice day!");
         if(this instanceof PeopleAccountMenu) {
             this.parentMenu.show();
             this.parentMenu.execute();

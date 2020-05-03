@@ -4,11 +4,15 @@ import Controller.Accounts.AccountController;
 import Controller.Accounts.CustomerAccountController;
 import Controller.Accounts.ManagerAccountController;
 import Controller.Accounts.SellerAccountController;
+import View.AccountMenus.CustomerView.CustomerAccount;
+import View.AccountMenus.ManagrView.ManagersAccount;
+import View.AccountMenus.SellerView.SellerAccount;
 import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import exceptions.AccountsException;
 import model.users.Customer;
 import model.users.Manager;
+import model.users.Seller;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -19,9 +23,21 @@ public class MainMenu extends Menu{
     public MainMenu() {
         super("Main Menu", null);
         HashMap<Integer, Menu> subMenus = new HashMap<>();
-        subMenus.put(1, new ProductsMenu(this));
-        subMenus.put(2, new OffsMenu(this));
+        addProperMenusToSubmenus(subMenus);
         this.setSubMenus(subMenus);
+    }
+
+    private void addProperMenusToSubmenus(HashMap<Integer, Menu> subMenus) {
+        AccountController accountController = AccountController.getInstance();
+        if(accountController.isLogin()) {
+            if(accountController.getThisUser() instanceof Customer) {
+                subMenus.put(1, new CustomerAccount(this));
+            } else if(accountController.getThisUser() instanceof Seller) {
+                subMenus.put(1, new SellerAccount(this));
+            } else {
+                subMenus.put(1, new ManagersAccount(this));
+            }
+        }
     }
 
     public Menu getRegisterOrLogin(Menu menu) {
