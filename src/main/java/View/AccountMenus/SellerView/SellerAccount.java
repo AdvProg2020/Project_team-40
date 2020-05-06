@@ -34,12 +34,4 @@ public class SellerAccount extends PeopleAccountMenu {
     public void getViewBalance(){
 
     }
-
-    public void getShowInfo(){
-
-    }
-
-    public void getEditInfo(){
-
-    }
 }

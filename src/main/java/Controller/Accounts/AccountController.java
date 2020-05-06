@@ -18,6 +18,10 @@ public class AccountController{
         return accountController;
     }
 
+    public boolean doesUserExistWithThisUsername(String username) {
+        return User.doesUserExist(username);
+    }
+
     public void login(String username, String password) throws AccountsException {
         if(!User.getAllUsernames().contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");
@@ -80,6 +84,9 @@ public class AccountController{
         fields.add("Phone number");
         if(user instanceof Customer || user instanceof Seller){
             fields.add("credit");
+        }
+        if(user instanceof Seller) {
+            fields.add("Company information");
         }
         return fields;
     }

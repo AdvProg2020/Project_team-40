@@ -26,10 +26,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public void createSellerAccount(String username, String password, String firstName, String lastName, String email,
-                                    String phoneNumber, double credit, String companyInfo) throws AccountsException {
-        if(User.doesUserExist(username)) {
-            throw new AccountsException("User exists with this username.");
-        }
+                                    String phoneNumber, double credit, String companyInfo) {
         Seller seller = new Seller(username, password, firstName, lastName, email, phoneNumber, credit, companyInfo);
         Manager.addRequest(new SellingPermission(seller));
     }

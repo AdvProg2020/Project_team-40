@@ -29,9 +29,7 @@ public class ManagerAccountController extends AccountController{
     }
 
     public void createManagerAccount(String username, String password, String firstName, String lastName,
-                                     String email, String phoneNumber) throws AccountsException {
-        if(User.doesUserExist(username))
-            throw new AccountsException("User exists with this username.");
+                                     String email, String phoneNumber) {
         new Manager(username, password, firstName, lastName, email, phoneNumber);
     }
 
@@ -209,7 +207,7 @@ public class ManagerAccountController extends AccountController{
             throw new AccountsException("Category exists with this name");
         if (parentCategory != null && Category.getCategoryByName(parentCategory) == null)
             throw new AccountsException("Parent category not found.");
-        Category category = new Category(categoryName, Category.getCategoryByName(parentCategory));
+        Category category = new Category(categoryName, parentCategory);
         Category.addCategory(category);
         for (String property : properties) {
             category.addProperty(property);
