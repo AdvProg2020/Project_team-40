@@ -15,21 +15,5 @@ public class ManagersAccount extends PeopleAccountMenu {
         submenus.put(1, new ManageUsersMenu(this));
         this.setSubMenus(submenus);
     }
-    public void show(){
-        System.out.println("List of users:");
-        for (String userName : managerAccountController.getAllUserNames()) {
-            System.out.println(userName);
-        }
-        super.show();
-    }
 
-    @Override
-    public void getShowInfo() {
-
-    }
-
-    @Override
-    public void getEditInfo() {
-
-    }
 }
