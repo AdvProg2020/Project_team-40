@@ -6,11 +6,19 @@ import View.ConsoleCommand;
 import View.Menu;
 import exceptions.AccountsException;
 
+import java.util.HashMap;
+
 public class ManageUsersMenu extends Menu {
     ManagerAccountController managerAccountController;
 
     public ManageUsersMenu(Menu parentMenu) {
         super("Manage Users Menu", parentMenu);
+        managerAccountController = ManagerAccountController.getInstance();
+        HashMap<Integer, Menu> submenus = new HashMap<>();
+        submenus.put(1, getViewUser());
+        submenus.put(2, getDeleteUser());
+        submenus.put(3, getCreateManager());
+        setSubMenus(submenus);
     }
 
     public void show(){
