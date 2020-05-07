@@ -67,14 +67,58 @@ public class DiscountsMenu extends Menu {
     }
 
     public Menu getViewDiscount(){
-        return null;
-    }
+        return new Menu("View discount", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter a discount code or back to return: ");
+            }
 
-    public Menu getEditDiscount(){
-        return null;
+            @Override
+            public void execute() {
+                String input = scanner.nextLine();
+                if (input.equalsIgnoreCase("Back")) {
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                } else {
+                    try {
+                        System.out.println(managerAccountController.getDiscount(input));
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 
     public Menu getRemoveDiscount(){
+        return new Menu("Remove discount", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter a discount code or back to return: ");
+            }
+
+            @Override
+            public void execute() {
+                String input = scanner.nextLine();
+                if (input.equalsIgnoreCase("Back")) {
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                } else {
+                    try {
+                        managerAccountController.removeDiscount(input);
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
+    }
+
+    public Menu getEditDiscount(){
         return null;
     }
 }
