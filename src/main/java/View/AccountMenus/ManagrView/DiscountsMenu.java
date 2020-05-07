@@ -119,6 +119,35 @@ public class DiscountsMenu extends Menu {
     }
 
     public Menu getEditDiscount(){
-        return null;
-    }
+        return new Menu("Edit discount", this) {
+            private void handleEditDiscount(String code) {
+                String oldField;
+                String newField;
+                while (!(oldField = scanner.nextLine()).equalsIgnoreCase("Ok")) {
+                    newField = scanner.nextLine();
+                    try {
+                        managerAccountController.editDiscount(code, oldField, newField);
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                        if (e.getMessage().equalsIgnoreCase("Discount code not found."))
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void show() {}
+
+            @Override
+            public void execute() {
+                System.out.println("Enter a discount code: ");
+                String code = scanner.nextLine();
+                System.out.println("Enter OK to exit.");
+                handleEditDiscount(code);
+                this.parentMenu.show();
+                this.parentMenu.execute();
+                }
+            };
+        }
 }
+
