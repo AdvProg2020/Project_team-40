@@ -62,8 +62,10 @@ public class ManagerAccountController extends AccountController{
     private void addCustomers(DiscountCode discountCode,ArrayList<String> customers) throws AccountsException {
         for (String customer : customers) {
             User user = User.getUserByUsername(customer);
+            if (user == null)
+                throw new AccountsException("User " + customer + " not found.");
             if(!(user instanceof Customer))
-                throw new AccountsException("You can just add customers.");
+                throw new AccountsException("You can just add customers. " + "User " + customer + " is not a customer!");
             discountCode.addCostumer((Customer)user);
         }
     }
