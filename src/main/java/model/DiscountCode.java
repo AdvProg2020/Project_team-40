@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.DataException;
 import model.users.Customer;
 import model.users.User;
 
@@ -116,11 +117,13 @@ public class DiscountCode implements Serializable {
         allDiscountCodes.remove(discountCode);
     }
 
-    public static void loadData() throws IOException {
+    public static void loadData() throws IOException, DataException {
         String directoryPath = "src/main/resources/discount codes/";
         File directory = new File(directoryPath);
         String[] pathNames = directory.list();
-        assert pathNames != null;
+        if (pathNames == null)
+            return;
+
         for (String path: pathNames) {
             FileInputStream file = new FileInputStream(directoryPath + path);
             ObjectInputStream inputStream = new ObjectInputStream(file);
@@ -129,14 +132,13 @@ public class DiscountCode implements Serializable {
                 file.close();
                 inputStream.close();
                 new File(directoryPath + path).delete();
-                //TODO:IMPLEMENT PROPER EXCEPTION
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new DataException("Loading Discount codes data failed.");
             }
         }
     }
 
-    public static void saveData(){
+    public static void saveData() throws DataException {
         String path = "src/main/resources/discount codes/";
         for (DiscountCode discountCode : allDiscountCodes) {
             try {
@@ -147,7 +149,7 @@ public class DiscountCode implements Serializable {
                 outputStream.close();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new DataException("Saving Discount codes data failed.");
             }
         }
     }

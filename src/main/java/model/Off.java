@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.DataException;
 import model.enumerations.SetUpStatus;
 import model.users.Seller;
 
@@ -126,7 +127,7 @@ public class Off implements Serializable{
         return allOffs.get(offID);
     }
 
-    public static void loadData() throws IOException{
+    public static void loadData() throws IOException, DataException {
         File directory = new File(PATH);
         String[] pathNames = directory.list();
         assert pathNames != null;
@@ -138,15 +139,14 @@ public class Off implements Serializable{
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
-                //TODO:IMPLEMENT PROPER EXCEPTION
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new DataException("Loading Offs data failed.");
             }
 
         }
     }
 
-    public static void saveData(){
+    public static void saveData() throws DataException {
         for (Off off : allOffs.values()) {
             try {
                 FileOutputStream file = new FileOutputStream(PATH + off.getId());
@@ -155,7 +155,7 @@ public class Off implements Serializable{
                 file.close();
                 outputStream.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new DataException("Saving Offs data failed.");
             }
         }
     }
