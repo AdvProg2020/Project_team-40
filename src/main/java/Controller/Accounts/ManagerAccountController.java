@@ -128,7 +128,7 @@ public class ManagerAccountController extends AccountController{
         }
         if (!discountCode.isEndDateValid(newEnd))
             throw new AccountsException("Invalid date.");
-        discountCode.setStartDate(newEnd);
+        discountCode.setEndDate(newEnd);
     }
 
     public void editDiscount(String code, String field, String newValue) throws AccountsException {
