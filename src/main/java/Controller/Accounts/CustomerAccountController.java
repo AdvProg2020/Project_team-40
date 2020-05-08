@@ -31,6 +31,15 @@ public class CustomerAccountController extends AccountController{
         Customer customer = new Customer(username, password, firstName, lastName, email, phoneNumber, credit);
     }
 
+    public HashMap<String, DiscountCode> getDiscountCodes() {
+        ArrayList<String> discountCodesNames = ((Customer) user).getDiscountCodes();
+        HashMap<String, DiscountCode> discountCodes = new HashMap<>();
+        for(String discountCodeName: discountCodesNames) {
+            discountCodes.put(discountCodeName, DiscountCode.getDiscountCodeByCode(discountCodeName));
+        }
+        return discountCodes;
+    }
+
     public HashMap<Product, Integer> getCart(){
         HashMap<Product, Integer> productsWithQuantity = new HashMap<>();
         Customer customer = (Customer) user;
@@ -146,11 +155,11 @@ public class CustomerAccountController extends AccountController{
         customer.setCredit(customer.getCredit() + money);
     }
 
-    public ArrayList<Log> getOrders() {
-        Customer customer = (Customer) user;
-        ArrayList<Log> logs = new ArrayList<>();
-        for(String logId: customer.getLogsId()) {
-            logs.add(Log.getLogById(logId));
+    public HashMap<String, Log> getOrders() {
+        ArrayList<String> logsId = ((Customer) user).getLogsId();
+        HashMap<String, Log> logs = new HashMap<>();
+        for(String logId: logsId) {
+            logs.put(logId, Log.getLogById(logId));
         }
         return logs;
     }

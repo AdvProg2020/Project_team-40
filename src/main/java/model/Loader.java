@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.DataException;
 import model.log.Log;
 import model.users.User;
 
@@ -18,8 +19,9 @@ public class Loader {
 
     private Loader() throws IOException {}
 
-    public void loadData() throws IOException {
+    public void loadData() throws IOException, DataException {
         //TODO:HANDLE IO EXCEPTION
+        //TODO: WHAT IS DATA EXCEPTION AND HOW TO HANDLE IT?
         Category.loadData();
         Product.loadData();
         DiscountCode.loadData();
@@ -28,7 +30,7 @@ public class Loader {
         Off.loadData();
     }
 
-    public void saveData() {
+    public void saveData() throws DataException {
         Category.saveData();
         Product.saveData();
         DiscountCode.saveData();

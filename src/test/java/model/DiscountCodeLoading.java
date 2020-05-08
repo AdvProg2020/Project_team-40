@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.DataException;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ public class DiscountCodeLoading {
     public void testLoadingData(){
         try {
             DiscountCode.loadData();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Loading data failed");
         }
         System.out.println(DiscountCode.getAllDiscountCodes());
