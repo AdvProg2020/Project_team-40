@@ -59,7 +59,29 @@ public class CategoryMenu extends Menu {
     }
 
     public Menu getRemoveCategories() {
-        return new Menu("Remove catagory", this) {};
+        return new Menu("Remove category", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter a category name to remove or back to return: ");
+            }
+
+            @Override
+            public void execute() {
+                String input = scanner.nextLine();
+                if (input.equalsIgnoreCase("Back")) {
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                } else {
+                    try {
+                        managerAccountController.removeCategory(input);
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 
     public Menu getEditCategories() {
