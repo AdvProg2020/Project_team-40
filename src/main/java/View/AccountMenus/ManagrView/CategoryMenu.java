@@ -85,7 +85,36 @@ public class CategoryMenu extends Menu {
     }
 
     public Menu getEditCategories() {
-        return null;
+        return new Menu("Edit category", this) {
+            private void handleEditCategory(String name) {
+                String oldField;
+                String newField;
+                while (!(oldField = scanner.nextLine()).equalsIgnoreCase("Ok")) {
+                    newField = scanner.nextLine();
+                    try {
+                        managerAccountController.editCategory(name, oldField, newField);
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                        if (e.getMessage().equalsIgnoreCase("Category not found."))
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void show() {}
+
+            @Override
+            public void execute() {
+                System.out.println("Enter a category name: ");
+                String code = scanner.nextLine();
+                System.out.println("Enter OK to exit.");
+                handleEditCategory(code);
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
+
     }
 }
 
