@@ -87,7 +87,12 @@ public class Category {
         for (String productId : category.getProductIDs()) {
             Product.removeProduct(productId);
         }
-        category.getParentCategory().removeSubCategory(category.getName());
+        Category parent =category.getParentCategory();
+        if (parent != null)
+            parent.removeSubCategory(category.getName());
+        for (Category subCategory : category.getSubCategories()) {
+            removeCategory(subCategory);
+        }
         allCategories.remove(category.getName());
     }
 
