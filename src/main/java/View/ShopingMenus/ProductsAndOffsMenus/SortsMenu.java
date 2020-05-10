@@ -64,10 +64,35 @@ public class SortsMenu<E extends Sortable> extends Menu {
     }
 
     public Menu getShowCurrentSort(){
-        return null;
-    }
+        return new Menu("Show current sort", this) {
+            @Override
+            public void show() {
+                System.out.println(controller.getCurrentSort());
+                System.out.println("Enter anything to return.");
+            }
+
+            @Override
+            public void execute() {
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };    }
 
     public Menu getDisableSort() {
-        return null;
+        return new Menu("Disable sort", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter anything to return.");
+            }
+
+            @Override
+            public void execute() {
+                controller.disableSort();
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 }
