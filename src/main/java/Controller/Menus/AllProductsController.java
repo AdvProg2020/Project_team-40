@@ -75,7 +75,7 @@ public class AllProductsController{
     }
 
     public ArrayList<String> getAvailableFilters(){
-        return productFilter.getAvailableFilters();
+        return ProductFilter.getAvailableFilters();
     }
 
     public ArrayList<Product> filter(String name, String value) throws MenuException {
