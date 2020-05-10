@@ -1,8 +1,10 @@
 package model;
 
+import exceptions.DataException;
 import model.enumerations.SetUpStatus;
 import model.users.Seller;
 
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -202,27 +204,26 @@ public class Product implements Serializable{
         }
     }
 
-    public static void loadData() throws IOException{
+    public static void loadData() throws DataException {
         File directory = new File(PATH);
         String[] pathNames = directory.list();
         assert pathNames != null;
         for (String path: pathNames) {
-            FileInputStream file = new FileInputStream(PATH + path);
-            ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
+                FileInputStream file = new FileInputStream(PATH + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
                 allProducts.put(((Product)inputStream.readObject()).getProductId(), (Product) inputStream.readObject());
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
-                //TODO:IMPLEMENT PROPER EXCEPTION
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                throw new DataException("Loading products failed.");
             }
 
         }
     }
 
-    public static void saveData(){
+    public static void saveData() throws DataException {
         for (Product product : allProducts.values()) {
             try {
                 FileOutputStream file = new FileOutputStream(PATH + product.getProductId());
@@ -231,7 +232,7 @@ public class Product implements Serializable{
                 file.close();
                 outputStream.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new DataException("Saving products failed.");
             }
         }
     }

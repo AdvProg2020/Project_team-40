@@ -1,5 +1,6 @@
 package model.log;
 
+import exceptions.DataException;
 import model.Product;
 import model.Utility;
 
@@ -109,28 +110,28 @@ public class Log implements Serializable {
                 productNamesInOneString;
     }
 
-    public static void loadData() throws IOException {
+    public static void loadData() throws DataException {
         String usersDirectoryPath = "src/main/resources/logs/";
         File logsDirectory = new File(usersDirectoryPath);
         String[] pathNames = logsDirectory.list();
         assert pathNames != null;
         for(String path: pathNames) {
-            FileInputStream file = new FileInputStream(usersDirectoryPath + path);
-            ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
+                FileInputStream file = new FileInputStream(usersDirectoryPath + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
                 Log log = (Log) inputStream.readObject();
                 allLogs.put(log.getId(), log);
                 file.close();
                 inputStream.close();
                 new File(usersDirectoryPath + path).delete();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                throw new DataException("Loading logs failed.");
             }
 
         }
     }
 
-    public static void saveData() {
+    public static void saveData() throws DataException {
         String logsDirectoryPath = "src/main/resources/logs/";
         for(Map.Entry<String, Log> entry: allLogs.entrySet()) {
             try {
@@ -141,7 +142,7 @@ public class Log implements Serializable {
                 file.close();
                 outputStream.close();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                throw new DataException("Saving logs failed.");
             }
         }
     }

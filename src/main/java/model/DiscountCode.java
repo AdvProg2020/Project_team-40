@@ -117,7 +117,7 @@ public class DiscountCode implements Serializable {
         allDiscountCodes.remove(discountCode);
     }
 
-    public static void loadData() throws IOException, DataException {
+    public static void loadData() throws DataException {
         String directoryPath = "src/main/resources/discount codes/";
         File directory = new File(directoryPath);
         String[] pathNames = directory.list();
@@ -125,14 +125,14 @@ public class DiscountCode implements Serializable {
             return;
 
         for (String path: pathNames) {
-            FileInputStream file = new FileInputStream(directoryPath + path);
-            ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
+                FileInputStream file = new FileInputStream(directoryPath + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
                 allDiscountCodes.add((DiscountCode)inputStream.readObject());
                 file.close();
                 inputStream.close();
                 new File(directoryPath + path).delete();
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                 throw new DataException("Loading Discount codes data failed.");
             }
         }

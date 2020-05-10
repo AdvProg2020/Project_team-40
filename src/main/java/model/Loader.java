@@ -10,18 +10,12 @@ public class Loader {
     private static Loader loader;
 
     static {
-        try {
-            loader = new Loader();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loader = new Loader();
     }
 
-    private Loader() throws IOException {}
+    private Loader(){}
 
-    public void loadData() throws IOException, DataException {
-        //TODO:HANDLE IO EXCEPTION
-        //TODO: WHAT IS DATA EXCEPTION AND HOW TO HANDLE IT?
+    public void loadData() throws DataException {
         Category.loadData();
         Product.loadData();
         DiscountCode.loadData();

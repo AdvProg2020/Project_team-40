@@ -1,5 +1,8 @@
 package model.users;
 
+import exceptions.DataException;
+
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -109,28 +112,28 @@ public abstract class  User implements Serializable {
         return User.loggedInUser != null;
     }
 
-    public static void loadData() throws IOException{
+    public static void loadData() throws DataException {
         String usersDirectoryPath = "src/main/resources/users/";
         File usersDirectory = new File(usersDirectoryPath);
         String[] pathNames = usersDirectory.list();
         assert pathNames != null;
         for(String path: pathNames) {
-            FileInputStream file = new FileInputStream(usersDirectoryPath + path);
-            ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
+                FileInputStream file = new FileInputStream(usersDirectoryPath + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
                 User user = (User)inputStream.readObject();
                 allUsers.put(user.getUsername(), user);
                 file.close();
                 inputStream.close();
                 new File(usersDirectoryPath + path).delete();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                throw new DataException("Loading users failed.");
             }
 
         }
     }
 
-    public  static void saveData() {
+    public  static void saveData() throws DataException {
         String usersDirectoryPath = "src/main/resources/users/";
         for(Map.Entry<String, User> entry: allUsers.entrySet()) {
             try {
@@ -142,7 +145,7 @@ public abstract class  User implements Serializable {
                 file.close();
                 outputStream.close();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                throw new DataException("Saving users failed.");
             }
         }
     }

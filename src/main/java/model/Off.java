@@ -127,19 +127,19 @@ public class Off implements Serializable{
         return allOffs.get(offID);
     }
 
-    public static void loadData() throws IOException, DataException {
+    public static void loadData() throws DataException {
         File directory = new File(PATH);
         String[] pathNames = directory.list();
         assert pathNames != null;
         for (String path: pathNames) {
-            FileInputStream file = new FileInputStream(PATH + path);
-            ObjectInputStream inputStream = new ObjectInputStream(file);
             try {
+                FileInputStream file = new FileInputStream(PATH + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
                 allOffs.put(((Off)inputStream.readObject()).getId(), (Off) inputStream.readObject());
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                 throw new DataException("Loading Offs data failed.");
             }
 
