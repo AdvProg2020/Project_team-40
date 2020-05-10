@@ -11,7 +11,7 @@ import model.search.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OffMenuController{
+public class OffMenuController implements Interfaces.Sortable {
     private static OffMenuController offMenuController;
     private HashMap<String, String> currentStringFilters;
     private HashMap<String, Range> currentIntegerFilters;
@@ -90,6 +90,7 @@ public class OffMenuController{
         return currentFilters;
     }
 
+    @Override
     public ArrayList<String> getAvailableSorts(){
         ArrayList<String> sorts = new ArrayList<>();
         sorts.add("MOST_EXPENSIVE");
@@ -99,6 +100,7 @@ public class OffMenuController{
         return sorts;
     }
 
+    @Override
     public void addSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
@@ -107,12 +109,14 @@ public class OffMenuController{
         productsToShow = productSort.getSortedProducts();
     }
 
+    @Override
     public void disableSort(){
         currentSort = null;
         productSort.setSortType(null);
         productsToShow = productSort.getSortedProducts();
     }
 
+    @Override
     public String getCurrentSort(){
         return currentSort;
     }

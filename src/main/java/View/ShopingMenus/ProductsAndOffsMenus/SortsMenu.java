@@ -1,30 +1,54 @@
 package View.ShopingMenus.ProductsAndOffsMenus;
 
-import Controller.Menus.AllProductsController;
-import Controller.Menus.OffMenuController;
+import Interfaces.Sortable;
 import View.Menu;
 
-public class SortsMenu extends Menu {
-    AllProductsController allProductsController;
-    OffMenuController offMenuController;
+import javax.xml.stream.events.Comment;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    public SortsMenu(Menu parentMenu) {
+public class SortsMenu<E extends Sortable> extends Menu {
+    E controller;
+
+    public SortsMenu(Menu parentMenu, E controller) {
         super("Filters Menu", parentMenu);
+        this.controller = controller;
+        HashMap<Integer, Menu> submenus = new HashMap<>();
+        submenus.put(1, getShowSorts());
+        submenus.put(2, getSortByField());
+        submenus.put(3, getShowCurrentSort());
+        submenus.put(4, getDisableSort());
+        setSubMenus(submenus);
     }
 
-    public void getShowSorts(){
+    public Menu getShowSorts(){
+        return new Menu("Show available sorts", this) {
+            @Override
+            public void show() {
+                for (String sort : controller.getAvailableSorts()) {
+                    System.out.println(sort);
+                }
+                System.out.println("Enter anything to return.");
+            }
 
+            @Override
+            public void execute() {
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 
-    public void getSortByField(){
-
+    public Menu getSortByField(){
+        return null;
     }
 
-    public void getShowCurrentSort(){
-
+    public Menu getShowCurrentSort(){
+        return null;
     }
 
-    public void getDisableSort() {
-
+    public Menu getDisableSort() {
+        return null;
     }
 }
