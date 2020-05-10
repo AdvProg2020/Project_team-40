@@ -197,11 +197,17 @@ public class ManagerAccountController extends AccountController{
         }
         else if (!category.getExtraProperties().contains(field))
             throw new AccountsException("There is no field with this name.");
-        else{
+        else {
             int fieldIndex = category.getExtraProperties().indexOf(field);
             category.getExtraProperties().set(fieldIndex, newField);
+
+            for (String productID : category.getProductIDs()) {
+                Product product = Product.getProductById(productID);
+                assert product != null;
+                product.resetExtraProperty(field);
+            }
         }
-        //TODO: How to change products properties after editing category
+
     }
 
     public void createCategory(String categoryName, String parentCategory, ArrayList<String> properties) throws AccountsException {

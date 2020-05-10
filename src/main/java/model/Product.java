@@ -123,6 +123,18 @@ public class Product implements Serializable{
         return extraValueProperties.get(name);
     }
 
+    public void resetExtraProperty(String property){
+        for (String s : extraStringProperties.keySet()) {
+            if (s.equals(property))
+                extraStringProperties.replace(s, null);
+        }
+        for (String s : extraValueProperties.keySet()) {
+            if (s.equals(property))
+                extraValueProperties.replace(s, null);
+        }
+
+    }
+
     public ArrayList<String> getAllBuyers() {
         return allBuyers;
     }
