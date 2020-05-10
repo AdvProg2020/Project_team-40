@@ -101,12 +101,13 @@ public class OffMenuController implements Interfaces.Sortable {
     }
 
     @Override
-    public void addSort(String sort) throws MenuException {
+    public ArrayList<Product> addSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
         currentSort = sort;
         productSort.setSortType(SortTypes.valueOf(sort));
         productsToShow = productSort.getSortedProducts();
+        return productsToShow;
     }
 
     @Override
