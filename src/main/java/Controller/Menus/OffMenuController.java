@@ -11,7 +11,7 @@ import model.search.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OffMenuController implements Interfaces.Sortable {
+public class OffMenuController implements Interfaces.Sortable, Interfaces.Filterable {
     private static OffMenuController offMenuController;
     private HashMap<String, String> currentStringFilters;
     private HashMap<String, Range> currentIntegerFilters;
@@ -52,10 +52,12 @@ public class OffMenuController implements Interfaces.Sortable {
         return product;
     }
 
+    @Override
     public ArrayList<String> getAvailableFilters(){
         return ProductFilter.getAvailableFilters();
     }
 
+    @Override
     public ArrayList<Product> filter(String name, String value) throws MenuException {
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
@@ -65,6 +67,7 @@ public class OffMenuController implements Interfaces.Sortable {
         return productsToShow;
     }
 
+    @Override
     public ArrayList<Product> filter(String name, double min, double max) throws MenuException {
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
@@ -74,6 +77,7 @@ public class OffMenuController implements Interfaces.Sortable {
         return productsToShow;
     }
 
+    @Override
     public void disableFilter(String selectedField) throws MenuException {
         if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
             throw new MenuException("This field wax not selected.");
@@ -83,6 +87,7 @@ public class OffMenuController implements Interfaces.Sortable {
         productsToShow = productFilter.getFilter();
     }
 
+    @Override
     public ArrayList<String> getCurrentFilters(){
         ArrayList<String> currentFilters = new ArrayList<>();
         currentFilters.addAll(currentStringFilters.keySet());

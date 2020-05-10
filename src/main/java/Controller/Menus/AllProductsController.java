@@ -1,5 +1,7 @@
 package Controller.Menus;
 
+import Interfaces.Filterable;
+import Interfaces.Sortable;
 import exceptions.AccountsException;
 import exceptions.MenuException;
 import model.Category;
@@ -12,7 +14,7 @@ import model.search.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AllProductsController{
+public class AllProductsController implements Sortable, Filterable {
 
     private static AllProductsController allProductsController;
     private HashMap<String, String> currentStringFilters;
@@ -122,12 +124,13 @@ public class AllProductsController{
         return sorts;
     }
 
-    public void addSort(String sort) throws MenuException {
+    public ArrayList<Product> addSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
         currentSort = sort;
         productSort.setSortType(SortTypes.valueOf(sort));
         productsToShow = productSort.getSortedProducts();
+        return productsToShow;
     }
 
     public void disableSort(){
