@@ -1,6 +1,7 @@
 package View.AccountMenus.CustomerView;
 
 import Controller.Accounts.CustomerAccountController;
+import View.AccountMenus.PeopleAccountMenu;
 import View.Menu;
 import exceptions.AccountsException;
 import model.Product;
@@ -99,15 +100,61 @@ public class CartMenu extends Menu {
     }
 
     public Menu getDecreaseChosenProduct(){
-        return null;
+        return new Menu("Decrease Product's Quantity", this) {
+            ArrayList<Product> products;
+
+            @Override
+            public void show() {
+                products = getProductsInOrder();
+            }
+
+            @Override
+            public void execute() {
+                if (products.isEmpty()) {
+                    System.out.println("You haven't chosen any product.");
+                } else {
+                    int chosenProductNumber = getNumberOfNextMenu(products.size());
+                    Product product = products.get(chosenProductNumber - 1);
+                    try {
+                        CustomerAccountController.getInstance().decreaseChosenProductQuantity(product.getProductId());
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     public Menu getShowTotalPrice(){
-        return null;
+        return new Menu("See Cart's Total Price",this) {
+            @Override
+            public void show() {
+                System.out.println("Total price of cart:" +
+                        CustomerAccountController.getInstance().getCartTotalPrice());
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     public Menu getPurchase(){
-        return null;
+        return new Menu("Purchase", this) {
+            @Override
+            public void show() {
+
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
+            }
+        };
     }
 
     public Menu getReceiveInfo(){
