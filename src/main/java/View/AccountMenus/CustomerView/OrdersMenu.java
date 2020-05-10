@@ -25,9 +25,11 @@ public class OrdersMenu extends Menu {
         return new Menu("Orders", this) {
             @Override
             public void show() {
+                System.out.println("Orders:");
                 HashMap<String, Log> orders = CustomerAccountController.getInstance().getOrders();
                 for(Map.Entry<String, Log> order: orders.entrySet()) {
-                    System.out.println(order.getValue());
+                    System.out.println("Date: " + order.getValue().getDate());
+                    System.out.println("Cost: " + order.getValue().getCost());
                 }
             }
 
@@ -39,15 +41,16 @@ public class OrdersMenu extends Menu {
         };
     }
 
-    public Menu getShowOrder(){
-        return new Menu("Order", this) {
+    public Menu getShowOrder() {
+        return new Menu("Order's Details", this) {
             //TODO: HASN'T BEEN TESTED
             @Override
             public void show() {
                 ArrayList<Log> orders = new ArrayList<>(CustomerAccountController.getInstance().getOrders().values());
                 for(int i = 1; i <= orders.size(); i++) {
-                    System.out.println(i + ": " + orders.get(i - 1).getDate());
+                    System.out.println(i + ": " + orders.get(i - 1).getDate() + "\n" + orders.get(i - 1).getCost());
                 }
+                System.out.println("Choose one of the logs:");
                 int numOfOrder = getNumberOfNextMenu(orders.size());
                 System.out.println(orders.get(numOfOrder - 1));
             }
@@ -60,7 +63,7 @@ public class OrdersMenu extends Menu {
         };
     }
 
-    public Menu getRateProduct(){
+    public Menu getRateProduct() {//TODO: ASK HOW IT SHOULD BE IMPLEMENTED
         return new Menu("Rating Menu", this) {
             @Override
             public void show() {
@@ -69,7 +72,8 @@ public class OrdersMenu extends Menu {
 
             @Override
             public void execute() {
-                super.execute();
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }
