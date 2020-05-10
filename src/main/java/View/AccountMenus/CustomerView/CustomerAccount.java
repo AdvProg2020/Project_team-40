@@ -31,7 +31,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         return new Menu("Balance", this) {
             @Override
             public void show() {
-                System.out.println(CustomerAccountController.getInstance().getBalance());
+                System.out.println("Balance: " + CustomerAccountController.getInstance().getBalance());
             }
 
             @Override
@@ -47,6 +47,7 @@ public class CustomerAccount extends PeopleAccountMenu {
             @Override
             public void show() {
                 HashMap<String, DiscountCode> discountCodes = CustomerAccountController.getInstance().getDiscountCodes();
+                System.out.println("Your discount codes: ");
                 for(Map.Entry<String, DiscountCode> discountCode: discountCodes.entrySet()) {
                     System.out.println(discountCode.getValue());
                 }

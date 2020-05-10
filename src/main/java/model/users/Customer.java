@@ -108,6 +108,7 @@ public class Customer extends User{
         return "Name: " + firstName + " " + lastName + "\n" +
                 "Username: " + username + "\n" +
                 "Email Address: " + email + "\n" +
-                "Phone Number: " + phoneNo + "\n";
+                "Phone Number: " + phoneNo + "\n" +
+                "Credit: " + credit;
     }
 }

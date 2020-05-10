@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AccountController{
     private static AccountController accountController = new AccountController();
-    protected User user;
+    protected static User user;
 
     protected AccountController(){}
 
