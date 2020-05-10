@@ -2,6 +2,8 @@ package View.ShopingMenus.ProductsAndOffsMenus;
 
 import Interfaces.Sortable;
 import View.Menu;
+import exceptions.MenuException;
+import model.Product;
 
 import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
@@ -41,7 +43,24 @@ public class SortsMenu<E extends Sortable> extends Menu {
     }
 
     public Menu getSortByField(){
-        return null;
+        return new Menu("Sort by field", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter a field to sort:");
+            }
+
+            @Override
+            public void execute() {
+                String field = scanner.nextLine();
+                try {
+                    for (Product product : controller.addSort(field)) {
+                        System.out.println(product);
+                    }
+                } catch (MenuException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
     }
 
     public Menu getShowCurrentSort(){
