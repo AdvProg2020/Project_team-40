@@ -1,5 +1,6 @@
 package model.SaveAndLoadTest;
 
+import exceptions.DataException;
 import model.users.Customer;
 import model.users.User;
 import org.junit.Assert;
@@ -12,7 +13,11 @@ public class UserTest {
     public void testSaveUser(){
         Customer customer = new Customer("A", "100", "b", "c",
                 "abc@gamil.com", "0", 10000);
-        User.saveData();
+        try {
+            User.saveData();
+        } catch (DataException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -20,15 +25,19 @@ public class UserTest {
         Customer customer = new Customer("AmiraliEbi", "808595", "Amirali", "Ebi",
                 "Ebi@gamil.com", "000", 1000);
         String customerBeforeSaving = customer.toString();
-        User.saveData();
+        try {
+            User.saveData();
+        } catch (DataException e) {
+            System.out.println(e.getMessage());
+        }
         User.deleteUser(customer);
         if(User.getUserByUsername("AmiraliEbi") == null){
             System.out.println("Customer successfully deleted");
         }
         try {
             User.loadData();
-        } catch (IOException e) {
-            System.out.println("Load wasn't successful.");
+        } catch (DataException e) {
+            System.out.println(e.getMessage());
         }
         User user = User.getUserByUsername("AmiraliEbi");
         String customerAfterLoading = user.toString();
