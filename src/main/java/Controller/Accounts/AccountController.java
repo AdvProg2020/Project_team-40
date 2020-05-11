@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class AccountController{
     private static AccountController accountController = new AccountController();
-    protected static User user;
 
     protected AccountController(){}
 
@@ -30,15 +29,11 @@ public class AccountController{
         if(!tempUser.getPassword().equals(password)) {
             throw new AccountsException("Wrong password");
         }
-        this.user = tempUser;
+        User.setLoggedInUser(tempUser);
     }
 
     public boolean isLogin() {
-        if(user == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return User.isUserLoggedIn();
     }
 
     public Cart getThisCart(){
@@ -46,31 +41,31 @@ public class AccountController{
     }
 
     public User getThisUser(){
-        return user;
+        return User.getLoggedInUser();
     }
 
     public void editUser(String field, String newAmount) {
         if(field.equals("username")) {
-            user.setUsername(newAmount);
+            User.getLoggedInUser().setUsername(newAmount);
         } else if(field.equals("password")) {
-            user.setPassword(newAmount);
+            User.getLoggedInUser().setPassword(newAmount);
         } else if(field.equals("firstName")) {
-            user.setFirstName(newAmount);
+            User.getLoggedInUser().setFirstName(newAmount);
         } else if(field.equals("lastName")) {
-            user.setLastName(newAmount);
+            User.getLoggedInUser().setLastName(newAmount);
         } else if(field.equals("phoneNumber")) {
-            user.setPhoneNo(newAmount);
+            User.getLoggedInUser().setPhoneNo(newAmount);
         } else if(field.equals("email")) {
-            user.setEmail(newAmount);
-        } else if(user instanceof Seller) {
-            Seller seller = (Seller) user;
+            User.getLoggedInUser().setEmail(newAmount);
+        } else if(User.getLoggedInUser() instanceof Seller) {
+            Seller seller = (Seller) User.getLoggedInUser();
             if(field.equals("companyInfo")) {
                 seller.setCompanyInfo(newAmount);
             } else if(field.equals("credit")) {
                 seller.setCredit(Double.parseDouble(newAmount));
             }
-        } else if(user instanceof Customer) {
-            ((Customer) user).setCredit(Double.parseDouble(newAmount));
+        } else if(User.getLoggedInUser() instanceof Customer) {
+            ((Customer) User.getLoggedInUser()).setCredit(Double.parseDouble(newAmount));
         }
     }
 
@@ -82,16 +77,16 @@ public class AccountController{
         fields.add("Last name");
         fields.add("Email");
         fields.add("Phone number");
-        if(user instanceof Customer || user instanceof Seller){
+        if(User.getLoggedInUser() instanceof Customer || User.getLoggedInUser() instanceof Seller){
             fields.add("credit");
         }
-        if(user instanceof Seller) {
+        if(User.getLoggedInUser() instanceof Seller) {
             fields.add("Company information");
         }
         return fields;
     }
 
     public void logout() {
-        user = null;
+        User.setLoggedInUser(null);
     }
 }

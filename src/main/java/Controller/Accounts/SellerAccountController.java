@@ -32,24 +32,24 @@ public class SellerAccountController extends AccountController{
     }
 
     public void setCompanyInfo(String companyInfo){
-        ((Seller) user).setCompanyInfo(companyInfo);
+        ((Seller) User.getLoggedInUser()).setCompanyInfo(companyInfo);
     }
 
     public ArrayList<Log> getSalesHistory() {
         ArrayList<Log> logs = new ArrayList<>();
-        for(String logName: ((Seller)user).getLogsName()) {
+        for(String logName: ((Seller)User.getLoggedInUser()).getLogsName()) {
             logs.add(Log.getLogById(logName));
         }
         return logs;
     }
 
     public ArrayList<String> getSellerProductIDs(){
-        return ((Seller)user).getProductsId();
+        return ((Seller)User.getLoggedInUser()).getProductsId();
     }
 
     public Product getProductDetails(String productID) throws AccountsException {
         Product product;
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.getProductsId().contains(productID)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         } else {
@@ -58,7 +58,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public TreeSet<String> getProductBuyers(String productId) throws AccountsException{
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.getProductsId().contains(productId)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
@@ -74,7 +74,7 @@ public class SellerAccountController extends AccountController{
 
     private void createNewProduct(String name, String company, double price, int quantity, String categoryName,
                                  String description) throws AccountsException {
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.isManagerPermission()) {
             throw new AccountsException("Seller doesn't have permission.");
         }
@@ -86,14 +86,14 @@ public class SellerAccountController extends AccountController{
     }
 
     public void editProduct(String productId, String field, String newField) throws AccountsException{
-        if(!((Seller)user).getProductsId().contains(productId)) {
+        if(!((Seller)User.getLoggedInUser()).getProductsId().contains(productId)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new EditProduct(productId, field, newField));
     }
 
     public void removeProductFromSeller(String productID) throws AccountsException {
-        if(!((Seller)user).getProductsId().contains(productID)) {
+        if(!((Seller)User.getLoggedInUser()).getProductsId().contains(productID)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new RemoveProduct(Product.getProductById(productID)));
@@ -105,7 +105,7 @@ public class SellerAccountController extends AccountController{
 
     public HashMap<String, Off> getAllOffs() {
         HashMap<String, Off> sellersAllOffs = new HashMap<>();
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         for(String offId: seller.getOffIds()) {
             Off off = Off.getOffByID(offId);
             sellersAllOffs.put(off.getId(), off);
@@ -114,7 +114,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public Off getOffDetails(String offID) throws AccountsException{
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         if(seller.getOffIds().contains(offID)) {
             return Off.getOffByID(offID);
         } else {
@@ -123,23 +123,23 @@ public class SellerAccountController extends AccountController{
     }
 
     public void editOff(String offID, String field, String newField) throws AccountsException {
-        if(!((Seller)user).getOffIds().contains(offID)) {
+        if(!((Seller)User.getLoggedInUser()).getOffIds().contains(offID)) {
             throw new AccountsException("Seller doesn't have an off with this ID.");
         }
         Manager.addRequest(new EditOff(offID, field, newField));
     }
 
     public void removeOff(String offID) throws AccountsException {
-        if(!((Seller)user).getOffIds().contains(offID)) {
+        if(!((Seller)User.getLoggedInUser()).getOffIds().contains(offID)) {
             throw new AccountsException("Seller doesn't have an off with this ID.");
         }
-        ((Seller) user).deleteOff(Off.getOffByID(offID));
+        ((Seller) User.getLoggedInUser()).deleteOff(Off.getOffByID(offID));
         Off.removeOff(offID);
     }
 
     public void addOffToSeller(ArrayList<String> productIDs, String startDate, String endDate, double percentage)
             throws AccountsException {
-        Seller seller = (Seller) user;
+        Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.isManagerPermission()) {
             throw new AccountsException("Seller doesn't have permission.");
         }
@@ -149,6 +149,6 @@ public class SellerAccountController extends AccountController{
     }
 
     public double getBalance(){
-        return ((Seller) user).getCredit();
+        return ((Seller) User.getLoggedInUser()).getCredit();
     }
 }
