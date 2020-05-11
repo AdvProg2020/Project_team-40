@@ -83,11 +83,10 @@ public abstract class Menu {
         Menu nextMenu = null;
         int chosenMenu = getNumberOfNextMenu(numberOfOptions);
         if(chosenMenu == numberOfOptions - 1) {
-            if(AccountController.getInstance().isLogin()) {
+            if(AccountController.getInstance().isLogin())
                 logout();
-            } else {
-                nextMenu = new MainMenu().getRegisterOrLogin(this);
-            }
+            nextMenu = new MainMenu().getRegisterOrLogin(this);
+
         } else if(chosenMenu == numberOfOptions){
             if(parentMenu == null) {
                 //TODO:HANDLE SAVE AND LOAD PROBLEMS
