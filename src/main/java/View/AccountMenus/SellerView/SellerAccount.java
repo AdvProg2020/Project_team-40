@@ -9,6 +9,7 @@ public class SellerAccount extends PeopleAccountMenu {
 
     public SellerAccount(Menu parentMenu) {
         super("Seller Account", parentMenu);
+
     }
 
     public void getCompanyInfo(){

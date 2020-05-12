@@ -22,6 +22,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         submenus.put(4, getEditInfo());
         submenus.put(5, getViewBalance());
         submenus.put(6, getViewDiscountCodes());
+        submenus.put(7, getIncreaseCredit());
         this.setSubMenus(submenus);
     }
 
@@ -57,6 +58,20 @@ public class CustomerAccount extends PeopleAccountMenu {
             public void execute() {
                 parentMenu.show();
                 parentMenu.execute();
+            }
+        };
+    }
+
+    public Menu getIncreaseCredit() {
+        return new Menu("Increase Credit", this) {
+            @Override
+            public void show() {
+                getViewBalance().show();
+                System.out.println("Enter the amount of money you want to add to your credit:");
+            }
+
+            @Override
+            public void execute() {
             }
         };
     }
