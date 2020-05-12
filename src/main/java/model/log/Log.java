@@ -21,13 +21,14 @@ public class Log implements Serializable {
     private static HashMap<String, Log> allLogs = new HashMap<>();
 
     public Log(Date date, double cost, double costWithoutDiscount,
-               HashMap<String, Integer> productsId, String buyerName, boolean isDelivered) {
+               HashMap<String, Integer> productsId, String buyerName, String address, boolean isDelivered) {
         this.isDelivered = isDelivered;
         this.buyerName = buyerName;
         this.date = date;
         this.cost = cost;
         this.costWithoutDiscount = costWithoutDiscount;
         this.productsId = productsId;
+        this.address = address;
         id = Utility.generateId();
         allLogs.put(id, this);
     }

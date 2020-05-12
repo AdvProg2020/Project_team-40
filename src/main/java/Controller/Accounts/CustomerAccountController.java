@@ -85,15 +85,19 @@ public class CustomerAccountController extends AccountController{
     private Log purchase() {
         Customer customer = (Customer) User.getLoggedInUser();
         Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
-                customer.getUsername(), false);
+                customer.getUsername(), address,false);
         customer.getLogsId().add(log.getId());
         Log.getLogs().put(log.getId(), log);
         customer.addLog(log);
         addLogToSellers(log);
+        resetPurchaseVariables();
+        return log;
+    }
+
+    public void resetPurchaseVariables() {
         address = null;
         priceAfterDiscount = -1;
         costWithoutDiscount = -1;
-        return log;
     }
 
     public void getReceiverInfo(String address){
@@ -117,6 +121,7 @@ public class CustomerAccountController extends AccountController{
         } else {
             costWithoutDiscount = customer.getTotalPriceOfCart();
             priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
+            discountCode.decreaseCountPerUser(customer);
         }
     }
 
@@ -146,7 +151,7 @@ public class CustomerAccountController extends AccountController{
                 }
             }
             seller.addLog(new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
-                    sellersProfit, productsId, log.getBuyerName(), false));
+                    sellersProfit, productsId, log.getBuyerName(), log.getAddress(),false));
         }
     }
 

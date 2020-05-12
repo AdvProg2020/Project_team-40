@@ -1,10 +1,11 @@
 package View.AccountMenus.CustomerView;
 
 import Controller.Accounts.CustomerAccountController;
-import View.AccountMenus.PeopleAccountMenu;
 import View.Menu;
 import exceptions.AccountsException;
+import exceptions.StopPurchaseException;
 import model.Product;
+import model.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,26 +148,78 @@ public class CartMenu extends Menu {
         return new Menu("Purchase", this) {
             @Override
             public void show() {
-
+                System.out.println("Cart:");
+                HashMap<Product, Integer> products = CustomerAccountController.getInstance().getCart();
+                System.out.printf("%30s%30s%30s", "Product", "Quantity", "Price");
+                for(Map.Entry<Product, Integer> entry: products.entrySet()) {
+                    System.out.printf("%30s%30s%30s", entry.getKey().getName(), entry.getValue(),
+                            entry.getKey().getPrice());
+                }
+                System.out.println("Enter back if you want to stop the process.");
             }
 
             @Override
             public void execute() {
-                super.execute();
+                try {
+                    getUsersAddress();
+                    enterDiscountCode();
+                    makePayment();
+                } catch (StopPurchaseException e) {
+                    System.out.println(e.getMessage());
+                    CustomerAccountController.getInstance().getReceiverInfo(null);
+                }
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }
 
-    public Menu getReceiveInfo(){
-        return null;
+    public void getUsersAddress() throws StopPurchaseException {
+        System.out.println("Enter your home address:");
+        String address = scanner.nextLine();
+        if(address.equalsIgnoreCase("back")) {
+            throw new StopPurchaseException("Process has been stopped.");
+        }
+        CustomerAccountController.getInstance().getReceiverInfo(address);
     }
 
-    public Menu getEnterDiscountCode(){
-        return null;
+    public void enterDiscountCode() throws StopPurchaseException {
+        System.out.println("Do you have any discount code?\n" +
+                "1. Yes\n" +
+                "2. No\n");
+        int hasDiscountCode = getNumberOfNextMenu(2);
+        if(hasDiscountCode == 1) {
+            System.out.println("Enter discount code:");
+            String discountCode = scanner.nextLine();
+            if (discountCode.equalsIgnoreCase("back")) {
+                throw new StopPurchaseException("Process has been stopped.");
+            }
+            try {
+                CustomerAccountController.getInstance().enterDiscountCode(discountCode);
+            } catch (AccountsException e) {
+                System.out.println("Invalid discount code!");
+                enterDiscountCode();
+            }
+        } else {
+            CustomerAccountController.getInstance().setPriceWithoutDiscount();
+        }
     }
 
-    public Menu getPayment(){
-        return null;
+    public void makePayment() {
+        System.out.println("Do you want to finalize payment?\n" +
+                "1. Yes\n" +
+                "2. No");
+        int doesFinalize = getNumberOfNextMenu(2);
+        if(doesFinalize == 1) {
+            try {
+                Log log = CustomerAccountController.getInstance().makePayment();
+                System.out.println("Purchase log:\n" + log);
+            } catch (AccountsException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            CustomerAccountController.getInstance().resetPurchaseVariables();
+        }
     }
 
     public ArrayList<Product> getProductsInOrder() {
