@@ -7,6 +7,7 @@ import View.Menu;
 import exceptions.AccountsException;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 public class ManageUsersMenu extends Menu {
     ManagerAccountController managerAccountController;
@@ -15,20 +16,31 @@ public class ManageUsersMenu extends Menu {
         super("Manage Users Menu", parentMenu);
         managerAccountController = ManagerAccountController.getInstance();
         HashMap<Integer, Menu> submenus = new HashMap<>();
-        submenus.put(1, getViewUser());
-        submenus.put(2, getDeleteUser());
-        submenus.put(3, getCreateManager());
+        submenus.put(1, getViewUsers());
+        submenus.put(2, getViewUser());
+        submenus.put(3, getDeleteUser());
+        submenus.put(4, getCreateManager());
         setSubMenus(submenus);
     }
 
-    public void show(){
-        System.out.println("List of users:");
-        for (String userName : managerAccountController.getAllUserNames()) {
-            System.out.println(userName);
-        }
-        super.show();
-    }
+    public Menu getViewUsers(){
+        return new Menu("View all users", this) {
+            @Override
+            public void show() {
+                for (String userName : managerAccountController.getAllUserNames()) {
+                    System.out.println(userName);
+                }
+                System.out.println("Enter anything return:");
+            }
 
+            @Override
+            public void execute() {
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
+    }
     public Menu getViewUser(){
         return new Menu("View user", this) {
             @Override
@@ -70,7 +82,7 @@ public class ManageUsersMenu extends Menu {
                     this.parentMenu.execute();
                 } else {
                     try {
-                        System.out.println(managerAccountController.getUser(input));
+                        managerAccountController.deleteUser(input);
                     } catch (AccountsException e) {
                         System.out.println(e.getMessage());
                     }
