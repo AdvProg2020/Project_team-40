@@ -8,6 +8,7 @@ import View.AccountMenus.SellerView.SellerAccount;
 import View.ShopingMenus.Product.ProductMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
 import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
+import exceptions.DataException;
 import model.Loader;
 import model.Off;
 import model.users.Customer;
@@ -90,7 +91,11 @@ public abstract class Menu {
         } else if(chosenMenu == numberOfOptions){
             if(parentMenu == null) {
                 //TODO:HANDLE SAVE AND LOAD PROBLEMS
-            //    Loader.getLoader().saveData();
+                try {
+                    Loader.getLoader().saveData();
+                } catch (DataException e) {
+                    System.out.println(e.getMessage());
+                }
                 System.exit(1);
             } else {
                 nextMenu = parentMenu;
