@@ -140,6 +140,10 @@ public class DiscountCode implements Serializable {
 
     public static void saveData() throws DataException {
         String path = "src/main/resources/discount codes/";
+        File directory = new File(path);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving Discount codes data failed.");
         for (DiscountCode discountCode : allDiscountCodes) {
             try {
                 FileOutputStream file = new FileOutputStream(path + discountCode.code);

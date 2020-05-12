@@ -140,11 +140,15 @@ public abstract class  User implements Serializable {
 
     public  static void saveData() throws DataException {
         String usersDirectoryPath = "src/main/resources/users/";
+        File directory = new File(usersDirectoryPath);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving users failed.");
         for(Map.Entry<String, User> entry: allUsers.entrySet()) {
             try {
                 User user = entry.getValue();
                 FileOutputStream file = new
-                        FileOutputStream(usersDirectoryPath + user.getFirstName() + " " + user.getLastName());
+                        FileOutputStream(usersDirectoryPath + user.username);
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(user);
                 file.close();

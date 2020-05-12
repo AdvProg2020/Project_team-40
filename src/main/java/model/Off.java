@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class Off implements Serializable{
     private static final String PATH = "src/main/resources/offs/";
-    private static HashMap<String, Off> allOffs;
+    private static HashMap<String, Off> allOffs = new HashMap<>();
     private ArrayList<String> productIDs;
     private String id;
     private SetUpStatus status;
@@ -147,6 +147,10 @@ public class Off implements Serializable{
     }
 
     public static void saveData() throws DataException {
+        File directory = new File(PATH);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving Offs data failed.");
         for (Off off : allOffs.values()) {
             try {
                 FileOutputStream file = new FileOutputStream(PATH + off.getId());

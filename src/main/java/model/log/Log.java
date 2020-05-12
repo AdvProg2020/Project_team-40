@@ -133,6 +133,11 @@ public class Log implements Serializable {
 
     public static void saveData() throws DataException {
         String logsDirectoryPath = "src/main/resources/logs/";
+        File directory = new File(logsDirectoryPath);
+        if (!directory.exists())
+           if (!directory.mkdir())
+               throw new DataException("Saving logs failed.");
+
         for(Map.Entry<String, Log> entry: allLogs.entrySet()) {
             try {
                 Log log = entry.getValue();

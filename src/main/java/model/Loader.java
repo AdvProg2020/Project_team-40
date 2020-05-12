@@ -16,10 +16,10 @@ public class Loader {
     private Loader(){}
 
     public void loadData() throws DataException {
+        User.loadData();
         Category.loadData();
         Product.loadData();
         DiscountCode.loadData();
-        User.loadData();
         Log.loadData();
         Off.loadData();
     }
