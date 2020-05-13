@@ -11,6 +11,7 @@ import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
 
+import javax.security.auth.login.AccountException;
 import java.util.*;
 
 public class SellerAccountController extends AccountController{
@@ -101,6 +102,19 @@ public class SellerAccountController extends AccountController{
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new RemoveProduct(Product.getProductById(productID)));
+    }
+
+    public void increaseProductsCount(int addedQuantity, String productId) {
+        Product product = Product.getProductById(productId);
+        product.setCount(product.getCount() + addedQuantity);
+    }
+
+    public void decreaseProductCount(int removedQuantity, String productId) throws AccountException {
+        Product product = Product.getProductById(productId);
+        if(product.getCount() < removedQuantity) {
+            throw new AccountException("Number of products is less than you expectation");
+        }
+        product.setCount(product.getCount() - removedQuantity);
     }
 
     public HashMap<String, Category> getAllCategories(){

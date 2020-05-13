@@ -65,7 +65,7 @@ public class ManageSellersProductsMenu extends Menu {
                 int productNumber = getNumberOfNextMenu(productsIds.size());
                 try {
                     Product product = sellerAccountController.getProductDetails(productsIds.get(productNumber - 1));
-                    ManageProduct manageProduct = new ManageProduct(parentMenu, product);
+                    ManageProduct manageProduct = new ManageProduct(parentMenu, product.getProductId());
                     manageProduct.show();
                     manageProduct.execute();
                     //TODO: TEST THAT DOES IT RETURN TO THIS METHOD OR TO THE RIGHT MENU
