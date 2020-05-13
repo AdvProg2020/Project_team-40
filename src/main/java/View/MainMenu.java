@@ -13,12 +13,13 @@ import exceptions.AccountsException;
 import model.users.Customer;
 import model.users.Manager;
 import model.users.Seller;
+import model.users.User;
 
 import javax.swing.*;
 import java.util.HashMap;
 
 public class MainMenu extends Menu{
-    enum Role{CUSTOMER, MANAGER, SELLER;}
+    enum Role{CUSTOMER, MANAGER, SELLER}
 
     public MainMenu() {
         super("Main Menu", null);
@@ -89,18 +90,20 @@ public class MainMenu extends Menu{
             }
 
             private Role getRole() {
+                HashMap<Integer, Role> roles = new HashMap<>();
+                int numberOfSubMenus = 2;
+                roles.put(1, Role.CUSTOMER);
+                roles.put(2, Role.SELLER);
+                roles.put(3, Role.MANAGER);
                 System.out.println("Enter your role:\n" +
                         "1. Customer\n" +
-                        "2. Seller\n" +
-                        "3. Manager\n");
-                int chosenRole = getNumberOfNextMenu(3);
-                if(chosenRole == 1) {
-                    return Role.CUSTOMER;
-                } else if(chosenRole == 2) {
-                    return Role.SELLER;
-                } else {
-                    return Role.MANAGER;
+                        "2. Seller");
+                if (!User.doesManagerExist()) {
+                    System.out.println("3. Manager");
+                    numberOfSubMenus++;
                 }
+                int chosenRole = getNumberOfNextMenu(numberOfSubMenus);
+                return roles.get(chosenRole);
             }
 
             private void getRemainingInformation(String username, String password, Role role) {//TODO: NEEDS TESTING
