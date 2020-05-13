@@ -6,6 +6,7 @@ import Controller.Menus.AllProductsController;
 import View.AccountMenus.PeopleAccountMenu;
 import View.Menu;
 import exceptions.AccountsException;
+import model.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +44,21 @@ public class SellerAccount extends PeopleAccountMenu {
     }
 
     public Menu getSalesHistory(){
-        return null;
+        return new Menu("Sales History", this) {
+            @Override
+            public void show() {
+                ArrayList<Log> logs = sellerAccountController.getSalesHistory();
+                for(Log log: logs) {
+                    System.out.println(log);
+                }
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     public Menu getShowCategories(){
