@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CartMenu extends Menu {
+    CustomerAccountController customerAccountController;
+
     public CartMenu(Menu parentMenu) {
         super("Cart Menu", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
@@ -22,15 +24,15 @@ public class CartMenu extends Menu {
         submenus.put(5, getShowTotalPrice());
         submenus.put(6, getPurchase());
         this.setSubMenus(submenus);
+        customerAccountController = CustomerAccountController.getInstance();
     }
 
     private Menu getShowChosenProducts(){
         return new Menu("Cart", this) {
-
             @Override
             public void show() {
                 System.out.println("Cart:");
-                HashMap<Product, Integer> cart = CustomerAccountController.getInstance().getCart();
+                HashMap<Product, Integer> cart = customerAccountController.getCart();
                 int productNumber = 1;
                 for(Map.Entry<Product, Integer> entry: cart.entrySet()) {
                     System.out.println(productNumber + ". " + entry.getKey().getName() + "\n" +
@@ -64,7 +66,7 @@ public class CartMenu extends Menu {
                     int chosenProductNumber = getNumberOfNextMenu(products.size());
                     Product product = products.get(chosenProductNumber - 1);
                     System.out.println(product);
-                    System.out.println(CustomerAccountController.getInstance().getCart().get(product));
+                    System.out.println(customerAccountController.getCart().get(product));
                 }
                 parentMenu.show();
                 parentMenu.execute();
@@ -88,7 +90,7 @@ public class CartMenu extends Menu {
                     int chosenProductNumber = getNumberOfNextMenu(products.size());
                     Product product = products.get(chosenProductNumber - 1);
                     try {
-                        CustomerAccountController.getInstance().increaseChosenProductsQuantity(product.getProductId());
+                        customerAccountController.increaseChosenProductsQuantity(product.getProductId());
                         System.out.println("Product quantity increased successfully.");
                     } catch (AccountsException e) {
                         System.out.println(e.getMessage());
@@ -117,7 +119,7 @@ public class CartMenu extends Menu {
                     int chosenProductNumber = getNumberOfNextMenu(products.size());
                     Product product = products.get(chosenProductNumber - 1);
                     try {
-                        CustomerAccountController.getInstance().decreaseChosenProductQuantity(product.getProductId());
+                        customerAccountController.decreaseChosenProductQuantity(product.getProductId());
                     } catch (AccountsException e) {
                         System.out.println(e.getMessage());
                     }
@@ -133,7 +135,7 @@ public class CartMenu extends Menu {
             @Override
             public void show() {
                 System.out.println("Total price of cart:" +
-                        CustomerAccountController.getInstance().getCartTotalPrice());
+                        customerAccountController.getCartTotalPrice());
             }
 
             @Override
@@ -149,7 +151,7 @@ public class CartMenu extends Menu {
             @Override
             public void show() {
                 System.out.println("Cart:");
-                HashMap<Product, Integer> products = CustomerAccountController.getInstance().getCart();
+                HashMap<Product, Integer> products = customerAccountController.getCart();
                 System.out.printf("%30s%30s%30s", "Product", "Quantity", "Price");
                 for(Map.Entry<Product, Integer> entry: products.entrySet()) {
                     System.out.printf("%30s%30s%30s", entry.getKey().getName(), entry.getValue(),
@@ -166,7 +168,7 @@ public class CartMenu extends Menu {
                     makePayment();
                 } catch (StopPurchaseException e) {
                     System.out.println(e.getMessage());
-                    CustomerAccountController.getInstance().getReceiverInfo(null);
+                    customerAccountController.getReceiverInfo(null);
                 }
                 parentMenu.show();
                 parentMenu.execute();
@@ -180,7 +182,7 @@ public class CartMenu extends Menu {
         if(address.equalsIgnoreCase("back")) {
             throw new StopPurchaseException("Process has been stopped.");
         }
-        CustomerAccountController.getInstance().getReceiverInfo(address);
+        customerAccountController.getReceiverInfo(address);
     }
 
     private void enterDiscountCode() throws StopPurchaseException {
@@ -195,13 +197,13 @@ public class CartMenu extends Menu {
                 throw new StopPurchaseException("Process has been stopped.");
             }
             try {
-                CustomerAccountController.getInstance().enterDiscountCode(discountCode);
+                customerAccountController.enterDiscountCode(discountCode);
             } catch (AccountsException e) {
                 System.out.println("Invalid discount code!");
                 enterDiscountCode();
             }
         } else {
-            CustomerAccountController.getInstance().setPriceWithoutDiscount();
+            customerAccountController.setPriceWithoutDiscount();
         }
     }
 
@@ -212,19 +214,19 @@ public class CartMenu extends Menu {
         int doesFinalize = getNumberOfNextMenu(2);
         if(doesFinalize == 1) {
             try {
-                Log log = CustomerAccountController.getInstance().makePayment();
+                Log log = customerAccountController.makePayment();
                 System.out.println("Purchase log:\n" + log);
             } catch (AccountsException e) {
                 System.out.println(e.getMessage());
             }
         } else {
-            CustomerAccountController.getInstance().resetPurchaseVariables();
+            customerAccountController.resetPurchaseVariables();
         }
     }
 
     private ArrayList<Product> getProductsInOrder() {
         System.out.println("Cart:");
-        ArrayList<Product> products = new ArrayList<Product>(CustomerAccountController.getInstance().getCart().keySet());
+        ArrayList<Product> products = new ArrayList<Product>(customerAccountController.getCart().keySet());
         int productNumber = 1;
         for(Product product: products) {
             System.out.println(productNumber + ". " + product.getName() + "\n" +

@@ -1,10 +1,12 @@
 package View.AccountMenus.SellerView;
 
+import Controller.Accounts.SellerAccountController;
 import View.Menu;
 
 import java.util.HashMap;
 
 public class ManageProduct extends Menu {
+    SellerAccountController sellerAccountController;
 
     public ManageProduct(Menu parentMenu) {
         super("Manage Product Menu", parentMenu);
@@ -15,6 +17,7 @@ public class ManageProduct extends Menu {
         submenus.put(4, getAddProductsQuantity());
         submenus.put(5, getReduceProductsQuantity());
         this.setSubMenus(submenus);
+        sellerAccountController = SellerAccountController.getInstance();
     }
 
     private Menu getViewProduct() {

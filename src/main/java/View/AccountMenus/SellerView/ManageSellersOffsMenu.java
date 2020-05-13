@@ -8,6 +8,7 @@ public class ManageSellersOffsMenu extends Menu {
 
     public ManageSellersOffsMenu(Menu parentMenu) {
         super("Manage Seller's Offs Menu", parentMenu);
+        sellerAccountController = SellerAccountController.getInstance();
     }
 
     private void getViewOff(){

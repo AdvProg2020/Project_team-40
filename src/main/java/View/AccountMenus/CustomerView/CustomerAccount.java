@@ -26,13 +26,14 @@ public class CustomerAccount extends PeopleAccountMenu {
         submenus.put(6, getViewDiscountCodes());
         submenus.put(7, getIncreaseCredit());
         this.setSubMenus(submenus);
+        customerAccountController = CustomerAccountController.getInstance();
     }
 
-    private Menu getViewBalance(){
+    private Menu getViewBalance() {
         return new Menu("Balance", this) {
             @Override
             public void show() {
-                System.out.println("Balance: " + CustomerAccountController.getInstance().getBalance());
+                System.out.println("Balance: " + customerAccountController.getBalance());
             }
 
             @Override
@@ -47,7 +48,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         return new Menu("Discount Codes", this) {
             @Override
             public void show() {
-                HashMap<String, DiscountCode> discountCodes = CustomerAccountController.getInstance().getDiscountCodes();
+                HashMap<String, DiscountCode> discountCodes = customerAccountController.getDiscountCodes();
                 System.out.println("Your discount codes: ");
                 for(Map.Entry<String, DiscountCode> discountCode: discountCodes.entrySet()) {
                     System.out.println(discountCode.getValue());
@@ -74,7 +75,7 @@ public class CustomerAccount extends PeopleAccountMenu {
             public void execute() {
                 double money = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
                         "Please enter a valid number."));
-                Customer customer = (Customer) CustomerAccountController.getInstance().getThisUser();
+                Customer customer = (Customer) customerAccountController.getThisUser();
                 customer.setCredit(customer.getCredit() + money);
                 System.out.println("Credit successfully increased.");
                 parentMenu.show();

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SellerAccount extends PeopleAccountMenu {
-    SellerAccountController sellerAccountController = SellerAccountController.getInstance();
+    SellerAccountController sellerAccountController;
 
     public SellerAccount(Menu parentMenu) {
         super("Seller Account", parentMenu);
@@ -26,6 +26,7 @@ public class SellerAccount extends PeopleAccountMenu {
         submenus.put(7, getShowCategories());
         submenus.put(8, getViewBalance());
         this.setSubMenus(submenus);
+        sellerAccountController = SellerAccountController.getInstance();
     }
 
     private Menu getCompanyInfo(){
