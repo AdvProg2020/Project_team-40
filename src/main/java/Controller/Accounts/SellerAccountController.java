@@ -76,7 +76,7 @@ public class SellerAccountController extends AccountController{
         return buyers;
     }
 
-    private void createNewProduct(String name, String company, double price, int quantity, String categoryName,
+    public void createNewProduct(String name, String company, double price, int quantity, String categoryName,
                                  String description) throws AccountsException {
         Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.isManagerPermission()) {
