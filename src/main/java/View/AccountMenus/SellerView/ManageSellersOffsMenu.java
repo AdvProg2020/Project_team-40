@@ -1,8 +1,11 @@
 package View.AccountMenus.SellerView;
 
 import Controller.Accounts.SellerAccountController;
+import View.ConsoleCommand;
 import View.Menu;
+import exceptions.AccountsException;
 import model.Off;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +24,7 @@ public class ManageSellersOffsMenu extends Menu {
         sellerAccountController = SellerAccountController.getInstance();
     }
 
-    private Menu getViewOffs(){
+    private Menu getViewOffs() {
         return new Menu("List of Offs", this) {
             @Override
             public void show() {
@@ -86,7 +89,47 @@ public class ManageSellersOffsMenu extends Menu {
     }
 
     private Menu getAddOff(){
-        return null;
+        return new Menu("Add Off", this) {
+            ArrayList<String> productsIds;
+            @Override
+            public void show() {
+                productsIds = sellerAccountController.getSellerProductIDs();
+                System.out.println("your Products:");
+                int productNumber = 1;
+                for(String productId: productsIds) {
+                    try {
+                        System.out.println(productNumber + ". " +
+                                        sellerAccountController.getProductDetails(productId).getName() +
+                                "\n" + productId);
+                    } catch (AccountsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    productNumber++;
+                }
+                System.out.println("Enter the number of the products you want to include in your off," +
+                        " Enter end to finish:");
+            }
+
+            @Override
+            public void execute() {
+                ArrayList<Product> productsInOff = new ArrayList<Product>();
+                String input = scanner.nextLine();
+                while(!(input.equalsIgnoreCase("end"))) {
+                    if(ConsoleCommand.INTEGER.getStringMatcher(input.trim()).matches()) {
+                        int chosenProductNumber = Integer.parseInt(input);
+                        try {
+                            productsInOff.add(sellerAccountController.
+                                    getProductDetails(productsIds.get(chosenProductNumber - 1)));
+                        } catch (AccountsException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+                //TODO:
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     private ArrayList<Off> showAndGetListOfOffs() {
