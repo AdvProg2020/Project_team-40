@@ -15,6 +15,8 @@ public class ManagersAccount extends PeopleAccountMenu {
         submenus.put(3, new DiscountsMenu(this));
         submenus.put(4, new RequestMenu(this));
         submenus.put(5, new CategoryMenu(this));
+        submenus.put(6, getShowInfo());
+        submenus.put(7, getEditInfo());
         this.setSubMenus(submenus);
     }
 

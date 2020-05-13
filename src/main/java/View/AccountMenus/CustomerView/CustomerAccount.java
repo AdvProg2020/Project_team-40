@@ -77,6 +77,8 @@ public class CustomerAccount extends PeopleAccountMenu {
                 Customer customer = (Customer) CustomerAccountController.getInstance().getThisUser();
                 customer.setCredit(customer.getCredit() + money);
                 System.out.println("Credit successfully increased.");
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }
