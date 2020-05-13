@@ -2,9 +2,11 @@ package View.AccountMenus.CustomerView;
 
 import Controller.Accounts.CustomerAccountController;
 import View.AccountMenus.PeopleAccountMenu;
+import View.ConsoleCommand;
 import View.Menu;
 import model.DiscountCode;
 import model.log.Log;
+import model.users.Customer;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -25,8 +27,6 @@ public class CustomerAccount extends PeopleAccountMenu {
         submenus.put(7, getIncreaseCredit());
         this.setSubMenus(submenus);
     }
-
-    //TODO: SEE IF A METHOD FOR INCREASING BALANCE IS NOT NEEDED
 
     public Menu getViewBalance(){
         return new Menu("Balance", this) {
@@ -72,6 +72,11 @@ public class CustomerAccount extends PeopleAccountMenu {
 
             @Override
             public void execute() {
+                double money = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                        "Please enter a valid number."));
+                Customer customer = (Customer) CustomerAccountController.getInstance().getThisUser();
+                customer.setCredit(customer.getCredit() + money);
+                System.out.println("Credit successfully increased.");
             }
         };
     }
