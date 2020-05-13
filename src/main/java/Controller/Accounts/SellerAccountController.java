@@ -35,6 +35,10 @@ public class SellerAccountController extends AccountController{
         ((Seller) User.getLoggedInUser()).setCompanyInfo(companyInfo);
     }
 
+    public String getCompanyInfo() {
+        return ((Seller) User.getLoggedInUser()).getCompanyInfo();
+    }
+
     public ArrayList<Log> getSalesHistory() {
         ArrayList<Log> logs = new ArrayList<>();
         for(String logName: ((Seller)User.getLoggedInUser()).getLogsName()) {

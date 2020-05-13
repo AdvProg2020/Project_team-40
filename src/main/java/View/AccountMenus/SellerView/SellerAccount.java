@@ -1,9 +1,13 @@
 package View.AccountMenus.SellerView;
 
+import Controller.Accounts.CustomerAccountController;
 import Controller.Accounts.SellerAccountController;
+import Controller.Menus.AllProductsController;
 import View.AccountMenus.PeopleAccountMenu;
 import View.Menu;
+import exceptions.AccountsException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SellerAccount extends PeopleAccountMenu {
@@ -24,23 +28,63 @@ public class SellerAccount extends PeopleAccountMenu {
     }
 
     public Menu getCompanyInfo(){
-        return null;
+        return new Menu("Company Info", this) {
+            @Override
+            public void show() {
+                System.out.println(sellerAccountController.getCompanyInfo());
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     public Menu getSalesHistory(){
         return null;
     }
 
-
-    public Menu getRemove(){
-        return null;
-    }
-
     public Menu getShowCategories(){
-        return null;
+        return new Menu("Categories:", this) {
+            @Override
+            public void show() {
+                AllProductsController allProductsController = AllProductsController.getInstance();
+                ArrayList<String> categories = allProductsController.getAllCategories();
+                for(String category: categories) {
+                    System.out.println(category + ":\n");
+                    try {
+                        ArrayList<String> subCategories = allProductsController.getAllSubCategories(category);
+                        for(String subCategory: subCategories) {
+                            System.out.println("\t" + subCategory);
+                        }
+                    } catch (AccountsException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     public Menu getViewBalance(){
-        return null;
+        return new Menu("Balance", this) {
+            @Override
+            public void show() {
+                System.out.println("Balance: " + sellerAccountController.getBalance());
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 }

@@ -87,7 +87,6 @@ public abstract class Menu {
             if(AccountController.getInstance().isLogin())
                 logout();
             nextMenu = new MainMenu().getRegisterOrLogin(this);
-
         } else if(chosenMenu == numberOfOptions){
             if(parentMenu == null) {
                 //TODO:HANDLE SAVE AND LOAD PROBLEMS
@@ -96,6 +95,7 @@ public abstract class Menu {
                 } catch (DataException e) {
                     System.out.println(e.getMessage());
                 }
+                System.out.println("Have a nice day!");
                 System.exit(1);
             } else {
                 nextMenu = parentMenu;
@@ -166,7 +166,7 @@ public abstract class Menu {
         return input;
     }
 
-    public void logout(){
+    public void logout() {
         AccountController.getInstance().logout();
         System.out.println("Have a nice day!");
         if(this instanceof PeopleAccountMenu) {
