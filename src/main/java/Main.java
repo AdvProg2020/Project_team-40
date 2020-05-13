@@ -15,7 +15,7 @@ public class Main {
         try {
             Loader.getLoader().loadData();
         } catch (DataException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         MainMenu mainMenu = new MainMenu();
         Menu.setScanner(new Scanner(System.in));

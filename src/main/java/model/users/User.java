@@ -105,6 +105,14 @@ public abstract class  User implements Serializable {
         return allUsers.keySet();
     }
 
+    public static boolean doesManagerExist(){
+        for (String user : allUsers.keySet())
+            if (allUsers.get(user) instanceof Manager)
+                return true;
+
+        return false;
+    }
+
     public static void setLoggedInUser(User loggedInUser) {
         User.loggedInUser = loggedInUser;
     }
