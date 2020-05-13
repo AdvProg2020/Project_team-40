@@ -6,14 +6,15 @@ import View.Menu;
 import exceptions.AccountsException;
 import model.Product;
 
+import javax.security.auth.login.AccountException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ManageProduct extends Menu {
     SellerAccountController sellerAccountController;
-    Product product;
+    String productId;
 
-    public ManageProduct(Menu parentMenu, Product product) {
+    public ManageProduct(Menu parentMenu, String productId) {
         super("Manage Product Menu", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, getViewProduct());
@@ -23,14 +24,14 @@ public class ManageProduct extends Menu {
         submenus.put(5, getReduceProductsQuantity());
         this.setSubMenus(submenus);
         sellerAccountController = SellerAccountController.getInstance();
-        this.product = product;
+        this.productId = productId;
     }
 
     private Menu getViewProduct() {
         return new Menu("Product's Information", this) {
             @Override
             public void show() {
-                System.out.println(product);
+                System.out.println(Product.getProductById(productId));
             }
 
             @Override
@@ -45,7 +46,7 @@ public class ManageProduct extends Menu {
         return new Menu("Product's Buyers", this) {
             @Override
             public void show() {
-                ArrayList<String> buyers = product.getAllBuyers();
+                ArrayList<String> buyers = Product.getProductById(productId).getAllBuyers();
                 for(String buyer: buyers) {
                     System.out.println(buyer);
                 }
@@ -87,7 +88,7 @@ public class ManageProduct extends Menu {
                 } else
                     newField = getNewStatus();
                 try {
-                    sellerAccountController.editProduct(product.getProductId(), fields[field - 1], newField);
+                    sellerAccountController.editProduct(productId, fields[field - 1], newField);
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
@@ -113,10 +114,46 @@ public class ManageProduct extends Menu {
     }
 
     private Menu getAddProductsQuantity() {
-        return null;
+        return new Menu("Add Product's Quantity", this) {
+            @Override
+            public void show() {
+                System.out.println("Quantity: " + Product.getProductById(productId).getCount());
+                System.out.println("Enter quantity of new products:");
+            }
+
+            @Override
+            public void execute() {
+                int addedQuantity = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                        "Enter a valid number."));
+                sellerAccountController.increaseProductsCount(addedQuantity, productId);
+                System.out.println("Product's count increased.");
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 
     private Menu getReduceProductsQuantity() {
-        return null;
+        return new Menu("Reduce Product's Quantity", this) {
+            @Override
+            public void show() {
+                System.out.println("Quantity: " + Product.getProductById(productId).getCount());
+                System.out.println("Enter number of Products tou want to remove:");
+            }
+
+            @Override
+            public void execute() {
+                int removedQuantity = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                        "Enter a valid number."));
+                try {
+                    sellerAccountController.decreaseProductCount(removedQuantity, productId);
+                    System.out.println("Product's count Increased.");
+                } catch (AccountException e) {
+                    System.out.println(e.getMessage());
+                }
+                parentMenu.show();
+                parentMenu.execute();
+            }
+        };
     }
 }
