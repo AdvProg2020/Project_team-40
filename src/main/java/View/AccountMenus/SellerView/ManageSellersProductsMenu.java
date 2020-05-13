@@ -101,6 +101,7 @@ public class ManageSellersProductsMenu extends Menu {
                 String description = scanner.nextLine();
                 try {
                     sellerAccountController.createNewProduct(name, company, price, count, category, description);
+                    System.out.println("Product will be added after Manager's acceptances");
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
@@ -123,6 +124,24 @@ public class ManageSellersProductsMenu extends Menu {
     }
 
     private Menu getRemoveProduct() {
-        return null;
+        return new Menu("Remove Product", this) {
+            @Override
+            public void show() {
+                getViewProducts().show();
+                System.out.println("Choose the product you want to remove:");
+            }
+
+            @Override
+            public void execute() {
+                ArrayList<String> productsIds = sellerAccountController.getSellerProductIDs();
+                int productNumber = getNumberOfNextMenu(productsIds.size());
+                try {
+                    sellerAccountController.removeProductFromSeller(productsIds.get(productNumber - 1));
+                    System.out.println("Product will be removed after Manger's acceptance.");
+                } catch (AccountsException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
     }
 }

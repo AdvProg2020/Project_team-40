@@ -19,7 +19,7 @@ public class SellerAccount extends PeopleAccountMenu {
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, getShowInfo());
         submenus.put(2, getEditInfo());
-        submenus.put(3, new ManageSellersProductMenu(this));
+        submenus.put(3, new ManageSellersProductsMenu(this));
         submenus.put(4, new ManageSellersOffsMenu(this));
         submenus.put(5, getCompanyInfo());
         submenus.put(6, getSalesHistory());
