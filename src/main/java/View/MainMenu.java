@@ -134,6 +134,7 @@ public class MainMenu extends Menu{
                             "Enter a valid number."));
                     System.out.println("Enter your company's information.");
                     String companyInfo = scanner.nextLine().trim();
+                    //TODO:Handle selling permission request
                     SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
                             lastName, email, phoneNumber, credit, companyInfo);
                 }
