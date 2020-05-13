@@ -24,7 +24,7 @@ public class CartMenu extends Menu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getShowChosenProducts(){
+    private Menu getShowChosenProducts(){
         return new Menu("Cart", this) {
 
             @Override
@@ -48,7 +48,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public Menu getShowChosenProduct(){
+    private Menu getShowChosenProduct(){
         return new Menu("Product's Details", this) {
             ArrayList<Product> products;
             @Override
@@ -72,7 +72,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public Menu getIncreaseChosenProduct(){
+    private Menu getIncreaseChosenProduct(){
         return new Menu("Increase Product's Quantity", this) {
             ArrayList<Product> products;
             @Override
@@ -100,7 +100,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public Menu getDecreaseChosenProduct(){
+    private Menu getDecreaseChosenProduct(){
         return new Menu("Decrease Product's Quantity", this) {
             ArrayList<Product> products;
 
@@ -128,7 +128,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public Menu getShowTotalPrice(){
+    private Menu getShowTotalPrice(){
         return new Menu("See Cart's Total Price",this) {
             @Override
             public void show() {
@@ -144,7 +144,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public Menu getPurchase(){
+    private Menu getPurchase(){
         return new Menu("Purchase", this) {
             @Override
             public void show() {
@@ -174,7 +174,7 @@ public class CartMenu extends Menu {
         };
     }
 
-    public void getUsersAddress() throws StopPurchaseException {
+    private void getUsersAddress() throws StopPurchaseException {
         System.out.println("Enter your home address:");
         String address = scanner.nextLine();
         if(address.equalsIgnoreCase("back")) {
@@ -183,7 +183,7 @@ public class CartMenu extends Menu {
         CustomerAccountController.getInstance().getReceiverInfo(address);
     }
 
-    public void enterDiscountCode() throws StopPurchaseException {
+    private void enterDiscountCode() throws StopPurchaseException {
         System.out.println("Do you have any discount code?\n" +
                 "1. Yes\n" +
                 "2. No\n");
@@ -205,7 +205,7 @@ public class CartMenu extends Menu {
         }
     }
 
-    public void makePayment() {
+    private void makePayment() {
         System.out.println("Do you want to finalize payment?\n" +
                 "1. Yes\n" +
                 "2. No");
@@ -222,7 +222,7 @@ public class CartMenu extends Menu {
         }
     }
 
-    public ArrayList<Product> getProductsInOrder() {
+    private ArrayList<Product> getProductsInOrder() {
         System.out.println("Cart:");
         ArrayList<Product> products = new ArrayList<Product>(CustomerAccountController.getInstance().getCart().keySet());
         int productNumber = 1;

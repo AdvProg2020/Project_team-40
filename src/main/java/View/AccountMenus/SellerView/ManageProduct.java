@@ -17,23 +17,23 @@ public class ManageProduct extends Menu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getViewProduct() {
+    private Menu getViewProduct() {
         return null;
     }
 
-    public Menu getViewBuyers() {
+    private Menu getViewBuyers() {
         return null;
     }
 
-    public Menu getEditProduct() {
+    private Menu getEditProduct() {
         return null;
     }
 
-    public Menu getAddProductsQuantity() {
+    private Menu getAddProductsQuantity() {
         return null;
     }
 
-    public Menu getReduceProductsQuantity() {
+    private Menu getReduceProductsQuantity() {
         return null;
     }
 }

@@ -18,7 +18,7 @@ public class ManageSellersProductMenu extends Menu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getViewProducts() {
+    private Menu getViewProducts() {
         return null;
     }
 
@@ -26,11 +26,11 @@ public class ManageSellersProductMenu extends Menu {
         return null;
     }
 
-    public Menu getAddProduct(){
+    private Menu getAddProduct(){
         return null;
     }
 
-    public Menu getRemoveProduct() {
+    private Menu getRemoveProduct() {
         return null;
     }
 }

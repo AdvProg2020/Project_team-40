@@ -10,15 +10,15 @@ public class ManageSellersOffsMenu extends Menu {
         super("Manage Seller's Offs Menu", parentMenu);
     }
 
-    public void getViewOff(){
+    private void getViewOff(){
 
     }
 
-    public void getEditOff(){
+    private void getEditOff(){
 
     }
 
-    public void getAddOff(){
+    private void getAddOff(){
 
     }
 }

@@ -28,7 +28,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getViewBalance(){
+    private Menu getViewBalance(){
         return new Menu("Balance", this) {
             @Override
             public void show() {
@@ -43,7 +43,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         };
     }
 
-    public Menu getViewDiscountCodes(){
+    private Menu getViewDiscountCodes(){
         return new Menu("Discount Codes", this) {
             @Override
             public void show() {
@@ -62,7 +62,7 @@ public class CustomerAccount extends PeopleAccountMenu {
         };
     }
 
-    public Menu getIncreaseCredit() {
+    private Menu getIncreaseCredit() {
         return new Menu("Increase Credit", this) {
             @Override
             public void show() {

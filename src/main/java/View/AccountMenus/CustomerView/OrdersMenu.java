@@ -21,7 +21,7 @@ public class OrdersMenu extends Menu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getViewOrders() {
+    private Menu getViewOrders() {
         return new Menu("Orders", this) {
             @Override
             public void show() {
@@ -41,7 +41,7 @@ public class OrdersMenu extends Menu {
         };
     }
 
-    public Menu getShowOrder() {
+    private Menu getShowOrder() {
         return new Menu("Order's Details", this) {
             //TODO: HASN'T BEEN TESTED
             @Override
@@ -63,7 +63,7 @@ public class OrdersMenu extends Menu {
         };
     }
 
-    public Menu getRateProduct() {//TODO: ASK HOW IT SHOULD BE IMPLEMENTED
+    private Menu getRateProduct() {//TODO: ASK HOW IT SHOULD BE IMPLEMENTED
         return new Menu("Rating Menu", this) {
             @Override
             public void show() {

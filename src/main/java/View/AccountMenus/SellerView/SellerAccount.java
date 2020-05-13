@@ -28,7 +28,7 @@ public class SellerAccount extends PeopleAccountMenu {
         this.setSubMenus(submenus);
     }
 
-    public Menu getCompanyInfo(){
+    private Menu getCompanyInfo(){
         return new Menu("Company Info", this) {
             @Override
             public void show() {
@@ -43,7 +43,7 @@ public class SellerAccount extends PeopleAccountMenu {
         };
     }
 
-    public Menu getSalesHistory(){
+    private Menu getSalesHistory(){
         return new Menu("Sales History", this) {
             @Override
             public void show() {
@@ -61,7 +61,7 @@ public class SellerAccount extends PeopleAccountMenu {
         };
     }
 
-    public Menu getShowCategories(){
+    private Menu getShowCategories(){
         return new Menu("Categories:", this) {
             @Override
             public void show() {
@@ -88,7 +88,7 @@ public class SellerAccount extends PeopleAccountMenu {
         };
     }
 
-    public Menu getViewBalance(){
+    private Menu getViewBalance(){
         return new Menu("Balance", this) {
             @Override
             public void show() {
