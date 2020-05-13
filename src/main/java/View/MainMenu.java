@@ -41,8 +41,8 @@ public class MainMenu extends Menu{
         }
     }
 
-    public Menu getRegisterOrLogin(Menu menu) {
-        return new Menu("Register And Login", menu) {
+    public Menu getRegisterOrLogin(Menu parentMenu) {
+        return new Menu("Register And Login", parentMenu) {
             @Override
             public void show() {
                 System.out.println("1. Register\n" +
