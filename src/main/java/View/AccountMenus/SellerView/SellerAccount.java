@@ -63,7 +63,7 @@ public class SellerAccount extends PeopleAccountMenu {
     }
 
     private Menu getShowCategories(){
-        return new Menu("Categories:", this) {
+        return new Menu("Categories", this) {
             @Override
             public void show() {
                 AllProductsController allProductsController = AllProductsController.getInstance();

@@ -58,10 +58,9 @@ public class MainMenu extends Menu{
                 } else if(chosenNumber == 2) {
                     getLogin(this).show();
                     getLogin(this).execute();
-                } else if(chosenNumber == 3) {
-                    parentMenu.show();
-                    parentMenu.execute();
                 }
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }
@@ -84,8 +83,6 @@ public class MainMenu extends Menu{
                 }
                 Role role = getRole();
                 getRemainingInformation(username, password, role);
-                parentMenu.show();
-                parentMenu.execute();
             }
 
             private Role getRole() {
@@ -157,9 +154,9 @@ public class MainMenu extends Menu{
                     System.out.println("Welcome!");
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
+                    parentMenu.show();
+                    parentMenu.execute();
                 }
-                parentMenu.show();
-                parentMenu.execute();
             }
         };
     }
