@@ -216,6 +216,19 @@ public class Product implements Serializable{
         }
     }
 
+    @Override
+    public String toString() {
+        return "ProductId :'" + productId + '\n' +
+                "Status : " + status + '\n' +
+                "Name: '" + name + '\n' +
+                "Company: '" + company + '\n' +
+                "Price: " + price +'\n'+
+                "Count: " + count +'\n'+
+                "Category: '" + category + '\n' +
+                "Explanation: '" + explanation + '\n' +
+                "VisitCount: " + visitCount;
+    }
+
     public static void loadData() throws DataException {
         File directory = new File(PATH);
         String[] pathNames = directory.list();
