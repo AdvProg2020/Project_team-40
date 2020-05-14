@@ -42,7 +42,7 @@ public class DiscountCode implements Serializable {
 
     public boolean isExpired(){
         Date today = new Date();
-        return !(today.after(startDate) && today.before(endDate));
+        return !(today.before(startDate) && today.before(endDate));
     }
 
     public boolean isStartDateValid(Date startDate){
