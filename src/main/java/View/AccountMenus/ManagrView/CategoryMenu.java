@@ -32,6 +32,11 @@ public class CategoryMenu extends Menu {
 
     public Menu getAddCategories() {
         return new Menu("Add category", this) {
+            private String getParentInput(String input){
+                if (input.equalsIgnoreCase(""))
+                    return null;
+                return input;
+            }
             @Override
             public void show() {}
 
@@ -40,7 +45,7 @@ public class CategoryMenu extends Menu {
                 System.out.println("Enter category name: ");
                 String categoryName = scanner.nextLine();
                 System.out.println("Enter parent category or ENTER to continue: ");
-                String parent = scanner.nextLine();
+                String parent = getParentInput(scanner.nextLine());
                 System.out.println("Enter category properties. Enter OK to end: ");
                 ArrayList<String> allProperties = new ArrayList<>();
                 String property;
@@ -52,8 +57,10 @@ public class CategoryMenu extends Menu {
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
-                this.parentMenu.show();
-                this.parentMenu.execute();
+                finally {
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                }
             }
         };
     }

@@ -96,6 +96,7 @@ public class ManageSellersProductsMenu extends Menu {
                         "Enter a valid number."));
                 System.out.println("Quantity of Product:");
                 int count = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER, "Enter a valid number."));
+                System.out.println("Enter a category:");
                 String category = getCategory();
                 System.out.println("Description:");
                 String description = scanner.nextLine();
@@ -105,6 +106,8 @@ public class ManageSellersProductsMenu extends Menu {
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
+                this.parentMenu.show();
+                this.parentMenu.execute();
             }
 
             private String getCategory() {

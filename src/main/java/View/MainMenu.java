@@ -41,8 +41,8 @@ public class MainMenu extends Menu{
         }
     }
 
-    public Menu getRegisterOrLogin(Menu menu) {
-        return new Menu("Register And Login", menu) {
+    public Menu getRegisterOrLogin(Menu parentMenu) {
+        return new Menu("Register And Login", parentMenu) {
             @Override
             public void show() {
                 System.out.println("1. Register\n" +
@@ -134,6 +134,7 @@ public class MainMenu extends Menu{
                             "Enter a valid number."));
                     System.out.println("Enter your company's information.");
                     String companyInfo = scanner.nextLine().trim();
+                    //TODO:Handle selling permission request
                     SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
                             lastName, email, phoneNumber, credit, companyInfo);
                 }
