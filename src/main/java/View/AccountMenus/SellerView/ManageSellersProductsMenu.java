@@ -81,12 +81,12 @@ public class ManageSellersProductsMenu extends Menu {
         return new Menu("Add New Product", this) {
             @Override
             public void show() {
-                System.out.println("Enter product's properties:\n" +
-                        "Name:");
+                System.out.println("Enter product's properties:");
             }
 
             @Override
             public void execute() {
+                System.out.println("Name: ");
                 String productName = scanner.nextLine();
                 System.out.println("Producer company:");
                 String company = scanner.nextLine();
@@ -99,8 +99,9 @@ public class ManageSellersProductsMenu extends Menu {
                 String category = getCategory();
                 System.out.println("Description:");
                 String description = scanner.nextLine();
+                //TODO:Get extra category properties
                 try {
-                    sellerAccountController.createNewProduct(name, company, price, count, category, description);
+                    sellerAccountController.createNewProduct(productName, company, price, count, category, description);
                     System.out.println("Product will be added after Manager's acceptances");
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
