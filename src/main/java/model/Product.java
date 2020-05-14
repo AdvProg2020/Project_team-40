@@ -238,7 +238,8 @@ public class Product implements Serializable{
             try {
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
-                allProducts.put(((Product)inputStream.readObject()).getProductId(), (Product) inputStream.readObject());
+                Product product = (Product)inputStream.readObject();
+                allProducts.put(product.getProductId(), product);
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
@@ -250,6 +251,11 @@ public class Product implements Serializable{
     }
 
     public static void saveData() throws DataException {
+        String usersDirectoryPath = "src/main/resources/products/";
+        File directory = new File(usersDirectoryPath);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving users failed.");
         for (Product product : allProducts.values()) {
             try {
                 FileOutputStream file = new FileOutputStream(PATH + product.getProductId());
