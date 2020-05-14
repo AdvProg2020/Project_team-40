@@ -47,7 +47,7 @@ public class DiscountCode implements Serializable {
 
     public boolean isStartDateValid(Date startDate){
         Date today = new Date();
-        return today.after(startDate);
+        return today.before(startDate);
     }
 
     public boolean isEndDateValid(Date endDate){
