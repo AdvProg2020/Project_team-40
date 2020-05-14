@@ -18,7 +18,8 @@ public class Category {
         this.subCategoriesNames = new ArrayList<>();
         this.productIDs = new ArrayList<>();
         this.extraProperties = new ArrayList<>();
-        Category.getCategoryByName(parentCategory).addSubCategoryName(name);
+        if (parentCategory != null)
+            Category.getCategoryByName(parentCategory).addSubCategoryName(name);
     }
 
     public static void addCategory(Category category){
