@@ -3,7 +3,6 @@ package View.AccountMenus.SellerView;
 import Controller.Accounts.SellerAccountController;
 import View.ConsoleCommand;
 import View.Menu;
-import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import exceptions.AccountsException;
 import model.Category;
 import model.Product;
@@ -99,7 +98,7 @@ public class ManageSellersProductsMenu extends Menu {
                 String category = getCategory();
                 System.out.println("Description:");
                 String description = scanner.nextLine();
-                //TODO:Get extra category properties
+                //TODO:Get extra category properties and product status
                 try {
                     sellerAccountController.createNewProduct(productName, company, price, count, category, description);
                     System.out.println("Product will be added after Manager's acceptances");
