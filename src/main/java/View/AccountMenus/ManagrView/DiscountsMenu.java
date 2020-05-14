@@ -136,9 +136,21 @@ public class DiscountsMenu extends Menu {
     public Menu getEditDiscount(){
         return new Menu("Edit discount", this) {
             private void handleEditDiscount(String code) {
+                System.out.println("Valid fields to edit: " + "\n"
+                + "Percentage" + "\n"
+                + "Start date" + "\n"
+                + "End date" + "\n"
+                + "Maximum amount" + "\n"
+                + "Count per user" + "\n");
+
                 String oldField;
                 String newField;
-                while (!(oldField = scanner.nextLine()).equalsIgnoreCase("Ok")) {
+                while (true) {
+                    System.out.println("Field: ");
+                    oldField = scanner.nextLine();
+                    if (oldField.equalsIgnoreCase("ok"))
+                        break;
+                    System.out.println("New field: ");
                     newField = scanner.nextLine();
                     try {
                         managerAccountController.editDiscount(code, oldField, newField);
