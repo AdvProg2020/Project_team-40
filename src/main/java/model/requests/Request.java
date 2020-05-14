@@ -20,4 +20,17 @@ public abstract class Request {
     public String getRequestId() {
         return requestId;
     }
+
+    private String getStatus(){
+        if (isAccepted)
+            return "Accepted";
+        return "Waiting";
+    }
+
+    @Override
+    public String toString() {
+        return "Request ID :" + requestId  + "\n"
+                + "Type : " + type +"\n"
+                + "Permission status: " + getStatus() + "\n";
+    }
 }
