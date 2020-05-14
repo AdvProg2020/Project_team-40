@@ -14,11 +14,10 @@ public abstract class  User implements Serializable {
     protected String username;
     protected String password;
     protected String firstName;
-
     protected String lastName;
-
     protected String email;
     protected String phoneNo;
+
     public User(String username, String password, String firstName,
                 String lastName, String email, String phoneNo) {
         this.username = username;

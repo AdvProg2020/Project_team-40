@@ -169,4 +169,8 @@ public class SellerAccountController extends AccountController{
     public double getBalance(){
         return ((Seller) User.getLoggedInUser()).getCredit();
     }
+
+    public boolean getHasPermission() {
+        return ((Seller) User.getLoggedInUser()).isManagerPermission();
+    }
 }
