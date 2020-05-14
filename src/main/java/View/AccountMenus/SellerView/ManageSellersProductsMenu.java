@@ -30,12 +30,11 @@ public class ManageSellersProductsMenu extends Menu {
             @Override
             public void show() {
                 ArrayList<String> productsIds = sellerAccountController.getSellerProductIDs();
-                int productNumber = 0;
+                int productNumber = 1;
                 for(String productId: productsIds) {
                     try {
                         System.out.println(productNumber + ". " +
-                                sellerAccountController.getProductDetails(productId).getName() +
-                                "ID: " + productId);
+                                sellerAccountController.getProductDetails(productId).toString());
                     } catch (AccountsException e) {
                         System.out.println(e.getMessage());
                     }
@@ -114,7 +113,7 @@ public class ManageSellersProductsMenu extends Menu {
                 //TODO: PUT AN OPTION FOR USER TO GO BACK
                 HashMap<String, Category> categories = sellerAccountController.getAllCategories();
                 ArrayList<String> orderedCategories = new ArrayList<>();
-                int categoryNumber = 0;
+                int categoryNumber = 1;
                 for(String name: categories.keySet()) {
                     System.out.println(categoryNumber + ". " + name);
                     orderedCategories.add(name);
