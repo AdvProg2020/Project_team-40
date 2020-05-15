@@ -123,14 +123,21 @@ public class Product implements Serializable{
         return extraValueProperties.get(name);
     }
 
-    public void resetExtraProperty(String property){
-        for (String s : extraStringProperties.keySet()) {
-            if (s.equals(property))
-                extraStringProperties.replace(s, null);
-        }
-        for (String s : extraValueProperties.keySet()) {
-            if (s.equals(property))
-                extraValueProperties.replace(s, null);
+    public void resetExtraProperty(String property, String newProperty){
+        if (property.equalsIgnoreCase("name"))
+            setCategory(newProperty);
+        else {
+            for (String s : extraStringProperties.keySet()) {
+                if (s.equals(property)) {
+                    extraValueProperties.remove(s);
+                    extraStringProperties.put(newProperty, null);
+                }
+            }
+            for (String s : extraValueProperties.keySet()) {
+                if (s.equals(property))
+                    extraValueProperties.remove(s);
+                extraStringProperties.put(newProperty, null);
+            }
         }
 
     }

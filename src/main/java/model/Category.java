@@ -1,10 +1,13 @@
 package model;
 
+import exceptions.DataException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Category {
+public class Category implements Serializable {
     private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
     private String parentCategoryName;
@@ -101,12 +104,66 @@ public class Category {
         return allCategories;
     }
 
-    public static void loadData(){
-        //TODO:IMPLEMENT
+    private StringBuilder getItemsToShow(ArrayList<String> items) {
+        StringBuilder result = new StringBuilder();
+        int index = 1;
+        for (String item : items) {
+            result.append("  ").append(index).append(". ").append(item).append("\n");
+            index++;
+        }
+        return result;
     }
 
-    public static void saveData(){
-        //TODO:IMPLEMENT
+    @Override
+    public String toString() {
+        return  "Name: " + name + '\n' +
+                "Parent Category Name: " + parentCategoryName + '\n' +
+                "ProductIDs: " +'\n'+ getItemsToShow(productIDs) + '\n' +
+                "Sub-categories Names: " + '\n' +getItemsToShow(subCategoriesNames)  + '\n' +
+                "Extra Properties: " + '\n'  + getItemsToShow(extraProperties);
+    }
+
+    public static void loadData() throws DataException {
+        String directoryPath = "src/main/resources/categories/";
+        File directory = new File(directoryPath);
+        String[] pathNames = directory.list();
+        if (pathNames == null)
+            return;
+        for (String path : pathNames) {
+            try {
+                FileInputStream file = new FileInputStream(directoryPath + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
+                Category category = (Category) inputStream.readObject();
+                allCategories.put(category.getName(), category);
+                file.close();
+                inputStream.close();
+                new File(directoryPath + path).delete();
+            } catch (Exception e) {
+                throw new DataException("Loading categories failed.");
+            }
+
+        }
+    }
+
+    public static void saveData() throws DataException {
+        String path = "src/main/resources/categories/";
+        File directory = new File(path);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving categories failed.");
+        for (Map.Entry<String, Category> entry : allCategories.entrySet()) {
+            try {
+                Category category = entry.getValue();
+                FileOutputStream file = new FileOutputStream(path + category.name);
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(category);
+                file.close();
+                outputStream.close();
+
+            } catch (Exception e) {
+                throw new DataException("Saving categories failed.");
+            }
+        }
     }
 
 }

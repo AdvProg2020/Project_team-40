@@ -1,5 +1,6 @@
 package model.requests;
 
+import model.Category;
 import model.Product;
 
 public class AddProduct extends Request{
@@ -13,6 +14,7 @@ public class AddProduct extends Request{
     @Override
     public void action() {
         if(isAccepted) {
+            Category.getCategoryByName(product.getCategory()).addProduct(product.getProductId());
             product.getSeller().addProduct(product);
             Product.addProduct(product);
         }
