@@ -104,6 +104,24 @@ public class Category implements Serializable {
         return allCategories;
     }
 
+    private StringBuilder getItemsToShow(ArrayList<String> items) {
+        StringBuilder result = new StringBuilder("");
+        int index = 1;
+        for (String item : items) {
+            result.append("  ").append(index).append(". ").append(item).append("\n");
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return  "Name: " + name + '\n' +
+                "Parent Category Name: " + parentCategoryName + '\n' +
+                "ProductIDs: " +'\n'+ getItemsToShow(productIDs) + '\n' +
+                "Sub-categories Names: " + '\n' +getItemsToShow(subCategoriesNames)  + '\n' +
+                "Extra Properties: " + '\n'  + getItemsToShow(extraProperties);
+    }
+
     public static void loadData() throws DataException {
         String directoryPath = "src/main/resources/categories/";
         File directory = new File(directoryPath);
