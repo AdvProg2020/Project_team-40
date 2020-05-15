@@ -1,10 +1,16 @@
 package model;
 
+import exceptions.DataException;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Category {
+public class Category implements Serializable {
     private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
     private String parentCategoryName;
@@ -102,11 +108,28 @@ public class Category {
     }
 
     public static void loadData(){
-        //TODO:IMPLEMENT
+
     }
 
-    public static void saveData(){
-        //TODO:IMPLEMENT
+    public static void saveData() throws DataException {
+        String path = "src/main/resources/categories/";
+        File directory = new File(path);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving categories failed.");
+        for (Map.Entry<String, Category> entry : allCategories.entrySet()) {
+            try {
+                Category category = entry.getValue();
+                FileOutputStream file = new FileOutputStream(path + category.name);
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(category);
+                file.close();
+                outputStream.close();
+
+            } catch (Exception e) {
+                throw new DataException("Saving categories failed.");
+            }
+        }
     }
 
 }
