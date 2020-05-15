@@ -105,10 +105,11 @@ public class Category implements Serializable {
     }
 
     private StringBuilder getItemsToShow(ArrayList<String> items) {
-        StringBuilder result = new StringBuilder("");
+        StringBuilder result = new StringBuilder();
         int index = 1;
         for (String item : items) {
             result.append("  ").append(index).append(". ").append(item).append("\n");
+            index++;
         }
         return result;
     }
