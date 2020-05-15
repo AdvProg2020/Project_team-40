@@ -3,7 +3,9 @@ package View.AccountMenus.ManagrView;
 import Controller.Accounts.ManagerAccountController;
 import View.Menu;
 import exceptions.AccountsException;
+import model.Category;
 
+import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,20 +16,32 @@ public class CategoryMenu extends Menu {
         super("Manage Category Menu", parentMenu);
         managerAccountController = ManagerAccountController.getInstance();
         HashMap<Integer, Menu> submenus = new HashMap<>();
-        submenus.put(1, getAddCategories());
-        submenus.put(2, getRemoveCategories());
-        submenus.put(3, getEditCategories());
+        submenus.put(1, getShowAllCategories());
+        submenus.put(2, getAddCategories());
+        submenus.put(3, getRemoveCategories());
+        submenus.put(4, getEditCategories());
         setSubMenus(submenus);
     }
 
-    @Override
-    public void show() {
-        for (String category : managerAccountController.getAllCategories()) {
-            System.out.println(category);
-            System.out.println("--------------------------------------------------");
-        }
-        System.out.println("=====================================================");
-        super.show();
+    public Menu getShowAllCategories(){
+        return new Menu("View all categories", this) {
+            @Override
+            public void show() {
+                for (String category : managerAccountController.getAllCategories()) {
+                    System.out.println(Category.getCategoryByName(category));
+                    System.out.println("--------------------------------------------------");
+                }
+                System.out.println("Enter anything to return");
+
+            }
+
+            @Override
+            public void execute() {
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 
     public Menu getAddCategories() {
