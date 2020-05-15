@@ -110,7 +110,12 @@ public class CategoryMenu extends Menu {
             private void handleEditCategory(String name) {
                 String oldField;
                 String newField;
-                while (!(oldField = scanner.nextLine()).equalsIgnoreCase("Ok")) {
+                while (true) {
+                    System.out.println("Field: ");
+                    oldField = scanner.nextLine();
+                    if (oldField.equalsIgnoreCase("ok"))
+                        break;
+                    System.out.println("New field: ");
                     newField = scanner.nextLine();
                     try {
                         managerAccountController.editCategory(name, oldField, newField);
