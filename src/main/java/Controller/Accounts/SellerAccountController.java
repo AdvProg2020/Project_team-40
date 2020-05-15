@@ -30,6 +30,7 @@ public class SellerAccountController extends AccountController{
                                     String phoneNumber, double credit, String companyInfo) {
         Seller seller = new Seller(username, password, firstName, lastName, email, phoneNumber, credit, companyInfo);
         Manager.addRequest(new SellingPermission(seller));
+
     }
 
     public void setCompanyInfo(String companyInfo){
@@ -77,17 +78,16 @@ public class SellerAccountController extends AccountController{
         return buyers;
     }
 
-    public void createNewProduct(String name, String company, double price, int quantity, String categoryName,
+    public Product createNewProduct(String name, String company, double price, int quantity, String categoryName,
                                  String description) throws AccountsException {
         Seller seller = (Seller) User.getLoggedInUser();
         if(!seller.isManagerPermission()) {
             throw new AccountsException("Seller doesn't have permission.");
         }
-        if(seller.isManagerPermission()) {
-            Product product = new Product(name, company, price, quantity, seller.getUsername(), categoryName);
-            product.setExplanation(description);
-            Manager.addRequest(new AddProduct(product));
-        }
+        Product product = new Product(name, company, price, quantity, seller.getUsername(), categoryName);
+        product.setExplanation(description);
+        Manager.addRequest(new AddProduct(product));
+        return product;
     }
 
     public void editProduct(String productId, String field, String newField) throws AccountsException{
@@ -172,5 +172,13 @@ public class SellerAccountController extends AccountController{
 
     public boolean getHasPermission() {
         return ((Seller) User.getLoggedInUser()).isManagerPermission();
+    }
+
+    public void setProductsProperties(String propertyName, String value, Product product) {
+        product.addExtraProperty(propertyName, value);
+    }
+
+    public void setProductsProperties(String propertyName, Double value, Product product) {
+        product.addExtraProperty(propertyName, value);
     }
 }

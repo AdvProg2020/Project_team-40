@@ -76,7 +76,7 @@ public class ManageSellersProductsMenu extends Menu {
         };
     }
 
-    private Menu getAddProduct(){
+    private Menu getAddProduct() {
         return new Menu("Add New Product", this) {
             @Override
             public void show() {
@@ -98,9 +98,10 @@ public class ManageSellersProductsMenu extends Menu {
                 String category = getCategory();
                 System.out.println("Description:");
                 String description = scanner.nextLine();
-                //TODO:Get extra category properties and product status
                 try {
-                    sellerAccountController.createNewProduct(productName, company, price, count, category, description);
+                    Product product  = sellerAccountController
+                            .createNewProduct(productName, company, price, count, category, description);
+                    addProperties(product);
                     System.out.println("Product will be added after Manager's acceptances");
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
@@ -121,6 +122,22 @@ public class ManageSellersProductsMenu extends Menu {
                 }
                 categoryNumber = getNumberOfNextMenu(orderedCategories.size());
                 return orderedCategories.get(categoryNumber - 1);
+            }
+
+            private void addProperties(Product product) {
+                String property;
+                System.out.println("Add properties to product, enter end to stop.");
+                System.out.println("Property Name:");
+                while((property = scanner.nextLine().trim()).equalsIgnoreCase("end")) {
+                    System.out.println("Enter amount or quality:");
+                    String value = scanner.nextLine();
+                    if(ConsoleCommand.DOUBLE.getStringMatcher(value).matches()) {
+                        sellerAccountController.setProductsProperties(property, Double.parseDouble(value), product);
+                    } else {
+                        sellerAccountController.setProductsProperties(property, value, product);
+                    }
+                    System.out.println("Property Name:");
+                }
             }
         };
     }
