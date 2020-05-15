@@ -2,10 +2,7 @@ package model;
 
 import exceptions.DataException;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -107,8 +104,26 @@ public class Category implements Serializable {
         return allCategories;
     }
 
-    public static void loadData(){
+    public static void loadData() throws DataException {
+        String directoryPath = "src/main/resources/categories/";
+        File directory = new File(directoryPath);
+        String[] pathNames = directory.list();
+        if (pathNames == null)
+            return;
+        for (String path : pathNames) {
+            try {
+                FileInputStream file = new FileInputStream(directoryPath + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
+                Category category = (Category) inputStream.readObject();
+                allCategories.put(category.getName(), category);
+                file.close();
+                inputStream.close();
+                new File(directoryPath + path).delete();
+            } catch (Exception e) {
+                throw new DataException("Loading categories failed.");
+            }
 
+        }
     }
 
     public static void saveData() throws DataException {
