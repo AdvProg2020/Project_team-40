@@ -18,7 +18,7 @@ public class ProductMenu extends Menu {
         submenus.put(1, new ProductsDigestMenu(this, productID));
         submenus.put(2, getShowAttributes());
         submenus.put(3, getCompare());
-        submenus.put(4, new CommentMenu(this));
+        submenus.put(4, new CommentMenu(this, productID));
         setSubMenus(submenus);
     }
 
