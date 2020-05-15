@@ -2,23 +2,20 @@ package View.ShopingMenus.Product;
 
 import Controller.Menus.ProductController;
 import View.Menu;
-import exceptions.AccountsException;
 import exceptions.MenuException;
-import model.Product;
-import model.users.Seller;
 
 import java.util.*;
 
 public class ProductMenu extends Menu {
-    ProductController productController;
-    String productID;
+    protected ProductController productController;
+    protected String productID;
 
     public ProductMenu(Menu parentMenu, String productID) {
         super("Product Menu", parentMenu);
         this.productID = productID;
         productController = ProductController.getInstance();
         HashMap<Integer, Menu> submenus = new HashMap<>();
-        submenus.put(1, new ProductsDigestMenu(this));
+        submenus.put(1, new ProductsDigestMenu(this, productID));
         submenus.put(2, getShowAttributes());
         submenus.put(3, getCompare());
         submenus.put(4, new CommentMenu(this));
