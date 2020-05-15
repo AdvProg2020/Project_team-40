@@ -14,20 +14,32 @@ public class RequestMenu extends Menu {
         super("Manage Requests Menu", parentMenu);
         managerAccountController = ManagerAccountController.getInstance();
         HashMap<Integer, Menu> submenus = new HashMap<>();
-        submenus.put(1, getRequestDetails());
-        submenus.put(2, getAccept());
-        submenus.put(3, getDecline());
+        submenus.put(1, getShowAllRequests());
+        submenus.put(2, getRequestDetails());
+        submenus.put(3, getAccept());
+        submenus.put(4, getDecline());
         setSubMenus(submenus);
     }
 
-    @Override
-    public void show() {
-        for (Request request : managerAccountController.getALlRequests()) {
-            System.out.println(request);
-            System.out.println("---------------------------------");
-        }
-        System.out.println("====================================");
-        super.show();
+
+    public Menu getShowAllRequests(){
+        return new Menu("View all requests", this) {
+            @Override
+            public void show() {
+                for (Request request : managerAccountController.getALlRequests()) {
+                    System.out.println(request);
+                    System.out.println("---------------------------------");
+                }
+                System.out.println("Enter anything to return");
+            }
+
+            @Override
+            public void execute() {
+                scanner.nextLine();
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+        };
     }
 
     public Menu getRequestDetails() {
