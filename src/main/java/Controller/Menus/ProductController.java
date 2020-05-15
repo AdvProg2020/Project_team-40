@@ -44,6 +44,16 @@ public class ProductController{
         Cart.addProduct(productID, count);
     }
 
+    public ArrayList<String> getSellersForProduct(String productName){
+        ArrayList<String> sellers = new ArrayList<>();
+
+        for(Product product : Product.getAllProducts().values()) {
+            if(product.getName().equals(productName))
+                sellers.add(product.getSeller().getUsername());
+        }
+        return sellers;
+    }
+
     public void sellectSellerForProduct(String productName, String sellerUsername) throws MenuException{
         ArrayList<Product> products = new ArrayList<>();
         for(Product product : Product.getAllProducts().values()) {
