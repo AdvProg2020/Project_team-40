@@ -3,7 +3,6 @@ package View.AccountMenus.SellerView;
 import Controller.Accounts.SellerAccountController;
 import View.ConsoleCommand;
 import View.Menu;
-import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import exceptions.AccountsException;
 import model.Category;
 import model.Product;
@@ -30,12 +29,11 @@ public class ManageSellersProductsMenu extends Menu {
             @Override
             public void show() {
                 ArrayList<String> productsIds = sellerAccountController.getSellerProductIDs();
-                int productNumber = 0;
+                int productNumber = 1;
                 for(String productId: productsIds) {
                     try {
                         System.out.println(productNumber + ". " +
-                                sellerAccountController.getProductDetails(productId).getName() +
-                                "ID: " + productId);
+                                sellerAccountController.getProductDetails(productId).toString());
                     } catch (AccountsException e) {
                         System.out.println(e.getMessage());
                     }
@@ -82,12 +80,12 @@ public class ManageSellersProductsMenu extends Menu {
         return new Menu("Add New Product", this) {
             @Override
             public void show() {
-                System.out.println("Enter product's properties:\n" +
-                        "Name:");
+                System.out.println("Enter product's properties:");
             }
 
             @Override
             public void execute() {
+                System.out.println("Name: ");
                 String productName = scanner.nextLine();
                 System.out.println("Producer company:");
                 String company = scanner.nextLine();
@@ -100,8 +98,9 @@ public class ManageSellersProductsMenu extends Menu {
                 String category = getCategory();
                 System.out.println("Description:");
                 String description = scanner.nextLine();
+                //TODO:Get extra category properties and product status
                 try {
-                    sellerAccountController.createNewProduct(name, company, price, count, category, description);
+                    sellerAccountController.createNewProduct(productName, company, price, count, category, description);
                     System.out.println("Product will be added after Manager's acceptances");
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
@@ -114,7 +113,7 @@ public class ManageSellersProductsMenu extends Menu {
                 //TODO: PUT AN OPTION FOR USER TO GO BACK
                 HashMap<String, Category> categories = sellerAccountController.getAllCategories();
                 ArrayList<String> orderedCategories = new ArrayList<>();
-                int categoryNumber = 0;
+                int categoryNumber = 1;
                 for(String name: categories.keySet()) {
                     System.out.println(categoryNumber + ". " + name);
                     orderedCategories.add(name);

@@ -6,6 +6,8 @@ import model.Comment;
 import model.Product;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductController{
 
@@ -42,6 +44,16 @@ public class ProductController{
         Cart.addProduct(productID, count);
     }
 
+    public ArrayList<String> getSellersForProduct(String productName){
+        ArrayList<String> sellers = new ArrayList<>();
+
+        for(Product product : Product.getAllProducts().values()) {
+            if(product.getName().equals(productName))
+                sellers.add(product.getSeller().getUsername());
+        }
+        return sellers;
+    }
+
     public void sellectSellerForProduct(String productName, String sellerUsername) throws MenuException{
         ArrayList<Product> products = new ArrayList<>();
         for(Product product : Product.getAllProducts().values()) {
@@ -69,7 +81,7 @@ public class ProductController{
         return productChosen;
     }
 
-    public ArrayList<String> getProductAttributes(String productID) throws MenuException{
+    public ArrayList<String> getProductAttributesFace(String productID) throws MenuException{
         Product product = Product.getProductById(productID);
 
         if(product == null)
@@ -92,6 +104,30 @@ public class ProductController{
 
         for(String name : product.getExtraValueProperties().keySet()) {
             productAttributes.add(name);
+        }
+
+        return productAttributes;
+    }
+
+    public HashMap<String, String> getProductAttributes(String productID) throws MenuException{
+        Product product = Product.getProductById(productID);
+
+        if(product == null)
+            throw new MenuException("No product with such name exists.");
+
+        HashMap<String, String> productAttributes = new HashMap<>();
+
+        productAttributes.put("Seller", product.getSeller().getUsername());
+        productAttributes.put("Name" , product.getName());
+        productAttributes.put("Price", String.valueOf(product.getPrice()));
+        productAttributes.put("Status", product.getStatus().toString().toLowerCase());
+        productAttributes.put("Company", product.getCompany());
+        productAttributes.put("Category", product.getCategory());
+        productAttributes.put("Explanation", product.getExplanation());
+        productAttributes.putAll(product.getExtraStringProperties());
+
+        for(Map.Entry<String, Double> entry : product.getExtraValueProperties().entrySet()) {
+            productAttributes.put(entry.getKey(), entry.getValue().toString());
         }
 
         return productAttributes;
