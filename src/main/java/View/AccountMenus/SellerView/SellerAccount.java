@@ -1,6 +1,5 @@
 package View.AccountMenus.SellerView;
 
-import Controller.Accounts.CustomerAccountController;
 import Controller.Accounts.SellerAccountController;
 import Controller.Menus.AllProductsController;
 import View.AccountMenus.PeopleAccountMenu;
@@ -17,16 +16,31 @@ public class SellerAccount extends PeopleAccountMenu {
     public SellerAccount(Menu parentMenu) {
         super("Seller Account", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
+        sellerAccountController = SellerAccountController.getInstance();
         submenus.put(1, getShowInfo());
         submenus.put(2, getEditInfo());
-        submenus.put(3, new ManageSellersProductsMenu(this));
-        submenus.put(4, new ManageSellersOffsMenu(this));
-        submenus.put(5, getCompanyInfo());
-        submenus.put(6, getSalesHistory());
-        submenus.put(7, getShowCategories());
-        submenus.put(8, getViewBalance());
+        submenus.put(3, getCompanyInfo());
+        submenus.put(4, getShowCategories());
+        submenus.put(5, getViewBalance());
+        submenus.put(6, getIncreaseCredit());
+        if(sellerAccountController.getHasPermission()) {
+            setSubMenusWithPermission(submenus);
+        } else {
+            this.setSubMenus(submenus);
+        }
+    }
+
+    private void setSubMenusWithPermission(HashMap<Integer, Menu> submenus) {
+        submenus.put(7, new ManageSellersProductsMenu(this));
+        submenus.put(8, new ManageSellersOffsMenu(this));
+        submenus.put(9, getSalesHistory());
         this.setSubMenus(submenus);
-        sellerAccountController = SellerAccountController.getInstance();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        System.out.println("You need the Managers permission to launch you selling activity.");
     }
 
     private Menu getCompanyInfo(){
@@ -100,6 +114,20 @@ public class SellerAccount extends PeopleAccountMenu {
             public void execute() {
                 parentMenu.show();
                 parentMenu.execute();
+            }
+        };
+    }
+
+    private Menu getIncreaseCredit() {
+        return new Menu("Increase Credit", this) {
+            @Override
+            public void show() {
+                super.show();
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
             }
         };
     }

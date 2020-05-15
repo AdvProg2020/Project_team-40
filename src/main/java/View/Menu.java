@@ -99,9 +99,8 @@ public abstract class Menu {
                 }
                 System.out.println("Have a nice day!");
                 System.exit(1);
-            } else {
+            } else
                 nextMenu = parentMenu;
-            }
         } else if(chosenMenu > subMenus.size()) {
             nextMenu = goToShoppingOrAccountMenus(chosenMenu);
         } else
