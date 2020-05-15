@@ -3,9 +3,12 @@ package View.AccountMenus.SellerView;
 import Controller.Accounts.SellerAccountController;
 import Controller.Menus.AllProductsController;
 import View.AccountMenus.PeopleAccountMenu;
+import View.ConsoleCommand;
 import View.Menu;
 import exceptions.AccountsException;
 import model.log.Log;
+import model.users.Customer;
+import model.users.Seller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +43,9 @@ public class SellerAccount extends PeopleAccountMenu {
     @Override
     public void show() {
         super.show();
-        System.out.println("You need the Managers permission to launch you selling activity.");
+        if(!sellerAccountController.getHasPermission()) {
+            System.out.println("You need the Managers permission to launch you selling activity.");
+        }
     }
 
     private Menu getCompanyInfo(){
@@ -122,12 +127,19 @@ public class SellerAccount extends PeopleAccountMenu {
         return new Menu("Increase Credit", this) {
             @Override
             public void show() {
-                super.show();
+                getViewBalance().show();
+                System.out.println("Enter the amount of money you want to add to your credit:");
             }
 
             @Override
             public void execute() {
-                super.execute();
+                double money = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                        "Please enter a valid number."));
+                Seller seller = (Seller) sellerAccountController.getThisUser();
+                seller.setCredit(seller.getCredit() + money);
+                System.out.println("Credit successfully increased.");
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }
