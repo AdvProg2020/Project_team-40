@@ -1,6 +1,7 @@
 package Controller.Accounts;
 
 import exceptions.AccountsException;
+import exceptions.MenuException;
 import model.DiscountCode;
 import model.Product;
 import model.Score;
@@ -178,10 +179,31 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public void rateProduct(String productID, int rate) {
+    public void rateProduct(String productID, int rate) throws AccountsException{
         Product product = Product.getProductById(productID);
-        Score score = new Score(User.getLoggedInUser().getUsername(), rate, productID);
-        product.addScore(score);
+
+        if(product == null)
+            throw new AccountsException("No product with such name exists.");
+
+        if(User.getLoggedInUser() == null)
+            throw new AccountsException("You are not logged in.");
+
+        //TODO : check if has bought
+
+        Score score = null;
+
+        for(Score score1 : product.getAllScores()) {
+            if(score1.getUserName().equals(User.getLoggedInUser().getUsername())){
+                score = score1;
+                score.setScore(rate);
+            }
+        }
+
+        if(score == null){
+            score = new Score(User.getLoggedInUser().getUsername(), rate, productID);
+            Score.addScore(score);
+            product.addScore(score);
+        }
     }
 
     public double getBalance(){

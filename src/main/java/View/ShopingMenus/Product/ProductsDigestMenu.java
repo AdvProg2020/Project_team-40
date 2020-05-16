@@ -3,6 +3,7 @@ package View.ShopingMenus.Product;
 import Controller.Menus.ProductController;
 import View.Menu;
 import exceptions.MenuException;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,22 @@ public class ProductsDigestMenu extends Menu {
         submenus.put(1, getAddToCart());
         submenus.put(2, getSelectSeller());
         setSubMenus(submenus);
+    }
+
+    @Override
+    public void show(){
+
+        Product product;
+        try {
+            product = productController.digestProduct(productID);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        //System.out.println("Product description : " + product);
+
+
+        super.show();
     }
 
     public Menu getAddToCart(){

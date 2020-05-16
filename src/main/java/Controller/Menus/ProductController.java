@@ -4,6 +4,7 @@ import exceptions.MenuException;
 import model.Cart;
 import model.Comment;
 import model.Product;
+import model.Score;
 import model.users.User;
 
 import java.util.ArrayList;
@@ -170,4 +171,5 @@ public class ProductController{
         }
 
     }
+
 }
