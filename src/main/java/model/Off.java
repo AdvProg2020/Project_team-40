@@ -53,6 +53,12 @@ public class Off implements Serializable{
 
     public void addAllProducts(ArrayList<String> productsId) {
         this.productIDs.addAll(productsId);
+        for (String s : productsId) {
+            Product product = Product.getProductById(s);
+            product.setInOff(true);
+            product.setPriceForOff(discountPercentage);
+
+        }
     }
 
     public void removeProduct(String productID){

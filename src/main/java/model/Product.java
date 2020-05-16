@@ -168,6 +168,11 @@ public class Product implements Serializable{
         this.price = price;
     }
 
+    public void setPriceForOff(double percentage){
+        double newPrice = price * (1 - percentage/100);
+        setPrice(newPrice);
+    }
+
     public void setCount(int count) {
         this.count = count;
     }
