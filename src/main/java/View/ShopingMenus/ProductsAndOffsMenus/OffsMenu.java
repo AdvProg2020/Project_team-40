@@ -29,6 +29,7 @@ public class OffsMenu extends Menu {
             public void show() {
                 for (Product product : offMenuController.getProductsWithOff()) {
                     System.out.println(product);
+                    System.out.println("-------------------------------------");
                 }
                 System.out.println("Enter anything to return");
             }
@@ -44,7 +45,8 @@ public class OffsMenu extends Menu {
 
     public Menu getShowProduct(){
         //TODO:Implement
-        return null;
+        return new Menu("Show product", this) {
+        };
         }
     }
 
