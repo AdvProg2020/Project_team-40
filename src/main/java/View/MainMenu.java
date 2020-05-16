@@ -69,18 +69,19 @@ public class MainMenu extends Menu{
     public Menu getRegister(Menu menu) {
         return new Menu("Register", menu) {
             @Override
-            public void show() {}
+            public void show() {
+                System.out.println("Enter back to end the process.");
+            }
 
             @Override
             public void execute() {
                 System.out.println("Enter username:");
-                String username = scanner.nextLine();
+                String username = getValidInput(ConsoleCommand.DEFAULT, "");
                 System.out.println("Enter password:");
-                String password = scanner.nextLine();
+                String password = getValidInput(ConsoleCommand.DEFAULT, "");
                 if(AccountController.getInstance().doesUserExistWithThisUsername(username)) {
                     System.out.println("User exists with this username.");
-                    parentMenu.show();
-                    parentMenu.execute();
+                    goBack(parentMenu, "back");
                 }
                 Role role = getRole();
                 getRemainingInformation(username, password, role);
@@ -133,7 +134,7 @@ public class MainMenu extends Menu{
                     double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
                             "Enter a valid number."));
                     System.out.println("Enter your company's information.");
-                    String companyInfo = scanner.nextLine().trim();
+                    String companyInfo = getValidInput(ConsoleCommand.DEFAULT, "");
                     //TODO:Handle selling permission request
                     SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
                             lastName, email, phoneNumber, credit, companyInfo);
@@ -150,9 +151,9 @@ public class MainMenu extends Menu{
             @Override
             public void execute() {
                 System.out.println("Enter your username:");
-                String username = scanner.nextLine();
+                String username = getValidInput(ConsoleCommand.DEFAULT, "");
                 System.out.println("Enter your password:");
-                String password = scanner.nextLine();
+                String password = getValidInput(ConsoleCommand.DEFAULT, "");
                 try {
                     AccountController.getInstance().login(username, password);
                     System.out.println("Welcome!");

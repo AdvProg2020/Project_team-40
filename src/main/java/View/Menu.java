@@ -149,7 +149,7 @@ public abstract class Menu {
         int chosenMenu;
         while(true) {
             chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
-                    "Please write the number of one of the options."));
+                    "Please write the number of one of the options, or enter back."));
             if(chosenMenu <= numberOfSubmenus) {
                 break;
             } else {
@@ -162,8 +162,10 @@ public abstract class Menu {
     protected String getValidInput(ConsoleCommand regex, String message) {
         String input;
         while (!regex.getStringMatcher(input = scanner.nextLine().trim()).matches()) {
+            goBack(parentMenu, input);
             System.out.println(message);
         }
+        goBack(parentMenu, input);
         return input;
     }
 
@@ -173,6 +175,13 @@ public abstract class Menu {
         if(this instanceof PeopleAccountMenu) {
             this.parentMenu.show();
             this.parentMenu.execute();
+        }
+    }
+
+    public void goBack(Menu parentMenu, String input) {
+        if(input.equalsIgnoreCase("back")) {
+            parentMenu.show();
+            parentMenu.execute();
         }
     }
 }

@@ -86,9 +86,9 @@ public class ManageSellersProductsMenu extends Menu {
             @Override
             public void execute() {
                 System.out.println("Name: ");
-                String productName = scanner.nextLine();
+                String productName = getValidInput(ConsoleCommand.DEFAULT, "");
                 System.out.println("Producer company:");
-                String company = scanner.nextLine();
+                String company = getValidInput(ConsoleCommand.DEFAULT, "");
                 System.out.println("Price:");
                 double price = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
                         "Enter a valid number."));
@@ -97,7 +97,7 @@ public class ManageSellersProductsMenu extends Menu {
                 System.out.println("Enter a category:");
                 String category = getCategory();
                 System.out.println("Description:");
-                String description = scanner.nextLine();
+                String description = getValidInput(ConsoleCommand.DEFAULT, "");
                 try {
                     Product product  = sellerAccountController
                             .createNewProduct(productName, company, price, count, category, description);
@@ -130,7 +130,7 @@ public class ManageSellersProductsMenu extends Menu {
                 System.out.println("Property Name:");
                 while((property = scanner.nextLine().trim()).equalsIgnoreCase("end")) {
                     System.out.println("Enter amount or quality:");
-                    String value = scanner.nextLine();
+                    String value = getValidInput(ConsoleCommand.DEFAULT, "");
                     if(ConsoleCommand.DOUBLE.getStringMatcher(value).matches()) {
                         sellerAccountController.setProductsProperties(property, Double.parseDouble(value), product);
                     } else {
