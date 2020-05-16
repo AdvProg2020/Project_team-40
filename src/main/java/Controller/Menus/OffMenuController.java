@@ -119,11 +119,13 @@ public class OffMenuController implements Interfaces.Sortable, Interfaces.Filter
     public void disableSort(){
         currentSort = null;
         productSort.setSortType(null);
-        productsToShow = productSort.getSortedProducts();
+        productsToShow = offedProducts;
     }
 
     @Override
     public String getCurrentSort(){
+        if (currentSort == null)
+            return "No sort.";
         return currentSort;
     }
 

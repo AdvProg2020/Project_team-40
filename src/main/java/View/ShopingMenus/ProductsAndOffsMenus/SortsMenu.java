@@ -55,10 +55,13 @@ public class SortsMenu<E extends Sortable> extends Menu {
                 try {
                     for (Product product : controller.addSort(field)) {
                         System.out.println(product);
+                        System.out.println("-----------------------------------");
                     }
                 } catch (MenuException e) {
                     System.out.println(e.getMessage());
                 }
+                this.parentMenu.show();
+                this.parentMenu.execute();
             }
         };
     }
