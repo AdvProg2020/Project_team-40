@@ -174,6 +174,15 @@ public class SellerAccountController extends AccountController{
         return ((Seller) User.getLoggedInUser()).isManagerPermission();
     }
 
+    public void changeProductsStatus(String productId, SetUpStatus status) {
+        Product product = Product.getProductById(productId);
+        product.setStatus(status);
+    }
+
+    public SetUpStatus getSetUpStatus(String productId) {
+        return Product.getProductById(productId).getStatus();
+    }
+
     public void setProductsProperties(String propertyName, String value, Product product) {
         product.addExtraProperty(propertyName, value);
     }
