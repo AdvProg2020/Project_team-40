@@ -45,6 +45,7 @@ public class Product implements Serializable{
         this.comments = new ArrayList<>();
         this.extraStringProperties = new HashMap<>();
         this.extraValueProperties = new HashMap<>();
+        this.status = SetUpStatus.Creating;
         productId = Utility.generateId();
     }
 
@@ -279,5 +280,4 @@ public class Product implements Serializable{
             }
         }
     }
-
 }

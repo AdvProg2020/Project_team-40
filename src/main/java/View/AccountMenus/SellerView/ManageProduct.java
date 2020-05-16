@@ -4,6 +4,7 @@ import Controller.Accounts.SellerAccountController;
 import View.ConsoleCommand;
 import View.Menu;
 import exceptions.AccountsException;
+import model.Category;
 import model.Product;
 
 import javax.security.auth.login.AccountException;
@@ -76,15 +77,17 @@ public class ManageProduct extends Menu {
             public void execute() {
                 int field = getNumberOfNextMenu(6);
                 String newField = null;
-                if(field == 1 || field == 2 || field == 5) {
+                if(field == 1 || field == 2) {
                     System.out.println("Enter new information:");
-                    newField = scanner.nextLine();
+                    newField = getValidInput(ConsoleCommand.DEFAULT, "");
                 } else if(field == 3){
                     System.out.println("Enter new price:");
                     newField = getValidInput(ConsoleCommand.DOUBLE, "Enter a valid number.");
                 } else if(field == 4) {
                     System.out.println("Enter new count:");
                     newField = getValidInput(ConsoleCommand.INTEGER, "Enter a valid number");
+                } else if(field == 5) {
+                    newField = getNewCategory();
                 } else
                     newField = getNewStatus();
                 try {
@@ -108,6 +111,22 @@ public class ManageProduct extends Menu {
                     return"editing";
                 } else {
                     return "confirmed";
+                }
+            }
+
+            private String getNewCategory() {
+                ArrayList<String> categories = new ArrayList<>(sellerAccountController.getAllCategories().keySet());
+                showCategories(categories);
+                String category = categories.get(getNumberOfNextMenu(categories.size()) - 1);
+                //TODO:
+                return null;
+            }
+
+            private void showCategories(ArrayList<String> categories) {
+                int categoryNumber = 1;
+                System.out.println("Choose a category:");
+                for(String category: categories) {
+                    System.out.println(categoryNumber + ". " + category);
                 }
             }
         };
