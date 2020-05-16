@@ -64,6 +64,8 @@ public class ManageProduct extends Menu {
     private Menu getEditProduct() {
         return new Menu("Edit Product", this) {
             String[] fields = {"name", "company", "price", "count", "category", "status"};
+            HashMap<String, String> extraStringProperties;
+            HashMap<String, Double> extraValueProperties;
 
             @Override
             public void show() {
@@ -88,15 +90,15 @@ public class ManageProduct extends Menu {
                     newField = getValidInput(ConsoleCommand.INTEGER, "Enter a valid number");
                 } else if(field == 5) {
                     newField = getNewCategory();
+                    getProperties(newField);
                 } else
                     newField = getNewStatus();
                 try {
-                    sellerAccountController.editProduct(productId, fields[field - 1], newField);
+                    sellerAccountController.editProduct(productId, fields[field - 1], newField,
+                            extraValueProperties, extraStringProperties);
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
-                if(field == 5)
-
                 parentMenu.show();
                 parentMenu.execute();
             }
@@ -118,24 +120,22 @@ public class ManageProduct extends Menu {
 
             private String getNewCategory() {
                 return new ManageSellersProductsMenu(this).getCategory();
-                /*ArrayList<String> categories = new ArrayList<>(sellerAccountController.getAllCategories().keySet());
-                showCategories(categories);
-                Category category = Category.
-                        getCategoryByName(categories.get(getNumberOfNextMenu(categories.size()) - 1));
-                for(String property: category.getExtraProperties()) {
-                    System.out.println()
-                }
-                return null;*/
             }
 
-            /*
-            private void showCategories(ArrayList<String> categories) {
-                int categoryNumber = 1;
-                System.out.println("Choose a category:");
-                for(String category: categories) {
-                    System.out.println(categoryNumber + ". " + category);
+            private void getProperties(String categoryName) {
+                extraStringProperties = new HashMap<>();
+                extraValueProperties = new HashMap<>();
+                ArrayList<String> categoryProperties = sellerAccountController.getCategoryProperties(categoryName);
+                for(String property: categoryProperties) {
+                    System.out.println("Type of property: " + property + "\nEnter value:");
+                    String value = getValidInput(ConsoleCommand.DEFAULT, "");
+                    if(ConsoleCommand.DOUBLE.getStringMatcher(value).matches()) {
+                        extraValueProperties.put(property, Double.parseDouble(value));
+                    } else {
+                        extraStringProperties.put(property, value);
+                    }
                 }
-            }*/
+            }
         };
     }
 

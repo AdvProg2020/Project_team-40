@@ -90,11 +90,12 @@ public class SellerAccountController extends AccountController{
         return product;
     }
 
-    public void editProduct(String productId, String field, String newField) throws AccountsException{
+    public void editProduct(String productId, String field, String newField, HashMap<String, Double>
+            extraValueProperties, HashMap<String, String> extraStringProperties) throws AccountsException{
         if(!((Seller)User.getLoggedInUser()).getProductsId().contains(productId)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
-        Manager.addRequest(new EditProduct(productId, field, newField));
+        Manager.addRequest(new EditProduct(productId, field, newField, extraValueProperties, extraStringProperties));
     }
 
     public void removeProductFromSeller(String productID) throws AccountsException {
