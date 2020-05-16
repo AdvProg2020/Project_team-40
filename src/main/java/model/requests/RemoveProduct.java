@@ -1,6 +1,7 @@
 package model.requests;
 
 import model.Product;
+import model.enumerations.Status;
 
 public class RemoveProduct extends Request{
     private Product product;
@@ -12,8 +13,7 @@ public class RemoveProduct extends Request{
 
     @Override
     public void action() {
-        if(isAccepted) {
-            product.getSeller().deleteProduct(product);
+        if(status == Status.Confirmed) {
             Product.removeProduct(product.getProductId());
         }
     }

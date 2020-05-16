@@ -1,5 +1,6 @@
 package model.requests;
 
+import model.enumerations.Status;
 import model.users.Seller;
 
 public class SellingPermission extends Request{
@@ -12,7 +13,7 @@ public class SellingPermission extends Request{
 
     @Override
     public void action() {
-        if(isAccepted)
+        if(status == Status.Confirmed)
             seller.setManagerPermission(true);
     }
 

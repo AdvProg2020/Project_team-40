@@ -2,6 +2,7 @@ package model.requests;
 
 import model.Category;
 import model.Product;
+import model.enumerations.Status;
 
 public class AddProduct extends Request{
     private Product product;
@@ -13,7 +14,7 @@ public class AddProduct extends Request{
 
     @Override
     public void action() {
-        if(isAccepted) {
+        if(status == Status.Confirmed) {
             Category.getCategoryByName(product.getCategory()).addProduct(product.getProductId());
             product.getSeller().addProduct(product);
             Product.addProduct(product);

@@ -1,18 +1,21 @@
 package model.requests;
 
 import model.Utility;
+import model.enumerations.Status;
+
 public abstract class Request {
     protected String type;
     protected String requestId;
-    protected boolean isAccepted;
+    protected Status status;
 
     public Request(String type) {
         this.type = type;
+        this.status = Status.Waiting;
         requestId = Utility.generateId();
     }
 
-    public void setAccepted(boolean accepted) {
-        isAccepted = accepted;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public abstract void action();
@@ -22,9 +25,7 @@ public abstract class Request {
     }
 
     private String getStatus(){
-        if (isAccepted)
-            return "Accepted";
-        return "Waiting";
+        return status.getStr();
     }
 
     @Override

@@ -1,8 +1,8 @@
 package model.requests;
 
-import Controller.Accounts.SellerAccountController;
 import model.Product;
 import model.enumerations.SetUpStatus;
+import model.enumerations.Status;
 
 public class EditProduct extends Request{
     private Product product;
@@ -18,7 +18,7 @@ public class EditProduct extends Request{
 
     @Override
     public void action() {
-        if(isAccepted) {
+        if(status == Status.Confirmed) {
             editProductAfterManagersAcceptance();
         }
     }

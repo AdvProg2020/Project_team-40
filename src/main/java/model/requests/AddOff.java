@@ -1,6 +1,7 @@
 package model.requests;
 
 import model.Off;
+import model.enumerations.Status;
 
 public class AddOff extends Request{
     private Off off;
@@ -12,7 +13,7 @@ public class AddOff extends Request{
 
     @Override
     public void action() {
-        if(isAccepted){
+        if(status == Status.Confirmed){
             off.getSeller().addOff(off);
             Off.addOff(off);
         }

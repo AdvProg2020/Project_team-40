@@ -3,6 +3,7 @@ package model.requests;
 
 import model.Off;
 import model.enumerations.SetUpStatus;
+import model.enumerations.Status;
 
 public class EditOff extends Request {
     private Off off;
@@ -18,7 +19,7 @@ public class EditOff extends Request {
 
     @Override
     public void action() {
-        if(this.isAccepted) {
+        if(status == Status.Confirmed) {
             editOffAfterManagersAcceptance();
         }
     }
