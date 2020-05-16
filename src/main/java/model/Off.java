@@ -163,7 +163,8 @@ public class Off implements Serializable{
             try {
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
-                allOffs.put(((Off)inputStream.readObject()).getId(), (Off) inputStream.readObject());
+                Off off = (Off)inputStream.readObject();
+                allOffs.put(off.getId(), off);
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
