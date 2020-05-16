@@ -28,6 +28,7 @@ public class Off implements Serializable{
         this.discountPercentage = discountPercentage;
         this.seller = seller;
         productIDs = new ArrayList<>();
+        id = Utility.generateId();
     }
 
     public void setStatus(SetUpStatus status) {
@@ -131,6 +132,27 @@ public class Off implements Serializable{
 
     public static Off getOffByID(String offID){
         return allOffs.get(offID);
+    }
+
+    private StringBuilder getItemsToShow(ArrayList<String> items) {
+        StringBuilder result = new StringBuilder();
+        int index = 1;
+        for (String item : items) {
+            result.append("  ").append(index).append(". ").append(item).append("\n");
+            index++;
+        }
+        return result;
+    }
+    @Override
+    public String toString() {
+
+        return "ProductIDs: " + "\n" + getItemsToShow(productIDs) +
+                "Id: " + id + '\n' +
+                "Status: " + status +
+                "Start Date: " + startDate + '\n' +
+                "End Date: " + endDate + '\n' +
+                "Seller: " + seller + '\n' +
+                "Discount Percentage: " + discountPercentage;
     }
 
     public static void loadData() throws DataException {
