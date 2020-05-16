@@ -183,6 +183,10 @@ public class SellerAccountController extends AccountController{
         return Product.getProductById(productId).getStatus();
     }
 
+    public ArrayList<String> getCategoryProperties(String category) {
+        return Category.getCategoryByName(category).getExtraProperties();
+    }
+
     public void setProductsProperties(String propertyName, String value, Product product) {
         product.addExtraProperty(propertyName, value);
     }

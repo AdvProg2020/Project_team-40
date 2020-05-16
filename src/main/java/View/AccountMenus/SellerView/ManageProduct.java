@@ -95,6 +95,8 @@ public class ManageProduct extends Menu {
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
+                if(field == 5)
+
                 parentMenu.show();
                 parentMenu.execute();
             }
@@ -115,20 +117,25 @@ public class ManageProduct extends Menu {
             }
 
             private String getNewCategory() {
-                ArrayList<String> categories = new ArrayList<>(sellerAccountController.getAllCategories().keySet());
+                return new ManageSellersProductsMenu(this).getCategory();
+                /*ArrayList<String> categories = new ArrayList<>(sellerAccountController.getAllCategories().keySet());
                 showCategories(categories);
-                String category = categories.get(getNumberOfNextMenu(categories.size()) - 1);
-                //TODO:
-                return null;
+                Category category = Category.
+                        getCategoryByName(categories.get(getNumberOfNextMenu(categories.size()) - 1));
+                for(String property: category.getExtraProperties()) {
+                    System.out.println()
+                }
+                return null;*/
             }
 
+            /*
             private void showCategories(ArrayList<String> categories) {
                 int categoryNumber = 1;
                 System.out.println("Choose a category:");
                 for(String category: categories) {
                     System.out.println(categoryNumber + ". " + category);
                 }
-            }
+            }*/
         };
     }
 

@@ -76,7 +76,7 @@ public class ManageSellersProductsMenu extends Menu {
         };
     }
 
-    private Menu getAddProduct() {
+    public Menu getAddProduct() {
         return new Menu("Add New Product", this) {
             @Override
             public void show() {
@@ -109,36 +109,6 @@ public class ManageSellersProductsMenu extends Menu {
                 this.parentMenu.show();
                 this.parentMenu.execute();
             }
-
-            private String getCategory() {
-                //TODO: PUT AN OPTION FOR USER TO GO BACK
-                HashMap<String, Category> categories = sellerAccountController.getAllCategories();
-                ArrayList<String> orderedCategories = new ArrayList<>();
-                int categoryNumber = 1;
-                for(String name: categories.keySet()) {
-                    System.out.println(categoryNumber + ". " + name);
-                    orderedCategories.add(name);
-                    categoryNumber++;
-                }
-                categoryNumber = getNumberOfNextMenu(orderedCategories.size());
-                return orderedCategories.get(categoryNumber - 1);
-            }
-
-            private void addProperties(Product product) {
-                String property;
-                System.out.println("Add properties to product, enter end to stop.");
-                System.out.println("Property Name:");
-                while((property = scanner.nextLine().trim()).equalsIgnoreCase("end")) {
-                    System.out.println("Enter amount or quality:");
-                    String value = getValidInput(ConsoleCommand.DEFAULT, "");
-                    if(ConsoleCommand.DOUBLE.getStringMatcher(value).matches()) {
-                        sellerAccountController.setProductsProperties(property, Double.parseDouble(value), product);
-                    } else {
-                        sellerAccountController.setProductsProperties(property, value, product);
-                    }
-                    System.out.println("Property Name:");
-                }
-            }
         };
     }
 
@@ -164,5 +134,40 @@ public class ManageSellersProductsMenu extends Menu {
                 this.parentMenu.execute();
             }
         };
+    }
+
+    //These methods are used in getAddProduct in this class and getEditProduct
+    // in ManageProduct class to handle the adding of a new category:
+
+    public String getCategory() {
+        HashMap<String, Category> categories = sellerAccountController.getAllCategories();
+        ArrayList<String> orderedCategories = new ArrayList<>();
+        int categoryNumber = 1;
+        for(String name: categories.keySet()) {
+            System.out.println(categoryNumber + ". " + name);
+            orderedCategories.add(name);
+            categoryNumber++;
+        }
+        categoryNumber = getNumberOfNextMenu(orderedCategories.size());
+        return orderedCategories.get(categoryNumber - 1);
+    }
+
+    private void addProperties(Product product) {
+        ArrayList<String> categoryProperties = sellerAccountController.
+                getCategoryProperties(product.getCategory());
+        for(String property: categoryProperties) {
+            String propertyOfProduct = getProperty(getProperty(property));
+            if(ConsoleCommand.DOUBLE.getStringMatcher(propertyOfProduct).matches()) {
+                sellerAccountController.setProductsProperties(property,
+                        Double.parseDouble(propertyOfProduct), product);
+            } else {
+                sellerAccountController.setProductsProperties(property, propertyOfProduct, product);
+            }
+        }
+    }
+
+    private String getProperty(String property) {
+        System.out.println("Enter the value of this property: " + property);
+        return getValidInput(ConsoleCommand.DEFAULT, "");
     }
 }

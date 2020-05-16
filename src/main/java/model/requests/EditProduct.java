@@ -4,16 +4,25 @@ import model.Product;
 import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class EditProduct extends Request{
     private Product product;
     private String field;
     private String newField;
+    private HashMap<String, Double> extraValueProperties;
+    private HashMap<String, String> extraStringProperties;
 
-    public EditProduct(String productId, String field, String newField) {
+    public EditProduct(String productId, String field, String newField, HashMap<String, Double> extraValueProperties,
+                       HashMap<String, String> extraStringProperties) {
+        //TODO: ADD THE EXTRA_PROPERTY THING....
         super("Edit Product");
         this.product = Product.getProductById(productId);
         this.field = field;
         this.newField = newField;
+        this.extraStringProperties = extraStringProperties;
+        this.extraValueProperties = extraValueProperties;
     }
 
     @Override
@@ -33,16 +42,26 @@ public class EditProduct extends Request{
         } else if(field.equalsIgnoreCase("count")) {
             product.setCount(Integer.parseInt(newField));
         } else if(field.equalsIgnoreCase("category")) {
-            product.setCategory(newField);
+            resetProperties();
         } else if(field.equalsIgnoreCase("status")) {
-            if(newField.equalsIgnoreCase("creating")) {
-                product.setStatus(SetUpStatus.Creating);
-            } else if(newField.equalsIgnoreCase("editing")) {
-                product.setStatus(SetUpStatus.Editing);
-            } else if(newField.equalsIgnoreCase("confirmed")) {
-                product.setStatus(SetUpStatus.Confirmed);
-            }
+            resetStatus();
         }
+    }
+
+    private void resetStatus() {
+        if(newField.equalsIgnoreCase("creating")) {
+            product.setStatus(SetUpStatus.Creating);
+        } else if(newField.equalsIgnoreCase("editing")) {
+            product.setStatus(SetUpStatus.Editing);
+        } else if(newField.equalsIgnoreCase("confirmed")) {
+            product.setStatus(SetUpStatus.Confirmed);
+        }
+    }
+
+    private void resetProperties() {
+        product.setCategory(newField);
+        product.setExtraStringProperties(this.extraStringProperties);
+        product.setExtraValueProperties(this.extraValueProperties);
     }
 
     @Override

@@ -125,6 +125,14 @@ public class Product implements Serializable{
         return extraValueProperties.get(name);
     }
 
+    public void setExtraStringProperties(HashMap<String, String> extraStringProperties) {
+        this.extraStringProperties = extraStringProperties;
+    }
+
+    public void setExtraValueProperties(HashMap<String, Double> extraValueProperties) {
+        this.extraValueProperties = extraValueProperties;
+    }
+
     public void resetExtraProperty(String property, String newProperty){
         if (property.equalsIgnoreCase("name"))
             setCategory(newProperty);

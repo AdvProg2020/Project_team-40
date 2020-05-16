@@ -64,7 +64,6 @@ public class AllProductsController implements Sortable, Filterable {
         return allSubCategories;
     }
 
-
     public ArrayList<Product> getAllProducts(){
         return productsToShow;
     }
@@ -97,7 +96,6 @@ public class AllProductsController implements Sortable, Filterable {
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }
-
 
     public void disableFilter(String selectedField) throws MenuException {
         if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
@@ -142,6 +140,4 @@ public class AllProductsController implements Sortable, Filterable {
     public String getCurrentSort(){
         return currentSort;
     }
-
-
 }
