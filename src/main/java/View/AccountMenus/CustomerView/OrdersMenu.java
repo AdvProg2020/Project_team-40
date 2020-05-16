@@ -93,7 +93,12 @@ public class OrdersMenu extends Menu {
 
             @Override
             public void execute() {
-                customerAccountController.rateProduct(productId, getNumberOfNextMenu(5));
+                try {
+                    customerAccountController.rateProduct(productId, getNumberOfNextMenu(5));
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                };
+
                 parentMenu.show();
                 parentMenu.execute();
             }
