@@ -65,19 +65,21 @@ public class Comment implements Serializable{
         return lastUpdate;
     }
 
-    public void updateText(String update){
+    public void updateText(String title, String content){
         numberOfUpdates++;
         lastUpdate = new Date();
-        content = content + "\nEdit " + numberOfUpdates + " : " + update;
+        content = content + "\nEdit " + numberOfUpdates + " : \n" + "title : " + title + "\n" +
+        "------------------------" + "\n" +
+        content ;
     }
 
     @Override
     public String toString(){
         String bought = this.hasBought() ? "This user has purchased the product." : "This user has not purchased this product" ;
         return  "username : " + username + "\n" +
-                "title : " + title + "\n" +
                 bought + "\n" +
-                "------------------------" +
+                "title : " + title + "\n" +
+                "------------------------" + "\n" +
                 "content : " + content + "\n" +
                 "last update : " + lastUpdate;
     }

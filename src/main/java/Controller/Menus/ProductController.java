@@ -149,10 +149,25 @@ public class ProductController{
 
         if(product == null)
             throw new MenuException("No product with such name exists.");
-        //TODO : add all arguments
-        Comment comment = new Comment(User.getLoggedInUser().getUsername(), productID, title, content);
 
-        Comment.addComment(comment);
-        product.addComment(comment);
+        if(User.getLoggedInUser() == null)
+            throw new MenuException("You are not logged in.");
+
+        Comment comment = null;
+
+        for(Comment comment1 : product.getComments()) {
+            if(comment1.getUsername().equals(User.getLoggedInUser().getUsername())) {
+                comment = comment1;
+                comment.updateText(title, content);
+            }
+        }
+
+        //TODO : add all arguments
+        if(comment == null) {
+            comment = new Comment(User.getLoggedInUser().getUsername(), productID, title, content);
+            Comment.addComment(comment);
+            product.addComment(comment);
+        }
+
     }
 }

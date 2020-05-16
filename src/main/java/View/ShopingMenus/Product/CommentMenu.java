@@ -5,6 +5,7 @@ import Controller.Menus.ProductController;
 import View.Menu;
 import exceptions.MenuException;
 import model.Comment;
+import model.enumerations.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +29,13 @@ public class CommentMenu extends Menu {
         try {
             comments = productController.getComments(productID);
         }catch(MenuException e){
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         for(Comment comment : comments) {
-            System.out.print(comment);
+            if(comment.getStatus() == Status.Confirmed){
+                System.out.println(comment);
+            }
         }
 
         super.show();
