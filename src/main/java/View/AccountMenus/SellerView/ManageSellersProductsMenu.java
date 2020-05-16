@@ -160,6 +160,8 @@ public class ManageSellersProductsMenu extends Menu {
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                 }
+                this.parentMenu.show();
+                this.parentMenu.execute();
             }
         };
     }
