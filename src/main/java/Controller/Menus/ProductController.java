@@ -4,6 +4,8 @@ import exceptions.MenuException;
 import model.Cart;
 import model.Comment;
 import model.Product;
+import model.users.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -148,8 +150,9 @@ public class ProductController{
         if(product == null)
             throw new MenuException("No product with such name exists.");
         //TODO : add all arguments
-        Comment comment = new Comment("", productID, title + "\n" + content, false, false, null, null);
+        Comment comment = new Comment(User.getLoggedInUser().getUsername(), productID, title, content);
 
+        Comment.addComment(comment);
         product.addComment(comment);
     }
 }

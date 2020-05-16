@@ -1,34 +1,31 @@
 package model;
 
+import exceptions.DataException;
 import model.enumerations.Status;
-import model.users.User;
 
-import java.time.Instant;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Comment  {
+public class Comment implements Serializable{
+
+    private static HashMap<String, Comment> allComments = new HashMap<>();
+    private static final String PATH = "src/main/resources/comments/";
+
     private String username;
     private String productID;
-    private String text;
-    private Status status;
-    private boolean hasBought;
-    private boolean doesSuggest;
+    private String title;
+    private String content;
+    private Status status = Status.Waiting;
     private Date lastUpdate;
-    private int numberOfUpdates;
-    private ArrayList<String> cons;
-    private ArrayList<String> pros;
-    private int upvotes;
+    private int numberOfUpdates = 0;
 
-    public Comment(String username, String productID, String text, boolean isBought,
-                   boolean doesSuggest, ArrayList<String> pros, ArrayList<String> cons) {
+    public Comment(String username, String productID, String title, String content) {
         this.username = username;
         this.productID = productID;
-        this.text = text;
-        this.hasBought = isBought;
-        this.doesSuggest = doesSuggest;
-        this.pros = pros;
-        this.cons = cons;
+        this.title = title;
+        this.content = content;
         this.lastUpdate = new Date();
     }
 
@@ -40,45 +37,97 @@ public class Comment  {
         return status;
     }
 
+    public String getProductID(){
+        return productID;
+    }
+
     public String getUsername(){
         return username;
     }
 
-    public String getText() {
-        return text;
+    public String getTitle(){
+        return title;
     }
 
-    public boolean hasBought() {
-        return hasBought;
+    public String getContent(){
+        return content;
     }
 
-    public boolean doesSuggest() {
-        return doesSuggest;
-    }
+    public boolean hasBought (){
 
-    public ArrayList<String> getPros() {
-        return pros;
-    }
+        //TODO : this part
+        if(true);
 
-    public ArrayList<String> getCons() {
-        return cons;
+        return false;
     }
 
     public Date getLastUpdate(){
         return lastUpdate;
     }
 
-    public void addUpvote() {
-        upvotes++;
-    }
-
-    public void addDownvote() {
-        upvotes--;
-    }
-
     public void updateText(String update){
         numberOfUpdates++;
         lastUpdate = new Date();
-        text = text + "\nEdit " + numberOfUpdates + " : " + update;
+        content = content + "\nEdit " + numberOfUpdates + " : " + update;
     }
+
+    @Override
+    public String toString(){
+        String bought = this.hasBought() ? "This user has purchased the product." : "This user has not purchased this product" ;
+        return  "username : " + username + "\n" +
+                "title : " + title + "\n" +
+                bought + "\n" +
+                "------------------------" +
+                "content : " + content + "\n" +
+                "last update : " + lastUpdate;
+    }
+
+    public static void addComment(Comment comment){
+        allComments.put(comment.getProductID(), comment);
+    }
+
+    public static void loadData() throws DataException{
+        File directory = new File(PATH);
+        String[] pathNames = directory.list();
+        if (pathNames == null)
+            throw new DataException("Loading comments failed.");
+        for (String path: pathNames) {
+            try {
+                FileInputStream file = new FileInputStream(PATH + path);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
+                Comment comment = (Comment) inputStream.readObject();
+                allComments.put(comment.getProductID(), comment);
+                file.close();
+                inputStream.close();
+                new File(PATH + path).delete();
+            } catch (Exception e) {
+                throw new DataException("Loading comments failed.");
+            }
+
+        }
+
+        for(Map.Entry<String, Comment> entry : allComments.entrySet()) {
+            Product.getProductById(entry.getKey()).addComment(entry.getValue());
+        }
+    }
+
+    public static void saveData() throws DataException {
+        File directory = new File(PATH);
+        if (!directory.exists())
+            if (!directory.mkdir())
+                throw new DataException("Saving comments failed.");
+
+        for (Comment comment : allComments.values()) {
+            try {
+                FileOutputStream file = new FileOutputStream(PATH + comment.getProductID());
+                ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                outputStream.writeObject(comment);
+                file.close();
+                outputStream.close();
+            } catch (Exception e) {
+                throw new DataException("Saving comments failed.");
+            }
+        }
+    }
+
 }
