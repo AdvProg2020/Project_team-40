@@ -148,8 +148,13 @@ public abstract class Menu {
     public int getNumberOfNextMenu(int numberOfSubmenus) {
         int chosenMenu;
         while(true) {
-            chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
-                    "Please write the number of one of the options, or enter back."));
+            if(parentMenu == null) {
+                chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                        "Please write the number of one of the options."));
+            } else {
+                chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                        "Please write the number of one of the options, or enter back."));
+            }
             if(chosenMenu <= numberOfSubmenus) {
                 break;
             } else {
@@ -179,7 +184,9 @@ public abstract class Menu {
     }
 
     public void goBack(Menu parentMenu, String input) {
-        if(input.equalsIgnoreCase("back")) {
+        if(parentMenu == null) {
+
+        } else if(input.equalsIgnoreCase("back")) {
             parentMenu.show();
             parentMenu.execute();
         }

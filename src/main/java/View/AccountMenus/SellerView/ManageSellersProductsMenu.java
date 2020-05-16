@@ -156,7 +156,7 @@ public class ManageSellersProductsMenu extends Menu {
         ArrayList<String> categoryProperties = sellerAccountController.
                 getCategoryProperties(product.getCategory());
         for(String property: categoryProperties) {
-            String propertyOfProduct = getProperty(getProperty(property));
+            String propertyOfProduct = getProperty(property);
             if(ConsoleCommand.DOUBLE.getStringMatcher(propertyOfProduct).matches()) {
                 sellerAccountController.setProductsProperties(property,
                         Double.parseDouble(propertyOfProduct), product);
