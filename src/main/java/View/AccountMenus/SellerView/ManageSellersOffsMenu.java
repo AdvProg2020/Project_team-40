@@ -24,6 +24,7 @@ public class ManageSellersOffsMenu extends Menu {
         submenus.put(2, getViewOff());
         submenus.put(3, getAddOff());
         submenus.put(4, getEditOff());
+        setSubMenus(submenus);
         sellerAccountController = SellerAccountController.getInstance();
     }
 
@@ -222,8 +223,9 @@ public class ManageSellersOffsMenu extends Menu {
 
             private ArrayList<String> getProductIds () {
                 ArrayList<String> productsInOff = new ArrayList<>();
-                String input = scanner.nextLine();
+                String input = "";
                 while(!(input.equalsIgnoreCase("end"))) {
+                    input = scanner.nextLine();
                     if(ConsoleCommand.INTEGER.getStringMatcher(input.trim()).matches()) {
                         int chosenProductNumber = Integer.parseInt(input);
                         try {
@@ -238,6 +240,7 @@ public class ManageSellersOffsMenu extends Menu {
             }
 
             private String getStartDate() throws ParseException {
+                System.out.println("Enter start date in this format --> dd/MM/yy HH:mm:ss:");
                 String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 while(new Date().compareTo(date) >= 0) {
@@ -249,6 +252,7 @@ public class ManageSellersOffsMenu extends Menu {
             }
 
             private String getEndDate(String startDate) throws ParseException {
+                System.out.println("Enter end date in this format --> dd/MM/yy HH:mm:ss:");
                 String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 while(new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(startDate).compareTo(date) >= 0 ||
@@ -274,13 +278,13 @@ public class ManageSellersOffsMenu extends Menu {
     }
 
     private String getNewDiscountPercentage() {
-        System.out.println("Enter a valid number between 0 and 100.");
+        System.out.println("Enter the percentage(A valid number between 0 and 100): ");
         double discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
-                "Enter a valid number between 0 and 100."));
-        while(discountPercentage <= 100 && discountPercentage >= 0) {
-            System.out.println("Enter a valid number between 0 and 100.");
+                "INVALID input.Enter a valid number."));
+        while(discountPercentage > 100 || discountPercentage < 0) {
+            System.out.println("INVALID input.Enter a valid number between 0 and 100.");
             discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
-                    "Enter a valid number between 0 and 100."));
+                    "INVALID input. Enter a valid number."));
         }
         return Double.toString(discountPercentage);
     }
