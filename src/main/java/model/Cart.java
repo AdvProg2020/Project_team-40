@@ -6,35 +6,32 @@ import java.util.HashMap;
 
 
 public class Cart{
-    private static Cart thisCart;
-    private static HashMap<String, Integer> products;
+    private  static Cart thisCart = new Cart();
+    private  HashMap<String, Integer> products;
     //Key : productID, Value : count
 
     private Cart(){
         products = new HashMap<>();
     }
 
-    public static HashMap<String, Integer> getProductIDs() {
+    public  HashMap<String, Integer> getProductIDs() {
         return products;
     }
 
-    public static void addProduct(String productID, int count){
+    public void addProduct(String productID, int count){
         products.put(productID, count);
     }
 
-    public static void removeProduct(String productID){
+    public void removeProduct(String productID){
         products.remove(productID);
     }
 
-    public static void moveProductsToCustomerCart(Customer customer){
+    public void moveProductsToCustomerCart(Customer customer){
         customer.getCart().putAll(products);
         products.clear();
     }
 
     public static Cart getThisCart(){
-        if(thisCart == null)
-            thisCart = new Cart();
-
         return thisCart;
     }
 }
