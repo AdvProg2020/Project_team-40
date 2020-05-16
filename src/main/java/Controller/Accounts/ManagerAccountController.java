@@ -4,6 +4,7 @@ import exceptions.AccountsException;
 import model.Category;
 import model.DiscountCode;
 import model.Product;
+import model.enumerations.Status;
 import model.requests.Request;
 import model.users.Customer;
 import model.users.Manager;
@@ -170,7 +171,7 @@ public class ManagerAccountController extends AccountController{
         Request request = Manager.getRequestById(requestID);
         if (request == null)
             throw new AccountsException("Request not found.");
-        request.setAccepted(true);
+        request.setStatus(Status.Confirmed);
         request.action();
     }
 
@@ -178,7 +179,7 @@ public class ManagerAccountController extends AccountController{
         Request request = Manager.getRequestById(requestID);
         if (request == null)
             throw new AccountsException("Request not found.");
-        request.setAccepted(false);
+        request.setStatus(Status.Declined);
     }
 
     public Set<String> getAllCategories(){
