@@ -8,6 +8,7 @@ import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Product implements Serializable{
 
@@ -190,7 +191,7 @@ public class Product implements Serializable{
         isInOff = inOff;
     }
 
-    public void increaseVisitCount(int visitCount) {
+    public void increaseVisitCount() {
         visitCount++;
     }
 
@@ -216,11 +217,7 @@ public class Product implements Serializable{
     }
 
     public static Product getProductById(String id){
-        if(allProducts.containsKey(id)){
-            return allProducts.get(id);
-        }else {
-            return null;
-        }
+        return allProducts.get(id);
     }
 
     @Override
