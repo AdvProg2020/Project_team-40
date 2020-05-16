@@ -13,7 +13,7 @@ public class SortsMenu<E extends Sortable> extends Menu {
     E controller;
 
     public SortsMenu(Menu parentMenu, E controller) {
-        super("Filters Menu", parentMenu);
+        super("Sorts Menu", parentMenu);
         this.controller = controller;
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, getShowSorts());
