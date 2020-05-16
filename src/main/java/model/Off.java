@@ -107,6 +107,12 @@ public class Off implements Serializable{
         return (Seller)Seller.getUserByUsername(seller);
     }
 
+    public static void cleanProduct(String id){
+        for (String s : allOffs.keySet()) {
+            allOffs.get(s).removeProduct(id);
+        }
+    }
+
     public static HashMap<String, Off> getAllOffs() {
         return allOffs;
     }

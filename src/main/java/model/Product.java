@@ -212,8 +212,15 @@ public class Product implements Serializable{
     }
 
     public static void removeProduct(String id){
-        Product.getProductById(id).getSeller().getProductsId().remove(id);
+        Product product = Product.getProductById(id);
+        Seller seller = Objects.requireNonNull(Product.getProductById(id)).getSeller();
+        seller.getProductsId().remove(id);
+        assert product != null;
+        Category.getCategoryByName(product.getCategory()).removeProduct(id);
+        Off.cleanProduct(id);
+        Cart.getThisCart().removeProduct(id);
         allProducts.remove(id);
+
     }
 
     public static Product getProductById(String id){

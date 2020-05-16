@@ -41,7 +41,7 @@ public class ProductController{
         if(count < product.getCount())
             throw new MenuException("Not enough goods available in stock.");
 
-        Cart.addProduct(productID, count);
+        Cart.getThisCart().addProduct(productID, count);
     }
 
     public ArrayList<String> getSellersForProduct(String productName){
