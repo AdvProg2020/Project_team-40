@@ -2,6 +2,7 @@ package View.ShopingMenus.ProductsAndOffsMenus;
 
 import Controller.Menus.AllProductsController;
 import View.Menu;
+import View.ShopingMenus.Product.ProductMenu;
 import exceptions.AccountsException;
 import model.Product;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductsMenu extends Menu {
-    AllProductsController allProductsController;
+    private AllProductsController allProductsController;
 
     public ProductsMenu(Menu parentMenu) {
         super("Products Menu", parentMenu);
@@ -76,7 +77,7 @@ public class ProductsMenu extends Menu {
             @Override
             public void show(){
                 for(Product product : allProductsController.getAllProducts()) {
-                    System.out.println(product.getName());
+                    System.out.println(product.getName() + " || " + product.getProductId());
                 }
                 System.out.println("Enter anything to return");
             }
@@ -91,7 +92,15 @@ public class ProductsMenu extends Menu {
     }
 
     public Menu getShowProduct(){
-        //TODO:Implement
-        return null;
+        System.out.println("Enter product id :");
+
+        String productID = scanner.nextLine();
+        try {
+            allProductsController.getProduct(productID);
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return new ProductMenu(this, productID);
     }
 }

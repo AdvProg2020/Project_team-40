@@ -8,12 +8,14 @@ import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Product implements Serializable{
 
     private static final String PATH = "src/main/resources/products/";
     private static HashMap<String, Product> allProducts = new HashMap<>();
+
     private String productId;
     private SetUpStatus status;
     private String name;
@@ -52,6 +54,39 @@ public class Product implements Serializable{
     public static void addProduct(Product product){
         allProducts.put(product.productId, product);
     }
+
+    public static HashMap<String, Product> getProductsWithName(String name){
+        HashMap<String, Product> result = new HashMap<>();
+
+        for(Map.Entry<String, Product> entry : allProducts.entrySet()) {
+            if(entry.getValue().getName().equals(name))
+                result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    public static HashMap<String, Product> getProductsFromSeller(String sellerUsername){
+        HashMap<String, Product> result = new HashMap<>();
+
+        for(Map.Entry<String, Product> entry : allProducts.entrySet()) {
+            if(entry.getValue().getSeller().getUsername().equals(sellerUsername))
+                result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    public static Product getProductWithSellerAndName(String name, String sellerUsername){
+
+        for(Map.Entry<String, Product> entry : allProducts.entrySet()) {
+            if(entry.getValue().getName().equals(name) && entry.getValue().getSeller().getUsername().equals(sellerUsername))
+                return entry.getValue();
+        }
+
+        return null;
+    }
+
 
     public String getProductId() {
         return productId;
