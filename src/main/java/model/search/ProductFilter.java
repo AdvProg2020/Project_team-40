@@ -8,6 +8,7 @@ import model.enumerations.Status;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ProductFilter{
     private ArrayList<Product> products;
@@ -22,7 +23,8 @@ public class ProductFilter{
     private HashMap<String , Boolean> availableExtraProperties;
 
     public ProductFilter(ArrayList<Product> products, Category category, String productName, String productCompany,
-                         String sellerName, SetUpStatus status, Range price){
+                         String sellerName, SetUpStatus status, Range price,
+                         HashMap<String, String> stringProperties, HashMap<String, Range> valueProperties){
         this.products = products;
         this.category = category;
         this.productName = productName;
@@ -30,13 +32,18 @@ public class ProductFilter{
         this.sellerName = sellerName;
         this.status = status;
         this.price = price;
-        stringProperties = new HashMap<>();
-        valueProperties = new HashMap<>();
+        this.stringProperties = stringProperties;
+        this.valueProperties = valueProperties;
         availableExtraProperties = new HashMap<>();
+        if (category != null){
+            for(String extraProperty : category.getExtraProperties()) {
+                Boolean flag = Boolean.FALSE;
+                if (stringProperties.containsKey(extraProperty) || valueProperties.containsKey(extraProperty))
+                    flag = Boolean.TRUE;
+                availableExtraProperties.put(extraProperty, flag);
+            }
 
-//        for(String extraProperty : category.getExtraProperties()) {
-//            availableExtraProperties.put(extraProperty, Boolean.FALSE);
-//        }
+        }
     }
 
     public void addExtraProperty(String name, Range range){
@@ -44,16 +51,12 @@ public class ProductFilter{
         availableExtraProperties.put(name, Boolean.TRUE);
     }
 
-    public void addExtraProperty(String name, String value){
-        stringProperties.put(name, value);
-        availableExtraProperties.put(name, Boolean.TRUE);
+    private  void addExtraProperties(ArrayList<String> availableFilters){
+        availableFilters.addAll(availableExtraProperties.keySet());
     }
 
-    private HashMap<String, Boolean> getAvailableExtraProperties(){
-        return availableExtraProperties;
-    }
 
-    public static ArrayList<String> getAvailableFilters(){
+    public  ArrayList<String> getAvailableFilters(){
         ArrayList<String> availableFilters = new ArrayList<>();
         availableFilters.add("Name");
         availableFilters.add("Category");
@@ -61,22 +64,24 @@ public class ProductFilter{
         availableFilters.add("Seller");
         availableFilters.add("Status");
         availableFilters.add("Price");
+        addExtraProperties(availableFilters);
         return availableFilters;
     }
 
     public void disableFilter(String name){
 
-        if(name.equals("category")){
+        if(name.equalsIgnoreCase("category")){
             category = null;
-        }else if(name.equals("name")){
+            availableExtraProperties.clear();
+        }else if(name.equalsIgnoreCase("name")){
             productName = null;
-        }else if(name.equals("company")){
+        }else if(name.equalsIgnoreCase("company")){
             productCompany = null;
-        }else if(name.equals("seller")){
+        }else if(name.equalsIgnoreCase("seller")){
             sellerName = null;
-        }else if(name.equals("status")){
+        }else if(name.equalsIgnoreCase("status")){
             status = null;
-        }else if(name.equals("price")){
+        }else if(name.equalsIgnoreCase("price")){
             price = null;
         }else if(valueProperties.get(name) != null){
             valueProperties.remove(name);
@@ -93,6 +98,8 @@ public class ProductFilter{
         ArrayList<Product> filteredProduct = new ArrayList<>();
 
         for(Product product : products) {
+            boolean isAddingProductValid = true;
+
             if(category != null && !product.getCategory().contains(category.getName())){
                 continue;
             }
@@ -113,16 +120,23 @@ public class ProductFilter{
                 continue;
             }
             for(Map.Entry<String, Range> stringRangeEntry : valueProperties.entrySet()) {
-                if(!stringRangeEntry.getValue().contains(product.getValueProperty(stringRangeEntry.getKey()))){
-                    continue;
+                Range value = stringRangeEntry.getValue();
+                double productValue = product.getValueProperty(stringRangeEntry.getKey());
+                if(!value.contains(productValue)){
+                    isAddingProductValid = false;
+                    break;
                 }
             }
             for(Map.Entry<String, String> stringStringEntry : stringProperties.entrySet()) {
-                if(!stringStringEntry.getValue().equals(product.getStringProperty(stringStringEntry.getKey()))){
-                    continue;
+                String value = stringStringEntry.getValue();
+                String productValue = product.getStringProperty(stringStringEntry.getKey());
+                if(!productValue.equals(value)){
+                    isAddingProductValid = false;
+                    break;
                 }
             }
-            filteredProduct.add(product);
+            if (isAddingProductValid)
+                filteredProduct.add(product);
         }
 
         return filteredProduct;
@@ -135,6 +149,8 @@ public class ProductFilter{
         String sellerName = null;
         SetUpStatus status = null;
         Range range = null;
+        HashMap<String, String> stringProperties = new HashMap<>();
+        HashMap<String, Range>  valueProperties = new HashMap<>();
         for (String filter : stringFilters.keySet()) {
             if (filter.equalsIgnoreCase("name"))
                 productName = stringFilters.get(filter);
@@ -146,13 +162,17 @@ public class ProductFilter{
                 sellerName = stringFilters.get(filter);
             else if (filter.equalsIgnoreCase("status"))
                 status = SetUpStatus.valueOf(stringFilters.get(filter));
+            else
+                stringProperties.put(filter, stringFilters.get(filter));
         }
 
         for (String filter : integerFilters.keySet()) {
             if (filter.equalsIgnoreCase("price"))
                 range = integerFilters.get(filter);
+            else
+                valueProperties.put(filter, integerFilters.get(filter));
         }
 
-        return new ProductFilter(products, category, productName, productCompany, sellerName, status, range);
+        return new ProductFilter(products, category, productName, productCompany, sellerName, status, range, stringProperties, valueProperties);
     }
 }
