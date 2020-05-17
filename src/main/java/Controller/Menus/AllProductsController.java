@@ -31,7 +31,7 @@ public class AllProductsController implements Sortable, Filterable {
         allProducts = new ArrayList<>();
         allProducts.addAll(Product.getAllProducts().values());
         productsToShow = allProducts;
-        productFilter = null;
+        productFilter = ProductFilter.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
         productSort = new ProductSort(productsToShow, null);
     }
 
@@ -76,7 +76,7 @@ public class AllProductsController implements Sortable, Filterable {
     }
 
     public ArrayList<String> getAvailableFilters(){
-        return ProductFilter.getAvailableFilters();
+        return productFilter.getAvailableFilters();
     }
 
     public ArrayList<Product> filter(String name, String value) throws MenuException {
@@ -131,10 +131,10 @@ public class AllProductsController implements Sortable, Filterable {
         return productsToShow;
     }
 
-    public void disableSort(){
+    public void disableSort() {
         currentSort = null;
         productSort.setSortType(null);
-        productsToShow = productSort.getSortedProducts();
+        productsToShow = allProducts;
     }
 
     public String getCurrentSort(){

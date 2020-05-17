@@ -30,7 +30,7 @@ public class OffMenuController implements Interfaces.Sortable, Interfaces.Filter
             offedProducts.addAll(off.getProducts());
         }
         productsToShow = offedProducts;
-        productFilter = null;
+        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productSort = new ProductSort(productsToShow, null);
     }
 
@@ -54,7 +54,7 @@ public class OffMenuController implements Interfaces.Sortable, Interfaces.Filter
 
     @Override
     public ArrayList<String> getAvailableFilters(){
-        return ProductFilter.getAvailableFilters();
+        return productFilter.getAvailableFilters();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class OffMenuController implements Interfaces.Sortable, Interfaces.Filter
     @Override
     public void disableFilter(String selectedField) throws MenuException {
         if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
-            throw new MenuException("This field wax not selected.");
+            throw new MenuException("This field has not been selected.");
         currentStringFilters.remove(selectedField);
         currentIntegerFilters.remove(selectedField);
         productFilter.disableFilter(selectedField);
