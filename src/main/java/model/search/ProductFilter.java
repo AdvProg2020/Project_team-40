@@ -34,9 +34,9 @@ public class ProductFilter{
         valueProperties = new HashMap<>();
         availableExtraProperties = new HashMap<>();
 
-        for(String extraProperty : category.getExtraProperties()) {
-            availableExtraProperties.put(extraProperty, Boolean.FALSE);
-        }
+//        for(String extraProperty : category.getExtraProperties()) {
+//            availableExtraProperties.put(extraProperty, Boolean.FALSE);
+//        }
     }
 
     public void addExtraProperty(String name, Range range){
@@ -102,7 +102,7 @@ public class ProductFilter{
             if(productCompany != null && !product.getCompany().contains(productCompany)){
                 continue;
             }
-            if(sellerName != null && (!product.getSeller().getFirstName().contains(sellerName) ||
+            if(sellerName != null && (!product.getSeller().getFirstName().contains(sellerName) &&
                     !product.getSeller().getLastName().contains(sellerName)) ){
                 continue;
             }
