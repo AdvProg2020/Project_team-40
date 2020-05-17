@@ -276,16 +276,27 @@ public class Product implements Serializable{
         return allProducts.get(id);
     }
 
+    private StringBuilder getExtraPropertiesToShow(){
+        StringBuilder result = new StringBuilder();
+        for (String s : extraStringProperties.keySet()) {
+            result.append(s).append(": ").append(extraStringProperties.get(s)).append("\n");
+        }
+        for (String s : extraValueProperties.keySet()) {
+            result.append(s).append(": ").append(extraValueProperties.get(s)).append("\n");
+        }
+        return result;
+    }
     @Override
     public String toString() {
-        return "ProductId :'" + productId + '\n' +
+        return "ProductId :" + productId + '\n' +
                 "Status : " + status + '\n' +
-                "Name: '" + name + '\n' +
-                "Company: '" + company + '\n' +
+                "Name: " + name + '\n' +
+                "Company: " + company + '\n' +
                 "Price: " + price +'\n'+
                 "Count: " + count +'\n'+
-                "Category: '" + category + '\n' +
-                "Explanation: '" + explanation + '\n' +
+                "Category: " + category + '\n' +
+                getExtraPropertiesToShow() +
+                "Explanation: " + explanation + '\n' +
                 "VisitCount: " + visitCount;
     }
 
