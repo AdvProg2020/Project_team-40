@@ -16,7 +16,7 @@ public class Loader {
     private Loader(){}
 
     public void loadData() throws DataException {
-        //User.loadData();
+        User.loadData();
         Category.loadData();
         Product.loadData();
         DiscountCode.loadData();

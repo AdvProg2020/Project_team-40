@@ -3,6 +3,7 @@ package View.ShopingMenus.ProductsAndOffsMenus;
 import Controller.Menus.OffMenuController;
 import View.Menu;
 import View.ShopingMenus.Product.ProductMenu;
+import exceptions.MenuException;
 import model.Off;
 import model.Product;
 
@@ -45,16 +46,27 @@ public class OffsMenu extends Menu{
     }
 
     public Menu getShowProduct(){
-        System.out.println("Enter product id :");
+        return new Menu("Show product", this) {
+           @Override
+           public void show() {
+               System.out.println("Enter product id :");
+           }
 
-        String productID = scanner.nextLine();
-        try {
-            offMenuController.getProduct(productID);
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return new ProductMenu(this, productID);
+            @Override
+            public void execute() {
+                String productID = scanner.nextLine();
+                try {
+                    offMenuController.getProduct(productID);
+                } catch(MenuException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                }
+                ProductMenu productMenu = new ProductMenu(this.parentMenu, productID);
+                productMenu.show();
+                productMenu.execute();
+            }
+        };
     }
 }
 
