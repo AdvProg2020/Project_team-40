@@ -5,7 +5,6 @@ import model.log.Log;
 import model.requests.Request;
 import model.users.User;
 
-import java.io.IOException;
 
 public class Loader {
     private static Loader loader;
@@ -24,8 +23,8 @@ public class Loader {
         DiscountCode.loadData();
         Log.loadData();
         Off.loadData();
-        //Comment.loadData();
-        //Score.saveData();
+//        Comment.loadData();
+//        Score.loadData();
     }
 
     public void saveData() throws DataException {

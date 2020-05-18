@@ -128,7 +128,8 @@ public abstract class  User implements Serializable {
         String usersDirectoryPath = "src/main/resources/users/";
         File usersDirectory = new File(usersDirectoryPath);
         String[] pathNames = usersDirectory.list();
-        assert pathNames != null;
+        if (pathNames == null)
+            return;
         for(String path: pathNames) {
             try {
                 FileInputStream file = new FileInputStream(usersDirectoryPath + path);

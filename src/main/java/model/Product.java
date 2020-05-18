@@ -308,7 +308,7 @@ public class Product implements Serializable{
         File directory = new File(PATH);
         String[] pathNames = directory.list();
         if (pathNames == null)
-            throw new DataException("Loading products failed.");
+            return;
         for (String path: pathNames) {
             try {
                 FileInputStream file = new FileInputStream(PATH + path);

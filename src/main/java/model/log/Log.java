@@ -115,7 +115,8 @@ public class Log implements Serializable {
         String usersDirectoryPath = "src/main/resources/logs/";
         File logsDirectory = new File(usersDirectoryPath);
         String[] pathNames = logsDirectory.list();
-        assert pathNames != null;
+        if (pathNames == null)
+            return;
         for(String path: pathNames) {
             try {
                 FileInputStream file = new FileInputStream(usersDirectoryPath + path);

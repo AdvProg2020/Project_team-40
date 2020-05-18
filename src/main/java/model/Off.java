@@ -177,7 +177,8 @@ public class Off implements Serializable{
     public static void loadData() throws DataException {
         File directory = new File(PATH);
         String[] pathNames = directory.list();
-        assert pathNames != null;
+        if (pathNames == null)
+            return;
         for (String path: pathNames) {
             try {
                 FileInputStream file = new FileInputStream(PATH + path);
