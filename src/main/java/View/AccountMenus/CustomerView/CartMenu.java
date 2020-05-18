@@ -152,10 +152,9 @@ public class CartMenu extends Menu {
             public void show() {
                 System.out.println("Cart:");
                 HashMap<Product, Integer> products = customerAccountController.getCart();
-                System.out.printf("%30s%30s%30s", "Product", "Quantity", "Price");
                 for(Map.Entry<Product, Integer> entry: products.entrySet()) {
-                    System.out.printf("%30s%30s%30s", entry.getKey().getName(), entry.getValue(),
-                            entry.getKey().getPrice());
+                    System.out.printf("product: %s\n\tQuantity: %s\n\tPrice: %s\n",
+                            entry.getKey().getName(), entry.getValue(), entry.getKey().getPrice());
                 }
                 System.out.println("Enter back if you want to stop the process.");
             }

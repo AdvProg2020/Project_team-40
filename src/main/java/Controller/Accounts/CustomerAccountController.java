@@ -90,6 +90,7 @@ public class CustomerAccountController extends AccountController{
         customer.getLogsId().add(log.getId());
         Log.getLogs().put(log.getId(), log);
         customer.addLog(log);
+        customer.removeAllProducts();
         addLogToSellers(log);
         resetPurchaseVariables();
         return log;

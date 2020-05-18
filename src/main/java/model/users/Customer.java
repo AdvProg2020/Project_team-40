@@ -13,7 +13,7 @@ public class Customer extends User{
     private double credit;
     private ArrayList<String> logsId;
     private HashMap<String, Integer> cart;
-    //Key Of products is ID, the value is the quantity of product
+    //Key Of cart is the products ID, the value is the quantity
 
     public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
@@ -65,7 +65,9 @@ public class Customer extends User{
     public void decreaseProductsQuantity(String productId) {
         Integer quantity = cart.get(productId);
         cart.remove(productId);
-        cart.put(productId, quantity - 1);
+        if(quantity != 1) {
+            cart.put(productId, quantity - 1);
+        }
     }
 
     public void deleteProduct(Product product){

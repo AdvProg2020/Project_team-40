@@ -92,7 +92,7 @@ public class Log implements Serializable {
             int quantity = entry.getValue();
             Product product = Product.getProductById(id);
             productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Product: " + product.getName() + "\n";
-            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: " + product.getSeller() + "\n";
+            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: \n" + product.getSeller();
             productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Quantity: " + quantity + "\n";
         }
         return productsWithQuantityAndSellers;
@@ -104,7 +104,7 @@ public class Log implements Serializable {
         return "Log ID: " + id + "\n" +
                 "Date: " + date + "\n" +
                 "Cost: " + cost + "\n" +
-                "Discount" + costWithoutDiscount + "\n" +
+                "Discount: " + costWithoutDiscount + "\n" +
                 "Buyer: " + buyerName + "\n" +
                 "Address: " + address + "\n" +
                 "Status: " + deliveryStatus + "\n" +
