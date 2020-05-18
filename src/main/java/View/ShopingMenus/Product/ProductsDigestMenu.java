@@ -44,10 +44,10 @@ public class ProductsDigestMenu extends Menu {
             public void show(){
                 try{
                     productController.addProductToCart(productID, 1);
+                    System.out.println("Product successfully added to cart");
                 }catch(MenuException e){
                     System.out.print(e.getMessage());
                 }
-                System.out.println("Product successfully added to cart");
                 System.out.println("Enter anything to return");
             }
 

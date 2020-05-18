@@ -1,9 +1,11 @@
 package View.ShopingMenus.ProductsAndOffsMenus;
 
 import Controller.Menus.AllProductsController;
+import Controller.Menus.OffMenuController;
 import View.Menu;
 import View.ShopingMenus.Product.ProductMenu;
 import exceptions.AccountsException;
+import exceptions.MenuException;
 import model.Product;
 
 import java.util.ArrayList;
@@ -11,10 +13,12 @@ import java.util.HashMap;
 
 public class ProductsMenu extends Menu {
     private AllProductsController allProductsController;
+    private OffMenuController offMenuController;
 
     public ProductsMenu(Menu parentMenu) {
         super("Products Menu", parentMenu);
         allProductsController = AllProductsController.getInstance();
+        offMenuController = OffMenuController.getInstance();
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, getViewCategories());
         submenus.put(2, getViewSubcategories());
@@ -25,7 +29,7 @@ public class ProductsMenu extends Menu {
         setSubMenus(submenus);
     }
 
-    public Menu getViewCategories(){
+    public Menu getViewCategories() {
         return new Menu("Show categories", this){
             @Override
             public void show(){
@@ -92,15 +96,26 @@ public class ProductsMenu extends Menu {
     }
 
     public Menu getShowProduct(){
-        System.out.println("Enter product id :");
+        return new Menu("Show product", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter product id :");
+            }
 
-        String productID = scanner.nextLine();
-        try {
-            allProductsController.getProduct(productID);
-        }catch(Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return new ProductMenu(this, productID);
+            @Override
+            public void execute() {
+                String productID = scanner.nextLine();
+                try {
+                    offMenuController.getProduct(productID);
+                } catch(MenuException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.show();
+                    this.parentMenu.execute();
+                }
+                ProductMenu productMenu = new ProductMenu(this.parentMenu, productID);
+                productMenu.show();
+                productMenu.execute();
+            }
+        };
     }
 }

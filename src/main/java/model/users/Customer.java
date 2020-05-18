@@ -65,7 +65,7 @@ public class Customer extends User{
     public void decreaseProductsQuantity(String productId) {
         Integer quantity = cart.get(productId);
         cart.remove(productId);
-        cart.put(productId, quantity + 1);
+        cart.put(productId, quantity - 1);
     }
 
     public void deleteProduct(Product product){

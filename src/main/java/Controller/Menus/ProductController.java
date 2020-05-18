@@ -5,6 +5,7 @@ import model.Cart;
 import model.Comment;
 import model.Product;
 import model.requests.AddComment;
+import model.users.Customer;
 import model.users.Manager;
 import model.users.User;
 
@@ -42,10 +43,15 @@ public class ProductController{
         if(product == null)
             throw new MenuException("No product with such name exists.");
 
-        if(count < product.getCount())
+        if(count > product.getCount())
             throw new MenuException("Not enough goods available in stock.");
 
-        Cart.getThisCart().addProduct(productID, count);
+        Customer customer;
+        if((customer = (Customer) User.getLoggedInUser()) == null) {
+            Cart.getThisCart().addProduct(productID, count);
+        } else {
+            customer.getCart().put(productID, count);
+        }
     }
 
     public ArrayList<String> getSellersForProduct(String productName){

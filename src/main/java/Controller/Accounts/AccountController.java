@@ -29,6 +29,9 @@ public class AccountController{
         if(!tempUser.getPassword().equals(password)) {
             throw new AccountsException("Wrong password");
         }
+        if(tempUser instanceof Customer) {
+            Cart.getThisCart().moveProductsToCustomerCart((Customer) tempUser);
+        }
         User.setLoggedInUser(tempUser);
     }
 
