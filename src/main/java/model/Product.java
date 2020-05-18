@@ -215,6 +215,11 @@ public class Product implements Serializable{
         setPrice(newPrice);
     }
 
+    public void resetPrice(double percentage){
+        double newPrice = Math.round(price * (1 + percentage/100));
+        setPrice(newPrice);
+            }
+
     public void setCount(int count) {
         this.count = count;
     }

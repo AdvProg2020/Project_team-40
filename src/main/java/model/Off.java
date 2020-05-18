@@ -3,6 +3,7 @@ package model;
 import exceptions.DataException;
 import model.enumerations.SetUpStatus;
 import model.users.Seller;
+import model.users.User;
 
 import java.io.*;
 import java.text.ParseException;
@@ -48,9 +49,15 @@ public class Off implements Serializable{
         this.discountPercentage = discountPercentage;
     }
 
-    public void addProduct(String productID){
-        productIDs.add(productID);
+    public void makeExpire(){
+        for (String productID : productIDs) {
+            getSeller().deleteOff(this);
+            Product product = Product.getProductById(productID);
+            product.setInOff(false);
+            product.resetPrice(discountPercentage);
+        }
     }
+
 
     public void addAllProducts(ArrayList<String> productsId) {
         this.productIDs.addAll(productsId);
@@ -129,6 +136,11 @@ public class Off implements Serializable{
         return this.id;
     }
 
+    private static void activateOff(Off off){
+        addOff(off);
+        off.getSeller().addOff(off);
+    }
+
     public static void addOff(Off off){
         allOffs.put(off.getId(), off);
     }
@@ -171,7 +183,11 @@ public class Off implements Serializable{
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
                 Off off = (Off)inputStream.readObject();
-                allOffs.put(off.getId(), off);
+                if (off.isAvailable()) {
+                    activateOff(off);
+                }
+                else
+                    off.makeExpire();
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
