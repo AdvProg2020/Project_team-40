@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Score implements Serializable{
 
+    private static final long serialVersionUID = -7976969868504962487L;
     private static HashMap<String, Score> allScores = new HashMap<>();
     private static final String PATH = "src/main/resources/scores/";
 

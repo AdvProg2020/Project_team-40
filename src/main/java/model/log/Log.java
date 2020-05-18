@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Log implements Serializable {
+    private static final long serialVersionUID = -8627037771511122106L;
     private String id;
     private Date date;
     private double cost;

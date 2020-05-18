@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class Comment implements Serializable{
 
+    private static final long serialVersionUID = 333247810325727580L;
     private static HashMap<String, Comment> allComments = new HashMap<>();
     private static final String PATH = "src/main/resources/comments/";
 

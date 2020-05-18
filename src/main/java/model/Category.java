@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Category implements Serializable {
+    private static final long serialVersionUID = 156158850124079952L;
     private static HashMap<String, Category> allCategories = new HashMap<>();
     private String name;
     private String parentCategoryName;

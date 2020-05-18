@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DiscountCode implements Serializable {
+    private static final long serialVersionUID = -639372600290420004L;
     private static ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private String code;
     private Date startDate;

@@ -10,6 +10,7 @@ import model.users.Manager;
 import java.io.*;
 
 public abstract class Request implements Serializable {
+    private static final long serialVersionUID = -4762922681383129456L;
     protected String type;
     protected String requestId;
     protected Status status;

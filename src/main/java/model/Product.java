@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Product implements Serializable{
-
+    private static final long serialVersionUID = -945372685735934996L;
     private static final String PATH = "src/main/resources/products/";
     private static HashMap<String, Product> allProducts = new HashMap<>();
 
