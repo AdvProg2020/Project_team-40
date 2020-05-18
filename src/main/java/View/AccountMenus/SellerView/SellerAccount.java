@@ -88,7 +88,7 @@ public class SellerAccount extends PeopleAccountMenu {
                 AllProductsController allProductsController = AllProductsController.getInstance();
                 ArrayList<String> categories = allProductsController.getAllCategories();
                 for(String category: categories) {
-                    System.out.println(category + ":\n");
+                    System.out.println(category);
                     try {
                         ArrayList<String> subCategories = allProductsController.getAllSubCategories(category);
                         for(String subCategory: subCategories) {

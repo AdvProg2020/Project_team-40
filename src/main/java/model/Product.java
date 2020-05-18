@@ -87,7 +87,6 @@ public class Product implements Serializable{
         return null;
     }
 
-
     public String getProductId() {
         return productId;
     }
