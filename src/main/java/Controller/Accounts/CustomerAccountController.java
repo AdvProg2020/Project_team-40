@@ -151,8 +151,9 @@ public class CustomerAccountController extends AccountController{
                     sellersProfit += product.getPrice();
                 }
             }
-            seller.addLog(new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
+            seller.addLog( new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
                     sellersProfit, productsId, log.getBuyerName(), log.getAddress(),false));
+            seller.setCredit(seller.getCredit() + sellersProfit);
         }
     }
 

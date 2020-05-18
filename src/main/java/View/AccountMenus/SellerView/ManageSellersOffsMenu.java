@@ -37,6 +37,7 @@ public class ManageSellersOffsMenu extends Menu {
                 int offNumber = 1;
                 for(Off off: offs.values()) {
                     System.out.println(offNumber + ". " + off.getId());
+                    offNumber++;
                 }
             }
 

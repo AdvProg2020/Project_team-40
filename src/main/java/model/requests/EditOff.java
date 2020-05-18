@@ -19,7 +19,9 @@ public class EditOff extends Request {
 
     @Override
     public void action() {
-        editOffAfterManagersAcceptance();
+        if(status.equals(Status.Confirmed)) {
+            editOffAfterManagersAcceptance();
+        }
     }
 
     public void editOffAfterManagersAcceptance() {
