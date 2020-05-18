@@ -104,7 +104,7 @@ public class MainMenu extends Menu{
                 return roles.get(chosenRole);
             }
 
-            private void getRemainingInformation(String username, String password, Role role) {//TODO: NEEDS TESTING
+            private void getRemainingInformation(String username, String password, Role role) {
                 System.out.println("First name:");
                 String firstName = getValidInput(ConsoleCommand.NAME,
                         "Your name can only contain alphabetic characters.");
@@ -119,7 +119,7 @@ public class MainMenu extends Menu{
             }
 
             private void createAccount(String username, String password, String firstName, String lastName,
-                                       String email, String phoneNumber, Role role) {//TODO:TEST
+                                       String email, String phoneNumber, Role role) {
                 if(role.equals(Role.CUSTOMER)) {
                     System.out.println("Enter credit:");
                     double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
@@ -135,7 +135,6 @@ public class MainMenu extends Menu{
                             "Enter a valid number."));
                     System.out.println("Enter your company's information.");
                     String companyInfo = getValidInput(ConsoleCommand.DEFAULT, "");
-                    //TODO:Handle selling permission request
                     SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
                             lastName, email, phoneNumber, credit, companyInfo);
                 }

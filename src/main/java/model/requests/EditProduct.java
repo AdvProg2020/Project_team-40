@@ -16,7 +16,6 @@ public class EditProduct extends Request{
 
     public EditProduct(String productId, String field, String newField, HashMap<String, Double> extraValueProperties,
                        HashMap<String, String> extraStringProperties) {
-        //TODO: ADD THE EXTRA_PROPERTY THING....
         super("Edit Product");
         this.product = Product.getProductById(productId);
         this.field = field;

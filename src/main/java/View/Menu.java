@@ -51,7 +51,7 @@ public abstract class Menu {
         this.subMenus = subMenus;
     }
 
-    public void show(){//TODO: TEST IT!
+    public void show() {
         System.out.println(this.name + ":");
         numberOfOptions = subMenus.size() + 1;
         for(Integer menuNumber: subMenus.keySet()) {
@@ -91,7 +91,6 @@ public abstract class Menu {
                 nextMenu = new MainMenu().getRegisterOrLogin(this);
         } else if(chosenMenu == numberOfOptions){
             if(parentMenu == null) {
-                //TODO:HANDLE SAVE AND LOAD PROBLEMS
                 try {
                     Loader.getLoader().saveData();
                 } catch (DataException e) {

@@ -66,7 +66,6 @@ public class ManageSellersProductsMenu extends Menu {
                     ManageProduct manageProduct = new ManageProduct(parentMenu, product.getProductId());
                     manageProduct.show();
                     manageProduct.execute();
-                    //TODO: TEST THAT DOES IT RETURN TO THIS METHOD OR TO THE RIGHT MENU
                 } catch (AccountsException e) {
                     System.out.println(e.getMessage());
                     parentMenu.show();

@@ -57,7 +57,7 @@ public abstract class PeopleAccountMenu extends Menu {
                 }
             }
 
-            private void editInfo(int numOfNextMenu, ArrayList<String> fields) {//TODO: TEST IT!
+            private void editInfo(int numOfNextMenu, ArrayList<String> fields) {
                 AccountController accountController = AccountController.getInstance();
                 String newInformation;
                 if(numOfNextMenu == 1) {

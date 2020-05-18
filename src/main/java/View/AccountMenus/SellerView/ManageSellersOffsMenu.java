@@ -119,7 +119,6 @@ public class ManageSellersOffsMenu extends Menu {
             }
 
             private String getNewDate(boolean isStartDate, Off off) {
-                //TODO: TEST THIS
                 String errorMessage = "Enter a valid date in this format:\n" +
                         "dd/MM/yy HH:mm:ss\n" +
                         "For example: 12/01/10 9:55:34";
@@ -150,7 +149,6 @@ public class ManageSellersOffsMenu extends Menu {
             }
 
             private String getEndDate(String errorMessage, Off off) throws ParseException {
-                //TODO:HANDLE THE CASE THAT USER ENTERS 25 AS AN HOUR
                 String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").
                         parse(dateInString);
@@ -180,7 +178,6 @@ public class ManageSellersOffsMenu extends Menu {
         };
     }
 
-    //TODO:TEST IT
     private Menu getAddOff(){
         return new Menu("Add Off", this) {
             ArrayList<String> productsIds;
