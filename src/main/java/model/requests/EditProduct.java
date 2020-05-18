@@ -46,6 +46,8 @@ public class EditProduct extends Request{
         }
     }
 
+
+
     private void resetStatus() {
         Product product = Product.getProductById(productId);
         if(newField.equalsIgnoreCase("creating")) {
@@ -63,9 +65,15 @@ public class EditProduct extends Request{
         product.setExtraStringProperties(this.extraStringProperties);
         product.setExtraValueProperties(this.extraValueProperties);
     }
+    private StringBuilder getPropertiesToEdit(){
+        StringBuilder propertiesToEdit = new StringBuilder();
+        String line = "==============================\n";
+        propertiesToEdit.append(line).append("Field: ").append(field).append('\n').append("New field: ").append(newField).append('\n').append(line);
+        return propertiesToEdit;
+    }
 
     @Override
     public String toString() {
-        return super.toString() + "Edited product: " + Product.getProductById(productId);
+        return super.toString() + "Edited product: " + Product.getProductById(productId) + '\n' + getPropertiesToEdit();
     }
 }
