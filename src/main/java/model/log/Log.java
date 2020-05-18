@@ -27,7 +27,7 @@ public class Log implements Serializable {
         this.date = date;
         this.cost = cost;
         this.costWithoutDiscount = costWithoutDiscount;
-        this.productsId = productsId;
+        this.productsId = (HashMap<String, Integer>) productsId.clone();
         this.address = address;
         id = Utility.generateId();
         allLogs.put(id, this);
@@ -92,7 +92,7 @@ public class Log implements Serializable {
             int quantity = entry.getValue();
             Product product = Product.getProductById(id);
             productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Product: " + product.getName() + "\n";
-            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: \n" + product.getSeller();
+            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: " + product.getSeller();
             productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Quantity: " + quantity + "\n";
         }
         return productsWithQuantityAndSellers;
