@@ -13,7 +13,7 @@ public class AddOff extends Request{
 
     @Override
     public void action() {
-        if(status == Status.Confirmed){
+        if(status.equals(Status.Confirmed)) {
             off.getSeller().addOff(off);
             Off.addOff(off);
         }

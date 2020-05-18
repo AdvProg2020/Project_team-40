@@ -234,7 +234,10 @@ public class ManageSellersOffsMenu extends Menu {
                         } catch (AccountsException e) {
                             System.out.println(e.getMessage());
                         }
+                    } else {
+                        System.out.println("Enter the number of one of the above products.");
                     }
+
                 }
                 return productsInOff;
             }
@@ -257,7 +260,8 @@ public class ManageSellersOffsMenu extends Menu {
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 while(new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(startDate).compareTo(date) >= 0 ||
                         new Date().compareTo(date) >= 0) {
-                    System.out.println("Invalid date, this date is either after expiration or before now.");
+                    System.out.println("Invalid date, " +
+                            "this date is either after expiration or before now or before start date.");
                     dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
                     date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 }
@@ -280,11 +284,11 @@ public class ManageSellersOffsMenu extends Menu {
     private String getNewDiscountPercentage() {
         System.out.println("Enter the percentage(A valid number between 0 and 100): ");
         double discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
-                "INVALID input.Enter a valid number."));
+                "Invalid input.Enter a valid number."));
         while(discountPercentage > 100 || discountPercentage < 0) {
-            System.out.println("INVALID input.Enter a valid number between 0 and 100.");
+            System.out.println("Invalid input.Enter a valid number between 0 and 100.");
             discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
-                    "INVALID input. Enter a valid number."));
+                    "Invalid input. Enter a valid number."));
         }
         return Double.toString(discountPercentage);
     }

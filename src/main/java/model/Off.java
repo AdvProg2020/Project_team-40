@@ -27,6 +27,7 @@ public class Off implements Serializable{
         this.endDate = endDate;
         this.discountPercentage = discountPercentage;
         this.seller = seller;
+        this.status = SetUpStatus.Confirmed;
         productIDs = new ArrayList<>();
         id = Utility.generateId();
     }
@@ -154,7 +155,7 @@ public class Off implements Serializable{
 
         return "ProductIDs: " + "\n" + getItemsToShow(productIDs) +
                 "Id: " + id + '\n' +
-                "Status: " + status +
+                "Status: " + status + '\n' +
                 "Start Date: " + startDate + '\n' +
                 "End Date: " + endDate + '\n' +
                 "Seller: " + seller + '\n' +
