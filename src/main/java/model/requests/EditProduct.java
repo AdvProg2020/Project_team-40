@@ -3,12 +3,10 @@ package model.requests;
 import model.Product;
 import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EditProduct extends Request{
-    private Product product;
+    private String productId;
     private String field;
     private String newField;
     private HashMap<String, Double> extraValueProperties;
@@ -17,7 +15,7 @@ public class EditProduct extends Request{
     public EditProduct(String productId, String field, String newField, HashMap<String, Double> extraValueProperties,
                        HashMap<String, String> extraStringProperties) {
         super("Edit Product");
-        this.product = Product.getProductById(productId);
+        this.productId = productId;
         this.field = field;
         this.newField = newField;
         this.extraStringProperties = extraStringProperties;
@@ -32,6 +30,7 @@ public class EditProduct extends Request{
     }
 
     public void editProductAfterManagersAcceptance(){
+        Product product = Product.getProductById(productId);
         if(field.equals("name")) {
             product.setName(newField);
         } else if(field.equalsIgnoreCase("company")) {
@@ -48,6 +47,7 @@ public class EditProduct extends Request{
     }
 
     private void resetStatus() {
+        Product product = Product.getProductById(productId);
         if(newField.equalsIgnoreCase("creating")) {
             product.setStatus(SetUpStatus.Creating);
         } else if(newField.equalsIgnoreCase("editing")) {
@@ -58,6 +58,7 @@ public class EditProduct extends Request{
     }
 
     private void resetProperties() {
+        Product product = Product.getProductById(productId);
         product.setCategory(newField);
         product.setExtraStringProperties(this.extraStringProperties);
         product.setExtraValueProperties(this.extraValueProperties);
@@ -65,6 +66,6 @@ public class EditProduct extends Request{
 
     @Override
     public String toString() {
-        return super.toString() + "Edited product: " + product;
+        return super.toString() + "Edited product: " + Product.getProductById(productId);
     }
 }

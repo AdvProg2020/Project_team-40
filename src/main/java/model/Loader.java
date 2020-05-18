@@ -2,6 +2,7 @@ package model;
 
 import exceptions.DataException;
 import model.log.Log;
+import model.requests.Request;
 import model.users.User;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Loader {
     private Loader(){}
 
     public void loadData() throws DataException {
+        Request.loadData();
         User.loadData();
         Category.loadData();
         Product.loadData();
@@ -25,6 +27,7 @@ public class Loader {
     }
 
     public void saveData() throws DataException {
+        Request.saveData();
         Category.saveData();
         Product.saveData();
         DiscountCode.saveData();

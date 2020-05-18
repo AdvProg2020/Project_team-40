@@ -4,22 +4,22 @@ import model.Product;
 import model.enumerations.Status;
 
 public class RemoveProduct extends Request{
-    private Product product;
+    private String productId;
 
-    public RemoveProduct(Product product) {
+    public RemoveProduct(String productId) {
         super("Remove Product");
-        this.product = product;
+        this.productId = productId;
     }
 
     @Override
     public void action() {
         if(status == Status.Confirmed) {
-            Product.removeProduct(product.getProductId());
+            Product.removeProduct(productId);
         }
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Product: " + product;
+        return super.toString() + "Product: " + Product.getProductById(productId);
     }
 }

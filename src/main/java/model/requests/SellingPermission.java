@@ -4,21 +4,23 @@ import model.enumerations.Status;
 import model.users.Seller;
 
 public class SellingPermission extends Request{
-    private Seller seller;
+    private String sellerUsername;
 
-    public SellingPermission(Seller seller) {
+    public SellingPermission(String sellerUsername) {
         super("Selling Permission");
-        this.seller = seller;
+        this.sellerUsername = sellerUsername;
     }
 
     @Override
     public void action() {
-        if(status == Status.Confirmed)
+        if(status == Status.Confirmed) {
+            Seller seller = (Seller)Seller.getUserByUsername(sellerUsername);
             seller.setManagerPermission(true);
+        }
     }
 
     @Override
     public String toString() {
-        return super.toString() + " Seller: " + seller;
+        return super.toString() + " Seller: " + Seller.getUserByUsername(sellerUsername);
     }
 }

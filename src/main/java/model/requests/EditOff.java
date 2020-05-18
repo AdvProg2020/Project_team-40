@@ -6,13 +6,13 @@ import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
 
 public class EditOff extends Request {
-    private Off off;
+    private String offId;
     private String field;
     private String newField;
 
     public EditOff(String offID, String field, String newField) {
         super("Edit Off");
-        this.off = Off.getOffByID(offID);
+        this.offId = offID;
         this.field = field;
         this.newField = newField;
     }
@@ -25,6 +25,7 @@ public class EditOff extends Request {
     }
 
     public void editOffAfterManagersAcceptance() {
+        Off off = Off.getOffByID(offId);
         if(field.equals("discount percentage")) {
             off.setDiscountPercentage(Double.parseDouble(newField));
         } else if(field.equals("start date")) {
@@ -44,7 +45,7 @@ public class EditOff extends Request {
 
     @Override
     public String toString() {
-        return super.toString() + "Edited Off: " + off + "\n" +
+        return super.toString() + "Edited Off: " + offId + "\n" +
                 "Edited field: " + field + "\n" +
                 "Field changed to:" + newField;
     }

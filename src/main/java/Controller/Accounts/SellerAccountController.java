@@ -29,7 +29,7 @@ public class SellerAccountController extends AccountController{
     public void createSellerAccount(String username, String password, String firstName, String lastName, String email,
                                     String phoneNumber, double credit, String companyInfo) {
         Seller seller = new Seller(username, password, firstName, lastName, email, phoneNumber, credit, companyInfo);
-        Manager.addRequest(new SellingPermission(seller));
+        Manager.addRequest(new SellingPermission(seller.getUsername()));
 
     }
 
@@ -102,7 +102,7 @@ public class SellerAccountController extends AccountController{
         if(!((Seller)User.getLoggedInUser()).getProductsId().contains(productID)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
-        Manager.addRequest(new RemoveProduct(Product.getProductById(productID)));
+        Manager.addRequest(new RemoveProduct(productID));
     }
 
     public void increaseProductsCount(int addedQuantity, String productId) {
