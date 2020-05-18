@@ -30,7 +30,7 @@ public abstract class Request implements Serializable {
         return requestId;
     }
 
-    private String getStatus(){
+    public String getStatus(){
         return status.getStr();
     }
 

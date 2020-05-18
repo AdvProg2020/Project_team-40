@@ -171,8 +171,10 @@ public class ManagerAccountController extends AccountController{
         Request request = Manager.getRequestById(requestID);
         if (request == null)
             throw new AccountsException("Request not found.");
-        request.setStatus(Status.Confirmed);
-        request.action();
+        if (!request.getStatus().equalsIgnoreCase(Status.Confirmed.getStr())) {
+            request.setStatus(Status.Confirmed);
+            request.action();
+        }
     }
 
     public void declineRequest(String requestID) throws AccountsException {
