@@ -185,7 +185,7 @@ public class ManageSellersOffsMenu extends Menu {
             ArrayList<String> productsIds;
             String errorMessage = "Enter a valid date in this format:\n" +
                     "dd/MM/yy HH:mm:ss\n" +
-                    "For example: 12/01/10 9:55:34";
+                    "For example: 12/01/10 09:55:34";
 
             @Override
             public void show() {

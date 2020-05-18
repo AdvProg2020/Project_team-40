@@ -173,7 +173,7 @@ public class ManageProduct extends Menu {
                         "Enter a valid number."));
                 try {
                     sellerAccountController.decreaseProductCount(removedQuantity, productId);
-                    System.out.println("Product's count Increased.");
+                    System.out.println("Product's count decreased.");
                 } catch (AccountException e) {
                     System.out.println(e.getMessage());
                 }
