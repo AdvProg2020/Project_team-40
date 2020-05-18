@@ -24,11 +24,15 @@ public class Loader {
         DiscountCode.loadData();
         Log.loadData();
         Off.loadData();
+        //Comment.loadData();
+        //Score.saveData();
     }
 
     public void saveData() throws DataException {
         Request.saveData();
         Category.saveData();
+        //Comment.saveData();
+        //Score.saveData();
         Product.saveData();
         DiscountCode.saveData();
         User.saveData();

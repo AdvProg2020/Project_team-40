@@ -84,7 +84,7 @@ public class ProductMenu extends Menu {
                 allAttributeFaces.clear();
                 allAttributeFaces.addAll(set);
 
-                System.out.print("Field || First product || Second product");
+                System.out.println("Field || First product || Second product");
                 for(String face : allAttributeFaces) {
                     System.out.print(face);
                     System.out.print(" || ");
@@ -95,6 +95,7 @@ public class ProductMenu extends Menu {
                     if(secondAttributes.containsKey(face)){
                         System.out.print(secondAttributes.get(face));
                     }
+                    System.out.println("");
                 }
 
                 System.out.println("Enter anything to return");
