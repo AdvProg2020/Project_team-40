@@ -191,7 +191,9 @@ public class Product implements Serializable{
     }
 
     public void setName(String name) {
+        allProducts.remove(this.name);
         this.name = name;
+        allProducts.put(name, this);
     }
 
     public void setCompany(String company) {
