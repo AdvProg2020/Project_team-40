@@ -222,14 +222,19 @@ public class ManagerAccountController extends AccountController{
     public void createCategory(String categoryName, String parentCategory, ArrayList<String> properties) throws AccountsException {
         if (Category.getCategoryByName(categoryName) != null)
             throw new AccountsException("Category exists with this name");
-        if (parentCategory != null && Category.getCategoryByName(parentCategory) == null)
+        Category parent = Category.getCategoryByName(parentCategory);
+        if (parentCategory != null && parent == null)
             throw new AccountsException("Parent category not found.");
         Category category = new Category(categoryName, parentCategory);
-        Category.addCategory(category);
+        if (parent != null) {
+            for (String parentProperty : Category.getCategoryByName(parentCategory).getExtraProperties()) {
+                category.addProperty(parentProperty);
+            }
+        }
         for (String property : properties) {
             category.addProperty(property);
         }
-
+        Category.addCategory(category);
     }
 
     public void removeCategory(String categoryName) throws AccountsException {
