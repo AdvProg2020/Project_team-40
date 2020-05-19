@@ -20,6 +20,7 @@ public class Product implements Serializable{
     private SetUpStatus status;
     private String name;
     private String company;
+    private double basePrice;
     private double price;
     private int count;
     private String seller;
@@ -38,6 +39,7 @@ public class Product implements Serializable{
         this.name = name;
         this.company = company;
         this.price = price;
+        this.basePrice = price;
         this.count = count;
         this.seller = seller;
         this.category = category;
@@ -219,7 +221,7 @@ public class Product implements Serializable{
     public void resetPrice(double percentage){
         double newPrice = Math.round(price * (1 + percentage/100));
         setPrice(newPrice);
-            }
+    }
 
     public void setCount(int count) {
         this.count = count;
@@ -306,12 +308,15 @@ public class Product implements Serializable{
                 "Status : " + status + '\n' +
                 "Name: " + name + '\n' +
                 "Company: " + company + '\n' +
+                "Seller: " + seller + '\n' +
+                "BasePrice: " + basePrice + '\n' +
                 "Price: " + price +'\n'+
                 "Count: " + count +'\n'+
                 "Category: " + category + '\n' +
                 getExtraPropertiesToShow() +
                 "Explanation: " + explanation + '\n' +
-                "VisitCount: " + visitCount;
+                "VisitCount: " + visitCount + '\n'
+                +"AverageScore: " + getAverageScore() + '\n';
     }
 
     public static void loadData() throws DataException {
