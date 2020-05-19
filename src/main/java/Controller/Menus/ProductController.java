@@ -64,7 +64,7 @@ public class ProductController{
         return sellers;
     }
 
-    public void sellectSellerForProduct(String productName, String sellerUsername) throws MenuException{
+    public void selectSellerForProduct(String productName, String sellerUsername) throws MenuException{
         ArrayList<Product> products = new ArrayList<>();
         for(Product product : Product.getAllProducts().values()) {
             if(product.getName().equals(productName))
@@ -179,4 +179,7 @@ public class ProductController{
 
     }
 
+    public double getProductsRatings(String productId) {
+        return Product.getProductById(productId).getAverageScore();
+    }
 }

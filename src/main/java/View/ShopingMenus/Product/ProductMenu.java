@@ -19,6 +19,7 @@ public class ProductMenu extends Menu {
         submenus.put(2, getShowAttributes());
         submenus.put(3, getCompare());
         submenus.put(4, new CommentMenu(this, productID));
+        submenus.put(5, getShowRatings());
         setSubMenus(submenus);
     }
 
@@ -106,6 +107,21 @@ public class ProductMenu extends Menu {
                 scanner.nextLine();
                 this.parentMenu.show();
                 this.parentMenu.execute();
+            }
+        };
+    }
+
+    public Menu getShowRatings() {
+        return new Menu("Product's Rates", this) {
+            @Override
+            public void show() {
+                System.out.println("Product's average score: " + productController.getProductsRatings(productID));
+            }
+
+            @Override
+            public void execute() {
+                parentMenu.show();
+                parentMenu.execute();
             }
         };
     }

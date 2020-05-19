@@ -263,6 +263,9 @@ public class Product implements Serializable{
     }
 
     public void addScore(Score score){
+        if(allScores == null) {
+            allScores = new ArrayList<>();
+        }
         allScores.add(score);
     }
 

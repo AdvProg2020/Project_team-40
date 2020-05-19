@@ -78,7 +78,7 @@ public class ProductsDigestMenu extends Menu {
             public void execute(){
                 String seller = scanner.nextLine();
                 try {
-                    productController.sellectSellerForProduct(productController.digestProduct(productID).getName(), seller);
+                    productController.selectSellerForProduct(productController.digestProduct(productID).getName(), seller);
                 }catch(MenuException e){
                     System.out.print(e.getMessage());
                 }

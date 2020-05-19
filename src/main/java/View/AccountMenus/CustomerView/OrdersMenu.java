@@ -99,8 +99,7 @@ public class OrdersMenu extends Menu {
                     customerAccountController.rateProduct(productId, getNumberOfNextMenu(5));
                 }catch(Exception e){
                     System.out.println(e.getMessage());
-                };
-
+                }
                 parentMenu.show();
                 parentMenu.execute();
             }
