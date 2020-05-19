@@ -3,6 +3,7 @@ package model;
 import exceptions.DataException;
 import model.enumerations.Status;
 import model.log.Log;
+import model.users.Customer;
 import model.users.User;
 
 import java.io.*;
@@ -68,11 +69,7 @@ public class Comment implements Serializable{
     }
 
     public boolean hasBought (){
-
-        //TODO : this part
-        if(true);
-
-        return false;
+        return ((Customer)User.getLoggedInUser()).hasBought(productID);
     }
 
     public Date getLastUpdate(){
