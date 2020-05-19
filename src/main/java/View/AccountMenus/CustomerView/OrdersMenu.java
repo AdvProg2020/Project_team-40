@@ -74,7 +74,8 @@ public class OrdersMenu extends Menu {
             public void show() {
                 ArrayList<Log> orders = new ArrayList<>(customerAccountController.getOrders().values());
                 for(int i = 1; i <= orders.size(); i++) {
-                    System.out.println(i + ": " + orders.get(i - 1).getDate() + "\n" + orders.get(i - 1).getCost());
+                    System.out.println(i + ": " + orders.get(i - 1).getDate() + "\nCost: "
+                            + orders.get(i - 1).getCost());
                 }
                 System.out.println("Choose one of the logs:");
                 int numOfOrder = getNumberOfNextMenu(orders.size());

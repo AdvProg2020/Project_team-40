@@ -87,6 +87,7 @@ public class CustomerAccountController extends AccountController{
         Customer customer = (Customer) User.getLoggedInUser();
         Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
                 customer.getUsername(), address,false);
+        decreaseProductsCountAfterPurchase(log);
         customer.getLogsId().add(log.getId());
         Log.getLogs().put(log.getId(), log);
         customer.addLog(log);
@@ -155,6 +156,14 @@ public class CustomerAccountController extends AccountController{
             seller.addLog( new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
                     sellersProfit, productsId, log.getBuyerName(), log.getAddress(),false));
             seller.setCredit(seller.getCredit() + sellersProfit);
+        }
+    }
+
+    private void decreaseProductsCountAfterPurchase(Log log) {
+        HashMap<String, Integer> productsIds = log.getProductsId();
+        for(Map.Entry<String, Integer> entry: productsIds.entrySet()) {
+            Product product = Product.getProductById(entry.getKey());
+            product.setCount(product.getCount() - entry.getValue());
         }
     }
 
