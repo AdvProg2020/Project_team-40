@@ -25,6 +25,7 @@ public class Loader {
         Off.loadData();
         Comment.loadData();
         Score.loadData();
+        Cart.loadData();
     }
 
     public void saveData() throws DataException {
@@ -37,6 +38,7 @@ public class Loader {
         User.saveData();
         Log.saveData();
         Off.saveData();
+        Cart.saveData();
     }
 
     public static Loader getLoader() {
