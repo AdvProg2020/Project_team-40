@@ -14,8 +14,10 @@ public class Comment implements Serializable{
 
     private static final long serialVersionUID = 333247810325727580L;
     private static HashMap<String, Comment> allComments = new HashMap<>();
+    //ID, Comment
     private static final String PATH = "src/main/resources/comments/";
 
+    private String commentID;
     private String username;
     private String productID;
     private String title;
@@ -30,6 +32,15 @@ public class Comment implements Serializable{
         this.title = title;
         this.content = content;
         this.lastUpdate = new Date();
+        this.commentID = Utility.generateId();
+    }
+
+    public static Comment getComment(String commentID){
+        return allComments.get(commentID);
+    }
+
+    public String getCommentID(){
+        return commentID;
     }
 
     public void setStatus(Status status) {
@@ -71,9 +82,9 @@ public class Comment implements Serializable{
     public void updateText(String title, String content){
         numberOfUpdates++;
         lastUpdate = new Date();
-        content = content + "\nEdit " + numberOfUpdates + " : \n" + "title : " + title + "\n" +
+        this.content = this.content + "\nEdit " + numberOfUpdates + " : \n" + "title : " + title + "\n" +
         "------------------------" + "\n" +
-        content ;
+        "content : " + content ;
     }
 
     @Override
@@ -88,7 +99,7 @@ public class Comment implements Serializable{
     }
 
     public static void addComment(Comment comment){
-        allComments.put(comment.getProductID(), comment);
+        allComments.put(comment.getCommentID(), comment);
     }
 
     public static void loadData() throws DataException{
@@ -101,7 +112,7 @@ public class Comment implements Serializable{
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
                 Comment comment = (Comment) inputStream.readObject();
-                allComments.put(comment.getProductID(), comment);
+                allComments.put(comment.getCommentID(), comment);
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
@@ -112,7 +123,7 @@ public class Comment implements Serializable{
         }
 
         for(Map.Entry<String, Comment> entry : allComments.entrySet()) {
-            Product.getProductById(entry.getKey()).addComment(entry.getValue());
+            Product.getProductById(entry.getValue().getProductID()).addComment(entry.getValue());
         }
     }
 
@@ -124,7 +135,7 @@ public class Comment implements Serializable{
 
         for (Comment comment : allComments.values()) {
             try {
-                FileOutputStream file = new FileOutputStream(PATH + comment.getProductID());
+                FileOutputStream file = new FileOutputStream(PATH + comment.getCommentID());
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(comment);
                 file.close();

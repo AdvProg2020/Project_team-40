@@ -25,8 +25,8 @@ public class Product implements Serializable{
     private String seller;
     private String category;
     private String explanation;
-    transient private ArrayList<Score> allScores;
-    transient private ArrayList<Comment> comments;
+    private transient ArrayList<Score> allScores;
+    private transient ArrayList<Comment> comments;
     private boolean isInOff;
     private ArrayList<String> allBuyers;
     private HashMap<String, String> extraStringProperties;
@@ -35,7 +35,6 @@ public class Product implements Serializable{
 
     public Product(String name, String company, double price,
                    int count, String seller, String category) {
-        //TODO: DOESNT IT NEED TO SAVE SUBCATEGORY?
         this.name = name;
         this.company = company;
         this.price = price;
@@ -295,6 +294,12 @@ public class Product implements Serializable{
         }
         return result;
     }
+
+    private void makeNewArrayList(){
+        allScores = new ArrayList<>();
+        comments = new ArrayList<>();
+    }
+
     @Override
     public String toString() {
         return "ProductId :" + productId + '\n' +
@@ -319,6 +324,7 @@ public class Product implements Serializable{
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
                 Product product = (Product)inputStream.readObject();
+                product.makeNewArrayList();
                 allProducts.put(product.getProductId(), product);
                 file.close();
                 inputStream.close();
