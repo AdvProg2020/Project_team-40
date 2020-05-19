@@ -60,6 +60,8 @@ public class ManagerAccountController extends AccountController{
     }
 
     private void addCustomers(DiscountCode discountCode,ArrayList<String> customers) throws AccountsException {
+        if (customers.size() == 0)
+            throw new AccountsException("No user has been selected!");
         for (String customer : customers) {
             User user = User.getUserByUsername(customer);
             if (user == null)
@@ -81,9 +83,10 @@ public class ManagerAccountController extends AccountController{
         catch (Exception e){
             throw new AccountsException("Invalid date format");
         }
-        DiscountCode discountCode = new DiscountCode(start, end, percentage, maxDiscount, countForEachUser);
-        if(discountCode.isExpired())
+        if(DiscountCode.isExpired(start, end)) {
             throw new AccountsException("Invalid date");
+        }
+        DiscountCode discountCode = new DiscountCode(start, end, percentage, maxDiscount, countForEachUser);
         addCustomers(discountCode, listOfUsernames);
     }
 
@@ -148,7 +151,7 @@ public class ManagerAccountController extends AccountController{
                 discountCode.setMaxAmount(Double.parseDouble(newValue));
                 break;
             case "Count per user":
-                discountCode.setMaxAmount(Integer.parseInt(newValue));
+                discountCode.setCountPerUser(Integer.parseInt(newValue));
                 break;
             default:
                 throw new AccountsException("Field not found.");

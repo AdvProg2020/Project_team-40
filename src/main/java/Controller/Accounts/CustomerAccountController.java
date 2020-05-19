@@ -1,7 +1,6 @@
 package Controller.Accounts;
 
 import exceptions.AccountsException;
-import exceptions.MenuException;
 import model.DiscountCode;
 import model.Product;
 import model.Score;
@@ -119,7 +118,7 @@ public class CustomerAccountController extends AccountController{
             throw new AccountsException("Invalid discount code.");
         } else if(!discountCode.isCountRemained(customer)) {
             throw new AccountsException("Discount code has been used.");
-        } else if(discountCode.isExpired()) {
+        } else if(DiscountCode.isExpired(discountCode.getEndDate(), discountCode.getStartDate())) {
             throw new AccountsException("Date Expire");
         } else {
             costWithoutDiscount = customer.getTotalPriceOfCart();
