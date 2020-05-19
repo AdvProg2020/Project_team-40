@@ -4,6 +4,7 @@ import exceptions.MenuException;
 import model.Cart;
 import model.Comment;
 import model.Product;
+import model.enumerations.Status;
 import model.requests.AddComment;
 import model.users.Customer;
 import model.users.Manager;
@@ -167,6 +168,7 @@ public class ProductController{
             if(comment1.getUsername().equals(User.getLoggedInUser().getUsername())) {
                 comment = comment1;
                 comment.updateText(title, content);
+                comment.setStatus(Status.Waiting);
             }
         }
 
@@ -174,8 +176,10 @@ public class ProductController{
             comment = new Comment(User.getLoggedInUser().getUsername(), productID, title, content);
             Comment.addComment(comment);
             product.addComment(comment);
-            Manager.addRequest(new AddComment(comment));
         }
+
+
+        Manager.addRequest(new AddComment(comment.getCommentID()));
 
     }
 

@@ -20,13 +20,14 @@ public class Product implements Serializable{
     private SetUpStatus status;
     private String name;
     private String company;
+    private double basePrice;
     private double price;
     private int count;
     private String seller;
     private String category;
     private String explanation;
-    transient private ArrayList<Score> allScores;
-    transient private ArrayList<Comment> comments;
+    private transient ArrayList<Score> allScores;
+    private transient ArrayList<Comment> comments;
     private boolean isInOff;
     private ArrayList<String> allBuyers;
     private HashMap<String, String> extraStringProperties;
@@ -35,10 +36,10 @@ public class Product implements Serializable{
 
     public Product(String name, String company, double price,
                    int count, String seller, String category) {
-        //TODO: DOESNT IT NEED TO SAVE SUBCATEGORY?
         this.name = name;
         this.company = company;
         this.price = price;
+        this.basePrice = price;
         this.count = count;
         this.seller = seller;
         this.category = category;
@@ -220,7 +221,7 @@ public class Product implements Serializable{
     public void resetPrice(double percentage){
         double newPrice = Math.round(price * (1 + percentage/100));
         setPrice(newPrice);
-            }
+    }
 
     public void setCount(int count) {
         this.count = count;
@@ -295,18 +296,27 @@ public class Product implements Serializable{
         }
         return result;
     }
+
+    private void makeNewArrayList(){
+        allScores = new ArrayList<>();
+        comments = new ArrayList<>();
+    }
+
     @Override
     public String toString() {
         return "ProductId :" + productId + '\n' +
                 "Status : " + status + '\n' +
                 "Name: " + name + '\n' +
                 "Company: " + company + '\n' +
+                "Seller: " + seller + '\n' +
+                "BasePrice: " + basePrice + '\n' +
                 "Price: " + price +'\n'+
                 "Count: " + count +'\n'+
                 "Category: " + category + '\n' +
                 getExtraPropertiesToShow() +
                 "Explanation: " + explanation + '\n' +
-                "VisitCount: " + visitCount;
+                "VisitCount: " + visitCount + '\n'
+                +"AverageScore: " + getAverageScore() + '\n';
     }
 
     public static void loadData() throws DataException {
@@ -319,6 +329,7 @@ public class Product implements Serializable{
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
                 Product product = (Product)inputStream.readObject();
+                product.makeNewArrayList();
                 allProducts.put(product.getProductId(), product);
                 file.close();
                 inputStream.close();

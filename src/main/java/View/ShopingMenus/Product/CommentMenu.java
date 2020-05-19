@@ -28,9 +28,12 @@ public class CommentMenu extends Menu {
         ArrayList<Comment> comments = new ArrayList<>();
         try {
             comments = productController.getComments(productID);
+            System.out.println("1");
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
+
+        System.out.println("2");
 
         for(Comment comment : comments) {
             if(comment.getStatus() == Status.Confirmed){

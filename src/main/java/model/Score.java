@@ -10,8 +10,10 @@ public class Score implements Serializable{
 
     private static final long serialVersionUID = -7976969868504962487L;
     private static HashMap<String, Score> allScores = new HashMap<>();
+    //scoreID, Score
     private static final String PATH = "src/main/resources/scores/";
 
+    private String scoreID;
     private String username;
     private int score;
     private String productID;
@@ -20,6 +22,11 @@ public class Score implements Serializable{
         this.username = username;
         this.score = score;
         this.productID = productID;
+        this.scoreID = Utility.generateId();
+    }
+
+    public String getScoreID(){
+        return scoreID;
     }
 
     public String getProductID(){
@@ -39,7 +46,7 @@ public class Score implements Serializable{
     }
 
     public static void addScore(Score score){
-        allScores.put(score.getProductID(), score);
+        allScores.put(score.getScoreID(), score);
     }
 
     public static void loadData() throws DataException{
@@ -52,7 +59,7 @@ public class Score implements Serializable{
                 FileInputStream file = new FileInputStream(PATH + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
                 Score score = (Score) inputStream.readObject();
-                allScores.put(score.getProductID(), score);
+                allScores.put(score.getScoreID(), score);
                 file.close();
                 inputStream.close();
                 new File(PATH + path).delete();
@@ -63,7 +70,7 @@ public class Score implements Serializable{
         }
 
         for(Map.Entry<String, Score> entry : allScores.entrySet()) {
-            Product.getProductById(entry.getKey()).addScore(entry.getValue());
+            Product.getProductById(entry.getValue().getProductID()).addScore(entry.getValue());
         }
     }
 
@@ -75,7 +82,7 @@ public class Score implements Serializable{
 
         for (Score score : allScores.values()) {
             try {
-                FileOutputStream file = new FileOutputStream(PATH + score.getProductID());
+                FileOutputStream file = new FileOutputStream(PATH + score.getScoreID());
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(score);
                 file.close();
