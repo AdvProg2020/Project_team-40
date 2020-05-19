@@ -17,6 +17,7 @@ public class CustomerAccountController extends AccountController{
     private String address;
     private double priceAfterDiscount;
     private double costWithoutDiscount;
+    private String discountCode;
 
     private CustomerAccountController(){}
 
@@ -93,6 +94,7 @@ public class CustomerAccountController extends AccountController{
         customer.addLog(log);
         addLogToSellers(log);
         customer.removeAllProducts();
+        decreaseDiscountCodeCountPerUser();
         resetPurchaseVariables();
         return log;
     }
@@ -124,7 +126,7 @@ public class CustomerAccountController extends AccountController{
         } else {
             costWithoutDiscount = customer.getTotalPriceOfCart();
             priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
-            discountCode.decreaseCountPerUser(customer);
+            this.discountCode = discountCode.getCode();
         }
     }
 
@@ -165,6 +167,16 @@ public class CustomerAccountController extends AccountController{
             Product product = Product.getProductById(entry.getKey());
             product.setCount(product.getCount() - entry.getValue());
         }
+    }
+
+    private void decreaseDiscountCodeCountPerUser() {
+        if(this.discountCode != null) {
+            DiscountCode discountCode;
+            if((discountCode = DiscountCode.getDiscountCodeByCode(this.discountCode)) != null) {
+                discountCode.decreaseCountPerUser((Customer) User.getLoggedInUser());
+            }
+        }
+        this.discountCode = null;
     }
 
     public void addToCredit(double money) {

@@ -43,7 +43,7 @@ public class DiscountCode implements Serializable {
 
     public boolean isExpired(){
         Date today = new Date();
-        return !(today.before(startDate) && today.before(endDate));
+        return today.before(startDate) || today.after(endDate);
     }
 
     public boolean isStartDateValid(Date startDate){
@@ -96,7 +96,7 @@ public class DiscountCode implements Serializable {
     }
 
     public boolean isCountRemained(Customer customer){
-        return includedCostumers.get(customer.getUsername()) >= 0;
+        return includedCostumers.get(customer.getUsername()) > 0;
     }
 
     public String getCode(){
