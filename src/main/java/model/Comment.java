@@ -2,6 +2,8 @@ package model;
 
 import exceptions.DataException;
 import model.enumerations.Status;
+import model.log.Log;
+import model.users.User;
 
 import java.io.*;
 import java.util.Date;

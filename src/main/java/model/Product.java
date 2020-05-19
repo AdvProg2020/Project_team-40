@@ -25,8 +25,8 @@ public class Product implements Serializable{
     private String seller;
     private String category;
     private String explanation;
-    private ArrayList<Score> allScores;
-    private ArrayList<Comment> comments;
+    transient private ArrayList<Score> allScores;
+    transient private ArrayList<Comment> comments;
     private boolean isInOff;
     private ArrayList<String> allBuyers;
     private HashMap<String, String> extraStringProperties;
