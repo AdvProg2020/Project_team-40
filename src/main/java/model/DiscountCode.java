@@ -109,6 +109,11 @@ public class DiscountCode implements Serializable {
         return code;
     }
 
+    private String getStatus(){
+        if (isExpired(endDate, startDate))
+            return "EXPIRED";
+        return "ACTIVE";
+    }
 
     @Override
     public String toString() {
@@ -117,6 +122,7 @@ public class DiscountCode implements Serializable {
             customerList.append(username).append("\n");
         }
         return "Code: " + code + "\n"
+                + "Status: " + getStatus() + "\n"
                 + "Start Date: " + startDate + "\n"
                 + "End Date: " + endDate + "\n"
                 + "Percentage: " + percentage + "\n"
