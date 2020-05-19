@@ -20,6 +20,6 @@ public class AddComment extends Request{
 
     @Override
     public String toString(){
-        return "Comment : \n" + comment;
+        return super.toString() + "Comment : \n" + comment;
     }
 }

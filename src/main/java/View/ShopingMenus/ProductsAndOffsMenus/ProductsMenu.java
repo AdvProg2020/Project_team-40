@@ -33,8 +33,10 @@ public class ProductsMenu extends Menu {
         return new Menu("Show categories", this){
             @Override
             public void show(){
+                int index = 0;
                 for(String category : allProductsController.getAllCategories()) {
-                    System.out.println(category);
+                    index++;
+                    System.out.println(index + ". " + category);
                 }
                 System.out.println("Enter anything to return");
             }
@@ -61,8 +63,10 @@ public class ProductsMenu extends Menu {
                 }catch(AccountsException e){
                     e.getMessage();
                 }
+                int index = 0;
                 for(String subCategory : allSubCategories) {
-                    System.out.println(subCategory);
+                    index++;
+                    System.out.println(index + ". "  + subCategory);
                 }
                 System.out.println("Enter anything to return");
             }
@@ -80,8 +84,10 @@ public class ProductsMenu extends Menu {
         return new Menu("Show all products", this){
             @Override
             public void show(){
+                int index = 0;
                 for(Product product : allProductsController.getAllProducts()) {
-                    System.out.println(product.getName() + " || " + product.getProductId());
+                    index++;
+                    System.out.println(index + ". " + product);
                 }
                 System.out.println("Enter anything to return");
             }

@@ -19,7 +19,7 @@ public class CommentMenu extends Menu {
         productController = ProductController.getInstance();
         this.productID = productID;
         HashMap<Integer, Menu> submenus = new HashMap<>();
-        submenus.put(1, getAddComment());
+        submenus.put(1, addComment());
         setSubMenus(submenus);
     }
 
@@ -41,9 +41,9 @@ public class CommentMenu extends Menu {
         super.show();
     }
 
-    public Menu getAddComment(){
+    public Menu addComment(){
 
-        return new Menu("Show get add comment", this){
+        return new Menu("Add comment", this){
             @Override
             public void show(){
                 System.out.println("Title :");

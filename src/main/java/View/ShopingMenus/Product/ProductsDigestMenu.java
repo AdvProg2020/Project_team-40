@@ -28,18 +28,16 @@ public class ProductsDigestMenu extends Menu {
         Product product;
         try {
             product = productController.digestProduct(productID);
+            System.out.println("Product description : " + product);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-
-        //System.out.println("Product description : " + product);
-
 
         super.show();
     }
 
     public Menu getAddToCart(){
-        return new Menu("Show add to cart", this){
+        return new Menu("Add to cart", this){
             @Override
             public void show(){
                 try{
@@ -61,7 +59,7 @@ public class ProductsDigestMenu extends Menu {
     }
 
     public Menu getSelectSeller(){
-        return new Menu("Show select sellers", this){
+        return new Menu("Select seller", this){
             @Override
             public void show(){
                 ArrayList<String> sellers = new ArrayList<>();
@@ -80,7 +78,7 @@ public class ProductsDigestMenu extends Menu {
             public void execute(){
                 String seller = scanner.nextLine();
                 try {
-                    productController.sellectSellerForProduct(productController.digestProduct(productID).getName(), seller);
+                    productController.selectSellerForProduct(productController.digestProduct(productID).getName(), seller);
                 }catch(MenuException e){
                     System.out.print(e.getMessage());
                 }
