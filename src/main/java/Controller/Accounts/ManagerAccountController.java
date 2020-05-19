@@ -203,9 +203,7 @@ public class ManagerAccountController extends AccountController{
         if (field.equalsIgnoreCase("name")){
             if (Category.getCategoryByName(newField) != null)
                 throw new AccountsException("A category exists with this name.");
-            category.setName(newField);
-            Category.getAllCategories().remove(categoryName);
-            Category.addCategory(category);
+            category.resetName(newField);
             handleProductsAfterEdit(field, newField, category);
         }
         else if (!category.getExtraProperties().contains(field))

@@ -56,8 +56,20 @@ public class Category implements Serializable {
         return allCategories.get(parentCategoryName);
     }
 
-    public void setName(String name) {
+    public void resetName(String name) {
+        Category.getAllCategories().remove(this.name);
         this.name = name;
+        Category.addCategory(this);
+        for (String subCategory : subCategoriesNames) {
+            allCategories.get(subCategory).parentCategoryName = name;
+        }
+        for (String productID : productIDs) {
+            Product.getProductById(productID).setCategory(name);
+        }
+        if (parentCategoryName != null) {
+            allCategories.get(parentCategoryName).subCategoriesNames.remove(this.name);
+            allCategories.get(parentCategoryName).subCategoriesNames.add(name);
+        }
     }
 
     public String getName(){
