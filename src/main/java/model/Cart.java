@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 
 public class Cart implements Serializable{
+    private static final long serialVersionUID = 6840337634955265107L;
     private static final String PATH = "src/main/resources/";
     private static Cart thisCart = new Cart();
     private HashMap<String, Integer> products;
