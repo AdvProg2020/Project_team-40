@@ -233,10 +233,12 @@ public class Product implements Serializable{
 
     public double getAverageScore(){
         double sum = 0.0;
-        for(Score score : allScores) {
-            sum += score.getScore();
+        if (allScores.size() != 0) {
+            for (Score score : allScores)
+                sum += score.getScore();
+            return sum / allScores.size();
         }
-        return sum / allScores.size();
+        return 0.0;
     }
 
     public void decreaseNumber(int decreament){
@@ -297,7 +299,7 @@ public class Product implements Serializable{
         return result;
     }
 
-    private void makeNewArrayList(){
+    public void makeNewArrayList(){
         allScores = new ArrayList<>();
         comments = new ArrayList<>();
     }

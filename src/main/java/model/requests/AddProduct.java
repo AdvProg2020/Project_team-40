@@ -22,6 +22,10 @@ public class AddProduct extends Request{
         }
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Added product: " + product;

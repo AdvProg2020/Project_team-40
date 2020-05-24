@@ -58,7 +58,7 @@ public abstract class Request implements Serializable {
                 if (request instanceof AddProduct)
                     ((AddProduct) request).getProduct().makeNewArrayList();
 
-                Manager.getRequests().add((Request) inputStream.readObject());
+                Manager.getRequests().add(request);
                 file.close();
                 inputStream.close();
                 new File(directoryPath + path).delete();
