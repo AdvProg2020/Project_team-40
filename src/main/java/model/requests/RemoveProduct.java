@@ -4,6 +4,7 @@ import model.Product;
 import model.enumerations.Status;
 
 public class RemoveProduct extends Request{
+    private static final long serialVersionUID = 4475874827989857321L;
     private String productId;
 
     public RemoveProduct(String productId) {

@@ -5,6 +5,7 @@ import model.Product;
 import model.enumerations.Status;
 
 public class AddProduct extends Request{
+    private static final long serialVersionUID = 5785371940590984191L;
     private Product product;
 
     public AddProduct(Product product) {

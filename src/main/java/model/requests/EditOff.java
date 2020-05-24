@@ -6,6 +6,7 @@ import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
 
 public class EditOff extends Request {
+    private static final long serialVersionUID = -6075817828788614480L;
     private String offId;
     private String field;
     private String newField;
