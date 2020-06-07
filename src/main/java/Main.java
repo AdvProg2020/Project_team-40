@@ -1,18 +1,20 @@
-import View.MainMenu;
-import View.Menu;
 import exceptions.DataException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.Loader;
-import model.users.Seller;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
 
-public class Main {
+public class Main extends Application{
     private static final String PATH = "src/main/resources";
+    private static Stage stage;
 
     public static void main(String[] args) {
-        run();
+        initializeLoading();
+        launch(args);
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -22,7 +24,7 @@ public class Main {
                 throw new DataException("System loading failed.");
     }
 
-    private static void run() {
+    private static void initializeLoading(){
         try {
             resourcesInitialization();
         } catch (DataException e) {
@@ -34,9 +36,38 @@ public class Main {
         } catch (DataException e) {
             System.err.println(e.getMessage());
         }
-        MainMenu mainMenu = new MainMenu();
-        Menu.setScanner(new Scanner(System.in));
-        mainMenu.show();
-        mainMenu.execute();
     }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        stage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("layouts/main-menu.fxml"));
+        stage.setTitle("My App");
+        stage.setScene(new Scene(root, 800, 800));
+        stage.show();
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private static void run() {
+//        MainMenu mainMenu = new MainMenu();
+//        Menu.setScanner(new Scanner(System.in));
+//        mainMenu.show();
+//        mainMenu.execute();
+//    }
