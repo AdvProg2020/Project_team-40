@@ -53,7 +53,12 @@ public abstract class Request implements Serializable {
             try {
                 FileInputStream file = new FileInputStream(directoryPath + path);
                 ObjectInputStream inputStream = new ObjectInputStream(file);
-                Manager.getRequests().add((Request) inputStream.readObject());
+                Request request = (Request) inputStream.readObject();
+
+                if (request instanceof AddProduct)
+                    ((AddProduct) request).getProduct().makeNewArrayList();
+
+                Manager.getRequests().add(request);
                 file.close();
                 inputStream.close();
                 new File(directoryPath + path).delete();

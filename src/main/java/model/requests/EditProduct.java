@@ -6,6 +6,7 @@ import model.enumerations.Status;
 import java.util.HashMap;
 
 public class EditProduct extends Request{
+    private static final long serialVersionUID = 2760300356766841575L;
     private String productId;
     private String field;
     private String newField;

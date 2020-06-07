@@ -198,7 +198,7 @@ public class CartMenu extends Menu {
             try {
                 customerAccountController.enterDiscountCode(discountCode);
             } catch (AccountsException e) {
-                System.out.println("Invalid discount code!");
+                System.out.println(e.getMessage());
                 enterDiscountCode();
             }
         } else {
@@ -225,7 +225,7 @@ public class CartMenu extends Menu {
 
     private ArrayList<Product> getProductsInOrder() {
         System.out.println("Cart:");
-        ArrayList<Product> products = new ArrayList<Product>(customerAccountController.getCart().keySet());
+        ArrayList<Product> products = new ArrayList<>(customerAccountController.getCart().keySet());
         int productNumber = 1;
         for(Product product: products) {
             System.out.println(productNumber + ". " + product.getName() + "\n" +

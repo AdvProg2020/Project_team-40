@@ -1,13 +1,18 @@
 package model;
 
+import exceptions.DataException;
 import model.users.Customer;
 
+import javax.xml.crypto.Data;
+import java.io.*;
 import java.util.HashMap;
 
 
-public class Cart{
-    private  static Cart thisCart = new Cart();
-    private  HashMap<String, Integer> products;
+public class Cart implements Serializable{
+    private static final long serialVersionUID = 6840337634955265107L;
+    private static final String PATH = "src/main/resources/";
+    private static Cart thisCart = new Cart();
+    private HashMap<String, Integer> products;
     //Key : productID, Value : count
 
     private Cart(){
@@ -33,5 +38,29 @@ public class Cart{
 
     public static Cart getThisCart(){
         return thisCart;
+    }
+
+    public static void loadData() throws DataException{
+        try {
+            FileInputStream fileInputStream = new FileInputStream(PATH + "Cart");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            thisCart = (Cart)objectInputStream.readObject();
+            fileInputStream.close();
+            objectInputStream.close();
+        }catch(Exception e){
+            saveData();
+        }
+    }
+
+    public static void saveData() throws DataException{
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(PATH + "Cart");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(getThisCart());
+            fileOutputStream.close();
+            objectOutputStream.close();
+        }catch(Exception e){
+            throw new DataException("Saving Cart failed");
+        };
     }
 }

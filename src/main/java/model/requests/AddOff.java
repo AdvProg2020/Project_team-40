@@ -4,6 +4,7 @@ import model.Off;
 import model.enumerations.Status;
 
 public class AddOff extends Request{
+    private static final long serialVersionUID = 6700410384833798993L;
     private Off off;
 
     public AddOff(Off off) {

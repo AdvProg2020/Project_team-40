@@ -105,6 +105,14 @@ public class Customer extends User{
         return totalPriceOfCart;
     }
 
+    public boolean hasBought(String productID){
+        for(String id : logsId) {
+            if(Log.getLogById(id).getProductsId().containsKey(productID))
+                return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\n" +

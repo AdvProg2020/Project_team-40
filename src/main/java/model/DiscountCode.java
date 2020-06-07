@@ -37,13 +37,12 @@ public class DiscountCode implements Serializable {
         return allDiscountCodes;
     }
 
-    public Map<String, Integer> getIncludedCostumers() {
-        return includedCostumers;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public boolean isExpired(){
-        Date today = new Date();
-        return today.before(startDate) || today.after(endDate);
+    public Date getEndDate() {
+        return endDate;
     }
 
     public boolean isStartDateValid(Date startDate){
@@ -81,6 +80,13 @@ public class DiscountCode implements Serializable {
         this.maxAmount = maxAmount;
     }
 
+    public void setCountPerUser(int countPerUser) {
+        this.countPerUser = countPerUser;
+        for (String s : this.includedCostumers.keySet()) {
+            includedCostumers.replace(s, countPerUser);
+        }
+    }
+
     public void decreaseCountPerUser(Customer customer) {
         int newCount = includedCostumers.get(customer.getUsername()) - 1;
         if (newCount < 0)
@@ -96,11 +102,38 @@ public class DiscountCode implements Serializable {
     }
 
     public boolean isCountRemained(Customer customer){
-        return includedCostumers.get(customer.getUsername()) > 0;
+        return includedCostumers.get(customer.getUsername()) >= 0;
     }
 
     public String getCode(){
         return code;
+    }
+
+    private String getStatus(){
+        if (isExpired(endDate, startDate))
+            return "EXPIRED";
+        return "ACTIVE";
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder customerList = new StringBuilder();
+        for (String username : includedCostumers.keySet()) {
+            customerList.append(username).append("\n");
+        }
+        return "Code: " + code + "\n"
+                + "Status: " + getStatus() + "\n"
+                + "Start Date: " + startDate + "\n"
+                + "End Date: " + endDate + "\n"
+                + "Percentage: " + percentage + "\n"
+                + "Maximum discount amount: "+ maxAmount + "\n"
+                + "Count per user: " + countPerUser + "\n"
+                + "List of customers: " + customerList;
+    }
+
+    public static boolean isExpired(Date endDate, Date startDate){
+        Date today = new Date();
+        return !(today.before(startDate) && today.before(endDate));
     }
 
     public static DiscountCode getDiscountCodeByCode(String code){
@@ -157,20 +190,5 @@ public class DiscountCode implements Serializable {
                 throw new DataException("Saving Discount codes data failed.");
             }
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder customerList = new StringBuilder();
-        for (String username : includedCostumers.keySet()) {
-            customerList.append(username).append("\n");
-        }
-        return "Code: " + code + "\n"
-                + "Start Date: " + startDate + "\n"
-                + "End Date: " + endDate + "\n"
-                + "Percentage: " + percentage + "\n"
-                + "Maximum discount amount: "+ maxAmount + "\n"
-                + "Count per user: " + countPerUser + "\n"
-                + "List of customers: " + customerList;
     }
 }

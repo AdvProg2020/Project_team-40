@@ -5,21 +5,22 @@ import model.enumerations.Status;
 
 public class AddComment extends Request{
 
-    private Comment comment;
+    private static final long serialVersionUID = -2090250636759593204L;
+    private String commentID;
 
-    public AddComment(Comment comment){
+    public AddComment(String commentID){
         super("Add comment");
-        this.comment = comment;
+        this.commentID = commentID;
     }
 
     @Override
     public void action(){
         if(status == Status.Confirmed)
-            comment.setStatus(Status.Confirmed);
+            Comment.getComment(commentID).setStatus(Status.Confirmed);
     }
 
     @Override
     public String toString(){
-        return super.toString() + "Comment : \n" + comment;
+        return super.toString() + "Comment : \n" + Comment.getComment(commentID);
     }
 }
