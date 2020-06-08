@@ -3,7 +3,7 @@ package View.ShoppingMenus.ProductsAndOffsMenus.ProductsView;
 import Controller.Menus.AllProductsController;
 import Controller.Menus.OffMenuController;
 import View.Menu;
-import View.ShopingMenus.ProductsAndOffsMenus.SortsMenu;
+import View.ShoppingMenus.ProductsAndOffsMenus.SortsView.SortsMenu;
 import View.ShoppingMenus.Product.ProductView.ProductMenu;
 import View.ShoppingMenus.ProductsAndOffsMenus.FiltersView.FiltersMenu;
 import exceptions.AccountsException;
