@@ -20,7 +20,7 @@ public class MainMenu extends Menu {
     enum Role{CUSTOMER, MANAGER, SELLER}
 
     public MainMenu() {
-        super("Main Menu", null);
+        super("Main.Main Menu", null);
         HashMap<Integer, Menu> subMenus = new HashMap<>();
         addProperMenusToSubmenus(subMenus);
         this.setSubMenus(subMenus);
