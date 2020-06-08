@@ -7,15 +7,11 @@ import Controller.Accounts.SellerAccountController;
 import View.AccountMenus.CustomerView.CustomerAccount;
 import View.AccountMenus.ManagrView.ManagersAccount;
 import View.AccountMenus.SellerView.SellerAccount;
-import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
-import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
 import exceptions.AccountsException;
 import model.users.Customer;
-import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
 
-import javax.swing.*;
 import java.util.HashMap;
 
 public class MainMenu extends Menu{

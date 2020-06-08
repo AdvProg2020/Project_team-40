@@ -1,18 +1,15 @@
-import View.MainMenu;
-import View.Menu;
 import exceptions.DataException;
+
 import model.Loader;
-import model.users.Seller;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
 
-public class Main {
+public class Main{
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
-        run();
+        initializeLoading();
+        System.out.println("This works! java 1.8");
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -22,7 +19,7 @@ public class Main {
                 throw new DataException("System loading failed.");
     }
 
-    private static void run() {
+    private static void initializeLoading(){
         try {
             resourcesInitialization();
         } catch (DataException e) {
@@ -34,9 +31,30 @@ public class Main {
         } catch (DataException e) {
             System.err.println(e.getMessage());
         }
-        MainMenu mainMenu = new MainMenu();
-        Menu.setScanner(new Scanner(System.in));
-        mainMenu.show();
-        mainMenu.execute();
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private static void run() {
+//        MainMenu mainMenu = new MainMenu();
+//        Menu.setScanner(new Scanner(System.in));
+//        mainMenu.show();
+//        mainMenu.execute();
+//    }
