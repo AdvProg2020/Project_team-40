@@ -1,20 +1,15 @@
 import exceptions.DataException;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import model.Loader;
 
 import java.io.File;
 
-public class Main extends Application{
+public class Main{
     private static final String PATH = "src/main/resources";
-    private static Stage stage;
 
     public static void main(String[] args) {
         initializeLoading();
-        launch(args);
+        System.out.println("This works! java 1.8");
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -38,14 +33,6 @@ public class Main extends Application{
         }
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        stage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("layouts/main-menu.fxml"));
-        stage.setTitle("My App");
-        stage.setScene(new Scene(root, 800, 800));
-        stage.show();
-    }
 
 }
 

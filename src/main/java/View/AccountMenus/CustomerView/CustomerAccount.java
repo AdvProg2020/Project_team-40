@@ -5,10 +5,8 @@ import View.AccountMenus.PeopleAccountMenu;
 import View.ConsoleCommand;
 import View.Menu;
 import model.DiscountCode;
-import model.log.Log;
 import model.users.Customer;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -6,9 +6,7 @@ import View.Menu;
 import exceptions.MenuException;
 import model.Product;
 
-import javax.sound.midi.Soundbank;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 
 public class FiltersMenu<E extends Filterable> extends Menu {
     E controller;
