@@ -1,8 +1,8 @@
 import exceptions.DataException;
-
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Loader;
 
@@ -49,7 +49,8 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("ff");
-        primaryStage.setScene(new Scene(new Pane()));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/SampleLayouts/main-menu.fxml"));
+        primaryStage.setScene(new Scene(root, 1000, 1000));
         primaryStage.show();
     }
 }

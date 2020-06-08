@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -66,7 +66,7 @@
                </children>
             </Pane>
             <Region prefHeight="3.0" prefWidth="228.0" styleClass="region" />
-            <TreeView prefHeight="365.0" prefWidth="228.0" styleClass="list" />
+            <JFXTreeView />
          </children>
       </VBox>
    </left>
