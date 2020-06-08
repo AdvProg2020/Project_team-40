@@ -1,15 +1,20 @@
 import exceptions.DataException;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.Loader;
 
 import java.io.File;
 
-public class Main{
+public class Main extends Application{
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
         initializeLoading();
         System.out.println("This works! java 1.8");
+        launch(args);
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -34,6 +39,12 @@ public class Main{
     }
 
 
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        primaryStage.setTitle("ff");
+        primaryStage.setScene(new Scene(new Pane()));
+        primaryStage.show();
+    }
 }
 
 
