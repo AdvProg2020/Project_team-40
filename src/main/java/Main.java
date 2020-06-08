@@ -1,5 +1,3 @@
-import View.MainMenu;
-import View.Menu;
 import exceptions.DataException;
 
 import javafx.application.Application;
@@ -9,7 +7,6 @@ import javafx.stage.Stage;
 import model.Loader;
 
 import java.io.File;
-import java.util.Scanner;
 
 public class Main extends Application{
     private static final String PATH = "src/main/resources";
@@ -36,10 +33,13 @@ public class Main extends Application{
         }
         try {
             Loader.getLoader().loadData();
+          /*
             Menu.setScanner(new Scanner(System.in));
             MainMenu mainMenu = new MainMenu();
             mainMenu.show();
             mainMenu.execute();
+
+           */
         } catch (DataException e) {
             System.err.println(e.getMessage());
         }

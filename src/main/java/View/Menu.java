@@ -1,18 +1,16 @@
 package View;
 
 import Controller.Accounts.AccountController;
-import View.AccountMenus.CustomerView.CustomerAccount;
-import View.AccountMenus.ManagrView.ManagersAccount;
+import View.AccountMenus.CustomerView.AccountView.CustomerAccount;
+import View.AccountMenus.ManagerView.AccountView.ManagersAccount;
 import View.AccountMenus.PeopleAccountMenu;
-import View.AccountMenus.SellerView.SellerAccount;
-import View.ShopingMenus.Product.ProductMenu;
-import View.ShopingMenus.ProductsAndOffsMenus.OffsMenu;
-import View.ShopingMenus.ProductsAndOffsMenus.ProductsMenu;
+import View.AccountMenus.SellerView.AccountView.SellerAccount;
+import View.MainMenuView.MainMenu;
+import View.ShoppingMenus.ProductsAndOffsMenus.OffsView.OffsMenu;
+import View.ShoppingMenus.ProductsAndOffsMenus.ProductsView.ProductsMenu;
 import exceptions.DataException;
 import model.Loader;
-import model.Off;
 import model.users.Customer;
-import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
 
