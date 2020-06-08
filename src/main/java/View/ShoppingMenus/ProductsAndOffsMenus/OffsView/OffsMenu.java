@@ -2,9 +2,9 @@ package View.ShoppingMenus.ProductsAndOffsMenus.OffsView;
 
 import Controller.Menus.OffMenuController;
 import View.Menu;
+import View.ShopingMenus.ProductsAndOffsMenus.SortsMenu;
 import View.ShoppingMenus.Product.ProductView.ProductMenu;
 import View.ShoppingMenus.ProductsAndOffsMenus.FiltersView.FiltersMenu;
-import View.ShoppingMenus.ProductsAndOffsMenus.SortsView.SortsMenu;
 import exceptions.MenuException;
 import model.Product;
 

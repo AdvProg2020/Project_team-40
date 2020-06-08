@@ -1,10 +1,11 @@
-package View.ShoppingMenus.ProductsAndOffsMenus.SortsView;
+package View.ShopingMenus.ProductsAndOffsMenus;
 
 import Interfaces.Sortable;
 import View.Menu;
 import exceptions.MenuException;
 import model.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SortsMenu<E extends Sortable> extends Menu {
