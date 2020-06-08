@@ -1,0 +1,16 @@
+.top{
+    -fx-background-color: #0f65ff;
+}
+
+.left{
+    -fx-background-color: #00506e;
+}
+
+.region{
+    -fx-background-color: black;
+    -fx-fill: black;
+}
+
+.list{
+    -fx-background-color: #00506e;
+}

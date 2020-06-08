@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1051.0" stylesheets="@../Styles/root.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="1051.0" styleClass="top" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="164.0" prefWidth="230.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Styles/shop.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="164.0" prefWidth="822.0">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="All Products">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Categories">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Account">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="700.0" prefWidth="228.0" styleClass="left" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="118.0" prefWidth="228.0">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="78.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Styles/test-account.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="14.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login, Sign in" />
+               </children>
+            </Pane>
+            <Region prefHeight="3.0" prefWidth="228.0" styleClass="region" />
+            <TreeView prefHeight="365.0" prefWidth="228.0" styleClass="list" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <fx:include fx:id="center" source="sample-center.fxml" />
+   </center>
+</BorderPane>
