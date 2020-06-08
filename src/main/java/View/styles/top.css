@@ -1,0 +1,28 @@
+.my-slider-button {
+    -fx-background-image: url("sidebar-icon.png");
+}
+
+.top-buttons {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font: bold;
+    -fx-text-alignment: center;
+    -fx-border-radius: 0;
+}
+
+.top-buttons:hover {
+    -fx-start-margin: true;
+}
+
+#searchBar {
+    -fx-background-color: white, green;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-display-caret: false;
+    -fx-background-insets: 0, 1000;
+    -fx-background-radius: 0;
+    -fx-padding: 1 ;
+
+    -fx-alignment: center-right ;
+}
