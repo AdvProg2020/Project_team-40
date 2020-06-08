@@ -1,6 +1,10 @@
+package Main;
+
 import exceptions.DataException;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -14,7 +18,7 @@ public class Main extends Application{
     public static void main(String[] args) {
         initializeLoading();
         System.out.println("This works! java 1.8");
-        launch(args);
+        launch();
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -48,28 +52,12 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("ff");
-        primaryStage.setScene(new Scene(new Pane()));
+        Parent root = FXMLLoader.load(getClass().getResource("view-sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.show();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //    private static void run() {
 //        MainMenu mainMenu = new MainMenu();
 //        Menu.setScanner(new Scanner(System.in));

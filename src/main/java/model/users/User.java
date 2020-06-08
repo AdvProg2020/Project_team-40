@@ -2,7 +2,6 @@ package model.users;
 
 import exceptions.DataException;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
