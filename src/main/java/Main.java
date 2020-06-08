@@ -1,8 +1,11 @@
+import View.MainMenu;
+import View.Menu;
 import exceptions.DataException;
 
 import model.Loader;
 
 import java.io.File;
+import java.util.Scanner;
 
 public class Main{
     private static final String PATH = "src/main/resources";
@@ -28,12 +31,14 @@ public class Main{
         }
         try {
             Loader.getLoader().loadData();
+            Menu.setScanner(new Scanner(System.in));
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.show();
+            mainMenu.execute();
         } catch (DataException e) {
             System.err.println(e.getMessage());
         }
     }
-
-
 }
 
 
