@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="View.MainMenuView.MainMenuManager" fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="innerPane" layoutX="168.0" layoutY="-1.0" prefHeight="684.0" prefWidth="831.0" />
       <VBox prefHeight="684.0" prefWidth="161.0">
          <children>
-            <JFXButton contentDisplay="TOP" prefHeight="180.0" prefWidth="282.0" text="Account Menu">
+            <JFXButton fx:id="accountButton" onAction="#goToAccountsMenu" contentDisplay="TOP" prefHeight="180.0" prefWidth="282.0" text="Account Menu">
                <graphic>
                   <FontAwesomeIconView glyphName="USER" size="70" />
                </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="282.0" text="Products menu">
+            <JFXButton fx:id="productsButton" onAction="#goToProductsMenu" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="282.0" text="Products menu">
                <graphic>
                   <FontAwesomeIconView glyphName="PRODUCT" size="70" />
                </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="124.0" prefHeight="180.0" prefWidth="282.0" text="Off Menu">
+            <JFXButton fx:id="offsButton" onAction="#goToOffsMenu" contentDisplay="TOP" layoutX="10.0" layoutY="124.0" prefHeight="180.0" prefWidth="282.0" text="Off Menu">
                <graphic>
                   <ImageView fitHeight="79.0" fitWidth="90.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="523.0" prefHeight="180.0" prefWidth="282.0" text="Exit">
+            <JFXButton fx:id="exitButton" onAction="#exit" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" prefHeight="180.0" prefWidth="282.0" text="Exit">
                <graphic>
                   <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
                </graphic>
