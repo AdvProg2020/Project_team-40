@@ -1,6 +1,8 @@
 module sample {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.jfoenix;
+    requires de.jensd.fx.glyphs.fontawesome;
     opens Main;
     opens View.AccountMenus.CustomerView.AccountView;
     opens View.AccountMenus.CustomerView.CartView;
