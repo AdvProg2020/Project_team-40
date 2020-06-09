@@ -55,7 +55,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setMaximized(true);
 
-        Parent root = FXMLLoader.load(getClass().getResource("test2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
