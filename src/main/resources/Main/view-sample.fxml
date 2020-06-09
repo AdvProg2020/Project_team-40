@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.Region?>
 
 
-<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="771.0" stylesheets="@../View/styles/root.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="771.0" stylesheets="@../styles/root.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane id="top-view" fx:id="viewTop" prefHeight="118.0" prefWidth="771.0" style="-fx-background-color: #213e52;" stylesheets="@../View/styles/top.css">
+      <Pane id="top-view" fx:id="viewTop" prefHeight="118.0" prefWidth="771.0" style="-fx-background-color: #213e52;" stylesheets="@../styles/top.css">
          <children>
             <MenuBar layoutY="66.0" prefHeight="52.0" prefWidth="771.0" style="-fx-background-color: #687a8f;">
               <menus>
@@ -40,12 +40,12 @@
             <Button layoutX="460.0" layoutY="12.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" styleClass="top-buttons" text="Button" />
             <ImageView fitHeight="52.0" fitWidth="68.0" layoutX="71.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../View/styles/icon.png" />
+                  <Image url="@../styles/icon.png" />
                </image>
             </ImageView>
             <ImageView id="siderbar-image" fitHeight="32.0" fitWidth="29.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../View/styles/sidebar-icon.png" />
+                  <Image url="@../styles/sidebar-icon.png" />
                </image>
             </ImageView>
             <Region layoutX="58.0" layoutY="11.0" prefHeight="42.0" prefWidth="1.0" style="-fx-background-color: black;" />
@@ -65,7 +65,7 @@
                   <TextField prefHeight="41.0" prefWidth="214.0" />
                   <ImageView fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../View/styles/search.png" />
+                        <Image url="@../styles/search.png" />
                      </image>
                   </ImageView>
                </children>
