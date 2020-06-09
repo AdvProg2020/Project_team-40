@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="523.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="520.0" prefWidth="811.0">
+            <children>
+                <Label layoutX="54.0" layoutY="66.0" prefHeight="70.0" prefWidth="228.0" text="My Account">
+                    <font>
+                        <Font size="38.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="119.0" layoutY="222.0" prefHeight="305.0" prefWidth="111.0" />
+                <AnchorPane layoutX="64.0" layoutY="196.0" prefHeight="225.0" prefWidth="738.0">
+                    <children>
+                        <HBox layoutY="162.0" prefHeight="62.0" prefWidth="738.0">
+                            <children>
+                                <Label fx:id="email" prefHeight="62.0" prefWidth="370.0">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="phone" prefHeight="62.0" prefWidth="449.0">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="-1.0" layoutY="-2.0" prefHeight="58.0" prefWidth="738.0">
+                            <children>
+                                <Label prefHeight="58.0" prefWidth="296.0" text="Username">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label prefHeight="58.0" prefWidth="242.0" text="First name">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label prefHeight="58.0" prefWidth="202.0" text="Last name">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutY="62.0" prefHeight="62.0" prefWidth="738.0">
+                            <children>
+                                <Label fx:id="username" prefHeight="59.0" prefWidth="342.0">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="firstName" prefHeight="58.0" prefWidth="330.0">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lastName" prefHeight="58.0" prefWidth="274.0">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutY="109.0" prefHeight="58.0" prefWidth="738.0">
+                            <children>
+                                <Label prefHeight="58.0" prefWidth="358.0" text="E-mail">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label prefHeight="58.0" prefWidth="443.0" text="Phone No">
+                                    <font>
+                                        <Font name="Garamond" size="22.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
