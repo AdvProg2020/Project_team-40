@@ -26,7 +26,7 @@ public class MainMenuManager implements Initializable{
     public void goToProductsMenu(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("products-menu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/View.ShoppingMenus/ProductsAndOffsMenu/ProductsView/products-menu.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class MainMenuManager implements Initializable{
     public void goToOffsMenu(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("offs-menu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/View.ShoppingMenus/ProductsAndOffsMenu/OffsView/offs-menu.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class MainMenuManager implements Initializable{
     public void goToAccountsMenu(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("accounts-menu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/View.AccountMenus/accounts-menu.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
