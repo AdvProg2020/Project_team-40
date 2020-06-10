@@ -5,9 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.main_menu.MainMenu;
+import view.main_menu.MainMenuManager;
 
 public class GUI extends Application {
-    public static Stage stage;
 
     public GUI(){
 
@@ -55,10 +56,9 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
-        stage.setTitle("Hello World");
-        stage.setScene(new Scene(root, 1000, 800));
-        stage.show();
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.show();
     }
 }

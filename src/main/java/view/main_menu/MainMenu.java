@@ -4,6 +4,8 @@ import controller.accounts.AccountController;
 import controller.accounts.CustomerAccountController;
 import controller.accounts.ManagerAccountController;
 import controller.accounts.SellerAccountController;
+import javafx.stage.Stage;
+import view.MenuManager;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
 import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.seller_view.accounts_view.SellerAccount;

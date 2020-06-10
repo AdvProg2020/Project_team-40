@@ -1,6 +1,7 @@
 package view;
 
 import controller.accounts.AccountController;
+import javafx.application.Application;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
 import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.PeopleAccountMenu;

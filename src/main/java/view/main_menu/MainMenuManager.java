@@ -4,52 +4,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import view.Menu;
 import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MainMenuManager extends MenuManager implements Initializable{
-
-    public Pane innerPane;
+public class MainMenuManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
     }
 
-    public void setInnerPane(Parent root){
-        innerPane.getChildren().clear();
-        innerPane.getChildren().add(root);
-    }
 
-    public void goToProductsMenu(){
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/products_menu.fxml"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        setInnerPane(root);
-    }
-
-    public void goToOffsMenu(){
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/offs_menu.fxml"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        setInnerPane(root);
-    }
-
-    public void goToAccountsMenu(){
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        setInnerPane(root);
-    }
 }
