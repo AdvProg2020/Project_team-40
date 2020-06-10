@@ -40,6 +40,9 @@ public abstract class MenuManager {
     }
 
     public void back() {
+        if(roots.size() == 1) {
+            exit();
+        }
         roots.remove(roots.size() - 1);
         Parent root = null;
         try {
