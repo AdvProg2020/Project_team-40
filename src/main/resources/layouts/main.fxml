@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
+   <children>
+      <Pane fx:id="innerPane" layoutX="168.0" layoutY="5.0" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/left.css" />
+      <VBox prefHeight="684.0" prefWidth="161.0" stylesheets="@../stylesheets/left.css">
+         <children>
+            <JFXButton fx:id="accountButton" contentDisplay="TOP" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="161.0" text="Account Menu">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER" size="70" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="productsButton" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="161.0" text="Products menu">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PRODUCT" size="70" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="offsButton" contentDisplay="TOP" layoutX="10.0" layoutY="124.0" onAction="#goToOffsMenu" prefHeight="117.0" prefWidth="161.0" text="Off Menu">
+               <graphic>
+                  <ImageView fitHeight="79.0" fitWidth="90.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sale-price-tag.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="466.0" prefHeight="123.0" prefWidth="161.0" text="Setting">
+               <graphic>
+                  <ImageView fitHeight="79.0" fitWidth="90.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="backButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#back" prefHeight="127.0" prefWidth="161.0" text="back">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="exitButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#exit" prefHeight="119.0" prefWidth="161.0" text="Exit">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

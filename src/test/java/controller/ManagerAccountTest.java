@@ -1,6 +1,6 @@
 package controller;
 
-import Controller.Accounts.ManagerAccountController;
+import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import model.DiscountCode;
 import model.Product;
