@@ -9,17 +9,20 @@ import java.util.ArrayList;
 
 public abstract class MenuManager {
     public Pane innerPane;
-    protected ArrayList<String> roots;
-
+    protected static ArrayList<String> roots;
+    static {
+        roots = new ArrayList<>();
+        roots.add("/layouts/main.fxml");
+    }
 
     public void setInnerPane(String rootLocation){
+        roots.add(rootLocation);
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource(rootLocation));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        roots.add(rootLocation);
         innerPane.getChildren().clear();
         innerPane.getChildren().add(root);
     }
@@ -37,6 +40,15 @@ public abstract class MenuManager {
     }
 
     public void back() {
+        roots.remove(roots.size() - 1);
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(roots.get(roots.size() - 1)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        innerPane.getChildren().clear();
+        innerPane.getChildren().add(root);
     }
 
     public void exit() {
