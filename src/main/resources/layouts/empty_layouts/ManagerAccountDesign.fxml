@@ -15,7 +15,7 @@
                   <Font size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Users" textFill="WHITE">
+            <JFXButton fx:id="usersButton" onAction="#handleLoadUsersMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Users" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
