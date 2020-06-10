@@ -12,6 +12,11 @@ public class Manager extends User {
         super(username, password, firstName, lastName, email, phoneNo);
     }
 
+    @Override
+    public String getRole() {
+        return "Manager";
+    }
+
     public static ArrayList<Request> getRequests() {
         return requests;
     }

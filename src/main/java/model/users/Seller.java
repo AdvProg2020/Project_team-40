@@ -126,6 +126,11 @@ public class Seller extends User{
     }
 
     @Override
+    public String getRole() {
+        return "Seller";
+    }
+
+    @Override
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\n" +
                 "Username: " + username + "\n" +

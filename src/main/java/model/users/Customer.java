@@ -114,6 +114,11 @@ public class Customer extends User{
     }
 
     @Override
+    public String getRole() {
+        return "Customer";
+    }
+
+    @Override
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\n" +
                 "Username: " + username + "\n" +

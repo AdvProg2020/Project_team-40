@@ -53,6 +53,8 @@ public abstract class  User implements Serializable {
         return phoneNo;
     }
 
+    public abstract String getRole();
+
     public void setPassword(String password) {
         this.password = password;
     }
