@@ -10,10 +10,14 @@ import view.account_menus.seller_view.accounts_view.SellerAccount;
 import view.ConsoleCommand;
 import view.Menu;
 import exceptions.AccountsException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class MainMenu extends Menu {

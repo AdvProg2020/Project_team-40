@@ -12,7 +12,7 @@ import view.GUI;
 
 import java.io.File;
 
-public class Main{
+public class Main {
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
@@ -40,6 +40,5 @@ public class Main{
             System.err.println(e.getMessage());
         }
     }
-
 
 }

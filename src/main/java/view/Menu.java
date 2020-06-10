@@ -9,16 +9,19 @@ import view.main_menu.MainMenu;
 import view.shopping_menus.products_and_offs_menus.offs_view.OffsMenu;
 import view.shopping_menus.products_and_offs_menus.products_view.ProductsMenu;
 import exceptions.DataException;
+import javafx.stage.Stage;
 import model.Loader;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public abstract class Menu {
+    protected static Stage stage;
     protected String name;
     protected String input;
     protected Menu parentMenu;
@@ -35,6 +38,10 @@ public abstract class Menu {
 
     public static void setScanner(Scanner scanner) {
         Menu.scanner = scanner;
+    }
+
+    public static void setStage(Stage stage) {
+        Menu.stage = stage;
     }
 
     public String getName() {

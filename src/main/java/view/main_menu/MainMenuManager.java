@@ -4,12 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainMenuManager implements Initializable{
+public class MainMenuManager extends MenuManager implements Initializable{
 
     public Pane innerPane;
 
@@ -50,9 +51,5 @@ public class MainMenuManager implements Initializable{
             e.printStackTrace();
         }
         setInnerPane(root);
-    }
-
-    public void exit(){
-
     }
 }
