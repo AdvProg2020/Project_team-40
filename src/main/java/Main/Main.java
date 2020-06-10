@@ -8,16 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Loader;
+import view.GUI;
 
 import java.io.File;
 
-public class Main extends Application{
+public class Main{
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
         initializeLoading();
-        System.out.println("This works! java 1.8");
-        launch();
+        GUI.initialize();
     }
 
     private static void resourcesInitialization() throws DataException {
@@ -36,32 +36,10 @@ public class Main extends Application{
         }
         try {
             Loader.getLoader().loadData();
-          /*
-            Menu.setScanner(new Scanner(System.in));
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.show();
-            mainMenu.execute();
-
-           */
         } catch (DataException e) {
             System.err.println(e.getMessage());
         }
     }
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        primaryStage.setMaximized(true);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/layouts/main_menu.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1000, 800));
-        primaryStage.show();
-    }
 }
-//    private static void run() {
-//        MainMenu mainMenu = new MainMenu();
-//        Menu.setScanner(new Scanner(System.in));
-//        mainMenu.show();
-//        mainMenu.execute();
-//    }

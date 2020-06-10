@@ -25,5 +25,6 @@ module sample {
     opens view.shopping_menus.products_and_offs_menus.offs_view;
     opens view.shopping_menus.products_and_offs_menus.products_view;
     opens view.shopping_menus.products_and_offs_menus.sorts_view;
+    opens view;
 
 }
