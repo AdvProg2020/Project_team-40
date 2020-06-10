@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="826.0" prefWidth="1552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.account_view.AccountManager">
+   <children>
+      <AnchorPane fx:id="innerPane" layoutX="-15.0" layoutY="58.0" prefHeight="768.0" prefWidth="1569.0" />
+      <HBox prefHeight="62.0" prefWidth="1558.0">
+         <children>
+            <JFXButton fx:id="homeButton" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Users" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Discount Codes" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Requests" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Categories" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

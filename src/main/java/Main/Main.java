@@ -6,9 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.Loader;
 
 import java.io.File;
@@ -55,7 +53,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setMaximized(true);
 
-        Parent root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/main_menu.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
