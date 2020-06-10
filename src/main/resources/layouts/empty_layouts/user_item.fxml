@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="39.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="32.0" prefWidth="830.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <HBox prefHeight="42.0" prefWidth="146.0">
+               <children>
+                  <JFXButton fx:id="deleteUserButton" prefHeight="42.0" prefWidth="70.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-delete-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="viewUserButton" prefHeight="42.0" prefWidth="70.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-user-30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

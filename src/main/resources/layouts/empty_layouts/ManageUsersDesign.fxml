@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.AccountMenus.ManagerView.ManageUsersView.ManageUsersManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="605.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_users_view.ManageUsersManager">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="41.0" prefHeight="94.0" prefWidth="274.0" text="Manage Users" textAlignment="CENTER">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="55.0" layoutY="149.0" prefHeight="418.0" prefWidth="830.0">
+         <content>
+            <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="830.0">
+               <children>
+                  <HBox prefHeight="44.0" prefWidth="830.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Username">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Role">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="First Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Last Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Email">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Phone No">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Action">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>
