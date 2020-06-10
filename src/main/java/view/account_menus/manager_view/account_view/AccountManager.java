@@ -6,12 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccountManager implements Initializable {
+public class AccountManager extends MenuManager implements Initializable {
     public JFXButton homeButton;
     public Pane innerPane;
 
@@ -40,5 +41,9 @@ public class AccountManager implements Initializable {
             e.printStackTrace();
         }
         setInnerPane(root);
+    }
+
+    public void handleLoadUsersMenu(ActionEvent event) {
+        setInnerPane("/layouts/empty_layouts/ManageUsersDesign.fxml");
     }
 }
