@@ -11,7 +11,7 @@ import model.Product;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ItemManager implements Initializable{
+public class ProductItemManager implements Initializable{
     private Product product;
 
     @FXML
@@ -21,11 +21,11 @@ public class ItemManager implements Initializable{
     @FXML
     private Label price;
     @FXML
-    private Label status;
+    private Label score;
     @FXML
     private Button digest;
 
-    public ItemManager(){
+    public ProductItemManager(){
         initializeProduct();
     }
 
@@ -41,7 +41,7 @@ public class ItemManager implements Initializable{
         if(product != null){
             name.setText(product.getName());
             price.setText(Double.toString(product.getPrice()));
-            status.setText(product.getStatus().toString());
+            score.setText(Double.toString(product.getAverageScore()));
         }
     }
 }
