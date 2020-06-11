@@ -29,6 +29,19 @@ public abstract class MenuManager {
         innerPane.getChildren().add(root);
     }
 
+    //Set pane for CHILDREN inner panes
+    public void setInnerPane(String rootLocation, Pane innerPane){
+        roots.add(rootLocation);
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(rootLocation));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        innerPane.getChildren().clear();
+        innerPane.getChildren().add(root);
+    }
+
     public void goToProductsMenu(){
         setInnerPane("/layouts/products_menu.fxml");
     }
