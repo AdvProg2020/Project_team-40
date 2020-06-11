@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Item implements Initializable {
+public class UserItem implements Initializable {
     public JFXButton deleteUserButton;
     public JFXButton viewUserButton;
     private ManagerAccountController managerAccountController;
