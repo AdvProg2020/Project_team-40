@@ -100,6 +100,10 @@ public class Product implements Serializable{
         return (Seller)Seller.getUserByUsername(seller);
     }
 
+    public String getSellerUsername(){
+        return seller;
+    }
+
     public String getName(){
         return name;
     }
@@ -302,6 +306,10 @@ public class Product implements Serializable{
     public void makeNewArrayList(){
         allScores = new ArrayList<>();
         comments = new ArrayList<>();
+    }
+
+    public double getBasePrice() {
+        return basePrice;
     }
 
     @Override
