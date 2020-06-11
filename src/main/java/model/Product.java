@@ -5,10 +5,7 @@ import model.enumerations.SetUpStatus;
 import model.users.Seller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Product implements Serializable{
     private static final long serialVersionUID = -945372685735934996L;
@@ -117,6 +114,10 @@ public class Product implements Serializable{
 
     public static HashMap<String, Product> getAllProducts(){
         return allProducts;
+    }
+
+    public static Set<String> getAllProductIds(){
+        return allProducts.keySet();
     }
 
     public int getVisitCount(){

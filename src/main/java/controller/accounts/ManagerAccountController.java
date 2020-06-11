@@ -52,6 +52,10 @@ public class ManagerAccountController extends AccountController{
         User.deleteUser(user);
     }
 
+    public ArrayList<String> getAllProducts(){
+        return new ArrayList<>(Product.getAllProductIds());
+    }
+
     public void removeProduct(String productID) throws AccountsException {
         Product product = Product.getProductById(productID);
         if(product == null)
