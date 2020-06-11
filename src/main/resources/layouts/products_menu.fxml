@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXProgressBar?>
-<?import com.jfoenix.controls.JFXScrollPane?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ScrollPane?>
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <tabs>
       <Tab text="Products">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="684.0">
                <children>
-                  <HBox prefHeight="38.0" prefWidth="600.0">
+                  <HBox prefHeight="38.0" prefWidth="684.0">
                      <children>
                         <Label prefHeight="38.0" prefWidth="68.0" text="Sort by :" />
                         <ChoiceBox fx:id="sortChoiceBox" prefHeight="38.0" prefWidth="96.0" />
                      </children>
                   </HBox>
-                  <VBox fx:id="productsVBox" alignment="CENTER" layoutY="38.0" prefHeight="346.0" prefWidth="600.0">
+                  <VBox alignment="CENTER" layoutY="38.0" prefHeight="614.0" prefWidth="831.0">
                      <children>
-                        <ScrollPane fx:id="productsScrollPane" prefHeight="266.0" prefWidth="600.0" />
-                        <JFXButton fx:id="showMoreButton" prefHeight="26.0" prefWidth="680.0" text="Show more" />
-                        <Label text="Loading" />
+                        <ScrollPane prefHeight="594.0" prefWidth="831.0">
+                           <content>
+                              <VBox fx:id="productsBox" prefHeight="576.0" prefWidth="831.0" />
+                           </content>
+                        </ScrollPane>
+                        <JFXButton fx:id="showMoreButton" prefHeight="26.0" prefWidth="684.0" text="Show more" />
+                        <Label fx:id="loading" text="Loading" />
                      </children>
                   </VBox>
                </children>
