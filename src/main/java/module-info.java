@@ -1,6 +1,8 @@
 module sample {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
+    requires javafx.graphics;
     requires com.jfoenix;
     requires de.jensd.fx.glyphs.fontawesome;
     opens Main;
@@ -28,4 +30,5 @@ module sample {
     opens view.shopping_menus.products_and_offs_menus.sorts_view;
     opens view;
 
+    exports view;
 }
