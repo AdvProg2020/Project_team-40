@@ -21,10 +21,10 @@
         <Label fx:id="errorMessage" layoutX="88.0" layoutY="261.0" prefHeight="32.0" prefWidth="426.0">
 
         </Label>
-        <JFXButton fx:id="login" layoutX="230.0" layoutY="228.0" prefHeight="25.0" prefWidth="141.0" text="Sign In!">
+        <JFXButton fx:id="login" onMouseClicked="#login" layoutX="230.0" layoutY="228.0" prefHeight="25.0" prefWidth="141.0" text="Sign In!">
 
         </JFXButton>
-        <JFXButton fx:id="register" layoutX="230.0" layoutY="334.0" prefHeight="25.0" prefWidth="141.0" text="Sign Up Now!">
+        <JFXButton fx:id="register" onMouseClicked="#register" layoutX="230.0" layoutY="334.0" prefHeight="25.0" prefWidth="141.0" text="Sign Up Now!">
 
         </JFXButton>
     </children>
