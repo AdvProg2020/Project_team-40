@@ -1,5 +1,6 @@
 package view;
 
+import controller.accounts.AccountController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public abstract class MenuManager {
     public Pane innerPane;
     protected static ArrayList<String> roots;
+    protected AccountController accountController = AccountController.getInstance();
     static {
         roots = new ArrayList<>();
         roots.add("/layouts/main.fxml");
@@ -36,7 +38,11 @@ public abstract class MenuManager {
     }
 
     public void goToAccountsMenu(){
-        setInnerPane("/layouts/accounts_menu.fxml");
+        if(accountController.isLogin()) {
+            setInnerPane("/layouts/accounts_menu.fxml");
+        } else {
+            setInnerPane("/layouts/login_menu.fxml");
+        }
     }
 
     public void back() {

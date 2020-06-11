@@ -15,8 +15,7 @@ import java.util.ResourceBundle;
 public class MainMenuManager extends MenuManager implements Initializable {
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle){}
 
-
+    //TODO: WRITE SOMETHING IN THE MIDDLE OF THE FU.... SCENE! IT'S SO EMPTY!
 }
