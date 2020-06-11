@@ -1,5 +1,11 @@
 package view.account_menus.manager_view.manage_users_view;
 
+import com.jfoenix.controls.JFXButton;
+import controller.accounts.ManagerAccountController;
+import exceptions.AccountsException;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -7,22 +13,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.users.User;
-import view.MenuManager;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ManageUsersManager extends MenuManager implements Initializable {
+public class Item implements Initializable {
+    public JFXButton deleteUserButton;
+    public JFXButton viewUserButton;
+    private ManagerAccountController managerAccountController;
 
-    public VBox vBoxItems;
-    private controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = controller.accounts.ManagerAccountController.getInstance();
-        loadUsers();
+        managerAccountController = ManagerAccountController.getInstance();
     }
-
-    private void loadUsers() {
+    private void loadUsers(VBox vBoxItems) {
+        vBoxItems.getChildren().clear();
         for (String userName : managerAccountController.getAllUserNames()) {
             try {
                 User user = managerAccountController.getUser(userName);
@@ -31,7 +37,7 @@ public class ManageUsersManager extends MenuManager implements Initializable {
                 setLabelsContent(user, hBox);
                 vBoxItems.getChildren().add(item);
             }
-             catch (Exception e) {
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -53,4 +59,16 @@ public class ManageUsersManager extends MenuManager implements Initializable {
     }
 
 
+    public void handleDeleteUser(ActionEvent event) {
+        HBox item = (HBox)((deleteUserButton.getParent()).getParent());
+        VBox items =(VBox)(item.getParent()).getParent();
+        String username =((Label)item.getChildren().get(0)).getText();
+        try {
+            managerAccountController.deleteUser(username);
+        } catch (AccountsException e) {
+            System.err.println(e.getMessage());
+        }
+        Platform.runLater(() -> loadUsers(items));
+
+    }
 }

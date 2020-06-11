@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="39.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="39.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_users_view.Item">
    <children>
-      <HBox prefHeight="32.0" prefWidth="830.0">
+      <HBox prefHeight="32.0" prefWidth="719.0">
          <children>
             <Label alignment="CENTER" prefHeight="42.0" prefWidth="135.0">
                <font>
@@ -38,7 +38,7 @@
                </font></Label>
             <HBox prefHeight="42.0" prefWidth="146.0">
                <children>
-                  <JFXButton fx:id="deleteUserButton" prefHeight="42.0" prefWidth="70.0" text=" ">
+                  <JFXButton fx:id="deleteUserButton" onAction="#handleDeleteUser" prefHeight="42.0" prefWidth="70.0" text=" ">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
