@@ -36,7 +36,7 @@ public class AccountManager extends MenuManager implements Initializable {
     public void goToHomeMenu(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("PersonalInfo.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/PersonalInfo.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
