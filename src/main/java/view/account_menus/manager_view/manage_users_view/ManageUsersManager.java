@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.users.User;
 import view.MenuManager;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -47,7 +47,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="viewUserButton" prefHeight="42.0" prefWidth="70.0" text=" ">
+                  <JFXButton fx:id="viewUserButton" onAction="#handleViewUser" prefHeight="42.0" prefWidth="70.0" text=" ">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
