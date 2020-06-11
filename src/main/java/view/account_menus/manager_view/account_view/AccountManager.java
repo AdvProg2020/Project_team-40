@@ -46,4 +46,8 @@ public class AccountManager extends MenuManager implements Initializable {
     public void handleLoadUsersMenu(ActionEvent event) {
         setInnerPane("/layouts/empty_layouts/ManageUsersDesign.fxml", innerPane);
     }
+
+    public void handleLoadProductsMenu(ActionEvent event) {
+        setInnerPane("/layouts/empty_layouts/ManageProductsDesign.fxml", innerPane);
+    }
 }

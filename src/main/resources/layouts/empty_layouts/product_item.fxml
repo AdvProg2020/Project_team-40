@@ -8,42 +8,42 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="39.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_products_view.ProductItem">
+<AnchorPane prefHeight="39.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_products_view.ProductItem">
     <children>
-        <HBox prefHeight="32.0" prefWidth="794.0">
+        <HBox prefHeight="42.0" prefWidth="666.0">
             <children>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="202.0" />
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="202.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-            <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="42.0" prefWidth="130.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="130.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <JFXButton prefHeight="42.0" prefWidth="78.0" text=" ">
+            <JFXButton fx:id="deleteProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleDeleteProduct" prefHeight="42.0" prefWidth="130.0" text=" ">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                      <image>
