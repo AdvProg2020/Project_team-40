@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="826.0" prefWidth="1552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.account_view.AccountManager">
+<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.account_view.AccountManager">
    <children>
-      <AnchorPane fx:id="innerPane" layoutX="-15.0" layoutY="58.0" prefHeight="768.0" prefWidth="1569.0" />
-      <HBox prefHeight="62.0" prefWidth="1558.0">
+      <AnchorPane fx:id="innerPane" layoutX="-15.0" layoutY="58.0" prefHeight="684.0" prefWidth="846.0" />
+      <HBox prefHeight="62.0" prefWidth="831.0">
          <children>
             <JFXButton fx:id="homeButton" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Home" textFill="WHITE">
                <font>

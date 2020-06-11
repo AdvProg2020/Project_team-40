@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="605.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_users_view.ManageUsersManager">
+<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.manage_users_view.ManageUsersManager">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="41.0" prefHeight="94.0" prefWidth="274.0" text="Manage Users" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="55.0" layoutY="149.0" prefHeight="418.0" prefWidth="830.0">
+      <ScrollPane layoutX="64.0" layoutY="185.0" prefHeight="418.0" prefWidth="746.0">
          <content>
-            <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="830.0">
+            <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="730.0">
                <children>
-                  <HBox prefHeight="44.0" prefWidth="830.0">
+                  <HBox prefHeight="44.0" prefWidth="719.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #c9fffb;" text="Username">
                            <font>
