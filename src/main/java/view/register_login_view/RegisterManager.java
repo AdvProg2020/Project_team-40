@@ -1,15 +1,11 @@
 package view.register_login_view;
 
-import controller.accounts.AccountController;
-import controller.accounts.CustomerAccountController;
-import controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import model.users.Customer;
 import model.users.User;
 import view.MenuManager;
 
@@ -30,6 +26,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public Label lastNameError;
     public Label emailError;
     public Label phoneNumberError;
+    public Label roleError;
     public Label creditError;
     public Label companyError;
     public TextField companyField;
@@ -42,20 +39,52 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField phoneNumber;
 
     public void register() {
-        validateInput();
-        if(customerButton.isPressed()) {
-            registerCustomer();
-        } else if(sellerButton.isPressed()) {
-            registerSeller();
-        } else if(managerButton.isPressed()) {
-            registerManager();
+        try {
+            findBlankInput();
+            if(customerButton.isPressed()) {
+                registerCustomer();
+            } else if(sellerButton.isPressed()) {
+                registerSeller();
+            } else if(managerButton.isPressed()) {
+                registerManager();
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
     }
 
-    private void validateInput() {
-        if(firstName.getText().isBlank()) {
-            firstNameError.setText(fillError);
+    private void findBlankInput() throws Exception {
+        boolean isBlank = false;
+        isBlank = isFieldBlank(isBlank, username, usernameError);
+        isBlank = isFieldBlank(isBlank, password, passwordError);
+        isBlank = isFieldBlank(isBlank, firstName, firstNameError);
+        isBlank = isFieldBlank(isBlank, lastName, lastNameError);
+        isBlank = isFieldBlank(isBlank, phoneNumber, phoneNumberError);
+        isBlank = isFieldBlank(isBlank, email, emailError);
+        if(customerButton.isSelected()) {
+            isBlank = isFieldBlank(isBlank, creditField, creditError);
+        } else if(sellerButton.isSelected()) {
+            isBlank = isFieldBlank(isBlank, creditField, creditError);
+            isBlank = isFieldBlank(isBlank, companyField, companyError);
+        } else if(managerButton == null) {
+            isBlank = true;
+            roleError.setText("You must choose one option!");
+        } else if(!managerButton.isSelected()) {
+            isBlank = true;
+            roleError.setText("You must choose one option!");
         }
+        if(isBlank)
+            throw new Exception("Blank field");
+    }
+
+    private boolean isFieldBlank(boolean isBlank, TextField field, Label error) {
+        if(field.getText().isBlank()) {
+            error.setText(fillError);
+            isBlank = true;
+        } else {
+            error.setText("");
+        }
+        return isBlank;
     }
 
     private void registerManager() {
