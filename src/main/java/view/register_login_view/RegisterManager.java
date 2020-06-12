@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegisterManager extends MenuManager implements Initializable {
+    private final String fillError = "This Field is required!";
     public GridPane infoPane;
     public RadioButton customerButton;
     public RadioButton sellerButton;
@@ -41,13 +42,19 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField phoneNumber;
 
     public void register() {
-
+        validateInput();
         if(customerButton.isPressed()) {
             registerCustomer();
         } else if(sellerButton.isPressed()) {
             registerSeller();
         } else if(managerButton.isPressed()) {
             registerManager();
+        }
+    }
+
+    private void validateInput() {
+        if(firstName.getText().isBlank()) {
+            firstNameError.setText(fillError);
         }
     }
 
@@ -60,8 +67,8 @@ public class RegisterManager extends MenuManager implements Initializable {
     }
 
     private void registerCustomer() {
-        CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
-                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(), creditField.getText());
+  //      CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
+    //            firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(), creditField.getText());
     }
 
     public void clickCustomer() {
