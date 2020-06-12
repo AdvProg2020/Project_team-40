@@ -1,6 +1,8 @@
 package controller.menus;
 
 import exceptions.MenuException;
+import interfaces.Filterable;
+import interfaces.Sortable;
 import model.Off;
 import model.Product;
 import model.enumerations.SortTypes;
@@ -11,7 +13,7 @@ import model.search.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OffMenuController implements interfaces.Sortable, interfaces.Filterable {
+public class OffMenuController implements Sortable, Filterable{
     private static OffMenuController offMenuController;
     private HashMap<String, String> currentStringFilters;
     private HashMap<String, Range> currentIntegerFilters;
@@ -52,9 +54,18 @@ public class OffMenuController implements interfaces.Sortable, interfaces.Filter
         return product;
     }
 
-    @Override
     public ArrayList<String> getAvailableFilters(){
         return productFilter.getAvailableFilters();
+    }
+
+    @Override
+    public ArrayList<String> getAvailableStringFilters(){
+        return productFilter.getAvailableExtraStringProperties();
+    }
+
+    @Override
+    public ArrayList<String> getAvailableValueFilters(){
+        return productFilter.getAvailableExtraValueProperties();
     }
 
     @Override

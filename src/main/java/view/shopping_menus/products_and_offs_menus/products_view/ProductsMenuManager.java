@@ -3,6 +3,9 @@ package view.shopping_menus.products_and_offs_menus.products_view;
 import com.jfoenix.controls.JFXButton;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
+import exceptions.MenuException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
+import model.Category;
 import model.Product;
 import view.MenuManager;
 
@@ -23,7 +27,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public ChoiceBox sortChoiceBox;
     public VBox productsBox;
     public JFXButton showMoreButton;
-    public Label loading;
     public TreeView categories;
 
     private static int indexOfLastUser;
@@ -37,46 +40,60 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeProducts(){
+        //At start 0 items are shown, this will add 20 (max) new items
         showMoreItems();
     }
 
     private void initializeCategories(){
+
+        TreeItem root = new TreeItem("root");
+
         ArrayList<String> allCategoryNames = AllProductsController.getInstance().getAllCategories();
         ArrayList<TreeItem> rootCategories = new ArrayList<>();
 
-        //TODO : remove samples later
-        rootCategories.add(new TreeItem("sample 1"));
-        rootCategories.add(new TreeItem("sample 2"));
-        rootCategories.add(new TreeItem("sample 2"));
-
         for(String categoryName : allCategoryNames) {
-            rootCategories.add(new TreeItem(categoryName));
+            if(Category.getCategoryByName(categoryName).getParentCategory() == null){
+                rootCategories.add(new TreeItem(categoryName));
+            }
             try {
                 for(String subCategoryName : AllProductsController.getInstance().getAllSubCategories(categoryName)) {
-                    rootCategories.get(rootCategories.size() - 1).getChildren().add(subCategoryName);
+                    rootCategories.get(rootCategories.size() - 1).getChildren().add(new TreeItem<>(subCategoryName));
                 }
             }catch(AccountsException e){
                 e.printStackTrace();
             }
         }
-        TreeItem root = new TreeItem("root");
         root.getChildren().addAll(rootCategories);
         categories.setRoot(root);
         categories.setShowRoot(false);
+
+        //TODO : REMOVE SAMPLES LATER
+        showSampleCategories();
+
+        handleSelectedCategory();
+    }
+
+    private void handleSelectedCategory(){
+        categories.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1){
+                try {
+                    AllProductsController.getInstance().filter("Category", (String)((TreeItem)t1).getValue());
+                } catch(MenuException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initializeFilter(){
+        ArrayList<String> stringProperties = new ArrayList<>();
+        for(String property : AllProductsController.getInstance().getAvailableFilters()) {
 
+        }
     }
 
     private void showMoreItems(){
-        loading.setText("loading...");
-
-        try {
-            Thread.sleep(200);
-        }catch(Exception e){
-
-        }
 
         Node[] nodes = new Node[20];
         for(int i = 0; i < 20; ++i){
@@ -97,10 +114,24 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
             indexOfLastUser++;
         }
-        loading.setText("");
     }
 
     public static int getIndexOfLastUser(){
         return indexOfLastUser;
     }
+
+    //TODO : REMOVE LATER
+    private void showSampleProducts(int count){
+
+    }
+
+    private void showSampleCategories(){
+
+        categories.getRoot().getChildren().addAll(
+                new TreeItem<>("sample 1"),
+                new TreeItem<>("sample 2"),
+                new TreeItem<>("sample 3"),
+                new TreeItem<>("sample 1"));
+    }
+
 }

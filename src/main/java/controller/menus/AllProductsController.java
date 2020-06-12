@@ -79,6 +79,17 @@ public class AllProductsController implements Sortable, Filterable {
         return productFilter.getAvailableFilters();
     }
 
+    @Override
+    public ArrayList<String> getAvailableStringFilters(){
+        return productFilter.getAvailableExtraStringProperties();
+    }
+
+    @Override
+    public ArrayList<String> getAvailableValueFilters(){
+        return productFilter.getAvailableExtraValueProperties();
+    }
+
+
     public ArrayList<Product> filter(String name, String value) throws MenuException {
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");

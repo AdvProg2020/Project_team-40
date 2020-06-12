@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.main_menu.MainMenu;
-import view.main_menu.MainMenuManager;
 
 public class GUI extends Application {
 

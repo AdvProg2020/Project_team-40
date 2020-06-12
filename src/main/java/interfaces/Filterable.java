@@ -6,7 +6,8 @@ import model.Product;
 import java.util.ArrayList;
 
 public interface Filterable {
-    ArrayList<String> getAvailableFilters();
+    ArrayList<String> getAvailableStringFilters();
+    ArrayList<String> getAvailableValueFilters();
 
     ArrayList<Product> filter(String name, String value) throws MenuException;
 
