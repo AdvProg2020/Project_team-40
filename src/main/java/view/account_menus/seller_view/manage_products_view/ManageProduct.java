@@ -2,7 +2,7 @@ package view.account_menus.seller_view.manage_products_view;
 
 import controller.accounts.SellerAccountController;
 import view.account_menus.seller_view.sellers_products_view.ManageSellersProductsMenu;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 import model.Product;
@@ -81,13 +81,13 @@ public class ManageProduct extends Menu {
                 String newField = null;
                 if(field == 1 || field == 2) {
                     System.out.println("Enter new information:");
-                    newField = getValidInput(ConsoleCommand.DEFAULT, "");
+                    newField = getValidInput(ValidInput.DEFAULT, "");
                 } else if(field == 3){
                     System.out.println("Enter new price:");
-                    newField = getValidInput(ConsoleCommand.DOUBLE, "Enter a valid number.");
+                    newField = getValidInput(ValidInput.DOUBLE, "Enter a valid number.");
                 } else if(field == 4) {
                     System.out.println("Enter new count:");
-                    newField = getValidInput(ConsoleCommand.INTEGER, "Enter a valid number");
+                    newField = getValidInput(ValidInput.INTEGER, "Enter a valid number");
                 } else if(field == 5) {
                     newField = getNewCategory();
                     getProperties(newField);
@@ -128,8 +128,8 @@ public class ManageProduct extends Menu {
                 ArrayList<String> categoryProperties = sellerAccountController.getCategoryProperties(categoryName);
                 for(String property: categoryProperties) {
                     System.out.println("Type of property: " + property + "\nEnter value:");
-                    String value = getValidInput(ConsoleCommand.DEFAULT, "");
-                    if(ConsoleCommand.DOUBLE.getStringMatcher(value).matches()) {
+                    String value = getValidInput(ValidInput.DEFAULT, "");
+                    if(ValidInput.DOUBLE.getStringMatcher(value).matches()) {
                         extraValueProperties.put(property, Double.parseDouble(value));
                     } else {
                         extraStringProperties.put(property, value);
@@ -149,7 +149,7 @@ public class ManageProduct extends Menu {
 
             @Override
             public void execute() {
-                int addedQuantity = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                int addedQuantity = Integer.parseInt(getValidInput(ValidInput.INTEGER,
                         "Enter a valid number."));
                 sellerAccountController.increaseProductsCount(addedQuantity, productId);
                 System.out.println("Product's count increased.");
@@ -169,7 +169,7 @@ public class ManageProduct extends Menu {
 
             @Override
             public void execute() {
-                int removedQuantity = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                int removedQuantity = Integer.parseInt(getValidInput(ValidInput.INTEGER,
                         "Enter a valid number."));
                 try {
                     sellerAccountController.decreaseProductCount(removedQuantity, productId);

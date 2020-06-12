@@ -5,7 +5,7 @@ import controller.menus.AllProductsController;
 import view.account_menus.PeopleAccountMenu;
 import view.account_menus.seller_view.sellers_offs_view.ManageSellersOffsMenu;
 import view.account_menus.seller_view.sellers_products_view.ManageSellersProductsMenu;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 import model.log.Log;
@@ -134,7 +134,7 @@ public class SellerAccount extends PeopleAccountMenu {
 
             @Override
             public void execute() {
-                double money = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                double money = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                         "Please enter a valid number."));
                 Seller seller = (Seller) sellerAccountController.getThisUser();
                 seller.setCredit(seller.getCredit() + money);

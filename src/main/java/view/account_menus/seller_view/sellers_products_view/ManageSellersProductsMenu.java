@@ -2,7 +2,7 @@ package view.account_menus.seller_view.sellers_products_view;
 
 import controller.accounts.SellerAccountController;
 import view.account_menus.seller_view.manage_products_view.ManageProduct;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 import model.Category;
@@ -86,18 +86,18 @@ public class ManageSellersProductsMenu extends Menu {
             @Override
             public void execute() {
                 System.out.println("Name: ");
-                String productName = getValidInput(ConsoleCommand.DEFAULT, "");
+                String productName = getValidInput(ValidInput.DEFAULT, "");
                 System.out.println("Producer company:");
-                String company = getValidInput(ConsoleCommand.DEFAULT, "");
+                String company = getValidInput(ValidInput.DEFAULT, "");
                 System.out.println("Price:");
-                double price = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                double price = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                         "Enter a valid number."));
                 System.out.println("Quantity of Product:");
-                int count = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER, "Enter a valid number."));
+                int count = Integer.parseInt(getValidInput(ValidInput.INTEGER, "Enter a valid number."));
                 System.out.println("Enter a category:");
                 String category = getCategory();
                 System.out.println("Description:");
-                String description = getValidInput(ConsoleCommand.DEFAULT, "");
+                String description = getValidInput(ValidInput.DEFAULT, "");
                 try {
                     Product product  = sellerAccountController
                             .createNewProduct(productName, company, price, count, category, description);
@@ -157,7 +157,7 @@ public class ManageSellersProductsMenu extends Menu {
                 getCategoryProperties(product.getCategory());
         for(String property: categoryProperties) {
             String propertyOfProduct = getProperty(property);
-            if(ConsoleCommand.DOUBLE.getStringMatcher(propertyOfProduct).matches()) {
+            if(ValidInput.DOUBLE.getStringMatcher(propertyOfProduct).matches()) {
                 sellerAccountController.setProductsProperties(property,
                         Double.parseDouble(propertyOfProduct), product);
             } else {
@@ -168,6 +168,6 @@ public class ManageSellersProductsMenu extends Menu {
 
     private String getProperty(String property) {
         System.out.println("Enter the value of this property: " + property);
-        return getValidInput(ConsoleCommand.DEFAULT, "");
+        return getValidInput(ValidInput.DEFAULT, "");
     }
 }

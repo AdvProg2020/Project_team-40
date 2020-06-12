@@ -1,7 +1,7 @@
 package view.account_menus;
 
 import controller.accounts.AccountController;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 
 import java.util.ArrayList;
@@ -67,21 +67,21 @@ public abstract class PeopleAccountMenu extends Menu {
                     newInformation = scanner.nextLine();
                     accountController.editUser("password", newInformation);
                 } else if(numOfNextMenu == 3) {
-                    newInformation = getValidInput(ConsoleCommand.NAME,
+                    newInformation = getValidInput(ValidInput.NAME,
                             "Your name can only contain alphabetic characters.");
                     accountController.editUser("firstName", newInformation);
                 } else if(numOfNextMenu == 4) {
-                    newInformation = getValidInput(ConsoleCommand.NAME,
+                    newInformation = getValidInput(ValidInput.NAME,
                             "Your name can only contain alphabetic characters.");
                     accountController.editUser("lastName", newInformation);
                 } else if(numOfNextMenu == 5) {
-                    newInformation = getValidInput(ConsoleCommand.EMAIL_ADDRESS, "Invalid email address");
+                    newInformation = getValidInput(ValidInput.EMAIL_ADDRESS, "Invalid email address");
                     accountController.editUser("email", newInformation);
                 } else if(numOfNextMenu == 6) {
-                    newInformation = getValidInput(ConsoleCommand.PHONE_NUMBER, "Invalid phone number");
+                    newInformation = getValidInput(ValidInput.PHONE_NUMBER, "Invalid phone number");
                     accountController.editUser("phoneNumber", newInformation);
                 } else if(numOfNextMenu == 7) {
-                    newInformation = getValidInput(ConsoleCommand.DOUBLE, "Enter a valid number.");
+                    newInformation = getValidInput(ValidInput.DOUBLE, "Enter a valid number.");
                     accountController.editUser("credit", newInformation);
                 } else if(numOfNextMenu == 8) {
                     newInformation = scanner.nextLine();

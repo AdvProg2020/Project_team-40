@@ -3,7 +3,7 @@ package view;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum ConsoleCommand {
+public enum ValidInput {
     INTEGER("\\d+"),
     PHONE_NUMBER("\\d+"),
     EMAIL_ADDRESS(".+@\\w+\\.\\w+"),
@@ -18,7 +18,7 @@ public enum ConsoleCommand {
         return this.commandPattern.matcher(input);
     }
 
-    ConsoleCommand(String commandPattern) {
+    ValidInput(String commandPattern) {
         this.commandPattern = Pattern.compile(commandPattern);
     }
 }

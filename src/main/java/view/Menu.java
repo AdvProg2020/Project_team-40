@@ -1,7 +1,6 @@
 package view;
 
 import controller.accounts.AccountController;
-import javafx.application.Application;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
 import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.PeopleAccountMenu;
@@ -16,7 +15,6 @@ import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -154,10 +152,10 @@ public abstract class Menu {
         int chosenMenu;
         while(true) {
             if(parentMenu == null) {
-                chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                chosenMenu = Integer.parseInt(getValidInput(ValidInput.INTEGER,
                         "Please write the number of one of the options."));
             } else {
-                chosenMenu = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER,
+                chosenMenu = Integer.parseInt(getValidInput(ValidInput.INTEGER,
                         "Please write the number of one of the options, or enter back."));
             }
             if(chosenMenu <= numberOfSubmenus) {
@@ -169,7 +167,7 @@ public abstract class Menu {
         return chosenMenu;
     }
 
-    protected String getValidInput(ConsoleCommand regex, String message) {
+    protected String getValidInput(ValidInput regex, String message) {
         String input;
         while (!regex.getStringMatcher(input = scanner.nextLine().trim()).matches()) {
             goBack(parentMenu, input);

@@ -4,7 +4,7 @@ import controller.accounts.CustomerAccountController;
 import view.account_menus.custromer_view.cart_view.CartMenu;
 import view.account_menus.custromer_view.orders_view.OrdersMenu;
 import view.account_menus.PeopleAccountMenu;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import model.DiscountCode;
 import model.users.Customer;
@@ -73,7 +73,7 @@ public class CustomerAccount extends PeopleAccountMenu {
 
             @Override
             public void execute() {
-                double money = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                double money = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                         "Please enter a valid number."));
                 Customer customer = (Customer) customerAccountController.getThisUser();
                 customer.setCredit(customer.getCredit() + money);

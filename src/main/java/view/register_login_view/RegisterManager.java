@@ -8,12 +8,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import model.users.User;
 import view.MenuManager;
+import view.ValidInput;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegisterManager extends MenuManager implements Initializable {
-    private final String fillError = "This Field is required!";
+    private final String fillError = "This field is required!";
+    private final String nameFormatError = "Your name can only contain characters!";
     public GridPane infoPane;
     public RadioButton customerButton;
     public RadioButton sellerButton;
@@ -41,6 +43,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public void register() {
         try {
             findBlankInput();
+            validateInput();
             if(customerButton.isPressed()) {
                 registerCustomer();
             } else if(sellerButton.isPressed()) {
@@ -51,6 +54,34 @@ public class RegisterManager extends MenuManager implements Initializable {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    private void validateInput() throws Exception {
+        boolean isValid = true;
+        if(!ValidInput.NAME.getStringMatcher(firstName.getText()).matches()) {
+            firstNameError.setText(nameFormatError);
+            isValid = false;
+        }
+        if(!ValidInput.NAME.getStringMatcher(lastName.getText()).matches()) {
+            lastNameError.setText(nameFormatError);
+            isValid = false;
+        }
+        if(!ValidInput.EMAIL_ADDRESS.getStringMatcher(email.getText()).matches()) {
+            emailError.setText("Enter a valid email!");
+            isValid = false;
+        }
+        if(!ValidInput.PHONE_NUMBER.getStringMatcher(phoneNumber.getText()).matches()) {
+            phoneNumberError.setText("Enter a valid phone number!");
+            isValid = false;
+        }
+        if(customerButton.isSelected() || sellerButton.isSelected()) {
+            if(!ValidInput.DOUBLE.getStringMatcher(creditField.getText()).matches()) {
+                creditError.setText("Enter a valid number!");
+                isValid = false;
+            }
+        }
+        if(!isValid)
+            throw new Exception("Invalid input");
     }
 
     private void findBlankInput() throws Exception {

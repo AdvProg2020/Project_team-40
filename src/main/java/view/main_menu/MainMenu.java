@@ -4,22 +4,16 @@ import controller.accounts.AccountController;
 import controller.accounts.CustomerAccountController;
 import controller.accounts.ManagerAccountController;
 import controller.accounts.SellerAccountController;
-import javafx.stage.Stage;
-import view.MenuManager;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
 import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.seller_view.accounts_view.SellerAccount;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class MainMenu extends Menu {
@@ -80,9 +74,9 @@ public class MainMenu extends Menu {
             @Override
             public void execute() {
                 System.out.println("Enter username:");
-                String username = getValidInput(ConsoleCommand.DEFAULT, "");
+                String username = getValidInput(ValidInput.DEFAULT, "");
                 System.out.println("Enter password:");
-                String password = getValidInput(ConsoleCommand.DEFAULT, "");
+                String password = getValidInput(ValidInput.DEFAULT, "");
                 if(AccountController.getInstance().doesUserExistWithThisUsername(username)) {
                     System.out.println("User exists with this username.");
                     goBack(parentMenu, "back");
@@ -110,15 +104,15 @@ public class MainMenu extends Menu {
 
             private void getRemainingInformation(String username, String password, Role role) {
                 System.out.println("First name:");
-                String firstName = getValidInput(ConsoleCommand.NAME,
+                String firstName = getValidInput(ValidInput.NAME,
                         "Your name can only contain alphabetic characters.");
                 System.out.println("Last name:");
-                String lastName = getValidInput(ConsoleCommand.NAME,
+                String lastName = getValidInput(ValidInput.NAME,
                         "Your name can only contain alphabetic characters.");
                 System.out.println("Email address:");
-                String email = getValidInput(ConsoleCommand.EMAIL_ADDRESS, "Invalid email address");
+                String email = getValidInput(ValidInput.EMAIL_ADDRESS, "Invalid email address");
                 System.out.println("Phone number:");
-                String phoneNumber = getValidInput(ConsoleCommand.PHONE_NUMBER, "Invalid phone number");
+                String phoneNumber = getValidInput(ValidInput.PHONE_NUMBER, "Invalid phone number");
                 createAccount(username, password, firstName, lastName, email, phoneNumber, role);
             }
 
@@ -126,7 +120,7 @@ public class MainMenu extends Menu {
                                        String email, String phoneNumber, Role role) {
                 if(role.equals(Role.CUSTOMER)) {
                     System.out.println("Enter credit:");
-                    double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                    double credit = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                             "Enter a valid number."));
                     CustomerAccountController.getInstance().createCustomerAccount(username, password, firstName, lastName,
                             email, phoneNumber, credit);
@@ -135,10 +129,10 @@ public class MainMenu extends Menu {
                             lastName, email, phoneNumber);
                 } else if(role.equals(Role.SELLER)){
                     System.out.println("Enter credit:");
-                    double credit = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+                    double credit = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                             "Enter a valid number."));
                     System.out.println("Enter your company's information.");
-                    String companyInfo = getValidInput(ConsoleCommand.DEFAULT, "");
+                    String companyInfo = getValidInput(ValidInput.DEFAULT, "");
                     SellerAccountController.getInstance().createSellerAccount(username, password, firstName,
                             lastName, email, phoneNumber, credit, companyInfo);
                 }
@@ -154,9 +148,9 @@ public class MainMenu extends Menu {
             @Override
             public void execute() {
                 System.out.println("Enter your username:");
-                String username = getValidInput(ConsoleCommand.DEFAULT, "");
+                String username = getValidInput(ValidInput.DEFAULT, "");
                 System.out.println("Enter your password:");
-                String password = getValidInput(ConsoleCommand.DEFAULT, "");
+                String password = getValidInput(ValidInput.DEFAULT, "");
                 try {
                     AccountController.getInstance().login(username, password);
                     System.out.println("Welcome!");

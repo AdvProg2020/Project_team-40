@@ -1,7 +1,7 @@
 package view.account_menus.seller_view.sellers_offs_view;
 
 import controller.accounts.SellerAccountController;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 import model.Off;
@@ -134,26 +134,26 @@ public class ManageSellersOffsMenu extends Menu {
             }
 
             private String getStartDate(String errorMessage, Off off) throws ParseException {
-                String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                String dateInString = getValidInput(ValidInput.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").
                         parse(dateInString);
                 while(new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(off.getEndDate())
                         .compareTo(date) <= 0 || new Date().compareTo(date) >= 0) {
                     System.out.println("Invalid date, this date is either after expiration or before now.");
-                    dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                    dateInString = getValidInput(ValidInput.DATE, errorMessage);
                     date = new SimpleDateFormat().parse(dateInString);
                 }
                 return dateInString;
             }
 
             private String getEndDate(String errorMessage, Off off) throws ParseException {
-                String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                String dateInString = getValidInput(ValidInput.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").
                         parse(dateInString);
                 while(new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(off.getStartDate())
                         .compareTo(date) >= 0 || new Date().compareTo(date) >= 0) {
                     System.out.println("Invalid date, this date is either after expiration or before now.");
-                    dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                    dateInString = getValidInput(ValidInput.DATE, errorMessage);
                     date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 }
                 return dateInString;
@@ -222,7 +222,7 @@ public class ManageSellersOffsMenu extends Menu {
                 String input = "";
                 while(!(input.equalsIgnoreCase("end"))) {
                     input = scanner.nextLine();
-                    if(ConsoleCommand.INTEGER.getStringMatcher(input.trim()).matches()) {
+                    if(ValidInput.INTEGER.getStringMatcher(input.trim()).matches()) {
                         int chosenProductNumber = Integer.parseInt(input);
                         try {
                             productsInOff.add(sellerAccountController.
@@ -240,11 +240,11 @@ public class ManageSellersOffsMenu extends Menu {
 
             private String getStartDate() throws ParseException {
                 System.out.println("Enter start date in this format --> dd/MM/yy HH:mm:ss:");
-                String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                String dateInString = getValidInput(ValidInput.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 while(new Date().compareTo(date) >= 0) {
                     System.out.println("Invalid date, this date is before current date.");
-                    dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                    dateInString = getValidInput(ValidInput.DATE, errorMessage);
                     date = new SimpleDateFormat().parse(dateInString);
                 }
                 return dateInString;
@@ -252,13 +252,13 @@ public class ManageSellersOffsMenu extends Menu {
 
             private String getEndDate(String startDate) throws ParseException {
                 System.out.println("Enter end date in this format --> dd/MM/yy HH:mm:ss:");
-                String dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                String dateInString = getValidInput(ValidInput.DATE, errorMessage);
                 Date date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 while(new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(startDate).compareTo(date) >= 0 ||
                         new Date().compareTo(date) >= 0) {
                     System.out.println("Invalid date, " +
                             "this date is either after expiration or before now or before start date.");
-                    dateInString = getValidInput(ConsoleCommand.DATE, errorMessage);
+                    dateInString = getValidInput(ValidInput.DATE, errorMessage);
                     date = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(dateInString);
                 }
                 return dateInString;
@@ -279,11 +279,11 @@ public class ManageSellersOffsMenu extends Menu {
 
     private String getNewDiscountPercentage() {
         System.out.println("Enter the percentage(A valid number between 0 and 100): ");
-        double discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+        double discountPercentage = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                 "Invalid input.Enter a valid number."));
         while(discountPercentage > 100 || discountPercentage < 0) {
             System.out.println("Invalid input.Enter a valid number between 0 and 100.");
-            discountPercentage = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,
+            discountPercentage = Double.parseDouble(getValidInput(ValidInput.DOUBLE,
                     "Invalid input. Enter a valid number."));
         }
         return Double.toString(discountPercentage);

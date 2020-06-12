@@ -1,7 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.filter_view;
 
 import interfaces.Filterable;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.MenuException;
 import model.Product;
@@ -77,9 +77,9 @@ public class FiltersMenu<E extends Filterable> extends Menu {
                 System.out.println("Enter a field name: ");
                 String field = scanner.nextLine();
                 System.out.println("Enter minimum: ");
-                double min = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,"Invalid input.Enter a number!"));
+                double min = Double.parseDouble(getValidInput(ValidInput.DOUBLE,"Invalid input.Enter a number!"));
                 System.out.println("Enter maximum: ");
-                double max = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE,"Invalid input.Enter a number!"));
+                double max = Double.parseDouble(getValidInput(ValidInput.DOUBLE,"Invalid input.Enter a number!"));
                 try {
                     for (Product product : controller.filter(field, min, max)) {
                         System.out.println(product);

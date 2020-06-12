@@ -1,7 +1,7 @@
 package view.account_menus.manager_view.discount_view;
 
 import controller.accounts.ManagerAccountController;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 import model.DiscountCode;
@@ -58,11 +58,11 @@ public class DiscountsMenu extends Menu {
                 System.out.println("Enter ending date in this format: dd-MM-yyyy HH:mm");
                 String end = scanner.nextLine();
                 System.out.println("Enter discount percentage: ");
-                int percentage = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER, "You can just use NUMERIC characters!"));
+                int percentage = Integer.parseInt(getValidInput(ValidInput.INTEGER, "You can just use NUMERIC characters!"));
                 System.out.println("Enter maximum discount amount for a product: ");
-                double max = Double.parseDouble(getValidInput(ConsoleCommand.DOUBLE, "You can just use NUMERIC characters!"));
+                double max = Double.parseDouble(getValidInput(ValidInput.DOUBLE, "You can just use NUMERIC characters!"));
                 System.out.println("Enter number of codes per user: ");
-                int count = Integer.parseInt(getValidInput(ConsoleCommand.INTEGER, "You can just use NUMERIC characters!"));
+                int count = Integer.parseInt(getValidInput(ValidInput.INTEGER, "You can just use NUMERIC characters!"));
                 System.out.println("Enter included usernames. Enter OK to end.");
                 ArrayList <String> allUsernames = new ArrayList<>();
                 String username;

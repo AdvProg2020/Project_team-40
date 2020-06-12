@@ -2,7 +2,7 @@ package view.account_menus.manager_view.manage_users_view;
 
 import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
-import view.ConsoleCommand;
+import view.ValidInput;
 import view.Menu;
 import exceptions.AccountsException;
 
@@ -110,15 +110,15 @@ public class ManageUsersMenu extends Menu {
                     System.out.println("Enter password: ");
                     String password = scanner.nextLine();
                     System.out.println("First name:");
-                    String firstName = getValidInput(ConsoleCommand.NAME,
+                    String firstName = getValidInput(ValidInput.NAME,
                             "Your name can only contain alphabetic characters.");
                     System.out.println("Last name:");
-                    String lastName = getValidInput(ConsoleCommand.NAME,
+                    String lastName = getValidInput(ValidInput.NAME,
                             "Your name can only contain alphabetic characters.");
                     System.out.println("Email address:");
-                    String email = getValidInput(ConsoleCommand.EMAIL_ADDRESS, "Invalid email address");
+                    String email = getValidInput(ValidInput.EMAIL_ADDRESS, "Invalid email address");
                     System.out.println("Phone number:");
-                    String phoneNumber = getValidInput(ConsoleCommand.PHONE_NUMBER, "Invalid phone number");
+                    String phoneNumber = getValidInput(ValidInput.PHONE_NUMBER, "Invalid phone number");
                     managerAccountController.createManagerAccount(username, password, firstName, lastName, email, phoneNumber);
 
                     this.parentMenu.show();
