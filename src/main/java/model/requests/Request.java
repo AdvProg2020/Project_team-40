@@ -35,6 +35,10 @@ public abstract class Request implements Serializable {
         return status.getStr();
     }
 
+    public String getType(){
+        return type;
+    }
+
     @Override
     public String toString() {
         return "Request ID :" + requestId  + "\n"
