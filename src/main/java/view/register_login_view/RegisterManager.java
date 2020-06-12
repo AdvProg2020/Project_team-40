@@ -1,10 +1,11 @@
 package view.register_login_view;
 
+import controller.accounts.AccountController;
+import controller.accounts.CustomerAccountController;
+import controller.accounts.ManagerAccountController;
+import controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import model.users.User;
 import view.MenuManager;
@@ -20,6 +21,8 @@ public class RegisterManager extends MenuManager implements Initializable {
     public RadioButton customerButton;
     public RadioButton sellerButton;
     public RadioButton managerButton;
+    public Button register;
+    public Button account;
     public Label creditLabel;
     public Label companyLabel;
     public Label usernameError;
@@ -44,16 +47,41 @@ public class RegisterManager extends MenuManager implements Initializable {
         try {
             findBlankInput();
             validateInput();
-            if(customerButton.isPressed()) {
-                registerCustomer();
-            } else if(sellerButton.isPressed()) {
-                registerSeller();
-            } else if(managerButton.isPressed()) {
-                registerManager();
+            if(!AccountController.getInstance().doesUserExistWithThisUsername(username.getText())) {
+                if (customerButton.isPressed()) {
+                    registerCustomer();
+                } else if (sellerButton.isPressed()) {
+                    registerSeller();
+                } else if (managerButton.isPressed()) {
+                    registerManager();
+                }
+                finishRegister();
+            } else {
+                usernameError.setText("This username has been used!");
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    private void finishRegister() {
+        account = new Button("Login!");
+        innerPane.getChildren().add(account);
+        account.setLayoutX(register.getLayoutX());
+        account.setLayoutY(register.getLayoutY());
+        account.setPrefWidth(155);
+
+        register.setDisable(true);
+        companyField.setDisable(true);
+        creditField.setDisable(true);
+        username.setDisable(true);
+        password.setDisable(true);
+        firstName.setDisable(true);
+        lastName.setDisable(true);
+        email.setDisable(true);
+        phoneNumber.setDisable(true);
+
+        account.setOnAction(e -> goToAccountsMenu());
     }
 
     private void validateInput() throws Exception {
@@ -119,16 +147,20 @@ public class RegisterManager extends MenuManager implements Initializable {
     }
 
     private void registerManager() {
-
+        ManagerAccountController.getInstance().createManagerAccount(username.getText(), password.getText(),
+                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText());
     }
 
     private void registerSeller() {
-
+        SellerAccountController.getInstance().createSellerAccount(username.getText(), password.getText(),
+                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(),
+                Double.parseDouble(creditField.getText()), companyField.getText());
     }
 
     private void registerCustomer() {
-  //      CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
-    //            firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(), creditField.getText());
+        CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
+                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(),
+                Double.parseDouble(creditField.getText()));
     }
 
     public void clickCustomer() {
