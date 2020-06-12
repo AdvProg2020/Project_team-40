@@ -4,6 +4,7 @@ import exceptions.AccountsException;
 import model.Category;
 import model.Off;
 import model.Product;
+import model.enumerations.PropertyType;
 import model.enumerations.SetUpStatus;
 import model.log.Log;
 import model.requests.*;
@@ -180,11 +181,11 @@ public class SellerAccountController extends AccountController{
         product.setStatus(status);
     }
 
-    public SetUpStatus getSetUpStatus(String productId) {
+    public SetUpStatus getSetpStatus(String productId) {
         return Product.getProductById(productId).getStatus();
     }
 
-    public ArrayList<String> getCategoryProperties(String category) {
+    public HashMap<String, PropertyType> getCategoryProperties(String category) {
         return Category.getCategoryByName(category).getExtraProperties();
     }
 

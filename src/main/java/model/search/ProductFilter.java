@@ -2,6 +2,7 @@ package model.search;
 
 import model.Category;
 import model.Product;
+import model.enumerations.PropertyType;
 import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
 
@@ -20,7 +21,8 @@ public class ProductFilter{
     private Range price;
     private HashMap<String , String> stringProperties;
     private HashMap<String, Range> valueProperties;
-    private HashMap<String , Boolean> availableExtraProperties;
+    private HashMap<String, Boolean> availableExtraStringProperties;
+    private HashMap<String , Boolean> availableExtraValueProperties;
 
     public ProductFilter(ArrayList<Product> products, Category category, String productName, String productCompany,
                          String sellerName, SetUpStatus status, Range price,
@@ -34,13 +36,17 @@ public class ProductFilter{
         this.price = price;
         this.stringProperties = stringProperties;
         this.valueProperties = valueProperties;
-        availableExtraProperties = new HashMap<>();
+        availableExtraValueProperties = new HashMap<>();
+        availableExtraStringProperties = new HashMap<>();
         if (category != null){
-            for(String extraProperty : category.getExtraProperties()) {
+            for(Map.Entry<String, PropertyType> extraProperty : category.getExtraProperties().entrySet()) {
                 Boolean flag = Boolean.FALSE;
                 if (stringProperties.containsKey(extraProperty) || valueProperties.containsKey(extraProperty))
                     flag = Boolean.TRUE;
-                availableExtraProperties.put(extraProperty, flag);
+                    if(extraProperty.getValue() == PropertyType.STRING)
+                        availableExtraStringProperties.put(extraProperty.getKey(), Boolean.FALSE);
+                    if(extraProperty.getValue() == PropertyType.VALUE)
+                        availableExtraValueProperties.put(extraProperty.getKey(), Boolean.FALSE);
             }
 
         }
@@ -48,11 +54,12 @@ public class ProductFilter{
 
     public void addExtraProperty(String name, Range range){
         valueProperties.put(name, range);
-        availableExtraProperties.put(name, Boolean.TRUE);
+        availableExtraValueProperties.put(name, Boolean.TRUE);
     }
 
     private  void addExtraProperties(ArrayList<String> availableFilters){
-        availableFilters.addAll(availableExtraProperties.keySet());
+        availableFilters.addAll(availableExtraStringProperties.keySet());
+        availableFilters.addAll(availableExtraValueProperties.keySet());
     }
 
 
@@ -72,7 +79,8 @@ public class ProductFilter{
 
         if(name.equalsIgnoreCase("category")){
             category = null;
-            availableExtraProperties.clear();
+            availableExtraStringProperties.clear();
+            availableExtraValueProperties.clear();
         }else if(name.equalsIgnoreCase("name")){
             productName = null;
         }else if(name.equalsIgnoreCase("company")){
@@ -85,10 +93,10 @@ public class ProductFilter{
             price = null;
         }else if(valueProperties.get(name) != null){
             valueProperties.remove(name);
-            availableExtraProperties.put(name, Boolean.FALSE);
+            availableExtraValueProperties.put(name, Boolean.FALSE);
         }else if(stringProperties.get(name) != null){
             stringProperties.remove(name);
-            availableExtraProperties.put(name, Boolean.FALSE);
+            availableExtraValueProperties.put(name, Boolean.FALSE);
         }
 
     }
