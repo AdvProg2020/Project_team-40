@@ -12,6 +12,10 @@ public class AddOff extends Request{
         this.off = off;
     }
 
+    public Off getOff() {
+        return off;
+    }
+
     @Override
     public void action() {
         if(status.equals(Status.Confirmed)) {
