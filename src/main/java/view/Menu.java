@@ -2,7 +2,7 @@ package view;
 
 import controller.accounts.AccountController;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
-import view.account_menus.manager_view.account_view.ManagersAccount;
+//import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.PeopleAccountMenu;
 import view.account_menus.seller_view.accounts_view.SellerAccount;
 import view.main_menu.MainMenu;
@@ -105,48 +105,48 @@ public abstract class Menu {
             } else
                 nextMenu = parentMenu;
         } else if(chosenMenu > subMenus.size()) {
-            nextMenu = goToShoppingOrAccountMenus(chosenMenu);
+//            nextMenu = goToShoppingOrAccountMenus(chosenMenu);
         } else
             nextMenu = subMenus.get(chosenMenu);
         nextMenu.show();
         nextMenu.execute();
     }
 
-    private Menu goToShoppingOrAccountMenus(int chosenMenu) {
-        if(!(this instanceof PeopleAccountMenu) && AccountController.getInstance().isLogin()) {
-            if(chosenMenu == subMenus.size() + 1) {
-                return goToAccount();
-            }
-        }
-        if(!(this instanceof ProductsMenu)) {
-            if(!(this instanceof OffsMenu)) {
-                if(chosenMenu == numberOfOptions - 3) {
-                    return new ProductsMenu(this);
-                }
-            } else {
-                if(chosenMenu == numberOfOptions - 2) {
-                    return new ProductsMenu(this);
-                }
-            }
-        }
-        if(!(this instanceof OffsMenu)) {
-            if(chosenMenu == numberOfOptions - 2) {
-                return new OffsMenu(this);
-            }
-        }
-        return null;
-    }
+//    private Menu goToShoppingOrAccountMenus(int chosenMenu) {
+//        if(!(this instanceof PeopleAccountMenu) && AccountController.getInstance().isLogin()) {
+//            if(chosenMenu == subMenus.size() + 1) {
+//                return goToAccount();
+//            }
+//        }
+//        if(!(this instanceof ProductsMenu)) {
+//            if(!(this instanceof OffsMenu)) {
+//                if(chosenMenu == numberOfOptions - 3) {
+//                    return new ProductsMenu(this);
+//                }
+//            } else {
+//                if(chosenMenu == numberOfOptions - 2) {
+//                    return new ProductsMenu(this);
+//                }
+//            }
+//        }
+//        if(!(this instanceof OffsMenu)) {
+//            if(chosenMenu == numberOfOptions - 2) {
+//                return new OffsMenu(this);
+//            }
+//        }
+//        return null;
+//    }
 
-    private Menu goToAccount() {
-        User user = AccountController.getInstance().getThisUser();
-        if(user instanceof Customer) {
-            return new CustomerAccount(this);
-        } else if(user instanceof Seller) {
-            return new SellerAccount(this);
-        } else {
-            return new ManagersAccount(this);
-        }
-    }
+//    private Menu goToAccount() {
+//        User user = AccountController.getInstance().getThisUser();
+//        if(user instanceof Customer) {
+//            return new CustomerAccount(this);
+//        } else if(user instanceof Seller) {
+//            return new SellerAccount(this);
+//        } else {
+//            return new ManagersAccount(this);
+//        }
+//    }
 
     public int getNumberOfNextMenu(int numberOfSubmenus) {
         int chosenMenu;

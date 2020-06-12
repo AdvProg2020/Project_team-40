@@ -5,7 +5,7 @@ import controller.accounts.CustomerAccountController;
 import controller.accounts.ManagerAccountController;
 import controller.accounts.SellerAccountController;
 import view.account_menus.custromer_view.account_view.CustomerAccount;
-import view.account_menus.manager_view.account_view.ManagersAccount;
+//import view.account_menus.manager_view.account_view.ManagersAccount;
 import view.account_menus.seller_view.accounts_view.SellerAccount;
 import view.ValidInput;
 import view.Menu;
@@ -34,7 +34,7 @@ public class MainMenu extends Menu {
             } else if(accountController.getThisUser() instanceof Seller) {
                 subMenus.put(1, new SellerAccount(this));
             } else {
-                subMenus.put(1, new ManagersAccount(this));
+//                subMenus.put(1, new ManagersAccount(this));
             }
         }
     }
