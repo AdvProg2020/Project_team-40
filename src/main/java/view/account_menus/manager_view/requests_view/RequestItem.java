@@ -17,6 +17,8 @@ import model.Product;
 import model.requests.AddOff;
 import model.requests.AddProduct;
 import model.requests.Request;
+import model.requests.SellingPermission;
+import model.users.Seller;
 import view.MenuManager;
 
 import java.net.URL;
@@ -60,6 +62,14 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setSellingPermissionLabels(SellingPermissionMenu requestMenu, Request request) {
+                Seller seller = (Seller) Seller.getUserByUsername(((SellingPermission)request).getSellerUsername());
+                requestMenu.setSellingPermission((SellingPermission)request);
+                requestMenu.setUsernameLabel(seller.getUsername());
+                requestMenu.setNameLabel(seller.getFirstName());
+                requestMenu.setCompanyLabel(seller.getCompanyInfo());
+                requestMenu.setCreditLabel(Double.toString(seller.getCredit()));
+                requestMenu.setEmailLabel(seller.getEmail());
+                requestMenu.setPhoneLabel(seller.getPhoneNo());
             }
 
             private void setEditOffLabels(EditOffMenu requestMenu, Request request) {

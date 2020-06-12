@@ -12,6 +12,10 @@ public class SellingPermission extends Request{
         this.sellerUsername = sellerUsername;
     }
 
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
     @Override
     public void action() {
         if(status == Status.Confirmed) {

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="500.0" style="-fx-background-color: #2e86c1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.SellingPermissionMenu">
+    <children>
+        <VBox layoutX="96.0" layoutY="130.0" prefHeight="279.0" prefWidth="124.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Username">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Name">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="65.0" prefWidth="124.0" text="Email">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="57.0" prefWidth="124.0" text="Phone No">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="51.0" prefWidth="124.0" text="Company">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="54.0" prefWidth="124.0" text="Credit">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="113.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Selling permission">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="258.0" layoutY="130.0" prefHeight="279.0" prefWidth="196.0">
+            <children>
+                <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="49.0" prefWidth="198.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="emailLabel" alignment="CENTER" prefHeight="58.0" prefWidth="201.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="phoneLabel" alignment="CENTER" prefHeight="51.0" prefWidth="199.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="companyLabel" alignment="CENTER" prefHeight="44.0" prefWidth="202.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="creditLabel" alignment="CENTER" prefHeight="50.0" prefWidth="202.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="58.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icons8-question-mark-64.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="acceptButton" layoutX="158.0" layoutY="443.0" onAction="#handleAcceptRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-checked-160.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="declineButton" layoutX="290.0" layoutY="443.0" onAction="#handleDeclineRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="42.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-cancel-144.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+    </children>
+</AnchorPane>
