@@ -1,12 +1,18 @@
 package view.register_login_view;
 
+import controller.accounts.AccountController;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import model.users.User;
 import view.MenuManager;
 
-public class RegisterManager extends MenuManager {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RegisterManager extends MenuManager implements Initializable {
     public GridPane infoPane;
     public RadioButton customerButton;
     public RadioButton sellerButton;
@@ -64,5 +70,15 @@ public class RegisterManager extends MenuManager {
             creditField = new TextField();
             infoPane.add(creditField, 1, 10);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(User.doesManagerExist()) {
+           infoPane.getChildren().remove(managerButton);
+           managerButton = null;
+        }
+
+        //TODO: NEEDS TEST
     }
 }
