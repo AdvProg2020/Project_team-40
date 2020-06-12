@@ -1,9 +1,11 @@
 package view;
 
 import controller.accounts.AccountController;
+import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import model.Loader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,15 +20,17 @@ public abstract class MenuManager {
     }
 
     public void setInnerPane(String rootLocation){
-        roots.add(rootLocation);
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(rootLocation));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         innerPane.getChildren().clear();
-        innerPane.getChildren().add(root);
+        roots.add(rootLocation);
+        if(!rootLocation.equals("/layouts/main.fxml")) {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource(rootLocation));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            innerPane.getChildren().add(root);
+        }
     }
 
     //Set pane for CHILDREN inner panes
@@ -63,17 +67,25 @@ public abstract class MenuManager {
             exit();
         }
         roots.remove(roots.size() - 1);
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(roots.get(roots.size() - 1)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         innerPane.getChildren().clear();
-        innerPane.getChildren().add(root);
+        String lastRoot = roots.get(roots.size() - 1);
+        if(!lastRoot.equals("/layouts/main.fxml")) {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource(lastRoot));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            innerPane.getChildren().add(root);
+        }
     }
 
     public void exit() {
+        try {
+            Loader.getLoader().saveData();
+        } catch (DataException e) {
+            e.printStackTrace();
+        }
         System.exit(1);
     }
 }

@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane fx:id="innerPane" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.register_login_view.RegisterManager"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane fx:id="innerPane" prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.register_login_view.RegisterManager">
+    <GridPane layoutY="163.0" prefHeight="425.0" prefWidth="831.0">
+      <columnConstraints>
+         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      </rowConstraints>
+    </GridPane>
 
+    <PasswordField fx:id="password" prefHeight="36.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+    <TextField fx:id="lastName" prefHeight="98.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+     <Button fx:id="register" layoutX="297.0" layoutY="627.0" onMouseClicked="#register" prefHeight="22.0" prefWidth="155.0" text="Sign Up!">
 
-</Pane>
+        </Button>
+     <Label layoutX="327.0" layoutY="27.0" text="Register">
+         <font>
+             <Font size="50" />
+         </font>
+     </Label>
+     <Label layoutX="164.0" layoutY="96.0" text="Username:" />
+     <Label layoutX="82.0" layoutY="98.0" text="Password:" />
+     <Label layoutX="244.0" layoutY="95.0" text="First Name:" />
+     <Label layoutX="348.0" layoutY="96.0" text="Last Name:" />
+     <Label layoutX="402.0" layoutY="98.0" text="phoneNumber:" />
+     <Label layoutX="518.0" layoutY="100.0" text="Email:" />
+     <TextField fx:id="firstName" layoutX="535.0" layoutY="76.0" />
+     <TextField fx:id="phoneNumber" layoutX="417.0" layoutY="74.0" />
+     <TextField fx:id="email" layoutX="222.0" layoutY="63.0" />
+     <TextField fx:id="username" layoutX="643.0" layoutY="79.0" />
+</AnchorPane>
