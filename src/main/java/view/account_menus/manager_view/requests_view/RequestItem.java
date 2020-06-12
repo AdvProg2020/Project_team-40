@@ -12,7 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Off;
 import model.Product;
+import model.requests.AddOff;
 import model.requests.AddProduct;
 import model.requests.Request;
 import view.MenuManager;
@@ -67,6 +69,13 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setAddOffLabels(AddOffMenu requestMenu, Request request) {
+                Off off = ((AddOff)request).getOff();
+                requestMenu.setAddOff((AddOff)request);
+                requestMenu.setOffIdLabel(off.getId());
+                requestMenu.setStartDateLabel(off.getStartDate());
+                requestMenu.setEndDateLabel(off.getEndDate());
+                requestMenu.setSellerLabel(off.getSeller().getUsername());
+                requestMenu.setPercentageLabel(Double.toString(off.getDiscountPercentage()));
             }
         });
     }
