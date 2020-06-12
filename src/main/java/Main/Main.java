@@ -1,17 +1,45 @@
 package Main;
 
+import controller.accounts.ManagerAccountController;
 import exceptions.DataException;
 import model.Loader;
+import model.enumerations.PropertyType;
 import view.GUI;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class Main {
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
-        initializeLoading();
+        //initializeLoading();
+        addTempVariables();
         GUI.initialize();
+    }
+
+    private static void addTempVariables(){
+        HashMap<String, PropertyType> properties = new HashMap<>();
+        properties.put("size", PropertyType.STRING);
+        properties.put("wifi", PropertyType.STRING);
+        properties.put("number of usb jacks", PropertyType.VALUE);
+        properties.put("storage space", PropertyType.VALUE);
+
+        HashMap<String, PropertyType> subProperties = new HashMap<>();
+        properties.put("display", PropertyType.STRING);
+        properties.put("OS", PropertyType.STRING);
+        properties.put("ram", PropertyType.VALUE);
+        properties.put("camera quality", PropertyType.VALUE);
+        try {
+            ManagerAccountController.getInstance().createCategory("electronics", null, properties);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try {
+            ManagerAccountController.getInstance().createCategory("mobile", "electronics", subProperties);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     private static void resourcesInitialization() throws DataException {
