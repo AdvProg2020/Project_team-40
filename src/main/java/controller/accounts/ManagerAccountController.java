@@ -4,6 +4,7 @@ import exceptions.AccountsException;
 import model.Category;
 import model.DiscountCode;
 import model.Product;
+import model.enumerations.PropertyType;
 import model.enumerations.Status;
 import model.requests.Request;
 import model.users.Customer;
@@ -13,6 +14,7 @@ import model.users.User;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Set;
 
 public class ManagerAccountController extends AccountController{
@@ -213,18 +215,17 @@ public class ManagerAccountController extends AccountController{
             category.resetName(newField);
             handleProductsAfterEdit(field, newField, category);
         }
-        else if (!category.getExtraProperties().contains(field))
+        else if (!category.getExtraProperties().containsKey(field))
             throw new AccountsException("There is no field with this name.");
         else {
-            int fieldIndex = category.getExtraProperties().indexOf(field);
-            category.getExtraProperties().set(fieldIndex, newField);
+            PropertyType type = category.getExtraProperties().get(field);
+            category.addProperty(newField, type);
+            category.getExtraProperties().remove(field);
             handleProductsAfterEdit(field, newField, category);
         }
-
-
     }
 
-    public void createCategory(String categoryName, String parentCategory, ArrayList<String> properties) throws AccountsException {
+    public void createCategory(String categoryName, String parentCategory, HashMap<String, PropertyType> properties) throws AccountsException {
         if (Category.getCategoryByName(categoryName) != null)
             throw new AccountsException("Category exists with this name");
         Category parent = Category.getCategoryByName(parentCategory);
@@ -232,13 +233,9 @@ public class ManagerAccountController extends AccountController{
             throw new AccountsException("Parent category not found.");
         Category category = new Category(categoryName, parentCategory);
         if (parent != null) {
-            for (String parentProperty : Category.getCategoryByName(parentCategory).getExtraProperties()) {
-                category.addProperty(parentProperty);
-            }
+            category.addParentProperties();
         }
-        for (String property : properties) {
-            category.addProperty(property);
-        }
+        category.getExtraProperties().putAll(properties);
         Category.addCategory(category);
     }
 

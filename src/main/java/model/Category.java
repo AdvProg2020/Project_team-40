@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.DataException;
+import model.enumerations.PropertyType;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,16 +15,21 @@ public class Category implements Serializable {
     private String parentCategoryName;
     private ArrayList<String> productIDs;
     private ArrayList<String> subCategoriesNames;
-    private ArrayList<String> extraProperties;
+    private HashMap<String, PropertyType> extraProperties;
 
     public Category(String name, String parentCategory) {
         this.name = name;
         this.parentCategoryName = parentCategory;
         this.subCategoriesNames = new ArrayList<>();
         this.productIDs = new ArrayList<>();
-        this.extraProperties = new ArrayList<>();
-        if (parentCategory != null)
+        this.extraProperties = new HashMap<>();
+        if (parentCategory != null) {
             Category.getCategoryByName(parentCategory).addSubCategoryName(name);
+        }
+    }
+
+    public void addParentProperties(){
+        extraProperties.putAll(Category.getCategoryByName(parentCategoryName).getExtraProperties());
     }
 
     public static void addCategory(Category category){
@@ -34,12 +40,12 @@ public class Category implements Serializable {
         return productIDs;
     }
 
-    public ArrayList<String> getExtraProperties() {
+    public HashMap<String, PropertyType> getExtraProperties() {
         return extraProperties;
     }
 
-    public void addProperty(String property){
-        extraProperties.add(property);
+    public void addProperty(String propertyName, PropertyType propertyType){
+        extraProperties.put(propertyName, propertyType);
     }
 
     public ArrayList<Category> getSubCategories(){
@@ -122,6 +128,16 @@ public class Category implements Serializable {
         int index = 1;
         for (String item : items) {
             result.append("  ").append(index).append(". ").append(item).append("\n");
+            index++;
+        }
+        return result;
+    }
+
+    private StringBuilder getItemsToShow(HashMap<String, PropertyType> items) {
+        StringBuilder result = new StringBuilder();
+        int index = 1;
+        for(Map.Entry<String, PropertyType> entry : items.entrySet()) {
+            result.append("  ").append(index).append(". ").append(entry.getKey()).append(" - ").append(entry.getValue()).append("\n");
             index++;
         }
         return result;
