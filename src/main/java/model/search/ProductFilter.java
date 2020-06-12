@@ -23,6 +23,7 @@ public class ProductFilter{
     private HashMap<String, Range> valueProperties;
     private HashMap<String, Boolean> availableExtraStringProperties;
     private HashMap<String , Boolean> availableExtraValueProperties;
+    //FALSE : NOT DECLARED TRUE : DECLARED
 
     public ProductFilter(ArrayList<Product> products, Category category, String productName, String productCompany,
                          String sellerName, SetUpStatus status, Range price,
@@ -40,39 +41,45 @@ public class ProductFilter{
         availableExtraStringProperties = new HashMap<>();
         if (category != null){
             for(Map.Entry<String, PropertyType> extraProperty : category.getExtraProperties().entrySet()) {
-                Boolean flag = Boolean.FALSE;
-                if (stringProperties.containsKey(extraProperty) || valueProperties.containsKey(extraProperty))
-                    flag = Boolean.TRUE;
+                if (stringProperties.containsKey(extraProperty) || valueProperties.containsKey(extraProperty)) {
+                    if(extraProperty.getValue() == PropertyType.STRING)
+                        availableExtraStringProperties.put(extraProperty.getKey(), Boolean.TRUE);
+                    if(extraProperty.getValue() == PropertyType.VALUE)
+                        availableExtraValueProperties.put(extraProperty.getKey(), Boolean.TRUE);
+                }else{
                     if(extraProperty.getValue() == PropertyType.STRING)
                         availableExtraStringProperties.put(extraProperty.getKey(), Boolean.FALSE);
                     if(extraProperty.getValue() == PropertyType.VALUE)
                         availableExtraValueProperties.put(extraProperty.getKey(), Boolean.FALSE);
+                }
             }
 
         }
     }
 
-    public void addExtraProperty(String name, Range range){
-        valueProperties.put(name, range);
-        availableExtraValueProperties.put(name, Boolean.TRUE);
-    }
-
-    private  void addExtraProperties(ArrayList<String> availableFilters){
-        availableFilters.addAll(availableExtraStringProperties.keySet());
-        availableFilters.addAll(availableExtraValueProperties.keySet());
-    }
-
-
-    public  ArrayList<String> getAvailableFilters(){
+    public ArrayList<String> getAvailableFilters(){
         ArrayList<String> availableFilters = new ArrayList<>();
-        availableFilters.add("Name");
-        availableFilters.add("Category");
-        availableFilters.add("Company");
-        availableFilters.add("Seller");
-        availableFilters.add("Status");
-        availableFilters.add("Price");
-        addExtraProperties(availableFilters);
+        availableFilters.addAll(getAvailableExtraStringProperties());
+        availableFilters.addAll(getAvailableExtraValueProperties());
         return availableFilters;
+    }
+
+    public ArrayList<String> getAvailableExtraStringProperties(){
+        ArrayList<String> availableStringProperties = new ArrayList<>();
+        for(Map.Entry<String, Boolean> stringBooleanEntry : availableExtraStringProperties.entrySet()) {
+            if(!stringBooleanEntry.getValue())
+                availableStringProperties.add(stringBooleanEntry.getKey());
+        }
+        return availableStringProperties;
+    }
+
+    public ArrayList<String> getAvailableExtraValueProperties(){
+        ArrayList<String> availableValueProperties = new ArrayList<>();
+        for(Map.Entry<String, Boolean> stringBooleanEntry : availableExtraValueProperties.entrySet()) {
+            if(!stringBooleanEntry.getValue())
+                availableValueProperties.add(stringBooleanEntry.getKey());
+        }
+        return availableValueProperties;
     }
 
     public void disableFilter(String name){

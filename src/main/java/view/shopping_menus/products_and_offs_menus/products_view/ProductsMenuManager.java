@@ -3,6 +3,7 @@ package view.shopping_menus.products_and_offs_menus.products_view;
 import com.jfoenix.controls.JFXButton;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
+import exceptions.MenuException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public ChoiceBox sortChoiceBox;
     public VBox productsBox;
     public JFXButton showMoreButton;
-    public Label loading;
     public TreeView categories;
 
     private static int indexOfLastUser;
@@ -40,6 +40,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeProducts(){
+        //At start 0 items are shown, this will add 20 (max) new items
         showMoreItems();
     }
 
@@ -76,23 +77,23 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         categories.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1){
-
+                try {
+                    AllProductsController.getInstance().filter("Category", (String)((TreeItem)t1).getValue());
+                } catch(MenuException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
     private void initializeFilter(){
+        ArrayList<String> stringProperties = new ArrayList<>();
+        for(String property : AllProductsController.getInstance().getAvailableFilters()) {
 
+        }
     }
 
     private void showMoreItems(){
-        loading.setText("loading...");
-
-        try {
-            Thread.sleep(200);
-        }catch(Exception e){
-
-        }
 
         Node[] nodes = new Node[20];
         for(int i = 0; i < 20; ++i){
@@ -113,7 +114,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
             indexOfLastUser++;
         }
-        loading.setText("");
     }
 
     public static int getIndexOfLastUser(){

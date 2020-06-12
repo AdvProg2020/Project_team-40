@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="832.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <tabs>
       <Tab text="Products">
          <content>
@@ -25,13 +25,12 @@
                   </HBox>
                   <VBox alignment="CENTER" layoutY="38.0" prefHeight="607.0" prefWidth="831.0">
                      <children>
-                        <ScrollPane prefHeight="594.0" prefWidth="831.0">
+                        <ScrollPane fitToWidth="true" prefHeight="594.0" prefWidth="831.0">
                            <content>
                               <VBox fx:id="productsBox" prefHeight="560.0" prefWidth="831.0" />
                            </content>
                         </ScrollPane>
-                        <JFXButton fx:id="showMoreButton" prefHeight="26.0" prefWidth="684.0" text="Show more" />
-                        <Label fx:id="loading" text="Loading" />
+                        <JFXButton fx:id="showMoreButton" prefHeight="63.0" prefWidth="831.0" text="Show more" />
                      </children>
                   </VBox>
                </children>
@@ -42,7 +41,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane layoutY="7.0" prefHeight="640.0" prefWidth="831.0">
+                  <ScrollPane fitToWidth="true" layoutY="7.0" prefHeight="640.0" prefWidth="831.0">
                      <content>
                         <TreeView fx:id="categories" prefHeight="635.0" prefWidth="831.0" />
                      </content>
