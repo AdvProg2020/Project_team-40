@@ -33,6 +33,15 @@
            <Label text="Last Name:" GridPane.rowIndex="3" />
            <Label text="Phone Number:" GridPane.rowIndex="4" />
            <Label text="Email Address:" GridPane.rowIndex="5" />
+          <Label fx:id="usernameError"></Label>
+          <Label fx:id="passwordError"></Label>
+          <Label fx:id="firstNameError"></Label>
+          <Label fx:id="lastNameError"></Label>
+          <Label fx:id="phoneNumberError"></Label>
+          <Label fx:id="emailError"></Label>
+          <Label fx:id="roleError"></Label>
+          <Label fx:id="creditError"></Label>
+          <Label fx:id="companyError"></Label>
           <RadioButton fx:id="customerButton" onMouseClicked="#clickCustomer" text="Customer" GridPane.rowIndex="7">
             <toggleGroup>
                <ToggleGroup fx:id="roleGroup" />
