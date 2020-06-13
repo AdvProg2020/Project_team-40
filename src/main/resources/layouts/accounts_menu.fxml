@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane prefHeight="90.0" prefWidth="169.0">
+    <GridPane layoutX="204.0" layoutY="148.0" prefHeight="289.0" prefWidth="570.0">
         <columnConstraints>
-         <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
          <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
       <rowConstraints>
-         <RowConstraints minHeight="10.0" prefHeight="30.0" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      </rowConstraints></GridPane>
+         <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+         <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+         <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+         <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+         <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+      </rowConstraints>
+      <children>
+           <Label text="Username:" />
+          <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+          <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+          <Label text="Email Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+          <Label text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      </children>
+    </GridPane>
 </Pane>
