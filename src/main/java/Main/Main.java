@@ -13,7 +13,7 @@ public class Main {
     private static final String PATH = "src/main/resources";
 
     public static void main(String[] args) {
-        //initializeLoading();
+        initializeLoading();
         addTempVariables();
         GUI.initialize();
     }
