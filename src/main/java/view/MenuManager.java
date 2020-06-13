@@ -19,7 +19,7 @@ public abstract class MenuManager {
         roots.add("/layouts/main.fxml");
     }
 
-    public void setInnerPane(String rootLocation){
+    public void setInnerPane(String rootLocation) {
         innerPane.getChildren().clear();
         roots.add(rootLocation);
         if(!rootLocation.equals("/layouts/main.fxml")) {
@@ -56,7 +56,7 @@ public abstract class MenuManager {
 
     public void goToAccountsMenu() {
         if(accountController.isLogin()) {
-            setInnerPane("/layouts/accounts_menu.fxml");
+            setInnerPane("/layouts/user_info.fxml");
         } else {
             setInnerPane("/layouts/login_menu.fxml");
         }

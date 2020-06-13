@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -17,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.users.User;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,7 +34,7 @@ public class UserItem implements Initializable {
         for (String userName : managerAccountController.getAllUserNames()) {
             try {
                 User user = managerAccountController.getUser(userName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/user_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/user_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(user, hBox);
                 vBoxItems.getChildren().add(item);
@@ -92,7 +90,7 @@ public class UserItem implements Initializable {
     public void handleViewUser(ActionEvent event) {
         HBox item = (HBox)((deleteUserButton.getParent()).getParent());
         String username =((Label)item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/empty_layouts/user.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/user.fxml"));
         try {
             User user = managerAccountController.getUser(username);
             AnchorPane pane = loader.load();
