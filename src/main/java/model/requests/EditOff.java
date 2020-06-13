@@ -44,6 +44,18 @@ public class EditOff extends Request {
         }
     }
 
+    public Off getOff() {
+        return Off.getOffByID(offId);
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public String getNewField() {
+        return newField;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Edited Off: " + offId + "\n" +

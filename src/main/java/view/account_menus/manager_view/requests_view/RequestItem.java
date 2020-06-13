@@ -83,6 +83,11 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setEditOffLabels(EditOffMenu requestMenu, Request request) {
+                EditOff editOffRequest = (EditOff) request;
+                Off off = editOffRequest.getOff();
+                requestMenu.setEditOff((EditOff)request);
+                requestMenu.setOldLabel(editOffRequest.getField());
+                requestMenu.setNewLabel(editOffRequest.getNewField());
             }
 
             private void setEditProductLabels(EditProductMenu requestMenu, Request request) {
