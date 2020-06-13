@@ -5,6 +5,8 @@ module sample {
     requires javafx.graphics;
     requires com.jfoenix;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires org.controlsfx.controls;
+
     opens Main;
     opens view.account_menus.custromer_view.account_view;
     opens view.account_menus.custromer_view.cart_view;

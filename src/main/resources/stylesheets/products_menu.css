@@ -1,0 +1,42 @@
+.root{
+    -fx-spacing: 20;
+}
+
+HBox{
+    -fx-border-color: gray;
+    -fx-spacing: 10;
+}
+
+.button{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-font-family: Roboto;
+    -fx-text-fill: #2c2c2c;
+}
+
+.button:hover{
+    -fx-background-color: gray;
+}
+
+.button:pressed{
+    -fx-background-color: #388001;
+}
+
+.right-vbox{
+    -fx-border-color: #eaeaea;
+    -fx-background-color: #bbbbbb;
+
+}
+
+.filter-item{
+
+}
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}

@@ -1,6 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
@@ -9,11 +10,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import model.Category;
 import model.Product;
 import view.MenuManager;
@@ -24,9 +25,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
-    public ChoiceBox sortChoiceBox;
-    public VBox productsBox;
-    public JFXButton showMoreButton;
+    public Button mostExpensiveSort, leastExpensiveSort, mostVisitedSort, highestSalesSort, highestScoreSort;
+    public VBox products;
+    public VBox filters;
     public TreeView categories;
 
     private static int indexOfLastUser;
@@ -36,11 +37,9 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         initializeProducts();
         initializeCategories();
         initializeFilter();
-        showMoreButton.setOnAction(event -> showMoreItems());
     }
 
     private void initializeProducts(){
-        //At start 0 items are shown, this will add 20 (max) new items
         showMoreItems();
     }
 
@@ -87,13 +86,28 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeFilter(){
-        ArrayList<String> stringProperties = new ArrayList<>();
-        for(String property : AllProductsController.getInstance().getAvailableFilters()) {
-
+        ArrayList<String> stringProperties = AllProductsController.getInstance().getAvailableStringFilters();
+        for(String property : stringProperties) {
+            HBox item = new HBox();
+            Text name = new Text(property);
+            JFXTextField field = new JFXTextField();
+            field.setPromptText("value");
+            field.setOnKeyTyped(keyEvent -> {
+                try {
+                    AllProductsController.getInstance().disableFilter(property);
+                } catch(MenuException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    AllProductsController.getInstance().filter(property, field.getText());
+                } catch(MenuException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
-    private void showMoreItems(){
+    public void showMoreItems(){
 
         Node[] nodes = new Node[20];
         for(int i = 0; i < 20; ++i){
@@ -107,7 +121,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
             try {
                 nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/product_item.fxml"));
-                productsBox.getChildren().add(nodes[i]);
+                products.getChildren().add(nodes[i]);
             }catch(IOException e){
                 e.printStackTrace();
             }

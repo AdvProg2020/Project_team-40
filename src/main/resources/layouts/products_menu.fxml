@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="832.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
-   <tabs>
-      <Tab text="Products">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="676.0" prefWidth="831.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="831.0">
+         <children>
+            <Label text="Sort by :">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Button fx:id="mostExpensiveSort" mnemonicParsing="false" text="Most expensive" />
+            <Button fx:id="leastExpensiveSort" layoutX="55.0" layoutY="19.0" mnemonicParsing="false" text="Least expensive" />
+            <Button fx:id="mostVisitedSort" layoutX="107.0" layoutY="19.0" mnemonicParsing="false" text="Most visited" />
+            <Button fx:id="highestSalesSort" layoutX="159.0" layoutY="19.0" mnemonicParsing="false" text="Highest sales" />
+            <Button fx:id="highestScoreSort" layoutX="211.0" layoutY="19.0" mnemonicParsing="false" text="Highest score" />
+         </children>
+      </HBox>
+      <SplitPane dividerPositions="0.7368547998070429" layoutX="-1.0" layoutY="42.0" prefHeight="644.0" prefWidth="831.0">
+         <items>
+            <VBox fx:id="products" prefHeight="646.0" prefWidth="594.0">
                <children>
-                  <HBox prefHeight="38.0" prefWidth="831.0">
-                     <children>
-                        <Label prefHeight="38.0" prefWidth="68.0" text="Sort by :" />
-                        <ChoiceBox fx:id="sortChoiceBox" prefHeight="38.0" prefWidth="96.0" />
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER" layoutY="38.0" prefHeight="607.0" prefWidth="831.0">
-                     <children>
-                        <ScrollPane fitToWidth="true" prefHeight="594.0" prefWidth="831.0">
-                           <content>
-                              <VBox fx:id="productsBox" prefHeight="560.0" prefWidth="831.0" />
-                           </content>
-                        </ScrollPane>
-                        <JFXButton fx:id="showMoreButton" prefHeight="63.0" prefWidth="831.0" text="Show more" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Categories">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <ScrollPane fitToWidth="true" layoutY="7.0" prefHeight="640.0" prefWidth="831.0">
+                  <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
                      <content>
-                        <TreeView fx:id="categories" prefHeight="635.0" prefWidth="831.0" />
+                        <VBox fx:id="products" prefHeight="606.0" prefWidth="593.0" />
                      </content>
                   </ScrollPane>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Filter">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </content>
-      </Tab>
-   </tabs>
-</TabPane>
+                  <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#showMoreItems" prefHeight="27.0" prefWidth="689.0" text="show more items" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ScrollPane fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="642.0" prefWidth="358.0">
+               <content>
+                  <VBox fx:id="filters" prefHeight="642.0" prefWidth="358.0" spacing="10.0" styleClass="right-vbox">
+                     <children>
+                        <TreeView fx:id="categories" prefHeight="232.0" prefWidth="214.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></VBox>
+               </content>
+            </ScrollPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
