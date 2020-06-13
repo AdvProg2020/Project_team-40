@@ -76,11 +76,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         categories.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1){
-                try {
-                    AllProductsController.getInstance().filter("Category", (String)((TreeItem)t1).getValue());
-                } catch(MenuException e) {
-                    e.printStackTrace();
-                }
+                AllProductsController.getInstance().addFilter("category", (String)((TreeItem)t1).getValue());
             }
         });
     }
@@ -93,16 +89,8 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             JFXTextField field = new JFXTextField();
             field.setPromptText("value");
             field.setOnKeyTyped(keyEvent -> {
-                try {
                     AllProductsController.getInstance().disableFilter(property);
-                } catch(MenuException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    AllProductsController.getInstance().filter(property, field.getText());
-                } catch(MenuException e) {
-                    e.printStackTrace();
-                }
+                    AllProductsController.getInstance().addFilter(property, field.getText());
             });
         }
     }
