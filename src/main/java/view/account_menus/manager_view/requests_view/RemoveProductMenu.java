@@ -15,7 +15,7 @@ import view.MenuManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RemoveProductMenu extends MenuManager implements Initializable {
+public class RemoveProductMenu extends RequestMenu implements Initializable {
     public Label productIdLabel;
     public Label nameLabel;
     public Label categoryLabel;
