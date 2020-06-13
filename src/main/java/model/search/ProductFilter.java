@@ -5,189 +5,191 @@ import model.Product;
 import model.enumerations.PropertyType;
 import model.enumerations.SetUpStatus;
 import model.enumerations.Status;
+import model.enumerations.StockStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class ProductFilter{
-    private ArrayList<Product> products;
+    private HashMap<Product, Boolean> products;
+    //If true then the product is shown, otherwise its hidden and filtered.
+
     private Category category;
     private String productName;
-    private String productCompany;
     private String sellerName;
-    private SetUpStatus status;
+    private String companyName;
+    private StockStatus status;
     private Range price;
-    private HashMap<String , String> stringProperties;
-    private HashMap<String, Range> valueProperties;
-    private HashMap<String, Boolean> availableExtraStringProperties;
-    private HashMap<String , Boolean> availableExtraValueProperties;
-    //FALSE : NOT DECLARED TRUE : DECLARED
 
-    public ProductFilter(ArrayList<Product> products, Category category, String productName, String productCompany,
-                         String sellerName, SetUpStatus status, Range price,
-                         HashMap<String, String> stringProperties, HashMap<String, Range> valueProperties){
-        this.products = products;
+    private HashMap<String, ArrayList<String>> stringProperties;
+    private HashMap<String, Range> rangeProperties;
+
+    public ProductFilter(ArrayList<Product> products){
+
+        for(Product product : products) {
+            this.products.put(product, TRUE);
+        }
+
+
+        stringProperties = new HashMap<>();
+        rangeProperties = new HashMap<>();
+    }
+
+    public void setCategory(Category category){
+        //Set category and limit products to this category, if category is null then we are searching among all categories
         this.category = category;
+
+        //Clear previous properties
+        stringProperties.clear();
+        rangeProperties.clear();
+
+        if(category == null)
+            return;
+
+        //Add category specific properties
+        for(Map.Entry<String, PropertyType> entry : category.getExtraProperties().entrySet()) {
+            if(entry.getValue() == PropertyType.STRING){
+                stringProperties.put(entry.getKey(), null);
+            }
+            if(entry.getValue() == PropertyType.RANGE){
+                rangeProperties.put(entry.getKey(), null);
+            }
+        }
+    }
+
+    public void setProductName(String productName){
         this.productName = productName;
-        this.productCompany = productCompany;
+    }
+
+    public void setSellerName(String sellerName){
         this.sellerName = sellerName;
-        this.status = status;
+    }
+
+    public void setPrice(Range price){
         this.price = price;
-        this.stringProperties = stringProperties;
-        this.valueProperties = valueProperties;
-        availableExtraValueProperties = new HashMap<>();
-        availableExtraStringProperties = new HashMap<>();
-        if (category != null){
-            for(Map.Entry<String, PropertyType> extraProperty : category.getExtraProperties().entrySet()) {
-                if (stringProperties.containsKey(extraProperty) || valueProperties.containsKey(extraProperty)) {
-                    if(extraProperty.getValue() == PropertyType.STRING)
-                        availableExtraStringProperties.put(extraProperty.getKey(), Boolean.TRUE);
-                    if(extraProperty.getValue() == PropertyType.VALUE)
-                        availableExtraValueProperties.put(extraProperty.getKey(), Boolean.TRUE);
-                }else{
-                    if(extraProperty.getValue() == PropertyType.STRING)
-                        availableExtraStringProperties.put(extraProperty.getKey(), Boolean.FALSE);
-                    if(extraProperty.getValue() == PropertyType.VALUE)
-                        availableExtraValueProperties.put(extraProperty.getKey(), Boolean.FALSE);
+    }
+
+    public void setStatus(StockStatus status){
+        this.status = status;
+    }
+
+    public void setCompanyName(String companyName){
+        this.companyName = companyName;
+    }
+
+    public void setRangeProperty(String propertyName, Range range){
+        for(Map.Entry<String, Range> entry : rangeProperties.entrySet()) {
+            if(entry.getKey().equals(propertyName))
+                entry.setValue(range);
+        }
+    }
+
+    public void setStringProperty(String propertyName, ArrayList<String> strings){
+        for(Map.Entry<String, ArrayList<String>> entry : stringProperties.entrySet()) {
+            if(entry.getKey().equals(propertyName))
+                entry.setValue(strings);
+        }
+    }
+
+    public void filter(){
+        //Neglect any previous changes on products
+        for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+            entry.setValue(TRUE);
+        }
+
+        //Manage filters
+        if(productName != null){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(!entry.getKey().getName().contains(productName))
+                    entry.setValue(FALSE);
+            }
+        }
+        if(sellerName != null){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(!entry.getKey().getSeller().getUsername().contains(sellerName))
+                    entry.setValue(FALSE);
+            }
+        }if(companyName != null){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(!entry.getKey().getCompany().contains(companyName))
+                    entry.setValue(FALSE);
+            }
+        }
+        if(status != null){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(status == StockStatus.EXISTS && (entry.getKey().getCount() == 0))
+                    entry.setValue(FALSE);
+            }
+        }
+        if(price != null){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(!price.contains(entry.getKey().getPrice()))
+                    entry.setValue(FALSE);
+            }
+        }
+
+        if(category != null){
+            for(Map.Entry<String, ArrayList<String>> entry : stringProperties.entrySet()) {
+                if(entry.getValue() != null){
+                    for(Map.Entry<Product, Boolean> productEntry : products.entrySet()) {
+                        if(!entry.getValue().contains(productEntry.getKey().getStringProperty(entry.getKey())))
+                            productEntry.setValue(FALSE);
+                    }
                 }
             }
-
+            for(Map.Entry<String, Range> entry : rangeProperties.entrySet()) {
+                if(entry.getValue() != null){
+                    for(Map.Entry<Product, Boolean> productEntry : products.entrySet()) {
+                        if(!entry.getValue().contains(productEntry.getKey().getValueProperty(entry.getKey())))
+                            productEntry.setValue(FALSE);
+                    }
+                }
+            }
         }
-    }
-
-    public ArrayList<String> getAvailableFilters(){
-        ArrayList<String> availableFilters = new ArrayList<>();
-        availableFilters.addAll(getAvailableExtraStringProperties());
-        availableFilters.addAll(getAvailableExtraValueProperties());
-        return availableFilters;
-    }
-
-    public ArrayList<String> getAvailableExtraStringProperties(){
-        ArrayList<String> availableStringProperties = new ArrayList<>();
-        for(Map.Entry<String, Boolean> stringBooleanEntry : availableExtraStringProperties.entrySet()) {
-            if(!stringBooleanEntry.getValue())
-                availableStringProperties.add(stringBooleanEntry.getKey());
-        }
-        return availableStringProperties;
-    }
-
-    public ArrayList<String> getAvailableExtraValueProperties(){
-        ArrayList<String> availableValueProperties = new ArrayList<>();
-        for(Map.Entry<String, Boolean> stringBooleanEntry : availableExtraValueProperties.entrySet()) {
-            if(!stringBooleanEntry.getValue())
-                availableValueProperties.add(stringBooleanEntry.getKey());
-        }
-        return availableValueProperties;
     }
 
     public void disableFilter(String name){
 
-        if(name.equalsIgnoreCase("category")){
-            category = null;
-            availableExtraStringProperties.clear();
-            availableExtraValueProperties.clear();
-        }else if(name.equalsIgnoreCase("name")){
-            productName = null;
-        }else if(name.equalsIgnoreCase("company")){
-            productCompany = null;
-        }else if(name.equalsIgnoreCase("seller")){
-            sellerName = null;
-        }else if(name.equalsIgnoreCase("status")){
-            status = null;
-        }else if(name.equalsIgnoreCase("price")){
-            price = null;
-        }else if(valueProperties.get(name) != null){
-            valueProperties.remove(name);
-            availableExtraValueProperties.put(name, Boolean.FALSE);
-        }else if(stringProperties.get(name) != null){
-            stringProperties.remove(name);
-            availableExtraValueProperties.put(name, Boolean.FALSE);
+        switch(name){
+
+            case "productName" :
+                setProductName(null);
+                break;
+            case "companyName" :
+                setCompanyName(null);
+                break;
+            case "sellerName" :
+                setSellerName(null);
+                break;
+            case "price" :
+                setPrice(null);
+                break;
+            case "category" :
+                setCategory(null);
+                break;
+            case "statys" :
+                setStatus(null);
+                break;
+            default:
+                setStringProperty(name, null);
+                setRangeProperty(name, null);
         }
 
     }
 
-    public ArrayList<Product> getFilter(){
+    public ArrayList<Product> getFilteredProducts(){
+        ArrayList<Product> filteredProducts = new ArrayList<>();
 
-        ArrayList<Product> filteredProduct = new ArrayList<>();
-
-        for(Product product : products) {
-            boolean isAddingProductValid = true;
-
-            if(category != null && !product.getCategory().contains(category.getName())){
-                continue;
-            }
-            if(productName != null && !product.getName().contains(productName)){
-                continue;
-            }
-            if(productCompany != null && !product.getCompany().contains(productCompany)){
-                continue;
-            }
-            if(sellerName != null && (!product.getSeller().getFirstName().contains(sellerName) &&
-                    !product.getSeller().getLastName().contains(sellerName)) ){
-                continue;
-            }
-            if(status != null && !product.getStatus().equals(status)){
-                continue;
-            }
-            if(price != null && !price.contains(product.getPrice())){
-                continue;
-            }
-            for(Map.Entry<String, Range> stringRangeEntry : valueProperties.entrySet()) {
-                Range value = stringRangeEntry.getValue();
-                double productValue = product.getValueProperty(stringRangeEntry.getKey());
-                if(!value.contains(productValue)){
-                    isAddingProductValid = false;
-                    break;
-                }
-            }
-            for(Map.Entry<String, String> stringStringEntry : stringProperties.entrySet()) {
-                String value = stringStringEntry.getValue();
-                String productValue = product.getStringProperty(stringStringEntry.getKey());
-                if(!productValue.equals(value)){
-                    isAddingProductValid = false;
-                    break;
-                }
-            }
-            if (isAddingProductValid)
-                filteredProduct.add(product);
+        for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+            if(entry.getValue())
+                filteredProducts.add(entry.getKey());
         }
 
-        return filteredProduct;
+        return filteredProducts;
     }
 
-    public static ProductFilter getInstance(ArrayList<Product> products, HashMap<String, String> stringFilters, HashMap<String,Range> integerFilters){
-        Category category = null;
-        String productName = null;
-        String productCompany = null;
-        String sellerName = null;
-        SetUpStatus status = null;
-        Range range = null;
-        HashMap<String, String> stringProperties = new HashMap<>();
-        HashMap<String, Range>  valueProperties = new HashMap<>();
-        for (String filter : stringFilters.keySet()) {
-            if (filter.equalsIgnoreCase("name"))
-                productName = stringFilters.get(filter);
-            else if (filter.equalsIgnoreCase("category"))
-                category = Category.getCategoryByName(stringFilters.get(filter));
-            else if (filter.equalsIgnoreCase("company"))
-                productCompany = stringFilters.get(filter);
-            else if (filter.equalsIgnoreCase("seller"))
-                sellerName = stringFilters.get(filter);
-            else if (filter.equalsIgnoreCase("status"))
-                status = SetUpStatus.valueOf(stringFilters.get(filter));
-            else
-                stringProperties.put(filter, stringFilters.get(filter));
-        }
-
-        for (String filter : integerFilters.keySet()) {
-            if (filter.equalsIgnoreCase("price"))
-                range = integerFilters.get(filter);
-            else
-                valueProperties.put(filter, integerFilters.get(filter));
-        }
-
-        return new ProductFilter(products, category, productName, productCompany, sellerName, status, range, stringProperties, valueProperties);
-    }
 }

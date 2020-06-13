@@ -6,7 +6,7 @@ import interfaces.Sortable;
 import model.Off;
 import model.Product;
 import model.enumerations.SortTypes;
-import model.search.ProductFilter;
+import model.search.ProductFilterOld;
 import model.search.ProductSort;
 import model.search.Range;
 
@@ -20,7 +20,7 @@ public class OffMenuController implements Sortable, Filterable{
     private String currentSort;
     private ArrayList<Product> offedProducts;
     private ArrayList<Product> productsToShow;
-    private ProductFilter productFilter;
+    private ProductFilterOld productFilter;
     private ProductSort productSort;
 
 
@@ -32,7 +32,7 @@ public class OffMenuController implements Sortable, Filterable{
             offedProducts.addAll(off.getProducts());
         }
         productsToShow = offedProducts;
-        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productSort = new ProductSort(productsToShow, null);
     }
 
@@ -73,7 +73,7 @@ public class OffMenuController implements Sortable, Filterable{
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
         currentStringFilters.put(name, value);
-        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }
@@ -83,7 +83,7 @@ public class OffMenuController implements Sortable, Filterable{
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
         currentIntegerFilters.put(name, new Range(min, max));
-        productFilter = ProductFilter.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }

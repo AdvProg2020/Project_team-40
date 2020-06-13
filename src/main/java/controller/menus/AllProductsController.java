@@ -7,7 +7,7 @@ import exceptions.MenuException;
 import model.Category;
 import model.Product;
 import model.enumerations.SortTypes;
-import model.search.ProductFilter;
+import model.search.ProductFilterOld;
 import model.search.ProductSort;
 import model.search.Range;
 
@@ -22,7 +22,7 @@ public class AllProductsController implements Sortable, Filterable {
     private String currentSort;
     private ArrayList<Product> allProducts;
     private ArrayList<Product> productsToShow;
-    private ProductFilter productFilter;
+    private ProductFilterOld productFilter;
     private ProductSort productSort;
 
     private AllProductsController(){
@@ -31,7 +31,7 @@ public class AllProductsController implements Sortable, Filterable {
         allProducts = new ArrayList<>();
         allProducts.addAll(Product.getAllProducts().values());
         productsToShow = allProducts;
-        productFilter = ProductFilter.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
         productSort = new ProductSort(productsToShow, null);
     }
 
@@ -94,7 +94,7 @@ public class AllProductsController implements Sortable, Filterable {
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
         currentStringFilters.put(name, value);
-        productFilter = ProductFilter.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }
@@ -103,7 +103,7 @@ public class AllProductsController implements Sortable, Filterable {
         if (!getAvailableFilters().contains(name))
             throw new MenuException("This filter is not available.");
         currentIntegerFilters.put(name, new Range(min, max));
-        productFilter = ProductFilter.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
+        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
         productsToShow = productFilter.getFilter();
         return productsToShow;
     }

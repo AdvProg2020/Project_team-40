@@ -22,14 +22,14 @@ public class Main {
         HashMap<String, PropertyType> properties = new HashMap<>();
         properties.put("size", PropertyType.STRING);
         properties.put("wifi", PropertyType.STRING);
-        properties.put("number of usb jacks", PropertyType.VALUE);
-        properties.put("storage space", PropertyType.VALUE);
+        properties.put("number of usb jacks", PropertyType.RANGE);
+        properties.put("storage space", PropertyType.RANGE);
 
         HashMap<String, PropertyType> subProperties = new HashMap<>();
         properties.put("display", PropertyType.STRING);
         properties.put("OS", PropertyType.STRING);
-        properties.put("ram", PropertyType.VALUE);
-        properties.put("camera quality", PropertyType.VALUE);
+        properties.put("ram", PropertyType.RANGE);
+        properties.put("camera quality", PropertyType.RANGE);
         try {
             ManagerAccountController.getInstance().createCategory("electronics", null, properties);
         }catch(Exception e){
