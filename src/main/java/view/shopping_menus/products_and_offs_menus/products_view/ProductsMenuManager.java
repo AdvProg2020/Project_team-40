@@ -34,9 +34,10 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        initializeProducts();
-        initializeCategories();
-        initializeFilter();
+        //TODO : Fix view
+        //initializeProducts();
+        //initializeCategories();
+        //initializeFilter();
     }
 
     private void initializeProducts(){
@@ -89,8 +90,8 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             JFXTextField field = new JFXTextField();
             field.setPromptText("value");
             field.setOnKeyTyped(keyEvent -> {
-                    AllProductsController.getInstance().disableFilter(property);
-                    AllProductsController.getInstance().addFilter(property, field.getText());
+                AllProductsController.getInstance().disableFilter(property);
+                AllProductsController.getInstance().addFilter(property, field.getText());
             });
         }
     }
