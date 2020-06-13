@@ -43,6 +43,8 @@ public class RequestItem extends MenuManager implements Initializable {
                     setEditOffLabels((EditOffMenu)requestMenu, request);
                 else if (type.equalsIgnoreCase("Selling Permission"))
                     setSellingPermissionLabels((SellingPermissionMenu) requestMenu, request);
+                else if (type.equalsIgnoreCase("Remove Product"))
+                    setRemoveProductLabel((RemoveProductMenu) requestMenu, request);
 
 
             }
@@ -84,6 +86,12 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setEditProductLabels(EditProductMenu requestMenu, Request request) {
+                EditProduct editProductRequest = (EditProduct)request;
+                Product product = editProductRequest.getProduct();
+                requestMenu.setEditProduct((EditProduct)request);
+                requestMenu.setOldLabel(editProductRequest.getField());
+                requestMenu.setNewLabel(editProductRequest.getNewField());
+
             }
 
             private void setAddOffLabels(AddOffMenu requestMenu, Request request) {
