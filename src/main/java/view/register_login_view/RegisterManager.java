@@ -48,11 +48,11 @@ public class RegisterManager extends MenuManager implements Initializable {
             findBlankInput();
             validateInput();
             if(!AccountController.getInstance().doesUserExistWithThisUsername(username.getText())) {
-                if (customerButton.isPressed()) {
+                if (customerButton.isSelected()) {
                     registerCustomer();
-                } else if (sellerButton.isPressed()) {
+                } else if (sellerButton.isSelected()) {
                     registerSeller();
-                } else if (managerButton.isPressed()) {
+                } else if (managerButton.isSelected()) {
                     registerManager();
                 }
                 finishRegister();
@@ -72,14 +72,16 @@ public class RegisterManager extends MenuManager implements Initializable {
         account.setPrefWidth(155);
 
         register.setDisable(true);
-        companyField.setDisable(true);
-        creditField.setDisable(true);
         username.setDisable(true);
         password.setDisable(true);
         firstName.setDisable(true);
         lastName.setDisable(true);
         email.setDisable(true);
         phoneNumber.setDisable(true);
+        if(companyField != null)
+            companyField.setDisable(true);
+        if(creditField != null)
+            creditField.setDisable(true);
 
         account.setOnAction(e -> goToAccountsMenu());
     }

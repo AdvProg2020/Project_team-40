@@ -7,6 +7,7 @@ import model.users.Seller;
 import model.users.User;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class AccountController{
     private static AccountController accountController = new AccountController();
@@ -22,7 +23,8 @@ public class AccountController{
     }
 
     public void login(String username, String password) throws AccountsException {
-        if(!User.getAllUsernames().contains(username)) {
+        Set<String> usernaems = User.getAllUsernames();
+        if(!usernaems.contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");
         }
         User tempUser = User.getUserByUsername(username);

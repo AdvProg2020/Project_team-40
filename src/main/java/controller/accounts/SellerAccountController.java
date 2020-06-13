@@ -31,7 +31,6 @@ public class SellerAccountController extends AccountController{
                                     String phoneNumber, double credit, String companyInfo) {
         Seller seller = new Seller(username, password, firstName, lastName, email, phoneNumber, credit, companyInfo);
         Manager.addRequest(new SellingPermission(seller.getUsername()));
-
     }
 
     public void setCompanyInfo(String companyInfo){
