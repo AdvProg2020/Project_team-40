@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="layouts.request_menus.EditProduct"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="500.0" style="-fx-background-color: #f4d03f ;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.EditProductMenu">
+    <children>
+        <VBox layoutX="101.0" layoutY="209.0" prefHeight="121.0" prefWidth="124.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Old field">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="New Field">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="93.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Edit Product">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="258.0" layoutY="209.0" prefHeight="122.0" prefWidth="196.0">
+            <children>
+                <Label fx:id="oldLabel" alignment="CENTER" prefHeight="59.0" prefWidth="196.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="newLabel" alignment="CENTER" prefHeight="59.0" prefWidth="196.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icons8-question-mark-64.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="acceptButton" layoutX="158.0" layoutY="443.0" onAction="#handleAcceptRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-checked-160.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="declineButton" layoutX="290.0" layoutY="443.0" onAction="#handleDeclineRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="42.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-cancel-144.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+      <JFXButton fx:id="viewProductButton" layoutX="226.0" layoutY="365.0" onAction="#handleViewProduct" prefHeight="48.0" prefWidth="38.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/product.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+    </children>
 </AnchorPane>

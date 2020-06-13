@@ -73,6 +73,18 @@ public class EditProduct extends Request{
         return propertiesToEdit;
     }
 
+    public Product getProduct() {
+        return Product.getProductById(productId);
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public String getNewField() {
+        return newField;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Edited product: " + Product.getProductById(productId) + '\n' + getPropertiesToEdit();

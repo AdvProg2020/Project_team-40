@@ -14,10 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Off;
 import model.Product;
-import model.requests.AddOff;
-import model.requests.AddProduct;
-import model.requests.Request;
-import model.requests.SellingPermission;
+import model.requests.*;
 import model.users.Seller;
 import view.MenuManager;
 
@@ -46,6 +43,8 @@ public class RequestItem extends MenuManager implements Initializable {
                     setEditOffLabels((EditOffMenu)requestMenu, request);
                 else if (type.equalsIgnoreCase("Selling Permission"))
                     setSellingPermissionLabels((SellingPermissionMenu) requestMenu, request);
+                else if (type.equalsIgnoreCase("Remove Product"))
+                    setRemoveProductLabel((RemoveProductMenu) requestMenu, request);
 
 
             }
@@ -72,10 +71,32 @@ public class RequestItem extends MenuManager implements Initializable {
                 requestMenu.setPhoneLabel(seller.getPhoneNo());
             }
 
+            private void setRemoveProductLabel(RemoveProductMenu removeProductMenu, Request request){
+                Product product = ((RemoveProduct)request).getProduct();
+                removeProductMenu.setRemoveProduct((RemoveProduct) request);
+                removeProductMenu.setProductIdLabel(product.getProductId());
+                removeProductMenu.setNameLabel(product.getName());
+                removeProductMenu.setCategoryLabel(product.getCategory());
+                removeProductMenu.setCompanyLabel(product.getCompany());
+                removeProductMenu.setBasePriceLabel(Double.toString(product.getBasePrice()));
+                removeProductMenu.setSellerLabel(product.getSellerUsername());
+            }
+
             private void setEditOffLabels(EditOffMenu requestMenu, Request request) {
+                EditOff editOffRequest = (EditOff) request;
+                Off off = editOffRequest.getOff();
+                requestMenu.setEditOff((EditOff)request);
+                requestMenu.setOldLabel(editOffRequest.getField());
+                requestMenu.setNewLabel(editOffRequest.getNewField());
             }
 
             private void setEditProductLabels(EditProductMenu requestMenu, Request request) {
+                EditProduct editProductRequest = (EditProduct)request;
+                Product product = editProductRequest.getProduct();
+                requestMenu.setEditProduct((EditProduct)request);
+                requestMenu.setOldLabel(editProductRequest.getField());
+                requestMenu.setNewLabel(editProductRequest.getNewField());
+
             }
 
             private void setAddOffLabels(AddOffMenu requestMenu, Request request) {
