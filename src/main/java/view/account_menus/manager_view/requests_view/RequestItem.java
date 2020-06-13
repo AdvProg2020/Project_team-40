@@ -14,10 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Off;
 import model.Product;
-import model.requests.AddOff;
-import model.requests.AddProduct;
-import model.requests.Request;
-import model.requests.SellingPermission;
+import model.requests.*;
 import model.users.Seller;
 import view.MenuManager;
 
@@ -70,6 +67,17 @@ public class RequestItem extends MenuManager implements Initializable {
                 requestMenu.setCreditLabel(Double.toString(seller.getCredit()));
                 requestMenu.setEmailLabel(seller.getEmail());
                 requestMenu.setPhoneLabel(seller.getPhoneNo());
+            }
+
+            private void setRemoveProductLabel(RemoveProductMenu removeProductMenu, Request request){
+                Product product = ((RemoveProduct)request).getProduct();
+                removeProductMenu.setRemoveProduct((RemoveProduct) request);
+                removeProductMenu.setProductIdLabel(product.getProductId());
+                removeProductMenu.setNameLabel(product.getName());
+                removeProductMenu.setCategoryLabel(product.getCategory());
+                removeProductMenu.setCompanyLabel(product.getCompany());
+                removeProductMenu.setBasePriceLabel(Double.toString(product.getBasePrice()));
+                removeProductMenu.setSellerLabel(product.getSellerUsername());
             }
 
             private void setEditOffLabels(EditOffMenu requestMenu, Request request) {

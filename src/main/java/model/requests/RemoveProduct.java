@@ -12,6 +12,10 @@ public class RemoveProduct extends Request{
         this.productId = productId;
     }
 
+    public Product getProduct() {
+        return Product.getProductById(productId);
+    }
+
     @Override
     public void action() {
         if(status == Status.Confirmed) {
