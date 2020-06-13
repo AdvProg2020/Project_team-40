@@ -1,38 +1,34 @@
 package controller.menus;
 
-import interfaces.Filterable;
-import interfaces.Sortable;
 import exceptions.AccountsException;
 import exceptions.MenuException;
 import model.Category;
+import model.Off;
 import model.Product;
 import model.enumerations.SortTypes;
-import model.search.ProductFilterOld;
+import model.enumerations.StockStatus;
+import model.search.ProductFilter;
 import model.search.ProductSort;
 import model.search.Range;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class AllProductsController implements Sortable, Filterable {
+public class AllProductsController {
 
     private static AllProductsController allProductsController;
-    private HashMap<String, String> currentStringFilters;
-    private HashMap<String, Range> currentIntegerFilters;
-    private String currentSort;
-    private ArrayList<Product> allProducts;
+
+    private ArrayList<Product> products;
     private ArrayList<Product> productsToShow;
-    private ProductFilterOld productFilter;
+    private ProductFilter productFilter;
     private ProductSort productSort;
+    private SortTypes currentSort;
 
     private AllProductsController(){
-        currentStringFilters = new HashMap<>();
-        currentIntegerFilters = new HashMap<>();
-        allProducts = new ArrayList<>();
-        allProducts.addAll(Product.getAllProducts().values());
-        productsToShow = allProducts;
-        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
-        productSort = new ProductSort(productsToShow, null);
+        products = new ArrayList<Product>();
+        products.addAll(Product.getAllProducts().values());
+        productsToShow = products;
+        productFilter = new ProductFilter(products);
+        productSort = new ProductSort(products, null);
     }
 
     public static AllProductsController getInstance(){
@@ -40,6 +36,20 @@ public class AllProductsController implements Sortable, Filterable {
             allProductsController = new AllProductsController();
 
         return allProductsController;
+    }
+
+    public void setIsOffsOnly(boolean offOnly){
+        if(offOnly){
+            products.clear();
+            for (Off off : Off.getAllOffs().values()) {
+                products.addAll(off.getProducts());
+            }
+            productsToShow = products;
+        }else{
+            products.clear();
+            products.addAll(Product.getAllProducts().values());
+            productsToShow = products;
+        }
     }
 
     public ArrayList<String> getAllCategories(){
@@ -65,7 +75,10 @@ public class AllProductsController implements Sortable, Filterable {
     }
 
     public ArrayList<Product> getAllProducts(){
-        return productsToShow;
+        productFilter.filter();
+        productsToShow = productFilter.getFilteredProducts();
+        productSort = new ProductSort(productsToShow, currentSort);
+        return productSort.getSortedProducts();
     }
 
     public Product getProduct(String productID) throws MenuException{
@@ -75,53 +88,51 @@ public class AllProductsController implements Sortable, Filterable {
         return product;
     }
 
-    public ArrayList<String> getAvailableFilters(){
-        return productFilter.getAvailableFilters();
-    }
-
-    @Override
     public ArrayList<String> getAvailableStringFilters(){
-        return productFilter.getAvailableExtraStringProperties();
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.addAll(productFilter.getStringProperties().keySet());
+        return arrayList;
     }
 
-    @Override
     public ArrayList<String> getAvailableValueFilters(){
-        return productFilter.getAvailableExtraValueProperties();
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.addAll(productFilter.getRangeProperties().keySet());
+        return arrayList;
     }
 
 
-    public ArrayList<Product> filter(String name, String value) throws MenuException {
-        if (!getAvailableFilters().contains(name))
+    public void addFilter(String name, String value) {
+        switch(name){
+            case "productName" :
+                productFilter.setProductName(value);
+            case "companyName" :
+                productFilter.setCompanyName(value);
+            case "sellerName" :
+                productFilter.setSellerName(value);
+            case "status" :
+                if(value.equals("exists"))
+                    productFilter.setStatus(StockStatus.EXISTS);
+            case "category" :
+                productFilter.setCategory(Category.getCategoryByName(value));
+        }
+    }
+
+    public void addFilter(String name, ArrayList<String> values) throws MenuException {
+        if(!getAvailableStringFilters().contains(name))
             throw new MenuException("This filter is not available.");
-        currentStringFilters.put(name, value);
-        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
-        productsToShow = productFilter.getFilter();
-        return productsToShow;
+        productFilter.setStringProperty(name, values);
     }
 
-    public ArrayList<Product> filter(String name, double min, double max) throws MenuException {
-        if (!getAvailableFilters().contains(name))
+    public void addFilter(String name, double min, double max) throws MenuException {
+        if(!getAvailableValueFilters().contains(name) && !name.equals("price"))
             throw new MenuException("This filter is not available.");
-        currentIntegerFilters.put(name, new Range(min, max));
-        productFilter = ProductFilterOld.getInstance(allProducts, currentStringFilters, currentIntegerFilters);
-        productsToShow = productFilter.getFilter();
-        return productsToShow;
+        if(name.equals("price"))
+            productFilter.setPrice(new Range(min, max));
+        productFilter.setRangeProperty(name, new Range(min, max));
     }
 
-    public void disableFilter(String selectedField) throws MenuException {
-        if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
-            throw new MenuException("This field wax not selected.");
-        currentStringFilters.remove(selectedField);
-        currentIntegerFilters.remove(selectedField);
-        productFilter.disableFilter(selectedField);
-        productsToShow = productFilter.getFilter();
-    }
-
-    public ArrayList<String> getCurrentFilters(){
-        ArrayList<String> currentFilters = new ArrayList<>();
-        currentFilters.addAll(currentStringFilters.keySet());
-        currentFilters.addAll(currentIntegerFilters.keySet());
-        return currentFilters;
+    public void disableFilter(String name){
+        productFilter.disableFilter(name);
     }
 
     public ArrayList<String> getAvailableSorts(){
@@ -133,22 +144,17 @@ public class AllProductsController implements Sortable, Filterable {
         return sorts;
     }
 
-    public ArrayList<Product> addSort(String sort) throws MenuException {
+    public void setSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
-        currentSort = sort;
-        productSort.setSortType(SortTypes.valueOf(sort));
-        productsToShow = productSort.getSortedProducts();
-        return productsToShow;
+        currentSort = SortTypes.valueOf(sort);
     }
 
     public void disableSort() {
         currentSort = null;
-        productSort.setSortType(null);
-        productsToShow = allProducts;
     }
 
     public String getCurrentSort(){
-        return currentSort;
+        return currentSort.toString();
     }
 }

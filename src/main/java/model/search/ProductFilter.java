@@ -171,7 +171,7 @@ public class ProductFilter{
             case "category" :
                 setCategory(null);
                 break;
-            case "statys" :
+            case "status" :
                 setStatus(null);
                 break;
             default:
@@ -192,4 +192,11 @@ public class ProductFilter{
         return filteredProducts;
     }
 
+    public HashMap<String, ArrayList<String>> getStringProperties(){
+        return stringProperties;
+    }
+
+    public HashMap<String, Range> getRangeProperties(){
+        return rangeProperties;
+    }
 }

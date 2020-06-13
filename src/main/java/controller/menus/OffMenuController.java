@@ -3,9 +3,12 @@ package controller.menus;
 import exceptions.MenuException;
 import interfaces.Filterable;
 import interfaces.Sortable;
+import model.Category;
 import model.Off;
 import model.Product;
 import model.enumerations.SortTypes;
+import model.enumerations.StockStatus;
+import model.search.ProductFilter;
 import model.search.ProductFilterOld;
 import model.search.ProductSort;
 import model.search.Range;
@@ -13,28 +16,30 @@ import model.search.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OffMenuController implements Sortable, Filterable{
+public class OffMenuController{
     private static OffMenuController offMenuController;
-    private HashMap<String, String> currentStringFilters;
-    private HashMap<String, Range> currentIntegerFilters;
-    private String currentSort;
-    private ArrayList<Product> offedProducts;
+
+    private ArrayList<Product> products;
     private ArrayList<Product> productsToShow;
-    private ProductFilterOld productFilter;
+    private ProductFilter productFilter;
     private ProductSort productSort;
+    private SortTypes currentSort;
 
 
     private OffMenuController(){
-        currentStringFilters = new HashMap<>();
-        currentIntegerFilters = new HashMap<>();
-        offedProducts = new ArrayList<>();
+        products = new ArrayList<Product>();
+        products.addAll(Product.getAllProducts().values());
+
         for (Off off : Off.getAllOffs().values()) {
-            offedProducts.addAll(off.getProducts());
+            products.addAll(off.getProducts());
         }
-        productsToShow = offedProducts;
-        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
-        productSort = new ProductSort(productsToShow, null);
+
+        productsToShow = products;
+        productFilter = new ProductFilter(products);
+        productSort = new ProductSort(products, null);
+
     }
+
 
     public static OffMenuController getInstance(){
         if(offMenuController == null)
@@ -54,59 +59,47 @@ public class OffMenuController implements Sortable, Filterable{
         return product;
     }
 
-    public ArrayList<String> getAvailableFilters(){
-        return productFilter.getAvailableFilters();
-    }
-
-    @Override
     public ArrayList<String> getAvailableStringFilters(){
-        return productFilter.getAvailableExtraStringProperties();
+        return (ArrayList<String>) productFilter.getStringProperties().keySet();
     }
 
-    @Override
     public ArrayList<String> getAvailableValueFilters(){
-        return productFilter.getAvailableExtraValueProperties();
+        return (ArrayList<String>) productFilter.getRangeProperties().keySet();
     }
 
-    @Override
-    public ArrayList<Product> filter(String name, String value) throws MenuException {
-        if (!getAvailableFilters().contains(name))
+
+    public void addFilter(String name, String value) {
+        switch(name){
+            case "productName" :
+                productFilter.setProductName(value);
+            case "companyName" :
+                productFilter.setCompanyName(value);
+            case "sellerName" :
+                productFilter.setSellerName(value);
+            case "status" :
+                if(value.equals("exists"))
+                    productFilter.setStatus(StockStatus.EXISTS);
+        }
+    }
+
+    public void addFilter(String name, ArrayList<String> values) throws MenuException {
+        if(!getAvailableStringFilters().contains(name))
             throw new MenuException("This filter is not available.");
-        currentStringFilters.put(name, value);
-        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
-        productsToShow = productFilter.getFilter();
-        return productsToShow;
+        productFilter.setStringProperty(name, values);
     }
 
-    @Override
-    public ArrayList<Product> filter(String name, double min, double max) throws MenuException {
-        if (!getAvailableFilters().contains(name))
+    public void addFilter(String name, double min, double max) throws MenuException {
+        if(!getAvailableValueFilters().contains(name) && !name.equals("price"))
             throw new MenuException("This filter is not available.");
-        currentIntegerFilters.put(name, new Range(min, max));
-        productFilter = ProductFilterOld.getInstance(offedProducts, currentStringFilters, currentIntegerFilters);
-        productsToShow = productFilter.getFilter();
-        return productsToShow;
+        if(name.equals("price"))
+            productFilter.setPrice(new Range(min, max));
+        productFilter.setRangeProperty(name, new Range(min, max));
     }
 
-    @Override
-    public void disableFilter(String selectedField) throws MenuException {
-        if (!(currentStringFilters.containsKey(selectedField) || currentIntegerFilters.containsKey(selectedField)))
-            throw new MenuException("This field has not been selected.");
-        currentStringFilters.remove(selectedField);
-        currentIntegerFilters.remove(selectedField);
-        productFilter.disableFilter(selectedField);
-        productsToShow = productFilter.getFilter();
+    public void disableFilter(String name){
+        productFilter.disableFilter(name);
     }
 
-    @Override
-    public ArrayList<String> getCurrentFilters(){
-        ArrayList<String> currentFilters = new ArrayList<>();
-        currentFilters.addAll(currentStringFilters.keySet());
-        currentFilters.addAll(currentIntegerFilters.keySet());
-        return currentFilters;
-    }
-
-    @Override
     public ArrayList<String> getAvailableSorts(){
         ArrayList<String> sorts = new ArrayList<>();
         sorts.add("MOST_EXPENSIVE");
@@ -116,29 +109,18 @@ public class OffMenuController implements Sortable, Filterable{
         return sorts;
     }
 
-    @Override
-    public ArrayList<Product> addSort(String sort) throws MenuException {
+    public void setSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
-        currentSort = sort;
-        productSort.setSortType(SortTypes.valueOf(sort));
-        productsToShow = productSort.getSortedProducts();
-        return productsToShow;
+        currentSort = SortTypes.valueOf(sort);
     }
 
-    @Override
-    public void disableSort(){
+    public void disableSort() {
         currentSort = null;
-        productSort.setSortType(null);
-        productsToShow = offedProducts;
     }
 
-    @Override
     public String getCurrentSort(){
-        if (currentSort == null)
-            return "No sort.";
-        return currentSort;
+        return currentSort.toString();
     }
-
 
 }
