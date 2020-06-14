@@ -8,7 +8,6 @@
 
 <AnchorPane fx:id="pane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.PersonalInfo"
             prefHeight="684.0" prefWidth="831.0">
 
 </AnchorPane>

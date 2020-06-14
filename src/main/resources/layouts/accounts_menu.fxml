@@ -2,12 +2,18 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.PersonalInfo">
+    <Label layoutX="188.0" layoutY="48.0" text="Account Information">
+        <font>
+            <Font size="50" />
+        </font>
+    </Label>
     <GridPane layoutX="204.0" layoutY="148.0" prefHeight="289.0" prefWidth="570.0">
         <columnConstraints>
-         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints maxWidth="146.0" minWidth="10.0" prefWidth="117.0" />
+         <ColumnConstraints maxWidth="429.0" minWidth="400.0" prefWidth="429.0" />
         </columnConstraints>
       <rowConstraints>
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
@@ -15,6 +21,8 @@
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
       </rowConstraints>
       <children>
            <Label text="Username:" />
@@ -22,6 +30,10 @@
           <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
           <Label text="Email Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
           <Label text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+          <Label fx:id="creditLabel"  GridPane.columnIndex="0" GridPane.rowIndex="5" ></Label>
+          <Label fx:id="credit" GridPane.columnIndex="1" GridPane.rowIndex="5"></Label>
+          <Label fx:id="companyLabel"  GridPane.columnIndex="0" GridPane.rowIndex="6" ></Label>
+          <Label fx:id="company" GridPane.columnIndex="1" GridPane.rowIndex="6"></Label>
       </children>
     </GridPane>
 </Pane>
