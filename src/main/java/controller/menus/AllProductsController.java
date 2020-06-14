@@ -105,15 +105,20 @@ public class AllProductsController {
         switch(name){
             case "productName" :
                 productFilter.setProductName(value);
+                break;
             case "companyName" :
                 productFilter.setCompanyName(value);
+                break;
             case "sellerName" :
                 productFilter.setSellerName(value);
+                break;
             case "status" :
                 if(value.equals("exists"))
                     productFilter.setStatus(StockStatus.EXISTS);
+                break;
             case "category" :
                 productFilter.setCategory(Category.getCategoryByName(value));
+                break;
         }
     }
 
