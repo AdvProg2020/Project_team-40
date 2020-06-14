@@ -227,6 +227,15 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     private void saveCompany() {
-
+        if(!newCompany.getText().isBlank()) {
+            companyError.setText("");
+            accountController.editUser("companyInfo", newCompany.getText());
+            gridPane.getChildren().remove(newCompany);
+            company.setText(newCompany.getText());
+            editCompany.setOnMouseClicked(e -> editCompany());
+            editCompany.setText("edit");
+        } else {
+            companyError.setText("Your Company is Required!");
+        }
     }
 }
