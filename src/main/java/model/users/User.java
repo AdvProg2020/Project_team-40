@@ -3,13 +3,14 @@ package model.users;
 import exceptions.DataException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public abstract class  User implements Serializable {
     private static final long serialVersionUID = -178828746063914640L;
-    private static HashMap<String, User> allUsers = new HashMap<>();
+    protected static HashMap<String, User> allUsers = new HashMap<>();
     private static User loggedInUser;
     protected String username;
     protected String password;

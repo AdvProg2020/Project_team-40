@@ -113,6 +113,16 @@ public class Customer extends User{
         return false;
     }
 
+    public static ArrayList<String> getAllCustomers(){
+        ArrayList<String> customers = new ArrayList<>();
+        for (String s : allUsers.keySet()) {
+            User user = User.getUserByUsername(s);
+            if (user instanceof Customer)
+                customers.add(s);
+        }
+        return customers;
+    }
+
     @Override
     public String getRole() {
         return "Customer";
