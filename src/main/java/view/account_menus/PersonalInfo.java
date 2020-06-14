@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PersonalInfo extends AccountMenu implements Initializable {
+
+    //TODO: EDIT PASSWORD!
+
     private User user = AccountController.getInstance().getThisUser();
     private CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
     private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
@@ -38,6 +41,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Label firstNameError;
     public Label lastNameError;
     public Label emailError;
+    public Label phoneNumberError;
     public Label creditError;
     public Label companyError;
 
@@ -112,10 +116,18 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     private void saveFirstName() {
         if(!newFirstName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newFirstName.getText()).matches()) {
-
-            } else {}
+                firstNameError.setText("");
+                accountController.editUser("firstName", newUsername.getText());
+                gridPane.getChildren().remove(newFirstName);
+                firstName.setText(newFirstName.getText());
+                newFirstName.setText("");
+                editFirstName.setOnMouseClicked(e -> editFirstName());
+                editFirstName.setText("edit");
+            } else {
+                firstNameError.setText("Can only contain alphabetic characters!");
+            }
         } else {
-
+            firstNameError.setText("First Name Required!");
         }
     }
 

@@ -10,13 +10,13 @@
             <Font size="50" />
         </font>
     </Label>
-    <GridPane fx:id="gridPane" layoutX="159.0" layoutY="139.0" prefHeight="429.0" prefWidth="642.0">
+    <GridPane fx:id="gridPane" layoutX="159.0" layoutY="139.0" prefHeight="429.0" prefWidth="671.0">
         <columnConstraints>
          <ColumnConstraints maxWidth="315.0" minWidth="10.0" prefWidth="137.0" />
          <ColumnConstraints maxWidth="429.0" minWidth="57.0" prefWidth="260.0" />
          <ColumnConstraints maxWidth="429.0" minWidth="33.0" prefWidth="61.0" />
          <ColumnConstraints maxWidth="429.0" minWidth="34.0" prefWidth="47.0" />
-         <ColumnConstraints maxWidth="429.0" minWidth="103.0" prefWidth="140.0" />
+         <ColumnConstraints maxWidth="429.0" minWidth="133.0" prefWidth="170.0" />
         </columnConstraints>
       <rowConstraints>
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
@@ -43,13 +43,13 @@
           <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
           <Label fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-          <Label fx:id="usernameError" GridPane.columnIndex="4" GridPane.rowIndex="0"></Label>
-          <Label fx:id="firstNameError" GridPane.columnIndex="4" GridPane.rowIndex="1"></Label>
-          <Label fx:id="lastNameError" GridPane.columnIndex="4" GridPane.rowIndex="2"></Label>
-          <Label fx:id="emailError" GridPane.columnIndex="4" GridPane.rowIndex="3"></Label>
-          <Label fx:id="phoneNumberError" GridPane.columnIndex="4" GridPane.rowIndex="4"></Label>
-          <Label fx:id="creditError" GridPane.columnIndex="4" GridPane.rowIndex="5"></Label>
-          <Label fx:id="companyError" GridPane.columnIndex="4" GridPane.rowIndex="6"></Label>
+          <Label fx:id="usernameError" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+          <Label fx:id="firstNameError" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+          <Label fx:id="lastNameError" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+          <Label fx:id="emailError" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+          <Label fx:id="phoneNumberError" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+          <Label fx:id="creditError" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+          <Label fx:id="companyError" GridPane.columnIndex="4" GridPane.rowIndex="6" />
 
           <Button fx:id="editUsername" onMouseClicked="#editUsername" text="edit" GridPane.columnIndex="3" />
           <Button fx:id="editFirstName" onMouseClicked="#editFirstName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="1" />
