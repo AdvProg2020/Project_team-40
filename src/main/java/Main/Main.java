@@ -31,6 +31,13 @@ public class Main {
         properties.put("OS", PropertyType.STRING);
         properties.put("ram", PropertyType.RANGE);
         properties.put("camera quality", PropertyType.RANGE);
+
+        HashMap<String, PropertyType> subProperties2 = new HashMap<>();
+        properties.put("ram", PropertyType.STRING);
+        properties.put("cpu", PropertyType.STRING);
+        properties.put("graphics", PropertyType.RANGE);
+        properties.put("ssd", PropertyType.RANGE);
+
         try {
             ManagerAccountController.getInstance().createCategory("electronics", null, properties);
         }catch(Exception e){
@@ -38,6 +45,11 @@ public class Main {
         }
         try {
             ManagerAccountController.getInstance().createCategory("mobile", "electronics", subProperties);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try {
+            ManagerAccountController.getInstance().createCategory("pc", "electronics", subProperties2);
         }catch(Exception e){
             e.printStackTrace();
         }

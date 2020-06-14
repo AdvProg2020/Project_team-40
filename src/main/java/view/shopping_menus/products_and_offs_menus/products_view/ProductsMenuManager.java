@@ -28,6 +28,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public Button mostExpensiveSort, leastExpensiveSort, mostVisitedSort, highestSalesSort, highestScoreSort;
     public VBox products;
     public VBox filters;
+    public VBox extraFilters;
     public TreeView categories;
 
 
@@ -86,10 +87,12 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeFilter(){
+        extraFilters.getChildren().clear();
+
         for(String filter : AllProductsController.getInstance().getAvailableStringFilters()) {
             stringProperties.add(filter);
             try {
-                filters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_text_item.fxml")));
+                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_text_item.fxml")));
             } catch(IOException e) {
                 e.printStackTrace();
             }
@@ -98,7 +101,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         for(String filter : AllProductsController.getInstance().getAvailableValueFilters()) {
             try {
                 rangeProperties.add(filter);
-                filters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_range_item.fxml")));
+                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_range_item.fxml")));
             } catch(IOException e) {
                 e.printStackTrace();
             }

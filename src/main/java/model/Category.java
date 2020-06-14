@@ -23,13 +23,11 @@ public class Category implements Serializable {
         this.subCategoriesNames = new ArrayList<>();
         this.productIDs = new ArrayList<>();
         this.extraProperties = new HashMap<>();
+
         if (parentCategory != null) {
             Category.getCategoryByName(parentCategory).addSubCategoryName(name);
+            extraProperties.putAll(Category.getCategoryByName(parentCategoryName).getExtraProperties());
         }
-    }
-
-    public void addParentProperties(){
-        extraProperties.putAll(Category.getCategoryByName(parentCategoryName).getExtraProperties());
     }
 
     public static void addCategory(Category category){

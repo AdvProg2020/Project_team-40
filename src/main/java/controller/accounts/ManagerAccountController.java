@@ -231,10 +231,8 @@ public class ManagerAccountController extends AccountController{
         Category parent = Category.getCategoryByName(parentCategory);
         if (parentCategory != null && parent == null)
             throw new AccountsException("Parent category not found.");
+
         Category category = new Category(categoryName, parentCategory);
-        if (parent != null) {
-            category.addParentProperties();
-        }
         category.getExtraProperties().putAll(properties);
         Category.addCategory(category);
     }
