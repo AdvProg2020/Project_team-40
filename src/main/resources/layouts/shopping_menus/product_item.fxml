@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="image" fitHeight="125.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/icons8-delete-64.png" />
+            <Image url="@../../images/icons8-delete-64.png" />
          </image>
       </ImageView>
       <Label fx:id="name" prefHeight="18.0" prefWidth="112.0" style="-fx-background-color: lightgray;" text="&lt;productName&gt;" />

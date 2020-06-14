@@ -47,7 +47,7 @@ public abstract class MenuManager {
     }
 
     public void goToProductsMenu(){
-        setInnerPane("/layouts/products_menu.fxml");
+        setInnerPane("/layouts/shopping_menus/products_menu.fxml");
     }
 
     public void goToOffsMenu(){

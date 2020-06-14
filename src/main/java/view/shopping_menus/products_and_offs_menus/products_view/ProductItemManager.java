@@ -7,11 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import model.Product;
+import view.MenuManager;
+import view.shopping_menus.product.product_view.ProductMenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductItemManager implements Initializable{
+public class ProductItemManager extends MenuManager implements Initializable{
     private Product product;
 
     @FXML
@@ -36,6 +38,10 @@ public class ProductItemManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         //TODO : setImage and set button action
+        digest.setOnAction(actionEvent -> {
+            ProductMenuManager.setProduct(product);
+            setInnerPane("/layouts/shopping_menus/product_menu.fxml");
+        });
 
         //set other properties of product
         if(product != null){
@@ -44,4 +50,5 @@ public class ProductItemManager implements Initializable{
             score.setText(Double.toString(product.getAverageScore()));
         }
     }
+
 }
