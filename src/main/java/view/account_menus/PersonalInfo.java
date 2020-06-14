@@ -28,6 +28,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public GridPane gridPane;
     public Label creditLabel;
     public Label companyLabel;
+    public Label passwordLabel;
 
     //Labels to show info:
     public Label username;
@@ -54,6 +55,8 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Button editPhoneNumber;
     public Button editEmail;
     public Button editCompany;
+    public Button changePassword;
+    public Button savePassword;
 
     //Fields to enter new information:
     public TextField newUsername;
@@ -61,8 +64,8 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public TextField newLastName;
     public TextField newEmail;
     public TextField newPhoneNumber;
-    public TextField newCredit;
     public TextField newCompany;
+    public TextField newPassword;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -237,5 +240,22 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         } else {
             companyError.setText("Your Company is Required!");
         }
+    }
+
+    public void changePassword() {
+        if(newPassword == null) {
+            newPassword = new TextField();
+            gridPane.add(newPassword, 1, 7);
+        }
+        passwordLabel.setText("Enter new password:");
+        changePassword.setDisable(true);
+        if(savePassword == null)
+            changePassword = new Button();
+        changePassword.setText("save");
+        changePassword.setOnMouseClicked(e -> savePassword());
+    }
+
+    private void savePassword() {
+
     }
 }
