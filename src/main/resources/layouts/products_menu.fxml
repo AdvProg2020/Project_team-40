@@ -3,12 +3,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
@@ -28,7 +32,7 @@
       </HBox>
       <SplitPane dividerPositions="0.7368547998070429" layoutX="-1.0" layoutY="42.0" prefHeight="644.0" prefWidth="831.0">
          <items>
-            <VBox fx:id="products" prefHeight="646.0" prefWidth="594.0">
+            <VBox prefHeight="646.0" prefWidth="594.0">
                <children>
                   <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
                      <content>
@@ -42,17 +46,68 @@
                   </HBox>
                </children>
             </VBox>
-            <ScrollPane fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="642.0" prefWidth="358.0">
-               <content>
-                  <VBox fx:id="filters" prefHeight="642.0" prefWidth="358.0" spacing="10.0" styleClass="right-vbox">
-                     <children>
-                        <TreeView fx:id="categories" prefHeight="232.0" prefWidth="214.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding></VBox>
-               </content>
-            </ScrollPane>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ScrollPane fitToWidth="true" prefHeight="642.0" prefWidth="358.0">
+                     <content>
+                        <VBox fx:id="filters" prefHeight="642.0" prefWidth="358.0" spacing="10.0" styleClass="right-vbox">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+                                    <TreeView fx:id="categories" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" prefWidth="179.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
+                                    <TextField />
+                                    <Button mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="264.0" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Company" />
+                                    <TextField />
+                                    <Button mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="352.0" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
+                                    <TextField />
+                                    <Button mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" text="Only show Products In Stock" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" layoutX="21.0" layoutY="530.0" prefHeight="27.0" prefWidth="194.0">
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" text="Only show Products In Off" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="21.0" layoutY="441.0" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price Range" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
+                                    <Slider />
+                                    <Text layoutX="96.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
+                                    <Slider />
+                                    <Button mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
          </items>
       </SplitPane>
    </children>

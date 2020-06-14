@@ -3,6 +3,7 @@ package Main;
 import controller.accounts.ManagerAccountController;
 import exceptions.DataException;
 import model.Loader;
+import model.Product;
 import model.enumerations.PropertyType;
 import view.GUI;
 

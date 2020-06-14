@@ -34,9 +34,8 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        //TODO : Fix view
         //initializeProducts();
-        //initializeCategories();
+        initializeCategories();
         //initializeFilter();
     }
 
@@ -66,9 +65,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         root.getChildren().addAll(rootCategories);
         categories.setRoot(root);
         categories.setShowRoot(false);
-
-        //TODO : REMOVE SAMPLES LATER
-        showSampleCategories();
 
         handleSelectedCategory();
     }
@@ -126,15 +122,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     //TODO : REMOVE LATER
     private void showSampleProducts(int count){
 
-    }
-
-    private void showSampleCategories(){
-
-        categories.getRoot().getChildren().addAll(
-                new TreeItem<>("sample 1"),
-                new TreeItem<>("sample 2"),
-                new TreeItem<>("sample 3"),
-                new TreeItem<>("sample 1"));
     }
 
 }
