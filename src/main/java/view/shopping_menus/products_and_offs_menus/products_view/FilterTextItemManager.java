@@ -21,6 +21,7 @@ public class FilterTextItemManager implements Initializable{
 
     public FilterTextItemManager(){
         property = ProductsMenuManager.getLastStringProperty();
+        values = new ArrayList<>();
     }
 
 
@@ -31,11 +32,14 @@ public class FilterTextItemManager implements Initializable{
         setButton.setOnAction(actionEvent -> {
             values.clear();
             values.add(textField.getText());
+
             for(String value : values) {
                 if(value.isEmpty())
                     value = null;
             }
+
             AllProductsController.getInstance().disableFilter(property);
+
             try {
                 AllProductsController.getInstance().addFilter(property, values);
             } catch(MenuException e) {

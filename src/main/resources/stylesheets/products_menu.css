@@ -22,6 +22,10 @@ HBox{
     -fx-background-color: #388001;
 }
 
+.none{
+
+}
+
 VBox{
     -fx-background-color: white;
     -fx-text-alignment: TOP_CENTER;
