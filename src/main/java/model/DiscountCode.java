@@ -37,6 +37,10 @@ public class DiscountCode implements Serializable {
         return allDiscountCodes;
     }
 
+    public int getPercentage() {
+        return percentage;
+    }
+
     public Date getStartDate() {
         return startDate;
     }

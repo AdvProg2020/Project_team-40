@@ -25,7 +25,7 @@ public class AccountManager extends MenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/PersonalInfo.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class AccountManager extends MenuManager implements Initializable {
     public void goToHomeMenu(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/PersonalInfo.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
         }catch(IOException e){
             e.printStackTrace();
         }
