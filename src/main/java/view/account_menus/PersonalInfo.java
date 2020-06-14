@@ -190,5 +190,15 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     public void editPhoneNumber() {
+        editPhoneNumber.setText("save");
+        editPhoneNumber.setOnMouseClicked(e -> savePhoneNumber());
+        if(newPhoneNumber == null)
+            newPhoneNumber = new TextField();
+        gridPane.add(newPhoneNumber, 1, 4);
+        newPhoneNumber.setText(phone.getText());
+    }
+
+    private void savePhoneNumber() {
+
     }
 }
