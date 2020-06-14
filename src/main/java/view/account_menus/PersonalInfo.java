@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
+import view.ValidInput;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,20 +24,30 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
     public GridPane gridPane;
     public Label creditLabel;
-    public Label credit;
-    public Label company;
     public Label companyLabel;
+
     public Label username;
     public Label firstName;
     public Label lastName;
     public Label email;
     public Label phone;
+    public Label credit;
+    public Label company;
+
+    public Label usernameError;
+    public Label firstNameError;
+    public Label lastNameError;
+    public Label emailError;
+    public Label creditError;
+    public Label companyError;
+
     public Button editUsername;
     public Button editFirstName;
     public Button editLastName;
     public Button editPhoneNumber;
     public Button editEmail;
     public Button editCompany;
+
     public TextField newUsername;
     public TextField newFirstName;
     public TextField newLastName;
@@ -75,16 +87,36 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     private void saveUsername() {
-        accountController.editUser("username", newUsername.getText());
-        gridPane.getChildren().remove(newUsername);
-        username.setText(newUsername.getText());
-        newUsername.setText("");
-        editUsername.setOnMouseClicked(e -> editUsername());
-        editUsername.setText("edit");
+        if(!newUsername.getText().isBlank()) {
+            usernameError.setText("");
+            accountController.editUser("username", newUsername.getText());
+            gridPane.getChildren().remove(newUsername);
+            username.setText(newUsername.getText());
+            newUsername.setText("");
+            editUsername.setOnMouseClicked(e -> editUsername());
+            editUsername.setText("edit");
+        } else {
+            usernameError.setText("Username required!");
+        }
     }
 
     public void editFirstName() {
+        editFirstName.setText("save");
+        editFirstName.setOnMouseClicked(e -> saveFirstName());
+        if(newFirstName == null)
+            newFirstName = new TextField();
+        gridPane.add(newFirstName, 1, 1);
+        newFirstName.setText(firstName.getText());
+    }
 
+    private void saveFirstName() {
+        if(!newFirstName.getText().isBlank()) {
+            if (ValidInput.NAME.getStringMatcher(newFirstName.getText()).matches()) {
+
+            } else {}
+        } else {
+
+        }
     }
 
     public void editLastName() {
