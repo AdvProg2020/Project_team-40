@@ -1,20 +1,14 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
-import exceptions.MenuException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import model.Category;
 import model.Product;
 import view.MenuManager;
@@ -92,7 +86,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         for(String filter : AllProductsController.getInstance().getAvailableStringFilters()) {
             stringProperties.add(filter);
             try {
-                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_text_item.fxml")));
+                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/filter_text_item.fxml")));
             } catch(IOException e) {
                 e.printStackTrace();
             }
@@ -101,7 +95,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         for(String filter : AllProductsController.getInstance().getAvailableValueFilters()) {
             try {
                 rangeProperties.add(filter);
-                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_range_item.fxml")));
+                extraFilters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/filter_range_item.fxml")));
             } catch(IOException e) {
                 e.printStackTrace();
             }
@@ -121,7 +115,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             }
 
             try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/product_item.fxml"));
+                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/product_item.fxml"));
                 products.getChildren().add(nodes[i]);
             }catch(IOException e){
                 e.printStackTrace();
