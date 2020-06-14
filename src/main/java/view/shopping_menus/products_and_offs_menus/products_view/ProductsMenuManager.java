@@ -30,13 +30,16 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public VBox filters;
     public TreeView categories;
 
+
+    private static ArrayList<String> stringProperties;
+    private static ArrayList<String> rangeProperties;
+
     private static int indexOfLastUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         //initializeProducts();
         initializeCategories();
-        //initializeFilter();
     }
 
     private void initializeProducts(){
@@ -45,7 +48,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     private void initializeCategories(){
 
-        TreeItem root = new TreeItem("root");
+        TreeItem root = new TreeItem("all categories");
 
         ArrayList<String> allCategoryNames = AllProductsController.getInstance().getAllCategories();
         ArrayList<TreeItem> rootCategories = new ArrayList<>();
@@ -64,7 +67,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         }
         root.getChildren().addAll(rootCategories);
         categories.setRoot(root);
-        categories.setShowRoot(false);
 
         handleSelectedCategory();
     }
@@ -73,22 +75,33 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         categories.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1){
-                AllProductsController.getInstance().addFilter("category", (String)((TreeItem)t1).getValue());
+                if(((String)((TreeItem)t1).getValue()).equals("all categories")){
+                    AllProductsController.getInstance().disableFilter("category");
+                }else{
+                    AllProductsController.getInstance().addFilter("category", (String)((TreeItem)t1).getValue());
+                }
+                initializeFilter();
             }
         });
     }
 
     private void initializeFilter(){
-        ArrayList<String> stringProperties = AllProductsController.getInstance().getAvailableStringFilters();
-        for(String property : stringProperties) {
-            HBox item = new HBox();
-            Text name = new Text(property);
-            JFXTextField field = new JFXTextField();
-            field.setPromptText("value");
-            field.setOnKeyTyped(keyEvent -> {
-                AllProductsController.getInstance().disableFilter(property);
-                AllProductsController.getInstance().addFilter(property, field.getText());
-            });
+        for(String filter : AllProductsController.getInstance().getAvailableStringFilters()) {
+            stringProperties.add(filter);
+            try {
+                filters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_text_item.fxml")));
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for(String filter : AllProductsController.getInstance().getAvailableValueFilters()) {
+            try {
+                rangeProperties.add(filter);
+                filters.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/layouts/filter_range_item.fxml")));
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -117,6 +130,13 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     public static int getIndexOfLastUser(){
         return indexOfLastUser;
+    }
+
+    public static String getLastStringProperty(){
+        return stringProperties.get(stringProperties.size() - 1);
+    }
+    public static String getLastRangeProperty(){
+        return rangeProperties.get(rangeProperties.size() - 1);
     }
 
     //TODO : REMOVE LATER

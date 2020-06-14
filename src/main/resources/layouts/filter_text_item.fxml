@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.shopping_menus.products_and_offs_menus.products_view.FilterTextItemManager"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<VBox fx:controller="view.shopping_menus.products_and_offs_menus.products_view.FilterTextItemManager" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="244.0" stylesheets="@../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="variableName" strokeType="OUTSIDE" strokeWidth="0.0" text="Variable name" />
+      <TextField fx:id="textField" />
+      <Button fx:id="setButton" mnemonicParsing="false" text="Set" />
+   </children>
+</VBox>
