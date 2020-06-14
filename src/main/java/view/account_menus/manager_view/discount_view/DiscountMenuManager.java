@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.DiscountCode;
-import model.users.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +24,7 @@ public class DiscountMenuManager implements Initializable {
     private void loadDiscounts() {
         for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
             try {
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/discount_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/discount_menus/discount_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(discountCode, hBox);
                 vBoxItems.getChildren().add(item);

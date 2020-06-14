@@ -5,10 +5,7 @@ import model.users.Customer;
 import model.users.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DiscountCode implements Serializable {
     private static final long serialVersionUID = -639372600290420004L;
@@ -113,10 +110,22 @@ public class DiscountCode implements Serializable {
         return code;
     }
 
-    private String getStatus(){
+    public double getMaxAmount() {
+        return maxAmount;
+    }
+
+    public int getCountPerUser() {
+        return countPerUser;
+    }
+
+    public String getStatus(){
         if (isExpired(endDate, startDate))
             return "EXPIRED";
         return "ACTIVE";
+    }
+
+    public Set<String> getIncludedCostumers() {
+        return includedCostumers.keySet();
     }
 
     @Override
