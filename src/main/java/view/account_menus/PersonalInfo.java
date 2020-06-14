@@ -22,11 +22,13 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Label company;
     public Label companyLabel;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(user instanceof Customer) {
             creditLabel.setText("Credit: ");
             credit.setText(Double.toString(customerAccountController.getBalance()));
+
         }
         if(user instanceof Seller) {
             creditLabel.setText("Credit: ");
