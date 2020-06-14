@@ -7,9 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
@@ -57,6 +55,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Button editCompany;
     public Button changePassword;
     public Button savePassword;
+    public Button increaseCredit;
 
     //Fields to enter new information:
     public TextField newUsername;
@@ -66,16 +65,15 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public TextField newPhoneNumber;
     public TextField newCompany;
     public TextField newPassword;
+    private TextField newCredit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(user instanceof Customer) {
-            creditLabel.setText("Credit: ");
-            credit.setText(Double.toString(customerAccountController.getBalance()));
+            initializeCredit(customerAccountController.getBalance());
         }
         if(user instanceof Seller) {
-            creditLabel.setText("Credit: ");
-            credit.setText(Double.toString(sellerAccountController.getBalance()));
+            initializeCredit(sellerAccountController.getBalance());
             companyLabel.setText("Company: ");
             company.setText(sellerAccountController.getCompanyInfo());
             editCompany = new Button("edit");
@@ -89,6 +87,50 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         phone.setText(user.getPhoneNo());
     }
 
+    private void initializeCredit(double credit) {
+        creditLabel.setText("Credit: ");
+        this.credit.setText(Double.toString(credit));
+        increaseCredit = new Button("increase");
+        increaseCredit.setOnMouseClicked(e -> increaseCredit());
+        gridPane.add(increaseCredit, 3, 5);
+    }
+
+    private void increaseCredit() {
+        increaseCredit.setOnMouseClicked(e-> saveCredit());
+        if(newCredit == null)
+            newCredit = new TextField();
+        gridPane.add(newCredit, 1, 5);
+    }
+
+    private void saveCredit() {
+        if(!newCredit.getText().isBlank()) {
+            if(ValidInput.INTEGER.getStringMatcher(newCredit.getText()).matches()) {
+                creditError.setText("");
+                accountController.editUser("credit", addCredit(newCredit.getText()));
+                gridPane.getChildren().remove(newCredit);
+                credit.setText(getCredit());
+                newCredit.setText("");
+                increaseCredit.setOnMouseClicked(e -> increaseCredit());
+            } else {
+                creditError.setText("Enter a Number!");
+            }
+        } else {
+            creditError.setText("Enter a Number!");
+        }
+    }
+
+    private String getCredit() {
+        if(user instanceof Customer)
+            return Double.toString(customerAccountController.getBalance());
+        return Double.toString(sellerAccountController.getBalance());
+    }
+
+    private String addCredit(String creditInString) {
+        double currentCredit = Double.parseDouble(credit.getText());
+        currentCredit += Double.parseDouble(newCredit.getText());
+        return Double.toString(currentCredit);
+    }
+
     public void editUsername() {
         editUsername.setText("save");
         editUsername.setOnMouseClicked(e -> saveUsername());
@@ -98,7 +140,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newUsername.setText(username.getText());
     }
 
-    private void saveUsername() {
+    public void saveUsername() {
         if(!newUsername.getText().isBlank()) {
             usernameError.setText("");
             accountController.editUser("username", newUsername.getText());
@@ -121,7 +163,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newFirstName.setText(firstName.getText());
     }
 
-    private void saveFirstName() {
+    public void saveFirstName() {
         if(!newFirstName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newFirstName.getText()).matches()) {
                 firstNameError.setText("");
@@ -148,7 +190,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newLastName.setText(lastName.getText());
     }
 
-    private void saveLastName() {
+    public void saveLastName() {
         if(!newLastName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newLastName.getText()).matches()) {
                 lastNameError.setText("");
@@ -175,7 +217,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newEmail.setText(email.getText());
     }
 
-    private void saveEmail() {
+    public void saveEmail() {
         if(!newEmail.getText().isBlank()) {
             if(ValidInput.EMAIL_ADDRESS.getStringMatcher(newEmail.getText()).matches()) {
                 emailError.setText("");
@@ -202,7 +244,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newPhoneNumber.setText(phone.getText());
     }
 
-    private void savePhoneNumber() {
+    public void savePhoneNumber() {
         if(!newPhoneNumber.getText().isBlank()) {
             if(ValidInput.PHONE_NUMBER.getStringMatcher(newPhoneNumber.getText()).matches()) {
                 phoneNumberError.setText("");
@@ -219,7 +261,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         }
     }
 
-    private void editCompany() {
+    public void editCompany() {
         editCompany.setText("save");
         editCompany.setOnMouseClicked(e -> saveCompany());
         if(newCompany == null)
@@ -228,7 +270,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         newCompany.setText(company.getText());
     }
 
-    private void saveCompany() {
+    public void saveCompany() {
         if(!newCompany.getText().isBlank()) {
             companyError.setText("");
             accountController.editUser("companyInfo", newCompany.getText());
@@ -255,7 +297,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         gridPane.add(savePassword, 3, 7);
     }
 
-    private void savePassword() {
+    public void savePassword() {
         changePassword.setDisable(false);
         gridPane.getChildren().remove(savePassword);
         gridPane.getChildren().remove(newPassword);
