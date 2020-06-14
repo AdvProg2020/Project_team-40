@@ -29,6 +29,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Label creditLabel;
     public Label companyLabel;
 
+    //Labels to show info:
     public Label username;
     public Label firstName;
     public Label lastName;
@@ -37,6 +38,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Label credit;
     public Label company;
 
+    //Labels to show error:
     public Label usernameError;
     public Label firstNameError;
     public Label lastNameError;
@@ -45,6 +47,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Label creditError;
     public Label companyError;
 
+    //Buttons to edit and save changes:
     public Button editUsername;
     public Button editFirstName;
     public Button editLastName;
@@ -52,6 +55,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Button editEmail;
     public Button editCompany;
 
+    //Fields to enter new information:
     public TextField newUsername;
     public TextField newFirstName;
     public TextField newLastName;
@@ -117,7 +121,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         if(!newFirstName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newFirstName.getText()).matches()) {
                 firstNameError.setText("");
-                accountController.editUser("firstName", newUsername.getText());
+                accountController.editUser("firstName", newFirstName.getText());
                 gridPane.getChildren().remove(newFirstName);
                 firstName.setText(newFirstName.getText());
                 newFirstName.setText("");
@@ -132,9 +136,57 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     public void editLastName() {
+        editLastName.setText("save");
+        editLastName.setOnMouseClicked(e -> saveLastName());
+        if(newLastName == null)
+            newLastName = new TextField();
+        gridPane.add(newLastName, 1, 2);
+        newLastName.setText(lastName.getText());
+    }
+
+    private void saveLastName() {
+        if(!newLastName.getText().isBlank()) {
+            if (ValidInput.NAME.getStringMatcher(newLastName.getText()).matches()) {
+                lastNameError.setText("");
+                accountController.editUser("lastName", newLastName.getText());
+                gridPane.getChildren().remove(newLastName);
+                lastName.setText(newLastName.getText());
+                newLastName.setText("");
+                editLastName.setOnMouseClicked(e -> editLastName());
+                editLastName.setText("edit");
+            } else {
+                lastNameError.setText("Can only contain alphabetic characters!");
+            }
+        } else {
+            lastNameError.setText("Last Name Required!");
+        }
     }
 
     public void editEmail() {
+        editEmail.setText("save");
+        editEmail.setOnMouseClicked(e -> saveEmail());
+        if(newEmail == null)
+            newEmail = new TextField();
+        gridPane.add(newEmail, 1, 3);
+        newEmail.setText(email.getText());
+    }
+
+    private void saveEmail() {
+        if(!newEmail.getText().isBlank()) {
+            if(ValidInput.EMAIL_ADDRESS.getStringMatcher(newEmail.getText()).matches()) {
+                emailError.setText("");
+                accountController.editUser("email", newEmail.getText());
+                gridPane.getChildren().remove(newEmail);
+                email.setText(newEmail.getText());
+                newEmail.setText("");
+                editEmail.setOnMouseClicked(e -> editEmail());
+                editEmail.setText("edit");
+            } else {
+                emailError.setText("Invalid Email address!");
+            }
+        } else {
+            emailError.setText("Email Required!");
+        }
     }
 
     public void editPhoneNumber() {
