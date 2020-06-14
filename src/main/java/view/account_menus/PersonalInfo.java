@@ -28,6 +28,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public GridPane gridPane;
     public Label creditLabel;
     public Label companyLabel;
+    public Label passwordLabel;
 
     //Labels to show info:
     public Label username;
@@ -54,6 +55,8 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public Button editPhoneNumber;
     public Button editEmail;
     public Button editCompany;
+    public Button changePassword;
+    public Button savePassword;
 
     //Fields to enter new information:
     public TextField newUsername;
@@ -61,14 +64,15 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     public TextField newLastName;
     public TextField newEmail;
     public TextField newPhoneNumber;
-    public TextField newCredit;
     public TextField newCompany;
+    public TextField newPassword;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(user instanceof Customer) {
             creditLabel.setText("Credit: ");
             credit.setText(Double.toString(customerAccountController.getBalance()));
+            editCompany.setOnMouseClicked(e -> editCompany());
         }
         if(user instanceof Seller) {
             creditLabel.setText("Credit: ");
@@ -77,6 +81,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
             company.setText(sellerAccountController.getCompanyInfo());
             editCompany = new Button("edit");
             gridPane.add(editCompany, 3, 6);
+            editCompany.setOnMouseClicked(e -> editCompany());
         }
         username.setText(user.getUsername());
         firstName.setText(user.getFirstName());
@@ -199,7 +204,63 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     private void savePhoneNumber() {
+        if(!newPhoneNumber.getText().isBlank()) {
+            if(ValidInput.PHONE_NUMBER.getStringMatcher(newPhoneNumber.getText()).matches()) {
+                phoneNumberError.setText("");
+                accountController.editUser("phoneNumber", newPhoneNumber.getText());
+                gridPane.getChildren().remove(newPhoneNumber);
+                phone.setText(newPhoneNumber.getText());
+                editPhoneNumber.setOnMouseClicked(e -> editPhoneNumber());
+                editPhoneNumber.setText("edit");
+            } else {
+                phoneNumberError.setText("Invalid Phone Number!");
+            }
+        } else {
+            phoneNumberError.setText("Phone Number Required!");
+        }
+    }
 
+    private void editCompany() {
+        editCompany.setText("save");
+        editCompany.setOnMouseClicked(e -> saveCompany());
+        if(newCompany == null)
+            newCompany = new TextField();
+        gridPane.add(newCompany, 1, 6);
+        newCompany.setText(company.getText());
+    }
 
+    private void saveCompany() {
+        if(!newCompany.getText().isBlank()) {
+            companyError.setText("");
+            accountController.editUser("companyInfo", newCompany.getText());
+            gridPane.getChildren().remove(newCompany);
+            company.setText(newCompany.getText());
+            editCompany.setOnMouseClicked(e -> editCompany());
+            editCompany.setText("edit");
+        } else {
+            companyError.setText("Your Company is Required!");
+        }
+    }
+
+    public void changePassword() {
+        if(newPassword == null) {
+            newPassword = new TextField();
+            gridPane.add(newPassword, 1, 7);
+        }
+        passwordLabel.setText("Enter new password:");
+        changePassword.setDisable(true);
+        if(savePassword == null)
+            savePassword = new Button();
+        savePassword.setText("save");
+        savePassword.setOnMouseClicked(e -> savePassword());
+        gridPane.add(savePassword, 3, 7);
+    }
+
+    private void savePassword() {
+        changePassword.setDisable(false);
+        gridPane.getChildren().remove(savePassword);
+        gridPane.getChildren().remove(newPassword);
+        accountController.editUser("password", newPassword.getText());
+        newPassword.setText("");
     }
 }
