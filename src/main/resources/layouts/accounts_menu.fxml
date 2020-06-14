@@ -49,7 +49,7 @@
           <Label fx:id="firstNameError" GridPane.columnIndex="4" GridPane.rowIndex="1" />
           <Label fx:id="lastNameError" GridPane.columnIndex="4" GridPane.rowIndex="2" />
           <Label fx:id="emailError" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-          <Label fx:id="phoneNumberError" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+          <Label fx:id="phoneNumberError" prefHeight="17.0" prefWidth="220.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
           <Label fx:id="creditError" GridPane.columnIndex="4" GridPane.rowIndex="5" />
           <Label fx:id="companyError" GridPane.columnIndex="4" GridPane.rowIndex="6" />
 
