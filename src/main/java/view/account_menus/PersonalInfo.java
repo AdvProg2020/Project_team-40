@@ -72,7 +72,6 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         if(user instanceof Customer) {
             creditLabel.setText("Credit: ");
             credit.setText(Double.toString(customerAccountController.getBalance()));
-            editCompany.setOnMouseClicked(e -> editCompany());
         }
         if(user instanceof Seller) {
             creditLabel.setText("Credit: ");
