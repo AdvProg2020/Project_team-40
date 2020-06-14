@@ -69,6 +69,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         if(user instanceof Customer) {
             creditLabel.setText("Credit: ");
             credit.setText(Double.toString(customerAccountController.getBalance()));
+            editCompany.setOnMouseClicked(e -> editCompany());
         }
         if(user instanceof Seller) {
             creditLabel.setText("Credit: ");
@@ -77,6 +78,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
             company.setText(sellerAccountController.getCompanyInfo());
             editCompany = new Button("edit");
             gridPane.add(editCompany, 3, 6);
+            editCompany.setOnMouseClicked(e -> editCompany());
         }
         username.setText(user.getUsername());
         firstName.setText(user.getFirstName());
@@ -213,5 +215,18 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         } else {
             phoneNumberError.setText("Phone Number Required!");
         }
+    }
+
+    private void editCompany() {
+        editCompany.setText("save");
+        editCompany.setOnMouseClicked(e -> saveCompany());
+        if(newCompany == null)
+            newCompany = new TextField();
+        gridPane.add(newCompany, 1, 6);
+        newCompany.setText(company.getText());
+    }
+
+    private void saveCompany() {
+
     }
 }
