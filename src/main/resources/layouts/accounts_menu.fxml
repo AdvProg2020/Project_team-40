@@ -10,12 +10,12 @@
             <Font size="50" />
         </font>
     </Label>
-    <GridPane fx:id="gridPane" layoutX="152.0" layoutY="148.0" prefHeight="420.0" prefWidth="572.0">
+    <GridPane fx:id="gridPane" layoutX="159.0" layoutY="146.0" prefHeight="422.0" prefWidth="565.0">
         <columnConstraints>
-         <ColumnConstraints maxWidth="315.0" minWidth="10.0" prefWidth="136.0" />
-         <ColumnConstraints maxWidth="429.0" minWidth="57.0" prefWidth="294.0" />
-         <ColumnConstraints maxWidth="429.0" minWidth="33.0" prefWidth="33.0" />
-         <ColumnConstraints maxWidth="429.0" minWidth="103.0" prefWidth="181.0" />
+         <ColumnConstraints maxWidth="315.0" minWidth="10.0" prefWidth="137.0" />
+         <ColumnConstraints maxWidth="429.0" minWidth="57.0" prefWidth="260.0" />
+         <ColumnConstraints maxWidth="429.0" minWidth="33.0" prefWidth="68.0" />
+         <ColumnConstraints maxWidth="429.0" minWidth="103.0" prefWidth="108.0" />
         </columnConstraints>
       <rowConstraints>
          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
@@ -36,16 +36,16 @@
           <Label fx:id="credit" GridPane.columnIndex="1" GridPane.rowIndex="5" />
           <Label fx:id="companyLabel" GridPane.columnIndex="0" GridPane.rowIndex="6" />
           <Label fx:id="company" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-          <Label fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="0"></Label>
-          <Label fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1"></Label>
-          <Label fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="2"></Label>
-          <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3"></Label>
-          <Label fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4"></Label>
-          <Button onMouseClicked="#editUsername" fx:id="editUsername" text="edit" GridPane.columnIndex="3" />
-          <Button onMouseClicked="#editFirstName" fx:id="editFirstName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-          <Button onMouseClicked="#editLastName" fx:id="editLastName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-          <Button onMouseClicked="#editEmail" fx:id="editEmail" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-          <Button onMouseClicked="#editPhoneNumber" fx:id="editPhoneNumber" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+          <Label fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          <Label fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Label fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+          <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          <Label fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+          <Button fx:id="editUsername" onMouseClicked="#editUsername" text="edit" GridPane.columnIndex="3" />
+          <Button fx:id="editFirstName" onMouseClicked="#editFirstName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+          <Button fx:id="editLastName" onMouseClicked="#editLastName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+          <Button fx:id="editEmail" onMouseClicked="#editEmail" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+          <Button fx:id="editPhoneNumber" onMouseClicked="#editPhoneNumber" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       </children>
     </GridPane>
 </Pane>

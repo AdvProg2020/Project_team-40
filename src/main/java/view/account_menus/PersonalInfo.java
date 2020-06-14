@@ -71,11 +71,13 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         if(newUsername == null)
             newUsername = new TextField();
         gridPane.add(newUsername, 1, 0);
+        newUsername.setText(username.getText());
     }
 
     private void saveUsername() {
-        accountController.editUser(newUsername.getText(), "username");
+        accountController.editUser("username", newUsername.getText());
         gridPane.getChildren().remove(newUsername);
+        username.setText(newUsername.getText());
         newUsername.setText("");
         editUsername.setOnMouseClicked(e -> editUsername());
         editUsername.setText("edit");
