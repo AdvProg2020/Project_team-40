@@ -56,7 +56,7 @@ public abstract class MenuManager {
 
     public void goToAccountsMenu() {
         if(accountController.isLogin()) {
-            setInnerPane("/layouts/user_info.fxml");
+            setInnerPane("/layouts/accounts_menu.fxml");
         } else {
             setInnerPane("/layouts/login_menu.fxml");
         }

@@ -8,6 +8,7 @@ module sample {
     requires org.controlsfx.controls;
 
     opens Main;
+    opens view.account_menus;
     opens view.account_menus.custromer_view.account_view;
     opens view.account_menus.custromer_view.cart_view;
     opens view.account_menus.custromer_view.orders_view;
