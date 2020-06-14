@@ -127,7 +127,7 @@ public class PersonalInfo extends AccountMenu implements Initializable {
 
     private String addCredit(String creditInString) {
         double currentCredit = Double.parseDouble(credit.getText());
-        currentCredit += Double.parseDouble(newCredit.getText());
+        currentCredit += Double.parseDouble(creditInString);
         return Double.toString(currentCredit);
     }
 
