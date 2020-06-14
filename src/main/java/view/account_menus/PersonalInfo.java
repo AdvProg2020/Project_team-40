@@ -250,12 +250,17 @@ public class PersonalInfo extends AccountMenu implements Initializable {
         passwordLabel.setText("Enter new password:");
         changePassword.setDisable(true);
         if(savePassword == null)
-            changePassword = new Button();
-        changePassword.setText("save");
-        changePassword.setOnMouseClicked(e -> savePassword());
+            savePassword = new Button();
+        savePassword.setText("save");
+        savePassword.setOnMouseClicked(e -> savePassword());
+        gridPane.add(savePassword, 3, 7);
     }
 
     private void savePassword() {
-
+        changePassword.setDisable(false);
+        gridPane.getChildren().remove(savePassword);
+        gridPane.getChildren().remove(newPassword);
+        accountController.editUser("password", newPassword.getText());
+        newPassword.setText("");
     }
 }
