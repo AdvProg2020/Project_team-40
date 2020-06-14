@@ -199,7 +199,19 @@ public class PersonalInfo extends AccountMenu implements Initializable {
     }
 
     private void savePhoneNumber() {
-
-
+        if(!newPhoneNumber.getText().isBlank()) {
+            if(ValidInput.PHONE_NUMBER.getStringMatcher(newPhoneNumber.getText()).matches()) {
+                phoneNumberError.setText("");
+                accountController.editUser("phoneNumber", newPhoneNumber.getText());
+                gridPane.getChildren().remove(newPhoneNumber);
+                phone.setText(newPhoneNumber.getText());
+                editPhoneNumber.setOnMouseClicked(e -> editPhoneNumber());
+                editPhoneNumber.setText("edit");
+            } else {
+                phoneNumberError.setText("Invalid Phone Number!");
+            }
+        } else {
+            phoneNumberError.setText("Phone Number Required!");
+        }
     }
 }
