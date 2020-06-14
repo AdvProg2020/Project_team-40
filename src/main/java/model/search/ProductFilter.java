@@ -33,8 +33,7 @@ public class ProductFilter{
         for(Product product : products) {
             this.products.put(product, TRUE);
         }
-
-
+        
         stringProperties = new HashMap<>();
         rangeProperties = new HashMap<>();
     }

@@ -31,8 +31,8 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public TreeView categories;
 
 
-    private static ArrayList<String> stringProperties;
-    private static ArrayList<String> rangeProperties;
+    private static ArrayList<String> stringProperties = new ArrayList<>();
+    private static ArrayList<String> rangeProperties = new ArrayList<>();
 
     private static int indexOfLastUser;
 
