@@ -12,19 +12,19 @@
     <children>
         <HBox prefHeight="32.0" prefWidth="719.0">
             <children>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="149.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="149.0">
                     <font>
-                        <Font size="17.0" />
+                        <Font size="14.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="149.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="149.0">
                     <font>
-                        <Font size="17.0" />
+                        <Font size="14.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="149.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="149.0">
                     <font>
-                        <Font size="17.0" />
+                        <Font size="14.0" />
                     </font></Label>
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="149.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="149.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>

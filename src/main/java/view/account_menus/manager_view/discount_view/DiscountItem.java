@@ -88,7 +88,7 @@ public class DiscountItem implements Initializable {
     }
 
     public void handleViewDiscount(ActionEvent event){
-        HBox item = (HBox)((deleteDiscountButton.getParent()).getParent());
+        HBox item = (HBox)((viewDiscountButton.getParent()).getParent());
         String code =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/discount_menus/discount.fxml"));
         try {
@@ -97,7 +97,7 @@ public class DiscountItem implements Initializable {
             DiscountView discountView = loader.getController();
             setLabelsContent(discountView, discount);
             Stage userWindow = new Stage();
-            userWindow.setScene(new Scene(pane, 520, 600));
+            userWindow.setScene(new Scene(pane, 900, 550));
             userWindow.initModality(Modality.APPLICATION_MODAL);
             userWindow.showAndWait();
         } catch (Exception e) {
@@ -107,5 +107,22 @@ public class DiscountItem implements Initializable {
     }
 
     public void handleEditDiscount(ActionEvent event) {
+        HBox item = (HBox)((editDiscountButton.getParent()).getParent());
+        String code =((Label)item.getChildren().get(0)).getText();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/discount_menus/edit_discount.fxml"));
+        try {
+            DiscountCode discount = managerAccountController.getDiscount(code);
+            AnchorPane pane = loader.load();
+            DiscountEdit editDiscountController = loader.getController();
+            editDiscountController.setDiscountCode(discount);
+            editDiscountController.setOldValues();
+            Stage userWindow = new Stage();
+            userWindow.setScene(new Scene(pane, 520, 600));
+            userWindow.initModality(Modality.APPLICATION_MODAL);
+            userWindow.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

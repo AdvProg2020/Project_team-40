@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 public class AccountManager extends MenuManager implements Initializable {
     public JFXButton homeButton;
     public Pane innerPane;
+    public JFXButton discountsButton;
 
     public void setInnerPane(Parent root){
         innerPane.getChildren().clear();
@@ -49,5 +50,14 @@ public class AccountManager extends MenuManager implements Initializable {
 
     public void handleLoadProductsMenu(ActionEvent event) {
         setInnerPane("/layouts/empty_layouts/ManageProductsDesign.fxml", innerPane);
+    }
+
+    public void goToDiscountsMenu(ActionEvent event) {
+        setInnerPane("/layouts/discount_menus/DiscountMenuDesign.fxml", innerPane);
+    }
+
+    public void goToRequestsMenu(ActionEvent event) {
+        setInnerPane("/layouts/request_menus/RequestsMenuDesign.fxml", innerPane);
+
     }
 }
