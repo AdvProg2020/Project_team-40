@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="783.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountView">
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="867.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountView">
     <children>
         <VBox layoutX="86.0" layoutY="141.0" prefHeight="307.0" prefWidth="124.0">
             <children>
@@ -55,41 +55,41 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <VBox layoutX="296.0" layoutY="141.0" prefHeight="307.0" prefWidth="196.0">
+        <VBox layoutX="284.0" layoutY="141.0" prefHeight="307.0" prefWidth="196.0">
             <children>
                 <Label fx:id="codeLabel" alignment="CENTER" prefHeight="48.0" prefWidth="198.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="16.0" />
                     </font>
                 </Label>
                 <Label fx:id="statusLabel" alignment="CENTER" prefHeight="48.0" prefWidth="200.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="startLabel" alignment="CENTER" prefHeight="48.0" prefWidth="201.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="endLabel" alignment="CENTER" prefHeight="48.0" prefWidth="199.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="percentageLabel" alignment="CENTER" prefHeight="48.0" prefWidth="202.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="maxLabel" alignment="CENTER" prefHeight="48.0" prefWidth="202.0">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
             <Label fx:id="countLabel" alignment="CENTER" prefHeight="48.0" prefWidth="202.0">
                <font>
-                  <Font size="23.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
             </children>
@@ -108,11 +108,11 @@
                 </ImageView>
             </graphic>
         </JFXButton>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="481.0" layoutY="141.0" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Included Users">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="556.0" layoutY="141.0" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Included Users">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ListView fx:id="usersList" layoutX="480.0" layoutY="175.0" prefHeight="273.0" prefWidth="238.0" />
+      <ListView fx:id="usersList" layoutX="555.0" layoutY="175.0" prefHeight="273.0" prefWidth="238.0" />
     </children>
 </AnchorPane>
