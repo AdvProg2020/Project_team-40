@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Product;
+import model.users.Customer;
+import model.users.Manager;
+import model.users.User;
 
 public class GUI extends Application {
 
@@ -54,6 +58,18 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //Some cool stuffs to test!!
+
+//        Customer c1 = new Customer("matind", "1234", "Matin", "Daghyani","m@mail.com","09121234567", 1000);
+//        Customer c2 = new Customer("alid", "1234", "Ali", "Davoodi","a@mail.com","09121111111", 1030);
+//        Manager m1 = new Manager("saraK", "12ss3", "sara", "kamali", "s@mail.com", "444222");
+//        User.addUser(c1);
+//        User.addUser(c2);
+//        User.setLoggedInUser(m1);
+//        Product p1 = new Product("Apple", "Tarebar", 10, 20, "FaridD", "Fruit");
+//        Product p2 = new Product("Orange", "Tarebar", 12, 40, "FaridD", "Fruit");
+//        Product.addProduct(p1);
+
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 800));
