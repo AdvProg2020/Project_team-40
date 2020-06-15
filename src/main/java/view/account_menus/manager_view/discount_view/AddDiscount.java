@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import model.users.Customer;
 
@@ -31,6 +32,7 @@ public class AddDiscount implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         managerAccountController = ManagerAccountController.getInstance();
+        usersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customers = new ArrayList<>();
         for (String customer : Customer.getAllCustomers()) {
             usersList.getItems().add(customer);
