@@ -25,12 +25,12 @@
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Discount Codes" textFill="WHITE">
+            <JFXButton fx:id="discountsButton" onAction="#goToDiscountsMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Discount Codes" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Requests" textFill="WHITE">
+            <JFXButton onAction="#goToRequestsMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Requests" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
