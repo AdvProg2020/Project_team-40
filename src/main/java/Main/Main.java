@@ -27,16 +27,16 @@ public class Main {
         properties.put("storage space", PropertyType.RANGE);
 
         HashMap<String, PropertyType> subProperties = new HashMap<>();
-        properties.put("display", PropertyType.STRING);
-        properties.put("OS", PropertyType.STRING);
-        properties.put("ram", PropertyType.RANGE);
-        properties.put("camera quality", PropertyType.RANGE);
+        subProperties.put("display", PropertyType.STRING);
+        subProperties.put("OS", PropertyType.STRING);
+        subProperties.put("ram", PropertyType.RANGE);
+        subProperties.put("camera quality", PropertyType.RANGE);
 
         HashMap<String, PropertyType> subProperties2 = new HashMap<>();
-        properties.put("ram", PropertyType.STRING);
-        properties.put("cpu", PropertyType.STRING);
-        properties.put("graphics", PropertyType.RANGE);
-        properties.put("ssd", PropertyType.RANGE);
+        subProperties2.put("ram", PropertyType.STRING);
+        subProperties2.put("cpu", PropertyType.STRING);
+        subProperties2.put("graphics", PropertyType.RANGE);
+        subProperties2.put("ssd", PropertyType.RANGE);
 
         try {
             ManagerAccountController.getInstance().createCategory("electronics", null, properties);
