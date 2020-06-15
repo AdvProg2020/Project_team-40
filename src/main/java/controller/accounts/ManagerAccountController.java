@@ -122,7 +122,7 @@ public class ManagerAccountController extends AccountController{
         catch (Exception e){
             throw new AccountsException("Date format is not valid.");
         }
-        if (!discountCode.isStartDateValid(newStart))
+        if (!discountCode.isStartDateValid(newStart, discountCode.getEndDate()))
             throw new AccountsException("Invalid date.");
         discountCode.setStartDate(newStart);
     }
@@ -135,32 +135,34 @@ public class ManagerAccountController extends AccountController{
         catch (Exception e){
             throw new AccountsException("Date format is not valid.");
         }
-        if (!discountCode.isEndDateValid(newEnd))
+        if (!discountCode.isEndDateValid(newEnd, discountCode.getStartDate()))
             throw new AccountsException("Invalid date.");
         discountCode.setEndDate(newEnd);
     }
 
-    public void editDiscount(String code, String field, String newValue) throws AccountsException {
+    public void editDiscount(String code, HashMap<String, String> toEdit) throws AccountsException {
         DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
         if (discountCode == null)
             throw new AccountsException("Discount code not found.");
-        switch (field){
-            case "Percentage":
-                discountCode.setPercentage(Integer.parseInt(newValue));
-                break;
-            case "Start date":
-                setNewStartDate(newValue, discountCode);
-                break;
-            case "End date":
-                setNewEndDate(newValue, discountCode);
-            case "Maximum amount":
-                discountCode.setMaxAmount(Double.parseDouble(newValue));
-                break;
-            case "Count per user":
-                discountCode.setCountPerUser(Integer.parseInt(newValue));
-                break;
-            default:
-                throw new AccountsException("Field not found.");
+        for (String field : toEdit.keySet()) {
+            String newValue = toEdit.get(field);switch (field){
+                case "Percentage":
+                    discountCode.setPercentage(Integer.parseInt(newValue));
+                    break;
+                case "Start date":
+                    setNewStartDate(newValue, discountCode);
+                    break;
+                case "End date":
+                    setNewEndDate(newValue, discountCode);
+                case "Maximum amount":
+                    discountCode.setMaxAmount(Double.parseDouble(newValue));
+                    break;
+                case "Count per user":
+                    discountCode.setCountPerUser(Integer.parseInt(newValue));
+                    break;
+                default:
+                    throw new AccountsException("Field not found.");
+        }
 
         }
     }
