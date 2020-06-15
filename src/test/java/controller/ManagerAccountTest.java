@@ -69,11 +69,11 @@ public class ManagerAccountTest {
         } catch (AccountsException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            manager.editDiscount(DiscountCode.getAllDiscountCodes().get(0).getCode(), "Percentage", "10");
-        } catch (AccountsException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            manager.editDiscount(DiscountCode.getAllDiscountCodes().get(0).getCode(), "Percentage", "10");
+//        } catch (AccountsException e) {
+//            System.out.println(e.getMessage());
+//        }
         try {
             System.out.println(manager.getDiscount(DiscountCode.getAllDiscountCodes().get(0).getCode()));
         } catch (AccountsException e) {
