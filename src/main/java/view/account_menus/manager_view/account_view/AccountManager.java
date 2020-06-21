@@ -53,7 +53,7 @@ public class AccountManager extends MenuManager implements Initializable {
     }
 
     public void goToDiscountsMenu(ActionEvent event) {
-        setInnerPane("/layouts/discount_menus/DiscountMenuDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_discount_menus/DiscountMenuDesign.fxml", innerPane);
     }
 
     public void goToRequestsMenu(ActionEvent event) {

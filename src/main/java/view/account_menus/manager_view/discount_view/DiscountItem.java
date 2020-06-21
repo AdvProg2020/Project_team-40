@@ -34,7 +34,7 @@ public class DiscountItem implements Initializable {
         vBoxItems.getChildren().clear();
         for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
             try {
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/discount_menus/discount_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_discount_menus/discount_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(discountCode, hBox);
                 vBoxItems.getChildren().add(item);
@@ -90,7 +90,7 @@ public class DiscountItem implements Initializable {
     public void handleViewDiscount(ActionEvent event){
         HBox item = (HBox)((viewDiscountButton.getParent()).getParent());
         String code =((Label)item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/discount_menus/discount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_discount_menus/discount.fxml"));
         try {
             DiscountCode discount = managerAccountController.getDiscount(code);
             AnchorPane pane = loader.load();
@@ -109,7 +109,7 @@ public class DiscountItem implements Initializable {
     public void handleEditDiscount(ActionEvent event) {
         HBox item = (HBox)((editDiscountButton.getParent()).getParent());
         String code =((Label)item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/discount_menus/edit_discount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_discount_menus/edit_discount.fxml"));
         try {
             DiscountCode discount = managerAccountController.getDiscount(code);
             AnchorPane pane = loader.load();
