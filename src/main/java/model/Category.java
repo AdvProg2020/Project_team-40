@@ -56,11 +56,17 @@ public class Category implements Serializable {
         return subCategories;
     }
 
+    public ArrayList<String> getSubCategoriesNames() {
+        return subCategoriesNames;
+    }
+
     public Category getParentCategory(){
         return allCategories.get(parentCategoryName);
     }
 
     public String getParentCategoryName(){
+        if (parentCategoryName == null)
+            return "-";
         return parentCategoryName;
     }
 

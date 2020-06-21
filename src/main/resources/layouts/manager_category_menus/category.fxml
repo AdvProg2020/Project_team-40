@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryView">
+    <children>
+        <VBox layoutX="95.0" layoutY="218.0" prefHeight="107.0" prefWidth="166.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="53.0" prefWidth="181.0" text="Name">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="53.0" prefWidth="177.0" text="Parent Category">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="176.0" layoutY="40.0" prefHeight="54.0" prefWidth="157.0" text="Category">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="295.0" layoutY="220.0" prefHeight="107.0" prefWidth="196.0">
+            <children>
+                <Label fx:id="nameLabel" alignment="CENTER" prefHeight="53.0" prefWidth="198.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="parentCategoryLabel" alignment="CENTER" prefHeight="53.0" prefWidth="200.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icons8-opened-folder-144.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-back-arrow-64.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="556.0" layoutY="141.0" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Products">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <ListView fx:id="productsList" layoutX="555.0" layoutY="175.0" prefHeight="273.0" prefWidth="238.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="857.0" layoutY="140.0" prefHeight="41.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Sub categories">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="subCategoriesList" layoutX="856.0" layoutY="180.0" prefHeight="273.0" prefWidth="238.0" />
+    </children>
+</AnchorPane>
