@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1155.0" style="-fx-background-color: #f9e79f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.AddCategory">
+    <children>
+        <Label alignment="CENTER" layoutX="145.0" layoutY="36.0" prefHeight="54.0" prefWidth="354.0" text="Create Category">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="81.0" layoutY="179.0" prefHeight="152.0" prefWidth="382.0">
+            <children>
+                <JFXTextField fx:id="nameField" prefHeight="61.0" promptText="Name">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin></JFXTextField>
+            <HBox prefHeight="49.0" prefWidth="382.0">
+               <children>
+                  <JFXTextField fx:id="propertyField" prefHeight="62.0" prefWidth="188.0" promptText="Property" />
+                  <VBox prefHeight="63.0" prefWidth="195.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="195.0" text="Type">
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="propertyTypeChoiceBox" prefHeight="26.0" prefWidth="167.0">
+                           <VBox.margin>
+                              <Insets left="14.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="27.0" />
+               </VBox.margin>
+            </HBox>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="78.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icons8-opened-folder-144.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="doneButton" layoutX="551.0" layoutY="480.0" onAction="#handleCreateCategory" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-checked-160.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="816.0" layoutY="148.0" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Select Parent Category">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <ListView fx:id="categoriesList" layoutX="816.0" layoutY="183.0" prefHeight="273.0" prefWidth="238.0" />
+        <Label fx:id="errorLabel" layoutX="62.0" layoutY="464.0" prefHeight="34.0" prefWidth="420.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="518.0" layoutY="149.0" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #f5b7b1;" text="Properties">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="propertiesList" layoutX="518.0" layoutY="184.0" prefHeight="273.0" prefWidth="238.0" />
+      <JFXButton fx:id="addPropertyButton" layoutX="87.0" layoutY="407.0" onAction="#handleAddProperty" prefHeight="42.0" prefWidth="382.0" style="-fx-background-color: #abebc6;" text="Add Property">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXButton>
+    </children>
+</AnchorPane>

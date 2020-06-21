@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Category;
-import model.DiscountCode;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +32,7 @@ public class CategoryMenuManager implements Initializable {
     }
 
     private void loadCategories() {
+        vBoxItems.getChildren().clear();
         for (String categoryName : managerAccountController.getAllCategories()) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
@@ -59,7 +59,7 @@ public class CategoryMenuManager implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_category_menus/add_category.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root, 800, 600));
+            stage.setScene(new Scene(root, 1200, 600));
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
