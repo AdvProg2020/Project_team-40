@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="38.0" prefHeight="94.0" prefWidth="309.0" text="Manage Categories" textAlignment="CENTER">
+            <font>
+                <Font size="35.0" />
+            </font>
+        </Label>
+        <ScrollPane layoutX="64.0" layoutY="213.0" prefHeight="390.0" prefWidth="746.0">
+            <content>
+                <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="730.0" />
+            </content>
+        </ScrollPane>
+        <HBox layoutX="64.0" layoutY="169.0" prefHeight="44.0" prefWidth="746.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: #c9fffb;" text="Name">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: #c9fffb;" text="Parent Category">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: #c9fffb;" text="Action">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <JFXButton fx:id="addCategory" layoutX="760.0" layoutY="132.0" onAction="#handleAddCategory" prefHeight="37.0" prefWidth="52.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-add-96.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+    </children>
 </AnchorPane>

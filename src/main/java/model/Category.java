@@ -60,6 +60,10 @@ public class Category implements Serializable {
         return allCategories.get(parentCategoryName);
     }
 
+    public String getParentCategoryName(){
+        return parentCategoryName;
+    }
+
     public void resetName(String name) {
         Category.getAllCategories().remove(this.name);
         this.name = name;
@@ -90,10 +94,6 @@ public class Category implements Serializable {
 
     private void removeSubCategory(String category){
         subCategoriesNames.remove(category);
-    }
-
-    public boolean hasProduct(String productID){
-        return productIDs.contains(productID);
     }
 
     public void removeProduct(String productID){
