@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="814.0" style="-fx-background-color: #ebdef0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryEdit">
+    <children>
+        <Label alignment="CENTER" layoutX="107.0" layoutY="47.0" prefHeight="54.0" prefWidth="303.0" text="Edit Category">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="42.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icons8-opened-folder-144.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="doneButton" layoutX="428.0" layoutY="479.0" onAction="#handleEditCategory" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-checked-160.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="cancelButton" layoutX="319.0" layoutY="479.0" onAction="#handleCancel" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/icons8-cancel-144.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="375.0" prefHeight="70.0" prefWidth="282.0" textFill="#f20e0e">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+          <JFXTextField fx:id="nameField" labelFloat="true" layoutX="77.0" layoutY="239.0" prefHeight="62.0" prefWidth="249.0" promptText="Name">
+              <opaqueInsets>
+                  <Insets />
+              </opaqueInsets>
+         <font>
+            <Font size="19.0" />
+         </font>
+          </JFXTextField>
+      <VBox layoutX="428.0" layoutY="142.0" prefHeight="310.0" prefWidth="303.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="303.0" style="-fx-background-color: #d6eaf8;" text="Other Properties">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="304.0" style="-fx-background-color: #d6eaf8;" text="Double click to edit field">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <ListView fx:id="propertiesListView" editable="true" prefHeight="262.0" prefWidth="303.0" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>
