@@ -15,8 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Category;
-import model.DiscountCode;
-import view.account_menus.manager_view.discount_view.DiscountEdit;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +35,7 @@ public class CategoryItem implements Initializable {
         for (String categoryName : managerAccountController.getAllCategories()) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_category_menus/category_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(category, hBox);
                 vBoxItems.getChildren().add(item);
@@ -86,7 +84,7 @@ public class CategoryItem implements Initializable {
     public void handleViewCategory(ActionEvent event) {
         HBox item = (HBox)((viewCategoryButton.getParent()).getParent());
         String name =((Label)item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_category_menus/category.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/category.fxml"));
         try {
             Category category = Category.getCategoryByName(name);
             AnchorPane pane = loader.load();
@@ -105,7 +103,7 @@ public class CategoryItem implements Initializable {
     public void handleEditCategory(ActionEvent event) {
         HBox item = (HBox) ((editCategoryButton.getParent()).getParent());
         String name = ((Label) item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_category_menus/edit_category.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/edit_category.fxml"));
         try {
             Category category = Category.getCategoryByName(name);
             AnchorPane pane = loader.load();

@@ -28,14 +28,14 @@
         </VBox>
         <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="78.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/icons8-discount-96.png" />
+                <Image url="@../../../images/icons8-discount-96.png" />
             </image>
         </ImageView>
         <JFXButton fx:id="doneButton" layoutX="647.0" layoutY="461.0" onAction="#handleCreateDiscount" prefHeight="39.0" prefWidth="70.0" text=" ">
             <graphic>
                 <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-checked-160.png" />
+                        <Image url="@../../../images/icons8-checked-160.png" />
                     </image>
                 </ImageView>
             </graphic>

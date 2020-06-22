@@ -46,14 +46,14 @@
         </VBox>
         <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/icons8-opened-folder-144.png" />
+                <Image url="@../../../images/icons8-opened-folder-144.png" />
             </image>
         </ImageView>
         <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" ">
             <graphic>
                 <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-back-arrow-64.png" />
+                        <Image url="@../../../images/icons8-back-arrow-64.png" />
                     </image>
                 </ImageView>
             </graphic>

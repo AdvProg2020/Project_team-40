@@ -45,14 +45,14 @@
         </VBox>
         <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/icons8-question-mark-64.png" />
+                <Image url="@../../../images/icons8-question-mark-64.png" />
             </image>
         </ImageView>
         <JFXButton fx:id="acceptButton" layoutX="158.0" layoutY="443.0" onAction="#handleAcceptRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
             <graphic>
                 <ImageView fitHeight="44.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-checked-160.png" />
+                        <Image url="@../../../images/icons8-checked-160.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -61,7 +61,7 @@
             <graphic>
                 <ImageView fitHeight="42.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-cancel-144.png" />
+                        <Image url="@../../../images/icons8-cancel-144.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -70,7 +70,7 @@
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/product.png" />
+                  <Image url="@../../../images/product.png" />
                </image>
             </ImageView>
          </graphic>

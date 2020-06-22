@@ -29,7 +29,7 @@ public class ProductItem implements Initializable {
         for (String productId : managerAccountController.getAllProducts()) {
             try {
                 Product product = Product.getProductById(productId);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/product_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);
                 vBoxItems.getChildren().add(item);

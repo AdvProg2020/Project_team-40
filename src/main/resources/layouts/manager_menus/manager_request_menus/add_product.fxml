@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="500.0" style="-fx-background-color: #2e86c1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.SellingPermissionMenu">
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="500.0" style="-fx-background-color: #2e86c1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.AddProductMenu">
     <children>
         <VBox layoutX="96.0" layoutY="130.0" prefHeight="279.0" prefWidth="124.0">
             <children>
-                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Username">
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Product ID">
                     <font>
                         <Font size="23.0" />
                     </font>
@@ -22,12 +22,12 @@
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="65.0" prefWidth="124.0" text="Email">
+                <Label alignment="CENTER" prefHeight="65.0" prefWidth="124.0" text="Category">
                     <font>
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="57.0" prefWidth="124.0" text="Phone No">
+                <Label alignment="CENTER" prefHeight="57.0" prefWidth="124.0" text="Seller">
                     <font>
                         <Font size="23.0" />
                     </font>
@@ -37,21 +37,21 @@
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="54.0" prefWidth="124.0" text="Credit">
+                <Label alignment="CENTER" prefHeight="54.0" prefWidth="124.0" text="Base Price">
                     <font>
                         <Font size="23.0" />
                     </font>
                 </Label>
             </children>
         </VBox>
-        <Label alignment="CENTER" layoutX="113.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Selling permission">
+        <Label alignment="CENTER" layoutX="93.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Add Product">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
         <VBox layoutX="258.0" layoutY="130.0" prefHeight="279.0" prefWidth="196.0">
             <children>
-                <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="49.0" prefWidth="198.0">
+                <Label fx:id="productIdLabel" alignment="CENTER" prefHeight="49.0" prefWidth="198.0">
                     <font>
                         <Font size="23.0" />
                     </font>
@@ -61,12 +61,12 @@
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label fx:id="emailLabel" alignment="CENTER" prefHeight="58.0" prefWidth="201.0">
+                <Label fx:id="categoryLabel" alignment="CENTER" prefHeight="58.0" prefWidth="201.0">
                     <font>
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label fx:id="phoneLabel" alignment="CENTER" prefHeight="51.0" prefWidth="199.0">
+                <Label fx:id="sellerLabel" alignment="CENTER" prefHeight="51.0" prefWidth="199.0">
                     <font>
                         <Font size="23.0" />
                     </font>
@@ -76,23 +76,23 @@
                         <Font size="23.0" />
                     </font>
                 </Label>
-                <Label fx:id="creditLabel" alignment="CENTER" prefHeight="50.0" prefWidth="202.0">
+                <Label fx:id="basePriceLabel" alignment="CENTER" prefHeight="50.0" prefWidth="202.0">
                     <font>
                         <Font size="23.0" />
                     </font>
                 </Label>
             </children>
         </VBox>
-        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="58.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/icons8-question-mark-64.png" />
+                <Image url="@../../../images/icons8-question-mark-64.png" />
             </image>
         </ImageView>
         <JFXButton fx:id="acceptButton" layoutX="158.0" layoutY="443.0" onAction="#handleAcceptRequest" prefHeight="49.0" prefWidth="52.0" text=" ">
             <graphic>
                 <ImageView fitHeight="44.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-checked-160.png" />
+                        <Image url="@../../../images/icons8-checked-160.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -101,7 +101,7 @@
             <graphic>
                 <ImageView fitHeight="42.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/icons8-cancel-144.png" />
+                        <Image url="@../../../images/icons8-cancel-144.png" />
                     </image>
                 </ImageView>
             </graphic>

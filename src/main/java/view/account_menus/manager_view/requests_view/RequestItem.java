@@ -135,7 +135,7 @@ public class RequestItem extends MenuManager implements Initializable {
         String requestId =((Label)item.getChildren().get(0)).getText();
         String type =((Label)item.getChildren().get(1)).getText();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/request_menus/" + getFxmlNameByType(type) + ".fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_request_menus/" + getFxmlNameByType(type) + ".fxml"));
         try {
             Request request = managerAccountController.getRequest(requestId);
             AnchorPane pane = loader.load();

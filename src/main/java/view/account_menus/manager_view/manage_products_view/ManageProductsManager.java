@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Product;
-import model.users.User;
 import view.MenuManager;
 
 import java.net.URL;
@@ -27,7 +26,7 @@ public class ManageProductsManager extends MenuManager implements Initializable 
         for (String productId : managerAccountController.getAllProducts()) {
             try {
                 Product product = Product.getProductById(productId);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/empty_layouts/product_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);
                 vBoxItems.getChildren().add(item);

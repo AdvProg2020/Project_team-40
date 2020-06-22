@@ -36,7 +36,7 @@ public class CategoryMenuManager implements Initializable {
         for (String categoryName : managerAccountController.getAllCategories()) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_category_menus/category_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(category, hBox);
                 vBoxItems.getChildren().add(item);
@@ -57,7 +57,7 @@ public class CategoryMenuManager implements Initializable {
     public void handleAddCategory(ActionEvent event) {
         Stage stage = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_category_menus/add_category.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/add_category.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root, 1200, 600));
             stage.showAndWait();

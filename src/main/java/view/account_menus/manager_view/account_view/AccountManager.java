@@ -45,19 +45,19 @@ public class AccountManager extends MenuManager implements Initializable {
     }
 
     public void handleLoadUsersMenu(ActionEvent event) {
-        setInnerPane("/layouts/empty_layouts/ManageUsersDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml", innerPane);
     }
 
     public void handleLoadProductsMenu(ActionEvent event) {
-        setInnerPane("/layouts/empty_layouts/ManageProductsDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml", innerPane);
     }
 
     public void goToDiscountsMenu(ActionEvent event) {
-        setInnerPane("/layouts/manager_discount_menus/DiscountMenuDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml", innerPane);
     }
 
     public void goToRequestsMenu(ActionEvent event) {
-        setInnerPane("/layouts/request_menus/RequestsMenuDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", innerPane);
 
     }
 }

@@ -33,7 +33,7 @@ public class DiscountMenuManager implements Initializable {
     private void loadDiscounts() {
         for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
             try {
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_discount_menus/discount_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(discountCode, hBox);
                 vBoxItems.getChildren().add(item);
@@ -58,7 +58,7 @@ public class DiscountMenuManager implements Initializable {
     public void handleAddDiscount(ActionEvent event) {
         Stage stage = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_discount_menus/add_discount.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/add_discount.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root, 800, 600));
             stage.showAndWait();

@@ -34,7 +34,7 @@
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../images/icons8-delete-64.png" />
+                                        <Image url="@../../../images/icons8-delete-64.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -43,7 +43,7 @@
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../images/icons8-discount-80.png" />
+                                        <Image url="@../../../images/icons8-discount-80.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -52,7 +52,7 @@
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/icons8-edit-144.png" />
+                              <Image url="@../../../images/icons8-edit-144.png" />
                            </image>
                         </ImageView>
                      </graphic>

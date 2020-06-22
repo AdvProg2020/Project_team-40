@@ -26,7 +26,7 @@ public class RequestMenuManager extends MenuManager implements Initializable {
     private void loadRequests() {
         for (Request request : Manager.getRequests()) {
             try {
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/request_menus/request_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_request_menus/request_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(request, hBox);
                 vBoxItems.getChildren().add(item);
