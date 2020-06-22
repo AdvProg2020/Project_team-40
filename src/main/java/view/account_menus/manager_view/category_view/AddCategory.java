@@ -60,6 +60,10 @@ public class AddCategory implements Initializable {
     public void handleCreateCategory(ActionEvent event) {
         addSelectedItemsToList();
         try {
+            if (nameField.getText().equals("")){
+                ((Stage)(nameField.getScene().getWindow())).close();
+                return;
+            }
             managerAccountController.createCategory(nameField.getText(), parent, properties);
             ((Stage)(doneButton.getScene().getWindow())).close();
         }
