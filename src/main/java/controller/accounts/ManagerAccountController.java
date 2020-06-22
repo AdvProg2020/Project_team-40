@@ -207,23 +207,25 @@ public class ManagerAccountController extends AccountController{
         }
     }
 
-    public void editCategory(String categoryName, String field, String newField) throws AccountsException {
+    public void editCategory(String categoryName, HashMap<String, String> toEdit) throws AccountsException {
         Category category = Category.getCategoryByName(categoryName);
         if (category == null)
             throw new AccountsException("Category not found.");
-        if (field.equalsIgnoreCase("name")){
-            if (Category.getCategoryByName(newField) != null)
-                throw new AccountsException("A category exists with this name.");
-            category.resetName(newField);
-            handleProductsAfterEdit(field, newField, category);
-        }
-        else if (!category.getExtraProperties().containsKey(field))
-            throw new AccountsException("There is no field with this name.");
-        else {
-            PropertyType type = category.getExtraProperties().get(field);
-            category.addProperty(newField, type);
-            category.getExtraProperties().remove(field);
-            handleProductsAfterEdit(field, newField, category);
+        for (String field : toEdit.keySet()) {
+            String newField = toEdit.get(field);
+            if (field.equalsIgnoreCase("name")) {
+                if (Category.getCategoryByName(newField) != null)
+                    throw new AccountsException("A category exists with this name.");
+                category.resetName(newField);
+                handleProductsAfterEdit(field, newField, category);
+            } else if (!category.getExtraProperties().containsKey(field))
+                throw new AccountsException("There is no field with this name.");
+            else {
+                PropertyType type = category.getExtraProperties().get(field);
+                category.addProperty(newField, type);
+                category.getExtraProperties().remove(field);
+                handleProductsAfterEdit(field, newField, category);
+            }
         }
     }
 
