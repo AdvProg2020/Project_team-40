@@ -75,4 +75,8 @@ public class DiscountMenuManager implements Initializable {
         }
 
     }
+
+    public void handleRefresh(ActionEvent event) {
+        loadDiscounts();
+    }
 }
