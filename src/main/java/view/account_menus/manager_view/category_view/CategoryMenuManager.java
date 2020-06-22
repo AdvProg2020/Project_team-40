@@ -73,4 +73,8 @@ public class CategoryMenuManager implements Initializable {
             });
         }
     }
+
+    public void handleRefresh(ActionEvent event) {
+        loadCategories();
+    }
 }

@@ -104,16 +104,16 @@ public class CategoryItem implements Initializable {
 
     public void handleEditCategory(ActionEvent event) {
         HBox item = (HBox) ((editCategoryButton.getParent()).getParent());
-        String code = ((Label) item.getChildren().get(0)).getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_discount_menus/edit_discount.fxml"));
+        String name = ((Label) item.getChildren().get(0)).getText();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_category_menus/edit_category.fxml"));
         try {
-            DiscountCode discount = managerAccountController.getDiscount(code);
+            Category category = Category.getCategoryByName(name);
             AnchorPane pane = loader.load();
-            DiscountEdit editDiscountController = loader.getController();
-            editDiscountController.setDiscountCode(discount);
-            editDiscountController.setOldValues();
+            CategoryEdit editCategoryController = loader.getController();
+            editCategoryController.setCategory(category);
+            editCategoryController.setOldValues();
             Stage userWindow = new Stage();
-            userWindow.setScene(new Scene(pane, 520, 600));
+            userWindow.setScene(new Scene(pane, 800, 600));
             userWindow.initModality(Modality.APPLICATION_MODAL);
             userWindow.showAndWait();
         } catch (Exception e) {
