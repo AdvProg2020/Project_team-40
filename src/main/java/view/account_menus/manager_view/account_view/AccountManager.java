@@ -16,6 +16,7 @@ public class AccountManager extends MenuManager implements Initializable {
     public JFXButton homeButton;
     public Pane innerPane;
     public JFXButton discountsButton;
+    public JFXButton categoriesButton;
 
     public void setInnerPane(Parent root){
         innerPane.getChildren().clear();
@@ -58,6 +59,11 @@ public class AccountManager extends MenuManager implements Initializable {
 
     public void goToRequestsMenu(ActionEvent event) {
         setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", innerPane);
+
+    }
+
+    public void handleGoToCategoriesMenu(ActionEvent event) {
+        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", innerPane);
 
     }
 }

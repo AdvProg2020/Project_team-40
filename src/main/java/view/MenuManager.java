@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import model.Loader;
+import model.users.Manager;
+import model.users.Seller;
+import model.users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +59,12 @@ public abstract class MenuManager {
 
     public void goToAccountsMenu() {
         if(accountController.isLogin()) {
-            setInnerPane("/layouts/accounts_menu.fxml");
+            if (User.getLoggedInUser() instanceof Manager)
+                setInnerPane("/layouts/manager_menus/manager_account_design.fxml");
+            else if (User.getLoggedInUser() instanceof Seller)
+                setInnerPane("/layouts/seller_menus/seller_account_design.fxml");
+            else
+                setInnerPane("/layouts/customer_menus/customer_account_design.fxml");
         } else {
             setInnerPane("/layouts/login_menu.fxml");
         }

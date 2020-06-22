@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager">
+<AnchorPane prefHeight="631.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="38.0" prefHeight="94.0" prefWidth="309.0" text="Manage Categories" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="37.0" prefHeight="94.0" prefWidth="309.0" text="Manage Categories" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="64.0" layoutY="213.0" prefHeight="390.0" prefWidth="746.0">
+        <ScrollPane layoutX="42.0" layoutY="194.0" prefHeight="378.0" prefWidth="746.0">
             <content>
                 <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="730.0" />
             </content>
         </ScrollPane>
-        <HBox layoutX="64.0" layoutY="169.0" prefHeight="44.0" prefWidth="746.0">
+        <HBox layoutX="42.0" layoutY="150.0" prefHeight="44.0" prefWidth="746.0">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: #c9fffb;" text="Name">
                     <font>
@@ -41,7 +41,7 @@
                 </Label>
             </children>
         </HBox>
-        <JFXButton fx:id="addCategory" contentDisplay="CENTER" layoutX="766.0" layoutY="126.0" onAction="#handleAddCategory" prefHeight="42.0" prefWidth="50.0" text=" ">
+        <JFXButton fx:id="addCategory" contentDisplay="CENTER" layoutX="737.0" layoutY="111.0" onAction="#handleAddCategory" prefHeight="42.0" prefWidth="50.0" text=" ">
             <graphic>
                 <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -50,7 +50,7 @@
                 </ImageView>
             </graphic>
         </JFXButton>
-      <JFXButton fx:id="refreshButton" layoutX="715.0" layoutY="129.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" ">
+      <JFXButton fx:id="refreshButton" layoutX="684.0" layoutY="114.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" ">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>

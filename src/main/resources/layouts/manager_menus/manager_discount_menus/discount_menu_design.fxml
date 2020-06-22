@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountMenuManager">
+<AnchorPane prefHeight="621.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountMenuManager">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="39.0" prefHeight="94.0" prefWidth="410.0" text="Manage Discount Codes" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="35.0" prefHeight="94.0" prefWidth="410.0" text="Manage Discount Codes" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="64.0" layoutY="213.0" prefHeight="390.0" prefWidth="746.0">
+        <ScrollPane layoutX="42.0" layoutY="191.0" prefHeight="378.0" prefWidth="746.0">
             <content>
-                <VBox fx:id="vBoxItems" prefHeight="418.0" prefWidth="730.0" />
+                <VBox fx:id="vBoxItems" prefHeight="378.0" prefWidth="730.0" />
             </content>
         </ScrollPane>
-        <HBox layoutX="64.0" layoutY="169.0" prefHeight="44.0" prefWidth="746.0">
+        <HBox layoutX="42.0" layoutY="147.0" prefHeight="44.0" prefWidth="746.0">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="149.0" style="-fx-background-color: #c9fffb;" text="Code">
                     <font>
@@ -51,7 +51,7 @@
                 </Label>
             </children>
         </HBox>
-      <JFXButton fx:id="addDiscount" layoutX="753.0" layoutY="112.0" onAction="#handleAddDiscount" prefHeight="37.0" prefWidth="52.0" text=" ">
+      <JFXButton fx:id="addDiscount" layoutX="741.0" layoutY="109.0" onAction="#handleAddDiscount" prefHeight="37.0" prefWidth="52.0" text=" ">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,7 +60,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="refreshButton" layoutX="702.0" layoutY="118.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" ">
+      <JFXButton fx:id="refreshButton" layoutX="691.0" layoutY="112.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" ">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>

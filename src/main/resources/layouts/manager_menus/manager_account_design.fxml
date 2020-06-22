@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.account_view.AccountManager">
    <children>
-      <AnchorPane fx:id="innerPane" layoutX="88.0" layoutY="94.0" prefHeight="559.0" prefWidth="671.0" />
+      <AnchorPane fx:id="innerPane" layoutX="1.0" layoutY="61.0" prefHeight="621.0" prefWidth="831.0" />
       <HBox prefHeight="62.0" prefWidth="831.0">
          <children>
             <JFXButton fx:id="homeButton" onAction="#goToHomeMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Home" textFill="WHITE">
@@ -35,7 +35,7 @@
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Categories" textFill="WHITE">
+            <JFXButton fx:id="categoriesButton" onAction="#handleGoToCategoriesMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Categories" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
