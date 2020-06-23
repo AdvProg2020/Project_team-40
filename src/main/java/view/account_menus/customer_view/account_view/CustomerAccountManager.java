@@ -1,7 +1,6 @@
-package view.account_menus.custromer_view.account_view;
+package view.account_menus.customer_view.account_view;
 
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import view.account_menus.AllAccountsManager;
 
 import java.net.URL;

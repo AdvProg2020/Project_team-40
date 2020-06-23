@@ -1,4 +1,4 @@
-package view.account_menus.custromer_view.cart_view;
+package view.account_menus.customer_view.cart_view;
 
 import view.account_menus.AllAccountsManager;
 
