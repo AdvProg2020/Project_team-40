@@ -41,6 +41,7 @@
                   </ScrollPane>
                   <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0">
                      <children>
+                        <Button mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="665.0" text="refresh" />
                         <Button mnemonicParsing="false" onAction="#showMoreItems" prefHeight="27.0" prefWidth="689.0" text="show more items" />
                      </children>
                   </HBox>
@@ -63,42 +64,42 @@
                                     <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
-                                          <TextField />
-                                          <Button mnemonicParsing="false" text="Set" />
+                                          <TextField fx:id="productNameField" />
+                                          <Button fx:id="productNameButton" mnemonicParsing="false" text="Set" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Company" />
-                                          <TextField />
-                                          <Button mnemonicParsing="false" text="Set" />
+                                          <TextField fx:id="productCompanyField" />
+                                          <Button fx:id="productCompanyButton" mnemonicParsing="false" text="Set" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
-                                          <TextField />
-                                          <Button mnemonicParsing="false" text="Set" />
+                                          <TextField fx:id="sellerField" />
+                                          <Button fx:id="sellerButton" mnemonicParsing="false" text="Set" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Only show Products In Stock" />
+                                          <RadioButton fx:id="onlyStockToggle" mnemonicParsing="false" text="Only show Products In Stock" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Only show Products In Off" />
+                                          <RadioButton fx:id="onlyOffToggle" mnemonicParsing="false" text="Only show Products In Off" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price Range" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
-                                          <Slider />
+                                          <Slider fx:id="priceMinSlider" />
                                           <Text layoutX="96.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
-                                          <Slider />
-                                          <Button mnemonicParsing="false" text="Set" />
+                                          <Slider fx:id="priceMaxSlider" />
+                                          <Button fx:id="priceButton" mnemonicParsing="false" text="Set" />
                                        </children>
                                     </VBox>
                                  </children>

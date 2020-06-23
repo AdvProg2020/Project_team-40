@@ -2,6 +2,7 @@ package view.shopping_menus.products_and_offs_menus.products_view;
 
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
+import exceptions.MenuException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,10 @@ import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
     public Button mostExpensiveSort, leastExpensiveSort, mostVisitedSort, highestSalesSort, highestScoreSort;
+    public Button productNameButton, productCompanyButton, sellerButton, priceButton;
+    public TextField productNameField, productCompanyField, sellerField;
+    public RadioButton onlyOffToggle, onlyStockToggle;
+    public Slider priceMinSlider, priceMaxSlider;
     public VBox products;
     public VBox filters;
     public VBox extraFilters;
@@ -35,6 +40,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle){
         //initializeProducts();
         initializeCategories();
+        initializeSorts();
     }
 
     private void initializeProducts(){
@@ -100,6 +106,92 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 e.printStackTrace();
             }
         }
+
+        productNameButton.setOnAction(actionEvent -> {
+            AllProductsController.getInstance().addFilter("productName", productNameField.getText());
+        });
+
+        productCompanyButton.setOnAction(actionEvent -> {
+            AllProductsController.getInstance().addFilter("productCompany", productCompanyField.getText());
+        });
+
+        sellerButton.setOnAction(actionEvent -> {
+            AllProductsController.getInstance().addFilter("sellerName", sellerField.getText());
+        });
+
+        priceButton.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().addFilter("price", priceMinSlider.getValue(), priceMaxSlider.getValue());
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+
+        onlyOffToggle.selectedProperty().addListener(new ChangeListener<Boolean>(){
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1){
+                if(t1){
+                    AllProductsController.getInstance().setIsOffsOnly(true);
+                }else{
+                    AllProductsController.getInstance().setIsOffsOnly(false);
+                }
+            }
+        });
+
+        onlyStockToggle.selectedProperty().addListener(new ChangeListener<Boolean>(){
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1){
+                if(t1){
+                    AllProductsController.getInstance().addFilter("status", "exists");
+                }else{
+                    AllProductsController.getInstance().disableFilter("status");
+                }
+            }
+        });
+
+    }
+
+    private void initializeSorts(){
+        leastExpensiveSort.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().setSort("CHEAPEST");
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+        mostExpensiveSort.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().setSort("MOST_EXPENSIVE");
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+        mostVisitedSort.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().setSort("MOST_VISITED");
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+        highestSalesSort.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().setSort("HIGHEST_SALES");
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+        highestScoreSort.setOnAction(actionEvent -> {
+            try {
+                AllProductsController.getInstance().setSort("HIGHEST_SCORE");
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void refresh(){
+        products.getChildren().clear();
+        showMoreItems();
     }
 
     public void showMoreItems(){

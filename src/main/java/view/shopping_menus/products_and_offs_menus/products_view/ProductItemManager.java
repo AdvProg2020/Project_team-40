@@ -5,15 +5,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Product;
 import view.MenuManager;
 import view.shopping_menus.product.product_view.ProductMenuManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProductItemManager extends MenuManager implements Initializable{
+    private static final String PATH = "/images/";
     private Product product;
 
     @FXML
@@ -37,7 +41,11 @@ public class ProductItemManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        //TODO : setImage and set button action
+
+        //TODO : test
+        Image frame = new Image(PATH + product.getName());
+        image.setImage(frame);
+
         digest.setOnAction(actionEvent -> {
             ProductMenuManager.setProduct(product);
             setInnerPane("/layouts/shopping_menus/product_menu.fxml");

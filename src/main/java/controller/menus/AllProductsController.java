@@ -146,6 +146,7 @@ public class AllProductsController {
         sorts.add("CHEAPEST");
         sorts.add("MOST_VISITED");
         sorts.add("HIGHEST_SCORE");
+        sorts.add("HIGHEST_SALES");
         return sorts;
     }
 

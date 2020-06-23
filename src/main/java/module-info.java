@@ -19,7 +19,6 @@ module sample {
     opens view.account_menus.manager_view.manage_users_view;
     opens view.account_menus.manager_view.requests_view;
     opens view.account_menus.seller_view.accounts_view;
-    opens view.account_menus.seller_view.manage_products_view;
     opens view.account_menus.seller_view.sellers_offs_view;
     opens view.account_menus.seller_view.sellers_products_view;
     opens view.register_login_view;
