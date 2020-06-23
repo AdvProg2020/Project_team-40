@@ -20,7 +20,7 @@ public class AccountManager extends AllAccountsManager implements Initializable 
     }
 
     public void goToProducts() {
-        //TODO
+        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
     }
 
     public void goToMyOffs() {

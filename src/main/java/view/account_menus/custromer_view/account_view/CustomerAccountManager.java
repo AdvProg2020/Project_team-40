@@ -15,7 +15,7 @@ public class CustomerAccountManager extends AllAccountsManager implements Initia
     }
 
     public void goToHome() {
-
+        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
     }
 
     public void goToOrders() {
