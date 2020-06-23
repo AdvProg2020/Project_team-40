@@ -5,6 +5,7 @@ import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import model.Loader;
 import model.users.Manager;
 import model.users.Seller;
@@ -68,6 +69,14 @@ public abstract class MenuManager {
         } else {
             setInnerPane("/layouts/login_menu.fxml");
         }
+    }
+
+    public void logout() {
+        roots.clear();
+        roots.add("/layouts/main.fxml");
+        roots.add("h");
+        accountController.logout();
+        back();
     }
 
     public void back() {

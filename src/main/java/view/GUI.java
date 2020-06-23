@@ -60,7 +60,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Some cool stuffs to test!!
-
+/*
         Customer c1 = new Customer("matind", "1234", "Matin", "Daghyani","m@mail.com","09121234567", 1000);
         Customer c2 = new Customer("alid", "1234", "Ali", "Davoodi","a@mail.com","09121111111", 1030);
         Manager m1 = new Manager("saraK", "12ss3", "sara", "kamali", "s@mail.com", "444222");
@@ -75,7 +75,9 @@ public class GUI extends Application {
         category.addProduct(p1.getProductId());
         category.addProduct(p2.getProductId());
         Category.addCategory(category);
-        Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_category_menus/CategoryMenuDesign.fxml"));
+
+ */
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();

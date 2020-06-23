@@ -19,7 +19,7 @@ public class Main {
         GUI.initialize();
     }
 
-    private static void addTempVariables(){
+    private static void addTempVariables() {
         HashMap<String, PropertyType> properties = new HashMap<>();
         properties.put("size", PropertyType.STRING);
         properties.put("wifi", PropertyType.STRING);
@@ -40,15 +40,7 @@ public class Main {
 
         try {
             ManagerAccountController.getInstance().createCategory("electronics", null, properties);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
             ManagerAccountController.getInstance().createCategory("mobile", "electronics", subProperties);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
             ManagerAccountController.getInstance().createCategory("pc", "electronics", subProperties2);
         }catch(Exception e){
             e.printStackTrace();

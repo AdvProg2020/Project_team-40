@@ -7,12 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import view.MenuManager;
+import view.account_menus.AccountMenu;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccountManager extends MenuManager implements Initializable {
+public class AccountManager extends AccountMenu implements Initializable {
     public JFXButton homeButton;
     public Pane innerPane;
     public JFXButton discountsButton;
@@ -35,7 +36,7 @@ public class AccountManager extends MenuManager implements Initializable {
     }
 
 
-    public void goToHomeMenu(ActionEvent event) {
+    public void goToHomeMenu() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
@@ -45,25 +46,24 @@ public class AccountManager extends MenuManager implements Initializable {
         setInnerPane(root);
     }
 
-    public void handleLoadUsersMenu(ActionEvent event) {
+    public void handleLoadUsersMenu() {
         setInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml", innerPane);
     }
 
-    public void handleLoadProductsMenu(ActionEvent event) {
+    public void handleLoadProductsMenu() {
         setInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml", innerPane);
     }
 
-    public void goToDiscountsMenu(ActionEvent event) {
+    public void goToDiscountsMenu() {
         setInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml", innerPane);
     }
 
-    public void goToRequestsMenu(ActionEvent event) {
+    public void goToRequestsMenu() {
         setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", innerPane);
 
     }
 
-    public void handleGoToCategoriesMenu(ActionEvent event) {
+    public void handleGoToCategoriesMenu() {
         setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", innerPane);
-
     }
 }
