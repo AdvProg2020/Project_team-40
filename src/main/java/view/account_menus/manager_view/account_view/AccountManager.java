@@ -5,22 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
-import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccountManager extends MenuManager implements Initializable {
+public class AccountManager extends view.account_menus.AccountsManager implements Initializable {
     public JFXButton homeButton;
-    public Pane innerPane;
     public JFXButton discountsButton;
     public JFXButton categoriesButton;
-
-    public void setInnerPane(Parent root){
-        innerPane.getChildren().clear();
-        innerPane.getChildren().add(root);
-    }
+    public Pane secondaryInnerPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,9 +24,8 @@ public class AccountManager extends MenuManager implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-        setInnerPane(root);
+        setInnerPane(root, secondaryInnerPane);
     }
-
 
     public void goToHomeMenu() {
         Parent root = null;
@@ -41,27 +34,27 @@ public class AccountManager extends MenuManager implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-        setInnerPane(root);
+        setInnerPane(root, secondaryInnerPane);
     }
 
     public void handleLoadUsersMenu() {
-        setInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml", secondaryInnerPane);
     }
 
     public void handleLoadProductsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml", secondaryInnerPane);
     }
 
     public void goToDiscountsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml", secondaryInnerPane);
     }
 
     public void goToRequestsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", secondaryInnerPane);
 
     }
 
     public void handleGoToCategoriesMenu() {
-        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", innerPane);
+        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", secondaryInnerPane);
     }
 }

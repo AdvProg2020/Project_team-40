@@ -5,7 +5,6 @@ import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import model.Loader;
 import model.users.Manager;
 import model.users.Seller;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class MenuManager {
-    public Pane innerPane;
+    public Pane secondaryInnerPane;
     protected static ArrayList<String> roots;
     protected AccountController accountController = AccountController.getInstance();
     static {
@@ -24,7 +23,7 @@ public abstract class MenuManager {
     }
 
     public void setInnerPane(String rootLocation) {
-        innerPane.getChildren().clear();
+        secondaryInnerPane.getChildren().clear();
         roots.add(rootLocation);
         if(!rootLocation.equals("/layouts/main.fxml")) {
             Parent root = null;
@@ -33,7 +32,7 @@ public abstract class MenuManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            innerPane.getChildren().add(root);
+            secondaryInnerPane.getChildren().add(root);
         }
     }
 
@@ -84,7 +83,7 @@ public abstract class MenuManager {
             exit();
         }
         roots.remove(roots.size() - 1);
-        innerPane.getChildren().clear();
+        secondaryInnerPane.getChildren().clear();
         String lastRoot = roots.get(roots.size() - 1);
         if(!lastRoot.equals("/layouts/main.fxml")) {
             Parent root = null;
@@ -93,7 +92,7 @@ public abstract class MenuManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            innerPane.getChildren().add(root);
+            secondaryInnerPane.getChildren().add(root);
         }
     }
 

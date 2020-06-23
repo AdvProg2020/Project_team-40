@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="innerPane" prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.PersonalInfo">
+<Pane fx:id="secondaryInnerPane" prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.PersonalInfo">
     <Label layoutX="166.0" layoutY="101.0" text="Account Information">
         <font>
             <Font size="50" />
