@@ -18,23 +18,11 @@ public class AccountManager extends view.account_menus.AccountsManager implement
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        setInnerPane(root, secondaryInnerPane);
+        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
     }
 
     public void goToHomeMenu() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/layouts/accounts_menu.fxml"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        setInnerPane(root, secondaryInnerPane);
+        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
     }
 
     public void handleLoadUsersMenu() {

@@ -6,7 +6,7 @@ import view.MenuManager;
 
 public class AccountsManager extends MenuManager {
 
-    public void setInnerPane(Parent root, Pane secondaryInnerPane){
+    public void setSecondaryInnerPane(Parent root, Pane secondaryInnerPane){
         secondaryInnerPane.getChildren().clear();
         secondaryInnerPane.getChildren().add(root);
     }
