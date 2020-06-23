@@ -72,9 +72,7 @@ public class Category implements Serializable {
 
     public void resetName(String name) {
         Category.getAllCategories().remove(this.name);
-        this.name = name;
-        Category.addCategory(this);
-        for (String subCategory : subCategoriesNames) {
+                for (String subCategory : subCategoriesNames) {
             allCategories.get(subCategory).parentCategoryName = name;
         }
         for (String productID : productIDs) {
@@ -84,6 +82,9 @@ public class Category implements Serializable {
             allCategories.get(parentCategoryName).subCategoriesNames.remove(this.name);
             allCategories.get(parentCategoryName).subCategoriesNames.add(name);
         }
+        this.name = name;
+        Category.addCategory(this);
+
     }
 
     public String getName(){
