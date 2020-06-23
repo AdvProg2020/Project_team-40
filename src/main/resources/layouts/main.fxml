@@ -1,35 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
    <children>
-      <Pane fx:id="InnerPane" layoutX="168.0" layoutY="5.0" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/left.css" />
-      <VBox fx:id="vBox" prefHeight="684.0" prefWidth="161.0" stylesheets="@../stylesheets/left.css">
+      <Pane fx:id="InnerPane" layoutX="-2.0" layoutY="80.0" prefHeight="609.0" prefWidth="1002.0" stylesheets="@../stylesheets/left.css" />
+      <VBox fx:id="vBox" layoutY="250.0" prefHeight="434.0" prefWidth="162.0" stylesheets="@../stylesheets/left.css" />
+      <HBox prefHeight="78.0" prefWidth="1000.0" style="-fx-background-color: #d7bde2;">
          <children>
-            <JFXButton fx:id="accountButton" contentDisplay="TOP" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="161.0" text="Account Menu">
-               <graphic>
-                  <FontAwesomeIconView glyphName="USER" size="70" />
-               </graphic>
+            <ImageView fitHeight="78.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #d7bde2;">
+               <image>
+                  <Image url="@../images/icons8-basket-64(1).png" />
+               </image>
+            </ImageView>
+            <Label prefHeight="86.0" prefWidth="343.0" style="-fx-background-color: #d7bde2;" text="Sample name" textFill="#5b2c6f">
+               <padding>
+                  <Insets left="26.0" />
+               </padding>
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="accountButton" contentDisplay="TOP" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
             </JFXButton>
-            <JFXButton fx:id="productsButton" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="161.0" text="Products menu">
-               <graphic>
-                  <FontAwesomeIconView glyphName="PRODUCT" size="70" />
-               </graphic>
+            <JFXButton fx:id="productsButton" contentDisplay="TOP" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
             </JFXButton>
-            <JFXButton fx:id="backButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#back" prefHeight="127.0" prefWidth="161.0" text="back">
-               <graphic>
-                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
-               </graphic>
+            <JFXButton fx:id="backButton" contentDisplay="TOP" onAction="#back" prefHeight="127.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="back" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
             </JFXButton>
-            <JFXButton fx:id="exitButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#exit" prefHeight="119.0" prefWidth="161.0" text="Exit">
-               <graphic>
-                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
-               </graphic>
+            <JFXButton fx:id="exitButton" contentDisplay="TOP" onAction="#exit" prefHeight="119.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Exit" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
             </JFXButton>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

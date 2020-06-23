@@ -2,7 +2,9 @@ package view;
 
 import controller.accounts.AccountController;
 import exceptions.DataException;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.print.PageLayout;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import model.Loader;
@@ -25,31 +27,41 @@ public abstract class MenuManager {
         roots.add("/layouts/main.fxml");
     }
     public void setMainInnerPane(String rootLocation) {
-        mainInnerPane.getChildren().clear();
-        roots.add(rootLocation);
-        if(!rootLocation.equals("/layouts/main.fxml")) {
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource(rootLocation));
-            } catch (IOException e) {
-                e.printStackTrace();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                mainInnerPane.getChildren().clear();
+                roots.add(rootLocation);
+                if(!rootLocation.equals("/layouts/main.fxml")) {
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource(rootLocation));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mainInnerPane.getChildren().add(root);
+                }
             }
-            mainInnerPane.getChildren().add(root);
-        }
+        });
     }
 
     //Set pane for CHILDREN inner panes
 
     public void setSecondaryInnerPane(String rootLocation){
-        roots.add(rootLocation);
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(rootLocation));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        secondaryPane.getChildren().clear();
-        secondaryPane.getChildren().add(root);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                roots.add(rootLocation);
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource(rootLocation));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                secondaryPane.getChildren().clear();
+                secondaryPane.getChildren().add(root);
+            }
+        });
     }
     public void goToProductsMenu(){
         setMainInnerPane("/layouts/shopping_menus/products_menu.fxml");
