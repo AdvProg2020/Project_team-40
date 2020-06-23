@@ -1,10 +1,18 @@
 package view.account_menus.custromer_view.account_view;
 
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import view.account_menus.AllAccountsManager;
 
-public class CustomerAccountManager extends AllAccountsManager {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class CustomerAccountManager extends AllAccountsManager implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+    }
 
     public void goToHome() {
 
