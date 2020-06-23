@@ -15,27 +15,27 @@
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="productsButton" onMouseClicked="#goToProducts" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Products" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToProducts" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Products" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="offsButton" onMouseClicked="#goToMyOffs" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Offs" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToMyOffs" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Offs" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton  prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Sales History" textFill="WHITE">
+                <JFXButton prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Sales History" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="categoriesButton" onMouseClicked="#goToCategories" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Categories" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToCategories" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Categories" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="logoutButton" onAction="#logout" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Logout" textFill="WHITE">
+                <JFXButton onAction="#logout" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Logout" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>

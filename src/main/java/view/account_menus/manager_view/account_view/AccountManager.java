@@ -1,6 +1,5 @@
 package view.account_menus.manager_view.account_view;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import view.account_menus.AllAccountsManager;
@@ -9,9 +8,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AccountManager extends AllAccountsManager implements Initializable {
-    public JFXButton homeButton;
-    public JFXButton discountsButton;
-    public JFXButton categoriesButton;
     public Pane secondaryInnerPane;
 
     @Override
@@ -37,7 +33,6 @@ public class AccountManager extends AllAccountsManager implements Initializable 
 
     public void goToRequestsMenu() {
         setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", secondaryInnerPane);
-
     }
 
     public void handleGoToCategoriesMenu() {
