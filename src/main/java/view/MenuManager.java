@@ -74,7 +74,7 @@ public abstract class MenuManager {
     public void logout() {
         roots.clear();
         roots.add("/layouts/main.fxml");
-        roots.add("h");
+        roots.add("");
         accountController.logout();
         back();
     }

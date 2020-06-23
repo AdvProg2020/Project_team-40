@@ -11,12 +11,13 @@ import javafx.scene.layout.GridPane;
 import model.users.Customer;
 import model.users.Seller;
 import model.users.User;
+import view.MenuManager;
 import view.ValidInput;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PersonalInfo extends AccountMenu implements Initializable {
+public class PersonalInfo extends MenuManager implements Initializable {
 
     //TODO: EDIT PASSWORD!
 
