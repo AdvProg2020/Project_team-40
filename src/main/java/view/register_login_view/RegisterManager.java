@@ -66,7 +66,7 @@ public class RegisterManager extends MenuManager implements Initializable {
 
     private void finishRegister() {
         account = new Button("Login!");
-        secondaryInnerPane.getChildren().add(account);
+        mainInnerPane.getChildren().add(account);
         account.setLayoutX(register.getLayoutX());
         account.setLayoutY(register.getLayoutY());
         account.setPrefWidth(155);

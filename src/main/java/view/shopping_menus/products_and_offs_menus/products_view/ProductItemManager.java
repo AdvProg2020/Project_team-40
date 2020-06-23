@@ -11,8 +11,6 @@ import model.Product;
 import view.MenuManager;
 import view.shopping_menus.product.product_view.ProductMenuManager;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,7 +46,7 @@ public class ProductItemManager extends MenuManager implements Initializable{
 
         digest.setOnAction(actionEvent -> {
             ProductMenuManager.setProduct(product);
-            setInnerPane("/layouts/shopping_menus/product_menu.fxml");
+            setMainInnerPane("/layouts/shopping_menus/product_menu.fxml");
         });
 
         //set other properties of product

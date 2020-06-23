@@ -10,11 +10,11 @@ public class CustomerAccountManager extends AllAccountsManager implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToHome() {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToOrders() {

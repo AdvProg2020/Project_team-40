@@ -14,16 +14,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class MenuManager {
-    public Pane secondaryInnerPane;
+    public static Pane mainInnerPane;
+    private static Pane secondaryPane;
+
     protected static ArrayList<String> roots;
+
     protected AccountController accountController = AccountController.getInstance();
     static {
         roots = new ArrayList<>();
         roots.add("/layouts/main.fxml");
     }
-
-    public void setInnerPane(String rootLocation) {
-        secondaryInnerPane.getChildren().clear();
+    public void setMainInnerPane(String rootLocation) {
+        mainInnerPane.getChildren().clear();
         roots.add(rootLocation);
         if(!rootLocation.equals("/layouts/main.fxml")) {
             Parent root = null;
@@ -32,12 +34,13 @@ public abstract class MenuManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            secondaryInnerPane.getChildren().add(root);
+            mainInnerPane.getChildren().add(root);
         }
     }
 
     //Set pane for CHILDREN inner panes
-    public void setInnerPane(String rootLocation, Pane innerPane){
+
+    public void setSecondaryInnerPane(String rootLocation){
         roots.add(rootLocation);
         Parent root = null;
         try {
@@ -45,28 +48,27 @@ public abstract class MenuManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        innerPane.getChildren().clear();
-        innerPane.getChildren().add(root);
+        secondaryPane.getChildren().clear();
+        secondaryPane.getChildren().add(root);
     }
-
     public void goToProductsMenu(){
-        setInnerPane("/layouts/shopping_menus/products_menu.fxml");
+        setMainInnerPane("/layouts/shopping_menus/products_menu.fxml");
     }
 
     public void goToOffsMenu(){
-        setInnerPane("/layouts/offs_menu.fxml");
+        setMainInnerPane("/layouts/offs_menu.fxml");
     }
 
     public void goToAccountsMenu() {
         if(accountController.isLogin()) {
             if (User.getLoggedInUser() instanceof Manager)
-                setInnerPane("/layouts/manager_menus/manager_account_design.fxml");
+                setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
             else if (User.getLoggedInUser() instanceof Seller)
-                setInnerPane("/layouts/seller_menus/seller_account_design.fxml");
+                setMainInnerPane("/layouts/seller_menus/seller_account_design.fxml");
             else
-                setInnerPane("/layouts/customer_menus/customer_account_design.fxml");
+                setMainInnerPane("/layouts/customer_menus/customer_account_design.fxml");
         } else {
-            setInnerPane("/layouts/login_menu.fxml");
+            setMainInnerPane("/layouts/login_menu.fxml");
         }
     }
 
@@ -76,6 +78,7 @@ public abstract class MenuManager {
         roots.add("");
         accountController.logout();
         back();
+
     }
 
     public void back() {
@@ -83,7 +86,7 @@ public abstract class MenuManager {
             exit();
         }
         roots.remove(roots.size() - 1);
-        secondaryInnerPane.getChildren().clear();
+        mainInnerPane.getChildren().clear();
         String lastRoot = roots.get(roots.size() - 1);
         if(!lastRoot.equals("/layouts/main.fxml")) {
             Parent root = null;
@@ -92,9 +95,14 @@ public abstract class MenuManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            secondaryInnerPane.getChildren().add(root);
+            mainInnerPane.getChildren().add(root);
         }
     }
+
+    public static void setSecondaryPane(Pane pane) {
+        secondaryPane = pane;
+    }
+
 
     public void exit() {
         try {

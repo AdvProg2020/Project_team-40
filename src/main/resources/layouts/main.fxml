@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
    <children>
-      <Pane fx:id="secondaryInnerPane" layoutX="168.0" layoutY="5.0" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/left.css" />
+      <Pane fx:id="InnerPane" layoutX="168.0" layoutY="5.0" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/left.css" />
       <VBox fx:id="vBox" prefHeight="684.0" prefWidth="161.0" stylesheets="@../stylesheets/left.css">
          <children>
             <JFXButton fx:id="accountButton" contentDisplay="TOP" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="161.0" text="Account Menu">

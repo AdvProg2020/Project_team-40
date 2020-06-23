@@ -30,6 +30,6 @@ public class LoginManager extends MenuManager {
     }
 
     public void register() {
-        setInnerPane("/layouts/register_menu.fxml");
+        setMainInnerPane("/layouts/register_menu.fxml");
     }
 }

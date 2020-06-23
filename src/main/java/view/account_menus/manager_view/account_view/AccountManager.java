@@ -12,30 +12,31 @@ public class AccountManager extends AllAccountsManager implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryPane(secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToHomeMenu() {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void handleLoadUsersMenu() {
-        setInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_users_menus/manage_users_design.fxml");
     }
 
     public void handleLoadProductsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_products_menu/manage_products_design.fxml");
     }
 
     public void goToDiscountsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml");
     }
 
     public void goToRequestsMenu() {
-        setInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_request_menus/RequestsMenuDesign.fxml");
     }
 
     public void handleGoToCategoriesMenu() {
-        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
     }
 }

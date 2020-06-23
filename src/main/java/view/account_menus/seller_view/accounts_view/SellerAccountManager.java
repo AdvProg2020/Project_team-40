@@ -12,15 +12,15 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToHome() {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToProducts() {
-        setInnerPane("/layouts/accounts_menu.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     public void goToMyOffs() {
@@ -28,6 +28,6 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
     }
 
     public void goToCategories() {
-        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", secondaryInnerPane);
+        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
     }
 }
