@@ -1,6 +1,7 @@
 package view.account_menus.manager_view.category_view;
 
 import com.jfoenix.controls.JFXButton;
+import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Category;
+import model.users.Seller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,11 +25,19 @@ public class CategoryItem implements Initializable {
     public JFXButton deleteCategoryButton;
     public JFXButton viewCategoryButton;
     public JFXButton editCategoryButton;
-    ManagerAccountController managerAccountController;
+    public AnchorPane categoryPane;
+    private ManagerAccountController managerAccountController;
+    private AccountController accountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+        accountController = AccountController.getInstance();
+        if(accountController.getThisUser() instanceof Seller) {
+            categoryPane.getChildren().remove(deleteCategoryButton);
+            categoryPane.getChildren().remove(editCategoryButton);
+        } else {
+            managerAccountController = ManagerAccountController.getInstance();
+        }
     }
 
     private void loadCategories(VBox vBoxItems) {
