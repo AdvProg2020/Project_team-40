@@ -7,7 +7,7 @@ import view.account_menus.AllAccountsManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccountManager extends AllAccountsManager implements Initializable {
+public class SellerAccountManager extends AllAccountsManager implements Initializable {
     public Pane secondaryInnerPane;
 
     @Override
@@ -28,5 +28,6 @@ public class AccountManager extends AllAccountsManager implements Initializable 
     }
 
     public void goToCategories() {
+        setInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml", secondaryInnerPane);
     }
 }

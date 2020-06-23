@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="631.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager">
+<AnchorPane fx:id="mainPane" prefHeight="631.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.category_view.CategoryMenuManager">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="37.0" prefHeight="94.0" prefWidth="309.0" text="Manage Categories" textAlignment="CENTER">
+        <Label fx:id="mainLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="37.0" prefHeight="94.0" prefWidth="309.0" text="Manage Categories" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
