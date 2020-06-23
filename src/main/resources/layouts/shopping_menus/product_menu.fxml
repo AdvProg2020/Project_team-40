@@ -54,13 +54,13 @@
                            <content>
                               <VBox fx:id="commentsSection" prefHeight="376.0" prefWidth="829.0">
                                  <children>
-                                    <AnchorPane prefHeight="142.0" prefWidth="830.0" style="-fx-border-color: gray; bo: ;">
+                                    <AnchorPane prefHeight="142.0" prefWidth="830.0" style="-fx-border-color: gray;">
                                        <children>
                                           <Text layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title :" wrappingWidth="70.39999999999986" />
                                           <Text layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content :" />
                                           <Button fx:id="commentButton" layoutX="752.0" layoutY="103.0" mnemonicParsing="false" text="Submit" />
-                                          <TextArea layoutX="100.0" layoutY="44.0" prefHeight="90.0" prefWidth="642.0" />
-                                          <TextField layoutX="100.0" layoutY="10.0" prefHeight="26.0" prefWidth="228.0" />
+                                          <TextArea fx:id="commentField" layoutX="100.0" layoutY="44.0" prefHeight="90.0" prefWidth="642.0" />
+                                          <TextField fx:id="titleField" layoutX="100.0" layoutY="10.0" prefHeight="26.0" prefWidth="228.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
