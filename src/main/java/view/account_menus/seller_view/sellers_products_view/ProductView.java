@@ -241,12 +241,26 @@ public class ProductView extends MenuManager {
     }
 
     private void saveStatus() {
-
+        try {
+            if (editButton.isSelected()) {
+                sellerAccountController.editProduct(product.getProductId(), "status", "editing",
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+            } else if(confirmButton.isSelected()) {
+                sellerAccountController.editProduct(product.getProductId(), "status", "confirmed",
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+            } else {
+                sellerAccountController.editProduct(product.getProductId(), "status", "creating",
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+            }
+            informationTable.getChildren().remove(radioButtons);
+            editStatus.setText("edit");
+            editStatus.setOnMouseClicked(e -> changeStatus());
+        } catch (AccountsException e) {}
     }
 
     private void initializeStatusOptions() {
         statusOptions = new ToggleGroup();
-        createButton = new RadioButton("creating")
+        createButton = new RadioButton("creating");
         statusOptions.getToggles().add(createButton);
         editButton = new RadioButton("editing");
         statusOptions.getToggles().add(editButton);
