@@ -143,7 +143,20 @@ public class ProductView extends MenuManager {
 
     private void saveCompany() {
         if(!companyField.getText().isBlank()) {
-
+            editCompany.setText("edit");
+            try {
+                sellerAccountController.editProduct(product.getProductId(), "company", companyField.getText(),
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                informationTable.getChildren().remove(companyField);
+                companyLabel.setText(companyField.getText());
+                companyField.setText("");
+                editCompany.setOnMouseClicked(e -> changeCompany());
+                nameError.setText("Wait for manager's acceptance!");
+            } catch (AccountsException e) {
+                companyError.setText(e.getMessage());
+            }
+        } else {
+            companyError.setText("Fill this field!");
         }
     }
 
