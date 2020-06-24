@@ -11,12 +11,13 @@ import javafx.scene.text.Text;
 import model.Cart;
 import model.Comment;
 import model.Product;
+import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductMenuManager implements Initializable{
+public class ProductMenuManager extends MenuManager implements Initializable{
     public Text productName;
     public Text sellerName;
     public Text companyName;
@@ -111,5 +112,9 @@ public class ProductMenuManager implements Initializable{
 
     public static void setProduct(Product product){
         ProductMenuManager.product = product;
+    }
+
+    public static Product getProduct(){
+        return product;
     }
 }

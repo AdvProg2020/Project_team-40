@@ -44,10 +44,12 @@ public class AllProductsController {
             for (Off off : Off.getAllOffs().values()) {
                 products.addAll(off.getProducts());
             }
+            productFilter.setProducts(products);
             productsToShow = products;
         }else{
             products.clear();
             products.addAll(Product.getAllProducts().values());
+            productFilter.setProducts(products);
             productsToShow = products;
         }
     }
@@ -74,11 +76,15 @@ public class AllProductsController {
         return allSubCategories;
     }
 
-    public ArrayList<Product> getAllProducts(){
+    public void filterAndSort(){
         productFilter.filter();
         productsToShow = productFilter.getFilteredProducts();
         productSort = new ProductSort(productsToShow, currentSort);
-        return productSort.getSortedProducts();
+        productsToShow = productSort.getSortedProducts();
+    }
+
+    public ArrayList<Product> getAllProducts(){
+        return productsToShow;
     }
 
     public Product getProduct(String productID) throws MenuException{

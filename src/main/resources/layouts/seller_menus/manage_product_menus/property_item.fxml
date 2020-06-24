@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.account_menus.seller_view.sellers_products_view.PropertyManager"
+            prefHeight="39.0" prefWidth="407.0" >
+    <children>
+        <HBox fx:id="hBox" prefHeight="32.0" prefWidth="407.0">
+            <children>
+                <Label fx:id="propertyNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Label fx:id="valueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <JFXButton fx:id="editButton" contentDisplay="CENTER" onMouseClicked="#handleEditProperty" prefHeight="48.0" prefWidth="83.0" text=" ">
+                    <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons8-edit-144.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

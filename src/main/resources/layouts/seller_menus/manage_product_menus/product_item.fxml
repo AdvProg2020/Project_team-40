@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.account_menus.seller_view.sellers_products_view.ProductItemManager"
+            prefHeight="39.0" prefWidth="719.0">
+    <children>
+        <HBox prefHeight="32.0" prefWidth="748.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <HBox prefHeight="42.0" prefWidth="249.0">
+                    <children>
+                        <JFXButton contentDisplay="CENTER" onAction="#handleDeleteProduct" prefHeight="42.0" prefWidth="83.0" text=" ">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/icons8-delete-64.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleViewProduct" prefHeight="38.0" prefWidth="83.0" text=" ">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/icons8-opened-folder-144.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton contentDisplay="CENTER" onAction="#handleEditProduct" prefHeight="48.0" prefWidth="83.0" text=" ">
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/icons8-edit-144.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

@@ -23,6 +23,9 @@ public class ProductSort{
 
     public ArrayList<Product> getSortedProducts(){
 
+        if(sort == null)
+            return  products;
+
         Comparator<Product> comparator = Comparator.comparing((product) -> {
             switch(sort) {
                 case MOST_EXPENSIVE:
@@ -33,11 +36,11 @@ public class ProductSort{
                     return -(double)product.getVisitCount();
                 case HIGHEST_SALES:
                     //TODO add number of sales to product
-                    break;
+                    return -(double)product.getVisitCount();
                 case HIGHEST_SCORE:
                     return -product.getAverageScore();
             }
-            return null;
+            return product.getPrice();
         });
         Stream<Product> stream = products.stream().sorted(comparator);
 

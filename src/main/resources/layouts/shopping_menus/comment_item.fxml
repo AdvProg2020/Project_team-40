@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.shopping_menus.product.product_view.CommentItemManager"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:controller="view.shopping_menus.product.product_view.CommentItemManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="147.0" fitWidth="143.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="usernameText" layoutX="172.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="169.33673095703125" />
+      <Text fx:id="titleText" layoutX="172.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="430.9367370605469" />
+      <Text fx:id="contentText" layoutX="172.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content" wrappingWidth="430.9367370605469" />
+   </children>
 </AnchorPane>

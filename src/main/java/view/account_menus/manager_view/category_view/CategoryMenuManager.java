@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -52,7 +51,8 @@ public class CategoryMenuManager implements Initializable {
         for (String categoryName : managerAccountController.getAllCategories()) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
+                        getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(category, hBox);
                 vBoxItems.getChildren().add(item);
@@ -64,13 +64,13 @@ public class CategoryMenuManager implements Initializable {
     }
 
     private void setLabelsContent(Category category, HBox hBox) {
-        Label nameLabel =((Label) hBox.getChildren().get(0));
-        Label parentCategoryLabel =((Label) hBox.getChildren().get(1));
+        Label nameLabel =(Label) hBox.getChildren().get(0);
+        Label parentCategoryLabel = (Label) hBox.getChildren().get(1);
         nameLabel.setText(category.getName());
         parentCategoryLabel.setText(category.getParentCategoryName());
     }
 
-    public void handleAddCategory(ActionEvent event) {
+    public void handleAddCategory() {
         Stage stage = new Stage();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/add_category.fxml"));
@@ -90,7 +90,7 @@ public class CategoryMenuManager implements Initializable {
         }
     }
 
-    public void handleRefresh(ActionEvent event) {
+    public void handleRefresh() {
         loadCategories();
     }
 }

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductView">
+    <children>
+        <Label alignment="CENTER" layoutX="176.0" layoutY="33.0" prefHeight="54.0" prefWidth="157.0" text="Product">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/icons8-opened-folder-144.png" />
+            </image>
+        </ImageView>
+        <GridPane layoutX="93.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="250.0" minWidth="10.0" prefWidth="10.0" />
+            <ColumnConstraints maxWidth="280.0" minWidth="0.0" prefWidth="102.0" />
+            <ColumnConstraints maxWidth="495.0" minWidth="12.0" prefWidth="217.0" />
+             <ColumnConstraints maxWidth="66.0" minWidth="4.0" prefWidth="9.0" />
+             <ColumnConstraints maxWidth="495.0" minWidth="26.0" prefWidth="39.0" />
+            <ColumnConstraints maxWidth="495.0" minWidth="13.0" prefWidth="76.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50" />
+            <RowConstraints minHeight="10.0" prefHeight="50" />
+         </rowConstraints>
+            <Label text="Name:" GridPane.columnIndex="1">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="nameLabel" prefHeight="30.0" prefWidth="329.0" GridPane.columnIndex="2">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editName" text="edit" GridPane.columnIndex="4" />
+
+
+            <Label text="ID:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="iDLabel" prefHeight="30.0" prefWidth="328.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+
+
+            <Label text="Company:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="companyLabel" prefHeight="30.0" prefWidth="332.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editCompany" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+
+            <Label text="Base Price:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="basePriceLabel" prefHeight="30.0" prefWidth="340.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+
+
+            <Label text="Price:" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="priceLabel" prefHeight="30.0" prefWidth="328.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editPrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+
+
+            <Label text="Quantity:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="quantityLabel" prefHeight="30.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editQuantityAdd" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+
+
+            <Label text="Has Off:" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="hasOffLabel" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+
+
+            <Label text="Status:" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="statusLabel" prefHeight="30.0" prefWidth="332.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+        </GridPane>
+
+        <GridPane fx:id="errorPane" layoutX="562.0" layoutY="106.0" prefHeight="299.0" prefWidth="120.0">
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints prefWidth="120" />
+            </columnConstraints>
+            <Label fx:id="priceError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
+
+            </Label>
+            <Label fx:id="quantityError" prefHeight="30.0" prefWidth="120.0" GridPane.rowIndex="5">
+
+            </Label>
+        </GridPane>
+
+
+        <Label layoutX="716.0" layoutY="89.0" text="Explanation:">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label layoutX="716.0" layoutY="194.0" text="Category:">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label fx:id="categoryLabel" layoutX="822.0" layoutY="194.0" prefHeight="30.0" prefWidth="304.0">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label fx:id="explanationLabel" layoutX="716.0" layoutY="120.0" prefHeight="54.0" prefWidth="409.0">
+            <font>
+                <Font size="11" />
+            </font>
+        </Label>
+        <ScrollPane layoutX="717.0" layoutY="237.0" prefHeight="228.0" prefWidth="409.0">
+            <VBox fx:id="propertyList" prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #88ce7f;">
+
+            </VBox>
+        </ScrollPane>
+        <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" " />
+          <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="1089.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../../../images/icons8-back-arrow-64.png" />
+              </image>
+          </ImageView>
+    </children>
+</AnchorPane>

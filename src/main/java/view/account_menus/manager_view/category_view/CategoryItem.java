@@ -32,11 +32,10 @@ public class CategoryItem implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         accountController = AccountController.getInstance();
+        managerAccountController = ManagerAccountController.getInstance();
         if(accountController.getThisUser() instanceof Seller) {
             categoryPane.getChildren().remove(deleteCategoryButton);
             categoryPane.getChildren().remove(editCategoryButton);
-        } else {
-            managerAccountController = ManagerAccountController.getInstance();
         }
     }
 
@@ -64,7 +63,6 @@ public class CategoryItem implements Initializable {
         parentCategoryLabel.setText(category.getParentCategoryName());
     }
 
-
     private void setLabelsContent(CategoryView categoryView, Category category) {
         Platform.runLater(new Runnable() {
             @Override
@@ -78,21 +76,20 @@ public class CategoryItem implements Initializable {
         });
     }
 
-        public void handleDeleteCategory(ActionEvent event) {
-            HBox item = (HBox)((deleteCategoryButton.getParent()).getParent());
-            VBox items =(VBox)(item.getParent()).getParent();
-            String name =((Label)item.getChildren().get(0)).getText();
-            try {
-                managerAccountController.removeCategory(name);
-            } catch (AccountsException e) {
-                System.err.println(e.getMessage());
-            }
-            Platform.runLater(() -> loadCategories(items));
+    public void handleDeleteCategory() {
+        HBox item = (HBox)((deleteCategoryButton.getParent()).getParent());
+        VBox items =(VBox)(item.getParent()).getParent();
+        String name =((Label)item.getChildren().get(0)).getText();
+        try {
+            managerAccountController.removeCategory(name);
+        } catch (AccountsException e) {
+            System.err.println(e.getMessage());
+        }
+        Platform.runLater(() -> loadCategories(items));
     }
 
-
-    public void handleViewCategory(ActionEvent event) {
-        HBox item = (HBox)((viewCategoryButton.getParent()).getParent());
+    public void handleViewCategory() {
+        HBox item = (HBox) viewCategoryButton.getParent().getParent();
         String name =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/category.fxml"));
         try {
@@ -107,10 +104,9 @@ public class CategoryItem implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public void handleEditCategory(ActionEvent event) {
+    public void handleEditCategory() {
         HBox item = (HBox) ((editCategoryButton.getParent()).getParent());
         String name = ((Label) item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/edit_category.fxml"));

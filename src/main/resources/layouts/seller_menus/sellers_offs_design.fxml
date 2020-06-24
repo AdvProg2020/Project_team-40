@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.seller_view.sellers_offs_view.SellersOffsManager"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_offs_view.SellersOffsManager">
+   <children>
+      <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Offs" wrappingWidth="571.7366943359375">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Region layoutX="14.0" layoutY="54.0" prefHeight="3.0" prefWidth="572.0" style="-fx-background-color: gray;" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="69.0" prefHeight="316.0" prefWidth="572.0">
+         <content>
+            <VBox fx:id="offsVBox" prefHeight="310.0" prefWidth="572.0" />
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>

@@ -27,7 +27,6 @@ public class CategoryView implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         managerAccountController = ManagerAccountController.getInstance();
-
     }
 
     public void setNameLabel(String name) {
