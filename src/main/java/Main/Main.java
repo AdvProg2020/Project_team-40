@@ -5,6 +5,7 @@ import exceptions.DataException;
 import model.Loader;
 import model.Product;
 import model.enumerations.PropertyType;
+import model.users.Seller;
 import view.GUI;
 
 import java.io.File;
@@ -45,6 +46,12 @@ public class Main {
         }catch(Exception e){
             e.printStackTrace();
         }
+        Seller seller = new Seller("a", "a", "a", "a", "a@.a", "0", 1000, "a");
+        seller.setManagerPermission(true);
+        Product product1 = new Product("a", "a", 10, 10, "a", "mobile");
+        seller.addProduct(product1);
+        Product.addProduct(product1);
+
     }
 
     private static void resourcesInitialization() throws DataException {
