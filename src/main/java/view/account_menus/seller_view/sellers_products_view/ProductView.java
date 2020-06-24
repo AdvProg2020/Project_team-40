@@ -4,7 +4,9 @@ import controller.accounts.SellerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,6 +33,13 @@ public class ProductView extends MenuManager {
     public Label priceError;
     public Label quantityError;
 
+    public Button editName;
+    public Button editCompany;
+    public Button editPrice;
+    public Button editQuantityAdd;
+    private Button editQuantitySubtract;
+    public Button editStatus;
+    private ToggleGroup statusOptions;
 
     public VBox propertyList;
     private Product product;

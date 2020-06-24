@@ -98,7 +98,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editPriceAdd" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button fx:id="editPrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
 
 
             <Label text="Quantity:" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -111,7 +111,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editQuantity" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="editQuantityAdd" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
 
 
             <Label text="Has Off:" GridPane.columnIndex="1" GridPane.rowIndex="7">
