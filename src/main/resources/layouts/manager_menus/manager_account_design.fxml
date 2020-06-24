@@ -10,37 +10,37 @@
       <AnchorPane fx:id="secondaryInnerPane" layoutX="242.0" prefHeight="684.0" prefWidth="858.0" />
       <VBox layoutX="-1.0" prefHeight="684.0" prefWidth="242.0" style="-fx-background-color: #7d3c98;">
          <children>
-            <JFXButton onAction="#goToHomeMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Home" textFill="WHITE">
+            <JFXButton onAction="#goToHomeMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Home" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#handleLoadUsersMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Users" textFill="WHITE">
+            <JFXButton onAction="#handleLoadUsersMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Users" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#handleLoadProductsMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Products" textFill="WHITE">
+            <JFXButton onAction="#handleLoadProductsMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Products" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#goToDiscountsMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Discount Codes" textFill="WHITE">
+            <JFXButton onAction="#goToDiscountsMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Discount Codes" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#goToRequestsMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Requests" textFill="WHITE">
+            <JFXButton onAction="#goToRequestsMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Requests" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#handleGoToCategoriesMenu" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Categories" textFill="WHITE">
+            <JFXButton onAction="#handleGoToCategoriesMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Categories" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#logout" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #7d3c98;" text="Logout" textFill="WHITE">
+            <JFXButton onAction="#logout" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Logout" textFill="WHITE">
             <font>
                <Font size="16.0" />
             </font>

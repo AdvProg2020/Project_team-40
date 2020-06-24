@@ -8,23 +8,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="39.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.RequestItem">
+<AnchorPane prefHeight="39.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.RequestItem">
     <children>
-        <HBox prefHeight="32.0" prefWidth="598.0">
+        <HBox prefHeight="32.0" prefWidth="746.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="154.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="187.0">
                <font>
                   <Font size="13.0" />
                </font></Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="154.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="187.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="154.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="187.0">
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-            <JFXButton fx:id="viewRequestButton" contentDisplay="CENTER" onAction="#handleViewRequest" prefHeight="35.0" prefWidth="161.0" text=" ">
+            <JFXButton fx:id="viewRequestButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleViewRequest" prefHeight="35.0" prefWidth="187.0" text=" ">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>

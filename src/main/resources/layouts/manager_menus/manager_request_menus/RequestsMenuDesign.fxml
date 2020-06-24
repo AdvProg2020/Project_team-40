@@ -7,36 +7,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.RequestMenuManager">
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.RequestMenuManager">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="62.0" prefHeight="94.0" prefWidth="295.0" text="Manage Requests" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="74.0" layoutY="23.0" prefHeight="94.0" prefWidth="295.0" text="Manage Requests" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="130.0" layoutY="213.0" prefHeight="390.0" prefWidth="615.0">
+        <ScrollPane layoutX="74.0" layoutY="175.0" prefHeight="437.0" prefWidth="746.0">
             <content>
-                <VBox fx:id="vBoxItems" prefHeight="390.0" prefWidth="598.0" />
+                <VBox fx:id="vBoxItems" prefHeight="437.0" prefWidth="746.0" />
             </content>
         </ScrollPane>
-        <HBox layoutX="130.0" layoutY="169.0" prefHeight="44.0" prefWidth="615.0">
+        <HBox layoutX="74.0" layoutY="131.0" prefHeight="44.0" prefWidth="746.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: #c9fffb;" text="RequestId">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="187.0" style="-fx-background-color: #5dade2;" text="RequestId">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: #c9fffb;" text="Type">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="187.0" style="-fx-background-color: #5dade2;" text="Type">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: #c9fffb;" text="Permission Status">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="187.0" style="-fx-background-color: #5dade2;" text="Permission Status">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: #c9fffb;" text="Action">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="187.0" style="-fx-background-color: #5dade2;" text="Action">
                <font>
                   <Font size="15.0" />
                </font>
