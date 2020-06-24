@@ -5,11 +5,7 @@ import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -18,6 +14,7 @@ import javafx.stage.Stage;
 import model.Product;
 import view.MenuManager;
 
+import javax.security.auth.login.AccountException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -191,8 +188,54 @@ public class ProductView extends MenuManager {
     }
 
     public void changeQuantity() {
+        editQuantityAdd.setText("add");
+        if(editQuantitySubtract == null)
+            editQuantitySubtract = new Button("cut");
+        editQuantitySubtract.setOnMouseClicked(e -> saveQuantity(true));
+        editQuantityAdd.setOnMouseClicked(e -> saveQuantity(false));
+        informationTable.add(editQuantitySubtract, 5, 5);
+        if(quantityField == null)
+            quantityField = new TextField();
+        informationTable.add(quantityField, 2, 5);
+        quantityField.setText(Double.toString(product.getCount()));
+    }
+
+    private void saveQuantity(boolean isSubtraction) {
+        if(!quantityField.getText().isBlank()) {
+            try {
+                int count = Integer.parseInt(quantityField.getText());
+                if(isSubtraction) {
+                    sellerAccountController.decreaseProductCount(count, product.getProductId());
+                    quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) - count));
+                } else {
+                    sellerAccountController.increaseProductsCount(count, product.getProductId());
+                    quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) + count));
+                }
+                informationTable.getChildren().remove(quantityField);
+                informationTable.getChildren().remove(editQuantitySubtract);
+                quantityField.setText("");
+                editQuantitySubtract.setOnMouseClicked(e -> changeQuantity());
+                editQuantityAdd.setOnMouseClicked(e -> changeQuantity());
+                quantityError.setText("");
+            } catch(NumberFormatException e) {
+                quantityError.setText("Enter a valid number!");
+            } catch (AccountException e) {
+                quantityError.setText(e.getMessage());
+            }
+        } else {
+            quantityError.setText("Fill this field!");
+        }
     }
 
     public void changeStatus() {
+        if(statusOptions == null)
+            initializeStatusOptions();
+    }
+
+    private void initializeStatusOptions() {
+        statusOptions = new ToggleGroup();
+        statusOptions.getToggles().add(new RadioButton("creating"));
+        statusOptions.getToggles().add(new RadioButton("editing"));
+        statusOptions.getToggles().add(new RadioButton("confirmed"));
     }
 }
