@@ -30,6 +30,8 @@ public class ProductFilter{
 
     public ProductFilter(ArrayList<Product> products){
 
+        this.products = new HashMap<>();
+
         for(Product product : products) {
             this.products.put(product, TRUE);
         }

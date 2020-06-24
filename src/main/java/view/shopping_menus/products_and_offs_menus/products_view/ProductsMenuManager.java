@@ -191,6 +191,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     public void refresh(){
         products.getChildren().clear();
+        indexOfLastUser = 0;
         showMoreItems();
     }
 
