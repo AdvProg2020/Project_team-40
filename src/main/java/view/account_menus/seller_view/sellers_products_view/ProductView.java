@@ -42,7 +42,12 @@ public class ProductView extends MenuManager {
     public Button editQuantityAdd;
     private Button editQuantitySubtract;
     public Button editStatus;
+
     private ToggleGroup statusOptions;
+    private VBox radioButtons;
+    private RadioButton createButton;
+    private RadioButton confirmButton;
+    private RadioButton editButton;
 
     private TextField nameField;
     private TextField companyField;
@@ -230,12 +235,21 @@ public class ProductView extends MenuManager {
     public void changeStatus() {
         if(statusOptions == null)
             initializeStatusOptions();
+        informationTable.add(radioButtons, 2, 6);
+
     }
 
     private void initializeStatusOptions() {
         statusOptions = new ToggleGroup();
-        statusOptions.getToggles().add(new RadioButton("creating"));
-        statusOptions.getToggles().add(new RadioButton("editing"));
-        statusOptions.getToggles().add(new RadioButton("confirmed"));
+        createButton = new RadioButton("creating")
+        statusOptions.getToggles().add(createButton);
+        editButton = new RadioButton("editing");
+        statusOptions.getToggles().add(editButton);
+        confirmButton = new RadioButton("confirmed");
+        statusOptions.getToggles().add(confirmButton);
+        radioButtons = new VBox();
+        radioButtons.getChildren().add(0, createButton);
+        radioButtons.getChildren().add(1, editButton);
+        radioButtons.getChildren().add(2, confirmButton);
     }
 }
