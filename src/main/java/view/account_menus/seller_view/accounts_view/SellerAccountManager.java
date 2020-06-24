@@ -20,7 +20,7 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
     }
 
     public void goToProducts() {
-        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
+        setSecondaryInnerPane("/layouts/seller_menus/manage_product_menus/products_menu_design.fxml");
     }
 
     public void goToMyOffs() {

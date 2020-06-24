@@ -52,7 +52,8 @@ public class CategoryMenuManager implements Initializable {
         for (String categoryName : managerAccountController.getAllCategories()) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
+                        getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(category, hBox);
                 vBoxItems.getChildren().add(item);
