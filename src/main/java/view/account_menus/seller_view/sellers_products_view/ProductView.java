@@ -53,7 +53,7 @@ public class ProductView extends MenuManager {
             AnchorPane item = null;
             try {
                 item = (AnchorPane) FXMLLoader.load(getClass().
-                        getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));//TODO:CHANGE THE ADDRESS
+                        getResource("/layouts/seller_menus/manage_product_menus/property_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(entry, hBox);
                 propertyList.getChildren().add(item);
@@ -64,6 +64,10 @@ public class ProductView extends MenuManager {
     }
 
     private void setLabelsContent(Map.Entry<String, Double> entry, HBox hBox) {
+        Label propertyNameLabel =(Label) hBox.getChildren().get(0);
+        Label propertyValueLabel = (Label) hBox.getChildren().get(1);
+        propertyNameLabel.setText(entry.getKey());
+        propertyValueLabel.setText(Double.toString(entry.getValue()));
     }
 
     public void handleCloseWindow() {

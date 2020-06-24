@@ -64,8 +64,8 @@ public class CategoryMenuManager implements Initializable {
     }
 
     private void setLabelsContent(Category category, HBox hBox) {
-        Label nameLabel =((Label) hBox.getChildren().get(0));
-        Label parentCategoryLabel =((Label) hBox.getChildren().get(1));
+        Label nameLabel =(Label) hBox.getChildren().get(0);
+        Label parentCategoryLabel = (Label) hBox.getChildren().get(1);
         nameLabel.setText(category.getName());
         parentCategoryLabel.setText(category.getParentCategoryName());
     }
