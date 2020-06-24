@@ -1,0 +1,11 @@
+.button:hover {
+    -fx-background-color: #d7bde2 ;
+	-fx-text-fill :#5b2c6f ;
+    -fx-scale-y: 1.1;
+}
+
+.button{
+    -fx-background-color: #7d3c98;
+	-fx-font-family: Roboto;
+	-fx-font-size : 16
+}

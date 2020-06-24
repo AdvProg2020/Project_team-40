@@ -1,35 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
    <children>
-      <Pane fx:id="InnerPane" layoutX="168.0" layoutY="5.0" prefHeight="684.0" prefWidth="831.0" stylesheets="@../stylesheets/left.css" />
-      <VBox fx:id="vBox" prefHeight="684.0" prefWidth="161.0" stylesheets="@../stylesheets/left.css">
+      <Pane fx:id="InnerPane" layoutX="-14.0" layoutY="78.0" prefHeight="614.0" prefWidth="1113.0">
+         <stylesheets>
+            <URL value="@../stylesheets/left.css" />
+            <URL value="@../stylesheets/main_pane_background.css" />
+         </stylesheets>
          <children>
-            <JFXButton fx:id="accountButton" contentDisplay="TOP" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="161.0" text="Account Menu">
+            <Label contentDisplay="CENTER" layoutX="436.0" layoutY="176.0" prefHeight="101.0" prefWidth="314.0" text="Welcome!">
+               <font>
+                  <Font name="Garamond" size="80.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="302.0" layoutY="282.0" prefHeight="17.0" prefWidth="537.0" text="Find, buy, and enjoy yourself!">
+               <font>
+                  <Font name="Gabriola" size="40.0" />
+               </font>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="mainPane" />
+            <String fx:value="root" />
+         </styleClass></Pane>
+      <HBox prefHeight="78.0" prefWidth="1100.0" style="-fx-background-color: #d7bde2;">
+         <children>
+            <ImageView fitHeight="78.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #d7bde2;">
+               <image>
+                  <Image url="@../images/icons8-basket-64(1).png" />
+               </image>
+            </ImageView>
+            <Label prefHeight="78.0" prefWidth="444.0" style="-fx-background-color: #d7bde2;" text="Sample name" textFill="#5b2c6f">
+               <padding>
+                  <Insets left="26.0" />
+               </padding>
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="accountButton" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="USER" size="70" />
+                  <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/guest-male.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="productsButton" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="161.0" text="Products menu">
+            <JFXButton fx:id="productsButton" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="PRODUCT" size="70" />
+                  <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/gear.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#back" prefHeight="127.0" prefWidth="161.0" text="back">
+            <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#back" prefHeight="78.0" prefWidth="70.0" style="-fx-background-color: #d7bde2;" text=" " textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-back-arrow-50.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="exitButton" contentDisplay="TOP" layoutX="10.0" layoutY="523.0" onAction="#exit" prefHeight="119.0" prefWidth="161.0" text="Exit">
+            <JFXButton fx:id="exitButton" contentDisplay="CENTER" onAction="#exit" prefHeight="78.0" prefWidth="77.0" style="-fx-background-color: #d7bde2;" text=" " textFill="#5b2c6f">
+               <font>
+                  <Font size="19.0" />
+               </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="MaterialDesignIcon.EXIT_TO_APP" size="70" />
+                  <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-exit-48.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>
