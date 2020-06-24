@@ -15,17 +15,17 @@
             fx:controller="view.account_menus.seller_view.sellers_products_view.PropertyManager"
             prefHeight="39.0" prefWidth="407.0" >
     <children>
-        <HBox prefHeight="32.0" prefWidth="407.0">
+        <HBox fx:id="hBox" prefHeight="32.0" prefWidth="407.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                <Label fx:id="propertyNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
+                <Label fx:id="valueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="249.0">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <JFXButton fx:id="editCategoryButton" contentDisplay="CENTER" onAction="#handleEditProperty" prefHeight="48.0" prefWidth="83.0" text=" ">
+                <JFXButton fx:id="editButton" contentDisplay="CENTER" onMouseClicked="#handleEditProperty" prefHeight="48.0" prefWidth="83.0" text=" ">
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>

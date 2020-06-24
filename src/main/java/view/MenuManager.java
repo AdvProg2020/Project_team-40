@@ -103,7 +103,6 @@ public abstract class MenuManager {
         secondaryPane = pane;
     }
 
-
     public void exit() {
         try {
             Loader.getLoader().saveData();

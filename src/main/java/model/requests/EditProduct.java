@@ -64,6 +64,7 @@ public class EditProduct extends Request{
         product.setExtraStringProperties(this.extraStringProperties);
         product.setExtraValueProperties(this.extraValueProperties);
     }
+
     private StringBuilder getPropertiesToEdit(){
         StringBuilder propertiesToEdit = new StringBuilder();
         String line = "==============================\n";

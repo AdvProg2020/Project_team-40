@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Product;
-import org.controlsfx.control.PropertySheet;
 import view.MenuManager;
 
 import java.io.IOException;
@@ -42,6 +41,7 @@ public class ProductView extends MenuManager {
         hasOffLabel.setText(String.valueOf(product.isInOff()));
         explanationLabel.setText(product.getExplanation());
         categoryLabel.setText(product.getCategory());
+        PropertyManager.setProduct(product);
 
         addPropertiesToVBox();
     }
