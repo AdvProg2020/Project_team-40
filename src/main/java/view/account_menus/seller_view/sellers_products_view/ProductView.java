@@ -161,6 +161,16 @@ public class ProductView extends MenuManager {
     }
 
     public void changePrice() {
+        editPrice.setText("save");
+        editPrice.setOnMouseClicked(e -> savePrice());
+        if(priceField == null)
+            priceField = new TextField();
+        informationTable.add(priceField, 2, 4);
+        priceField.setText(Double.toString(product.getPrice()));
+    }
+
+    private void savePrice() {
+
     }
 
     public void changeQuantity() {
