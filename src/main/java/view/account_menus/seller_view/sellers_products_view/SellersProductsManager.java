@@ -51,6 +51,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
     private void setLabelsContent(Product product, HBox hBox) {
         Label productName = (Label) hBox.getChildren().get(0);
         productName.setText(product.getName());
+        //TODO: SEE IF IT IS NEEDED TO SAVE THE ID OF THE PRODUCTS
         Label category = (Label) hBox.getChildren().get(1);
         category.setText(product.getCategory());
     }
