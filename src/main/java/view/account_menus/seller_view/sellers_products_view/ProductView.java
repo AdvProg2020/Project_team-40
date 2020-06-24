@@ -28,6 +28,10 @@ public class ProductView extends MenuManager {
     public Label hasOffLabel;
     public Label explanationLabel;
 
+    public Label priceError;
+    public Label quantityError;
+
+
     public VBox propertyList;
     private Product product;
     private SellerAccountController sellerAccountController;
