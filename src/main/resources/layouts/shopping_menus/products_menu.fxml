@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="831.0" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1100.0" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="831.0">
          <children>
@@ -30,13 +30,13 @@
             <Button fx:id="highestScoreSort" layoutX="211.0" layoutY="19.0" mnemonicParsing="false" text="Highest score" />
          </children>
       </HBox>
-      <SplitPane dividerPositions="0.7368547998070429" layoutX="-1.0" layoutY="42.0" prefHeight="644.0" prefWidth="831.0">
+      <SplitPane dividerPositions="0.7368547998070429" layoutX="-1.0" layoutY="42.0" prefHeight="610.0" prefWidth="1100.0">
          <items>
             <VBox prefHeight="646.0" prefWidth="594.0">
                <children>
                   <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
                      <content>
-                        <VBox fx:id="products" prefHeight="606.0" prefWidth="593.0" />
+                        <VBox fx:id="products" prefHeight="606.0" prefWidth="606.0" />
                      </content>
                   </ScrollPane>
                   <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0">
@@ -49,16 +49,16 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ScrollPane fitToWidth="true" prefHeight="642.0" prefWidth="358.0">
+                  <ScrollPane fitToWidth="true" prefHeight="610.0" prefWidth="358.0">
                      <content>
-                        <VBox fx:id="filters" prefHeight="642.0" prefWidth="358.0" styleClass="none">
+                        <VBox fx:id="filters" prefHeight="606.0" prefWidth="285.0" styleClass="none">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="232.0" spacing="10.0" styleClass="right-vbox">
+                              <VBox prefHeight="610.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
-                                          <TreeView fx:id="categories" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" prefWidth="179.0" />
+                                          <TreeView fx:id="categories" maxHeight="300.0" minHeight="118.0" prefHeight="154.0" prefWidth="249.0" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
@@ -110,7 +110,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </VBox>
-                              <VBox fx:id="extraFilters" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="232.0" spacing="10.0" styleClass="right-vbox">
+                              <VBox fx:id="extraFilters" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
