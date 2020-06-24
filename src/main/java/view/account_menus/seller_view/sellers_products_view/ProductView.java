@@ -236,6 +236,11 @@ public class ProductView extends MenuManager {
         if(statusOptions == null)
             initializeStatusOptions();
         informationTable.add(radioButtons, 2, 6);
+        editStatus.setOnMouseClicked(e -> saveStatus());
+        editStatus.setText("save");
+    }
+
+    private void saveStatus() {
 
     }
 
