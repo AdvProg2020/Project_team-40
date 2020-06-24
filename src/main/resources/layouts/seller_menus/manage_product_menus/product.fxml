@@ -19,7 +19,7 @@
                 <Image url="@../../../images/icons8-opened-folder-144.png" />
             </image>
         </ImageView>
-        <GridPane layoutX="93.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
+        <GridPane fx:id="informationTable" layoutX="93.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
          <columnConstraints>
             <ColumnConstraints maxWidth="250.0" minWidth="10.0" prefWidth="10.0" />
             <ColumnConstraints maxWidth="280.0" minWidth="0.0" prefWidth="102.0" />
@@ -48,7 +48,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editName" text="edit" GridPane.columnIndex="4" />
+            <Button fx:id="editName" onMouseClicked="#changeName" text="edit" GridPane.columnIndex="4" />
 
 
             <Label text="ID:" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -73,7 +73,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editCompany" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="editCompany" onMouseClicked="#changeCompany" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
 
             <Label text="Base Price:" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -98,7 +98,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editPrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button fx:id="editPrice" onMouseClicked="#changePrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
 
 
             <Label text="Quantity:" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -111,7 +111,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editQuantityAdd" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="editQuantityAdd" onMouseClicked="#changeQuantity" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
 
 
             <Label text="Has Off:" GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -136,7 +136,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Button fx:id="editStatus" onMouseClicked="#changeStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
         </GridPane>
 
         <GridPane fx:id="errorPane" layoutX="562.0" layoutY="106.0" prefHeight="299.0" prefWidth="120.0">

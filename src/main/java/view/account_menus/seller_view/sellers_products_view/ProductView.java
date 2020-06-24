@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,6 +44,12 @@ public class ProductView extends MenuManager {
     public Button editStatus;
     private ToggleGroup statusOptions;
 
+    private TextField nameField;
+    private TextField companyField;
+    private TextField priceField;
+    private TextField quantityField;
+
+    public GridPane informationTable;
     public VBox propertyList;
     private Product product;
     private SellerAccountController sellerAccountController;
@@ -90,5 +99,30 @@ public class ProductView extends MenuManager {
 
     public void handleCloseWindow(ActionEvent event) {
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    }
+
+    public void changeName() {
+        editName.setText("save");
+        editName.setOnMouseClicked(e -> saveName());
+        if(nameField == null)
+            nameField = new TextField();
+        informationTable.add(nameField, 2, 0);
+        nameField.setText(product.getName());
+    }
+
+    private void saveName() {
+
+    }
+
+    public void changeCompany() {
+    }
+
+    public void changePrice() {
+    }
+
+    public void changeQuantity() {
+    }
+
+    public void changeStatus() {
     }
 }
