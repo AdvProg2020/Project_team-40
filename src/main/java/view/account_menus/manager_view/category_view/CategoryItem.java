@@ -32,11 +32,10 @@ public class CategoryItem implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         accountController = AccountController.getInstance();
+        managerAccountController = ManagerAccountController.getInstance();
         if(accountController.getThisUser() instanceof Seller) {
             categoryPane.getChildren().remove(deleteCategoryButton);
             categoryPane.getChildren().remove(editCategoryButton);
-        } else {
-            managerAccountController = ManagerAccountController.getInstance();
         }
     }
 
