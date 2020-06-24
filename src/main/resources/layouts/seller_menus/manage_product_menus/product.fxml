@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductView">
+    <children>
+        <Label alignment="CENTER" layoutX="176.0" layoutY="33.0" prefHeight="54.0" prefWidth="157.0" text="Product">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/icons8-opened-folder-144.png" />
+            </image>
+        </ImageView>
+        <GridPane layoutX="93.0" layoutY="106.0" prefHeight="400.0" prefWidth="500.0">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="250.0" minWidth="0.0" prefWidth="250.0" />
+            <ColumnConstraints maxWidth="495.0" minWidth="250.0" prefWidth="250.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50.0" />
+             <RowConstraints minHeight="10.0" prefHeight="50" />
+            <RowConstraints minHeight="10.0" prefHeight="50" />
+         </rowConstraints></GridPane>
+        <Label layoutX="716.0" layoutY="106.0" text="Explanation:">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label fx:id="explanationLabel" layoutX="716.0" layoutY="136.0" prefHeight="17.0" prefWidth="49.0">
+
+        </Label>
+        <HBox layoutX="716.0" layoutY="212.0" prefHeight="239.0" prefWidth="410.0">
+
+        </HBox>
+        <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" " />
+          <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="1089.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../../../images/icons8-back-arrow-64.png" />
+              </image>
+          </ImageView>
+    </children>
+</AnchorPane>
