@@ -1,6 +1,7 @@
 package view.account_menus.seller_view.sellers_products_view;
 
 import controller.accounts.SellerAccountController;
+import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,6 +34,8 @@ public class ProductView extends MenuManager {
     public Label hasOffLabel;
     public Label explanationLabel;
 
+    public Label nameError;
+    public Label companyError;
     public Label priceError;
     public Label quantityError;
 
@@ -111,7 +114,22 @@ public class ProductView extends MenuManager {
     }
 
     private void saveName() {
-
+        if(!nameField.getText().isBlank()) {
+            nameError.setText("");
+            editName.setText("edit");
+            try {
+                sellerAccountController.editProduct(product.getProductId(), "name", nameField.getText(),
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                informationTable.getChildren().remove(nameField);
+                nameLabel.setText(nameField.getText());
+                nameField.setText("");
+                editName.setOnMouseClicked(e -> changeName());
+            } catch (AccountsException e) {
+                nameError.setText(e.getMessage());
+            }
+        } else {
+            nameError.setText("Fill this field!");
+        }
     }
 
     public void changeCompany() {

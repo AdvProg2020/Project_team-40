@@ -139,8 +139,9 @@
             <Button fx:id="editStatus" onMouseClicked="#changeStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
         </GridPane>
 
-        <GridPane fx:id="errorPane" layoutX="562.0" layoutY="106.0" prefHeight="299.0" prefWidth="120.0">
+        <GridPane fx:id="errorPane" layoutX="555.0" layoutY="106.0" prefHeight="299.0" prefWidth="149.0">
             <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
@@ -149,14 +150,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
             </rowConstraints>
             <columnConstraints>
-                <ColumnConstraints prefWidth="120" />
+                <ColumnConstraints prefWidth="149" />
             </columnConstraints>
+            <Label fx:id="nameError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="0">
+
+            </Label>
+            <Label fx:id="companyError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
+
+            </Label>
             <Label fx:id="priceError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
 
             </Label>
             <Label fx:id="quantityError" prefHeight="30.0" prefWidth="120.0" GridPane.rowIndex="5">
 
             </Label>
+            
         </GridPane>
 
 
