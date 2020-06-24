@@ -30,9 +30,9 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public VBox extraFilters;
     public TreeView categories;
 
-
     private static ArrayList<String> stringProperties = new ArrayList<>();
     private static ArrayList<String> rangeProperties = new ArrayList<>();
+    private static ArrayList<Product> productsList = new ArrayList<>();
 
     private static int indexOfLastUser;
 
@@ -40,6 +40,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle){
         //initializeProducts();
         initializeCategories();
+        initializeFilter();
         initializeSorts();
     }
 
@@ -112,7 +113,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         });
 
         productCompanyButton.setOnAction(actionEvent -> {
-            AllProductsController.getInstance().addFilter("productCompany", productCompanyField.getText());
+            AllProductsController.getInstance().addFilter("companyName", productCompanyField.getText());
         });
 
         sellerButton.setOnAction(actionEvent -> {
@@ -191,6 +192,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     public void refresh(){
         products.getChildren().clear();
+        AllProductsController.getInstance().filterAndSort();
         indexOfLastUser = 0;
         showMoreItems();
     }
@@ -229,9 +231,5 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         return rangeProperties.get(rangeProperties.size() - 1);
     }
 
-    //TODO : REMOVE LATER
-    private void showSampleProducts(int count){
-
-    }
 
 }

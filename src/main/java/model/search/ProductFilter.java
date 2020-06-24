@@ -134,6 +134,13 @@ public class ProductFilter{
         }
 
         if(category != null){
+
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(!entry.getKey().getCategory().contains(category.getName())){
+                    entry.setValue(FALSE);
+                }
+            }
+
             for(Map.Entry<String, ArrayList<String>> entry : stringProperties.entrySet()) {
                 if(entry.getValue() != null){
                     for(Map.Entry<Product, Boolean> productEntry : products.entrySet()) {
@@ -199,5 +206,13 @@ public class ProductFilter{
 
     public HashMap<String, Range> getRangeProperties(){
         return rangeProperties;
+    }
+
+    public void setProducts(ArrayList<Product> products){
+        this.products = new HashMap<>();
+
+        for(Product product : products) {
+            this.products.put(product, TRUE);
+        }
     }
 }
