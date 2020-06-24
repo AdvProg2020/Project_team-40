@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+
+<HBox fx:id="offItemHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="572.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_offs_view.OffItemManager">
+   <children>
+      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/icons8-discount-96.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="offIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="OffId" wrappingWidth="134.13665580749512" />
+      <Text fx:id="percentageText" strokeType="OUTSIDE" strokeWidth="0.0" text="percentage%" wrappingWidth="77.33666610717773" />
+      <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="141.33673667907715" />
+      <JFXButton fx:id="removeButton" prefHeight="28.0" prefWidth="0.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-cancel-144.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="editButton" layoutX="468.0" layoutY="20.0" prefHeight="20.0" prefWidth="20.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-edit-144.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>
