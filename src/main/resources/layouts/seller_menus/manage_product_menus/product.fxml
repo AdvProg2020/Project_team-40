@@ -8,18 +8,18 @@
 
 <AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductView">
     <children>
-        <Label alignment="CENTER" layoutX="176.0" layoutY="33.0" prefHeight="54.0" prefWidth="157.0" text="Product">
+        <Label alignment="CENTER" layoutX="129.0" layoutY="33.0" prefHeight="54.0" prefWidth="157.0" text="Product">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
 
-        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="35.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../images/icons8-opened-folder-144.png" />
             </image>
         </ImageView>
-        <GridPane layoutX="93.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
+        <GridPane fx:id="informationTable" layoutX="36.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
          <columnConstraints>
             <ColumnConstraints maxWidth="250.0" minWidth="10.0" prefWidth="10.0" />
             <ColumnConstraints maxWidth="280.0" minWidth="0.0" prefWidth="102.0" />
@@ -48,7 +48,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editName" text="edit" GridPane.columnIndex="4" />
+            <Button fx:id="editName" onMouseClicked="#changeName" text="edit" GridPane.columnIndex="4" />
 
 
             <Label text="ID:" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -73,7 +73,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editCompany" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="editCompany" onMouseClicked="#changeCompany" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
 
             <Label text="Base Price:" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -98,7 +98,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editPrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button fx:id="editPrice" onMouseClicked="#changePrice" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="4" />
 
 
             <Label text="Quantity:" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -111,7 +111,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editQuantityAdd" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="editQuantityAdd" onMouseClicked="#changeQuantity" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
 
 
             <Label text="Has Off:" GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -136,11 +136,12 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Button fx:id="editStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Button fx:id="editStatus" onMouseClicked="#changeStatus" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="6" />
         </GridPane>
 
-        <GridPane fx:id="errorPane" layoutX="562.0" layoutY="106.0" prefHeight="299.0" prefWidth="120.0">
+        <GridPane fx:id="errorPane" layoutX="500.0" layoutY="106.0" prefHeight="299.0" prefWidth="204.0">
             <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
@@ -149,14 +150,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
             </rowConstraints>
             <columnConstraints>
-                <ColumnConstraints prefWidth="120" />
+                <ColumnConstraints prefWidth="204" />
             </columnConstraints>
+            <Label fx:id="nameError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="0">
+
+            </Label>
+            <Label fx:id="companyError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
+
+            </Label>
             <Label fx:id="priceError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
 
             </Label>
             <Label fx:id="quantityError" prefHeight="30.0" prefWidth="120.0" GridPane.rowIndex="5">
 
             </Label>
+            
         </GridPane>
 
 
