@@ -26,7 +26,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
         loadProducts();
     }
 
-    private void loadProducts() {
+    public void loadProducts() {
         ArrayList<String> productIds = sellerAccountController.getSellerProductIDs();
         vBoxItems.getChildren().clear();
         for(String productId : productIds) {
@@ -40,7 +40,6 @@ public class SellersProductsManager extends MenuManager implements Initializable
             } catch (AccountsException | IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -49,10 +48,6 @@ public class SellersProductsManager extends MenuManager implements Initializable
         productName.setText(product.getName());
         Label category = (Label) hBox.getChildren().get(1);
         category.setText(product.getCategory());
-    }
-
-    public void handleRefresh() {
-
     }
 
     public void addProduct() {
