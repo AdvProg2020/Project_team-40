@@ -1,11 +1,14 @@
 package view.account_menus.seller_view.sellers_products_view;
 
 import controller.accounts.SellerAccountController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Product;
 import view.MenuManager;
 
@@ -28,6 +31,8 @@ public class ProductView extends MenuManager {
     public VBox propertyList;
     private Product product;
     private SellerAccountController sellerAccountController;
+
+    //TODO: ADD EDIT CATEGORY OPTION IF POSSIBLE
 
     public void setProduct(Product product) {
         sellerAccountController = SellerAccountController.getInstance();
@@ -70,6 +75,7 @@ public class ProductView extends MenuManager {
         propertyValueLabel.setText(Double.toString(entry.getValue()));
     }
 
-    public void handleCloseWindow() {
+    public void handleCloseWindow(ActionEvent event) {
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 }
