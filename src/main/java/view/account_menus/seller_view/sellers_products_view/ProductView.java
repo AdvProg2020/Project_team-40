@@ -64,7 +64,6 @@ public class ProductView extends MenuManager {
     }
 
     private void setLabelsContent(Map.Entry<String, Double> entry, HBox hBox) {
-
     }
 
     public void handleCloseWindow() {
