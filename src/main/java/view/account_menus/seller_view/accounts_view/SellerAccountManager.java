@@ -24,7 +24,7 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
     }
 
     public void goToMyOffs() {
-        //TODO
+        setSecondaryInnerPane("/layouts/seller_menus/sellers_offs_design.fxml");
     }
 
     public void goToCategories() {
