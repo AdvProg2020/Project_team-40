@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +14,27 @@
 
 <AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main_menu.MainMenuManager">
    <children>
-      <Pane fx:id="InnerPane" layoutX="-2.0" layoutY="80.0" prefHeight="610.0" prefWidth="1100.0" stylesheets="@../stylesheets/left.css" />
+      <Pane fx:id="InnerPane" layoutX="-14.0" layoutY="78.0" prefHeight="614.0" prefWidth="1113.0">
+         <stylesheets>
+            <URL value="@../stylesheets/left.css" />
+            <URL value="@../stylesheets/main_pane_background.css" />
+         </stylesheets>
+         <children>
+            <Label contentDisplay="CENTER" layoutX="436.0" layoutY="176.0" prefHeight="101.0" prefWidth="314.0" text="Welcome!">
+               <font>
+                  <Font name="Garamond" size="80.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="302.0" layoutY="282.0" prefHeight="17.0" prefWidth="537.0" text="Find, buy, and enjoy yourself!">
+               <font>
+                  <Font name="Gabriola" size="40.0" />
+               </font>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="mainPane" />
+            <String fx:value="root" />
+         </styleClass></Pane>
       <HBox prefHeight="78.0" prefWidth="1100.0" style="-fx-background-color: #d7bde2;">
          <children>
             <ImageView fitHeight="78.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #d7bde2;">
