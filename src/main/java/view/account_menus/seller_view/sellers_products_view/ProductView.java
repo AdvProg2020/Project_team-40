@@ -115,7 +115,6 @@ public class ProductView extends MenuManager {
 
     private void saveName() {
         if(!nameField.getText().isBlank()) {
-            nameError.setText("");
             editName.setText("edit");
             try {
                 sellerAccountController.editProduct(product.getProductId(), "name", nameField.getText(),
@@ -124,6 +123,7 @@ public class ProductView extends MenuManager {
                 nameLabel.setText(nameField.getText());
                 nameField.setText("");
                 editName.setOnMouseClicked(e -> changeName());
+                nameError.setText("Wait for manager's acceptance!");
             } catch (AccountsException e) {
                 nameError.setText(e.getMessage());
             }
@@ -133,6 +133,18 @@ public class ProductView extends MenuManager {
     }
 
     public void changeCompany() {
+        editCompany.setText("save");
+        editCompany.setOnMouseClicked(e -> saveCompany());
+        if(companyField == null)
+            companyField = new TextField();
+        informationTable.add(companyField, 2, 2);
+        nameField.setText(product.getCompany());
+    }
+
+    private void saveCompany() {
+        if(!companyField.getText().isBlank()) {
+
+        }
     }
 
     public void changePrice() {
