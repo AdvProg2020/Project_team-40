@@ -2,40 +2,40 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.account_view.CustomerAccountManager">
+<AnchorPane prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.account_view.CustomerAccountManager">
     <children>
-        <AnchorPane fx:id="secondaryInnerPane" layoutX="1.0" layoutY="61.0" prefHeight="621.0" prefWidth="831.0" />
-        <HBox prefHeight="62.0" prefWidth="831.0">
-            <children>
-                <JFXButton onMouseClicked="#goToHome" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Home" textFill="WHITE">
+        <AnchorPane fx:id="secondaryInnerPane" layoutX="237.0" layoutY="-6.0" prefHeight="684.0" prefWidth="858.0" />
+      <VBox layoutX="1.0" layoutY="1.0" prefHeight="684.0" prefWidth="242.0" style="-fx-background-color: #7d3c98;">
+         <children>
+                <JFXButton onMouseClicked="#goToHome" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Home" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToOrders"  prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Orders" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToOrders" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToCart" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="My Cart" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToCart" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="My Cart" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToDiscountCode" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="My Discount Codes" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToDiscountCode" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="My Discount Codes" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#logout" prefHeight="62.0" prefWidth="340.0" style="-fx-background-color: #33d3c6;" text="Logout" textFill="WHITE">
+                <JFXButton onMouseClicked="#logout" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Logout" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-            </children>
-        </HBox>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
