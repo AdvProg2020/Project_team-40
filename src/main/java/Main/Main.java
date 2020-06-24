@@ -48,9 +48,30 @@ public class Main {
         }
         Seller seller = new Seller("a", "a", "a", "a", "a@.a", "0", 1000, "a");
         seller.setManagerPermission(true);
-        Product product1 = new Product("a", "a", 10, 10, "a", "mobile");
+        Product product1 = new Product("b", "a", 10, 10, "a", "mobile");
+        Product product2 = new Product("c", "a", 10, 10, "a", "mobile");
+        Product product3 = new Product("d", "a", 10, 10, "a", "mobile");
+        Product product4 = new Product("e", "a", 1000, 10, "a", "mobile");
+        Product product5 = new Product("f", "a", 1000, 10, "a", "pc");
+        Product product6 = new Product("g", "a", 1000, 10, "a", "pc");
+        Product product7 = new Product("h", "a", 1000, 10, "a", "pc");
+        Product product8 = new Product("i", "a", 1000, 10, "a", "pc");
         seller.addProduct(product1);
+        seller.addProduct(product2);
+        seller.addProduct(product3);
+        seller.addProduct(product4);
+        seller.addProduct(product5);
+        seller.addProduct(product6);
+        seller.addProduct(product7);
+        seller.addProduct(product8);
         Product.addProduct(product1);
+        Product.addProduct(product2);
+        Product.addProduct(product3);
+        Product.addProduct(product4);
+        Product.addProduct(product5);
+        Product.addProduct(product6);
+        Product.addProduct(product7);
+        Product.addProduct(product8);
 
     }
 
