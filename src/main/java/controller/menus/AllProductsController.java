@@ -74,11 +74,15 @@ public class AllProductsController {
         return allSubCategories;
     }
 
-    public ArrayList<Product> getAllProducts(){
+    public void filterAndSort(){
         productFilter.filter();
         productsToShow = productFilter.getFilteredProducts();
         productSort = new ProductSort(productsToShow, currentSort);
-        return productSort.getSortedProducts();
+        productsToShow = productSort.getSortedProducts();
+    }
+
+    public ArrayList<Product> getAllProducts(){
+        return productsToShow;
     }
 
     public Product getProduct(String productID) throws MenuException{
