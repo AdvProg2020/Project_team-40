@@ -13,15 +13,17 @@
                 <Font size="36.0" />
             </font>
         </Label>
+
         <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../images/icons8-opened-folder-144.png" />
             </image>
         </ImageView>
-        <GridPane layoutX="93.0" layoutY="106.0" prefHeight="400.0" prefWidth="500.0">
+        <GridPane layoutX="93.0" layoutY="104.0" prefHeight="400.0" prefWidth="563.0" style="-fx-background-color: #88ce7f;">
          <columnConstraints>
-            <ColumnConstraints maxWidth="250.0" minWidth="0.0" prefWidth="250.0" />
-            <ColumnConstraints maxWidth="495.0" minWidth="250.0" prefWidth="250.0" />
+            <ColumnConstraints maxWidth="250.0" minWidth="0.0" prefWidth="208.0" />
+            <ColumnConstraints maxWidth="495.0" minWidth="12.0" prefWidth="266.0" />
+             <ColumnConstraints maxWidth="495.0" minWidth="26.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="50.0" />
@@ -32,18 +34,82 @@
              <RowConstraints minHeight="10.0" prefHeight="50.0" />
              <RowConstraints minHeight="10.0" prefHeight="50" />
             <RowConstraints minHeight="10.0" prefHeight="50" />
-         </rowConstraints></GridPane>
-        <Label layoutX="716.0" layoutY="106.0" text="Explanation:">
+         </rowConstraints>
+            <Label text="Name:">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="nameLabel" />
+            <Label text="ID:" GridPane.rowIndex="1">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Button fx:id="editName" text="edit" GridPane.columnIndex="2" />
+            <Label fx:id="iDLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Company" GridPane.rowIndex="2">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="companyLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Base Price:" GridPane.rowIndex="3">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="basePriceLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Price:" GridPane.rowIndex="4">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="priceLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Quantity:" GridPane.rowIndex="5">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="quantityLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Has Off:" GridPane.rowIndex="7">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="hasOffLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Status:" GridPane.rowIndex="6">
+                <font>
+                    <Font size="20" />
+                </font>
+            </Label>
+            <Label fx:id="statusLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        </GridPane>
+        <Label layoutX="716.0" layoutY="89.0" text="Explanation:">
             <font>
                 <Font size="20" />
             </font>
         </Label>
-        <Label fx:id="explanationLabel" layoutX="716.0" layoutY="136.0" prefHeight="17.0" prefWidth="49.0">
-
+        <Label layoutX="716.0" layoutY="194.0" text="Category:">
+            <font>
+                <Font size="20" />
+            </font>
         </Label>
-        <HBox layoutX="716.0" layoutY="212.0" prefHeight="239.0" prefWidth="410.0">
+        <Label fx:id="categoryLabel" layoutX="822.0" layoutY="194.0" prefHeight="30.0" prefWidth="304.0">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label fx:id="explanationLabel" layoutX="716.0" layoutY="120.0" prefHeight="54.0" prefWidth="409.0">
+            <font>
+                <Font size="11" />
+            </font>
+        </Label>
+        <ScrollPane layoutX="717.0" layoutY="237.0" prefHeight="228.0" prefWidth="409.0">
+            <VBox prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #88ce7f;">
 
-        </HBox>
+            </VBox>
+        </ScrollPane>
         <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" " />
           <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="1089.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
               <image>

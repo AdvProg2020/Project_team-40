@@ -47,8 +47,6 @@ public class EditProduct extends Request{
         }
     }
 
-
-
     private void resetStatus() {
         Product product = Product.getProductById(productId);
         if(newField.equalsIgnoreCase("creating")) {
