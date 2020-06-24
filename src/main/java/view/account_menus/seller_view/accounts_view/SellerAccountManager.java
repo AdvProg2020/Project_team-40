@@ -12,6 +12,7 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setSecondaryPane(secondaryInnerPane);
         setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
