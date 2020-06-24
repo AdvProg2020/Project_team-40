@@ -170,7 +170,24 @@ public class ProductView extends MenuManager {
     }
 
     private void savePrice() {
-
+        if(!priceField.getText().isBlank()) {
+            try {
+                Double.parseDouble(priceField.getText());
+                sellerAccountController.editProduct(product.getProductId(), "price", priceField.getText(),
+                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                informationTable.getChildren().remove(priceField);
+                priceLabel.setText(priceField.getText());
+                priceField.setText("");
+                editPrice.setOnMouseClicked(e -> changePrice());
+                priceError.setText("");
+            } catch(NumberFormatException e) {
+                priceError.setText("Enter a valid number!");
+            } catch (AccountsException e) {
+                priceError.setText(e.getMessage());
+            }
+        } else {
+            priceError.setText("Fill this field!");
+        }
     }
 
     public void changeQuantity() {
