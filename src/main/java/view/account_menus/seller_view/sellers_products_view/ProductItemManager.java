@@ -45,8 +45,6 @@ public class ProductItemManager extends MenuManager {
             @Override
             public void run() {
                 productView.setProduct(product);
-                productView.setNameLabel(product.getName());
-                //TODO: SHOW ANY NEEDED INFORMATION
             }
         });
     }

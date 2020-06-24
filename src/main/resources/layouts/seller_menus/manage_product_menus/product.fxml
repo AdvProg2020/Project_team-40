@@ -42,7 +42,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="nameLabel" GridPane.columnIndex="1">
+            <Label fx:id="nameLabel" prefHeight="30.0" prefWidth="329.0" GridPane.columnIndex="2">
                 <font>
                     <Font size="20" />
                 </font>
@@ -55,7 +55,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="iDLabel" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="iDLabel" prefHeight="30.0" prefWidth="328.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                 <font>
                     <Font size="20" />
                 </font>
@@ -67,7 +67,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="companyLabel" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="companyLabel" prefHeight="30.0" prefWidth="332.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                 <font>
                     <Font size="20" />
                 </font>
@@ -80,7 +80,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="basePriceLabel" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="basePriceLabel" prefHeight="30.0" prefWidth="340.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                 <font>
                     <Font size="20" />
                 </font>
@@ -92,7 +92,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="priceLabel" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="priceLabel" prefHeight="30.0" prefWidth="328.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                 <font>
                     <Font size="20" />
                 </font>
@@ -105,7 +105,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="quantityLabel" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Label fx:id="quantityLabel" prefHeight="30.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                 <font>
                     <Font size="20" />
                 </font>
@@ -118,7 +118,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="hasOffLabel" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <Label fx:id="hasOffLabel" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                 <font>
                     <Font size="20" />
                 </font>
@@ -130,7 +130,7 @@
                     <Font size="20" />
                 </font>
             </Label>
-            <Label fx:id="statusLabel" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Label fx:id="statusLabel" prefHeight="30.0" prefWidth="332.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                 <font>
                     <Font size="20" />
                 </font>
@@ -160,7 +160,7 @@
             </font>
         </Label>
         <ScrollPane layoutX="717.0" layoutY="237.0" prefHeight="228.0" prefWidth="409.0">
-            <VBox prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #88ce7f;">
+            <VBox fx:id="propertyList" prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #88ce7f;">
 
             </VBox>
         </ScrollPane>
