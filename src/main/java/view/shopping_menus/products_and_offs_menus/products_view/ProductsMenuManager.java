@@ -113,7 +113,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         });
 
         productCompanyButton.setOnAction(actionEvent -> {
-            AllProductsController.getInstance().addFilter("productCompany", productCompanyField.getText());
+            AllProductsController.getInstance().addFilter("companyName", productCompanyField.getText());
         });
 
         sellerButton.setOnAction(actionEvent -> {
@@ -231,9 +231,5 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         return rangeProperties.get(rangeProperties.size() - 1);
     }
 
-    //TODO : REMOVE LATER
-    private void showSampleProducts(int count){
-
-    }
 
 }

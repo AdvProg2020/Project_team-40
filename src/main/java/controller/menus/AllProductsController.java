@@ -44,10 +44,12 @@ public class AllProductsController {
             for (Off off : Off.getAllOffs().values()) {
                 products.addAll(off.getProducts());
             }
+            productFilter.setProducts(products);
             productsToShow = products;
         }else{
             products.clear();
             products.addAll(Product.getAllProducts().values());
+            productFilter.setProducts(products);
             productsToShow = products;
         }
     }
