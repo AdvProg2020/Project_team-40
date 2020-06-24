@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -71,7 +70,7 @@ public class CategoryMenuManager implements Initializable {
         parentCategoryLabel.setText(category.getParentCategoryName());
     }
 
-    public void handleAddCategory(ActionEvent event) {
+    public void handleAddCategory() {
         Stage stage = new Stage();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/add_category.fxml"));
@@ -91,7 +90,7 @@ public class CategoryMenuManager implements Initializable {
         }
     }
 
-    public void handleRefresh(ActionEvent event) {
+    public void handleRefresh() {
         loadCategories();
     }
 }
