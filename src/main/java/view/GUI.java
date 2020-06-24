@@ -79,7 +79,7 @@ public class GUI extends Application {
  */
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setScene(new Scene(root, 1100, 740));
         primaryStage.show();
     }
 }
