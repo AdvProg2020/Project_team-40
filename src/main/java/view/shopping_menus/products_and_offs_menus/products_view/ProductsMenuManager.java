@@ -1,6 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXToggleButton;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
@@ -26,9 +27,9 @@ import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
     public JFXComboBox<String> sortsComboBox;
-    public Button productNameButton, productCompanyButton, sellerButton, priceButton;
+    public Button priceButton;
     public TextField productNameField, productCompanyField, sellerField;
-    public RadioButton onlyOffToggle, onlyStockToggle;
+    public JFXToggleButton onlyOffToggle, onlyStockToggle;
     public Slider priceMinSlider, priceMaxSlider;
     public VBox products;
     public VBox filters;
@@ -114,17 +115,29 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             }
         }
 
-        productNameButton.setOnAction(actionEvent -> {
-            AllProductsController.getInstance().addFilter("productName", productNameField.getText());
-        });
+        productNameField.textProperty().addListener(((observableValue, s, t1) -> {
+            if(t1 == "")
+                AllProductsController.getInstance().disableFilter("productName");
+            else
+                AllProductsController.getInstance().addFilter("productName", t1);
+            refresh();
+        }));
 
-        productCompanyButton.setOnAction(actionEvent -> {
-            AllProductsController.getInstance().addFilter("companyName", productCompanyField.getText());
-        });
+        productCompanyField.textProperty().addListener(((observableValue, s, t1) -> {
+            if(t1 == "")
+                AllProductsController.getInstance().disableFilter("companyName");
+            else
+                AllProductsController.getInstance().addFilter("companyName", t1);
+            refresh();
+        }));
 
-        sellerButton.setOnAction(actionEvent -> {
-            AllProductsController.getInstance().addFilter("sellerName", sellerField.getText());
-        });
+        sellerField.textProperty().addListener(((observableValue, s, t1) -> {
+            if(t1 == "")
+                AllProductsController.getInstance().disableFilter("sellerName");
+            else
+                AllProductsController.getInstance().addFilter("sellerName", t1);
+            refresh();
+        }));
 
         priceButton.setOnAction(actionEvent -> {
             try {
@@ -132,28 +145,23 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             } catch(MenuException e) {
                 e.printStackTrace();
             }
+            refresh();
         });
 
-        onlyOffToggle.selectedProperty().addListener(new ChangeListener<Boolean>(){
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1){
-                if(t1){
-                    AllProductsController.getInstance().setIsOffsOnly(true);
-                }else{
-                    AllProductsController.getInstance().setIsOffsOnly(false);
-                }
-            }
+        onlyOffToggle.setOnAction(actionEvent -> {
+            AllProductsController.getInstance().setIsOffsOnly(onlyOffToggle.isSelected());
+            refresh();
         });
 
-        onlyStockToggle.selectedProperty().addListener(new ChangeListener<Boolean>(){
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1){
-                if(t1){
-                    AllProductsController.getInstance().addFilter("status", "exists");
-                }else{
-                    AllProductsController.getInstance().disableFilter("status");
-                }
+        onlyStockToggle.setOnAction(actionEvent -> {
+            boolean turnedOn = onlyStockToggle.isSelected();
+            System.out.println(turnedOn);
+            if(turnedOn){
+                AllProductsController.getInstance().addFilter("status", "existing");
+            }else{
+                AllProductsController.getInstance().disableFilter("status");
             }
+            refresh();
         });
 
     }
@@ -166,6 +174,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             } catch(MenuException e) {
                 e.printStackTrace();
             }
+            refresh();
         });
     }
 
