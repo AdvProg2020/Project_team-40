@@ -1,8 +1,12 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
+import com.jfoenix.controls.JFXComboBox;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import model.Category;
 import model.Product;
 import view.MenuManager;
@@ -20,7 +25,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
-    public Button mostExpensiveSort, leastExpensiveSort, mostVisitedSort, highestSalesSort, highestScoreSort;
+    public JFXComboBox<String> sortsComboBox;
     public Button productNameButton, productCompanyButton, sellerButton, priceButton;
     public TextField productNameField, productCompanyField, sellerField;
     public RadioButton onlyOffToggle, onlyStockToggle;
@@ -28,6 +33,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     public VBox products;
     public VBox filters;
     public VBox extraFilters;
+    public VBox filtersSliderMenu;
     public TreeView categories;
 
     private static ArrayList<String> stringProperties = new ArrayList<>();
@@ -38,7 +44,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        //initializeProducts();
+        initializeProducts();
         initializeCategories();
         initializeFilter();
         initializeSorts();
@@ -153,37 +159,10 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeSorts(){
-        leastExpensiveSort.setOnAction(actionEvent -> {
+        sortsComboBox.getItems().addAll("MOST_EXPENSIVE", "CHEAPEST", "MOST_VISITED", "HIGHEST_SCORE", "HIGHEST_SALES");
+        sortsComboBox.setOnAction(actionEvent -> {
             try {
-                AllProductsController.getInstance().setSort("CHEAPEST");
-            } catch(MenuException e) {
-                e.printStackTrace();
-            }
-        });
-        mostExpensiveSort.setOnAction(actionEvent -> {
-            try {
-                AllProductsController.getInstance().setSort("MOST_EXPENSIVE");
-            } catch(MenuException e) {
-                e.printStackTrace();
-            }
-        });
-        mostVisitedSort.setOnAction(actionEvent -> {
-            try {
-                AllProductsController.getInstance().setSort("MOST_VISITED");
-            } catch(MenuException e) {
-                e.printStackTrace();
-            }
-        });
-        highestSalesSort.setOnAction(actionEvent -> {
-            try {
-                AllProductsController.getInstance().setSort("HIGHEST_SALES");
-            } catch(MenuException e) {
-                e.printStackTrace();
-            }
-        });
-        highestScoreSort.setOnAction(actionEvent -> {
-            try {
-                AllProductsController.getInstance().setSort("HIGHEST_SCORE");
+                AllProductsController.getInstance().setSort(sortsComboBox.getValue());
             } catch(MenuException e) {
                 e.printStackTrace();
             }
@@ -218,6 +197,24 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
             indexOfLastUser++;
         }
+    }
+
+    public void openFilters(){
+        TranslateTransition animation = new TranslateTransition();
+        animation.setDuration(Duration.millis(400));
+        animation.setNode(filtersSliderMenu);
+        animation.setToX(-271);
+
+        animation.play();
+    }
+
+    public void closeFilters(){
+        TranslateTransition animation = new TranslateTransition();
+        animation.setDuration(Duration.millis(400));
+        animation.setNode(filtersSliderMenu);
+        animation.setToX(+271);
+
+        animation.play();
     }
 
     public static int getIndexOfLastUser(){
