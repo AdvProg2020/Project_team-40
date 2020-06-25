@@ -15,15 +15,13 @@ import view.MenuManager;
 import view.ValidInput;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class AddProductManager extends MenuManager implements Initializable {
     private SellerAccountController sellerAccountController;
     private ToggleGroup toggleGroupCategory;
-    private HashMap<String, Double> extraValueProperties;
-    private HashMap<String, String> extraStringProperties;
     private HashMap<String, JFXTextField> valuePropertyField;
     private HashMap<String, JFXTextField> stringPropertyField;
     public VBox propertyBox;
@@ -57,18 +55,18 @@ public class AddProductManager extends MenuManager implements Initializable {
         HashMap<String, PropertyType> categoryProperties = sellerAccountController.
                 getCategoryProperties(radioButton.getText());
         propertyBox.getChildren().clear();
-        extraStringProperties = new HashMap<>();
-        extraValueProperties = new HashMap<>();
-        valuePropertyField = new HashMap<>();
-        stringPropertyField = new HashMap<>();
-        initializeHashMap(extraStringProperties.keySet(), stringPropertyField);
-        initializeHashMap(extraValueProperties.keySet(), valuePropertyField);
+        constructHashMaps(categoryProperties);
     }
 
-    private void initializeHashMap(Set<String> keySet, HashMap<String, JFXTextField> propertyField) {
-        for(String property : keySet) {
+    private void constructHashMaps(HashMap<String, PropertyType> categoryProperties) {
+        valuePropertyField = new HashMap<>();
+        stringPropertyField = new HashMap<>();
+        for(String property : categoryProperties.keySet()) {
             JFXTextField field =  new JFXTextField();
-            propertyField.put(property, field);
+            if(categoryProperties.get(property).equals(PropertyType.RANGE))
+                valuePropertyField.put(property, field);
+            else
+                stringPropertyField.put(property, field);
             field.setPromptText(property);
             propertyBox.getChildren().add(field);
         }
@@ -101,8 +99,8 @@ public class AddProductManager extends MenuManager implements Initializable {
             Product product = sellerAccountController.createNewProduct(nameField.getText(), companyField.getText(),
                     Double.parseDouble(priceField.getText()), Integer.parseInt(priceField.getText()),
                     ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText(), descriptionField.getText());
-     //       product.setExtraValueProperties();
        //     product.setExtraValueProperties();
+     //       product.setExtraStringProperties();
         } catch (AccountsException e) {
             e.printStackTrace();
         }
