@@ -1,127 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1100.0" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="831.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1100.0">
          <children>
-            <Label text="Sort by :">
+            <Label prefHeight="18.0" prefWidth="117.0" text="Sort by :">
                <padding>
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Button fx:id="mostExpensiveSort" mnemonicParsing="false" text="Most expensive" />
-            <Button fx:id="leastExpensiveSort" layoutX="55.0" layoutY="19.0" mnemonicParsing="false" text="Least expensive" />
-            <Button fx:id="mostVisitedSort" layoutX="107.0" layoutY="19.0" mnemonicParsing="false" text="Most visited" />
-            <Button fx:id="highestSalesSort" layoutX="159.0" layoutY="19.0" mnemonicParsing="false" text="Highest sales" />
-            <Button fx:id="highestScoreSort" layoutX="211.0" layoutY="19.0" mnemonicParsing="false" text="Highest score" />
+            <JFXComboBox fx:id="sortsComboBox" prefHeight="26.0" prefWidth="133.0" promptText="default" />
+            <Region prefHeight="42.0" prefWidth="784.0" />
+            <JFXButton onAction="#openFilters" prefHeight="38.0" prefWidth="145.0" text="Filters">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8-add-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </HBox>
-      <SplitPane dividerPositions="0.7368547998070429" layoutX="-1.0" layoutY="42.0" prefHeight="610.0" prefWidth="1100.0">
-         <items>
-            <VBox prefHeight="646.0" prefWidth="594.0">
+      <VBox layoutX="-1.0" layoutY="43.0" prefHeight="567.0" prefWidth="1106.0">
+         <children>
+            <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
+               <content>
+                  <VBox fx:id="products" prefHeight="606.0" prefWidth="963.0" />
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0">
                <children>
-                  <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
-                     <content>
-                        <VBox fx:id="products" prefHeight="606.0" prefWidth="606.0" />
-                     </content>
-                  </ScrollPane>
-                  <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="665.0" text="refresh" />
-                        <Button mnemonicParsing="false" onAction="#showMoreItems" prefHeight="27.0" prefWidth="689.0" text="show more items" />
-                     </children>
-                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="665.0" text="refresh" />
+                  <Button mnemonicParsing="false" onAction="#showMoreItems" prefHeight="27.0" prefWidth="689.0" text="show more items" />
                </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ScrollPane fitToWidth="true" prefHeight="610.0" prefWidth="358.0">
-                     <content>
-                        <VBox fx:id="filters" prefHeight="606.0" prefWidth="285.0" styleClass="none">
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="filtersSliderMenu" layoutX="1100.0" prefHeight="610.0" prefWidth="272.0">
+         <children>
+            <ScrollPane fitToWidth="true" prefHeight="610.0" prefWidth="358.0">
+               <content>
+                  <VBox fx:id="filters" prefHeight="606.0" prefWidth="285.0" styleClass="none">
+                     <children>
+                        <VBox prefHeight="610.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
                            <children>
-                              <VBox prefHeight="610.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
+                              <JFXButton onAction="#closeFilters" prefHeight="42.0" prefWidth="43.0" text=" ">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/icons8-cancel-144.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
-                                          <TreeView fx:id="categories" maxHeight="300.0" minHeight="118.0" prefHeight="154.0" prefWidth="249.0" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
-                                          <TextField fx:id="productNameField" />
-                                          <Button fx:id="productNameButton" mnemonicParsing="false" text="Set" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Company" />
-                                          <TextField fx:id="productCompanyField" />
-                                          <Button fx:id="productCompanyButton" mnemonicParsing="false" text="Set" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
-                                          <TextField fx:id="sellerField" />
-                                          <Button fx:id="sellerButton" mnemonicParsing="false" text="Set" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
-                                       <children>
-                                          <RadioButton fx:id="onlyStockToggle" mnemonicParsing="false" text="Only show Products In Stock" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
-                                       <children>
-                                          <RadioButton fx:id="onlyOffToggle" mnemonicParsing="false" text="Only show Products In Off" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price Range" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
-                                          <Slider fx:id="priceMinSlider" />
-                                          <Text layoutX="96.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
-                                          <Slider fx:id="priceMaxSlider" />
-                                          <Button fx:id="priceButton" mnemonicParsing="false" text="Set" />
-                                       </children>
-                                    </VBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+                                    <TreeView fx:id="categories" maxHeight="300.0" minHeight="118.0" prefHeight="154.0" prefWidth="249.0" />
                                  </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
                               </VBox>
-                              <VBox fx:id="extraFilters" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
+                              <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
+                                    <TextField fx:id="productNameField" />
+                                    <Button fx:id="productNameButton" mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Company" />
+                                    <TextField fx:id="productCompanyField" />
+                                    <Button fx:id="productCompanyButton" mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
+                                    <TextField fx:id="sellerField" />
+                                    <Button fx:id="sellerButton" mnemonicParsing="false" text="Set" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
+                                 <children>
+                                    <RadioButton fx:id="onlyStockToggle" mnemonicParsing="false" text="Only show Products In Stock" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
+                                 <children>
+                                    <RadioButton fx:id="onlyOffToggle" mnemonicParsing="false" text="Only show Products In Off" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price Range" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
+                                    <Slider fx:id="priceMinSlider" />
+                                    <Text layoutX="96.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
+                                    <Slider fx:id="priceMaxSlider" />
+                                    <Button fx:id="priceButton" mnemonicParsing="false" text="Set" />
+                                 </children>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </VBox>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </VBox>
-         </items>
-      </SplitPane>
+                        <VBox fx:id="extraFilters" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="271.0" spacing="10.0" styleClass="right-vbox">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
