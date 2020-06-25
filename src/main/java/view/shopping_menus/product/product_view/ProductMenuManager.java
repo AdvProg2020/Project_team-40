@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
@@ -46,6 +48,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public TextField titleField;
     public TextArea commentField;
     public Text descriptionText;
+    public ImageView imageView;
     public JFXTreeTableView<Attribute> attributesTreeView;
 
     private static Product product;
@@ -60,6 +63,11 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         category.setText(product.getCategory());
         rating.setText(product.getAverageScore() + " / 5");
         productID = product.getProductId();
+        try {
+            Image image = new Image(getClass().getResourceAsStream("/images/" + product.getName() + ".jpg"));
+            imageView.setImage(image);
+        }catch(Exception e){
+        }
 
         SpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getCount(), 0);
         countSpinner.setValueFactory(spinnerValueFactory);

@@ -22,7 +22,7 @@
          <children>
             <AnchorPane layoutX="48.0" layoutY="10.0" prefHeight="192.0" prefWidth="1014.0">
                <children>
-                  <ImageView fitHeight="140.0" fitWidth="192.0" layoutX="46.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="192.0" layoutX="46.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/question-mark.png" />
                      </image>
