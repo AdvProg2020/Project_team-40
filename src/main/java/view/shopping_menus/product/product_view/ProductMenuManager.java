@@ -63,7 +63,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
 
         SpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getCount(), 0);
         countSpinner.setValueFactory(spinnerValueFactory);
-
         cartButton.setOnAction(actionEvent -> {
             try {
                 ProductController.getInstance().addProductToCart(productID, (Integer)spinnerValueFactory.getValue());
@@ -130,6 +129,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeComments(){
+        //Initialize submit comment section
         commentButton.setOnAction(actionEvent -> {
             try {
                 ProductController.getInstance().addComment(productID, titleField.getText(), commentField.getText());
@@ -138,14 +138,19 @@ public class ProductMenuManager extends MenuManager implements Initializable{
             }
         });
 
+        //Display previous comments
+        ArrayList<Comment> comments = null;
         try {
-            for(Comment comment : ProductController.getInstance().getComments(productID)) {
+             comments = ProductController.getInstance().getComments(productID);
+        } catch(MenuException e) {
+            e.printStackTrace();
+        }
+        try {
+            for(Comment comment : comments) {
                 CommentItemManager.setLastComment(comment);
                 Node node = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/comment_item.fxml"));
                 commentsSection.getChildren().add(node);
             }
-        } catch(MenuException e) {
-            e.printStackTrace();
         } catch(IOException e){
             e.printStackTrace();
         }

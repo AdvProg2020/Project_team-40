@@ -1,10 +1,11 @@
 package view.shopping_menus.product.product_view;
 
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Comment;
+import model.users.Customer;
+import model.users.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +16,7 @@ public class CommentItemManager implements Initializable{
     private Comment comment;
 
     public ImageView imageView;
-    public Text usernameText, titleText, contentText;
+    public Text userText, titleText, contentText, statusText, dateText;
 
 
     public CommentItemManager(){
@@ -26,7 +27,9 @@ public class CommentItemManager implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle){
         //TODO : image
 
-        usernameText.setText(comment.getUsername());
+        statusText.setText(comment.getStatus().toString());
+        dateText.setText(comment.getLastUpdate().toString());
+        userText.setText(comment.getUsername());
         titleText.setText(comment.getTitle());
         contentText.setText(comment.getContent());
     }
