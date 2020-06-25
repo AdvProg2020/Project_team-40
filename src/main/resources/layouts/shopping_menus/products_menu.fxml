@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1100.0" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1100.0" style="-fx-background-color: whie;">
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1100.0">
          <children>
             <Label prefHeight="18.0" prefWidth="117.0" text="Sort by :">
                <padding>
@@ -27,8 +27,8 @@
                </padding>
             </Label>
             <JFXComboBox fx:id="sortsComboBox" prefHeight="26.0" prefWidth="133.0" promptText="default" />
-            <Region prefHeight="42.0" prefWidth="488.0" />
-            <JFXButton onAction="#refresh" text="Refresh">
+            <Region prefHeight="42.0" prefWidth="508.0" />
+            <JFXButton onAction="#refresh" prefHeight="39.0" prefWidth="108.0" text="Refresh">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +37,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton onAction="#showMoreItems" text="Show more">
+            <JFXButton onAction="#showMoreItems" prefHeight="40.0" prefWidth="126.0" text="Show more">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,21 +59,22 @@
       </HBox>
       <VBox layoutX="-1.0" layoutY="43.0" prefHeight="567.0" prefWidth="1106.0">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1106.0">
+               <children>
+                  <Region prefHeight="90.0" prefWidth="230.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
+                  <Region layoutX="68.0" layoutY="11.0" prefHeight="18.0" prefWidth="138.0" />
+                  <Text layoutX="325.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+                  <Region layoutX="412.0" layoutY="11.0" prefHeight="18.0" prefWidth="190.0" />
+                  <Text layoutX="525.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Score" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
             <ScrollPane fitToWidth="true" prefHeight="607.0" prefWidth="608.0">
                <content>
-                  <VBox fx:id="products" prefHeight="561.0" prefWidth="1105.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="1105.0">
-                           <children>
-                              <Region prefHeight="41.0" prefWidth="230.0" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
-                              <Region layoutX="68.0" layoutY="11.0" prefHeight="41.0" prefWidth="126.0" />
-                              <Text layoutX="325.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
-                              <Region layoutX="412.0" layoutY="11.0" prefHeight="41.0" prefWidth="133.0" />
-                              <Text layoutX="525.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Score" />
-                           </children>
-                        </HBox>
-                     </children></VBox>
+                  <VBox fx:id="products" prefHeight="561.0" prefWidth="1105.0" />
                </content>
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="36.0" prefWidth="594.0" />

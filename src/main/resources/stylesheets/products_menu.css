@@ -1,10 +1,4 @@
 .root{
-    -fx-spacing: 20;
-}
-
-HBox{
-    -fx-border-color: gray;
-    -fx-spacing: 10;
 }
 
 .button{
