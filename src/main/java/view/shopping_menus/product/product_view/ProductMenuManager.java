@@ -101,10 +101,9 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         digestSection.getChildren().add(title2);
 
         JFXTreeTableView<Attribute> treeView = new JFXTreeTableView<>();
-        digestSection.getChildren().add(treeView);
 
         JFXTreeTableColumn<Attribute, String> nameCol = new JFXTreeTableColumn<>("Attribute name");
-        nameCol.setPrefWidth(400);
+        nameCol.setPrefWidth(500);
         nameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Attribute, String> param){
@@ -113,7 +112,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         });
 
         JFXTreeTableColumn<Attribute, String> valueCol = new JFXTreeTableColumn<>("Attribute value");
-        valueCol.setPrefWidth(400);
+        valueCol.setPrefWidth(500);
         valueCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Attribute, String> param){
@@ -136,6 +135,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         treeView.getColumns().setAll(nameCol, valueCol);
         treeView.setRoot(root);
         treeView.setShowRoot(false);
+        digestSection.getChildren().add(treeView);
 
     }
 
@@ -148,14 +148,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
             if(value == null)
                 value = "-";
             this.value = new SimpleStringProperty(value);
-        }
-
-        @Override
-        public String toString(){
-            return "Attribute{" +
-                    "name=" + name +
-                    ", value=" + value +
-                    '}';
         }
     }
 
@@ -183,7 +175,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
 
     private void initializeSellers(){
         ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(product.getName());
-        System.out.println(sellers);
         for(String seller : sellers) {
             try {
                 SellerItemManager.setLastSeller(seller);

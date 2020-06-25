@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/guest-male.png" />
+                        <Image url="@../images/account.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -69,7 +69,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/gear.png" />
+                        <Image url="@../images/product.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -81,7 +81,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8-back-arrow-50.png" />
+                        <Image url="@../images/back.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -93,7 +93,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8-exit-48.png" />
+                        <Image url="@../images/exit.png" />
                      </image>
                   </ImageView>
                </graphic>

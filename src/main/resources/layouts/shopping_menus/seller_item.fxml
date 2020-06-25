@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Text?>
 
-
-<HBox fx:controller="view.shopping_menus.product.product_view.SellerItemManager"
-      alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.SellerItemManager">
    <children>
       <Text fx:id="sellerText" strokeType="OUTSIDE" strokeWidth="0.0" text="SellerName" wrappingWidth="130.1367130279541" />
       <Region prefHeight="200.0" prefWidth="200.0" />
