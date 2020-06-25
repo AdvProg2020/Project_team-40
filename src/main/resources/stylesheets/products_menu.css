@@ -15,11 +15,7 @@ HBox{
 }
 
 .button:hover{
-    -fx-background-color: gray;
-}
-
-.button:pressed{
-    -fx-background-color: #388001;
+    -fx-opacity: 0.5;
 }
 
 .none{
