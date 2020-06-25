@@ -94,7 +94,7 @@ public class AddProductManager extends MenuManager implements Initializable {
     }
 
     private void finalizeCreatingProduct() {
-
+//TODO:
     }
 
     private boolean isAFieldEmpty() {
