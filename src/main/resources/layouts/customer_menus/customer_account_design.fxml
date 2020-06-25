@@ -15,7 +15,7 @@
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToOrders" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
+                <JFXButton onAction="#goToOrdersMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>

@@ -27,7 +27,7 @@ public class ManageUsersManager extends MenuManager implements Initializable {
         for (String userName : managerAccountController.getAllUserNames()) {
             try {
                 User user = managerAccountController.getUser(userName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/user_item.fxml"));
+                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(user, hBox);
                 vBoxItems.getChildren().add(item);
