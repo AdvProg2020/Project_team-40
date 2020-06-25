@@ -3,14 +3,22 @@ package view.account_menus.customer_view.orders_view;
 import com.jfoenix.controls.JFXButton;
 import controller.accounts.CustomerAccountController;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.log.Log;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,6 +40,29 @@ public class OrderMenu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerAccountController = CustomerAccountController.getInstance();
+        productsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton() == MouseButton.PRIMARY && mouseEvent.getClickCount() == 2){
+                    handleRateProduct(productsList.getSelectionModel().getSelectedItems().get(0));
+                }
+            }
+        });
+    }
+
+    private void handleRateProduct(String productId) {
+        Stage stage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/customer_menus/customer_orders_menus/rate_menu.fxml"));
+            AnchorPane pane = loader.load();
+            RateMenu rateMenu = loader.getController();
+            rateMenu.setProductId(productId);
+            stage.setScene(new Scene(pane, 500, 350));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setLogIdLabel(String logId) {
