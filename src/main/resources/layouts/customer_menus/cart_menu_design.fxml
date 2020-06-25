@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.customer_view.cart_view.CartMenuManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.cart_view.CartMenuManager">
+    <GridPane layoutX="329.0" layoutY="38.0" prefHeight="574.0" prefWidth="200.0">
+      <columnConstraints>
+         <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" />
+         <RowConstraints maxHeight="42.0" minHeight="21.0" prefHeight="21.0" />
+         <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+          <RowConstraints prefHeight="50.0" />
+      </rowConstraints>
+      <children>
+          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="200.0" text="My Cart" textAlignment="CENTER">
+              <font>
+                  <Font size="40.0" />
+              </font>
+          </Label>
+          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="210.0" text="Home address:" textAlignment="CENTER" GridPane.rowIndex="2">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+          <TextField alignment="CENTER" prefWidth="200.0" promptText="address" GridPane.rowIndex="3" />
+          <Label fx:id="addressError" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" textAlignment="CENTER" GridPane.rowIndex="4">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="223.0" text="Final price:" textAlignment="CENTER" GridPane.rowIndex="5">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+          <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="309.0" textAlignment="CENTER" GridPane.rowIndex="6">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+          <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="219.0" text="Discount Code:" textAlignment="CENTER" GridPane.rowIndex="7">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+          <TextField alignment="CENTER" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="8" />
+          <Button prefWidth="200" text="apply" GridPane.rowIndex="9" />
+          <Button prefHeight="25.0" prefWidth="292.0" text="purchase" GridPane.rowIndex="11" />
+          <Label fx:id="discountError" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" textAlignment="CENTER" GridPane.rowIndex="10">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
+      </children></GridPane>
 </AnchorPane>

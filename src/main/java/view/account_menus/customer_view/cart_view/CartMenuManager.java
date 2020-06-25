@@ -1,4 +1,7 @@
 package view.account_menus.customer_view.cart_view;
 
-public class CartMenuManager {
+import view.MenuManager;
+
+public class CartMenuManager extends MenuManager {
+    //TODO: After payment, the previous page must be shown, implement it!
 }
