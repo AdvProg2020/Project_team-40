@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.seller_view.SalesHistoryManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="684.0" prefWidth="858.0" style="-fx-background-color: #ffd803" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.SalesHistoryManager">
+    <Label alignment="CENTER" layoutX="299.0" layoutY="50.0" prefHeight="68.0" prefWidth="261.0" text="Sales History">
+        <font>
+            <Font size="40.0" />
+        </font>
+    </Label>
+    <ScrollPane layoutX="117.0" layoutY="140.0" prefHeight="500.0" prefWidth="624.0">
+        <VBox fx:id="mainBox" prefHeight="500.0" prefWidth="624.0" style="-fx-background-color: #fffa94">
+            
+        </VBox>
+    </ScrollPane>
 </AnchorPane>

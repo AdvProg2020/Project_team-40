@@ -50,9 +50,10 @@ public class ProductItemManager extends MenuManager {
     }
 
     public void handleViewProduct() {
-
+        //TODO:
     }
 
     public void handleEditProduct() {
+        //TODO:
     }
 }
