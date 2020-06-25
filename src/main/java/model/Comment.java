@@ -69,7 +69,7 @@ public class Comment implements Serializable{
     }
 
     public boolean hasBought (){
-        return ((Customer)User.getLoggedInUser()).hasBought(productID);
+        return ((Customer)User.getUserByUsername(username)).hasBought(productID);
     }
 
     public Date getLastUpdate(){
@@ -82,6 +82,10 @@ public class Comment implements Serializable{
         this.content = this.content + "\nEdit " + numberOfUpdates + " : \n" + "title : " + title + "\n" +
         "------------------------" + "\n" +
         "content : " + content ;
+    }
+
+    public String getIsBoughtStatus(){
+        return this.hasBought() ? "This user has purchased the product." : "This user has not purchased this product";
     }
 
     @Override
