@@ -53,15 +53,12 @@ public abstract class MenuManager {
     }
 
     protected void setSecondaryInnerPane(Parent root) {
-
+        secondaryPane.getChildren().clear();
+        secondaryPane.getChildren().add(root);
     }
 
     public void goToProductsMenu(){
         setMainInnerPane("/layouts/shopping_menus/products_menu.fxml");
-    }
-
-    public void goToOffsMenu(){
-        setMainInnerPane("/layouts/offs_menu.fxml");
     }
 
     public void goToAccountsMenu() {
