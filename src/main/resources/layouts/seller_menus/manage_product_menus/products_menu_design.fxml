@@ -8,7 +8,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane xmlns="http://javafx.com/javafx"
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.account_menus.seller_view.sellers_products_view.SellersProductsManager"
             prefHeight="631.0" prefWidth="831.0">
@@ -42,7 +42,7 @@
                 </Label>
             </children>
         </HBox>
-        <JFXButton contentDisplay="CENTER" layoutX="737.0" layoutY="111.0" onAction="#addProduct" prefHeight="42.0" prefWidth="50.0" text=" ">
+        <JFXButton fx:id="addButton" contentDisplay="CENTER" layoutX="737.0" layoutY="111.0" onAction="#addProduct" prefHeight="42.0" prefWidth="50.0" text=" ">
             <graphic>
                 <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                     <image>

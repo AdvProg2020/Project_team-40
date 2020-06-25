@@ -1,5 +1,6 @@
 package view.account_menus.seller_view.sellers_products_view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Product;
+import model.users.Seller;
 import view.MenuManager;
 
 import java.io.IOException;
@@ -24,10 +26,14 @@ import java.util.ResourceBundle;
 public class SellersProductsManager extends MenuManager implements Initializable {
     private SellerAccountController sellerAccountController;
     public VBox vBoxItems;
+    public JFXButton addButton;
+    public AnchorPane anchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sellerAccountController = SellerAccountController.getInstance();
+        if(!((Seller) sellerAccountController.getThisUser()).isManagerPermission())
+            anchorPane.getChildren().remove(addButton);
         loadProducts();
     }
 
