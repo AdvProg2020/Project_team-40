@@ -89,12 +89,13 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 }else{
                     AllProductsController.getInstance().addFilter("category", (String)((TreeItem)t1).getValue());
                 }
-                initializeFilter();
+                refreshFilters();
+                refresh();
             }
         });
     }
 
-    private void initializeFilter(){
+    private void refreshFilters(){
         extraFilters.getChildren().clear();
 
         for(String filter : AllProductsController.getInstance().getAvailableStringFilters()) {
@@ -114,6 +115,9 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 e.printStackTrace();
             }
         }
+    }
+
+    private void initializeFilter(){
 
         productNameField.textProperty().addListener(((observableValue, s, t1) -> {
             if(t1 == "")
@@ -143,8 +147,9 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         try {
             priceCap = AllProductsController.getInstance().getRangeCap("price");
             priceMaxSlider.setMax(priceCap);
-            priceMaxSlider.setValue(priceCap/2);
+            priceMaxSlider.setValue(priceCap);
             priceMinSlider.setMax(priceCap);
+            priceMinSlider.setValue(0);
         } catch(MenuException e) {
             e.printStackTrace();
         }
@@ -174,7 +179,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
         onlyStockToggle.setOnAction(actionEvent -> {
             boolean turnedOn = onlyStockToggle.isSelected();
-            System.out.println(turnedOn);
             if(turnedOn){
                 AllProductsController.getInstance().addFilter("status", "existing");
             }else{
