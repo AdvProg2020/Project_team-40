@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.DataException;
+import model.enumerations.PropertyType;
 import model.enumerations.SetUpStatus;
 import model.users.Seller;
 
@@ -41,8 +42,17 @@ public class Product implements Serializable{
         this.allBuyers = new ArrayList<>();
         this.allScores = new ArrayList<>();
         this.comments = new ArrayList<>();
+        HashMap<String, PropertyType> extraProperties = Category.getCategoryByName(category).getExtraProperties();
         this.extraStringProperties = new HashMap<>();
+        for(Map.Entry<String, PropertyType> entry : extraProperties.entrySet()) {
+            if(entry.getValue() == PropertyType.STRING)
+                this.extraStringProperties.put(entry.getKey(), "");
+        }
         this.extraValueProperties = new HashMap<>();
+        for(Map.Entry<String, PropertyType> entry : extraProperties.entrySet()) {
+            if(entry.getValue() == PropertyType.RANGE)
+                this.extraValueProperties.put(entry.getKey(), 0.0);
+        }
         this.status = SetUpStatus.Creating;
         productId = Utility.generateId();
     }

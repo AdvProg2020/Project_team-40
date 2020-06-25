@@ -1,13 +1,9 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXSlider;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
-import javafx.animation.Animation;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,8 +23,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
+    private static ProductsMenuManager productsMenuManager = null;
+
     public JFXComboBox<String> sortsComboBox;
-    public TextField productNameField, productCompanyField, sellerField;
+    public JFXTextField productNameField, productCompanyField, sellerField;
     public JFXToggleButton onlyOffToggle, onlyStockToggle;
     public JFXSlider priceMinSlider, priceMaxSlider;
     public VBox products;
@@ -45,6 +43,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        productsMenuManager = this;
         initializeProducts();
         initializeCategories();
         initializeFilter();
@@ -260,5 +259,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         return rangeProperties.get(rangeProperties.size() - 1);
     }
 
-
+    public static ProductsMenuManager getInstance(){
+        return productsMenuManager;
+    }
 }
