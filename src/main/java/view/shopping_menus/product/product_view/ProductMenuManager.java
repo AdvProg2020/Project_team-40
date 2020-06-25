@@ -1,5 +1,6 @@
 package view.shopping_menus.product.product_view;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -37,7 +38,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public Text rating;
     public Text category;
     public Spinner countSpinner;
-    public Button cartButton;
+    public JFXButton cartButton;
     public VBox digestSection;
     public VBox commentsSection;
     public VBox sellerSection;
@@ -46,9 +47,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public TextArea commentField;
     public Text descriptionText;
     public JFXTreeTableView<Attribute> attributesTreeView;
-
-    private SpinnerValueFactory<Integer> spinnerValue;
-    private int count = 0;
 
     private static Product product;
     private static String productID;
@@ -63,23 +61,15 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         rating.setText(product.getAverageScore() + " / 5");
         productID = product.getProductId();
 
-        spinnerValue = new SpinnerValueFactory<Integer>(){
-            @Override
-            public void decrement(int i){
-                count -= i;
-                if(count < 0)
-                    count = 0;
-            }
-
-            @Override
-            public void increment(int i){
-                count += i;
-            }
-        };
-        countSpinner.setValueFactory(spinnerValue);
+        SpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getCount(), 0);
+        countSpinner.setValueFactory(spinnerValueFactory);
 
         cartButton.setOnAction(actionEvent -> {
-            Cart.getThisCart().addProduct(product.getProductId(), count);
+            try {
+                ProductController.getInstance().addProductToCart(productID, (Integer)spinnerValueFactory.getValue());
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
         });
 
         initializeDigest();
