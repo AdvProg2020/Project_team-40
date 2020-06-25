@@ -69,6 +69,11 @@
               </font>
           </Label>
           <TextField fx:id="discountField" alignment="CENTER" prefHeight="25.0" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="8" />
+          <Label fx:id="purchaseError" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="12">
+              <font>
+                  <Font size="20.0" />
+              </font>
+          </Label>
       </children>
     </GridPane>
 </AnchorPane>

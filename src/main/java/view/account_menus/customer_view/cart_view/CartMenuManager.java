@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import model.log.Log;
 import view.MenuManager;
 
 import java.net.URL;
@@ -23,6 +24,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public Label priceLabel;
     public Label discountError;
     public Label addressError;
+    public Label purchaseError;
     public TextField discountField;
     public TextField addressField;
     public Button discountButton;
@@ -68,13 +70,14 @@ public class CartMenuManager extends MenuManager implements Initializable {
             addressError.setText("Write you address!");
         } else {
             try {
-                customerAccountController.makePayment();
+                Log log = customerAccountController.makePayment();
+                LogMenuManager.setLog(log);
+                setSecondaryInnerPane("/layouts/customer_menus/log_design.fxml");
             } catch (AccountsException e) {
-                e.printStackTrace();
+                purchaseError.setText(e.getMessage());
             }
         }
     }
-
 
     //TODO: After payment, the previous page must be shown, implement it!
 }
