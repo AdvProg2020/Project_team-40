@@ -15,23 +15,18 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public GridPane purchaseInformationPane;
     public AnchorPane mainPane;
     public Label emptyCartLabel;
+    public Label priceLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerAccountController = CustomerAccountController.getInstance();
         if(customerAccountController.getCart().isEmpty()) {
-            emptyCartError();
+            mainPane.getChildren().remove(purchaseInformationPane);
+            emptyCartLabel.setText("You have not chose any product!");
         } else {
-
+            priceLabel.setText(Double.toString(customerAccountController.getCartTotalPrice()));
         }
-
     }
 
-    private void emptyCartError() {
-        mainPane.getChildren().remove(purchaseInformationPane);
-        emptyCartLabel.setText("You have not chose any product!");
-    }
     //TODO: After payment, the previous page must be shown, implement it!
-
-
 }
