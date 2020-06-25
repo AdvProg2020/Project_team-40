@@ -134,7 +134,6 @@ public class ProductController{
         productAttributes.put("Status", product.getStatus().toString().toLowerCase());
         productAttributes.put("Company", product.getCompany());
         productAttributes.put("Category", product.getCategory());
-        productAttributes.put("Explanation", product.getExplanation());
         productAttributes.putAll(product.getExtraStringProperties());
 
         for(Map.Entry<String, Double> entry : product.getExtraValueProperties().entrySet()) {

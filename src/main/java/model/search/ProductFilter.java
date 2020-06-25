@@ -215,4 +215,23 @@ public class ProductFilter{
             this.products.put(product, TRUE);
         }
     }
+
+    public double getMaxCap(String rangeProperty){
+
+        double max = 10;
+
+        if(rangeProperty.equals("price")){
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(entry.getValue() && entry.getKey().getPrice() > max)
+                    max = entry.getKey().getPrice();
+            }
+        }else{
+            for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
+                if(entry.getValue()  && entry.getKey().getValueProperty(rangeProperty) > max)
+                    max = entry.getKey().getValueProperty(rangeProperty);
+            }
+        }
+
+        return max;
+    }
 }

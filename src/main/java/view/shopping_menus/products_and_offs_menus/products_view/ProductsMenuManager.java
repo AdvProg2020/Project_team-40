@@ -1,12 +1,9 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
-import javafx.animation.Animation;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,11 +23,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
+    private static ProductsMenuManager productsMenuManager = null;
+
     public JFXComboBox<String> sortsComboBox;
-    public Button priceButton;
-    public TextField productNameField, productCompanyField, sellerField;
+    public JFXTextField productNameField, productCompanyField, sellerField;
     public JFXToggleButton onlyOffToggle, onlyStockToggle;
-    public Slider priceMinSlider, priceMaxSlider;
+    public JFXSlider priceMinSlider, priceMaxSlider;
     public VBox products;
     public VBox filters;
     public VBox extraFilters;
@@ -45,10 +43,12 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        productsMenuManager = this;
         initializeProducts();
         initializeCategories();
         initializeFilter();
         initializeSorts();
+        refresh();
     }
 
     private void initializeProducts(){
@@ -89,12 +89,13 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 }else{
                     AllProductsController.getInstance().addFilter("category", (String)((TreeItem)t1).getValue());
                 }
-                initializeFilter();
+                refreshFilters();
+                refresh();
             }
         });
     }
 
-    private void initializeFilter(){
+    private void refreshFilters(){
         extraFilters.getChildren().clear();
 
         for(String filter : AllProductsController.getInstance().getAvailableStringFilters()) {
@@ -114,6 +115,9 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 e.printStackTrace();
             }
         }
+    }
+
+    private void initializeFilter(){
 
         productNameField.textProperty().addListener(((observableValue, s, t1) -> {
             if(t1 == "")
@@ -139,7 +143,27 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             refresh();
         }));
 
-        priceButton.setOnAction(actionEvent -> {
+        double priceCap = 0;
+        try {
+            priceCap = AllProductsController.getInstance().getRangeCap("price");
+            priceMaxSlider.setMax(priceCap);
+            priceMaxSlider.setValue(priceCap);
+            priceMinSlider.setMax(priceCap);
+            priceMinSlider.setValue(0);
+        } catch(MenuException e) {
+            e.printStackTrace();
+        }
+
+        priceMinSlider.setOnMouseReleased(mouseEvent -> {
+            try {
+                AllProductsController.getInstance().addFilter("price", priceMinSlider.getValue(), priceMaxSlider.getValue());
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+            refresh();
+        });
+
+        priceMaxSlider.setOnMouseReleased(mouseEvent -> {
             try {
                 AllProductsController.getInstance().addFilter("price", priceMinSlider.getValue(), priceMaxSlider.getValue());
             } catch(MenuException e) {
@@ -155,7 +179,6 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
         onlyStockToggle.setOnAction(actionEvent -> {
             boolean turnedOn = onlyStockToggle.isSelected();
-            System.out.println(turnedOn);
             if(turnedOn){
                 AllProductsController.getInstance().addFilter("status", "existing");
             }else{
@@ -237,5 +260,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         return rangeProperties.get(rangeProperties.size() - 1);
     }
 
-
+    public static ProductsMenuManager getInstance(){
+        return productsMenuManager;
+    }
 }

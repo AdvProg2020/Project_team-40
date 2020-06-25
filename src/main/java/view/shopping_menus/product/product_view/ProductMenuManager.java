@@ -1,13 +1,23 @@
 package view.shopping_menus.product.product_view;
 
+import com.jfoenix.controls.JFXTreeTableColumn;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import controller.menus.ProductController;
 import exceptions.MenuException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import model.Cart;
 import model.Comment;
 import model.Product;
@@ -15,6 +25,9 @@ import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ProductMenuManager extends MenuManager implements Initializable{
@@ -31,6 +44,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public Button commentButton;
     public TextField titleField;
     public TextArea commentField;
+    public Text descriptionText;
+    public JFXTreeTableView<Attribute> attributesTreeView;
 
     private SpinnerValueFactory<Integer> spinnerValue;
     private int count = 0;
@@ -73,7 +88,55 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeDigest(){
-        digestSection.getChildren().add(new Text(product.getExplanation()));
+
+        descriptionText.setText(product.getExplanation());
+
+        JFXTreeTableColumn<Attribute, String> nameCol = new JFXTreeTableColumn<>("Attribute name");
+        nameCol.setPrefWidth(500);
+        nameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Attribute, String> param){
+                return param.getValue().getValue().name;
+            }
+        });
+
+        JFXTreeTableColumn<Attribute, String> valueCol = new JFXTreeTableColumn<>("Attribute value");
+        valueCol.setPrefWidth(500);
+        valueCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Attribute, String> param){
+                return param.getValue().getValue().value;
+            }
+        });
+
+        ObservableList<Attribute> attributes = FXCollections.observableArrayList();
+        try {
+            HashMap<String, String> attributesHashMap = ProductController.getInstance().getProductAttributes(productID);
+            for(Map.Entry<String, String> entry : attributesHashMap.entrySet()) {
+                Attribute attribute = new Attribute(entry.getKey(), entry.getValue());
+                attributes.add(attribute);
+            }
+        } catch(MenuException e) {
+            e.printStackTrace();
+        }
+
+        final TreeItem<Attribute> root = new RecursiveTreeItem<>(attributes, RecursiveTreeObject::getChildren);
+        attributesTreeView.getColumns().setAll(nameCol, valueCol);
+        attributesTreeView.setRoot(root);
+        attributesTreeView.setShowRoot(false);
+        attributesTreeView.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
+    }
+
+    class Attribute extends RecursiveTreeObject<Attribute> {
+        StringProperty name;
+        StringProperty value;
+
+        public Attribute(String name, String value){
+            this.name = new SimpleStringProperty(name);
+            if(value == null)
+                value = "-";
+            this.value = new SimpleStringProperty(value);
+        }
     }
 
     private void initializeComments(){
@@ -99,7 +162,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeSellers(){
-        for(String seller : ProductController.getInstance().getSellersForProduct(product.getName())) {
+        ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(product.getName());
+        for(String seller : sellers) {
             try {
                 SellerItemManager.setLastSeller(seller);
                 Node node = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/seller_item.fxml"));

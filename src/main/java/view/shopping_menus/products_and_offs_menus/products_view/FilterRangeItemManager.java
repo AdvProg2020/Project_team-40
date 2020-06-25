@@ -1,5 +1,6 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
+import com.jfoenix.controls.JFXSlider;
 import controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.beans.value.ChangeListener;
@@ -14,9 +15,7 @@ import java.util.ResourceBundle;
 
 public class FilterRangeItemManager implements Initializable{
     public Text variableName;
-    public Slider minSlider;
-    public Slider maxSlider;
-    public Button setButton;
+    public JFXSlider minSlider, maxSlider;
 
     private String property;
     private double min;
@@ -32,27 +31,36 @@ public class FilterRangeItemManager implements Initializable{
 
         variableName.setText(property);
 
-        minSlider.valueProperty().addListener(new ChangeListener<Number>(){
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1){
-                min = t1.doubleValue();
-            }
-        });
+        try {
+            double cap = AllProductsController.getInstance().getRangeCap(property);
+            minSlider.setMax(cap);
+            maxSlider.setMax(cap);
+            minSlider.setValue(0);
+            maxSlider.setValue(cap);
+        } catch(MenuException e) {
+            e.printStackTrace();
+        }
 
-        maxSlider.valueProperty().addListener(new ChangeListener<Number>(){
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1){
-                max = t1.doubleValue();
-            }
-        });
-
-        setButton.setOnAction(actionEvent -> {
+        minSlider.setOnMouseReleased(mouseEvent -> {
+            min = minSlider.getValue();
             AllProductsController.getInstance().disableFilter(property);
             try {
                 AllProductsController.getInstance().addFilter(property, min, max);
             } catch(MenuException e) {
                 e.printStackTrace();
             }
+            ProductsMenuManager.getInstance().refresh();
+        });
+
+        maxSlider.setOnMouseReleased(mouseEvent -> {
+            max = maxSlider.getValue();
+            AllProductsController.getInstance().disableFilter(property);
+            try {
+                AllProductsController.getInstance().addFilter(property, min, max);
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+            ProductsMenuManager.getInstance().refresh();
         });
     }
 }

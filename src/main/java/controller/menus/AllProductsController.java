@@ -162,6 +162,12 @@ public class AllProductsController {
         currentSort = SortTypes.valueOf(sort);
     }
 
+    public double getRangeCap(String rangeProperty) throws MenuException{
+        if(!productFilter.getRangeProperties().containsKey(rangeProperty) && !rangeProperty.equals("price"))
+            throw new MenuException("No such range property");
+        return productFilter.getMaxCap(rangeProperty);
+    }
+
     public void disableSort() {
         currentSort = null;
     }

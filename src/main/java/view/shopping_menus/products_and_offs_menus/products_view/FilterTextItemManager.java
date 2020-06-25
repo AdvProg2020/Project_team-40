@@ -1,5 +1,6 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
+import com.jfoenix.controls.JFXTextField;
 import controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
@@ -13,8 +14,7 @@ import java.util.ResourceBundle;
 
 public class FilterTextItemManager implements Initializable{
     public Text variableName;
-    public TextField textField;
-    public Button setButton;
+    public JFXTextField textField;
 
     private String property;
     private ArrayList<String> values;
@@ -29,9 +29,9 @@ public class FilterTextItemManager implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle){
         variableName.setText(property);
 
-        setButton.setOnAction(actionEvent -> {
+        textField.textProperty().addListener(((observableValue, s, t1) -> {
             values.clear();
-            values.add(textField.getText());
+            values.add(t1);
 
             for(String value : values) {
                 if(value.isEmpty())
@@ -45,6 +45,7 @@ public class FilterTextItemManager implements Initializable{
             } catch(MenuException e) {
                 e.printStackTrace();
             }
-        });
+            ProductsMenuManager.getInstance().refresh();
+        }));
     }
 }
