@@ -129,6 +129,10 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
+    public double getPriceAfterDiscount() {
+        return priceAfterDiscount;
+    }
+
     public Log makePayment() throws AccountsException{
         Customer customer = (Customer) User.getLoggedInUser();
         if(this.priceAfterDiscount > customer.getCredit()) {

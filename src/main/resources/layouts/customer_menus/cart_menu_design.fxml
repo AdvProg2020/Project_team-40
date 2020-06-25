@@ -61,8 +61,8 @@
                   <Font size="20.0" />
               </font>
           </Label>
-          <TextField alignment="CENTER" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="8" />
-          <Button prefWidth="200" text="apply" GridPane.rowIndex="9" />
+          <TextField fx:id="discountField" alignment="CENTER" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="8" />
+          <Button fx:id="discountButton" prefWidth="200" text="apply" GridPane.rowIndex="9" onMouseClicked="#applyDiscount" />
           <Button prefHeight="25.0" prefWidth="292.0" text="purchase" GridPane.rowIndex="11" />
           <Label fx:id="discountError" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" textAlignment="CENTER" GridPane.rowIndex="10">
               <font>
