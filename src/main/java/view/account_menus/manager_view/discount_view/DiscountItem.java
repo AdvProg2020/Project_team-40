@@ -1,6 +1,7 @@
 package view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
+import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.DiscountCode;
+import model.users.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,13 +25,20 @@ public class DiscountItem implements Initializable {
     public JFXButton deleteDiscountButton;
     public JFXButton viewDiscountButton;
     public JFXButton editDiscountButton;
+    public HBox controlButtons;
     private ManagerAccountController managerAccountController;
-
+    private AccountController accountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         managerAccountController = ManagerAccountController.getInstance();
+        accountController = AccountController.getInstance();
+        if(accountController.getThisUser() instanceof Customer) {
+            controlButtons.getChildren().remove(deleteDiscountButton);
+            controlButtons.getChildren().remove(editDiscountButton);
+        }
     }
+
     private void loadDiscounts(VBox vBoxItems) {
         vBoxItems.getChildren().clear();
         for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
@@ -74,7 +83,7 @@ public class DiscountItem implements Initializable {
         });
     }
 
-    public void handleDeleteDiscount(ActionEvent event) {
+    public void handleDeleteDiscount() {
         HBox item = (HBox)((deleteDiscountButton.getParent()).getParent());
         VBox items =(VBox)(item.getParent()).getParent();
         String code =((Label)item.getChildren().get(0)).getText();
@@ -87,7 +96,7 @@ public class DiscountItem implements Initializable {
 
     }
 
-    public void handleViewDiscount(ActionEvent event){
+    public void handleViewDiscount(){
         HBox item = (HBox)((viewDiscountButton.getParent()).getParent());
         String code =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount.fxml"));
@@ -106,7 +115,7 @@ public class DiscountItem implements Initializable {
 
     }
 
-    public void handleEditDiscount(ActionEvent event) {
+    public void handleEditDiscount() {
         HBox item = (HBox)((editDiscountButton.getParent()).getParent());
         String code =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_discount_menus/edit_discount.fxml"));

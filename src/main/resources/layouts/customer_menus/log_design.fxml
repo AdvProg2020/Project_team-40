@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.customer_view.cart_view.LogMenuManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.cart_view.LogMenuManager">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="39.0" prefHeight="62.0" prefWidth="448.0" text="Log:" textAlignment="CENTER">
+        <font>
+            <Font size="40.0" />
+        </font>
+    </Label>
+    <Label fx:id="logLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="125.0" prefHeight="434.0" prefWidth="448.0" textAlignment="CENTER">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <Button onMouseClicked="#returnToAccount" layoutX="329.0" layoutY="591.0" prefWidth="200" text="Return to account" />
 </AnchorPane>

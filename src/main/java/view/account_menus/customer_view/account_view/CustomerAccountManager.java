@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import view.account_menus.AllAccountsManager;
+import view.account_menus.customer_view.cart_view.LogMenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,11 +24,12 @@ public class CustomerAccountManager extends AllAccountsManager implements Initia
     }
 
     public void goToCart() {
+        LogMenuManager.setLastMenuRoot(secondaryInnerPane.getParent());
         setSecondaryInnerPane("/layouts/customer_menus/cart_menu_design.fxml");
     }
 
     public void goToDiscountCode() {
-        setSecondaryInnerPane("/layouts/customer_menus/customer_discount_design.fxml");
+        setSecondaryInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml");
     }
 
     public void goToOrdersMenu(ActionEvent event) {
