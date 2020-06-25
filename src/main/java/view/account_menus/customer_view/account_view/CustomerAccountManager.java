@@ -22,12 +22,14 @@ public class CustomerAccountManager extends AllAccountsManager implements Initia
     }
 
     public void goToOrders() {
-
+        setSecondaryInnerPane("/layouts/customer_menus/orders_menu_design.fxml");
     }
 
     public void goToCart() {
+        setSecondaryInnerPane("/layouts/customer_menus/cart_menu_design.fxml");
     }
 
     public void goToDiscountCode() {
+        setSecondaryInnerPane("/layouts/customer_menus/customer_discount_design.fxml");
     }
 }
