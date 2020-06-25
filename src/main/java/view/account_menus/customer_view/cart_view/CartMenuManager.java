@@ -28,7 +28,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
         customerAccountController = CustomerAccountController.getInstance();
         if(customerAccountController.getCart().isEmpty()) {
             mainPane.getChildren().remove(purchaseInformationPane);
-            emptyCartLabel.setText("You have not chose any product!");
+            emptyCartLabel.setText("You have not chose any product\nDo you want to see our offers?");
         } else {
             priceLabel.setText(Double.toString(customerAccountController.getCartTotalPrice()));
         }
@@ -52,7 +52,11 @@ public class CartMenuManager extends MenuManager implements Initializable {
     }
 
     private void disableDiscountCode() {
-
+        customerAccountController.setPriceWithoutDiscount();
+        discountField.setDisable(false);
+        discountButton.setText("apply");
+        priceLabel.setText(String.valueOf(customerAccountController.getCartTotalPrice()));
+        discountButton.setOnMouseClicked(e -> applyDiscount());
     }
 
 
