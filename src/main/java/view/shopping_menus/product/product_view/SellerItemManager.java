@@ -14,8 +14,9 @@ public class SellerItemManager extends MenuManager implements Initializable{
 
     private static String lastSeller;
     private String seller;
-    public ImageView imageView;
-    public Text sellerName;
+    public Text sellerText;
+    public Text priceText;
+    public Text statusText;
     public Button chooseButton;
 
     public SellerItemManager(){
@@ -25,10 +26,13 @@ public class SellerItemManager extends MenuManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         //TODO : set image
-        sellerName.setText(lastSeller);
+        sellerText.setText(seller);
+        Product product = Product.getProductWithSellerAndName(ProductMenuManager.getProduct().getName(), seller);
+        priceText.setText(Double.toString(product.getPrice()));
+        statusText.setText(product.getStatus().toString());
 
         chooseButton.setOnAction(actionEvent -> {
-            ProductMenuManager.setProduct(Product.getProductWithSellerAndName(ProductMenuManager.getProduct().getName(), seller));
+            ProductMenuManager.setProduct(product);
             setMainInnerPane("/layouts/shopping_menus/product_menu.fxml");
         });
     }

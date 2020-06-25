@@ -26,6 +26,7 @@ import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -126,7 +127,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
             for(Map.Entry<String, String> entry : attributesHashMap.entrySet()) {
                 Attribute attribute = new Attribute(entry.getKey(), entry.getValue());
                 attributes.add(attribute);
-                System.out.println(attribute);
             }
         } catch(MenuException e) {
             e.printStackTrace();
@@ -146,7 +146,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         public Attribute(String name, String value){
             this.name = new SimpleStringProperty(name);
             if(value == null)
-                value = "";
+                value = "-";
             this.value = new SimpleStringProperty(value);
         }
 
@@ -182,7 +182,9 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeSellers(){
-        for(String seller : ProductController.getInstance().getSellersForProduct(product.getName())) {
+        ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(product.getName());
+        System.out.println(sellers);
+        for(String seller : sellers) {
             try {
                 SellerItemManager.setLastSeller(seller);
                 Node node = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/seller_item.fxml"));

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.shopping_menus.product.product_view.SellerItemManager"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<HBox fx:controller="view.shopping_menus.product.product_view.SellerItemManager"
+      alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="sellerText" strokeType="OUTSIDE" strokeWidth="0.0" text="SellerName" wrappingWidth="130.1367130279541" />
+      <Region prefHeight="200.0" prefWidth="200.0" />
+      <Text fx:id="priceText" layoutX="10.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price" wrappingWidth="130.1367130279541" />
+      <Region layoutX="140.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Text fx:id="statusText" layoutX="340.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status" wrappingWidth="130.1367130279541" />
+      <Region layoutX="471.0" layoutY="10.0" prefHeight="96.0" prefWidth="233.0" />
+      <JFXButton fx:id="chooseButton" prefHeight="42.0" prefWidth="199.0" text="visit" />
+   </children>
+</HBox>
