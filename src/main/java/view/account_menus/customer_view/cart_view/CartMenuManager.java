@@ -34,7 +34,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
         customerAccountController = CustomerAccountController.getInstance();
         if(customerAccountController.getCart().isEmpty()) {
             mainPane.getChildren().remove(purchaseInformationPane);
-            emptyCartLabel.setText("You have not chose any product\nDo you want to see our offers?");
+            emptyCartLabel.setText("You have not chosen any product\nDo you want to see our offers?\nGo to products' Menu...");
         } else {
             priceLabel.setText(Double.toString(customerAccountController.getCartTotalPrice()));
         }

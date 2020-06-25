@@ -32,6 +32,6 @@ public class CustomerAccountManager extends AllAccountsManager implements Initia
     }
 
     public void goToDiscountCode() {
-        setSecondaryInnerPane("/layouts/customer_menus/customer_discount_design.fxml");
+        setSecondaryInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml");
     }
 }
