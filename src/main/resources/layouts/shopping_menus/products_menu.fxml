@@ -2,10 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1100.0" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1100.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1100.0" style="-fx-background-color: whie;">
          <children>
             <Label prefHeight="18.0" prefWidth="117.0" text="Sort by :">
                <padding>
@@ -101,12 +101,12 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
                                  <children>
-                                    <RadioButton fx:id="onlyStockToggle" mnemonicParsing="false" text="Only show Products In Stock" />
+                                    <JFXToggleButton fx:id="onlyStockToggle" text="Only show products in stock" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
                                  <children>
-                                    <RadioButton fx:id="onlyOffToggle" mnemonicParsing="false" text="Only show Products In Off" />
+                                    <JFXToggleButton fx:id="onlyOffToggle" text="Only show prodcuts in off" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
