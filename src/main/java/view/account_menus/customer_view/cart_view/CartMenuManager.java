@@ -2,12 +2,14 @@ package view.account_menus.customer_view.cart_view;
 
 import controller.accounts.CustomerAccountController;
 import exceptions.AccountsException;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import view.MenuManager;
 
 import java.net.URL;
@@ -20,7 +22,9 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public Label emptyCartLabel;
     public Label priceLabel;
     public Label discountError;
+    public Label addressError;
     public TextField discountField;
+    public TextField addressField;
     public Button discountButton;
 
     @Override
@@ -57,6 +61,18 @@ public class CartMenuManager extends MenuManager implements Initializable {
         discountButton.setText("apply");
         priceLabel.setText(String.valueOf(customerAccountController.getCartTotalPrice()));
         discountButton.setOnMouseClicked(e -> applyDiscount());
+    }
+
+    public void purchase() {
+        if(addressField.getText().isBlank()) {
+            addressError.setText("Write you address!");
+        } else {
+            try {
+                customerAccountController.makePayment();
+            } catch (AccountsException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
