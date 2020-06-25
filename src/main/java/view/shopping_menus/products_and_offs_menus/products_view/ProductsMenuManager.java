@@ -1,6 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.menus.AllProductsController;
 import exceptions.AccountsException;
@@ -27,10 +28,9 @@ import java.util.ResourceBundle;
 
 public class ProductsMenuManager extends MenuManager implements Initializable{
     public JFXComboBox<String> sortsComboBox;
-    public Button priceButton;
     public TextField productNameField, productCompanyField, sellerField;
     public JFXToggleButton onlyOffToggle, onlyStockToggle;
-    public Slider priceMinSlider, priceMaxSlider;
+    public JFXSlider priceMinSlider, priceMaxSlider;
     public VBox products;
     public VBox filters;
     public VBox extraFilters;
@@ -139,7 +139,26 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
             refresh();
         }));
 
-        priceButton.setOnAction(actionEvent -> {
+        double priceCap = 0;
+        try {
+            priceCap = AllProductsController.getInstance().getRangeCap("price");
+            priceMaxSlider.setMax(priceCap);
+            priceMaxSlider.setValue(priceCap/2);
+            priceMinSlider.setMax(priceCap);
+        } catch(MenuException e) {
+            e.printStackTrace();
+        }
+
+        priceMinSlider.setOnMouseReleased(mouseEvent -> {
+            try {
+                AllProductsController.getInstance().addFilter("price", priceMinSlider.getValue(), priceMaxSlider.getValue());
+            } catch(MenuException e) {
+                e.printStackTrace();
+            }
+            refresh();
+        });
+
+        priceMaxSlider.setOnMouseReleased(mouseEvent -> {
             try {
                 AllProductsController.getInstance().addFilter("price", priceMinSlider.getValue(), priceMaxSlider.getValue());
             } catch(MenuException e) {
