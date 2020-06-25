@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountMenuManager">
+<AnchorPane fx:id="mainPane" prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountMenuManager">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="42.0" prefHeight="94.0" prefWidth="410.0" text="Manage Discount Codes" textAlignment="CENTER">
             <font>
@@ -60,7 +60,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="refreshButton" layoutX="716.0" layoutY="112.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" ">
+      <JFXButton fx:id="refreshButton" layoutX="716.0" layoutY="112.0" onMouseClicked="#loadAllDiscounts" prefHeight="36.0" prefWidth="37.0" text=" ">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
