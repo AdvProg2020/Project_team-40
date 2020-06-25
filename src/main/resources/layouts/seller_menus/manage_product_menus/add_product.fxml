@@ -44,6 +44,9 @@
                     </Label>
                     <Label fx:id="categoryError" />
                 </HBox>
+                <VBox fx:id="propertyBox">
+
+                </VBox>
             </VBox>
         </content>
     </ScrollPane>

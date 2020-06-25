@@ -180,7 +180,7 @@ public class SellerAccountController extends AccountController{
         product.setStatus(status);
     }
 
-    public SetUpStatus getSetpStatus(String productId) {
+    public SetUpStatus getSetUpStatus(String productId) {
         return Product.getProductById(productId).getStatus();
     }
 
