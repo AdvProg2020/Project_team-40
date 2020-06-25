@@ -82,21 +82,18 @@
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
                                     <TextField fx:id="productNameField" />
-                                    <Button fx:id="productNameButton" mnemonicParsing="false" text="Set" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Company" />
                                     <TextField fx:id="productCompanyField" />
-                                    <Button fx:id="productCompanyButton" mnemonicParsing="false" text="Set" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seller Name" />
                                     <TextField fx:id="sellerField" />
-                                    <Button fx:id="sellerButton" mnemonicParsing="false" text="Set" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
