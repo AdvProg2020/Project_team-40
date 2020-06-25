@@ -25,7 +25,7 @@ public class CategoryItem implements Initializable {
     public JFXButton deleteCategoryButton;
     public JFXButton viewCategoryButton;
     public JFXButton editCategoryButton;
-    public AnchorPane categoryPane;
+    public HBox buttons;
     private ManagerAccountController managerAccountController;
     private AccountController accountController;
 
@@ -34,8 +34,8 @@ public class CategoryItem implements Initializable {
         accountController = AccountController.getInstance();
         managerAccountController = ManagerAccountController.getInstance();
         if(accountController.getThisUser() instanceof Seller) {
-            categoryPane.getChildren().remove(deleteCategoryButton);
-            categoryPane.getChildren().remove(editCategoryButton);
+            buttons.getChildren().remove(deleteCategoryButton);
+            buttons.getChildren().remove(editCategoryButton);
         }
     }
 
