@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="mainPane" prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.cart_view.CartMenuManager">
-    <Label fx:id="emptyCartLabel" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="281.0" prefHeight="123.0" prefWidth="389.0" textAlignment="CENTER" GridPane.rowIndex="7">
+    <Label fx:id="emptyCartLabel" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="167.0" prefHeight="193.0" prefWidth="594.0" textAlignment="CENTER" GridPane.rowIndex="7">
         <font>
             <Font size="40.0" />
         </font>

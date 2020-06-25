@@ -28,7 +28,7 @@
                     <font>
                         <Font size="17.0" />
                     </font></Label>
-                <HBox prefHeight="42.0" prefWidth="149.0">
+                <HBox fx:id="controlButtons" prefHeight="42.0" prefWidth="149.0">
                     <children>
                         <JFXButton fx:id="deleteDiscountButton" onAction="#handleDeleteDiscount" prefHeight="42.0" prefWidth="50.0" text=" ">
                             <graphic>
@@ -48,15 +48,15 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                  <JFXButton fx:id="editDiscountButton" onAction="#handleEditDiscount" prefHeight="48.0" prefWidth="50.0" text=" ">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/icons8-edit-144.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
+                      <JFXButton fx:id="editDiscountButton" onAction="#handleEditDiscount" prefHeight="48.0" prefWidth="50.0" text=" ">
+                         <graphic>
+                            <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                  <Image url="@../../../images/icons8-edit-144.png" />
+                               </image>
+                            </ImageView>
+                         </graphic>
+                      </JFXButton>
                     </children>
                 </HBox>
             </children>
