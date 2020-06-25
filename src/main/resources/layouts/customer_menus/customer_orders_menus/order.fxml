@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="802.0" style="-fx-background-color: #d6f1fc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.orders_view.OrderMenu">
+    <children>
+        <VBox layoutX="86.0" layoutY="170.0" prefHeight="279.0" prefWidth="124.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Log Id">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Date">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="65.0" prefWidth="124.0" text="Cost">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="57.0" prefWidth="124.0" text="Befor Discount">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="49.0" prefWidth="124.0" text="Status">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="54.0" prefWidth="124.0" text="Address">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="93.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Order Detail">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="260.0" layoutY="170.0" prefHeight="279.0" prefWidth="196.0">
+            <children>
+                <Label fx:id="logIdLabel" alignment="CENTER" prefHeight="49.0" prefWidth="198.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="dateLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="costLabel" alignment="CENTER" prefHeight="58.0" prefWidth="201.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="discountLabel" alignment="CENTER" prefHeight="51.0" prefWidth="199.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="statusLabel" alignment="CENTER" prefHeight="44.0" prefWidth="202.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="addressLabel" alignment="CENTER" prefHeight="50.0" prefWidth="202.0" wrapText="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="93.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/icons8-purchase-order-48.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="backButton" layoutX="365.0" layoutY="469.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/icons8-back-arrow-64.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+      <ListView fx:id="productsList" layoutX="527.0" layoutY="201.0" prefHeight="250.0" prefWidth="196.0" />
+      <Label alignment="CENTER" layoutX="527.0" layoutY="147.0" prefHeight="27.0" prefWidth="196.0" style="-fx-background-color: #48c9b0;" text="Products">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_CENTER" layoutX="527.0" layoutY="174.0" prefHeight="27.0" prefWidth="196.0" style="-fx-background-color: #48c9b0;" text="Double click to rate product">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

@@ -87,16 +87,16 @@ public class Log implements Serializable {
     }
 
     private String showProductsWithQuantityAndSellers() {
-        String productsWithQuantityAndSellers = "Products:\n";
+        StringBuilder productsWithQuantityAndSellers = new StringBuilder("Products:\n");
         for(Map.Entry<String, Integer> entry: productsId.entrySet()){
             String id = entry.getKey();
             int quantity = entry.getValue();
             Product product = Product.getProductById(id);
-            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Product: " + product.getName() + "\n";
-            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Seller: " + product.getSeller();
-            productsWithQuantityAndSellers = productsWithQuantityAndSellers + "Quantity: " + quantity + "\n";
+            productsWithQuantityAndSellers.append("Product: ").append(product.getName()).append("\n");
+            productsWithQuantityAndSellers.append("Seller: ").append(product.getSeller());
+            productsWithQuantityAndSellers.append("Quantity: ").append(quantity).append("\n");
         }
-        return productsWithQuantityAndSellers;
+        return productsWithQuantityAndSellers.toString();
     }
 
     public String toString() {
