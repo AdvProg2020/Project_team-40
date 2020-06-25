@@ -48,6 +48,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         initializeCategories();
         initializeFilter();
         initializeSorts();
+        refresh();
     }
 
     private void initializeProducts(){

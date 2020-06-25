@@ -6,7 +6,6 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import controller.menus.ProductController;
 import exceptions.MenuException;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -45,6 +44,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public Button commentButton;
     public TextField titleField;
     public TextArea commentField;
+    public Text descriptionText;
+    public JFXTreeTableView<Attribute> attributesTreeView;
 
     private SpinnerValueFactory<Integer> spinnerValue;
     private int count = 0;
@@ -87,20 +88,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     }
 
     private void initializeDigest(){
-        digestSection.setSpacing(20);
 
-        //add description
-        Text title = new Text("Description :");
-        title.setStyle("-fx-font-size: 28");
-        digestSection.getChildren().add(title);
-        digestSection.getChildren().add(new Text(product.getExplanation()));
-
-        //add attributes
-        Text title2 = new Text("Attributes :");
-        title2.setStyle("-fx-font-size: 28");
-        digestSection.getChildren().add(title2);
-
-        JFXTreeTableView<Attribute> treeView = new JFXTreeTableView<>();
+        descriptionText.setText(product.getExplanation());
 
         JFXTreeTableColumn<Attribute, String> nameCol = new JFXTreeTableColumn<>("Attribute name");
         nameCol.setPrefWidth(500);
@@ -132,11 +121,10 @@ public class ProductMenuManager extends MenuManager implements Initializable{
         }
 
         final TreeItem<Attribute> root = new RecursiveTreeItem<>(attributes, RecursiveTreeObject::getChildren);
-        treeView.getColumns().setAll(nameCol, valueCol);
-        treeView.setRoot(root);
-        treeView.setShowRoot(false);
-        digestSection.getChildren().add(treeView);
-
+        attributesTreeView.getColumns().setAll(nameCol, valueCol);
+        attributesTreeView.setRoot(root);
+        attributesTreeView.setShowRoot(false);
+        attributesTreeView.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     class Attribute extends RecursiveTreeObject<Attribute> {
