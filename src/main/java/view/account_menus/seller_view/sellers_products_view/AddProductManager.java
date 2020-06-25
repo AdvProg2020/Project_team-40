@@ -2,12 +2,14 @@ package view.account_menus.seller_view.sellers_products_view;
 
 import com.jfoenix.controls.JFXTextField;
 import controller.accounts.SellerAccountController;
+import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import model.Category;
+import model.Product;
 import model.enumerations.PropertyType;
 import view.MenuManager;
 import view.ValidInput;
@@ -31,6 +33,7 @@ public class AddProductManager extends MenuManager implements Initializable {
     public JFXTextField companyField;
     public JFXTextField priceField;
     public JFXTextField countField;
+    public JFXTextField descriptionField;
     public Label nameError;
     public Label companyError;
     public Label priceError;
@@ -94,7 +97,15 @@ public class AddProductManager extends MenuManager implements Initializable {
     }
 
     private void finalizeCreatingProduct() {
-//TODO:
+        try {
+            Product product = sellerAccountController.createNewProduct(nameField.getText(), companyField.getText(),
+                    Double.parseDouble(priceField.getText()), Integer.parseInt(priceField.getText()),
+                    ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText(), descriptionField.getText());
+     //       product.setExtraValueProperties();
+       //     product.setExtraValueProperties();
+        } catch (AccountsException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isAFieldEmpty() {
