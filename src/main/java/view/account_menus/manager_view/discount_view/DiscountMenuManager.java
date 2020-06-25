@@ -28,6 +28,7 @@ public class DiscountMenuManager implements Initializable {
     public JFXButton addDiscount;
     public JFXButton refreshButton;
     public AnchorPane mainPane;
+    public Label title;
     private controller.accounts.ManagerAccountController managerAccountController;
     private AccountController accountController;
     private CustomerAccountController customerAccountController;
@@ -39,6 +40,7 @@ public class DiscountMenuManager implements Initializable {
         if(accountController.getThisUser() instanceof Customer) {
             mainPane.getChildren().remove(addDiscount);
             mainPane.getChildren().remove(refreshButton);
+            title.setText("My Discount Codes");
             loadCustomersDiscounts();
         } else {
             loadAllDiscounts();
