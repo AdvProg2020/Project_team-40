@@ -4,8 +4,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.cart_view.CartMenuManager">
-    <GridPane layoutX="329.0" layoutY="38.0" prefHeight="574.0" prefWidth="200.0">
+<AnchorPane fx:id="mainPane" prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.cart_view.CartMenuManager">
+    <Label fx:id="emptyCartLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="295.0" layoutY="308.0" prefHeight="68.0" prefWidth="277.0" textAlignment="CENTER" GridPane.rowIndex="7">
+        <font>
+            <Font size="40.0" />
+        </font>
+    </Label>
+    <GridPane fx:id="purchaseInformationPane" layoutX="329.0" layoutY="38.0" prefHeight="574.0" prefWidth="200.0">
       <columnConstraints>
          <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
          <ColumnConstraints />
