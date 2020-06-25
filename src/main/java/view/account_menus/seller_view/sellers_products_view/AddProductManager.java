@@ -15,8 +15,8 @@ import view.MenuManager;
 import view.ValidInput;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddProductManager extends MenuManager implements Initializable {
@@ -96,14 +96,35 @@ public class AddProductManager extends MenuManager implements Initializable {
 
     private void finalizeCreatingProduct() {
         try {
+            HashMap<String, Double> extraValueProperties = validateExtraValueProperties();
             Product product = sellerAccountController.createNewProduct(nameField.getText(), companyField.getText(),
                     Double.parseDouble(priceField.getText()), Integer.parseInt(priceField.getText()),
                     ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText(), descriptionField.getText());
-       //     product.setExtraValueProperties();
-     //       product.setExtraStringProperties();
+            product.setExtraValueProperties(extraValueProperties);
+            product.setExtraStringProperties(getExtraStringProperties());
         } catch (AccountsException e) {
             e.printStackTrace();
         }
+    }
+
+    private HashMap<String, String> getExtraStringProperties() {
+        HashMap<String, String> extraStringProperties = new HashMap<>();
+        for(Map.Entry<String, JFXTextField> field : valuePropertyField.entrySet()) {
+            extraStringProperties.put(field.getKey(), field.getValue().getText());
+        }
+        return extraStringProperties;
+    }
+
+    private HashMap<String, Double> validateExtraValueProperties() throws AccountsException {
+        HashMap<String, Double> extraValueProperties = new HashMap<>();
+        for(Map.Entry<String, JFXTextField> field : valuePropertyField.entrySet()) {
+            if(!ValidInput.DOUBLE.getStringMatcher(field.getValue().getText()).matches()) {
+                categoryError.setText("Enter valid inputs!");
+                throw new AccountsException("Invalid input!");
+            }
+            extraValueProperties.put(field.getKey(), Double.parseDouble(field.getValue().getText()));
+        }
+        return extraValueProperties;
     }
 
     private boolean isAFieldEmpty() {
