@@ -57,7 +57,7 @@
       </VBox>
       <VBox fx:id="filtersSliderMenu" layoutX="1100.0" prefHeight="610.0" prefWidth="272.0">
          <children>
-            <ScrollPane fitToWidth="true" prefHeight="610.0" prefWidth="358.0">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="610.0" prefWidth="358.0">
                <content>
                   <VBox fx:id="filters" prefHeight="606.0" prefWidth="285.0" styleClass="none">
                      <children>
