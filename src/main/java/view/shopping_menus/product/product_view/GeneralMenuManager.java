@@ -1,5 +1,6 @@
 package view.shopping_menus.product.product_view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
@@ -8,6 +9,8 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import model.users.Customer;
+import model.users.User;
 import view.MenuManager;
 
 import java.net.URL;
@@ -16,8 +19,9 @@ import java.util.ResourceBundle;
 public class GeneralMenuManager extends MenuManager implements Initializable{
 
     public Text productName, sellerName, companyName, category, rating, descriptionText, priceText;
-    public Spinner countSpinner;
+    public Spinner<Integer> countSpinner;
     public ImageView imageView;
+    public JFXButton cartButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -29,16 +33,21 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
         descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
         priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
-
-        //Work the functionality of product count
-        SpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
-        countSpinner.setValueFactory(spinnerValueFactory);
-
+        if (User.getLoggedInUser() instanceof Customer) {
+            //Work the functionality of product count
+            SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
+            countSpinner.setValueFactory(spinnerValueFactory);
+        }
+        else {
+            cartButton.setDisable(true);
+            countSpinner.setDisable(true);
+        }
         //Set image
         try {
             Image image = new Image(getClass().getResourceAsStream("/product_images/" + ProductMenuManager.getProduct().getName() + ".jpg"));
             imageView.setImage(image);
         }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
