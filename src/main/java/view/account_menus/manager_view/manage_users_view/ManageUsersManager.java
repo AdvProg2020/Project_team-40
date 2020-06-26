@@ -59,14 +59,16 @@ public class ManageUsersManager extends MenuManager implements Initializable {
 
 
     public void handleAddManager(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/register_menu.fxml"));
-        RegisterManager registerManager = loader.getController();
-        registerManager.registerLabel.setText("New Manager");
-        registerManager.sellerButton.setDisable(true);
-        registerManager.customerButton.setDisable(true);
-        registerManager.managerButton.setSelected(true);
+
         try {
+            RegisterManager.setIsByManager(true);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/register_menu.fxml"));
             Pane pane = loader.load();
+            RegisterManager registerManager = loader.getController();
+            registerManager.registerLabel.setText("New Manager");
+            registerManager.sellerButton.setDisable(true);
+            registerManager.customerButton.setDisable(true);
+            registerManager.managerButton.setSelected(true);
             Stage stage = new Stage();
             stage.setScene(new Scene(pane, 1100, 610));
             stage.initModality(Modality.APPLICATION_MODAL);
