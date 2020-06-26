@@ -124,9 +124,9 @@ public class AddOffManager extends MenuManager implements Initializable{
         try {
             SellerAccountController.getInstance().addOffToSeller(chosenProducts, startDate, endDate, percentage);
         } catch(AccountsException e) {
+            e.printStackTrace();
         }
 
-        SellersOffsManager.getInstance().refresh();
         ((Stage)startDateField.getScene().getWindow()).close();
     }
 

@@ -1,5 +1,6 @@
 package view.account_menus.seller_view.sellers_offs_view;
 
+import controller.accounts.SellerAccountController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,6 +19,8 @@ import view.shopping_menus.product.product_view.ProductMenuManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SellersOffsManager implements Initializable{
@@ -36,9 +39,9 @@ public class SellersOffsManager implements Initializable{
 
     private void initializeOffs(){
         offsVBox.getChildren().clear();
-        ArrayList<String> offIds = seller.getOffIds();
-        for(String offId : offIds) {
-            OffItemManager.setLastOff(Off.getOffByID(offId));
+        HashMap<String, Off> offs = SellerAccountController.getInstance().getAllOffs();
+        for(Map.Entry<String, Off> entry : offs.entrySet()) {
+            OffItemManager.setLastOff(entry.getValue());
 
             Node node = null;
             try {
@@ -62,10 +65,6 @@ public class SellersOffsManager implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void refresh(){
-        initializeOffs();
     }
 
     public static SellersOffsManager getInstance(){
