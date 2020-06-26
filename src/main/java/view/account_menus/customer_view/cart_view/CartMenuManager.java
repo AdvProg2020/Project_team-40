@@ -79,6 +79,4 @@ public class CartMenuManager extends MenuManager implements Initializable {
             }
         }
     }
-
-    //TODO: After payment, the previous page must be shown, implement it!
 }
