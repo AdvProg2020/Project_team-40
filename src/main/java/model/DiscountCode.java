@@ -96,7 +96,7 @@ public class DiscountCode implements Serializable {
     }
 
     public double calculatePriceAfterDiscount(double price){
-        double newPrice = price * (1 - this.percentage*0.01) * price;//TODO: I THINK THIS METHOD HAS BUGS
+        double newPrice = price * (1 - this.percentage*0.01);
         if (newPrice > this.maxAmount)
             newPrice = this.maxAmount;
         return newPrice;
@@ -151,8 +151,14 @@ public class DiscountCode implements Serializable {
 
     public static boolean isExpired(Date endDate, Date startDate){
         Date today = new Date();
+        return today.after(endDate);
+    }
+
+    public static boolean isValid(Date endDate, Date startDate){
+        Date today = new Date();
         return !(today.before(startDate) && today.before(endDate));
     }
+
 
     public static DiscountCode getDiscountCodeByCode(String code){
         for (DiscountCode discountCode : allDiscountCodes) {

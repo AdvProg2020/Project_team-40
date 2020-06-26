@@ -89,7 +89,7 @@ public class ManagerAccountController extends AccountController{
         catch (Exception e){
             throw new AccountsException("Invalid date format");
         }
-        if(DiscountCode.isExpired(start, end)) {
+        if(DiscountCode.isValid(start, end)) {
             throw new AccountsException("Invalid date");
         }
         DiscountCode discountCode = new DiscountCode(start, end, percentage, maxDiscount, countForEachUser);
