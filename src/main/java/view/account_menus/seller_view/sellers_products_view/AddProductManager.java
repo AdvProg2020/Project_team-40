@@ -73,30 +73,9 @@ public class AddProductManager extends MenuManager implements Initializable {
     }
 
     public void createProduct() {
-        boolean hasError = false;
-        if(valuePropertyField == null) {
-            categoryError.setText("Choose a category!");
-            hasError = true;
-        } else if(isAFieldEmpty()) {
-            categoryError.setText("Fill all fields!");
-            hasError = true;
-        } else {
-            categoryError.setText("");
-        }
-
-        if(nameField.getText().isBlank()) {
-            nameError.setText("Enter name!");
-            hasError = true;
-        } else {
-            nameError.setText("");
-        }
-
-        if(companyField.getText().isBlank()) {
-            companyError.setText("Enter company!");
-            hasError = true;
-        } else {
-            companyError.setText("");
-        }
+        boolean hasError = hasPropertiesError();
+        hasError = validateNameOrCompany(hasError, nameField);
+        hasError = validateNameOrCompany(hasError, companyField);
 
         if(priceField.getText().isBlank()) {
             priceError.setText("Enter price!");
@@ -120,6 +99,28 @@ public class AddProductManager extends MenuManager implements Initializable {
 
         if(!hasError)
             finalizeCreatingProduct();
+    }
+
+    private boolean validateNameOrCompany(boolean hasError, JFXTextField field) {
+        if(field.getText().isBlank()) {
+            field.setText("Fill this field!");
+            hasError = true;
+        } else {
+            field.setText("");
+        }
+        return hasError;
+    }
+
+    private boolean hasPropertiesError() {
+        if(valuePropertyField == null) {
+            categoryError.setText("Choose a category!");
+            return true;
+        } else if(isAFieldEmpty()) {
+            categoryError.setText("Fill all fields!");
+            return true;
+        }
+        categoryError.setText("");
+        return false;
     }
 
     private void finalizeCreatingProduct() {
