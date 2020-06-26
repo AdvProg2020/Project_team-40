@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="765.0" style="-fx-background-color: #2e86c1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.requests_view.OffMenu">
+    <children>
+        <VBox layoutX="86.0" layoutY="170.0" prefHeight="279.0" prefWidth="124.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Off id">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="59.0" prefWidth="124.0" text="Start date">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="65.0" prefWidth="124.0" text="End date">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="57.0" prefWidth="124.0" text="Seller">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="49.0" prefWidth="124.0" text="Percentage">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="240.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Off Details">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <VBox layoutX="260.0" layoutY="170.0" prefHeight="279.0" prefWidth="196.0">
+            <children>
+                <Label fx:id="offIdLabel" alignment="CENTER" prefHeight="56.0" prefWidth="198.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startDateLabel" alignment="CENTER" prefHeight="56.0" prefWidth="200.0" wrapText="true">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="endDateLabel" alignment="CENTER" prefHeight="56.0" prefWidth="201.0" wrapText="true">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="sellerLabel" alignment="CENTER" prefHeight="56.0" prefWidth="199.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="percentageLabel" alignment="CENTER" prefHeight="56.0" prefWidth="202.0">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <ImageView fitHeight="70.0" fitWidth="84.0" layoutX="218.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/sale-price-tag.png" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="backButton" layoutX="347.0" layoutY="465.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" ">
+            <graphic>
+                <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/icons8-back-arrow-64.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+      <ListView fx:id="productIdsListView" layoutX="505.0" layoutY="216.0" prefHeight="233.0" prefWidth="200.0" />
+      <Label alignment="CENTER" layoutX="505.0" layoutY="180.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #48c9b0;" text="Products">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
