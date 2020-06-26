@@ -91,24 +91,26 @@ public class ProductView extends MenuManager implements Initializable {
         HashMap<String, Double> extraValueProperties = thisProduct.getExtraValueProperties();
         HashMap<String, String> extraStringProperties = thisProduct.getExtraStringProperties();
         for(Map.Entry<String, Double> entry : extraValueProperties.entrySet()) {
-            AnchorPane item = null;
-            try {
-                item = (AnchorPane) FXMLLoader.load(getClass().
-                        getResource("/layouts/seller_menus/manage_product_menus/property_item.fxml"));
-                HBox hBox = (HBox) item.getChildren().get(0);
-                setLabelsContent(entry, hBox);
-                propertyList.getChildren().add(item);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            setLabelsContent(entry.getKey(), Double.toString(entry.getValue()));
+        }
+        for(Map.Entry<String, String> entry : extraStringProperties.entrySet()) {
+            setLabelsContent(entry.getKey(), entry.getValue());
         }
     }
 
-    private void setLabelsContent(Map.Entry<String, Double> entry, HBox hBox) {
+    private void setLabelsContent(String propertyName, String property) {
+        try {
+            AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
+                    getResource("/layouts/seller_menus/manage_product_menus/property_item.fxml"));
+        HBox hBox = (HBox) item.getChildren().get(0);
         Label propertyNameLabel =(Label) hBox.getChildren().get(0);
         Label propertyValueLabel = (Label) hBox.getChildren().get(1);
-        propertyNameLabel.setText(entry.getKey());
-        propertyValueLabel.setText(Double.toString(entry.getValue()));
+        propertyNameLabel.setText(propertyName);
+        propertyValueLabel.setText(property);
+        propertyList.getChildren().add(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleCloseWindow(ActionEvent event) {
