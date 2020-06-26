@@ -1,11 +1,13 @@
 package view;
 
+import exceptions.DataException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Category;
+import model.Loader;
 import model.Product;
 import model.log.Log;
 import model.users.Customer;
@@ -88,5 +90,13 @@ public class GUI extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1100, 700));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(windowEvent -> {
+            try {
+                Loader.getLoader().saveData();
+            } catch (DataException e) {
+                e.printStackTrace();
+            }
+            System.exit(1);
+        });
     }
 }

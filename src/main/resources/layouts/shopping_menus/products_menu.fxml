@@ -61,12 +61,14 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="1106.0">
                <children>
-                  <Region prefHeight="90.0" prefWidth="230.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Product Name" />
-                  <Region layoutX="68.0" layoutY="11.0" prefHeight="27.0" prefWidth="122.0" />
-                  <Text layoutX="325.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Price" />
-                  <Region layoutX="412.0" layoutY="11.0" prefHeight="27.0" prefWidth="137.0" />
-                  <Text layoutX="525.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="User Score" />
+                  <Region prefHeight="60.0" prefWidth="203.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Product Name" wrappingWidth="105.68514251708984" />
+                  <Region layoutX="68.0" layoutY="11.0" prefHeight="60.0" prefWidth="66.0" />
+                  <Text layoutX="325.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Price/base" wrappingWidth="53.767208099365234" />
+                  <Region layoutX="412.0" layoutY="11.0" prefHeight="60.0" prefWidth="105.0" />
+                  <Text layoutX="525.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="User Score" wrappingWidth="56.511287689208984" />
+                  <Region layoutX="508.0" layoutY="10.0" prefHeight="60.0" prefWidth="91.0" />
+                  <Text layoutX="623.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Off" wrappingWidth="44.511287689208984" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -131,7 +133,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="27.0" prefWidth="194.0">
                                  <children>
-                                    <JFXToggleButton fx:id="onlyOffToggle" text="In of only" />
+                                    <JFXToggleButton fx:id="onlyOffToggle" text="In off only" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="194.0">
