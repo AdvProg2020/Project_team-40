@@ -73,25 +73,53 @@ public class AddProductManager extends MenuManager implements Initializable {
     }
 
     public void createProduct() {
+        boolean hasError = false;
         if(valuePropertyField == null) {
             categoryError.setText("Choose a category!");
+            hasError = true;
         } else if(isAFieldEmpty()) {
             categoryError.setText("Fill all fields!");
-        } else if(nameField.getText().isBlank()) {
+            hasError = true;
+        } else {
+            categoryError.setText("");
+        }
+
+        if(nameField.getText().isBlank()) {
             nameError.setText("Enter name!");
-        } else if(companyField.getText().isBlank()) {
+            hasError = true;
+        } else {
+            nameError.setText("");
+        }
+
+        if(companyField.getText().isBlank()) {
             companyError.setText("Enter company!");
-        } else if(priceField.getText().isBlank()) {
+            hasError = true;
+        } else {
+            companyError.setText("");
+        }
+
+        if(priceField.getText().isBlank()) {
             priceError.setText("Enter price!");
-        } else if(countField.getText().isBlank()) {
-            countError.setText("Enter count!");
-        } else if(!ValidInput.INTEGER.getStringMatcher(countField.getText()).matches()) {
-            countError.setText("Enter a number!");
+            hasError = true;
         } else if(!ValidInput.DOUBLE.getStringMatcher(priceField.getText()).matches()) {
             priceError.setText("Enter a number!");
+            hasError = true;
         } else {
-            finalizeCreatingProduct();
+            priceError.setText("");
         }
+
+        if(countField.getText().isBlank()) {
+            countError.setText("Enter count!");
+            hasError = true;
+        } else if(!ValidInput.INTEGER.getStringMatcher(countField.getText()).matches()) {
+            countError.setText("Enter a number!");
+            hasError = true;
+        } else {
+            countError.setText("");
+        }
+
+        if(!hasError)
+            finalizeCreatingProduct();
     }
 
     private void finalizeCreatingProduct() {
