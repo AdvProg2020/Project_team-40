@@ -146,6 +146,4 @@ public class MenuManager {
     public static void setMainMenuBackButton(JFXButton mainMenuBackButton) {
         MenuManager.mainMenuBackButton = mainMenuBackButton;
     }
-
-
 }
