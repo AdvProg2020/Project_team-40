@@ -36,29 +36,5 @@
                 </JFXButton>
             </children>
         </HBox>
-      <HBox layoutY="-72.0" prefHeight="44.0" prefWidth="746.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="202.0" style="-fx-background-color: #5dade2;" text="Log Id">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: #5dade2;" text="Date">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: #5dade2;" text="Cost">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: #5dade2;" text="Action">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
     </children>
 </AnchorPane>
