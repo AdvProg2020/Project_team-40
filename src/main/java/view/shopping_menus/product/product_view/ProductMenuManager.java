@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 public class ProductMenuManager extends MenuManager implements Initializable{
     private static Product product;
-
     public Pane secondaryInnerPane;
 
     @Override
