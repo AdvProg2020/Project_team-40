@@ -49,6 +49,7 @@ public class ProductItemManager extends MenuManager implements Initializable{
 
         digest.setOnAction(actionEvent -> {
             ProductMenuManager.setProduct(product);
+
             setMainInnerPane("/layouts/shopping_menus/product_menu.fxml");
         });
 
