@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,6 +36,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
         if(!((Seller) sellerAccountController.getThisUser()).isManagerPermission())
             anchorPane.getChildren().remove(addButton);
         loadProducts();
+        ProductItemManager.setVBoxItems(vBoxItems);
     }
 
     public void loadProducts() {
@@ -72,8 +74,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
