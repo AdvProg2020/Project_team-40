@@ -42,4 +42,12 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
             e.printStackTrace();
         }
     }
+
+    public void addComment(){
+        //TODO
+    }
+
+    public void rate(){
+        //TODO
+    }
 }

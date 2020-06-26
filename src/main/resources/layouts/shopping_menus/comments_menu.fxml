@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="612.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.CommentsMenuManager">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="29.0" layoutY="65.0" prefHeight="530.0" prefWidth="802.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="29.0" layoutY="85.0" prefHeight="510.0" prefWidth="802.0">
          <content>
-            <VBox fx:id="commentsSection" prefHeight="523.0" prefWidth="803.0" />
+            <VBox fx:id="commentsSection" prefHeight="497.0" prefWidth="803.0" />
          </content>
       </ScrollPane>
       <Text layoutX="29.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="Comments" />
+      <JFXButton layoutX="501.0" layoutY="20.0" onAction="#addComment" prefHeight="40.0" prefWidth="153.0" text="Add comment">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/comment.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="697.0" layoutY="20.0" onAction="#rate" prefHeight="40.0" prefWidth="134.0" text="Rate product">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/star.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

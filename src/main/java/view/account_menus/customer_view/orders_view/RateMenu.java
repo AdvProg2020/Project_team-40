@@ -26,7 +26,6 @@ public class RateMenu implements Initializable {
         this.productId = productId;
     }
 
-
     public void handleRateProduct(ActionEvent event) {
         try {
             customerAccountController.rateProduct(productId, (int)rateBar.getRating());
