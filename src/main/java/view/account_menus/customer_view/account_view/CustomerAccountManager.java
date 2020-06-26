@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomerAccountManager extends MenuManager implements Initializable {
-
     public AnchorPane secondaryInnerPane;
 
     @Override
@@ -24,7 +23,6 @@ public class CustomerAccountManager extends MenuManager implements Initializable
     }
 
     public void goToCart() {
-        LogMenuManager.setLastMenuRoot(secondaryInnerPane.getParent());
         setSecondaryInnerPane("/layouts/customer_menus/cart_menu_design.fxml");
     }
 
@@ -32,7 +30,7 @@ public class CustomerAccountManager extends MenuManager implements Initializable
         setSecondaryInnerPane("/layouts/manager_menus/manager_discount_menus/discount_menu_design.fxml");
     }
 
-    public void goToOrdersMenu(ActionEvent event) {
+    public void goToOrdersMenu() {
         setSecondaryInnerPane("/layouts/customer_menus/customer_orders_menus/orders_menu_design.fxml");
     }
 }

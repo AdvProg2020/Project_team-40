@@ -26,7 +26,7 @@ public class PropertyManager extends MenuManager {
         hBox.getChildren().remove(valueLabel);
         if(valueTexField == null)
             valueTexField = new TextField();
-        valueTexField.setText("");
+        valueTexField.setText(valueLabel.getText());
         hBox.getChildren().add(1, valueTexField);
     }
 
