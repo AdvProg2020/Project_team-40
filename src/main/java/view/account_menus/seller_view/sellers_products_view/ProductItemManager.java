@@ -6,6 +6,7 @@ import controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +17,8 @@ import javafx.stage.Stage;
 import model.Category;
 import model.Product;
 import view.MenuManager;
+
+import java.io.IOException;
 
 public class ProductItemManager extends MenuManager {
     private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
@@ -50,7 +53,15 @@ public class ProductItemManager extends MenuManager {
     }
 
     public void handleViewProduct() {
-        //TODO:
+        Stage stage = new Stage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/seller_menus/manage_product_menus/product.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root, 1197, 540));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleEditProduct() {

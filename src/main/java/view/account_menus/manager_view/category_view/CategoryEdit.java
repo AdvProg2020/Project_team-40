@@ -58,8 +58,7 @@ public class CategoryEdit implements Initializable {
         oldProperties.addAll(category.getExtraProperties().keySet());
     }
 
-
-    public void handleEditCategory(ActionEvent event) {
+    public void handleEditCategory() {
         HashMap<String, String> toEdit = new HashMap<>();
         if (!nameField.getText().equals(oldName))
             toEdit.put("name", nameField.getText());
@@ -82,10 +81,7 @@ public class CategoryEdit implements Initializable {
 
     }
 
-
-
-    public void handleCancel(ActionEvent event) {
+    public void handleCancel() {
         ((Stage)cancelButton.getScene().getWindow()).close();
     }
-
 }
