@@ -2,12 +2,12 @@ package view.account_menus.manager_view.account_view;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import view.account_menus.AllAccountsManager;
+import view.MenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccountManager extends AllAccountsManager implements Initializable {
+public class AccountManager extends MenuManager implements Initializable {
     public Pane secondaryInnerPane;
 
     @Override

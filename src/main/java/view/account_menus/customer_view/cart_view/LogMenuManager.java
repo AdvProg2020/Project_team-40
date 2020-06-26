@@ -4,12 +4,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import model.log.Log;
-import view.account_menus.AllAccountsManager;
+import view.MenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogMenuManager extends AllAccountsManager implements Initializable {
+public class LogMenuManager extends MenuManager implements Initializable {
     private static Log log;
     private static Parent lastMenuRoot;
     public Label logLabel;

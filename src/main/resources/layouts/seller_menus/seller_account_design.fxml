@@ -24,7 +24,7 @@
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Sales History" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToSalesHistory" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Sales History" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>

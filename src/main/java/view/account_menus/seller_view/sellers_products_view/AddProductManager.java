@@ -24,7 +24,7 @@ public class AddProductManager extends MenuManager implements Initializable {
     private ToggleGroup toggleGroupCategory;
     private HashMap<String, JFXTextField> valuePropertyField;
     private HashMap<String, JFXTextField> stringPropertyField;
-    public VBox propertyBox;
+    private VBox propertyBox;
     public VBox informationBox;
     public Label categoryError;
     public JFXTextField nameField;
@@ -48,7 +48,7 @@ public class AddProductManager extends MenuManager implements Initializable {
             toggleGroupCategory.getToggles().add(categoryButton);
             informationBox.getChildren().add(categoryButton);
         }
-
+        informationBox.getChildren().add(propertyBox = new VBox());
     }
 
     private void showCategoryProperties(RadioButton radioButton) {

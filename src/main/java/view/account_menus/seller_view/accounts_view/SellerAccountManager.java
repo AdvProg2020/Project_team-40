@@ -2,12 +2,12 @@ package view.account_menus.seller_view.accounts_view;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import view.account_menus.AllAccountsManager;
+import view.MenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SellerAccountManager extends AllAccountsManager implements Initializable {
+public class SellerAccountManager extends MenuManager implements Initializable {
     public Pane secondaryInnerPane;
 
     @Override
@@ -30,5 +30,9 @@ public class SellerAccountManager extends AllAccountsManager implements Initiali
 
     public void goToCategories() {
         setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
+    }
+
+    public void goToSalesHistory() {
+        setSecondaryInnerPane("/layouts/seller_menus/sales_history.fxml");
     }
 }
