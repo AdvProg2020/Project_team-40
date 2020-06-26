@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Comment;
 import model.Off;
 import model.Product;
 import model.requests.*;
@@ -45,9 +46,11 @@ public class RequestItem extends MenuManager implements Initializable {
                     setSellingPermissionLabels((SellingPermissionMenu) requestMenu, request);
                 else if (type.equalsIgnoreCase("Remove Product"))
                     setRemoveProductLabel((RemoveProductMenu) requestMenu, request);
-
+                else if(type.equalsIgnoreCase("Add Comment"))
+                    setAddCommentLabels((AddCommentMenu) requestMenu, request);
 
             }
+
             private void setAddProductLabels(AddProductMenu addProductMenu, Request request){
                 Product product = ((AddProduct)request).getProduct();
                 addProductMenu.setAddProduct((AddProduct) request);
@@ -108,9 +111,19 @@ public class RequestItem extends MenuManager implements Initializable {
                 requestMenu.setSellerLabel(off.getSeller().getUsername());
                 requestMenu.setPercentageLabel(Double.toString(off.getDiscountPercentage()));
             }
+
+            private void setAddCommentLabels(AddCommentMenu requestMenu, Request request) {
+                AddComment addCommentRequest = (AddComment)request;
+                Comment comment = addCommentRequest.getComment();
+                requestMenu.setAddComment(addCommentRequest);
+                requestMenu.setUserNameLabel(comment.getUsername());
+                requestMenu.setLastUpdateLabel(comment.getLastUpdate().toString());
+                requestMenu.setStatusLabel(comment.getIsBoughtStatus());
+                requestMenu.setTitleLabel(comment.getTitle());
+                requestMenu.setContentLabel(comment.getContent());
+            }
         });
     }
-
 
 
 
@@ -127,6 +140,8 @@ public class RequestItem extends MenuManager implements Initializable {
             return "selling_permission";
         if (type.equalsIgnoreCase("Remove Product"))
             return "remove_product";
+        if (type.equalsIgnoreCase("Add Comment"))
+            return "add_comment";
         return null;
     }
 
@@ -142,11 +157,13 @@ public class RequestItem extends MenuManager implements Initializable {
             RequestMenu requestMenu = loader.getController();
             setLabelsContent(requestMenu, type, request);
             Stage userWindow = new Stage();
-            userWindow.setScene(new Scene(pane, 520, 600));
+            int width = requestMenu instanceof AddCommentMenu ? 600 : 520;
+            userWindow.setScene(new Scene(pane, width, 600));
             userWindow.initModality(Modality.APPLICATION_MODAL);
             userWindow.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -219,7 +219,6 @@ public class ProductFilter{
     public double getMaxCap(String rangeProperty){
 
         double max = 10;
-        System.out.println(rangeProperty);
 
         if(rangeProperty.equals("price")){
             for(Map.Entry<Product, Boolean> entry : products.entrySet()) {

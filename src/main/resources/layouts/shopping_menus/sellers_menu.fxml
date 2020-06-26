@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="626.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.SellersMenuManager">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" layoutX="31.0" layoutY="67.0" prefHeight="525.0" prefWidth="804.0">
+         <content>
+            <VBox fx:id="sellersSection" prefHeight="513.0" prefWidth="806.0" />
+         </content>
+      </ScrollPane>
+      <Text layoutX="30.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="Sellers :" />
+   </children>
+</AnchorPane>

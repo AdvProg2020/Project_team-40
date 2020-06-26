@@ -40,9 +40,11 @@ public class ProductItemManager extends MenuManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
 
-        //TODO : test
-        //Image frame = new Image(PATH + product.getName());
-        //image.setImage(frame);
+        try {
+            Image frame = new Image(getClass().getResourceAsStream("/images/" + product.getName() + ".jpg"));
+            image.setImage(frame);
+        }catch(Exception e){
+        }
 
         digest.setOnAction(actionEvent -> {
             ProductMenuManager.setProduct(product);

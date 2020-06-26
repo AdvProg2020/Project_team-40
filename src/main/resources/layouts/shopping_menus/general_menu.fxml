@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.GeneralMenuManager">
+
+    <children>
+        <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="192.0" layoutX="23.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/question-mark.png" />
+            </image>
+        </ImageView>
+        <Text fx:id="productName" layoutX="278.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="ProcductName" wrappingWidth="391.7366943359375" />
+        <Text fx:id="sellerName" layoutX="339.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SellerName" wrappingWidth="194.93667602539062" />
+        <Text fx:id="companyName" layoutX="346.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CompanyName" wrappingWidth="391.7366943359375" />
+        <Text fx:id="category" layoutX="344.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="258.13665771484375" />
+        <Text fx:id="rating" layoutX="339.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="125.336669921875" />
+        <Spinner fx:id="countSpinner" layoutX="586.0" layoutY="117.0" prefHeight="42.0" prefWidth="98.0" />
+        <Text layoutX="270.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller :" />
+        <Text layoutX="267.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company :" />
+        <Text layoutX="269.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category :" />
+        <Text layoutX="267.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating :" />
+        <JFXButton fx:id="cartButton" layoutX="705.0" layoutY="110.0" onAction="#handleCart" text="Add to cart">
+            <graphic>
+                <ImageView fitHeight="49.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/cart.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Text layoutX="23.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="Description :" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="17.0" layoutY="296.0" prefHeight="292.0" prefWidth="799.0">
+         <content>
+              <Text fx:id="descriptionText" strokeType="OUTSIDE" strokeWidth="0.0" text="description" wrappingWidth="798.9042816162109" />
+         </content>
+      </ScrollPane>
+    </children>
+
+</AnchorPane>

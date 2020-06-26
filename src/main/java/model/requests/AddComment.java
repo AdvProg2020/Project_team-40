@@ -13,6 +13,10 @@ public class AddComment extends Request{
         this.commentID = commentID;
     }
 
+    public Comment getComment(){
+        return Comment.getComment(commentID);
+    }
+
     @Override
     public void action(){
         if(status == Status.Confirmed)

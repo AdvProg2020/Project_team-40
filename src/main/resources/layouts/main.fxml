@@ -39,10 +39,10 @@
          <children>
             <ImageView fitHeight="78.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #d7bde2;">
                <image>
-                  <Image url="@../images/icons8-basket-64(1).png" />
+                  <Image url="@../images/shopping-basket.png" />
                </image>
             </ImageView>
-            <Label prefHeight="78.0" prefWidth="444.0" style="-fx-background-color: #d7bde2;" text="Sample name" textFill="#5b2c6f">
+            <Label prefHeight="78.0" prefWidth="368.0" style="-fx-background-color: #d7bde2;" text="Project team 40" textFill="#5b2c6f">
                <padding>
                   <Insets left="26.0" />
                </padding>
@@ -50,50 +50,50 @@
                   <Font size="33.0" />
                </font>
             </Label>
-            <JFXButton fx:id="accountButton" onAction="#goToAccountsMenu" prefHeight="123.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
+            <JFXButton fx:id="accountButton" onAction="#goToAccountsMenu" prefHeight="78.0" prefWidth="198.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/guest-male.png" />
+                        <Image url="@../images/account.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="productsButton" onAction="#goToProductsMenu" prefHeight="117.0" prefWidth="250.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
+            <JFXButton fx:id="productsButton" onAction="#goToProductsMenu" prefHeight="78.0" prefWidth="193.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/gear.png" />
+                        <Image url="@../images/product.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#back" prefHeight="78.0" prefWidth="70.0" style="-fx-background-color: #d7bde2;" text=" " textFill="#5b2c6f">
+            <JFXButton fx:id="backButton" alignment="CENTER" onAction="#back" prefHeight="78.0" prefWidth="108.0" style="-fx-background-color: #d7bde2;" text="Back" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8-back-arrow-50.png" />
+                        <Image url="@../images/back.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="exitButton" contentDisplay="CENTER" onAction="#exit" prefHeight="78.0" prefWidth="77.0" style="-fx-background-color: #d7bde2;" text=" " textFill="#5b2c6f">
+            <JFXButton fx:id="exitButton" onAction="#exit" prefHeight="78.0" prefWidth="120.0" style="-fx-background-color: #d7bde2;" text=" Exit" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8-exit-48.png" />
+                        <Image url="@../images/exit.png" />
                      </image>
                   </ImageView>
                </graphic>

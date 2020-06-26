@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.shopping_menus.product.product_view.CommentItemManager"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="253.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.CommentItemManager">
+   <children>
+      <ImageView fitHeight="97.0" fitWidth="111.0" layoutX="27.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/question-mark.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="139.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title :" />
+      <Text fx:id="titleText" layoutX="223.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="titleText" />
+      <Text layoutX="139.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content :" />
+      <Text layoutX="139.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last update :" />
+      <Text fx:id="dateText" layoutX="223.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" />
+      <Text fx:id="contentText" layoutX="139.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="592.5367279052734" />
+      <Text fx:id="userText" layoutX="225.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" />
+      <Text layoutX="139.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status :" />
+      <Text layoutX="139.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
+      <Text fx:id="statusText" layoutX="224.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </AnchorPane>
