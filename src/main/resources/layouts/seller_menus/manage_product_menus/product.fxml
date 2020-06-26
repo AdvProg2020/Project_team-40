@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #bb8fce;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductView">
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="1197.0" style="-fx-background-color: #36cace;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductView">
     <children>
         <Label alignment="CENTER" layoutX="129.0" layoutY="33.0" prefHeight="54.0" prefWidth="157.0" text="Product">
             <font>
@@ -19,7 +19,7 @@
                 <Image url="@../../../images/icons8-opened-folder-144.png" />
             </image>
         </ImageView>
-        <GridPane fx:id="informationTable" layoutX="36.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #88ce7f;">
+        <GridPane fx:id="informationTable" layoutX="36.0" layoutY="104.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #65cea6;">
          <columnConstraints>
             <ColumnConstraints maxWidth="250.0" minWidth="10.0" prefWidth="10.0" />
             <ColumnConstraints maxWidth="280.0" minWidth="0.0" prefWidth="102.0" />
@@ -186,7 +186,7 @@
             </font>
         </Label>
         <ScrollPane layoutX="717.0" layoutY="237.0" prefHeight="228.0" prefWidth="409.0">
-            <VBox fx:id="propertyList" prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #88ce7f;">
+            <VBox fx:id="propertyList" prefHeight="1000.0" prefWidth="407.0" style="-fx-background-color: #65cea6;">
 
             </VBox>
         </ScrollPane>

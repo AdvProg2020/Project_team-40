@@ -11,19 +11,14 @@ import java.util.ResourceBundle;
 
 public class LogMenuManager extends MenuManager implements Initializable {
     private static Log log;
-    private static Parent lastMenuRoot;
     public Label logLabel;
 
     public static void setLog(Log log) {
         LogMenuManager.log = log;
     }
 
-    public static void setLastMenuRoot(Parent lastMenuRoot) {
-        LogMenuManager.lastMenuRoot = lastMenuRoot;
-    }
-
     public void returnToAccount() {
-        setSecondaryInnerPane(lastMenuRoot);
+        setSecondaryInnerPane("/layouts/accounts_menu.fxml");
     }
 
     @Override
