@@ -55,7 +55,7 @@ public class SellersOffsManager implements Initializable{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/seller_menus/add_off.fxml"));
             AnchorPane pane = loader.load();
-            stage.setScene(new Scene(pane, 500, 350));
+            stage.setScene(new Scene(pane, 600 , 400));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException e) {
