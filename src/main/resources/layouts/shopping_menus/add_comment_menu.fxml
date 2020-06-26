@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.shopping_menus.product.product_view.AddCommentMenuManager"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.AddCommentMenuManager">
+   <children>
+      <Label layoutX="20.0" layoutY="43.0" text="Title :" />
+      <JFXTextField fx:id="titleField" layoutX="73.0" layoutY="26.0" prefHeight="26.0" prefWidth="398.0" />
+      <Label layoutX="14.0" layoutY="94.0" text="Content :" />
+      <JFXTextArea fx:id="contentField" layoutX="74.0" layoutY="80.0" prefHeight="199.0" prefWidth="398.0" />
+      <JFXButton layoutX="407.0" layoutY="305.0" onAction="#submit" style="-fx-background-color: #2484BC; -fx-text-fill: white; -fx-font-family: roboto; -fx-font-size: 14;" text="Submit" />
+   </children>
 </AnchorPane>

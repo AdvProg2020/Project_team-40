@@ -18,16 +18,11 @@ public class ProductItemManager extends MenuManager implements Initializable{
     private static final String PATH = "/images/";
     private Product product;
 
-    @FXML
-    private ImageView image;
-    @FXML
-    private Label name;
-    @FXML
-    private Label price;
-    @FXML
-    private Label score;
-    @FXML
-    private Button digest;
+    public ImageView image;
+    public Label name;
+    public Label price;
+    public Label score;
+    public Button digest;
 
     public ProductItemManager(){
         initializeProduct();

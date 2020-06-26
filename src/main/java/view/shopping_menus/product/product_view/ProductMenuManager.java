@@ -62,14 +62,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public void goToComments(){
         setSecondaryInnerPane("/layouts/shopping_menus/comments_menu.fxml");
     }
-    public void goToAddComments(){
-        setSecondaryInnerPane("/layouts/shopping_menus/add_comment_menu.fxml");
-    }
     public void goToSellers(){
         setSecondaryInnerPane("/layouts/shopping_menus/sellers_menu.fxml");
-    }
-    public void goToRateProduct(){
-        setSecondaryInnerPane("/layouts/shopping_menus/rate_product_menu.fxml");
     }
     public void goToSimilarProducts(){
         setSecondaryInnerPane("/layouts/shopping_menus/similar_products_menu.fxml");
