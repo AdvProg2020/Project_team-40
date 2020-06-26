@@ -41,7 +41,7 @@ public class CustomerAccountController extends AccountController{
         return discountCodes;
     }
 
-    public HashMap<Product, Integer> getCart(){
+    public HashMap<Product, Integer> getCart() {
         HashMap<Product, Integer> productsWithQuantity = new HashMap<>();
         Customer customer = (Customer) User.getLoggedInUser();
         for(Map.Entry<String, Integer> entry: customer.getCart().entrySet()) {
@@ -85,6 +85,12 @@ public class CustomerAccountController extends AccountController{
 
     private Log purchase() {
         Customer customer = (Customer) User.getLoggedInUser();
+        if(costWithoutDiscount == 0) {
+            costWithoutDiscount = customer.getTotalPriceOfCart();
+        }
+        if(priceAfterDiscount == 0) {
+            priceAfterDiscount = costWithoutDiscount;
+        }
         Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
                 customer.getUsername(), address,false);
         decreaseProductsCountAfterPurchase(log);

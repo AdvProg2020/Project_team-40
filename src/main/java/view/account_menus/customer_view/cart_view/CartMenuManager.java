@@ -69,6 +69,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
         if(addressField.getText().isBlank()) {
             addressError.setText("Write you address!");
         } else {
+            customerAccountController.getReceiverInfo(addressField.getText());
             try {
                 Log log = customerAccountController.makePayment();
                 LogMenuManager.setLog(log);
