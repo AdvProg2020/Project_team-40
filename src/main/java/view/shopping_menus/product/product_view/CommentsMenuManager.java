@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Comment;
+import model.enumerations.Status;
 import model.users.Customer;
 import model.users.User;
 import view.MenuManager;
@@ -44,6 +45,8 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
 
         try {
             for(Comment comment : comments) {
+                if(comment.getStatus() == Status.Waiting)
+                    continue;
                 CommentItemManager.setLastComment(comment);
                 Node node = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/comment_item.fxml"));
                 commentsSection.getChildren().add(node);
