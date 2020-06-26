@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.controlsfx.control.CheckListView?>
+
+<AnchorPane style="-fx-background-color: #F1948A;"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.account_menus.seller_view.sellers_offs_view.EditOffManager"
+            prefHeight="400.0" prefWidth="600.0">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label layoutX="38.0" layoutY="71.0" style="-fx-font-size: 16;" text="Start Date :" />
+        <Label layoutX="42.0" layoutY="137.0" style="-fx-font-size: 16;" text="End Date :" />
+        <Label layoutX="42.0" layoutY="199.0" style="-fx-font-size: 16;" text="Percentage :" />
+        <JFXTextField fx:id="percentageField" layoutX="148.0" layoutY="186.0" prefHeight="26.0" prefWidth="50.0" promptText="e.g. 12.7" />
+        <JFXButton graphicTextGap="20.0" layoutX="412.0" layoutY="342.0" onAction="#edit" prefHeight="46.0" prefWidth="114.0" style="-fx-font-size: 16;" text="Edit">
+            <graphic>
+                <ImageView fitHeight="43.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/edit.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXTextField fx:id="startDateField" layoutX="130.0" layoutY="58.0" prefHeight="26.0" prefWidth="148.0" promptText="e.g. dd/MM/yy HH:mm:ss" />
+        <JFXTextField fx:id="endDateField" layoutX="130.0" layoutY="124.0" prefHeight="26.0" prefWidth="148.0" promptText="e.g. dd/MM/yy HH:mm:ss" />
+    </children>
+
+</AnchorPane>
