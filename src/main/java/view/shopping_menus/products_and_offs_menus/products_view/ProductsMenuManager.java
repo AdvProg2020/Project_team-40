@@ -43,6 +43,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        productsMenuManager = this;
         initializeCategories();
         initializeFilter();
         initializeSorts();
