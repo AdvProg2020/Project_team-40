@@ -136,8 +136,14 @@ public class ProductFilter{
         if(category != null){
 
             for(Map.Entry<Product, Boolean> entry : products.entrySet()) {
-                if(!entry.getKey().getCategory().contains(category.getName())){
-                    entry.setValue(FALSE);
+                Category productCategory = Category.getCategoryByName(entry.getKey().getCategory());
+                Category categoryParent = productCategory.getParentCategory();
+                if(categoryParent != null){
+                    if(!categoryParent.getName().contains(category.getName()) && !productCategory.getName().contains(category.getName()))
+                        entry.setValue(FALSE);
+                }else{
+                    if(!productCategory.getName().contains(category.getName()))
+                        entry.setValue(FALSE);
                 }
             }
 
