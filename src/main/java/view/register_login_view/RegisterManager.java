@@ -7,6 +7,7 @@ import controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.users.User;
 import view.MenuManager;
 import view.ValidInput;
@@ -17,6 +18,9 @@ import java.util.ResourceBundle;
 public class RegisterManager extends MenuManager implements Initializable {
     private final String fillError = "This field is required!";
     private final String nameFormatError = "Your name can only contain characters!";
+
+
+    private static boolean isByManager = false;
     public GridPane infoPane;
     public RadioButton customerButton;
     public RadioButton sellerButton;
@@ -42,6 +46,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField lastName;
     public TextField email;
     public TextField phoneNumber;
+    public Label registerLabel;
 
     public void register() {
         try {
@@ -65,25 +70,29 @@ public class RegisterManager extends MenuManager implements Initializable {
     }
 
     private void finishRegister() {
-        account = new Button("Login!");
-        mainInnerPane.getChildren().add(account);
-        account.setLayoutX(register.getLayoutX());
-        account.setLayoutY(register.getLayoutY());
-        account.setPrefWidth(155);
+        if (!isByManager) {
+            account = new Button("Login!");
+            mainInnerPane.getChildren().add(account);
+            account.setLayoutX(register.getLayoutX());
+            account.setLayoutY(register.getLayoutY());
+            account.setPrefWidth(155);
 
-        register.setDisable(true);
-        username.setDisable(true);
-        password.setDisable(true);
-        firstName.setDisable(true);
-        lastName.setDisable(true);
-        email.setDisable(true);
-        phoneNumber.setDisable(true);
-        if(companyField != null)
-            companyField.setDisable(true);
-        if(creditField != null)
-            creditField.setDisable(true);
+            register.setDisable(true);
+            username.setDisable(true);
+            password.setDisable(true);
+            firstName.setDisable(true);
+            lastName.setDisable(true);
+            email.setDisable(true);
+            phoneNumber.setDisable(true);
+            if (companyField != null)
+                companyField.setDisable(true);
+            if (creditField != null)
+                creditField.setDisable(true);
 
-        account.setOnAction(e -> goToAccountsMenu());
+            account.setOnAction(e -> goToAccountsMenu());
+        }
+        else
+            ((Stage)register.getScene().getWindow()).close();
     }
 
     private void validateInput() throws Exception {
@@ -212,11 +221,14 @@ public class RegisterManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(User.doesManagerExist()) {
+        if(User.doesManagerExist() && !isByManager) {
            infoPane.getChildren().remove(managerButton);
            managerButton = null;
         }
-
-        //TODO: NEEDS TEST
     }
+
+    public static void setIsByManager(boolean isByManager) {
+        RegisterManager.isByManager = isByManager;
+    }
+
 }

@@ -33,7 +33,7 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
         descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
         priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
-        if (User.getLoggedInUser() instanceof Customer) {
+        if (User.getLoggedInUser() == null || User.getLoggedInUser() instanceof Customer) {
             //Work the functionality of product count
             SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
             countSpinner.setValueFactory(spinnerValueFactory);

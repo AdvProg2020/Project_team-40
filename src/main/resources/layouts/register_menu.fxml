@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.register_login_view.RegisterManager">
+<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.register_login_view.RegisterManager">
     <GridPane fx:id="infoPane" layoutX="264.0" layoutY="120.0" prefHeight="445.0" prefWidth="710.0">
       <columnConstraints>
          <ColumnConstraints maxWidth="287.0" minWidth="10.0" prefWidth="180.0" />
@@ -62,7 +70,7 @@
      <Button fx:id="register" layoutX="487.0" layoutY="570.0" onMouseClicked="#register" prefHeight="22.0" prefWidth="155.0" text="Sign Up!">
 
         </Button>
-     <Label layoutX="473.0" layoutY="38.0" text="Register">
+     <Label fx:id="registerLabel" layoutX="473.0" layoutY="38.0" text="Register">
          <font>
              <Font size="50" />
          </font>

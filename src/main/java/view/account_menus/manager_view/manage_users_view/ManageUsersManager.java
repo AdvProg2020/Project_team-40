@@ -1,14 +1,18 @@
 package view.account_menus.manager_view.manage_users_view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.users.User;
 import view.MenuManager;
+import view.register_login_view.RegisterManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -54,4 +58,23 @@ public class ManageUsersManager extends MenuManager implements Initializable {
     }
 
 
+    public void handleAddManager(ActionEvent event) {
+
+        try {
+            RegisterManager.setIsByManager(true);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/register_menu.fxml"));
+            Pane pane = loader.load();
+            RegisterManager registerManager = loader.getController();
+            registerManager.registerLabel.setText("New Manager");
+            registerManager.sellerButton.setDisable(true);
+            registerManager.customerButton.setDisable(true);
+            registerManager.managerButton.setSelected(true);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(pane, 1100, 610));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
