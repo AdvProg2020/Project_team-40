@@ -31,9 +31,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
     public void goToSellers(){
         setSecondaryInnerPane("/layouts/shopping_menus/sellers_menu.fxml");
     }
-    public void goToSimilarProducts(){
-        setSecondaryInnerPane("/layouts/shopping_menus/similar_products_menu.fxml");
-    }
 
     public static void setProduct(Product product){
         ProductMenuManager.product = product;
