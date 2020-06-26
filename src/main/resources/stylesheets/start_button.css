@@ -1,0 +1,12 @@
+.button{
+	-fx-background-color : #a569bd;
+	-fx-font-size : 22;
+	-fx-font-family :Gabriola;
+}
+
+.button:hover{
+	-fx-background-color : #d7bde2 ;
+	-fx-font-size : 22;
+	-fx-font-family :Gabriola;
+	-fx-font-color : #512e5f 
+}

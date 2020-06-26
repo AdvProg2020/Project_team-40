@@ -30,6 +30,7 @@
                   <Font name="Gabriola" size="40.0" />
                </font>
             </Label>
+            <JFXButton fx:id="startButton" layoutX="476.0" layoutY="402.0" onAction="#handleStartProgram" prefHeight="37.0" prefWidth="193.0" stylesheets="@../stylesheets/start_button.css" text="Start our journey ..." visible="false" />
          </children>
          <styleClass>
             <String fx:value="mainPane" />
@@ -50,7 +51,7 @@
                   <Font size="33.0" />
                </font>
             </Label>
-            <JFXButton fx:id="accountButton" onAction="#goToAccountsMenu" prefHeight="78.0" prefWidth="198.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
+            <JFXButton fx:id="accountButton" disable="true" onAction="#goToAccountsMenu" prefHeight="78.0" prefWidth="198.0" style="-fx-background-color: #d7bde2;" text="Account Menu" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
@@ -62,7 +63,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="productsButton" onAction="#goToProductsMenu" prefHeight="78.0" prefWidth="193.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
+            <JFXButton fx:id="productsButton" disable="true" onAction="#goToProductsMenu" prefHeight="78.0" prefWidth="193.0" style="-fx-background-color: #d7bde2;" text="Products menu" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
@@ -74,7 +75,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="backButton" alignment="CENTER" onAction="#back" prefHeight="78.0" prefWidth="108.0" style="-fx-background-color: #d7bde2;" text="Back" textFill="#5b2c6f">
+            <JFXButton fx:id="backButton" alignment="CENTER" disable="true" onAction="#back" prefHeight="78.0" prefWidth="108.0" style="-fx-background-color: #d7bde2;" text="Back" textFill="#5b2c6f">
                <font>
                   <Font size="19.0" />
                </font>
