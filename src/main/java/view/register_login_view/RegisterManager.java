@@ -42,6 +42,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField lastName;
     public TextField email;
     public TextField phoneNumber;
+    public Label registerLabel;
 
     public void register() {
         try {
@@ -216,7 +217,5 @@ public class RegisterManager extends MenuManager implements Initializable {
            infoPane.getChildren().remove(managerButton);
            managerButton = null;
         }
-
-        //TODO: NEEDS TEST
     }
 }
