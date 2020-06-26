@@ -10,10 +10,15 @@
             <Font size="40.0" />
         </font>
     </Label>
-    <Label fx:id="logLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="125.0" prefHeight="434.0" prefWidth="448.0" textAlignment="CENTER">
-        <font>
-            <Font size="20.0" />
-        </font>
-    </Label>
-    <Button onMouseClicked="#returnToAccount" layoutX="329.0" layoutY="591.0" prefWidth="200" text="Return to account" />
+    <ScrollPane layoutX="192.0" layoutY="137.0" prefHeight="411.0" prefWidth="475.0">
+      <content>
+           <Label fx:id="logLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="2000.0" prefWidth="448.0" textAlignment="CENTER">
+               <font>
+                   <Font size="20.0" />
+               </font>
+           </Label>
+      </content>
+    </ScrollPane>
+
+    <Button layoutX="329.0" layoutY="591.0" onMouseClicked="#returnToAccount" prefWidth="200" text="Return to account" />
 </AnchorPane>
