@@ -4,6 +4,7 @@ import controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -16,10 +17,12 @@ import view.MenuManager;
 
 import javax.security.auth.login.AccountException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class ProductView extends MenuManager {
+public class ProductView extends MenuManager implements Initializable {
     public Label nameLabel;
     public Label iDLabel;
     public Label priceLabel;
@@ -56,14 +59,13 @@ public class ProductView extends MenuManager {
 
     public GridPane informationTable;
     public VBox propertyList;
-    private Product product;
     private SellerAccountController sellerAccountController;
+    private static Product product;
+    private Product thisProduct;
 
-    //TODO: ADD EDIT CATEGORY OPTION IF POSSIBLE
-
-    public void setProduct(Product product) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         sellerAccountController = SellerAccountController.getInstance();
-        this.product = product;
         nameLabel.setText(product.getName());
         iDLabel.setText(product.getProductId());
         priceLabel.setText(Double.toString(product.getPrice()));
@@ -74,13 +76,20 @@ public class ProductView extends MenuManager {
         explanationLabel.setText(product.getExplanation());
         categoryLabel.setText(product.getCategory());
         PropertyManager.setProduct(product);
+        thisProduct = product;
 
         addPropertiesToVBox();
     }
 
+    //TODO: ADD EDIT CATEGORY OPTION IF POSSIBLE
+
+    public static void setProduct(Product product) {
+        ProductView.product = product;
+    }
+
     private void addPropertiesToVBox() {
-        HashMap<String, Double> extraValueProperties = product.getExtraValueProperties();
-        HashMap<String, String> extraStringProperties = product.getExtraStringProperties();
+        HashMap<String, Double> extraValueProperties = thisProduct.getExtraValueProperties();
+        HashMap<String, String> extraStringProperties = thisProduct.getExtraStringProperties();
         for(Map.Entry<String, Double> entry : extraValueProperties.entrySet()) {
             AnchorPane item = null;
             try {
@@ -112,15 +121,15 @@ public class ProductView extends MenuManager {
         if(nameField == null)
             nameField = new TextField();
         informationTable.add(nameField, 2, 0);
-        nameField.setText(product.getName());
+        nameField.setText(thisProduct.getName());
     }
 
     private void saveName() {
         if(!nameField.getText().isBlank()) {
             editName.setText("edit");
             try {
-                sellerAccountController.editProduct(product.getProductId(), "name", nameField.getText(),
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "name", nameField.getText(),
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
                 informationTable.getChildren().remove(nameField);
                 nameLabel.setText(nameField.getText());
                 nameField.setText("");
@@ -140,15 +149,15 @@ public class ProductView extends MenuManager {
         if(companyField == null)
             companyField = new TextField();
         informationTable.add(companyField, 2, 2);
-        nameField.setText(product.getCompany());
+        companyField.setText(thisProduct.getCompany());
     }
 
     private void saveCompany() {
         if(!companyField.getText().isBlank()) {
             editCompany.setText("edit");
             try {
-                sellerAccountController.editProduct(product.getProductId(), "company", companyField.getText(),
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "company", companyField.getText(),
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
                 informationTable.getChildren().remove(companyField);
                 companyLabel.setText(companyField.getText());
                 companyField.setText("");
@@ -168,15 +177,15 @@ public class ProductView extends MenuManager {
         if(priceField == null)
             priceField = new TextField();
         informationTable.add(priceField, 2, 4);
-        priceField.setText(Double.toString(product.getPrice()));
+        priceField.setText(Double.toString(thisProduct.getPrice()));
     }
 
     private void savePrice() {
         if(!priceField.getText().isBlank()) {
             try {
                 Double.parseDouble(priceField.getText());
-                sellerAccountController.editProduct(product.getProductId(), "price", priceField.getText(),
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "price", priceField.getText(),
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
                 informationTable.getChildren().remove(priceField);
                 priceLabel.setText(priceField.getText());
                 priceField.setText("");
@@ -202,7 +211,6 @@ public class ProductView extends MenuManager {
         if(quantityField == null)
             quantityField = new TextField();
         informationTable.add(quantityField, 2, 5);
-        quantityField.setText(Double.toString(product.getCount()));
     }
 
     private void saveQuantity(boolean isSubtraction) {
@@ -210,10 +218,10 @@ public class ProductView extends MenuManager {
             try {
                 int count = Integer.parseInt(quantityField.getText());
                 if(isSubtraction) {
-                    sellerAccountController.decreaseProductCount(count, product.getProductId());
+                    sellerAccountController.decreaseProductCount(count, thisProduct.getProductId());
                     quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) - count));
                 } else {
-                    sellerAccountController.increaseProductsCount(count, product.getProductId());
+                    sellerAccountController.increaseProductsCount(count, thisProduct.getProductId());
                     quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) + count));
                 }
                 informationTable.getChildren().remove(quantityField);
@@ -238,20 +246,25 @@ public class ProductView extends MenuManager {
         informationTable.add(radioButtons, 2, 6);
         editStatus.setOnMouseClicked(e -> saveStatus());
         editStatus.setText("save");
+        informationTable.getChildren().remove(statusLabel);
     }
 
     private void saveStatus() {
         try {
             if (editButton.isSelected()) {
-                sellerAccountController.editProduct(product.getProductId(), "status", "editing",
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "editing",
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                statusLabel.setText("editing");
             } else if(confirmButton.isSelected()) {
-                sellerAccountController.editProduct(product.getProductId(), "status", "confirmed",
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "confirmed",
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                statusLabel.setText("confirmed");
             } else {
-                sellerAccountController.editProduct(product.getProductId(), "status", "creating",
-                        product.getExtraValueProperties(), product.getExtraStringProperties());
+                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "creating",
+                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                statusLabel.setText("creating");
             }
+            informationTable.add(statusLabel, 2, 6);
             informationTable.getChildren().remove(radioButtons);
             editStatus.setText("edit");
             editStatus.setOnMouseClicked(e -> changeStatus());
