@@ -50,14 +50,14 @@ public class AddCategory implements Initializable {
             parent = categoriesList.getSelectionModel().getSelectedItems().get(0);
     }
 
-    public void handleAddProperty(ActionEvent event) {
+    public void handleAddProperty() {
         String propertyTypeString = propertyTypeChoiceBox.getValue();
         PropertyType propertyType = propertyTypeString.equalsIgnoreCase("String") ? PropertyType.STRING : PropertyType.RANGE;
         properties.put(propertyField.getText(), propertyType);
         Platform.runLater(() -> propertiesList.getItems().add(propertyField.getText()));
     }
 
-    public void handleCreateCategory(ActionEvent event) {
+    public void handleCreateCategory() {
         addSelectedItemsToList();
         try {
             if (nameField.getText().equals("")){

@@ -1,5 +1,6 @@
 package view.account_menus.seller_view.sellers_products_view;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Category;
 import model.Product;
 import model.enumerations.PropertyType;
@@ -36,6 +38,7 @@ public class AddProductManager extends MenuManager implements Initializable {
     public Label companyError;
     public Label priceError;
     public Label countError;
+    public JFXButton doneButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +70,8 @@ public class AddProductManager extends MenuManager implements Initializable {
                 valuePropertyField.put(property, field);
             else
                 stringPropertyField.put(property, field);
+            field.setPrefWidth(290);
+            field.setPrefHeight(61);
             field.setPromptText(property);
             propertyBox.getChildren().add(field);
         }
@@ -74,8 +79,8 @@ public class AddProductManager extends MenuManager implements Initializable {
 
     public void createProduct() {
         boolean hasError = hasPropertiesError();
-        hasError = validateNameOrCompany(hasError, nameField);
-        hasError = validateNameOrCompany(hasError, companyField);
+        hasError = validateNameOrCompany(hasError, nameError);
+        hasError = validateNameOrCompany(hasError, companyError);
 
         if(priceField.getText().isBlank()) {
             priceError.setText("Enter price!");
@@ -101,7 +106,7 @@ public class AddProductManager extends MenuManager implements Initializable {
             finalizeCreatingProduct();
     }
 
-    private boolean validateNameOrCompany(boolean hasError, JFXTextField field) {
+    private boolean validateNameOrCompany(boolean hasError, Label field) {
         if(field.getText().isBlank()) {
             field.setText("Fill this field!");
             hasError = true;
@@ -131,6 +136,7 @@ public class AddProductManager extends MenuManager implements Initializable {
                     ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText(), descriptionField.getText());
             product.setExtraValueProperties(extraValueProperties);
             product.setExtraStringProperties(getExtraStringProperties());
+            ((Stage)doneButton.getScene().getWindow()).close();
         } catch (AccountsException e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="540.0" prefWidth="500.0" style="-fx-background-color: #ff5686;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.AddProductManager">
+<AnchorPane prefHeight="540.0" prefWidth="855.0" style="-fx-background-color: #ff5686;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.AddProductManager">
     <Label alignment="CENTER" layoutX="58.0" layoutY="22.0" prefHeight="54.0" prefWidth="354.0" text="Create Product">
         <font>
             <Font size="36.0" />
@@ -17,9 +17,9 @@
             <Image url="@../../../images/product2.png" />
         </image>
     </ImageView>
-    <ScrollPane layoutX="119.0" layoutY="88.0" prefHeight="452.0" prefWidth="501.0" style="-fx-background-color: #ff5686; -fx-border-color: #ff5686;">
+    <ScrollPane layoutX="119.0" layoutY="88.0" prefHeight="452.0" prefWidth="733.0" style="-fx-background-color: #ff5686; -fx-border-color: #ff5686;">
         <content>
-            <VBox fx:id="informationBox" prefHeight="1000.0" prefWidth="501.0" style="-fx-background-color: #ff5686;">
+            <VBox fx:id="informationBox" prefHeight="1000.0" prefWidth="733.0" style="-fx-background-color: #ff5686;">
                 <HBox prefHeight="61.0" prefWidth="296.0">
                     <JFXTextField fx:id="nameField" prefHeight="61.0" prefWidth="290.0" promptText="Name" />
                     <Label fx:id="nameError" prefHeight="65.0" prefWidth="212.0" />
