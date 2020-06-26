@@ -35,6 +35,7 @@ public class SellersOffsManager implements Initializable{
     }
 
     private void initializeOffs(){
+        offsVBox.getChildren().clear();
         ArrayList<String> offIds = seller.getOffIds();
         for(String offId : offIds) {
             OffItemManager.setLastOff(Off.getOffByID(offId));
@@ -61,6 +62,10 @@ public class SellersOffsManager implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void refresh(){
+        initializeOffs();
     }
 
     public static SellersOffsManager getInstance(){
