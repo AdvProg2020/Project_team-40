@@ -37,7 +37,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     private static ArrayList<String> stringProperties = new ArrayList<>();
     private static ArrayList<String> rangeProperties = new ArrayList<>();
-    private static ArrayList<Product> productsList = new ArrayList<>();
+    private static ArrayList<String> shownProducts = new ArrayList<>();
 
     private static int indexOfLastUser;
 
