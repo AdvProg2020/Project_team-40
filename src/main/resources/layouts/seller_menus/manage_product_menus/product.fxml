@@ -186,7 +186,7 @@
             </font>
         </Label>
         <ScrollPane layoutX="717.0" layoutY="237.0" prefHeight="228.0" prefWidth="409.0">
-            <VBox fx:id="propertyList" prefHeight="226.0" prefWidth="407.0" style="-fx-background-color: #65cea6;">
+            <VBox fx:id="propertyList" prefHeight="1000.0" prefWidth="407.0" style="-fx-background-color: #65cea6;">
 
             </VBox>
         </ScrollPane>

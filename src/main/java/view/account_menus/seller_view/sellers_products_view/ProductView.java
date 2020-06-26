@@ -100,7 +100,7 @@ public class ProductView extends MenuManager implements Initializable {
 
     private void setLabelsContent(String propertyName, String property) {
         try {
-            AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
+            AnchorPane item = FXMLLoader.load(getClass().
                     getResource("/layouts/seller_menus/manage_product_menus/property_item.fxml"));
         HBox hBox = (HBox) item.getChildren().get(0);
         Label propertyNameLabel =(Label) hBox.getChildren().get(0);
