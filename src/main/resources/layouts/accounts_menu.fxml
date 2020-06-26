@@ -68,7 +68,6 @@
             <Label fx:id="creditError" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <Label fx:id="companyError" GridPane.columnIndex="4" GridPane.rowIndex="6" />
 
-            <Button fx:id="editUsername" onMouseClicked="#editUsername" text="edit" GridPane.columnIndex="3" />
             <Button fx:id="editFirstName" onMouseClicked="#editFirstName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="editLastName" onMouseClicked="#editLastName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="editEmail" onMouseClicked="#editEmail" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="3" />

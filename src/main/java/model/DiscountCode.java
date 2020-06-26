@@ -119,9 +119,14 @@ public class DiscountCode implements Serializable {
     }
 
     public String getStatus(){
-        if (isExpired(endDate, startDate))
+        Date today = new Date();
+        if (today.before(startDate) && today.before(endDate))
+            return "NOT STARTED";
+        if (today.after(startDate) && today.before(endDate))
+            return "ACTIVE";
+        if (today.after(endDate))
             return "EXPIRED";
-        return "ACTIVE";
+        return null;
     }
 
     public Set<String> getIncludedCostumers() {

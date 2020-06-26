@@ -14,11 +14,6 @@
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="63.0" layoutY="206.0" prefHeight="390.0" prefWidth="757.0">
-            <content>
-                <VBox fx:id="vBoxItems" prefHeight="386.0" prefWidth="756.0" />
-            </content>
-        </ScrollPane>
         <HBox layoutX="63.0" layoutY="162.0" prefHeight="44.0" prefWidth="746.0">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="202.0" style="-fx-background-color: #5dade2;" text="Log Id">
@@ -48,5 +43,10 @@
                 </Label>
             </children>
         </HBox>
+        <ScrollPane layoutX="63.0" layoutY="206.0" prefHeight="390.0" prefWidth="757.0">
+            <content>
+                <VBox fx:id="vBoxItems" prefHeight="386.0" prefWidth="756.0" />
+            </content>
+        </ScrollPane>
     </children>
 </AnchorPane>

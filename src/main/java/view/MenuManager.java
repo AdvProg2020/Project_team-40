@@ -14,28 +14,31 @@ import view.main_menu.MainMenuManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuManager {
     public static Pane mainInnerPane;
     private static Pane secondaryPane;
     private static JFXButton mainMenuAccountButton;
     private static JFXButton mainMenuProductButton;
-
     private static JFXButton mainMenuBackButton;
 
-
-    protected static ArrayList<String> roots;
+    protected static ArrayList<String> mainRoots;
+    protected static ArrayList<String> secondaryRoots;
+    protected static ArrayList<Boolean> isMainRoots;
 
     protected AccountController accountController = AccountController.getInstance();
     static {
-        roots = new ArrayList<>();
-        roots.add("/layouts/main.fxml");
+        mainRoots = new ArrayList<>();
+        mainRoots.add("/layouts/main.fxml");
+        secondaryRoots = new ArrayList<>();
     }
 
     public void setMainInnerPane(String rootLocation) {
         if (mainInnerPane != null)
             mainInnerPane.getChildren().clear();
-        roots.add(rootLocation);
+        mainRoots.add(rootLocation);
+        isMainRoots.add(true);
         if(!rootLocation.equals("/layouts/main.fxml")) {
             Parent root = null;
             try {
@@ -50,18 +53,14 @@ public class MenuManager {
 
     //Set pane for CHILDREN inner panes
     public void setSecondaryInnerPane(String rootLocation){
-        roots.add(rootLocation);
+        secondaryRoots.add(rootLocation);
+        isMainRoots.add(false);
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource(rootLocation));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        secondaryPane.getChildren().clear();
-        secondaryPane.getChildren().add(root);
-    }
-
-    protected void setSecondaryInnerPane(Parent root) {
         secondaryPane.getChildren().clear();
         secondaryPane.getChildren().add(root);
     }
@@ -96,15 +95,21 @@ public class MenuManager {
     }
 
     public void logout() {
-        roots.clear();
-        roots.add("/layouts/main.fxml");
-        roots.add("");
+        secondaryRoots.clear();
+        ArrayList<Boolean> secondaryRoots = new ArrayList<>();
+        for(Boolean isMainRoot : isMainRoots) {
+            if(!isMainRoot)
+                secondaryRoots.add(isMainRoot);
+        }
+        for(Boolean isSecondaryRoot : secondaryRoots) {
+            isMainRoots.remove(isSecondaryRoot);
+        }
         accountController.logout();
         back();
-
     }
 
     public void back() {
+      /*
         if(roots.size() == 1) {
             exit();
         }
@@ -120,6 +125,8 @@ public class MenuManager {
             }
             mainInnerPane.getChildren().add(root);
         }
+
+       */
     }
 
     public static void setSecondaryPane(Pane pane) {

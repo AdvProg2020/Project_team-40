@@ -48,7 +48,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public Label companyError;
 
     //Buttons to edit and save changes:
-    public Button editUsername;
     public Button editFirstName;
     public Button editLastName;
     public Button editPhoneNumber;
@@ -59,7 +58,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public Button increaseCredit;
 
     //Fields to enter new information:
-    public TextField newUsername;
     public TextField newFirstName;
     public TextField newLastName;
     public TextField newEmail;
@@ -132,28 +130,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
         return Double.toString(currentCredit);
     }
 
-    public void editUsername() {
-        editUsername.setText("save");
-        editUsername.setOnMouseClicked(e -> saveUsername());
-        if(newUsername == null)
-            newUsername = new TextField();
-        gridPane.add(newUsername, 1, 0);
-        newUsername.setText(username.getText());
-    }
-
-    public void saveUsername() {
-        if(!newUsername.getText().isBlank()) {
-            usernameError.setText("");
-            accountController.editUser("username", newUsername.getText());
-            gridPane.getChildren().remove(newUsername);
-            username.setText(newUsername.getText());
-            newUsername.setText("");
-            editUsername.setOnMouseClicked(e -> editUsername());
-            editUsername.setText("edit");
-        } else {
-            usernameError.setText("Username required!");
-        }
-    }
 
     public void editFirstName() {
         editFirstName.setText("save");

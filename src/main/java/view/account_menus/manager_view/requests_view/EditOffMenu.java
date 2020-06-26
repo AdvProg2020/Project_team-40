@@ -4,12 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Off;
 import model.requests.EditOff;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,8 +72,25 @@ public class EditOffMenu extends RequestMenu implements Initializable{
     }
 
     public void handleViewOff(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_request_menus/view_off.fxml"));
+        OffMenu offMenu = loader.getController();
+        Off off = editOff.getOff();
+        offMenu.setOff(off);
+        offMenu.setOffIdLabel(off.getId());
+        offMenu.setSellerLabel(off.getSeller().getUsername());
+        offMenu.setStartDateLabel(off.getStartDate());
+        offMenu.setEndDateLabel(off.getEndDate());
+        offMenu.setProductIdsListView();
+        try {
+            Pane pane = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(pane, 600, 600));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
-        //TODO: go to view Off
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

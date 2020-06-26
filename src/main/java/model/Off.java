@@ -15,14 +15,15 @@ import java.util.HashMap;
 public class Off implements Serializable{
     private static final String PATH = "src/main/resources/offs/";
     private static HashMap<String, Off> allOffs = new HashMap<>();
+
     private ArrayList<String> productIDs;
+
     private String id;
     private SetUpStatus status;
     private String startDate;
     private String endDate;
     private String seller;
     private double discountPercentage;
-
     public Off(String startDate, String endDate, double discountPercentage, String seller) {
         this.startDate = startDate;
         this.endDate = endDate;
@@ -122,6 +123,14 @@ public class Off implements Serializable{
         return (Seller)Seller.getUserByUsername(seller);
     }
 
+    public ArrayList<String> getProductIDs() {
+        return productIDs;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
     public static void cleanProduct(String id){
         for (String s : allOffs.keySet()) {
             allOffs.get(s).removeProduct(id);
@@ -130,10 +139,6 @@ public class Off implements Serializable{
 
     public static HashMap<String, Off> getAllOffs() {
         return allOffs;
-    }
-
-    public String getId(){
-        return this.id;
     }
 
     private static void activateOff(Off off){
