@@ -87,7 +87,7 @@ public class GUI extends Application {
 //        Log log = new Log(new Date(), 1000, 1000, products, "matin", "Niavaran", false);
 //        c1.addLog(log);
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Project team 40");
         primaryStage.setScene(new Scene(root, 1100, 700));
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> {
