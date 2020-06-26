@@ -1,5 +1,6 @@
 package view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.accounts.AccountController;
 import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +10,19 @@ import model.Loader;
 import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
+import view.main_menu.MainMenuManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class MenuManager {
+public class MenuManager {
     public static Pane mainInnerPane;
     private static Pane secondaryPane;
+    private static JFXButton mainMenuAccountButton;
+    private static JFXButton mainMenuProductButton;
+
+    private static JFXButton mainMenuBackButton;
+
 
     protected static ArrayList<String> roots;
 
@@ -24,8 +31,10 @@ public abstract class MenuManager {
         roots = new ArrayList<>();
         roots.add("/layouts/main.fxml");
     }
+
     public void setMainInnerPane(String rootLocation) {
-        mainInnerPane.getChildren().clear();
+        if (mainInnerPane != null)
+            mainInnerPane.getChildren().clear();
         roots.add(rootLocation);
         if(!rootLocation.equals("/layouts/main.fxml")) {
             Parent root = null;
@@ -38,8 +47,8 @@ public abstract class MenuManager {
         }
     }
 
-    //Set pane for CHILDREN inner panes
 
+    //Set pane for CHILDREN inner panes
     public void setSecondaryInnerPane(String rootLocation){
         roots.add(rootLocation);
         Parent root = null;
@@ -61,7 +70,19 @@ public abstract class MenuManager {
         setMainInnerPane("/layouts/shopping_menus/products_menu.fxml");
     }
 
+    private static void setButtonsVisible(){
+        if (mainMenuAccountButton != null && mainMenuBackButton != null && mainMenuProductButton != null) {
+            mainMenuAccountButton.setDisable(false);
+            mainMenuProductButton.setDisable(false);
+            mainMenuBackButton.setDisable(false);
+            mainMenuAccountButton = null;
+            mainMenuBackButton = null;
+            mainMenuProductButton = null;
+        }
+    }
+
     public void goToAccountsMenu() {
+        setButtonsVisible();
         if(accountController.isLogin()) {
             if (User.getLoggedInUser() instanceof Manager)
                 setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
@@ -113,4 +134,18 @@ public abstract class MenuManager {
         }
         System.exit(1);
     }
+
+    public static void setMainMenuAccountButton(JFXButton mainMenuAccountButton) {
+        MenuManager.mainMenuAccountButton = mainMenuAccountButton;
+    }
+
+    public static void setMainMenuProductButton(JFXButton mainMenuProductButton) {
+        MenuManager.mainMenuProductButton = mainMenuProductButton;
+    }
+
+    public static void setMainMenuBackButton(JFXButton mainMenuBackButton) {
+        MenuManager.mainMenuBackButton = mainMenuBackButton;
+    }
+
+
 }
