@@ -2,6 +2,8 @@ package model.requests;
 
 import model.Off;
 import model.enumerations.Status;
+import model.users.Seller;
+import model.users.User;
 
 public class AddOff extends Request{
     private static final long serialVersionUID = 6700410384833798993L;
@@ -20,6 +22,7 @@ public class AddOff extends Request{
     public void action() {
         if(status.equals(Status.Confirmed)) {
             Off.addOff(off);
+            off.getSeller().addOff(off);
         }
     }
 
