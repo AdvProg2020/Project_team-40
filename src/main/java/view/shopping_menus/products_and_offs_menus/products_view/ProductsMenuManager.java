@@ -43,16 +43,10 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        productsMenuManager = this;
-        initializeProducts();
         initializeCategories();
         initializeFilter();
         initializeSorts();
         refresh();
-    }
-
-    private void initializeProducts(){
-        showMoreItems();
     }
 
     private void initializeCategories(){
@@ -203,6 +197,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
     public void refresh(){
         products.getChildren().clear();
+        shownProducts.clear();
         AllProductsController.getInstance().filterAndSort();
         indexOfLastUser = 0;
         showMoreItems();
@@ -220,9 +215,15 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
                 break;
             }
 
+            if(shownProducts.contains(product.getName())){
+                indexOfLastUser++;
+                continue;
+            }
+
             try {
                 nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/product_item.fxml"));
                 products.getChildren().add(nodes[i]);
+                shownProducts.add(product.getName());
             }catch(IOException e){
                 e.printStackTrace();
             }
