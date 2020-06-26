@@ -3,10 +3,13 @@ package view.account_menus.customer_view.orders_view;
 import controller.accounts.CustomerAccountController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.log.Log;
 
 import java.net.URL;
@@ -14,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class OrdersMenuManager implements Initializable {
     public VBox vBoxItems;
+    public HBox topHBox;
     private CustomerAccountController customerAccountController;
 
     @Override
@@ -44,8 +48,12 @@ public class OrdersMenuManager implements Initializable {
         Label discountLabel =((Label) hBox.getChildren().get(3));
 
         logIdLabel.setText(log.getId());
+        System.out.println(log.getId());
         dateLabel.setText(log.getDate().toString());
+        System.out.println(log.getDate().toString());
         costLabel.setText(Double.toString(log.getCost()));
+        System.out.println(log.getCost());
         discountLabel.setText(Double.toString(log.getCostWithoutDiscount()));
+        System.out.println(log.getCostWithoutDiscount());
     }
 }

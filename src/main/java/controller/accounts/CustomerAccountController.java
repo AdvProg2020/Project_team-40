@@ -85,10 +85,10 @@ public class CustomerAccountController extends AccountController{
 
     private Log purchase() {
         Customer customer = (Customer) User.getLoggedInUser();
-        if(costWithoutDiscount == 0) {
+        if(costWithoutDiscount == 0 || costWithoutDiscount == -1) {
             costWithoutDiscount = customer.getTotalPriceOfCart();
         }
-        if(priceAfterDiscount == 0) {
+        if(priceAfterDiscount == 0 || priceAfterDiscount == -1) {
             priceAfterDiscount = costWithoutDiscount;
         }
         Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
