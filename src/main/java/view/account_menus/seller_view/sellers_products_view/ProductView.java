@@ -81,8 +81,6 @@ public class ProductView extends MenuManager implements Initializable {
         addPropertiesToVBox();
     }
 
-    //TODO: ADD EDIT CATEGORY OPTION IF POSSIBLE
-
     public static void setProduct(Product product) {
         ProductView.product = product;
     }

@@ -102,5 +102,4 @@ public class OrderMenu implements Initializable {
     public void handleCloseWindow(ActionEvent event) {
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
-
 }
