@@ -38,7 +38,6 @@ public class ProductMenuManager extends MenuManager implements Initializable{
 
 
 
-//    public VBox sellerSection;
 //    public Button commentButton;
 //    public TextField titleField;
 //    public TextArea commentField;
@@ -88,20 +87,7 @@ public class ProductMenuManager extends MenuManager implements Initializable{
 //        });
 //
 //    }
-//
-//    private void initializeSellers(){
-//        ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(product.getName());
-//        for(String seller : sellers) {
-//            try {
-//                SellerItemManager.setLastSeller(seller);
-//                Node node = (Node) FXMLLoader.load(getClass().getResource("/layouts/shopping_menus/seller_item.fxml"));
-//                sellerSection.getChildren().add(node);
-//            } catch(IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
+
     public static void setProduct(Product product){
         ProductMenuManager.product = product;
     }
