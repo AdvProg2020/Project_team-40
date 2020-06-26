@@ -25,8 +25,8 @@
             <ColumnConstraints maxWidth="280.0" minWidth="0.0" prefWidth="102.0" />
             <ColumnConstraints maxWidth="495.0" minWidth="12.0" prefWidth="217.0" />
              <ColumnConstraints maxWidth="66.0" minWidth="4.0" prefWidth="9.0" />
-             <ColumnConstraints maxWidth="495.0" minWidth="26.0" prefWidth="39.0" />
-            <ColumnConstraints maxWidth="495.0" minWidth="13.0" prefWidth="76.0" />
+             <ColumnConstraints maxWidth="495.0" minWidth="26.0" prefWidth="50.0" />
+            <ColumnConstraints maxWidth="495.0" minWidth="13.0" prefWidth="65.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="50.0" />
@@ -87,7 +87,6 @@
                 </font>
             </Label>
 
-
             <Label text="Price:" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <font>
                     <Font size="20" />
@@ -112,7 +111,6 @@
                 </font>
             </Label>
             <Button fx:id="editQuantityAdd" onMouseClicked="#changeQuantity" text="edit" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-
 
             <Label text="Has Off:" GridPane.columnIndex="1" GridPane.rowIndex="7">
                 <font>
@@ -147,21 +145,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
                 <RowConstraints minHeight="10.0" prefHeight="50.0" />
-                <RowConstraints minHeight="10.0" prefHeight="50.0" />
             </rowConstraints>
             <columnConstraints>
                 <ColumnConstraints prefWidth="204" />
             </columnConstraints>
-            <Label fx:id="nameError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="0">
+            <Label fx:id="nameError" prefHeight="32.0" prefWidth="211.0" GridPane.rowIndex="0">
 
             </Label>
-            <Label fx:id="companyError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
+            <Label fx:id="companyError" prefHeight="32.0" prefWidth="207.0" GridPane.rowIndex="2">
 
             </Label>
-            <Label fx:id="priceError" prefHeight="32.0" prefWidth="126.0" GridPane.rowIndex="4">
+            <Label fx:id="priceError" prefHeight="32.0" prefWidth="211.0" GridPane.rowIndex="4">
 
             </Label>
-            <Label fx:id="quantityError" prefHeight="30.0" prefWidth="120.0" GridPane.rowIndex="5">
+            <Label fx:id="quantityError" prefHeight="30.0" prefWidth="219.0" GridPane.rowIndex="5">
 
             </Label>
             
