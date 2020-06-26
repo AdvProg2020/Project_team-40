@@ -3,6 +3,8 @@ package view.account_menus.customer_view.cart_view;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import model.log.Log;
 import view.MenuManager;
 
@@ -11,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class LogMenuManager extends MenuManager implements Initializable {
     private static Log log;
-    public Label logLabel;
+    public VBox logBox;
 
     public static void setLog(Log log) {
         LogMenuManager.log = log;
@@ -23,6 +25,11 @@ public class LogMenuManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logLabel.setText(log.toString());
+        String[] information = log.toString().split("\n");
+        for(String line : information) {
+            Label label = new Label(line);
+            label.setFont(new Font(20));
+            logBox.getChildren().add(label);
+        }
     }
 }

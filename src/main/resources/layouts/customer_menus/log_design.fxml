@@ -12,11 +12,9 @@
     </Label>
     <ScrollPane layoutX="192.0" layoutY="137.0" prefHeight="411.0" prefWidth="461.0">
       <content>
-           <Label fx:id="logLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="2000.0" prefWidth="448.0" style="-fx-background-color: #d753ff" textAlignment="CENTER">
-               <font>
-                   <Font size="20.0" />
-               </font>
-           </Label>
+           <VBox fx:id="logBox" style="-fx-background-color: #ff6fdb" prefWidth="461.0" prefHeight="1000">
+
+           </VBox>
       </content>
     </ScrollPane>
 

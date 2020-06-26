@@ -4,6 +4,7 @@ import controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import model.log.Log;
 import view.MenuManager;
 
@@ -18,7 +19,13 @@ public class SalesHistoryManager extends MenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<Log> salesHistory = SellerAccountController.getInstance().getSalesHistory();
         for(Log log : salesHistory) {
-            mainBox.getChildren().add(new Label(log.toString()));
+            String[] information = log.toString().split("\n");
+            for(String line : information) {
+                Label label = new Label(line);
+                label.setFont(new Font(20));
+                mainBox.getChildren().add(label);
+            }
+            mainBox.getChildren().add(new Label("\n"));
         }
     }
 }

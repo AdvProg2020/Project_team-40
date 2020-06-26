@@ -48,5 +48,4 @@ public class OrdersMenuManager implements Initializable {
         costLabel.setText(Double.toString(log.getCost()));
         discountLabel.setText(Double.toString(log.getCostWithoutDiscount()));
     }
-
 }
