@@ -12,6 +12,7 @@ import model.Product;
 import model.log.Log;
 import model.users.Customer;
 import model.users.Manager;
+import model.users.Seller;
 import model.users.User;
 
 import java.util.Date;
@@ -69,8 +70,11 @@ public class GUI extends Application {
 //
 //        Customer c1 = new Customer("matind", "1234", "Matin", "Daghyani","m@mail.com","09121234567", 1000);
 //        Customer c2 = new Customer("alid", "1234", "Ali", "Davoodi","a@mail.com","09121111111", 1030);
+//        Seller c2 = new Seller("alid", "1234", "Ali", "Davoodi","a@mail.com","09121111111", 1030, "Tech");
+//        c2.setManagerPermission(true);
 //        Manager m1 = new Manager("saraK", "12ss3", "sara", "kamali", "s@mail.com", "444222");
-//        User.addUser(c1);
+//        User.addUser(m1);
+//        User.addUser(c2);
 //        User.addUser(c2);
 //        User.setLoggedInUser(c1);
 //        Category category = new Category("Fruit", null);

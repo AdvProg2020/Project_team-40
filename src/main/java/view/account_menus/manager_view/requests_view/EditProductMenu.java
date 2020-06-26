@@ -4,13 +4,19 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.requests.AddProduct;
 import model.requests.EditProduct;
+import view.shopping_menus.product.product_view.ProductMenuManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,14 +28,6 @@ public class EditProductMenu extends RequestMenu implements Initializable {
     public Label newLabel;
     private ManagerAccountController managerAccountController;
     private EditProduct editProduct;
-
-    public static class Product implements Initializable{
-
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,8 +65,17 @@ public class EditProductMenu extends RequestMenu implements Initializable {
     }
 
     public void handleViewProduct(ActionEvent event) {
-
-        //TODO: go to digest menu
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/shopping_menus/product_menu.fxml"));
+        ProductMenuManager.setProduct(editProduct.getProduct());
+        try {
+            Pane pane = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(pane, 1200, 600));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
