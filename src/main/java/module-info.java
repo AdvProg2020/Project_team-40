@@ -21,6 +21,7 @@ module sample {
     opens view.account_menus.seller_view.accounts_view;
     opens view.account_menus.seller_view.sellers_offs_view;
     opens view.account_menus.seller_view.sellers_products_view;
+    opens view.account_menus.seller_view;
     opens view.register_login_view;
     opens view.main_menu;
     opens view.shopping_menus.product.comment_view;
