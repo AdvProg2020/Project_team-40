@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="123.0" prefWidth="1087.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductItemManager">
    <children>
@@ -15,13 +16,15 @@
             <Image url="@../../images/question-mark.png" />
          </image>
       </ImageView>
-      <Region prefHeight="200.0" prefWidth="100.0" />
+      <Region prefHeight="101.0" prefWidth="73.0" />
       <Label fx:id="name" prefHeight="18.0" prefWidth="112.0" style="-fx-background-color: lightgray;" text="&lt;productName&gt;" />
-      <Region layoutX="473.0" layoutY="22.0" prefHeight="200.0" prefWidth="100.0" />
+      <Region layoutX="473.0" layoutY="22.0" prefHeight="101.0" prefWidth="52.0" />
       <Label fx:id="price" prefHeight="18.0" prefWidth="117.0" style="-fx-background-color: lightgray;" text="&lt;productValue&gt;" />
-      <Region layoutX="580.0" layoutY="22.0" prefHeight="200.0" prefWidth="100.0" />
+      <Region layoutX="580.0" layoutY="22.0" prefHeight="101.0" prefWidth="53.0" />
       <Label fx:id="score" prefHeight="18.0" prefWidth="106.0" style="-fx-background-color: lightyellow;" text="&lt;score&gt;" />
-      <Region layoutX="144.0" layoutY="22.0" prefHeight="200.0" prefWidth="100.0" />
+      <Region layoutX="524.0" layoutY="21.0" prefHeight="101.0" prefWidth="53.0" />
+      <Text fx:id="offText" strokeType="OUTSIDE" strokeWidth="0.0" text="Until : yyyy/mm/dd" />
+      <Region layoutX="144.0" layoutY="22.0" prefHeight="101.0" prefWidth="95.0" />
       <JFXButton fx:id="digest" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: #ffff; -fx-border-color: blue; -fx-border-radius: 100;" text="digest" />
    </children>
    <padding>
