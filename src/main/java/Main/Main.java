@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         initializeLoading();
-        addTempVariables();
+//        addTempVariables();
         GUI.initialize();
     }
 
@@ -95,7 +95,7 @@ public class Main {
         try {
             resourcesInitialization();
         } catch (DataException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             System.exit(-1);
         }
         try {
