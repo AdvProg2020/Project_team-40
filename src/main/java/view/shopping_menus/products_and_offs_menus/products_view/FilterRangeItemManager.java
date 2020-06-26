@@ -31,15 +31,16 @@ public class FilterRangeItemManager implements Initializable{
 
         variableName.setText(property);
 
-        try {
-            double cap = AllProductsController.getInstance().getRangeCap(property);
-            minSlider.setMax(cap);
-            maxSlider.setMax(cap);
-            minSlider.setValue(0);
-            maxSlider.setValue(cap);
-        } catch(MenuException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            double cap = AllProductsController.getInstance().getRangeCap(property);
+//
+//        } catch(MenuException e) {
+//            e.printStackTrace();
+//        }
+        minSlider.setMax(100);
+        maxSlider.setMax(100);
+        minSlider.setValue(0);
+        maxSlider.setValue(100);
 
         minSlider.setOnMouseReleased(mouseEvent -> {
             min = minSlider.getValue();

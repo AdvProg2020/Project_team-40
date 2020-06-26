@@ -158,7 +158,7 @@ public class ProductFilter{
             for(Map.Entry<String, Range> entry : rangeProperties.entrySet()) {
                 if(entry.getValue() != null){
                     for(Map.Entry<Product, Boolean> productEntry : products.entrySet()) {
-                        if(!entry.getValue().contains(productEntry.getKey().getValueProperty(entry.getKey())))
+                        if(productEntry.getKey().getValueProperty(entry.getKey()) == null || !entry.getValue().contains(productEntry.getKey().getValueProperty(entry.getKey())))
                             productEntry.setValue(FALSE);
                     }
                 }

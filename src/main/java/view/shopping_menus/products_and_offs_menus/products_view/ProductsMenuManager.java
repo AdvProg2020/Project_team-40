@@ -235,7 +235,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
         TranslateTransition animation = new TranslateTransition();
         animation.setDuration(Duration.millis(400));
         animation.setNode(filtersSliderMenu);
-        animation.setToX(-271);
+        animation.setToX(-270);
 
         animation.play();
     }

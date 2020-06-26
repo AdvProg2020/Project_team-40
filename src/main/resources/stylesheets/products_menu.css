@@ -1,6 +1,7 @@
 .root{
     -fx-font-family: Roboto;
     -fx-font-size: 16px;
+    -fx-text-fill: #5b2c6f;
 }
 
 .button{
