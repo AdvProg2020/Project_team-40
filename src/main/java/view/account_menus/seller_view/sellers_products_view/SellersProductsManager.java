@@ -68,7 +68,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
             Parent root = FXMLLoader.load(getClass().
                     getResource("/layouts/seller_menus/manage_product_menus/add_product.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root, 1200, 600));
+            stage.setScene(new Scene(root, 800, 600));
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

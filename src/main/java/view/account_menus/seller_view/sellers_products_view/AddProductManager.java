@@ -79,8 +79,8 @@ public class AddProductManager extends MenuManager implements Initializable {
 
     public void createProduct() {
         boolean hasError = hasPropertiesError();
-        hasError = validateNameOrCompany(hasError, nameError);
-        hasError = validateNameOrCompany(hasError, companyError);
+        hasError = validateNameOrCompany(hasError, nameField, nameError);
+        hasError = validateNameOrCompany(hasError, companyField, companyError);
 
         if(priceField.getText().isBlank()) {
             priceError.setText("Enter price!");
@@ -106,12 +106,12 @@ public class AddProductManager extends MenuManager implements Initializable {
             finalizeCreatingProduct();
     }
 
-    private boolean validateNameOrCompany(boolean hasError, Label field) {
+    private boolean validateNameOrCompany(boolean hasError, JFXTextField field, Label error) {
         if(field.getText().isBlank()) {
-            field.setText("Fill this field!");
+            error.setText("Fill this field!");
             hasError = true;
         } else {
-            field.setText("");
+            error.setText("");
         }
         return hasError;
     }
