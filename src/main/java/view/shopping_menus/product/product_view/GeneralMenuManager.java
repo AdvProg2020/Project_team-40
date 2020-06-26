@@ -35,7 +35,7 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
 
         //Set image
         try {
-            Image image = new Image(getClass().getResourceAsStream("/images/" + ProductMenuManager.getProduct().getName() + ".jpg"));
+            Image image = new Image(getClass().getResourceAsStream("/product_images/" + ProductMenuManager.getProduct().getName() + ".jpg"));
             imageView.setImage(image);
         }catch(Exception e){
         }
