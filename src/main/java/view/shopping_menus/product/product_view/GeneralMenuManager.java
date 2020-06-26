@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class GeneralMenuManager extends MenuManager implements Initializable{
 
-    public Text productName, sellerName, companyName, category, rating, descriptionText;
+    public Text productName, sellerName, companyName, category, rating, descriptionText, priceText;
     public Spinner countSpinner;
     public ImageView imageView;
 
@@ -26,8 +26,9 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         sellerName.setText(ProductMenuManager.getProduct().getSellerUsername());
         companyName.setText(ProductMenuManager.getProduct().getCompany());
         category.setText(ProductMenuManager.getProduct().getCategory());
-        rating.setText(Double.toString(ProductMenuManager.getProduct().getAverageScore()));
+        rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
         descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
+        priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
 
         //Work the functionality of product count
         SpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);

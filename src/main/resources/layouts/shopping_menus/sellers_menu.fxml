@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="626.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.SellersMenuManager">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="31.0" layoutY="67.0" prefHeight="525.0" prefWidth="804.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="31.0" layoutY="146.0" prefHeight="447.0" prefWidth="804.0">
          <content>
             <VBox fx:id="sellersSection" prefHeight="513.0" prefWidth="806.0" />
          </content>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </ScrollPane>
-      <Text layoutX="30.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="Sellers :" />
+      <Text layoutX="31.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28;" text="Sellers" />
+      <HBox layoutX="31.0" layoutY="92.0" prefHeight="54.0" prefWidth="804.0" spacing="10.0" style="-fx-background-color: #3498DB;">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <Label style="-fx-font-size: 16;" text="Name" />
+            <Region prefHeight="34.0" prefWidth="162.0" />
+            <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 16;" text="Price" />
+            <Region layoutX="68.0" layoutY="20.0" prefHeight="34.0" prefWidth="139.0" />
+            <Label layoutX="173.0" layoutY="20.0" style="-fx-font-size: 16;" text="Status" />
+            <Region layoutX="221.0" layoutY="20.0" prefHeight="34.0" prefWidth="151.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

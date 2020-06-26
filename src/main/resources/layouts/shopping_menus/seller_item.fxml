@@ -7,12 +7,12 @@
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.SellerItemManager">
    <children>
-      <Text fx:id="sellerText" strokeType="OUTSIDE" strokeWidth="0.0" text="SellerName" wrappingWidth="130.1367130279541" />
-      <Region prefHeight="200.0" prefWidth="200.0" />
-      <Text fx:id="priceText" layoutX="10.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price" wrappingWidth="130.1367130279541" />
-      <Region layoutX="140.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
-      <Text fx:id="statusText" layoutX="340.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status" wrappingWidth="130.1367130279541" />
-      <Region layoutX="471.0" layoutY="10.0" prefHeight="96.0" prefWidth="233.0" />
-      <JFXButton fx:id="chooseButton" prefHeight="42.0" prefWidth="199.0" text="visit" />
+      <Text fx:id="sellerText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="SellerName" wrappingWidth="130.1367130279541" />
+      <Region prefHeight="96.0" prefWidth="133.0" style="-fx-font-size: 16;" />
+      <Text fx:id="priceText" layoutX="10.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="price" wrappingWidth="130.1367130279541" />
+      <Region layoutX="140.0" layoutY="10.0" prefHeight="96.0" prefWidth="101.0" style="-fx-font-size: 16;" />
+      <Text fx:id="statusText" layoutX="340.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="status" wrappingWidth="130.1367130279541" />
+      <Region layoutX="471.0" layoutY="10.0" prefHeight="96.0" prefWidth="108.0" style="-fx-font-size: 16;" />
+      <JFXButton fx:id="chooseButton" prefHeight="42.0" prefWidth="199.0" style="-fx-font-size: 16; -fx-background-color: #2ECC71;" text="visit" />
    </children>
 </HBox>
