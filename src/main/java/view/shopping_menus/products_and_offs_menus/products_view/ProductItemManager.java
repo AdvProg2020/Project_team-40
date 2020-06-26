@@ -55,7 +55,7 @@ public class ProductItemManager extends MenuManager implements Initializable{
         //set other properties of product
         if(product != null){
             name.setText(product.getName());
-            price.setText(product.getBasePrice() + " / " + product.getPrice());
+            price.setText(product.getPrice() + " / " + product.getBasePrice() );
             score.setText(Double.toString(product.getAverageScore()));
         }
 
