@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -62,7 +61,7 @@ public class DiscountEdit implements Initializable {
     }
 
 
-    public void handleEditDiscount(ActionEvent event) {
+    public void handleEditDiscount() {
         HashMap<String, String> toEdit = new HashMap<>();
         if (!startDateField.getText().equals(oldStart))
             toEdit.put("Start date", startDateField.getText());
@@ -88,7 +87,7 @@ public class DiscountEdit implements Initializable {
         }
     }
 
-    public void handleCancel(ActionEvent event) {
+    public void handleCancel() {
         ((Stage)cancelButton.getScene().getWindow()).close();
     }
 

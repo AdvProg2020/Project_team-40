@@ -3,7 +3,6 @@ package view.account_menus.customer_view.orders_view;
 import com.jfoenix.controls.JFXButton;
 import controller.accounts.CustomerAccountController;
 import exceptions.AccountsException;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
@@ -26,7 +25,7 @@ public class RateMenu implements Initializable {
         this.productId = productId;
     }
 
-    public void handleRateProduct(ActionEvent event) {
+    public void handleRateProduct() {
         try {
             customerAccountController.rateProduct(productId, (int)rateBar.getRating());
         } catch (AccountsException e) {

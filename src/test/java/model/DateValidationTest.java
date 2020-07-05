@@ -13,6 +13,6 @@ public class DateValidationTest {
         Date start = new SimpleDateFormat("yyyy-mm-dd").parse("2020-03-25");
         Date end = new SimpleDateFormat("yyyy-mm-dd").parse("2020-04-25");
         DiscountCode code = new DiscountCode(start, end, 10, 1000, 2);
-        Assert.assertFalse(DiscountCode.isExpired(code.getEndDate(), code.getStartDate()));
+        Assert.assertFalse(DiscountCode.isExpired(code.getEndDate()));
     }
 }

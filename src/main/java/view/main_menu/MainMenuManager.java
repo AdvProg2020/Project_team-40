@@ -1,7 +1,6 @@
 package view.main_menu;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
@@ -37,7 +36,7 @@ public class MainMenuManager extends MenuManager implements Initializable {
     }
 
 
-    public void handleStartProgram(ActionEvent event) {
+    public void handleStartProgram() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/register_menu.fxml"));
         try {
             Pane pane = loader.load();

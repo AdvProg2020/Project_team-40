@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -39,7 +38,7 @@ public class AddDiscount implements Initializable {
         }
     }
 
-    public void handleCreateDiscount(ActionEvent event) {
+    public void handleCreateDiscount() {
         addSelectedItemsToList();
         try {
             managerAccountController.createDiscount(startField.getText(), endField.getText(), Integer.parseInt(percentageField.getText()),

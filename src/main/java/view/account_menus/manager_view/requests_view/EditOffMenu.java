@@ -71,7 +71,7 @@ public class EditOffMenu extends RequestMenu implements Initializable{
         }
     }
 
-    public void handleViewOff(ActionEvent event) {
+    public void handleViewOff() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_request_menus/view_off.fxml"));
         OffMenu offMenu = loader.getController();
         Off off = editOff.getOff();

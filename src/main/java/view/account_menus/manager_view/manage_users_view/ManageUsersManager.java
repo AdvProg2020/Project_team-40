@@ -1,6 +1,5 @@
 package view.account_menus.manager_view.manage_users_view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -58,7 +57,7 @@ public class ManageUsersManager extends MenuManager implements Initializable {
     }
 
 
-    public void handleAddManager(ActionEvent event) {
+    public void handleAddManager() {
 
         try {
             RegisterManager.setIsByManager(true);

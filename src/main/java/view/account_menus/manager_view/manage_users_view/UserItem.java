@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -74,7 +73,7 @@ public class UserItem implements Initializable {
         });
     }
 
-    public void handleDeleteUser(ActionEvent event) {
+    public void handleDeleteUser() {
         HBox item = (HBox)((deleteUserButton.getParent()).getParent());
         VBox items =(VBox)(item.getParent()).getParent();
         String username =((Label)item.getChildren().get(0)).getText();
@@ -87,7 +86,7 @@ public class UserItem implements Initializable {
 
     }
 
-    public void handleViewUser(ActionEvent event) {
+    public void handleViewUser() {
         HBox item = (HBox)((deleteUserButton.getParent()).getParent());
         String username =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_users_menus/user.fxml"));

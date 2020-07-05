@@ -3,7 +3,6 @@ package view.account_menus.customer_view.orders_view;
 import com.jfoenix.controls.JFXButton;
 import controller.accounts.CustomerAccountController;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -71,7 +70,7 @@ public class OrderItem implements Initializable {
     }
 
 
-    public void handleViewLog(ActionEvent event) {
+    public void handleViewLog() {
         HBox item = (HBox)(viewLogButton.getParent());
         String logId = ((Label) item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/customer_menus/customer_orders_menus/order.fxml"));

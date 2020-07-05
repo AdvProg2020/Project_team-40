@@ -3,7 +3,6 @@ package view.account_menus.manager_view.requests_view;
 import com.jfoenix.controls.JFXButton;
 import controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -145,7 +144,7 @@ public class RequestItem extends MenuManager implements Initializable {
         return null;
     }
 
-    public void handleViewRequest(ActionEvent event) {
+    public void handleViewRequest() {
         HBox item = (HBox)(viewRequestButton.getParent());
         String requestId =((Label)item.getChildren().get(0)).getText();
         String type =((Label)item.getChildren().get(1)).getText();

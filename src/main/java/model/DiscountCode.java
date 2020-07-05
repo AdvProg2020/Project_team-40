@@ -149,7 +149,7 @@ public class DiscountCode implements Serializable {
                 + "List of customers: " + customerList;
     }
 
-    public static boolean isExpired(Date endDate, Date startDate){
+    public static boolean isExpired(Date endDate){
         Date today = new Date();
         return today.after(endDate);
     }

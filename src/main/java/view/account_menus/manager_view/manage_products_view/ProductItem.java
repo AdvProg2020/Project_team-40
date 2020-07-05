@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -62,7 +61,7 @@ public class ProductItem implements Initializable {
 
 
 
-    public void handleDeleteProduct(ActionEvent event) {
+    public void handleDeleteProduct() {
         HBox item = (HBox)(deleteProductButton.getParent());
         VBox items =(VBox)(item.getParent()).getParent();
         String productId =((Label)item.getChildren().get(0)).getText();

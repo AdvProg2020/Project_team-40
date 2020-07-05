@@ -63,7 +63,7 @@ public class EditProductMenu extends RequestMenu implements Initializable {
         }
     }
 
-    public void handleViewProduct(ActionEvent event) {
+    public void handleViewProduct() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/shopping_menus/product_menu.fxml"));
         ProductMenuManager.setProduct(editProduct.getProduct());
         try {
