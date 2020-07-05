@@ -6,21 +6,7 @@ module sample {
     requires com.jfoenix;
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
-
-    opens Main;
-    opens view.account_menus;
-    opens view.account_menus.customer_view.account_view;
-    opens view.account_menus.customer_view.cart_view;
-    opens view.account_menus.customer_view.orders_view;
-    opens view.account_menus.manager_view.account_view;
-    opens view.account_menus.manager_view.category_view;
-    opens view.account_menus.manager_view.discount_view;
-    opens view.account_menus.manager_view.manage_products_view;
-    opens view.account_menus.manager_view.manage_users_view;
-    opens view.account_menus.manager_view.requests_view;
-    opens view.account_menus.seller_view.accounts_view;
-    opens view.account_menus.seller_view.sellers_offs_view;
-    opens view.account_menus.seller_view.sellers_products_view;
+    requires org.restlet;
     opens view.account_menus.seller_view;
     opens view.register_login_view;
     opens view.main_menu;
