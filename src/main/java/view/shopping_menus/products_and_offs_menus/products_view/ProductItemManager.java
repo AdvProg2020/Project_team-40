@@ -1,8 +1,6 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import controller.menus.AllProductsController;
-import controller.menus.ProductController;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

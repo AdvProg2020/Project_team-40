@@ -1,10 +1,8 @@
 package view.account_menus.customer_view.account_view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import view.MenuManager;
-import view.account_menus.customer_view.cart_view.LogMenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;

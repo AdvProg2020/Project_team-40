@@ -1,10 +1,8 @@
 package model.requests;
 
 import exceptions.DataException;
-import model.DiscountCode;
 import model.Utility;
 import model.enumerations.Status;
-import model.search.Range;
 import model.users.Manager;
 
 import java.io.*;

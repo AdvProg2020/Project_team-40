@@ -1,7 +1,5 @@
 package view.shopping_menus.product.product_view;
 
-import com.jfoenix.controls.JFXAlert;
-import com.jfoenix.controls.JFXButton;
 import controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.fxml.FXMLLoader;

@@ -2,7 +2,6 @@ package model;
 
 import exceptions.DataException;
 import model.enumerations.Status;
-import model.log.Log;
 import model.users.Customer;
 import model.users.User;
 

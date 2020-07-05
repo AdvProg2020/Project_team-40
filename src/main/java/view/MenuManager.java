@@ -10,7 +10,6 @@ import model.Loader;
 import model.users.Manager;
 import model.users.Seller;
 import model.users.User;
-import view.main_menu.MainMenuManager;
 
 import java.io.IOException;
 import java.util.ArrayList;

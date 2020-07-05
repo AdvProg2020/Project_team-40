@@ -4,8 +4,6 @@ import com.jfoenix.controls.JFXTextField;
 import controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.net.URL;

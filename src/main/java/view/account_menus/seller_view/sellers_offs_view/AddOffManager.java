@@ -1,7 +1,5 @@
 package view.account_menus.seller_view.sellers_offs_view;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
@@ -14,11 +12,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Stage;
-import model.Off;
-import model.Product;
 import org.controlsfx.control.CheckListView;
 import view.MenuManager;
 
@@ -26,7 +21,6 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddOffManager extends MenuManager implements Initializable{

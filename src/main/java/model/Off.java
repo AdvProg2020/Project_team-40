@@ -3,7 +3,6 @@ package model;
 import exceptions.DataException;
 import model.enumerations.SetUpStatus;
 import model.users.Seller;
-import model.users.User;
 
 import java.io.*;
 import java.text.ParseException;

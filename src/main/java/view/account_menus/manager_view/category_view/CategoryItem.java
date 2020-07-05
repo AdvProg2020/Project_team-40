@@ -5,7 +5,6 @@ import controller.accounts.AccountController;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;

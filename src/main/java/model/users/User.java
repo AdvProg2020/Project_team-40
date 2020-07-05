@@ -3,7 +3,6 @@ package model.users;
 import exceptions.DataException;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

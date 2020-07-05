@@ -2,7 +2,6 @@ package view.shopping_menus.product.product_view;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Product;
 import view.MenuManager;

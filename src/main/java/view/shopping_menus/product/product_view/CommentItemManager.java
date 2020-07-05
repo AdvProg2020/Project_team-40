@@ -4,8 +4,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Comment;
-import model.users.Customer;
-import model.users.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;

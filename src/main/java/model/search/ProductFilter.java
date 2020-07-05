@@ -3,8 +3,6 @@ package model.search;
 import model.Category;
 import model.Product;
 import model.enumerations.PropertyType;
-import model.enumerations.SetUpStatus;
-import model.enumerations.Status;
 import model.enumerations.StockStatus;
 
 import java.util.ArrayList;

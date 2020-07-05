@@ -1,11 +1,6 @@
 package view.account_menus.seller_view.sellers_offs_view;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -15,12 +10,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Off;
-import model.requests.EditOff;
 import view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class OffItemManager extends MenuManager implements Initializable{

@@ -8,9 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.requests.AddProduct;
 import model.requests.RemoveProduct;
-import view.MenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;

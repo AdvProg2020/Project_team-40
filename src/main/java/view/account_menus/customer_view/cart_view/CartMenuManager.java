@@ -2,14 +2,12 @@ package view.account_menus.customer_view.cart_view;
 
 import controller.accounts.CustomerAccountController;
 import exceptions.AccountsException;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import model.log.Log;
 import view.MenuManager;
 

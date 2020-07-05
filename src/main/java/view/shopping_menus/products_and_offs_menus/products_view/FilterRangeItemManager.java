@@ -3,11 +3,7 @@ package view.shopping_menus.products_and_offs_menus.products_view;
 import com.jfoenix.controls.JFXSlider;
 import controller.menus.AllProductsController;
 import exceptions.MenuException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.text.Text;
 
 import java.net.URL;

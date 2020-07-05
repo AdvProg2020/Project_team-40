@@ -5,14 +5,12 @@ import com.jfoenix.controls.JFXTextField;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.stage.Stage;
 import model.Category;
-import model.DiscountCode;
 
 import java.net.URL;
 import java.util.ArrayList;

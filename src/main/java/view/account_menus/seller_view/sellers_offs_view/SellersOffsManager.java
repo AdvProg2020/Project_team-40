@@ -10,15 +10,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Off;
-import model.requests.AddOff;
 import model.users.Seller;
 import model.users.User;
-import view.shopping_menus.product.product_view.AddCommentMenuManager;
-import view.shopping_menus.product.product_view.ProductMenuManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;

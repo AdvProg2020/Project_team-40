@@ -13,7 +13,6 @@ import model.Category;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class CategoryView implements Initializable {
     public Label nameLabel;

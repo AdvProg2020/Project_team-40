@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.requests.AddProduct;
 import model.requests.EditProduct;
 import view.shopping_menus.product.product_view.ProductMenuManager;
 

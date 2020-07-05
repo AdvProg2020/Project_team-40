@@ -1,10 +1,7 @@
 package view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
 import controller.accounts.ManagerAccountController;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -13,10 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.DiscountCode;
-import model.users.User;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Set;
 

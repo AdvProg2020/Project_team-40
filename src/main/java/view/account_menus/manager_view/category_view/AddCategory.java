@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;

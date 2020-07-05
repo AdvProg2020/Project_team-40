@@ -2,8 +2,6 @@ package model.requests;
 
 import model.Off;
 import model.enumerations.Status;
-import model.users.Seller;
-import model.users.User;
 
 public class AddOff extends Request{
     private static final long serialVersionUID = 6700410384833798993L;
