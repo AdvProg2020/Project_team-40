@@ -18,6 +18,8 @@ public class DiscountCode implements Serializable {
     private int countPerUser;
     private Map<String, Integer> includedCostumers;
 
+    public DiscountCode(){}
+
     public DiscountCode(Date startDate, Date endDate,
                         int percentage, double maxAmount, int countPerUser) {
         this.startDate = startDate;

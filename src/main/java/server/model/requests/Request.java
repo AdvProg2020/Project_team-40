@@ -13,6 +13,8 @@ public abstract class Request implements Serializable {
     protected String requestId;
     protected Status status;
 
+    public Request(){}
+
     public Request(String type) {
         this.type = type;
         this.status = Status.Waiting;

@@ -20,4 +20,6 @@ module sample {
 
     exports client.view;
     exports server.server_resources.manager_account_controller;
+    exports server.model;
+    exports server.model.requests;
 }
