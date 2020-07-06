@@ -7,7 +7,6 @@ module sample {
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
     requires org.restlet;
-    opens client.view.account_menus.seller_view;
     opens client.view.register_login_view;
     opens client.view.main_menu;
     opens client.view.shopping_menus.product.comment_view;
@@ -20,4 +19,5 @@ module sample {
     opens client.view;
 
     exports client.view;
+    exports server.server_resources.manager_account_controller;
 }
