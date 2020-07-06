@@ -1,14 +1,14 @@
 package view.account_menus.manager_view.manage_users_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.users.User;
+import server.model.users.User;
 import view.MenuManager;
 
 import java.net.URL;

@@ -1,8 +1,8 @@
 package view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.AccountController;
-import controller.accounts.CustomerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.CustomerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,8 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.DiscountCode;
-import model.users.Customer;
+import server.model.DiscountCode;
+import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,13 +28,13 @@ public class DiscountMenuManager implements Initializable {
     public JFXButton refreshButton;
     public AnchorPane mainPane;
     public Label title;
-    private controller.accounts.ManagerAccountController managerAccountController;
+    private server.controller.accounts.ManagerAccountController managerAccountController;
     private AccountController accountController;
     private CustomerAccountController customerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = controller.accounts.ManagerAccountController.getInstance();
+        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         accountController = AccountController.getInstance();
         if(accountController.getThisUser() instanceof Customer) {
             mainPane.getChildren().remove(addDiscount);

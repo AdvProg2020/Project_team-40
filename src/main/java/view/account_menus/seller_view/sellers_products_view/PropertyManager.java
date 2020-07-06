@@ -1,11 +1,11 @@
 package view.account_menus.seller_view.sellers_products_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.SellerAccountController;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import model.Product;
+import server.model.Product;
 import view.MenuManager;
 
 public class PropertyManager extends MenuManager {

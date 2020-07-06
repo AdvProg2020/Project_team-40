@@ -1,14 +1,14 @@
 package view.register_login_view;
 
-import controller.accounts.AccountController;
-import controller.accounts.CustomerAccountController;
-import controller.accounts.ManagerAccountController;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.CustomerAccountController;
+import server.controller.accounts.ManagerAccountController;
+import server.controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.users.User;
+import server.model.users.User;
 import view.MenuManager;
 import view.ValidInput;
 

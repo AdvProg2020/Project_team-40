@@ -1,6 +1,5 @@
 package view.shopping_menus.product.product_view;
 
-import controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,10 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Comment;
-import model.enumerations.Status;
-import model.users.Customer;
-import model.users.User;
+import server.controller.menus.ProductController;
+import server.model.Comment;
+import server.model.enumerations.Status;
+import server.model.users.Customer;
+import server.model.users.User;
 import view.MenuManager;
 import view.account_menus.customer_view.orders_view.RateMenu;
 

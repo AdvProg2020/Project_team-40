@@ -1,8 +1,8 @@
 package view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.AccountController;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.DiscountCode;
-import model.users.Customer;
+import server.model.DiscountCode;
+import server.model.users.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;

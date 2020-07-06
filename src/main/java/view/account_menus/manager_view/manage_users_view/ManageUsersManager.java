@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.users.User;
+import server.model.users.User;
 import view.MenuManager;
 import view.register_login_view.RegisterManager;
 
@@ -18,11 +18,11 @@ import java.util.ResourceBundle;
 public class ManageUsersManager extends MenuManager implements Initializable {
 
     public VBox vBoxItems;
-    private controller.accounts.ManagerAccountController managerAccountController;
+    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = controller.accounts.ManagerAccountController.getInstance();
+        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadUsers();
     }
 

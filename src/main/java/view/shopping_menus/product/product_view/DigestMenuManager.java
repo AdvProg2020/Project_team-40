@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import controller.menus.ProductController;
+import server.controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

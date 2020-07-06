@@ -1,7 +1,7 @@
 package view.account_menus.customer_view.orders_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.CustomerAccountController;
+import server.controller.accounts.CustomerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;

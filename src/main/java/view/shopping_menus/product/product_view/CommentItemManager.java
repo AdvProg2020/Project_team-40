@@ -1,9 +1,8 @@
 package view.shopping_menus.product.product_view;
-
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import model.Comment;
+import server.model.Comment;
 
 import java.net.URL;
 import java.util.ResourceBundle;

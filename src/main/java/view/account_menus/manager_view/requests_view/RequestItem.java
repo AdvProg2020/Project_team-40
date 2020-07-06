@@ -1,7 +1,7 @@
 package view.account_menus.manager_view.requests_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,11 +11,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Comment;
-import model.Off;
-import model.Product;
-import model.requests.*;
-import model.users.Seller;
+import server.model.Comment;
+import server.model.Off;
+import server.model.Product;
+import server.model.requests.*;
+import server.model.users.Seller;
 import view.MenuManager;
 
 import java.net.URL;

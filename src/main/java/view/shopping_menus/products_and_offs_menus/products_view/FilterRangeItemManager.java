@@ -1,7 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.JFXSlider;
-import controller.menus.AllProductsController;
+import server.controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;

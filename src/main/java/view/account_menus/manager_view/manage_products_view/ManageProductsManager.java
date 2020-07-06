@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Product;
+import server.model.Product;
 import view.MenuManager;
 
 import java.net.URL;
@@ -14,11 +14,11 @@ import java.util.ResourceBundle;
 
 public class ManageProductsManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
-    private controller.accounts.ManagerAccountController managerAccountController;
+    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = controller.accounts.ManagerAccountController.getInstance();
+        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadProducts();
     }
 

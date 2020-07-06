@@ -1,7 +1,7 @@
 package view.shopping_menus.product.product_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.menus.ProductController;
+import server.controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
@@ -9,8 +9,8 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import model.users.Customer;
-import model.users.User;
+import server.model.users.Customer;
+import server.model.users.User;
 import view.MenuManager;
 
 import java.net.URL;

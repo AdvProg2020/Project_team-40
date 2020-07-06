@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Loader;
+import server.model.Loader;
 
 public class GUI extends Application {
     public static void initialize(){

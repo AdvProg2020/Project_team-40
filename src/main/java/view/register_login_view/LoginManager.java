@@ -1,6 +1,6 @@
 package view.register_login_view;
 
-import controller.accounts.AccountController;
+import server.controller.accounts.AccountController;
 import exceptions.AccountsException;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

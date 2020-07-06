@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import model.users.User;
+import server.model.users.User;
 import view.MenuManager;
 import view.register_login_view.RegisterManager;
 

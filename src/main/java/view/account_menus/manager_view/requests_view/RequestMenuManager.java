@@ -6,8 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.requests.Request;
-import model.users.Manager;
+import server.model.requests.Request;
+import server.model.users.Manager;
 import view.MenuManager;
 
 import java.net.URL;
@@ -15,11 +15,11 @@ import java.util.ResourceBundle;
 
 public class RequestMenuManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
-    private controller.accounts.ManagerAccountController managerAccountController;
+    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = controller.accounts.ManagerAccountController.getInstance();
+        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadRequests();
     }
 

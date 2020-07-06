@@ -1,7 +1,7 @@
 package Main;
 
 import exceptions.DataException;
-import model.Loader;
+import server.model.Loader;
 import view.GUI;
 
 import java.io.File;

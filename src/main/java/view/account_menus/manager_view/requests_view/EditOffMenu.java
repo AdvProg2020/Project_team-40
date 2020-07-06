@@ -1,7 +1,7 @@
 package view.account_menus.manager_view.requests_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Off;
-import model.requests.EditOff;
+import server.model.Off;
+import server.model.requests.EditOff;
 
 import java.io.IOException;
 import java.net.URL;

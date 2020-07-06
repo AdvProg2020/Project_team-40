@@ -2,7 +2,7 @@ package view.shopping_menus.product.product_view;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import model.Product;
+import server.model.Product;
 import view.MenuManager;
 
 import java.net.URL;

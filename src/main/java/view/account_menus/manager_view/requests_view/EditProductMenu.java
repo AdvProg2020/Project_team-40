@@ -1,7 +1,7 @@
 package view.account_menus.manager_view.requests_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.requests.EditProduct;
+import server.model.requests.EditProduct;
 import view.shopping_menus.product.product_view.ProductMenuManager;
 
 import java.io.IOException;

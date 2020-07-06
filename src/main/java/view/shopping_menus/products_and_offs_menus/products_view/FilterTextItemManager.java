@@ -1,7 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.menus.AllProductsController;
+import server.controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;

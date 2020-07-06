@@ -1,6 +1,6 @@
 package view.shopping_menus.product.product_view;
 
-import controller.menus.ProductController;
+import server.controller.menus.ProductController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

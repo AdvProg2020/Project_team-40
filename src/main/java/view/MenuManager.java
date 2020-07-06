@@ -1,15 +1,15 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.AccountController;
+import server.controller.accounts.AccountController;
 import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
-import model.Loader;
-import model.users.Manager;
-import model.users.Seller;
-import model.users.User;
+import server.model.Loader;
+import server.model.users.Manager;
+import server.model.users.Seller;
+import server.model.users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;

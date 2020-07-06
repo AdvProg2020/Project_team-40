@@ -1,7 +1,7 @@
 package view.account_menus.customer_view.orders_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.CustomerAccountController;
+import server.controller.accounts.CustomerAccountController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.log.Log;
+import server.model.log.Log;
 
 import java.io.IOException;
 import java.net.URL;

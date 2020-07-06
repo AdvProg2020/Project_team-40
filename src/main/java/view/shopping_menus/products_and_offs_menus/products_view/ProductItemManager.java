@@ -1,15 +1,15 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
-import controller.menus.AllProductsController;
+import server.controller.menus.AllProductsController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import model.Off;
-import model.Product;
-import model.users.Seller;
+import server.model.Off;
+import server.model.Product;
+import server.model.users.Seller;
 import view.MenuManager;
 import view.shopping_menus.product.product_view.ProductMenuManager;
 

@@ -1,8 +1,8 @@
 package view.account_menus.manager_view.category_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.AccountController;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Category;
-import model.users.Seller;
+import server.model.Category;
+import server.model.users.Seller;
 
 import java.net.URL;
 import java.util.ResourceBundle;

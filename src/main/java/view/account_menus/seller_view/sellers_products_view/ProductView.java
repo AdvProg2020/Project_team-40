@@ -1,6 +1,6 @@
 package view.account_menus.seller_view.sellers_products_view;
 
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Product;
+import server.model.Product;
 import view.MenuManager;
 
 import javax.security.auth.login.AccountException;

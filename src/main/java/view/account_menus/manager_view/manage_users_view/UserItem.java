@@ -1,7 +1,7 @@
 package view.account_menus.manager_view.manage_users_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.users.User;
+import server.model.users.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;

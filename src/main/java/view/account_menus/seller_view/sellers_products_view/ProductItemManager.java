@@ -1,8 +1,8 @@
 package view.account_menus.seller_view.sellers_products_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.AccountController;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Product;
+import server.model.Product;
 import view.MenuManager;
 
 import java.io.IOException;

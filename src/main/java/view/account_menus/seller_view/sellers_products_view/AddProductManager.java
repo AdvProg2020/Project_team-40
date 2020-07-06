@@ -2,7 +2,7 @@ package view.account_menus.seller_view.sellers_products_view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,9 +10,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Category;
-import model.Product;
-import model.enumerations.PropertyType;
+import server.model.Category;
+import server.model.Product;
+import server.model.enumerations.PropertyType;
 import view.MenuManager;
 import view.ValidInput;
 

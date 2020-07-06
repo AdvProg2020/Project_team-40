@@ -1,14 +1,14 @@
 package view.account_menus.manager_view.requests_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.requests.AddComment;
+import server.model.requests.AddComment;
 
 import java.net.URL;
 import java.util.ResourceBundle;

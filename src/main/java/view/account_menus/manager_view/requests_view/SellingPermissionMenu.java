@@ -1,13 +1,13 @@
 package view.account_menus.manager_view.requests_view;
 
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.requests.SellingPermission;
+import server.model.requests.SellingPermission;
 
 import java.net.URL;
 import java.util.ResourceBundle;

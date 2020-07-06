@@ -1,12 +1,12 @@
 package view.account_menus.seller_view.sellers_offs_view;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import model.Off;
+import server.model.Off;
 import view.MenuManager;
 
 import java.net.URL;

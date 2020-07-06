@@ -1,7 +1,7 @@
 package view.shopping_menus.products_and_offs_menus.products_view;
 
 import com.jfoenix.controls.*;
-import controller.menus.AllProductsController;
+import server.controller.menus.AllProductsController;
 import exceptions.AccountsException;
 import exceptions.MenuException;
 import javafx.animation.TranslateTransition;
@@ -13,8 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import model.Category;
-import model.Product;
+import server.model.Category;
+import server.model.Product;
 import view.MenuManager;
 
 import java.io.IOException;

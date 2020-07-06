@@ -1,11 +1,11 @@
 package view.account_menus.seller_view;
 
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import model.log.Log;
+import server.model.log.Log;
 import view.MenuManager;
 
 import java.net.URL;

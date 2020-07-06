@@ -1,6 +1,6 @@
 package view.shopping_menus.product.product_view;
 
-import controller.menus.ProductController;
+import server.controller.menus.ProductController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;

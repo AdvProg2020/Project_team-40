@@ -2,7 +2,7 @@ package view.account_menus.manager_view.category_view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
@@ -10,8 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.Category;
-import model.enumerations.PropertyType;
+import server.model.Category;
+import server.model.enumerations.PropertyType;
 
 import java.net.URL;
 import java.util.HashMap;

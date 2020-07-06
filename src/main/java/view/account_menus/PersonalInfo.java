@@ -1,16 +1,16 @@
 package view.account_menus;
 
-import controller.accounts.AccountController;
-import controller.accounts.CustomerAccountController;
-import controller.accounts.SellerAccountController;
+import server.controller.accounts.AccountController;
+import server.controller.accounts.CustomerAccountController;
+import server.controller.accounts.SellerAccountController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import model.users.Customer;
-import model.users.Seller;
-import model.users.User;
+import server.model.users.Customer;
+import server.model.users.Seller;
+import server.model.users.User;
 import view.MenuManager;
 import view.ValidInput;
 

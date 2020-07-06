@@ -4,7 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import model.log.Log;
+import server.model.log.Log;
 import view.MenuManager;
 
 import java.net.URL;

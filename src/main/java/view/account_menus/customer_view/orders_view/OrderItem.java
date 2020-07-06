@@ -1,7 +1,7 @@
 package view.account_menus.customer_view.orders_view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.accounts.CustomerAccountController;
+import server.controller.accounts.CustomerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.log.Log;
+import server.model.log.Log;
 
 import java.net.URL;
 import java.util.ResourceBundle;

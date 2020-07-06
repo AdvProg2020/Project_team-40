@@ -2,14 +2,14 @@ package view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import controller.accounts.ManagerAccountController;
+import server.controller.accounts.ManagerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
-import model.users.Customer;
+import server.model.users.Customer;
 
 import java.net.URL;
 import java.util.ArrayList;

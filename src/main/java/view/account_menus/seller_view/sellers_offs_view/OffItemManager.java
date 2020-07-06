@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Off;
+import server.model.Off;
 import view.MenuManager;
 
 import java.io.IOException;
