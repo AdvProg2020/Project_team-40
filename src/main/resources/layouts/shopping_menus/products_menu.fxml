@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1108.0" styleClass="root" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1108.0" styleClass="root" stylesheets="@../../stylesheets/products_menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.shopping_menus.products_and_offs_menus.products_view.ProductsMenuManager">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="1114.0" style="-fx-background-color: #E081A8;">
          <children>

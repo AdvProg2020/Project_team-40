@@ -2,7 +2,7 @@ package Main;
 
 import exceptions.DataException;
 import server.model.Loader;
-import view.GUI;
+import client.view.GUI;
 
 import java.io.File;
 

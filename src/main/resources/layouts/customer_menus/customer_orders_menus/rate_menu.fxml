@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane prefHeight="340.0" prefWidth="496.0" style="-fx-background-color: #185ff6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.orders_view.RateMenu">
+<AnchorPane prefHeight="340.0" prefWidth="496.0" style="-fx-background-color: #185ff6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.orders_view.RateMenu">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="60.0" prefHeight="42.0" prefWidth="330.0" text="Thanks for your feedback :)" textFill="WHITE">
          <font>

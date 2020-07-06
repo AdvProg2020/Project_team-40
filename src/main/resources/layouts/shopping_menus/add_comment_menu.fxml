@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.AddCommentMenuManager">
+<AnchorPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.shopping_menus.product.product_view.AddCommentMenuManager">
    <children>
       <Label layoutX="20.0" layoutY="43.0" text="Title :" />
       <JFXTextField fx:id="titleField" layoutX="73.0" layoutY="26.0" prefHeight="26.0" prefWidth="398.0" />

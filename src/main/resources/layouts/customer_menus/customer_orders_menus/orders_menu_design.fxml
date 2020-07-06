@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.customer_view.orders_view.OrdersMenuManager">
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.orders_view.OrdersMenuManager">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="48.0" prefHeight="94.0" prefWidth="280.0" text="Orders List" textAlignment="CENTER">
             <font>

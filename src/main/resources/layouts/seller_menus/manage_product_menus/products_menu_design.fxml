@@ -10,7 +10,7 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.seller_view.sellers_products_view.SellersProductsManager"
+            fx:controller="client.view.account_menus.seller_view.sellers_products_view.SellersProductsManager"
             prefHeight="631.0" prefWidth="831.0">
     <children>
         <Label fx:id="mainLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="37.0" prefHeight="94.0" prefWidth="309.0" text="Manage Products" textAlignment="CENTER">

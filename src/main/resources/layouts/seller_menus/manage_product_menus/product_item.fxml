@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="itemPane" prefHeight="39.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.ProductItemManager">
+<AnchorPane fx:id="itemPane" prefHeight="39.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.sellers_products_view.ProductItemManager">
     <children>
         <HBox prefHeight="32.0" prefWidth="748.0">
             <children>

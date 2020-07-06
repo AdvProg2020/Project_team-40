@@ -7,17 +7,17 @@ module sample {
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
     requires org.restlet;
-    opens view.account_menus.seller_view;
-    opens view.register_login_view;
-    opens view.main_menu;
-    opens view.shopping_menus.product.comment_view;
-    opens view.shopping_menus.product.product_digest_view;
-    opens view.shopping_menus.product.product_view;
-    opens view.shopping_menus.products_and_offs_menus.filter_view;
-    opens view.shopping_menus.products_and_offs_menus.offs_view;
-    opens view.shopping_menus.products_and_offs_menus.products_view;
-    opens view.shopping_menus.products_and_offs_menus.sorts_view;
-    opens view;
+    opens client.view.account_menus.seller_view;
+    opens client.view.register_login_view;
+    opens client.view.main_menu;
+    opens client.view.shopping_menus.product.comment_view;
+    opens client.view.shopping_menus.product.product_digest_view;
+    opens client.view.shopping_menus.product.product_view;
+    opens client.view.shopping_menus.products_and_offs_menus.filter_view;
+    opens client.view.shopping_menus.products_and_offs_menus.offs_view;
+    opens client.view.shopping_menus.products_and_offs_menus.products_view;
+    opens client.view.shopping_menus.products_and_offs_menus.sorts_view;
+    opens client.view;
 
-    exports view;
+    exports client.view;
 }

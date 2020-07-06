@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="621.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.DigestMenuManager">
+<AnchorPane prefHeight="621.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.shopping_menus.product.product_view.DigestMenuManager">
    <children>
       <JFXTreeTableView fx:id="treeView" layoutX="22.0" layoutY="65.0" prefHeight="534.0" prefWidth="808.0">
          <columnResizePolicy>

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="540.0" prefWidth="855.0" style="-fx-background-color: #ff5686;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_products_view.AddProductManager">
+<AnchorPane prefHeight="540.0" prefWidth="855.0" style="-fx-background-color: #ff5686;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.sellers_products_view.AddProductManager">
     <Label alignment="CENTER" layoutX="58.0" layoutY="22.0" prefHeight="54.0" prefWidth="354.0" text="Create Product">
         <font>
             <Font size="36.0" />

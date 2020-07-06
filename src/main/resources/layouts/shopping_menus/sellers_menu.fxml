@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="626.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.SellersMenuManager">
+<AnchorPane prefHeight="626.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.shopping_menus.product.product_view.SellersMenuManager">
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutX="31.0" layoutY="146.0" prefHeight="447.0" prefWidth="804.0">
          <content>

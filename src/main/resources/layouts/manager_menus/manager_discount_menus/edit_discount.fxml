@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="518.0" style="-fx-background-color: #ebdef0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.manager_view.discount_view.DiscountEdit">
+<AnchorPane fx:id="pane" prefHeight="540.0" prefWidth="518.0" style="-fx-background-color: #ebdef0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.manager_view.discount_view.DiscountEdit">
     <children>
         <Label alignment="CENTER" layoutX="112.0" layoutY="40.0" prefHeight="54.0" prefWidth="354.0" text="Edit Discount Code">
             <font>
