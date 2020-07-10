@@ -7,7 +7,7 @@ import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.CustomerAccountController;
 
-public class DiscountResource extends ServerResource {
+public class CustomerDiscountResource extends ServerResource {
     @Put
     public void enterDiscount(String code) throws AccountsException, AuthorizationException {
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))

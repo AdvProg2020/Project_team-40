@@ -9,7 +9,7 @@ import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 import server.model.DiscountCode;
 
-public class DiscountResource extends ServerResource {
+public class ManagerDiscountResource extends ServerResource {
     @Get
     public DiscountCode getDiscount(){
         try {

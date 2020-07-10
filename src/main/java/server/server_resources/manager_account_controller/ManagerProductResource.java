@@ -6,7 +6,7 @@ import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 
-public class ProductResource extends ServerResource {
+public class ManagerProductResource extends ServerResource {
     @Delete
     public String removeProduct(){
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))

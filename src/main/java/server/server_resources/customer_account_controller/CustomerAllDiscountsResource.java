@@ -1,17 +1,19 @@
 package server.server_resources.customer_account_controller;
 
-import exceptions.AccountsException;
 import exceptions.AuthorizationException;
-import org.restlet.resource.Put;
+import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.CustomerAccountController;
+import server.model.DiscountCode;
 
-public class ProductResource extends ServerResource {
-    @Put
-    public void rateProduct() throws AccountsException, AuthorizationException {
+import java.util.HashMap;
+
+public class CustomerAllDiscountsResource extends ServerResource {
+    @Get
+    public HashMap<String, DiscountCode> getAllDiscounts() throws AuthorizationException {
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
             throw new AuthorizationException("Authentication failed.");
-        CustomerAccountController.getInstance().rateProduct(getQueryValue("productID"), Integer.parseInt(getQueryValue("rate")));
+        return CustomerAccountController.getInstance().getDiscountCodes();
     }
 }
