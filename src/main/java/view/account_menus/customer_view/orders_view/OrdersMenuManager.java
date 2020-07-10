@@ -19,14 +19,17 @@ import java.util.ResourceBundle;
 public class OrdersMenuManager implements Initializable {
     public VBox vBoxItems;
     public HBox topHBox;
+    public Label titleLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AccountController accountController = AccountController.getInstance();
-        if(accountController.getThisUser() instanceof Customer)
+        if (accountController.getThisUser() instanceof Customer) {
             loadLogs(CustomerAccountController.getInstance().getOrders().values());
-        else
+        } else {
+            titleLabel.setText("Sales History");
             loadLogs(SellerAccountController.getInstance().getSalesHistory());
+        }
     }
 
     private void loadLogs(Collection<Log> values) {
