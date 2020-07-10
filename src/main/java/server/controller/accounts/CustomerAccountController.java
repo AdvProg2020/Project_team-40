@@ -104,13 +104,13 @@ public class CustomerAccountController extends AccountController{
         return log;
     }
 
-    public void resetPurchaseVariables() {
+    private void resetPurchaseVariables() {
         address = null;
         priceAfterDiscount = -1;
         costWithoutDiscount = -1;
     }
 
-    public void getReceiverInfo(String address){
+    public void setReceiverInfo(String address){
         this.address = address;
     }
 
