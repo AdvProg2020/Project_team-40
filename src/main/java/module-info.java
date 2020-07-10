@@ -19,7 +19,10 @@ module sample {
     opens client.view;
 
     exports client.view;
+    exports server.model.log;
     exports server.server_resources.manager_account_controller;
+    exports server.server_resources.customer_account_controller;
+    exports exceptions;
     exports server.model;
     exports server.model.requests;
 }
