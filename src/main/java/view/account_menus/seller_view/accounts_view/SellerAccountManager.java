@@ -33,6 +33,6 @@ public class SellerAccountManager extends MenuManager implements Initializable {
     }
 
     public void goToSalesHistory() {
-        setSecondaryInnerPane("/layouts/seller_menus/sales_history.fxml");
+        setSecondaryInnerPane("/layouts/customer_menus/customer_orders_menus/orders_menu_design.fxml");
     }
 }
