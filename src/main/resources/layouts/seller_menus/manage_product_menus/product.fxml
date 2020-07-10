@@ -190,11 +190,13 @@
 
             </VBox>
         </ScrollPane>
-        <JFXButton fx:id="backButton" layoutX="585.0" layoutY="468.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" " />
-          <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="1089.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                  <Image url="@../../../images/icons8-back-arrow-64.png" />
-              </image>
-          </ImageView>
+
+        <JFXButton fx:id="backButton" layoutX="579.0" layoutY="460.0" onAction="#handleCloseWindow" prefHeight="39.0" prefWidth="70.0" text=" " >
+            <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../images/icons8-back-arrow-64.png" />
+                </image>
+            </ImageView>
+        </JFXButton>
     </children>
 </AnchorPane>
