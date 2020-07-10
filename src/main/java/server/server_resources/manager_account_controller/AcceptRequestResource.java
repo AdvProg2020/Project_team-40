@@ -6,7 +6,7 @@ import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 
-public class AcceptRequestHandler extends ServerResource {
+public class AcceptRequestResource extends ServerResource {
     @Get
     public String acceptRequest(){
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))

@@ -6,13 +6,14 @@ import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 
-public class RemoveDiscountHandler extends ServerResource {
+public class UserResource extends ServerResource {
     @Get
-    public String removeDiscount(){
+    public String deleteUser(){
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
             return "Authentication failed.";
+        String username = getQueryValue("username");
         try {
-            ManagerAccountController.getInstance().removeDiscount(getQueryValue("code"));
+            ManagerAccountController.getInstance().deleteUser(username);
         } catch (AccountsException e) {
             return e.getMessage();
         }

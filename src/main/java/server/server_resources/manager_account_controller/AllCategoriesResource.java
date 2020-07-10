@@ -6,7 +6,7 @@ import server.controller.accounts.ManagerAccountController;
 
 import java.util.Set;
 
-public class GetAllCategoriesHandler extends ServerResource {
+public class AllCategoriesResource extends ServerResource {
     @Get
     public Set<String> getAllCats(){
         return ManagerAccountController.getInstance().getAllCategories();

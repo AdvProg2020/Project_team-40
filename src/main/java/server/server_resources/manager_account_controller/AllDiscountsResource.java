@@ -7,7 +7,7 @@ import server.model.DiscountCode;
 
 import java.util.ArrayList;
 
-public class GetAllDiscountsHandler extends ServerResource {
+public class AllDiscountsResource extends ServerResource {
     @Get
     public ArrayList<DiscountCode> getAllDiscounts(){
         return ManagerAccountController.getInstance().getAllDiscountCodes();

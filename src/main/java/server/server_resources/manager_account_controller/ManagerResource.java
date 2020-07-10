@@ -4,7 +4,7 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.ManagerAccountController;
 
-public class CreateManagerHandler extends ServerResource {
+public class ManagerResource extends ServerResource {
     @Get
     public String createManager(){
         ManagerAccountController manager = ManagerAccountController.getInstance();

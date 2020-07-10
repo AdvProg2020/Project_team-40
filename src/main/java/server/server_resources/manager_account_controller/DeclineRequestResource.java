@@ -6,13 +6,13 @@ import org.restlet.resource.ServerResource;
 import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 
-public class RemoveProductHandler extends ServerResource {
+public class DeclineRequestResource extends ServerResource {
     @Get
-    public String removeProduct(){
+    public String acceptRequest(){
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
             return "Authentication failed.";
         try {
-            ManagerAccountController.getInstance().removeProduct(getQueryValue("productID"));
+            ManagerAccountController.getInstance().declineRequest(getQueryValue("requestID"));
         } catch (AccountsException e) {
             return e.getMessage();
         }

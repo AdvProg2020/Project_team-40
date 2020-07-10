@@ -10,20 +10,19 @@ public class MainServer extends Component {
         new MainServer().start();
     }
 
+
     public MainServer() {
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
-        getDefaultHost().attach("/accounts/manager_account_controller/create_manager/", CreateManagerHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/delete_user/", DeleteUserHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/remove_product/", RemoveProductHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/get_all_categories/", GetAllCategoriesHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/create_category/", CreateCategoryHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/remove_category/", RemoveCategoryHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/accept_request/", AcceptRequestHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", DeclineRequestHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/create_discount/", CreateDiscountHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/get_all_discounts/", GetAllDiscountsHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/get_discount/", GetDiscountHandler.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/remove_discount/", RemoveDiscountHandler.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/user/", UserResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/product/", ProductResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", AllCategoriesResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/category/", CategoryResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/request/", RequestResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/accept_request/", AcceptRequestResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", DeclineRequestResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/discount/", DiscountResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", AllDiscountsResource.class);
 
 
 

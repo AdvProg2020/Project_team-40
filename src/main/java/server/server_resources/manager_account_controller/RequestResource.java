@@ -6,7 +6,7 @@ import org.restlet.resource.ServerResource;
 import server.controller.accounts.ManagerAccountController;
 import server.model.requests.Request;
 
-public class GetRequestHandler extends ServerResource {
+public class RequestResource extends ServerResource {
     @Get
     public Request getRequestObject(){
         try {
