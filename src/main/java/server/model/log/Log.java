@@ -21,6 +21,8 @@ public class Log implements Serializable {
     private HashMap<String, Integer> productsId;
     private static HashMap<String, Log> allLogs = new HashMap<>();
 
+    public Log(){}
+
     public Log(Date date, double cost, double costWithoutDiscount,
                HashMap<String, Integer> productsId, String buyerName, String address, boolean isDelivered) {
         this.isDelivered = isDelivered;
