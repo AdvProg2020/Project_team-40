@@ -1,5 +1,6 @@
 package server;
 
+import exceptions.AuthorizationException;
 import org.restlet.Component;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -29,6 +30,8 @@ public class MainServer extends Component {
 
             @Override
             public Status getStatus(Throwable throwable, Resource resource) {
+                if (throwable instanceof AuthorizationException)
+                    return Status.CLIENT_ERROR_UNAUTHORIZED;
                 return Status.CLIENT_ERROR_FORBIDDEN;
             }
         });
