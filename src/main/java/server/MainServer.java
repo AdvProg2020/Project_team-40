@@ -11,6 +11,7 @@ import org.restlet.resource.Resource;
 import org.restlet.service.StatusService;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
+import server.server_resources.seller_account_controller.*;
 
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
@@ -56,6 +57,19 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/price_after_discount/", PriceAfterDiscountResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/price_without_discount/", PriceWithoutDiscountResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/receiver_info/", ReceiverInfoResource.class);
+
+        getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", AllOffsResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/company_info/", CompanyInfoResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/off/", OffResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/product_count/increase/", ProductCountIncrementResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/product_count/decrease/", ProductCountDecrementResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/product/", SellerProductResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/products/", SellerProductsResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/sales_history/", SalesHistoryResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/all_categories/", SellerAllCategoriesResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/balance/", SellerBalanceResource.class);
+
 
 
 
