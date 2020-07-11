@@ -11,5 +11,15 @@ public class BankAccount {
         this.password = password;
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

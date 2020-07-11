@@ -1,6 +1,7 @@
 package controller.accounts;
 
 import exceptions.AccountsException;
+import model.BankAccount;
 import model.Cart;
 import model.users.Customer;
 import model.users.Seller;
@@ -89,6 +90,20 @@ public class AccountController{
             fields.add("Company information");
         }
         return fields;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) throws AccountsException {
+        User user = User.getLoggedInUser();
+        if(user.getBankAccount() != null)
+            throw new AccountsException("You already have an account in this bank!");
+        user.setBankAccount(bankAccount);
+    }
+
+    public BankAccount getBankAccount() throws AccountsException {
+        User user = User.getLoggedInUser();
+        if(user.getBankAccount() == null)
+            throw new AccountsException("You don't have an account yet!");
+        return user.getBankAccount();
     }
 
     public void logout() {

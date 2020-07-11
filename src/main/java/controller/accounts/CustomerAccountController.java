@@ -266,18 +266,4 @@ public class CustomerAccountController extends AccountController{
             throw new AccountsException("Customer doesn't have a log with this ID.");
         }
     }
-
-    public void setBankAccount(BankAccount bankAccount) throws AccountsException {
-        User user = User.getLoggedInUser();
-        if(user.getBankAccount() != null)
-            throw new AccountsException("You already have an account in this bank!");
-        user.setBankAccount(bankAccount);
-    }
-
-    public BankAccount getBankAccount() throws AccountsException {
-        User user = User.getLoggedInUser();
-        if(user.getBankAccount() == null)
-            throw new AccountsException("You don't have an account yet!");
-        return user.getBankAccount();
-    }
 }
