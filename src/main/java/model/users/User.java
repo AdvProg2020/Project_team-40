@@ -1,6 +1,7 @@
 package model.users;
 
 import exceptions.DataException;
+import model.BankAccount;
 
 import java.io.*;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public abstract class  User implements Serializable {
     protected String lastName;
     protected String email;
     protected String phoneNo;
+    protected BankAccount bankAccount;
 
     public User(String username, String password, String firstName,
                 String lastName, String email, String phoneNo) {
@@ -26,6 +28,7 @@ public abstract class  User implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
+        this.bankAccount = null;
         allUsers.put(this.username, this);
     }
 
@@ -54,6 +57,14 @@ public abstract class  User implements Serializable {
     }
 
     public abstract String getRole();
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
 
     public void setPassword(String password) {
         this.password = password;
