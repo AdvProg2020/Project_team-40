@@ -35,7 +35,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/user/", UserResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/product/", ManagerProductResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", AllCategoriesResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", ManagerAllCategoriesResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/category/", CategoryResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/request/", RequestResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/accept_request/", AcceptRequestResource.class);
