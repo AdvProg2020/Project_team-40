@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.register_login_view.RegisterManager">
+<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.register_login_view.RegisterManager">
     <GridPane fx:id="infoPane" layoutX="264.0" layoutY="120.0" prefHeight="445.0" prefWidth="710.0">
       <columnConstraints>
          <ColumnConstraints maxWidth="287.0" minWidth="10.0" prefWidth="180.0" />

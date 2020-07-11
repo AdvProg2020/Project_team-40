@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="580.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.account_menus.seller_view.sellers_offs_view.SellersOffsManager">
+<AnchorPane prefHeight="580.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.sellers_offs_view.SellersOffsManager">
    <children>
       <VBox fx:id="offsVBox" layoutX="61.0" layoutY="139.0" prefHeight="405.0" prefWidth="738.0" />
       <HBox layoutX="61.0" layoutY="81.0" prefHeight="50.0" prefWidth="738.0" spacing="10.0" style="-fx-background-color: #3498DB;">

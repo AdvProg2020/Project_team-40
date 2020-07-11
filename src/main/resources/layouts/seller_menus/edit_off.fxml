@@ -13,7 +13,7 @@
 <AnchorPane style="-fx-background-color: #F1948A;"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.seller_view.sellers_offs_view.EditOffManager"
+            fx:controller="client.view.account_menus.seller_view.sellers_offs_view.EditOffManager"
             prefHeight="400.0" prefWidth="600.0">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

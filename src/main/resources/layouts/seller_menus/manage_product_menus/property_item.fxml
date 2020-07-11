@@ -9,7 +9,7 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.account_menus.seller_view.sellers_products_view.PropertyManager"
+            fx:controller="client.view.account_menus.seller_view.sellers_products_view.PropertyManager"
             prefHeight="39.0" prefWidth="407.0" >
     <children>
         <HBox fx:id="hBox" prefHeight="32.0" prefWidth="407.0">

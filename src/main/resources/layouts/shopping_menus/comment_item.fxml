@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="253.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.shopping_menus.product.product_view.CommentItemManager">
+<AnchorPane prefHeight="253.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.shopping_menus.product.product_view.CommentItemManager">
    <children>
       <ImageView fitHeight="97.0" fitWidth="111.0" layoutX="27.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
