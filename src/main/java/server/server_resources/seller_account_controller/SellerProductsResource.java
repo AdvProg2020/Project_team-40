@@ -8,7 +8,7 @@ import server.controller.accounts.SellerAccountController;
 
 import java.util.ArrayList;
 
-public class ProductsResource extends ServerResource {
+public class SellerProductsResource extends ServerResource {
     @Get
     public ArrayList<String> getProductIds() throws AuthorizationException {
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))

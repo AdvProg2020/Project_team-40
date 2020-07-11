@@ -10,7 +10,7 @@ import server.model.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProductResource extends ServerResource {
+public class SellerProductResource extends ServerResource {
     @Get
     public Product getProductDetails() throws AccountsException, AuthorizationException {
         if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
