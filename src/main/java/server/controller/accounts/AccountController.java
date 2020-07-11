@@ -1,6 +1,7 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
+import server.AuthenticationTokenHandler;
 import server.model.BankAccount;
 import server.model.Cart;
 import server.model.users.Customer;
@@ -23,7 +24,7 @@ public class AccountController{
         return User.doesUserExist(username);
     }
 
-    public void login(String username, String password) throws AccountsException {
+    public String login(String username, String password) throws AccountsException {
         Set<String> usernaems = User.getAllUsernames();
         if(!usernaems.contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");
@@ -35,7 +36,7 @@ public class AccountController{
         if(tempUser instanceof Customer) {
             Cart.getThisCart().moveProductsToCustomerCart((Customer) tempUser);
         }
-        User.setLoggedInUser(tempUser);
+        return AuthenticationTokenHandler.getNewToken();
     }
 
     public boolean isLogin() {
@@ -50,28 +51,37 @@ public class AccountController{
         return User.getLoggedInUser();
     }
 
-    public void editUser(String field, String newAmount) {
+    public User getUser(String username) throws AccountsException {
+        User user = User.getUserByUsername(username);
+        if(user == null)
+            throw new AccountsException("User not found");
+        return user;
+
+    }
+
+    public void editUser(String username, String field, String newAmount) {
+        User user = User.getUserByUsername(username);
         if(field.equals("username")) {
-            User.getLoggedInUser().setUsername(newAmount);
+            user.setUsername(newAmount);
         } else if(field.equals("password")) {
-            User.getLoggedInUser().setPassword(newAmount);
+            user.setPassword(newAmount);
         } else if(field.equals("firstName")) {
-            User.getLoggedInUser().setFirstName(newAmount);
+            user.setFirstName(newAmount);
         } else if(field.equals("lastName")) {
-            User.getLoggedInUser().setLastName(newAmount);
+            user.setLastName(newAmount);
         } else if(field.equals("phoneNumber")) {
-            User.getLoggedInUser().setPhoneNo(newAmount);
+            user.setPhoneNo(newAmount);
         } else if(field.equals("email")) {
-            User.getLoggedInUser().setEmail(newAmount);
-        } else if(User.getLoggedInUser() instanceof Seller) {
-            Seller seller = (Seller) User.getLoggedInUser();
+            user.setEmail(newAmount);
+        } else if(user instanceof Seller) {
+            Seller seller = (Seller) user;
             if(field.equals("companyInfo")) {
                 seller.setCompanyInfo(newAmount);
             } else if(field.equals("credit")) {
                 seller.setCredit(Double.parseDouble(newAmount));
             }
-        } else if(User.getLoggedInUser() instanceof Customer) {
-            ((Customer) User.getLoggedInUser()).setCredit(Double.parseDouble(newAmount));
+        } else if(user instanceof Customer) {
+            ((Customer) user).setCredit(Double.parseDouble(newAmount));
         }
     }
 
@@ -107,6 +117,7 @@ public class AccountController{
     }
 
     public void logout() {
+        //TODO:Update logout implementation
         User.setLoggedInUser(null);
-    }
+}
 }
