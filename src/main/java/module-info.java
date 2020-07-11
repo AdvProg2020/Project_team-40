@@ -24,5 +24,8 @@ module sample {
     exports server.server_resources.customer_account_controller;
     exports exceptions;
     exports server.model;
+    exports server.model.users;
     exports server.model.requests;
+    exports server.model.search;
+    exports server.model.enumerations;
 }
