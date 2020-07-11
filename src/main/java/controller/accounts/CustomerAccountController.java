@@ -15,10 +15,12 @@ public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
     private String address;
     private double priceAfterDiscount;
-    private double costWithoutDiscount;
+    private double priceWithoutDiscount;
     private String discountCode;
 
-    private CustomerAccountController(){}
+    private CustomerAccountController() {
+        resetPurchaseVariables();
+    }
 
     public static CustomerAccountController getInstance(){
         if(customerAccountController == null)
@@ -85,13 +87,13 @@ public class CustomerAccountController extends AccountController{
 
     private Log purchase() {
         Customer customer = (Customer) User.getLoggedInUser();
-        if(costWithoutDiscount == 0 || costWithoutDiscount == -1) {
-            costWithoutDiscount = customer.getTotalPriceOfCart();
+        if(priceWithoutDiscount == 0 || priceWithoutDiscount == -1) {
+            priceWithoutDiscount = customer.getTotalPriceOfCart();
         }
         if(priceAfterDiscount == 0 || priceAfterDiscount == -1) {
-            priceAfterDiscount = costWithoutDiscount;
+            priceAfterDiscount = priceWithoutDiscount;
         }
-        Log log = new Log(new Date(), priceAfterDiscount, costWithoutDiscount, customer.getCart(),
+        Log log = new Log(new Date(), priceAfterDiscount, priceWithoutDiscount, customer.getCart(),
                 customer.getUsername(), address,false);
         decreaseProductsCountAfterPurchase(log);
         customer.getLogsId().add(log.getId());
@@ -107,7 +109,7 @@ public class CustomerAccountController extends AccountController{
     public void resetPurchaseVariables() {
         address = null;
         priceAfterDiscount = -1;
-        costWithoutDiscount = -1;
+        priceWithoutDiscount = -1;
     }
 
     public void getReceiverInfo(String address){
@@ -129,7 +131,7 @@ public class CustomerAccountController extends AccountController{
         } else if(DiscountCode.isExpired(discountCode.getEndDate())) {
             throw new AccountsException("Date Expire");
         } else {
-            costWithoutDiscount = customer.getTotalPriceOfCart();
+            priceWithoutDiscount = customer.getTotalPriceOfCart();
             priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
             this.discountCode = discountCode.getCode();
         }
@@ -141,6 +143,10 @@ public class CustomerAccountController extends AccountController{
 
     public Log makePayment() throws AccountsException{
         Customer customer = (Customer) User.getLoggedInUser();
+        if(priceAfterDiscount == -1 || priceWithoutDiscount == -1) {
+            priceWithoutDiscount = customer.getTotalPriceOfCart();
+            priceAfterDiscount = priceWithoutDiscount;
+        }
         if(this.priceAfterDiscount > customer.getCredit()) {
             throw new AccountsException("Credit not enough.");
         } else {
