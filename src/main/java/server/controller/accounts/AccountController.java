@@ -1,7 +1,7 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
-import model.BankAccount;
+import server.model.BankAccount;
 import server.model.Cart;
 import server.model.users.Customer;
 import server.model.users.Seller;

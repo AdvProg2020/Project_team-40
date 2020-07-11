@@ -1,7 +1,7 @@
 package server.model.users;
 
 import exceptions.DataException;
-import model.BankAccount;
+import server.model.BankAccount;
 
 import java.io.*;
 import java.util.HashMap;
