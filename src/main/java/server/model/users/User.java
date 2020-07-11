@@ -20,6 +20,8 @@ public abstract class  User implements Serializable {
     protected String phoneNo;
     protected BankAccount bankAccount;
 
+    public User(){}
+
     public User(String username, String password, String firstName,
                 String lastName, String email, String phoneNo) {
         this.username = username;
