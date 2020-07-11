@@ -1,11 +1,11 @@
 package server.server_resources.seller_account_controller;
 
-import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.SellerAccountController;
 
 public class SellerResource extends ServerResource {
-    @Get
+    @Post
     public String createSeller(){
         SellerAccountController manager = SellerAccountController.getInstance();
         String username = getQueryValue("username");

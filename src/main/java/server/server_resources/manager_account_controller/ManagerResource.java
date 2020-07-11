@@ -1,11 +1,11 @@
 package server.server_resources.manager_account_controller;
 
-import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.ManagerAccountController;
 
 public class ManagerResource extends ServerResource {
-    @Get
+    @Post
     public String createManager(){
         ManagerAccountController manager = ManagerAccountController.getInstance();
         String username = getQueryValue("username");
