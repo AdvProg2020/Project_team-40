@@ -31,6 +31,8 @@ public class Product implements Serializable{
     private HashMap<String, Double> extraValueProperties;
     private int visitCount;
 
+    public Product(){}
+
     public Product(String name, String company, double price, int count, String seller, String category) {
         this.name = name;
         this.company = company;
