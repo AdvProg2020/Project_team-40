@@ -12,7 +12,7 @@ import java.util.Set;
 public class AccountController{
     private static AccountController accountController = new AccountController();
 
-    protected AccountController(){}
+    protected AccountController() {}
 
     public static AccountController getInstance(){
         return accountController;
