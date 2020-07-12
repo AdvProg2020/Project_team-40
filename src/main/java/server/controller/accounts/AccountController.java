@@ -1,6 +1,5 @@
 package server.controller.accounts;
 
-import client.view.account_menus.ThisUser;
 import exceptions.AccountsException;
 import server.AuthenticationTokenHandler;
 import server.model.Cart;
@@ -48,9 +47,6 @@ public class AccountController{
         return Cart.getThisCart();
     }
 
-    public User getThisUser(){
-        return User.getUserByUsername(ThisUser.getUsername());
-    }
 
     public User getUser(String username) throws AccountsException {
         User user = User.getUserByUsername(username);
@@ -94,7 +90,8 @@ public class AccountController{
         fields.add("Last name");
         fields.add("Email");
         fields.add("Phone number");
-        User user = User.getUserByUsername(ThisUser.getUsername());
+        //TODO:Fix getUserByUsername null argument
+        User user = User.getUserByUsername(null);
         if(user instanceof Customer || user instanceof Seller){
             fields.add("credit");
         }
@@ -105,14 +102,16 @@ public class AccountController{
     }
 
     public void setBankAccount(int bankAccount) throws AccountsException {
-        User user = User.getUserByUsername(ThisUser.getUsername());
+        //TODO:Fix getUserByUsername null argument
+        User user = User.getUserByUsername(null);
         if(user.getBankAccount() != null)
             throw new AccountsException("You already have an account in this bank!");
         user.setBankAccount(bankAccount);
     }
 
     public Integer getBankAccount() throws AccountsException {
-        User user = User.getUserByUsername(ThisUser.getUsername());
+        //TODO:Fix getUserByUsername null argument
+        User user = User.getUserByUsername(null);
         if(user.getBankAccount() == null)
             throw new AccountsException("You don't have any account in this bank.");
         return user.getBankAccount();

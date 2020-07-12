@@ -97,6 +97,10 @@ public abstract class  User implements Serializable {
     @Override
     public abstract String toString();
 
+    public static HashMap<String, User> getAllUsers() {
+        return allUsers;
+    }
+
     public static void addUser(User user) {
         allUsers.put(user.getUsername(), user);
     }
