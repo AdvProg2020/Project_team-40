@@ -23,6 +23,7 @@ module sample {
     opens client.view.account_menus.manager_view.manage_products_view;
     opens client.view.account_menus.manager_view.manage_users_view;
     opens client.view.account_menus.manager_view.requests_view;
+    opens client.view.bank;
     opens client.view.shopping_menus.product.comment_view;
     opens client.view.shopping_menus.product.product_digest_view;
     opens client.view.shopping_menus.product.product_view;

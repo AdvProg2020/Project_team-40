@@ -48,7 +48,6 @@ public class MenuManager {
         }
     }
 
-
     //Set pane for CHILDREN inner panes
     public void setSecondaryInnerPane(String rootLocation){
         roots.add(rootLocation);
@@ -94,6 +93,10 @@ public class MenuManager {
         } else {
             setMainInnerPane("/layouts/login_menu.fxml");
         }
+    }
+
+    public void goToBankLogin() {
+        setSecondaryInnerPane("/layouts/bank_menus/bank_login.fxml");
     }
 
     public void goToBank() {

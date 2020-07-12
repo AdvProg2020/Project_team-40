@@ -1,6 +1,7 @@
 package client.view.account_menus.manager_view.account_view;
 
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import client.view.MenuManager;
 

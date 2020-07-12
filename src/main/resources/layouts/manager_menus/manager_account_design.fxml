@@ -40,7 +40,7 @@
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton onMouseClicked="#goToBank" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Bank" textFill="WHITE">
+            <JFXButton onMouseClicked="#goToBankLogin" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Bank" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
