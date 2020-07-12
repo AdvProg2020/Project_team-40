@@ -1,6 +1,6 @@
 package server.controller.menus;
 
-import client.view.account_menus.ThisUser;
+import client.controller.Client;
 import exceptions.MenuException;
 import server.model.Cart;
 import server.model.Comment;
@@ -49,7 +49,7 @@ public class ProductController{
             throw new MenuException("Not enough goods available in stock.");
 
         Customer customer;
-        if((customer = (Customer) User.getUserByUsername(ThisUser.getUsername())) == null) {
+        if((customer = (Customer) User.getUserByUsername(Client.getInstance().getUsername())) == null) {
             Cart.getThisCart().addProduct(productID, count);
         } else {
             customer.getCart().put(productID, count);
@@ -155,7 +155,7 @@ public class ProductController{
 
     public void addComment(String productID, String title, String content) throws MenuException{
         Product product = Product.getProductById(productID);
-        User user = User.getUserByUsername(ThisUser.getUsername());
+        User user = User.getUserByUsername(Client.getInstance().getUsername());
 
         if(product == null)
             throw new MenuException("No product with such name exists.");
