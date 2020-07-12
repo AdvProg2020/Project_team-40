@@ -15,7 +15,7 @@ public class AccountResource extends ServerResource {
     }
 
     @Delete
-    public void logout(String token){
+    public void logout(){
         AccountController.getInstance().logout();
         //TODO: change this
     }

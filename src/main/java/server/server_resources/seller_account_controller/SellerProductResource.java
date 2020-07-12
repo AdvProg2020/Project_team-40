@@ -38,7 +38,7 @@ public class SellerProductResource extends ServerResource {
     }
 
     @Delete
-    public void removeProduct(String productID) throws AccountsException, AuthorizationException {
-        SellerAccountController.getInstance().removeProductFromSeller(getQueryValue("username"), productID);
+    public void removeProduct() throws AccountsException, AuthorizationException {
+        SellerAccountController.getInstance().removeProductFromSeller(getQueryValue("username"), getQueryValue("productID"));
     }
 }
