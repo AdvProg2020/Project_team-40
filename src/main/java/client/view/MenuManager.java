@@ -93,6 +93,10 @@ public class MenuManager {
         }
     }
 
+    public void goToBank() {
+
+    }
+
     public void logout() {
         roots.clear();
         roots.add("/layouts/main.fxml");
