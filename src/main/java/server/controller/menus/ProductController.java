@@ -1,6 +1,6 @@
 package server.controller.menus;
 
-import client.view.ThisUser;
+import client.view.account_menus.ThisUser;
 import exceptions.MenuException;
 import server.model.Cart;
 import server.model.Comment;

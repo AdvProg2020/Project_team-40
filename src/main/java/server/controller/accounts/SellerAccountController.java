@@ -1,6 +1,6 @@
 package server.controller.accounts;
 
-import client.view.ThisUser;
+import client.view.account_menus.ThisUser;
 import exceptions.AccountsException;
 import server.model.Category;
 import server.model.Off;

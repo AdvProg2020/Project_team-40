@@ -1,4 +1,4 @@
-package client.view;
+package client.view.account_menus;
 
 public class ThisUser {
     private static String username;

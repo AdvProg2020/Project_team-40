@@ -1,6 +1,6 @@
 package client.view.shopping_menus.product.product_view;
 
-import client.view.ThisUser;
+import client.view.account_menus.ThisUser;
 import com.jfoenix.controls.JFXButton;
 import server.controller.menus.ProductController;
 import exceptions.MenuException;

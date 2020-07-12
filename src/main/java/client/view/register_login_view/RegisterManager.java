@@ -230,5 +230,4 @@ public class RegisterManager extends MenuManager implements Initializable {
     public static void setIsByManager(boolean isByManager) {
         RegisterManager.isByManager = isByManager;
     }
-
 }

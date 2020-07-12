@@ -1,6 +1,6 @@
 package server.controller.accounts;
 
-import client.view.ThisUser;
+import client.view.account_menus.ThisUser;
 import exceptions.AccountsException;
 import server.AuthenticationTokenHandler;
 import server.model.Cart;
@@ -25,8 +25,8 @@ public class AccountController{
     }
 
     public String login(String username, String password) throws AccountsException {
-        Set<String> usernaems = User.getAllUsernames();
-        if(!usernaems.contains(username)) {
+        Set<String> usernames = User.getAllUsernames();
+        if(!usernames.contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");
         }
         User tempUser = User.getUserByUsername(username);

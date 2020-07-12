@@ -1,6 +1,6 @@
 package client.view.account_menus.seller_view.sellers_offs_view;
 
-import client.view.ThisUser;
+import client.view.account_menus.ThisUser;
 import server.controller.accounts.SellerAccountController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

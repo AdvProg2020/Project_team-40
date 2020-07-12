@@ -1,5 +1,6 @@
 package client.view.register_login_view;
 
+import client.view.account_menus.ThisUser;
 import server.controller.accounts.AccountController;
 import exceptions.AccountsException;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ public class LoginManager extends MenuManager {
         } else {
             try {
                 accountController.login(usernameField.getText(), passwordField.getText());
+                ThisUser.setUsername(usernameField.getText());
                 goToAccountsMenu();
             } catch (AccountsException e) {
                 errorMessage.setText(e.getMessage());

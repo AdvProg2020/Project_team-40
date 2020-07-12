@@ -1,5 +1,6 @@
 package client.view;
 
+import client.view.account_menus.ThisUser;
 import com.jfoenix.controls.JFXButton;
 import server.controller.accounts.AccountController;
 import exceptions.DataException;
@@ -82,7 +83,7 @@ public class MenuManager {
 
     public void goToAccountsMenu() {
         setButtonsVisible();
-        if(accountController.isLogin()) {
+        if(ThisUser.getUsername() != null) {
             if (User.getUserByUsername(ThisUser.getUsername()) instanceof Manager)
                 setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
             else if (User.getUserByUsername(ThisUser.getUsername()) instanceof Seller)

@@ -1,6 +1,5 @@
 package client.view.account_menus;
 
-import client.view.ThisUser;
 import server.controller.accounts.AccountController;
 import server.controller.accounts.CustomerAccountController;
 import server.controller.accounts.SellerAccountController;
