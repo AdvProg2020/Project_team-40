@@ -36,42 +36,43 @@ public class MainServer extends Component {
             }
         });
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
+        ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/user/", UserResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/product/", ManagerProductResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", ManagerAllCategoriesResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/category/", CategoryResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/request/", RequestResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/accept_request/", AcceptRequestResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", DeclineRequestResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/discount/", ManagerDiscountResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", ManagerAllDiscountsResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(UserResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/category/", authenticator.getNewGuard(CategoryResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/request/", authenticator.getNewGuard(RequestResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/accept_request/",authenticator.getNewGuard( AcceptRequestResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", authenticator.getNewGuard(DeclineRequestResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/discount/", authenticator.getNewGuard(ManagerDiscountResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", authenticator.getNewGuard(ManagerAllDiscountsResource.class));
 
-        getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", CustomerAllDiscountsResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/balance/", BalanceResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/cart/", CartResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/cart_total_price/", CartTotalPriceResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/discount/", CustomerDiscountResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/product/", CustomerProductResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/customer/", CustomerResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/order/", OrderResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/orders/", OrdersResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/payment/", PaymentResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/price_after_discount/", PriceAfterDiscountResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/price_without_discount/", PriceWithoutDiscountResource.class);
-        getDefaultHost().attach("/accounts/customer_account_controller/receiver_info/", ReceiverInfoResource.class);
+        getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", authenticator.getNewGuard(CustomerAllDiscountsResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/balance/", authenticator.getNewGuard(BalanceResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/cart/", authenticator.getNewGuard(CartResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/cart_total_price/", authenticator.getNewGuard(CartTotalPriceResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/discount/", authenticator.getNewGuard(CustomerDiscountResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/product/", authenticator.getNewGuard(CustomerProductResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/order/", authenticator.getNewGuard(OrderResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/orders/", authenticator.getNewGuard(OrdersResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/price_after_discount/", authenticator.getNewGuard(PriceAfterDiscountResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/price_without_discount/", authenticator.getNewGuard(PriceWithoutDiscountResource.class));
+        getDefaultHost().attach("/accounts/customer_account_controller/receiver_info/", authenticator.getNewGuard(ReceiverInfoResource.class));
 
-        getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", AllOffsResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/company_info/", CompanyInfoResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/off/", OffResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/product_count/increase/", ProductCountIncrementResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/product_count/decrease/", ProductCountDecrementResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/product/", SellerProductResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/products/", SellerProductsResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/sales_history/", SalesHistoryResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/all_categories/", SellerAllCategoriesResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
-        getDefaultHost().attach("/accounts/seller_account_controller/balance/", SellerBalanceResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", authenticator.getNewGuard(AllOffsResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/company_info/", authenticator.getNewGuard(CompanyInfoResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/off/", authenticator.getNewGuard(OffResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/product_count/increase/", authenticator.getNewGuard(ProductCountIncrementResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/product_count/decrease/", authenticator.getNewGuard(ProductCountDecrementResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/product/", authenticator.getNewGuard(SellerProductResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/products/", authenticator.getNewGuard(SellerProductsResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/sales_history/", authenticator.getNewGuard(SalesHistoryResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/all_categories/", authenticator.getNewGuard(SellerAllCategoriesResource.class));
+        getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class));
 
 
 
