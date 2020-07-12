@@ -1,6 +1,5 @@
 package server.controller.accounts;
 
-import client.view.account_menus.ThisUser;
 import exceptions.AccountsException;
 import server.model.Category;
 import server.model.Off;
@@ -14,7 +13,9 @@ import server.model.users.Seller;
 import server.model.users.User;
 
 import javax.security.auth.login.AccountException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 public class SellerAccountController extends AccountController{
     private static SellerAccountController sellerAccountController;
@@ -34,29 +35,29 @@ public class SellerAccountController extends AccountController{
         Manager.addRequest(new SellingPermission(seller.getUsername()));
     }
 
-    public void setCompanyInfo(String companyInfo){
-        ((Seller) User.getUserByUsername(ThisUser.getUsername())).setCompanyInfo(companyInfo);
+    public void setCompanyInfo(String username, String companyInfo){
+        ((Seller) User.getUserByUsername(username)).setCompanyInfo(companyInfo);
     }
 
-    public String getCompanyInfo() {
-        return ((Seller) User.getUserByUsername(ThisUser.getUsername())).getCompanyInfo();
+    public String getCompanyInfo(String username) {
+        return ((Seller) User.getUserByUsername(username)).getCompanyInfo();
     }
 
-    public ArrayList<Log> getSalesHistory() {
+    public ArrayList<Log> getSalesHistory(String username) {
         ArrayList<Log> logs = new ArrayList<>();
-        for(String logName: ((Seller)User.getUserByUsername(ThisUser.getUsername())).getLogsName()) {
+        for(String logName: ((Seller)User.getUserByUsername(username)).getLogsName()) {
             logs.add(Log.getLogById(logName));
         }
         return logs;
     }
 
-    public ArrayList<String> getSellerProductIDs(){
-        return ((Seller)User.getUserByUsername(ThisUser.getUsername())).getProductsId();
+    public ArrayList<String> getSellerProductIDs(String username){
+        return ((Seller)User.getUserByUsername(username)).getProductsId();
     }
 
-    public Product getProductDetails(String productID) throws AccountsException {
+    public Product getProductDetails(String username, String productID) throws AccountsException {
         Product product;
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+        Seller seller = (Seller) User.getUserByUsername(username);
         if(!seller.getProductsId().contains(productID)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         } else {
@@ -64,12 +65,12 @@ public class SellerAccountController extends AccountController{
         }
     }
 
-    public TreeSet<String> getProductBuyers(String productId) throws AccountsException{
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+    public TreeSet<String> getProductBuyers(String username, String productId) throws AccountsException{
+        Seller seller = (Seller) User.getUserByUsername(username);
         if(!seller.getProductsId().contains(productId)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
-        ArrayList<Log> logs = getSalesHistory();
+        ArrayList<Log> logs = getSalesHistory(username);
         TreeSet<String> buyers = new TreeSet<String>();
         for(Log log: logs) {
             if(log.getProductsId().containsKey(productId)) {
@@ -79,9 +80,9 @@ public class SellerAccountController extends AccountController{
         return buyers;
     }
 
-    public Product createNewProduct(String name, String company, double price, int quantity, String categoryName,
+    public Product createNewProduct(String username, String name, String company, double price, int quantity, String categoryName,
                                  String description) throws AccountsException {
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+        Seller seller = (Seller) User.getUserByUsername(username);
         if(!seller.isManagerPermission()) {
             throw new AccountsException("Seller doesn't have permission.");
         }
@@ -91,16 +92,16 @@ public class SellerAccountController extends AccountController{
         return product;
     }
 
-    public void editProduct(String productId, String field, String newField, HashMap<String, Double>
+    public void editProduct(String username, String productId, String field, String newField, HashMap<String, Double>
             extraValueProperties, HashMap<String, String> extraStringProperties) throws AccountsException{
-        if(!((Seller)User.getUserByUsername(ThisUser.getUsername())).getProductsId().contains(productId)) {
+        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productId)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new EditProduct(productId, field, newField, extraValueProperties, extraStringProperties));
     }
 
-    public void removeProductFromSeller(String productID) throws AccountsException {
-        if(!((Seller)User.getUserByUsername(ThisUser.getUsername())).getProductsId().contains(productID)) {
+    public void removeProductFromSeller(String username, String productID) throws AccountsException {
+        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productID)) {
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new RemoveProduct(productID));
@@ -123,9 +124,9 @@ public class SellerAccountController extends AccountController{
         return Category.getAllCategories();
     }
 
-    public HashMap<String, Off> getAllOffs() {
+    public HashMap<String, Off> getAllOffs(String username) {
         HashMap<String, Off> sellersAllOffs = new HashMap<>();
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+        Seller seller = (Seller) User.getUserByUsername(username);
         for(String offId: seller.getOffIds()) {
             Off off = Off.getOffByID(offId);
             sellersAllOffs.put(off.getId(), off);
@@ -133,8 +134,8 @@ public class SellerAccountController extends AccountController{
         return sellersAllOffs;
     }
 
-    public Off getOffDetails(String offID) throws AccountsException{
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+    public Off getOffDetails(String username, String offID) throws AccountsException{
+        Seller seller = (Seller) User.getUserByUsername(username);
         if(seller.getOffIds().contains(offID)) {
             return Off.getOffByID(offID);
         } else {
@@ -142,24 +143,24 @@ public class SellerAccountController extends AccountController{
         }
     }
 
-    public void editOff(String offID, String field, String newField) throws AccountsException {
-        if(!((Seller) User.getUserByUsername(ThisUser.getUsername())).getOffIds().contains(offID)) {
+    public void editOff(String username, String offID, String field, String newField) throws AccountsException {
+        if(!((Seller) User.getUserByUsername(username)).getOffIds().contains(offID)) {
             throw new AccountsException("Seller doesn't have an off with this ID.");
         }
         Manager.addRequest(new EditOff(offID, field, newField));
     }
 
-    public void removeOff(String offID) throws AccountsException {
-        if(!((Seller)User.getUserByUsername(ThisUser.getUsername())).getOffIds().contains(offID)) {
+    public void removeOff(String username, String offID) throws AccountsException {
+        if(!((Seller)User.getUserByUsername(username)).getOffIds().contains(offID)) {
             throw new AccountsException("Seller doesn't have an off with this ID.");
         }
-        ((Seller) User.getUserByUsername(ThisUser.getUsername())).deleteOff(Off.getOffByID(offID));
+        ((Seller) User.getUserByUsername(username)).deleteOff(Off.getOffByID(offID));
         Off.removeOff(offID);
     }
 
-    public void addOffToSeller(ArrayList<String> productIDs, String startDate, String endDate, double percentage)
+    public void addOffToSeller(String username, ArrayList<String> productIDs, String startDate, String endDate, double percentage)
             throws AccountsException {
-        Seller seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+        Seller seller = (Seller) User.getUserByUsername(username);
         if(!seller.isManagerPermission()) {
             throw new AccountsException("Seller doesn't have permission.");
         }
@@ -168,12 +169,12 @@ public class SellerAccountController extends AccountController{
         Manager.addRequest(new AddOff(off));
     }
 
-    public double getBalance(){
-        return ((Seller) User.getUserByUsername(ThisUser.getUsername())).getCredit();
+    public double getBalance(String username){
+        return ((Seller) User.getUserByUsername(username)).getCredit();
     }
 
-    public boolean getHasPermission() {
-        return ((Seller) User.getUserByUsername(ThisUser.getUsername())).isManagerPermission();
+    public boolean getHasPermission(String username) {
+        return ((Seller) User.getUserByUsername(username)).isManagerPermission();
     }
 
     public void changeProductsStatus(String productId, SetUpStatus status) {
