@@ -2,6 +2,9 @@ package client.view;
 
 import client.view.account_menus.ThisUser;
 import com.jfoenix.controls.JFXButton;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import server.controller.accounts.AccountController;
 import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
@@ -94,7 +97,15 @@ public class MenuManager {
     }
 
     public void goToBank() {
-
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/add_category.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root, 1200, 600));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void logout() {
