@@ -1,7 +1,7 @@
 package client.view.bank;
 
 import client.view.MenuManager;
-import client.view.account_menus.ThisUser;
+import client.controller.Client;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,7 +29,7 @@ public class BankLoginManager extends MenuManager {
             if(response.equals("invalid username or password")) {
                 errorMessage.setText(response);
             } else {
-                ThisUser.setLatestToken(response);
+                Client.getInstance().setLatestToken(response);
                 goToBank();
                 goToAccountsMenu();
             }

@@ -1,5 +1,6 @@
 package client.view.account_menus;
 
+import client.controller.Client;
 import client.view.MenuManager;
 import client.view.ValidInput;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class CreateBankAccountController extends MenuManager {
             try {
                 Socket socket = new Socket(IP, BANK_PORT);
                 DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-                User user = User.getUserByUsername(ThisUser.getUsername());
+                User user = Client.getInstance().getUser();
                 outputStream.writeUTF("create_account " + user.getFirstName() + " " + user.getLastName() + " " +
                         usernameField.getText() + " " + passwordField.getText() + " " + repeatPasswordField.getText());
                 outputStream.flush();

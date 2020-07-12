@@ -1,6 +1,6 @@
 package client.view;
 
-import client.view.account_menus.ThisUser;
+import client.controller.Client;
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -84,10 +84,10 @@ public class MenuManager {
 
     public void goToAccountsMenu() {
         setButtonsVisible();
-        if(ThisUser.getUsername() != null) {
-            if (User.getUserByUsername(ThisUser.getUsername()) instanceof Manager)
+        if(Client.getInstance().getUsername() != null) {
+            if (User.getUserByUsername(Client.getInstance().getUsername()) instanceof Manager)
                 setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
-            else if (User.getUserByUsername(ThisUser.getUsername()) instanceof Seller)
+            else if (User.getUserByUsername(Client.getInstance().getUsername()) instanceof Seller)
                 setMainInnerPane("/layouts/seller_menus/seller_account_design.fxml");
             else
                 setMainInnerPane("/layouts/customer_menus/customer_account_design.fxml");
@@ -116,7 +116,7 @@ public class MenuManager {
         roots.clear();
         roots.add("/layouts/main.fxml");
         roots.add("");
-        ThisUser.logout();
+        Client.getInstance().logout();
         back();
     }
 

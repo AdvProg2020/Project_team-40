@@ -1,6 +1,6 @@
 package client.view.shopping_menus.product.product_view;
 
-import client.view.account_menus.ThisUser;
+import client.controller.Client;
 import com.jfoenix.controls.JFXButton;
 import server.controller.menus.ProductController;
 import exceptions.MenuException;
@@ -34,8 +34,8 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
         descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
         priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
-        if (User.getUserByUsername(ThisUser.getUsername()) == null ||
-                User.getUserByUsername(ThisUser.getUsername()) instanceof Customer) {
+        if (User.getUserByUsername(Client.getInstance().getUsername()) == null ||
+                User.getUserByUsername(Client.getInstance().getUsername()) instanceof Customer) {
             //Work the functionality of product count
             SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
             countSpinner.setValueFactory(spinnerValueFactory);

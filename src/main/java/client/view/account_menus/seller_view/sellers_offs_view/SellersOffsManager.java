@@ -1,7 +1,6 @@
 package client.view.account_menus.seller_view.sellers_offs_view;
 
-import client.view.account_menus.ThisUser;
-import server.controller.accounts.SellerAccountController;
+import client.controller.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -10,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import server.controller.accounts.SellerAccountController;
 import server.model.Off;
 import server.model.users.Seller;
-import server.model.users.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +29,7 @@ public class SellersOffsManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         sellersOffsManager = this;
-        seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
+        seller = (Seller) Client.getInstance().getUser();
         initializeOffs();
     }
 

@@ -1,13 +1,12 @@
 package client.view.register_login_view;
 
-import client.view.account_menus.ThisUser;
-import server.controller.accounts.AccountController;
+import client.view.MenuManager;
 import exceptions.AccountsException;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import client.view.MenuManager;
+import server.controller.accounts.AccountController;
 import server.model.users.User;
 
 public class LoginManager extends MenuManager {
@@ -24,7 +23,6 @@ public class LoginManager extends MenuManager {
         } else {
             try {
                 accountController.login(usernameField.getText(), passwordField.getText());
-                ThisUser.setUsername(usernameField.getText());
                 if(User.getUserByUsername(usernameField.getText()).getBankAccount() == null)
                     setMainInnerPane("/layouts/create_bank_account.fxml");
                 else

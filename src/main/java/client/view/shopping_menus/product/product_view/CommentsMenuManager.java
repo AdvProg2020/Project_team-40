@@ -1,6 +1,6 @@
 package client.view.shopping_menus.product.product_view;
 
-import client.view.account_menus.ThisUser;
+import client.controller.Client;
 import exceptions.MenuException;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,7 +56,7 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
     }
 
     public void addComment(){
-        if(User.getUserByUsername(ThisUser.getUsername()) == null){
+        if(User.getUserByUsername(Client.getInstance().getUsername()) == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Commenting forbidden.");
             alert.setContentText("You must be logged in first.");
@@ -79,7 +79,7 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
     }
 
     public void rate(){
-        if(User.getUserByUsername(ThisUser.getUsername()) == null){
+        if(User.getUserByUsername(Client.getInstance().getUsername()) == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Rating forbidden.");
             alert.setContentText("You must be logged in first.");
@@ -87,7 +87,7 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
             return;
         }
 
-        if(!((Customer)User.getUserByUsername(ThisUser.getUsername())).hasBought(ProductMenuManager.getProduct().getProductId())){
+        if(!((Customer)User.getUserByUsername(Client.getInstance().getUsername())).hasBought(ProductMenuManager.getProduct().getProductId())){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Rating forbidden.");
             alert.setContentText("You must buy this product first to rate it.");

@@ -1,25 +1,24 @@
 package client.view.account_menus;
 
-import server.controller.accounts.AccountController;
-import server.controller.accounts.CustomerAccountController;
-import server.controller.accounts.SellerAccountController;
+import client.controller.Client;
+import client.view.MenuManager;
+import client.view.ValidInput;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import server.model.users.Customer;
+import server.controller.accounts.CustomerAccountController;
+import server.controller.accounts.SellerAccountController;
 import server.model.users.Seller;
 import server.model.users.User;
-import client.view.MenuManager;
-import client.view.ValidInput;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PersonalInfo extends MenuManager implements Initializable {
 
-    private User user = AccountController.getInstance().getThisUser();
+    private User user = Client.getInstance().getUser();
     private CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
     private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
     public GridPane gridPane;
@@ -88,7 +87,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         if(!newFirstName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newFirstName.getText()).matches()) {
                 firstNameError.setText("");
-                accountController.editUser(ThisUser.getUsername(),"firstName", newFirstName.getText());
+                accountController.editUser(Client.getInstance().getUsername(),"firstName", newFirstName.getText());
                 gridPane.getChildren().remove(newFirstName);
                 firstName.setText(newFirstName.getText());
                 newFirstName.setText("");
@@ -115,7 +114,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         if(!newLastName.getText().isBlank()) {
             if (ValidInput.NAME.getStringMatcher(newLastName.getText()).matches()) {
                 lastNameError.setText("");
-                accountController.editUser(ThisUser.getUsername(),"lastName", newLastName.getText());
+                accountController.editUser(Client.getInstance().getUsername(),"lastName", newLastName.getText());
                 gridPane.getChildren().remove(newLastName);
                 lastName.setText(newLastName.getText());
                 newLastName.setText("");
@@ -142,7 +141,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         if(!newEmail.getText().isBlank()) {
             if(ValidInput.EMAIL_ADDRESS.getStringMatcher(newEmail.getText()).matches()) {
                 emailError.setText("");
-                accountController.editUser(ThisUser.getUsername(),"email", newEmail.getText());
+                accountController.editUser(Client.getInstance().getUsername(),"email", newEmail.getText());
                 gridPane.getChildren().remove(newEmail);
                 email.setText(newEmail.getText());
                 newEmail.setText("");
@@ -169,7 +168,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         if(!newPhoneNumber.getText().isBlank()) {
             if(ValidInput.PHONE_NUMBER.getStringMatcher(newPhoneNumber.getText()).matches()) {
                 phoneNumberError.setText("");
-                accountController.editUser(ThisUser.getUsername(), "phoneNumber", newPhoneNumber.getText());
+                accountController.editUser(Client.getInstance().getUsername(), "phoneNumber", newPhoneNumber.getText());
                 gridPane.getChildren().remove(newPhoneNumber);
                 phone.setText(newPhoneNumber.getText());
                 editPhoneNumber.setOnMouseClicked(e -> editPhoneNumber());
@@ -194,7 +193,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public void saveCompany() {
         if(!newCompany.getText().isBlank()) {
             companyError.setText("");
-            accountController.editUser(ThisUser.getUsername(),"companyInfo", newCompany.getText());
+            accountController.editUser(Client.getInstance().getUsername(),"companyInfo", newCompany.getText());
             gridPane.getChildren().remove(newCompany);
             company.setText(newCompany.getText());
             editCompany.setOnMouseClicked(e -> editCompany());
@@ -222,7 +221,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         changePassword.setDisable(false);
         gridPane.getChildren().remove(savePassword);
         gridPane.getChildren().remove(newPassword);
-        accountController.editUser(ThisUser.getUsername(),"password", newPassword.getText());
+        accountController.editUser(Client.getInstance().getUsername(),"password", newPassword.getText());
         newPassword.setText("");
     }
 }
