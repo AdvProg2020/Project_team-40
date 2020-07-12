@@ -9,9 +9,9 @@ import server.controller.accounts.AccountController;
 public class AccountResource extends ServerResource {
 
     @Post
-    public String login(String username) throws AccountsException {
+    public void login(String username) throws AccountsException {
         String password = getQueryValue("password");
-        return AccountController.getInstance().login(username, password);
+        AccountController.getInstance().login(username, password);
     }
 
     @Delete

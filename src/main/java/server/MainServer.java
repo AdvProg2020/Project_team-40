@@ -10,6 +10,8 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Resource;
 import org.restlet.service.StatusService;
+import server.server_resources.accounts.AccountResource;
+import server.server_resources.accounts.UserResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
@@ -38,7 +40,7 @@ public class MainServer extends Component {
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
         ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(UserResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(ManagerUserResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/category/", authenticator.getNewGuard(CategoryResource.class));
@@ -73,6 +75,9 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/sales_history/", authenticator.getNewGuard(SalesHistoryResource.class));
         getDefaultHost().attach("/accounts/seller_account_controller/all_categories/", authenticator.getNewGuard(SellerAllCategoriesResource.class));
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class));
+
+        getDefaultHost().attach("/accounts/account/", AccountResource.class);
+        getDefaultHost().attach("/accounts/user/", UserResource.class);
 
 
 

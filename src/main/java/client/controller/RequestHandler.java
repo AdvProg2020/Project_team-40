@@ -7,12 +7,17 @@ import java.util.HashMap;
 
 public class RequestHandler {
     private static final String ENDPOINT = "http://localhost:8080";
+    private static ClientResource clientResource;
+
 
     //TODO: Configure the endpoint from vmf file
 
+    public static ClientResource getClientResource() {
+        return clientResource;
+    }
 
     public static <T> Object get(String path, HashMap<String, String> queries, boolean mustBeLoggedIn, Class<T> outputClass) {
-        ClientResource clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(ENDPOINT + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -28,7 +33,7 @@ public class RequestHandler {
     }
 
     public static <T> Object put(String path, Object entity, HashMap<String, String> queries, boolean mustBeLoggedIn, Class<T> outputClass) {
-        ClientResource clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(ENDPOINT + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -44,7 +49,7 @@ public class RequestHandler {
     }
 
     public static <T> Object post(String path, Object entity, HashMap<String, String> queries, boolean mustBeLoggedIn, Class<T> outputClass) {
-        ClientResource clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(ENDPOINT + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -60,7 +65,7 @@ public class RequestHandler {
     }
 
     public static <T> Object delete(String path, HashMap<String, String> queries, boolean mustBeLoggedIn, Class<T> outputClass) {
-        ClientResource clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(ENDPOINT + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
