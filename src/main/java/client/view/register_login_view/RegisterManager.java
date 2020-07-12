@@ -27,7 +27,6 @@ public class RegisterManager extends MenuManager implements Initializable {
     public RadioButton managerButton;
     public Button register;
     public Button account;
-    public Label creditLabel;
     public Label companyLabel;
     public Label usernameError;
     public Label passwordError;
@@ -36,10 +35,8 @@ public class RegisterManager extends MenuManager implements Initializable {
     public Label emailError;
     public Label phoneNumberError;
     public Label roleError;
-    public Label creditError;
     public Label companyError;
     public TextField companyField;
-    public TextField creditField;
     public TextField username;
     public PasswordField password;
     public TextField firstName;
@@ -86,8 +83,6 @@ public class RegisterManager extends MenuManager implements Initializable {
             phoneNumber.setDisable(true);
             if (companyField != null)
                 companyField.setDisable(true);
-            if (creditField != null)
-                creditField.setDisable(true);
 
             account.setOnAction(e -> goToAccountsMenu());
         }
@@ -113,12 +108,6 @@ public class RegisterManager extends MenuManager implements Initializable {
             phoneNumberError.setText("Enter a valid phone number!");
             isValid = false;
         }
-        if(customerButton.isSelected() || sellerButton.isSelected()) {
-            if(!ValidInput.DOUBLE.getStringMatcher(creditField.getText()).matches()) {
-                creditError.setText("Enter a valid number!");
-                isValid = false;
-            }
-        }
         if(!isValid)
             throw new Exception("Invalid input");
     }
@@ -131,10 +120,7 @@ public class RegisterManager extends MenuManager implements Initializable {
         isBlank = isFieldBlank(isBlank, lastName, lastNameError);
         isBlank = isFieldBlank(isBlank, phoneNumber, phoneNumberError);
         isBlank = isFieldBlank(isBlank, email, emailError);
-        if(customerButton.isSelected()) {
-            isBlank = isFieldBlank(isBlank, creditField, creditError);
-        } else if(sellerButton.isSelected()) {
-            isBlank = isFieldBlank(isBlank, creditField, creditError);
+        if(customerButton.isSelected()) {} else if(sellerButton.isSelected()) {
             isBlank = isFieldBlank(isBlank, companyField, companyError);
         } else if(managerButton == null) {
             isBlank = true;
@@ -165,57 +151,36 @@ public class RegisterManager extends MenuManager implements Initializable {
     private void registerSeller() {
         SellerAccountController.getInstance().createSellerAccount(username.getText(), password.getText(),
                 firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(),
-                Double.parseDouble(creditField.getText()), companyField.getText());
+                0, companyField.getText());
     }
 
     private void registerCustomer() {
         CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
-                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(),
-                Double.parseDouble(creditField.getText()));
+                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(), 0);
     }
 
     public void clickCustomer() {
-        creditLabel.setText("Credit:");
         companyLabel.setText("");
-        createCredit();
         removeCompany();
     }
 
     public void clickSeller() {
         companyLabel.setText("Company:");
-        creditLabel.setText("Credit:");
-        createCredit();
         if (companyField == null) {
             companyField = new TextField();
-            infoPane.add(companyField, 1, 11);
+            infoPane.add(companyField, 1, 10);
         }
     }
 
     public void clickManager() {
         companyLabel.setText("");
-        creditLabel.setText("");
         removeCompany();
-        removeCredit();
-    }
-
-    private void removeCredit() {
-        if(creditField != null) {
-            infoPane.getChildren().remove(creditField);
-            creditField = null;
-        }
     }
 
     private void removeCompany() {
         if(companyField != null) {
             infoPane.getChildren().remove(companyField);
             companyField = null;
-        }
-    }
-
-    private void createCredit() {
-        if (creditField == null) {
-            creditField = new TextField();
-            infoPane.add(creditField, 1, 10);
         }
     }
 

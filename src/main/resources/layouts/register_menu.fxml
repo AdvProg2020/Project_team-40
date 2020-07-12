@@ -48,8 +48,7 @@
           <Label fx:id="phoneNumberError" GridPane.columnIndex="3" GridPane.rowIndex="4" />
           <Label fx:id="emailError" GridPane.columnIndex="3" GridPane.rowIndex="5" />
           <Label fx:id="roleError" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-          <Label fx:id="creditError" prefHeight="17.0" prefWidth="242.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-          <Label fx:id="companyError" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+          <Label fx:id="companyError" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
           <RadioButton fx:id="customerButton" onMouseClicked="#clickCustomer" text="Customer" GridPane.rowIndex="7">
             <toggleGroup>
                <ToggleGroup fx:id="roleGroup" />
@@ -57,8 +56,7 @@
           <RadioButton fx:id="sellerButton" onMouseClicked="#clickSeller" text="Seller" toggleGroup="$roleGroup" GridPane.rowIndex="8" />
           <RadioButton fx:id="managerButton" onMouseClicked="#clickManager" text="Manager" toggleGroup="$roleGroup" GridPane.rowIndex="9" />
           <Label text="I am a:" GridPane.rowIndex="6" />
-          <Label fx:id="creditLabel" GridPane.rowIndex="10" />
-          <Label fx:id="companyLabel" GridPane.rowIndex="11" />
+          <Label fx:id="companyLabel" GridPane.rowIndex="10" />
            <TextField fx:id="username" GridPane.columnIndex="1" />
            <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
            <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="2" />

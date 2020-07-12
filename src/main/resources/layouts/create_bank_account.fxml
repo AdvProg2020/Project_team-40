@@ -6,14 +6,14 @@
 
 <Pane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.CreateBankAccountController">
     <children>
-        <TextField fx:id="usernameField" layoutX="445.0" layoutY="263.0" prefHeight="25.0" prefWidth="219.0" promptText="username">
+        <TextField fx:id="usernameField" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="219.0" promptText="username">
 
         </TextField>
-        <PasswordField fx:id="passwordField" layoutX="445.0" layoutY="315.0" prefHeight="25.0" prefWidth="219.0" promptText="password">
+        <PasswordField fx:id="passwordField" layoutX="445.0" layoutY="293.0" prefHeight="25.0" prefWidth="219.0" promptText="password">
 
         </PasswordField>
-        <PasswordField fx:id="repeatPasswordField" layoutX="445.0" layoutY="369.0" prefHeight="25.0" prefWidth="219.0" promptText="repeat password" />
-        <Label alignment="BASELINE_CENTER" layoutX="176.0" layoutY="114.0" prefHeight="73.0" prefWidth="742.0" text="Create a Bank Account!">
+        <PasswordField fx:id="repeatPasswordField" layoutX="444.0" layoutY="356.0" prefHeight="25.0" prefWidth="219.0" promptText="repeat password" />
+        <Label alignment="BASELINE_CENTER" layoutX="176.0" layoutY="127.0" prefHeight="73.0" prefWidth="742.0" text="Create a Bank Account!">
             <font>
                 <Font size="30" />
             </font>
