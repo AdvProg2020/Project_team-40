@@ -1,6 +1,5 @@
 package server.controller.accounts;
 
-import client.view.account_menus.ThisUser;
 import exceptions.AccountsException;
 import server.model.DiscountCode;
 import server.model.Product;
@@ -35,8 +34,8 @@ public class CustomerAccountController extends AccountController{
         Customer customer = new Customer(username, password, firstName, lastName, email, phoneNumber, credit);
     }
 
-    public HashMap<String, DiscountCode> getDiscountCodes() {
-        ArrayList<String> discountCodesNames = ((Customer) User.getUserByUsername(ThisUser.getUsername())).getDiscountCodes();
+    public HashMap<String, DiscountCode> getDiscountCodes(String username) {
+        ArrayList<String> discountCodesNames = ((Customer) User.getUserByUsername(username)).getDiscountCodes();
         HashMap<String, DiscountCode> discountCodes = new HashMap<>();
         for(String discountCodeName: discountCodesNames) {
             discountCodes.put(discountCodeName, DiscountCode.getDiscountCodeByCode(discountCodeName));
@@ -44,9 +43,9 @@ public class CustomerAccountController extends AccountController{
         return discountCodes;
     }
 
-    public HashMap<Product, Integer> getCart() {
+    public HashMap<Product, Integer> getCart(String username) {
         HashMap<Product, Integer> productsWithQuantity = new HashMap<>();
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+        Customer customer = (Customer) User.getUserByUsername(username);
         for(Map.Entry<String, Integer> entry: customer.getCart().entrySet()) {
             String productId = entry.getKey();
             int quantity = entry.getValue();
@@ -55,8 +54,8 @@ public class CustomerAccountController extends AccountController{
         return productsWithQuantity;
     }
 
-    public Product getChosenProduct(String productId) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public Product getChosenProduct(String productId, String username) throws AccountsException {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(customer.getCart().containsKey(productId)) {
             return customer.getProductById(productId);
         } else {
@@ -64,8 +63,8 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public void increaseChosenProductsQuantity(String productId) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public void increaseChosenProductsQuantity(String productId, String username) throws AccountsException {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(customer.getCart().containsKey(productId)) {
             customer.addProductsQuantity(productId);
         } else {
@@ -73,8 +72,8 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public void decreaseChosenProductQuantity(String productId) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public void decreaseChosenProductQuantity(String productId, String username) throws AccountsException {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(customer.getCart().containsKey(productId)) {
             customer.decreaseProductsQuantity(productId);
         } else {
@@ -82,12 +81,12 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public double getCartTotalPrice(){
-        return ((Customer) User.getUserByUsername(ThisUser.getUsername())).getTotalPriceOfCart();
+    public double getCartTotalPrice(String username){
+        return ((Customer) User.getUserByUsername(username)).getTotalPriceOfCart();
     }
 
-    private Log purchase() {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    private Log purchase(String username) {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(priceWithoutDiscount == 0 || priceWithoutDiscount == -1) {
             priceWithoutDiscount = customer.getTotalPriceOfCart();
         }
@@ -102,7 +101,7 @@ public class CustomerAccountController extends AccountController{
         customer.addLog(log);
         addLogToSellers(log);
         customer.removeAllProducts();
-        decreaseDiscountCodeCountPerUser();
+        decreaseDiscountCodeCountPerUser(username);
         resetPurchaseVariables();
         return log;
     }
@@ -118,12 +117,12 @@ public class CustomerAccountController extends AccountController{
     }
 
     //If customer doesn't have any discount this method must be called:
-    public void setPriceWithoutDiscount() {
-        this.priceAfterDiscount = ((Customer) User.getUserByUsername(ThisUser.getUsername())).getTotalPriceOfCart();
+    public void setPriceWithoutDiscount(String username) {
+        this.priceAfterDiscount = ((Customer) User.getUserByUsername(username)).getTotalPriceOfCart();
     }
 
-    public void enterDiscountCode(String code) throws AccountsException{
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public void enterDiscountCode(String code, String username) throws AccountsException{
+        Customer customer = (Customer) User.getUserByUsername(username);
         DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
         if(!customer.getDiscountCodes().contains(code)) {
             throw new AccountsException("Invalid discount code.");
@@ -142,8 +141,8 @@ public class CustomerAccountController extends AccountController{
         return priceAfterDiscount;
     }
 
-    public Log makePayment() throws AccountsException{
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public Log makePayment(String username) throws AccountsException{
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(priceAfterDiscount == -1 || priceWithoutDiscount == -1) {
             priceWithoutDiscount = customer.getTotalPriceOfCart();
             priceAfterDiscount = priceWithoutDiscount;
@@ -152,7 +151,7 @@ public class CustomerAccountController extends AccountController{
             throw new AccountsException("Credit not enough.");
         } else {
             customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
-            return purchase();
+            return purchase(username);
         }
     }
 
@@ -185,23 +184,23 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    private void decreaseDiscountCodeCountPerUser() {
+    private void decreaseDiscountCodeCountPerUser(String username) {
         if(this.discountCode != null) {
             DiscountCode discountCode;
             if((discountCode = DiscountCode.getDiscountCodeByCode(this.discountCode)) != null) {
-                discountCode.decreaseCountPerUser((Customer) User.getUserByUsername(ThisUser.getUsername()));
+                discountCode.decreaseCountPerUser((Customer) User.getUserByUsername(username));
             }
         }
         this.discountCode = null;
     }
 
-    public void addToCredit(double money) {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public void addToCredit(double money, String username) {
+        Customer customer = (Customer) User.getUserByUsername(username);
         customer.setCredit(customer.getCredit() + money);
     }
 
-    public HashMap<String, Log> getOrders() {
-        ArrayList<String> logsId = ((Customer) User.getUserByUsername(ThisUser.getUsername())).getLogsId();
+    public HashMap<String, Log> getOrders(String username) {
+        ArrayList<String> logsId = ((Customer) User.getUserByUsername(username)).getLogsId();
         HashMap<String, Log> logs = new HashMap<>();
         for(String logId: logsId) {
             logs.put(logId, Log.getLogById(logId));
@@ -209,8 +208,8 @@ public class CustomerAccountController extends AccountController{
         return logs;
     }
 
-    public Log getOrder(String orderID) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public Log getOrder(String orderID, String username) throws AccountsException {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(customer.getLogsId().contains(orderID)) {
             return customer.getLogById(orderID);
         } else {
@@ -218,46 +217,43 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public void rateProduct(String productID, int rate) throws AccountsException{
+    public void rateProduct(String username, String productID, int rate) throws AccountsException{
         Product product = Product.getProductById(productID);
 
         if(product == null)
             throw new AccountsException("No product with such name exists.");
 
-        if(User.getUserByUsername(ThisUser.getUsername()) == null)
-            throw new AccountsException("You are not logged in.");
-
         Score score = null;
 
         for(Score score1 : product.getAllScores()) {
-            if(score1.getUserName().equals(User.getUserByUsername(ThisUser.getUsername()).getUsername())){
+            if(score1.getUserName().equals(username)){
                 score = score1;
                 score.setScore(rate);
             }
         }
 
         if(score == null){
-            score = new Score(User.getUserByUsername(ThisUser.getUsername()).getUsername(), rate, productID);
+            score = new Score(username, rate, productID);
             Score.addScore(score);
             product.addScore(score);
         }
     }
 
-    public double getBalance(){
-        return ((Customer) User.getUserByUsername(ThisUser.getUsername())).getCredit();
+    public double getBalance(String username){
+        return ((Customer) User.getUserByUsername(username)).getCredit();
     }
 
-    public ArrayList<DiscountCode> getCustomersDiscountCodes() {
+    public ArrayList<DiscountCode> getCustomersDiscountCodes(String username) {
         ArrayList<DiscountCode> customersDiscountCodes = new ArrayList<>();
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+        Customer customer = (Customer) User.getUserByUsername(username);
         for(String code: customer.getDiscountCodes()) {
             customersDiscountCodes.add(DiscountCode.getDiscountCodeByCode(code));
         }
         return customersDiscountCodes;
     }
 
-    public void deliver(String logId) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(ThisUser.getUsername());
+    public void deliver(String username, String logId) throws AccountsException {
+        Customer customer = (Customer) User.getUserByUsername(username);
         if(customer.getLogsId().contains(logId)) {
             Log.getLogById(logId).setDelivered(true);
         } else {
