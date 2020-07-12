@@ -103,7 +103,7 @@ public class MenuManager {
     public void goToBank() {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/add_category.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/bank_menu.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root, 1200, 600));
             stage.showAndWait();

@@ -38,4 +38,6 @@ public class BankLoginManager extends MenuManager {
             errorMessage.setText(e.getMessage());
         }
     }
+
+    //TODO: Can't work with the main stage after going to the bank, fix it
 }
