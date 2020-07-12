@@ -4,4 +4,7 @@ import client.view.MenuManager;
 
 public class CreateBankAccountController extends MenuManager {
 
+    public void createAccount() {
+
+    }
 }

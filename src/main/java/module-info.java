@@ -9,6 +9,7 @@ module sample {
     requires org.restlet;
     opens client.view.register_login_view;
     opens client.view.main_menu;
+    opens client.view.account_menus;
     opens client.view.shopping_menus.product.comment_view;
     opens client.view.shopping_menus.product.product_digest_view;
     opens client.view.shopping_menus.product.product_view;
