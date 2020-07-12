@@ -30,28 +30,32 @@
         </rowConstraints>
         <children>
             <Label text="Username:">
-            <font>
-               <Font name="Calibri" size="17.0" />
-            </font></Label>
+                <font>
+                   <Font name="Calibri" size="17.0" />
+                </font>
+            </Label>
             <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1">
-            <font>
-               <Font name="Calibri" size="17.0" />
-            </font></Label>
+                <font>
+                    <Font name="Calibri" size="17.0" />
+                </font>
+            </Label>
             <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2">
-            <font>
-               <Font name="Calibri" size="17.0" />
-            </font></Label>
+                <font>
+                    <Font name="Calibri" size="17.0" />
+                </font>
+            </Label>
             <Label text="Email Address:" GridPane.columnIndex="0" GridPane.rowIndex="3">
-            <font>
-               <Font name="Calibri" size="17.0" />
-            </font></Label>
+                <font>
+                    <Font name="Calibri" size="17.0" />
+                </font>
+            </Label>
             <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="4">
-            <font>
-               <Font name="Calibri" size="17.0" />
-            </font></Label>
+                <font>
+                    <Font name="Calibri" size="17.0" />
+                </font>
+            </Label>
             <Label fx:id="passwordLabel" GridPane.columnIndex="0" GridPane.rowIndex="7" />
             <Label fx:id="creditLabel" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <Label fx:id="credit" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label fx:id="companyLabel" GridPane.columnIndex="0" GridPane.rowIndex="6" />
             <Label fx:id="company" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -65,7 +69,6 @@
             <Label fx:id="lastNameError" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label fx:id="emailError" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label fx:id="phoneNumberError" prefHeight="17.0" prefWidth="220.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Label fx:id="creditError" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <Label fx:id="companyError" GridPane.columnIndex="4" GridPane.rowIndex="6" />
 
             <Button fx:id="editFirstName" onMouseClicked="#editFirstName" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="1" />

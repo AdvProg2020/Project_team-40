@@ -19,13 +19,10 @@ import java.util.ResourceBundle;
 
 public class PersonalInfo extends MenuManager implements Initializable {
 
-    //TODO: EDIT PASSWORD!
-
     private User user = AccountController.getInstance().getThisUser();
     private CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
     private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
     public GridPane gridPane;
-    public Label creditLabel;
     public Label companyLabel;
     public Label passwordLabel;
 
@@ -35,7 +32,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public Label lastName;
     public Label email;
     public Label phone;
-    public Label credit;
     public Label company;
 
     //Labels to show error:
@@ -44,7 +40,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public Label lastNameError;
     public Label emailError;
     public Label phoneNumberError;
-    public Label creditError;
     public Label companyError;
 
     //Buttons to edit and save changes:
@@ -55,7 +50,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public Button editCompany;
     public Button changePassword;
     public Button savePassword;
-    public Button increaseCredit;
 
     //Fields to enter new information:
     public TextField newFirstName;
@@ -64,15 +58,10 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public TextField newPhoneNumber;
     public TextField newCompany;
     public TextField newPassword;
-    private TextField newCredit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(user instanceof Customer) {
-            initializeCredit(customerAccountController.getBalance());
-        }
         if(user instanceof Seller) {
-            initializeCredit(sellerAccountController.getBalance());
             companyLabel.setText("Company: ");
             company.setText(sellerAccountController.getCompanyInfo());
             editCompany = new Button("edit");
@@ -85,51 +74,6 @@ public class PersonalInfo extends MenuManager implements Initializable {
         email.setText(user.getEmail());
         phone.setText(user.getPhoneNo());
     }
-
-    private void initializeCredit(double credit) {
-        creditLabel.setText("Credit: ");
-        this.credit.setText(Double.toString(credit));
-        increaseCredit = new Button("increase");
-        increaseCredit.setOnMouseClicked(e -> increaseCredit());
-        gridPane.add(increaseCredit, 3, 5);
-    }
-
-    private void increaseCredit() {
-        increaseCredit.setOnMouseClicked(e-> saveCredit());
-        if(newCredit == null)
-            newCredit = new TextField();
-        gridPane.add(newCredit, 1, 5);
-    }
-
-    private void saveCredit() {
-        if(!newCredit.getText().isBlank()) {
-            if(ValidInput.INTEGER.getStringMatcher(newCredit.getText()).matches()) {
-                creditError.setText("");
-                accountController.editUser(ThisUser.getUsername(),"credit", addCredit(newCredit.getText()));
-                gridPane.getChildren().remove(newCredit);
-                credit.setText(getCredit());
-                newCredit.setText("");
-                increaseCredit.setOnMouseClicked(e -> increaseCredit());
-            } else {
-                creditError.setText("Enter a Number!");
-            }
-        } else {
-            creditError.setText("Enter a Number!");
-        }
-    }
-
-    private String getCredit() {
-        if(user instanceof Customer)
-            return Double.toString(customerAccountController.getBalance());
-        return Double.toString(sellerAccountController.getBalance());
-    }
-
-    private String addCredit(String creditInString) {
-        double currentCredit = Double.parseDouble(credit.getText());
-        currentCredit += Double.parseDouble(creditInString);
-        return Double.toString(currentCredit);
-    }
-
 
     public void editFirstName() {
         editFirstName.setText("save");
