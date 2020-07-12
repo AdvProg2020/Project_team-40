@@ -23,7 +23,7 @@ public class CreateBankAccountController extends MenuManager {
             errorMessage.setText("Fill all the above Fields!");
         } else {
             try {
-                Socket socket = new Socket("127.0.0.1", BANK_PORT);
+                Socket socket = new Socket(IP, BANK_PORT);
                 DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
                 User user = User.getUserByUsername(ThisUser.getUsername());
                 outputStream.writeUTF("create_account " + user.getFirstName() + " " + user.getLastName() + " " +

@@ -2,6 +2,7 @@ package client.view.account_menus;
 
 public class ThisUser {
     private static String username;
+    private static String latestToken;
 
     public static String getUsername() {
         return username;
@@ -17,5 +18,9 @@ public class ThisUser {
 
     public static void logout() {
         username = null;
+    }
+
+    public static void setLatestToken(String latestToken) {
+        ThisUser.latestToken = latestToken;
     }
 }
