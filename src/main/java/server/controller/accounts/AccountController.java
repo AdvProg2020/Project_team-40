@@ -2,7 +2,6 @@ package server.controller.accounts;
 
 import exceptions.AccountsException;
 import server.AuthenticationTokenHandler;
-import server.model.BankAccount;
 import server.model.Cart;
 import server.model.users.Customer;
 import server.model.users.Seller;
@@ -102,22 +101,21 @@ public class AccountController{
         return fields;
     }
 
-    public void setBankAccount(BankAccount bankAccount) throws AccountsException {
+    public void setBankAccount(int bankAccount) throws AccountsException {
         User user = User.getLoggedInUser();
         if(user.getBankAccount() != null)
             throw new AccountsException("You already have an account in this bank!");
         user.setBankAccount(bankAccount);
     }
 
-    public BankAccount getBankAccount() throws AccountsException {
+    public Integer getBankAccount() throws AccountsException {
         User user = User.getLoggedInUser();
         if(user.getBankAccount() == null)
-            throw new AccountsException("You don't have an account yet!");
+            throw new AccountsException("You don't have any account in this bank.");
         return user.getBankAccount();
     }
 
     public void logout() {
-        //TODO:Update logout implementation
         User.setLoggedInUser(null);
-}
+    }
 }

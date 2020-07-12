@@ -1,7 +1,6 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
-import server.model.BankAccount;
 import server.model.DiscountCode;
 import server.model.Product;
 import server.model.Score;

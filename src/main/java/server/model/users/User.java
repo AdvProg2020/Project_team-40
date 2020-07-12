@@ -1,7 +1,6 @@
 package server.model.users;
 
 import exceptions.DataException;
-import server.model.BankAccount;
 
 import java.io.*;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ public abstract class  User implements Serializable {
     protected String lastName;
     protected String email;
     protected String phoneNo;
-    protected BankAccount bankAccount;
+    protected Integer bankAccount;
 
     public User(){}
 
@@ -60,11 +59,11 @@ public abstract class  User implements Serializable {
 
     public abstract String getRole();
 
-    public BankAccount getBankAccount() {
+    public Integer getBankAccount() {
         return bankAccount;
     }
 
-    public void setBankAccount(BankAccount bankAccount) {
+    public void setBankAccount(Integer bankAccount) {
         this.bankAccount = bankAccount;
     }
 
