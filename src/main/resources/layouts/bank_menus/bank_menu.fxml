@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.account_view.CustomerAccountManager">
+<AnchorPane prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.bank.BankMenuManager">
     <children>
         <AnchorPane fx:id="secondaryInnerPane" layoutX="237.0" layoutY="-6.0" prefHeight="684.0" prefWidth="858.0" />
         <VBox layoutX="1.0" layoutY="1.0" prefHeight="684.0" prefWidth="242.0" style="-fx-background-color: #7d3c98;">
@@ -14,27 +14,22 @@
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onAction="#goToOrdersMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
+                <JFXButton onAction="#goToReceipts" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Receipts" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToCart" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="My Cart" textFill="WHITE">
+                <JFXButton onMouseClicked="#goToTransactions" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Transactions" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToDiscountCode" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="My Discount Codes" textFill="WHITE">
+                <JFXButton onMouseClicked="#viewBalance" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Balance" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onMouseClicked="#goToBank" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Bank" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton onMouseClicked="#logout" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Logout" textFill="WHITE">
+                <JFXButton onMouseClicked="#exitBankAccount" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Exit" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
