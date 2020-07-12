@@ -83,9 +83,9 @@ public class MenuManager {
     public void goToAccountsMenu() {
         setButtonsVisible();
         if(accountController.isLogin()) {
-            if (User.getLoggedInUser() instanceof Manager)
+            if (User.getUserByUsername(ThisUser.getUsername()) instanceof Manager)
                 setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
-            else if (User.getLoggedInUser() instanceof Seller)
+            else if (User.getUserByUsername(ThisUser.getUsername()) instanceof Seller)
                 setMainInnerPane("/layouts/seller_menus/seller_account_design.fxml");
             else
                 setMainInnerPane("/layouts/customer_menus/customer_account_design.fxml");

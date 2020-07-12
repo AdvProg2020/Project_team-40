@@ -1,5 +1,6 @@
 package server.controller.menus;
 
+import client.view.ThisUser;
 import exceptions.MenuException;
 import server.model.Cart;
 import server.model.Comment;
@@ -48,7 +49,7 @@ public class ProductController{
             throw new MenuException("Not enough goods available in stock.");
 
         Customer customer;
-        if((customer = (Customer) User.getLoggedInUser()) == null) {
+        if((customer = (Customer) User.getUserByUsername(ThisUser.getUsername())) == null) {
             Cart.getThisCart().addProduct(productID, count);
         } else {
             customer.getCart().put(productID, count);
@@ -154,17 +155,18 @@ public class ProductController{
 
     public void addComment(String productID, String title, String content) throws MenuException{
         Product product = Product.getProductById(productID);
+        User user = User.getUserByUsername(ThisUser.getUsername());
 
         if(product == null)
             throw new MenuException("No product with such name exists.");
 
-        if(User.getLoggedInUser() == null)
+        if(user == null)
             throw new MenuException("You are not logged in.");
 
         Comment comment = null;
 
         for(Comment comment1 : product.getComments()) {
-            if(comment1.getUsername().equals(User.getLoggedInUser().getUsername())) {
+            if(comment1.getUsername().equals(user.getUsername())) {
                 comment = comment1;
                 comment.updateText(title, content);
                 comment.setStatus(Status.Waiting);
@@ -172,7 +174,7 @@ public class ProductController{
         }
 
         if(comment == null) {
-            comment = new Comment(User.getLoggedInUser().getUsername(), productID, title, content);
+            comment = new Comment(user.getUsername(), productID, title, content);
             Comment.addComment(comment);
             product.addComment(comment);
         }

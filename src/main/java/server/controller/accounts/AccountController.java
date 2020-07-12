@@ -1,5 +1,6 @@
 package server.controller.accounts;
 
+import client.view.ThisUser;
 import exceptions.AccountsException;
 import server.AuthenticationTokenHandler;
 import server.model.Cart;
@@ -39,7 +40,8 @@ public class AccountController{
     }
 
     public boolean isLogin() {
-        return User.isUserLoggedIn();
+        //TODO: execute proper actions in server
+        return false;
     }
 
     public Cart getThisCart(){
@@ -47,7 +49,7 @@ public class AccountController{
     }
 
     public User getThisUser(){
-        return User.getLoggedInUser();
+        return User.getUserByUsername(ThisUser.getUsername());
     }
 
     public User getUser(String username) throws AccountsException {
@@ -92,30 +94,31 @@ public class AccountController{
         fields.add("Last name");
         fields.add("Email");
         fields.add("Phone number");
-        if(User.getLoggedInUser() instanceof Customer || User.getLoggedInUser() instanceof Seller){
+        User user = User.getUserByUsername(ThisUser.getUsername());
+        if(user instanceof Customer || user instanceof Seller){
             fields.add("credit");
         }
-        if(User.getLoggedInUser() instanceof Seller) {
+        if(user instanceof Seller) {
             fields.add("Company information");
         }
         return fields;
     }
 
     public void setBankAccount(int bankAccount) throws AccountsException {
-        User user = User.getLoggedInUser();
+        User user = User.getUserByUsername(ThisUser.getUsername());
         if(user.getBankAccount() != null)
             throw new AccountsException("You already have an account in this bank!");
         user.setBankAccount(bankAccount);
     }
 
     public Integer getBankAccount() throws AccountsException {
-        User user = User.getLoggedInUser();
+        User user = User.getUserByUsername(ThisUser.getUsername());
         if(user.getBankAccount() == null)
             throw new AccountsException("You don't have any account in this bank.");
         return user.getBankAccount();
     }
 
     public void logout() {
-        User.setLoggedInUser(null);
+        //TODO: IMPLEMENT NEEDED ACTIONS IN SERVER
     }
 }

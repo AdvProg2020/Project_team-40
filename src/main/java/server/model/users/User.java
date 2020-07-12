@@ -10,7 +10,6 @@ import java.util.Set;
 public abstract class  User implements Serializable {
     private static final long serialVersionUID = -178828746063914640L;
     protected static HashMap<String, User> allUsers = new HashMap<>();
-    private static User loggedInUser;
     protected String username;
     protected String password;
     protected String firstName;
@@ -124,18 +123,6 @@ public abstract class  User implements Serializable {
                 return true;
 
         return false;
-    }
-
-    public static void setLoggedInUser(User loggedInUser) {
-        User.loggedInUser = loggedInUser;
-    }
-
-    public static boolean isUserLoggedIn(){
-        return User.loggedInUser != null;
-    }
-
-    public static User getLoggedInUser() {
-        return loggedInUser;
     }
 
     public static void loadData() throws DataException {

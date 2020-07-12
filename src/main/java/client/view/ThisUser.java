@@ -1,13 +1,21 @@
 package client.view;
 
 public class ThisUser {
-    private static String userId;
+    private static String username;
 
-    public static String getUserId() {
-        return userId;
+    public static String getUsername() {
+        return username;
     }
 
-    public static void setUserId(String userId) {
-        ThisUser.userId = userId;
+    public static void setUsername(String username) {
+        ThisUser.username = username;
+    }
+
+    public static boolean isUserLoggedIn() {
+        return username != null;
+    }
+
+    public static void logout() {
+        username = null;
     }
 }

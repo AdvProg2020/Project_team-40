@@ -1,5 +1,6 @@
 package client.view.account_menus.seller_view.sellers_offs_view;
 
+import client.view.ThisUser;
 import server.controller.accounts.SellerAccountController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ public class SellersOffsManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         sellersOffsManager = this;
-        seller = (Seller)User.getLoggedInUser();
+        seller = (Seller) User.getUserByUsername(ThisUser.getUsername());
         initializeOffs();
     }
 
