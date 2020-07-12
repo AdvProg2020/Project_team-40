@@ -1,7 +1,6 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
-import server.AuthenticationTokenHandler;
 import server.model.Cart;
 import server.model.users.Customer;
 import server.model.users.Seller;
@@ -23,7 +22,7 @@ public class AccountController{
         return User.doesUserExist(username);
     }
 
-    public String login(String username, String password) throws AccountsException {
+    public void login(String username, String password) throws AccountsException {
         Set<String> usernames = User.getAllUsernames();
         if(!usernames.contains(username)) {
             throw new AccountsException("User with this name doesn't exist.");
@@ -35,7 +34,6 @@ public class AccountController{
         if(tempUser instanceof Customer) {
             Cart.getThisCart().moveProductsToCustomerCart((Customer) tempUser);
         }
-        return AuthenticationTokenHandler.getNewToken();
     }
 
     public boolean isLogin() {

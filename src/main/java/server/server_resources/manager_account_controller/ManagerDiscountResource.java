@@ -5,7 +5,6 @@ import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
-import server.AuthenticationTokenHandler;
 import server.controller.accounts.ManagerAccountController;
 import server.model.DiscountCode;
 
@@ -22,9 +21,6 @@ public class ManagerDiscountResource extends ServerResource {
 
     @Post
     public String createDiscount(){
-        if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
-            return "Authentication failed.";
-
         String startDate = getQueryValue("startDate");
         String endDate = getQueryValue("endDate");
         int percentage = Integer.parseInt(getQueryValue("percentage"));
@@ -37,8 +33,6 @@ public class ManagerDiscountResource extends ServerResource {
 
     @Delete
     public String removeDiscount(){
-        if (!AuthenticationTokenHandler.authorize(getQueryValue("auth-token")))
-            return "Authentication failed.";
         try {
             ManagerAccountController.getInstance().removeDiscount(getQueryValue("code"));
         } catch (AccountsException e) {
