@@ -10,6 +10,9 @@ module sample {
     opens client.view.register_login_view;
     opens client.view.main_menu;
     opens client.view.account_menus;
+    opens client.view.account_menus.manager_view.account_view;
+    opens client.view.account_menus.customer_view.account_view;
+    opens client.view.account_menus.seller_view.accounts_view;
     opens client.view.shopping_menus.product.comment_view;
     opens client.view.shopping_menus.product.product_digest_view;
     opens client.view.shopping_menus.product.product_view;

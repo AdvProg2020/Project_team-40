@@ -26,17 +26,13 @@ public class LoginManager extends MenuManager {
                 accountController.login(usernameField.getText(), passwordField.getText());
                 ThisUser.setUsername(usernameField.getText());
                 if(User.getUserByUsername(usernameField.getText()).getBankAccount() == null)
-                    goToCreateBankAccount();
+                    setMainInnerPane("/layouts/create_bank_account.fxml");
                 else
                     goToAccountsMenu();
             } catch (AccountsException e) {
                 errorMessage.setText(e.getMessage());
             }
         }
-    }
-
-    private void goToCreateBankAccount() {
-        setMainInnerPane("/layouts/create_bank_account.fxml");
     }
 
     public void register() {

@@ -20,11 +20,9 @@ public class MenuManager {
     private static Pane secondaryPane;
     private static JFXButton mainMenuAccountButton;
     private static JFXButton mainMenuProductButton;
-
     private static JFXButton mainMenuBackButton;
-
-
     protected static ArrayList<String> roots;
+    protected static final int BANK_PORT = 8080;
 
     protected AccountController accountController = AccountController.getInstance();
     static {
