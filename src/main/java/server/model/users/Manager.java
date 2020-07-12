@@ -10,6 +10,17 @@ public class Manager extends User {
     public Manager(String username, String password, String firstName,
                    String lastName, String email, String phoneNo) {
         super(username, password, firstName, lastName, email, phoneNo);
+        setCommonBankAccount();
+    }
+
+    private void setCommonBankAccount() {
+        for(String username : User.getAllUsernames()) {
+            User user = User.getUserByUsername(username);
+            if(user instanceof Manager) {
+                this.setBankAccount(user.getBankAccount());
+                break;
+            }
+        }
     }
 
     @Override

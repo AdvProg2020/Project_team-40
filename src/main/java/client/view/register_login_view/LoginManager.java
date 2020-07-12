@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import client.view.MenuManager;
+import server.model.users.User;
 
 public class LoginManager extends MenuManager {
     private AccountController accountController = AccountController.getInstance();
@@ -24,11 +25,18 @@ public class LoginManager extends MenuManager {
             try {
                 accountController.login(usernameField.getText(), passwordField.getText());
                 ThisUser.setUsername(usernameField.getText());
-                goToAccountsMenu();
+                if(User.getUserByUsername(usernameField.getText()).getBankAccount() == null)
+                    goToCreateBankAccount();
+                else
+                    goToAccountsMenu();
             } catch (AccountsException e) {
                 errorMessage.setText(e.getMessage());
             }
         }
+    }
+
+    private void goToCreateBankAccount() {
+        setMainInnerPane("/layouts/create_bank_account.fxml");
     }
 
     public void register() {
