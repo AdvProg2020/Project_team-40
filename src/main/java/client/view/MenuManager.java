@@ -97,9 +97,8 @@ public class MenuManager {
         roots.clear();
         roots.add("/layouts/main.fxml");
         roots.add("");
-        accountController.logout();
+        ThisUser.logout();
         back();
-
     }
 
     public void back() {

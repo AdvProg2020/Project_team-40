@@ -119,6 +119,6 @@ public class AccountController{
     }
 
     public void logout() {
-        //TODO: IMPLEMENT NEEDED ACTIONS IN SERVER
+        //TODO: IMPLEMENT IF NEEDED IN SERVER
     }
 }
