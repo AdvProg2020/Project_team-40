@@ -8,12 +8,9 @@ import server.model.requests.Request;
 
 public class RequestResource extends ServerResource {
     @Get
-    public Request getRequestObject(){
-        try {
-            return ManagerAccountController.getInstance().getRequest(getQueryValue("requestID"));
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
-        }
-        return null;
+    public Request getRequestObject() throws AccountsException {
+
+        return ManagerAccountController.getInstance().getRequest(getQueryValue("requestID"));
+
     }
 }

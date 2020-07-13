@@ -1,8 +1,7 @@
 package client.view.account_menus.manager_view.requests_view;
 
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,11 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.resource.ResourceException;
 import server.model.Off;
 import server.model.requests.EditOff;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class EditOffMenu extends RequestMenu implements Initializable{
@@ -25,20 +26,12 @@ public class EditOffMenu extends RequestMenu implements Initializable{
     public JFXButton declineButton;
     public Label oldLabel;
     public Label newLabel;
-    private ManagerAccountController managerAccountController;
     private EditOff editOff;
-
-    public static class Product implements Initializable {
-
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        }
-    }
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+        requestQueries = new HashMap<>();
     }
 
     public void setNewLabel(String newField) {
@@ -55,19 +48,29 @@ public class EditOffMenu extends RequestMenu implements Initializable{
 
     public void handleAcceptRequest(ActionEvent event) {
         try {
-            managerAccountController.acceptRequest(editOff.getRequestId());
+            requestQueries.clear();
+            RequestHandler.put("/accounts/manager_account_controller/accept_request/", editOff.getRequestId(), requestQueries, true, null);
             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+        } catch (ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     public void handleDeclineRequest(ActionEvent event) {
         try {
-            managerAccountController.declineRequest(editOff.getRequestId());
+            requestQueries.clear();
+            RequestHandler.put("/accounts/manager_account_controller/decline_request/", editOff.getRequestId(), requestQueries, true, null);
             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+        } catch (ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

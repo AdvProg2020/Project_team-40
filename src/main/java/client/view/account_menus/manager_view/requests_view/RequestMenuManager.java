@@ -15,11 +15,9 @@ import java.util.ResourceBundle;
 
 public class RequestMenuManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
-    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadRequests();
     }
 

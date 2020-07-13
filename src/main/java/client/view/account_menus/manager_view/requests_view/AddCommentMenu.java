@@ -1,16 +1,18 @@
 package client.view.account_menus.manager_view.requests_view;
 
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.restlet.resource.ResourceException;
 import server.model.requests.AddComment;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AddCommentMenu extends RequestMenu implements Initializable {
@@ -21,13 +23,12 @@ public class AddCommentMenu extends RequestMenu implements Initializable {
     public Label contentLabel;
     public JFXButton acceptButton;
     public JFXButton declineButton;
-
-    private ManagerAccountController managerAccountController;
     private AddComment addComment;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+        requestQueries = new HashMap<>();
     }
 
     public void setUserNameLabel(String username) {
@@ -57,19 +58,29 @@ public class AddCommentMenu extends RequestMenu implements Initializable {
 
     public void handleAcceptRequest(ActionEvent event) {
         try {
-            managerAccountController.acceptRequest(addComment.getRequestId());
+            requestQueries.clear();
+            RequestHandler.put("/accounts/manager_account_controller/accept_request/", addComment.getRequestId(), requestQueries, true, null);
             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+        } catch (ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     public void handleDeclineRequest(ActionEvent event) {
         try {
-            managerAccountController.declineRequest(addComment.getRequestId());
+            requestQueries.clear();
+            RequestHandler.put("/accounts/manager_account_controller/decline_request/", addComment.getRequestId(), requestQueries, true, null);
             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+        } catch (ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

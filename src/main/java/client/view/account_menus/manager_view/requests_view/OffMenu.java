@@ -1,6 +1,5 @@
 package client.view.account_menus.manager_view.requests_view;
 
-import server.controller.accounts.ManagerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,13 +18,10 @@ public class OffMenu implements Initializable {
     public Label sellerLabel;
     public Label percentageLabel;
     public ListView<String> productIdsListView;
-
-    private ManagerAccountController managerAccountController;
     private Off off;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
 
     }
 

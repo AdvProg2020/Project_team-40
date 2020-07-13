@@ -1,7 +1,8 @@
 package client.view.account_menus.manager_view.requests_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,17 +17,16 @@ import server.model.Off;
 import server.model.Product;
 import server.model.requests.*;
 import server.model.users.Seller;
-import client.view.MenuManager;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class RequestItem extends MenuManager implements Initializable {
     public JFXButton viewRequestButton;
-    ManagerAccountController managerAccountController;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+
     }
 
     private void setLabelsContent(RequestMenu requestMenu, String type,Request request) {
@@ -151,7 +151,9 @@ public class RequestItem extends MenuManager implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_request_menus/" + getFxmlNameByType(type) + ".fxml"));
         try {
-            Request request = managerAccountController.getRequest(requestId);
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("requestID", requestId);
+            Request request = (Request) RequestHandler.get("/accounts/manager_account_controller/request/", queries, true, Request.class);
             AnchorPane pane = loader.load();
             RequestMenu requestMenu = loader.getController();
             setLabelsContent(requestMenu, type, request);

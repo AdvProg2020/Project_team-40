@@ -1,18 +1,14 @@
 package server.server_resources.manager_account_controller;
 
 import exceptions.AccountsException;
-import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.ManagerAccountController;
 
 public class AcceptRequestResource extends ServerResource {
-    @Get
-    public String acceptRequest(){
-        try {
-            ManagerAccountController.getInstance().acceptRequest(getQueryValue("requestID"));
-        } catch (AccountsException e) {
-            return e.getMessage();
-        }
-        return "Successful";
+    @Put
+    public void acceptRequest(String requestId) throws AccountsException {
+        ManagerAccountController.getInstance().acceptRequest(getQueryValue("requestID"));
+
     }
 }
