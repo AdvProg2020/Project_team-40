@@ -35,7 +35,8 @@
          <styleClass>
             <String fx:value="mainPane" />
             <String fx:value="root" />
-         </styleClass></Pane>
+         </styleClass>
+      </Pane>
       <HBox prefHeight="78.0" prefWidth="1100.0" style="-fx-background-color: #d7bde2;">
          <children>
             <ImageView fitHeight="78.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #d7bde2;">
