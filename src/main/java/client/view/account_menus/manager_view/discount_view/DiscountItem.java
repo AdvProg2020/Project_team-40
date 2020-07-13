@@ -1,9 +1,9 @@
 package client.view.account_menus.manager_view.discount_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,25 +14,27 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.DiscountCode;
 import server.model.users.Customer;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class DiscountItem implements Initializable {
+public class DiscountItem extends MenuManager implements Initializable {
     public JFXButton deleteDiscountButton;
     public JFXButton viewDiscountButton;
     public JFXButton editDiscountButton;
     public HBox controlButtons;
-    private ManagerAccountController managerAccountController;
-    private AccountController accountController;
-
+    private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
-        accountController = AccountController.getInstance();
-        if(accountController.getThisUser() instanceof Customer) {
+        requestQueries = new HashMap<>();
+        if(Client.getInstance().getUser() instanceof Customer) {
             controlButtons.getChildren().remove(deleteDiscountButton);
             controlButtons.getChildren().remove(editDiscountButton);
         }
@@ -40,17 +42,26 @@ public class DiscountItem implements Initializable {
 
     private void loadDiscounts(VBox vBoxItems) {
         vBoxItems.getChildren().clear();
-        for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
-            try {
+        requestQueries.clear();
+        try {
+            ArrayList<DiscountCode> allDiscounts = (ArrayList<DiscountCode>) RequestHandler.get("/accounts/manager_account_controller/all_discounts/",
+                    requestQueries, true, ArrayList.class);
+            assert allDiscounts != null;
+            for (DiscountCode discountCode : allDiscounts) {
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(discountCode, hBox);
                 vBoxItems.getChildren().add(item);
             }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+            catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                e.printStackTrace();
+            } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -87,9 +98,14 @@ public class DiscountItem implements Initializable {
         VBox items =(VBox)(item.getParent()).getParent();
         String code =((Label)item.getChildren().get(0)).getText();
         try {
-            managerAccountController.removeDiscount(code);
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+            requestQueries.clear();
+            requestQueries.put("code", code);
+            RequestHandler.delete("/accounts/manager_account_controller/discount/", requestQueries, true, null);
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+            else
+                e.printStackTrace();
         }
         Platform.runLater(() -> loadDiscounts(items));
 
@@ -100,7 +116,9 @@ public class DiscountItem implements Initializable {
         String code =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount.fxml"));
         try {
-            DiscountCode discount = managerAccountController.getDiscount(code);
+            requestQueries.clear();;
+            requestQueries.put("code", code);
+            DiscountCode discount = (DiscountCode) RequestHandler.get("/accounts/manager_account_controller/discount/", requestQueries, true, DiscountCode.class);
             AnchorPane pane = loader.load();
             DiscountView discountView = loader.getController();
             setLabelsContent(discountView, discount);
@@ -108,7 +126,12 @@ public class DiscountItem implements Initializable {
             userWindow.setScene(new Scene(pane, 900, 550));
             userWindow.initModality(Modality.APPLICATION_MODAL);
             userWindow.showAndWait();
-        } catch (Exception e) {
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+            else
+                e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -119,7 +142,9 @@ public class DiscountItem implements Initializable {
         String code =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_discount_menus/edit_discount.fxml"));
         try {
-            DiscountCode discount = managerAccountController.getDiscount(code);
+            requestQueries.clear();;
+            requestQueries.put("code", code);
+            DiscountCode discount = (DiscountCode) RequestHandler.get("/accounts/manager_account_controller/discount/", requestQueries, true, DiscountCode.class);
             AnchorPane pane = loader.load();
             DiscountEdit editDiscountController = loader.getController();
             editDiscountController.setDiscountCode(discount);
@@ -128,7 +153,13 @@ public class DiscountItem implements Initializable {
             userWindow.setScene(new Scene(pane, 520, 600));
             userWindow.initModality(Modality.APPLICATION_MODAL);
             userWindow.showAndWait();
-        } catch (Exception e) {
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+            else
+                e.printStackTrace();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

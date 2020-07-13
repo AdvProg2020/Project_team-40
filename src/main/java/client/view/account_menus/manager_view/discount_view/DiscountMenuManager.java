@@ -1,8 +1,8 @@
 package client.view.account_menus.manager_view.discount_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.CustomerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +19,7 @@ import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -28,15 +29,12 @@ public class DiscountMenuManager implements Initializable {
     public JFXButton refreshButton;
     public AnchorPane mainPane;
     public Label title;
-    private server.controller.accounts.ManagerAccountController managerAccountController;
-    private AccountController accountController;
-    private CustomerAccountController customerAccountController;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
-        accountController = AccountController.getInstance();
-        if(accountController.getThisUser() instanceof Customer) {
+        requestQueries = new HashMap<>();
+        if(Client.getInstance().getUser() instanceof Customer) {
             mainPane.getChildren().remove(addDiscount);
             mainPane.getChildren().remove(refreshButton);
             title.setText("My Discount Codes");
@@ -47,15 +45,19 @@ public class DiscountMenuManager implements Initializable {
     }
 
     private void loadCustomersDiscounts() {
-        customerAccountController = CustomerAccountController.getInstance();
-        HashMap<String, DiscountCode> discountCodes = customerAccountController.getDiscountCodes();
+        requestQueries.clear();
+        HashMap<String, DiscountCode> discountCodes = (HashMap)RequestHandler.get("/accounts/customer_account_controller/all_discounts/", requestQueries, true, HashMap.class);
+        assert discountCodes != null;
         for(DiscountCode discountCode : discountCodes.values()) {
             addDiscountToList(discountCode);
         }
     }
 
     public void loadAllDiscounts() {
-        for (DiscountCode discountCode : managerAccountController.getAllDiscountCodes()) {
+        requestQueries.clear();
+        ArrayList<DiscountCode> discountCodes = (ArrayList)RequestHandler.get("/accounts/customer_account_controller/all_discounts/", requestQueries, true, ArrayList.class);
+        assert discountCodes != null;
+        for (DiscountCode discountCode : discountCodes) {
             addDiscountToList(discountCode);
         }
     }

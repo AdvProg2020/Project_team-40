@@ -1,20 +1,23 @@
 package client.view.account_menus.manager_view.discount_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.DiscountCode;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class DiscountEdit implements Initializable {
+public class DiscountEdit extends MenuManager implements Initializable {
     public JFXButton cancelButton;
     public JFXButton doneButton;
     public JFXTextField startDateField;
@@ -30,11 +33,9 @@ public class DiscountEdit implements Initializable {
     private String oldCount;
 
     private DiscountCode discountCode;
-    private ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
     }
 
     public void setDiscountCode(DiscountCode discountCode) {
@@ -75,15 +76,28 @@ public class DiscountEdit implements Initializable {
             toEdit.put("Maximum amount", maxPriceField.getText());
 
         try {
-            managerAccountController.editDiscount(discountCode.getCode(), toEdit);
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("code", discountCode.getCode());
+            RequestHandler.put("/accounts/manager_account_controller/disocunt/", toEdit, queries, true, null);
             ((Stage)cancelButton.getScene().getWindow()).close();
-        } catch (AccountsException e) {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    errorLabel.setText(e.getMessage());
-                }
-            });
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+            {
+                ((Stage)cancelButton.getScene().getWindow()).close();
+                logout();
+            }
+            else {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            errorLabel.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+            }
         }
     }
 

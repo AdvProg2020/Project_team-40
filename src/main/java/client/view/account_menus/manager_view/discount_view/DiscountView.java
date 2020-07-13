@@ -1,7 +1,6 @@
 package client.view.account_menus.manager_view.discount_view;
 
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -26,13 +25,10 @@ public class DiscountView implements Initializable {
     public JFXButton backButton;
     public AnchorPane pane;
     public ListView<String> usersList;
-    private ManagerAccountController managerAccountController;
     private DiscountCode discountCode;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
-
     }
 
     public void setCodeLabel(String code) {
