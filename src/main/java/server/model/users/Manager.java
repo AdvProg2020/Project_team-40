@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class Manager extends User {
     private static ArrayList<Request> requests = new ArrayList<>();
 
+    public Manager(){}
+
     public Manager(String username, String password, String firstName,
                    String lastName, String email, String phoneNo) {
         super(username, password, firstName, lastName, email, phoneNo);

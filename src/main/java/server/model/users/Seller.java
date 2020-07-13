@@ -14,6 +14,8 @@ public class Seller extends User{
     private ArrayList<String> logsName;
     private boolean managerPermission;
 
+    public Seller(){}
+
     public Seller(String username, String password, String firstName,
                   String lastName, String email, String phoneNo,
                   double credit, String companyInfo) {

@@ -15,6 +15,8 @@ public class Customer extends User{
     private HashMap<String, Integer> cart;
     //Key Of cart is the products ID, the value is the quantity
 
+    public Customer(){}
+
     public Customer(String username, String password, String firstName, String lastName,
                     String email, String phoneNo, double credit) {
         super(username, password, firstName, lastName, email, phoneNo);
