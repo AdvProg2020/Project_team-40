@@ -1,8 +1,8 @@
 package client.view.account_menus.manager_view.category_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.ManagerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +19,9 @@ import server.model.users.Seller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class CategoryMenuManager implements Initializable {
     public JFXButton addCategory;
@@ -27,14 +29,12 @@ public class CategoryMenuManager implements Initializable {
     public VBox vBoxItems;
     public Label mainLabel;
     public AnchorPane mainPane;
-    ManagerAccountController managerAccountController;
-    AccountController accountController;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        accountController = AccountController.getInstance();
-        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
-        if(accountController.getThisUser() instanceof Seller) {
+        requestQueries = new HashMap<>();
+        if(Client.getInstance().getUser() instanceof Seller) {
             initializeForSeller();
         }
         loadCategories();
@@ -48,9 +48,14 @@ public class CategoryMenuManager implements Initializable {
 
     private void loadCategories() {
         vBoxItems.getChildren().clear();
-        for (String categoryName : managerAccountController.getAllCategories()) {
+        requestQueries.clear();
+        Set<String> allCategories =(Set) RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
+        assert allCategories != null;
+        for (String categoryName : allCategories) {
             try {
-                Category category = Category.getCategoryByName(categoryName);
+                requestQueries.clear();
+                requestQueries.put("name", categoryName);
+                Category category =(Category) RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, true, Category.class);
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
                         getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);

@@ -1,9 +1,9 @@
 package client.view.account_menus.manager_view.category_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,25 +14,26 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Category;
 import server.model.users.Seller;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Set;
 
-public class CategoryItem implements Initializable {
+public class CategoryItem extends MenuManager implements Initializable {
     public JFXButton deleteCategoryButton;
     public JFXButton viewCategoryButton;
     public JFXButton editCategoryButton;
     public HBox buttons;
-    private ManagerAccountController managerAccountController;
-    private AccountController accountController;
-
+    private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        accountController = AccountController.getInstance();
-        managerAccountController = ManagerAccountController.getInstance();
-        if(accountController.getThisUser() instanceof Seller) {
+        requestQueries = new HashMap<>();
+        if(Client.getInstance().getUser() instanceof Seller) {
             buttons.getChildren().remove(deleteCategoryButton);
             buttons.getChildren().remove(editCategoryButton);
         }
@@ -40,7 +41,10 @@ public class CategoryItem implements Initializable {
 
     private void loadCategories(VBox vBoxItems) {
         vBoxItems.getChildren().clear();
-        for (String categoryName : managerAccountController.getAllCategories()) {
+        requestQueries.clear();
+        Set<String> allCategories =(Set) RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
+        assert allCategories != null;
+        for (String categoryName : allCategories) {
             try {
                 Category category = Category.getCategoryByName(categoryName);
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
@@ -80,9 +84,12 @@ public class CategoryItem implements Initializable {
         VBox items =(VBox)(item.getParent()).getParent();
         String name =((Label)item.getChildren().get(0)).getText();
         try {
-            managerAccountController.removeCategory(name);
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+            requestQueries.clear();
+            requestQueries.put("name", name);
+            RequestHandler.delete("/accounts/manager_account_controller/category/", requestQueries, true, String.class);
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
         }
         Platform.runLater(() -> loadCategories(items));
     }

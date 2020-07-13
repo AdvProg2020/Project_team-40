@@ -1,15 +1,17 @@
 package client.view.account_menus.manager_view.category_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Category;
 import server.model.enumerations.PropertyType;
 
@@ -17,7 +19,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class AddCategory implements Initializable {
+public class AddCategory extends MenuManager implements Initializable {
     public JFXTextField nameField;
     public JFXTextField propertyField;
     public JFXButton doneButton;
@@ -28,11 +30,11 @@ public class AddCategory implements Initializable {
     public JFXButton addPropertyButton;
     private String parent;
     private HashMap<String, PropertyType> properties;
-    ManagerAccountController managerAccountController;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+        requestQueries = new HashMap<>();
         propertyTypeChoiceBox.getItems().add("Range");
         propertyTypeChoiceBox.getItems().add("String");
         propertyTypeChoiceBox.setValue("String");
@@ -63,10 +65,17 @@ public class AddCategory implements Initializable {
                 ((Stage)(nameField.getScene().getWindow())).close();
                 return;
             }
-            managerAccountController.createCategory(nameField.getText(), parent, properties);
+            requestQueries.clear();
+            requestQueries.put("name", nameField.getText());
+            requestQueries.put("parentName",parent);
+            RequestHandler.post("/accounts/manager_account_controller/category/", properties, requestQueries, true, null);
             ((Stage)(doneButton.getScene().getWindow())).close();
         }
-        catch (AccountsException e) {
+        catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED)){
+                ((Stage)(doneButton.getScene().getWindow())).close();
+                logout();
+            }
             errorLabel.setText(e.getMessage());
         }
     }

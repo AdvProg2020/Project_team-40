@@ -1,7 +1,6 @@
 package client.view.account_menus.manager_view.category_view;
 
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -20,12 +19,10 @@ public class CategoryView implements Initializable {
     public JFXButton backButton;
     public ListView<String> productsList;
     public ListView<String> subCategoriesList;
-    private ManagerAccountController managerAccountController;
     private Category category;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
     }
 
     public void setNameLabel(String name) {
