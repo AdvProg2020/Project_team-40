@@ -25,14 +25,29 @@
     <RadioButton layoutX="52.0" layoutY="144.0" onMouseClicked="#deposit" text="deposit" />
     <RadioButton layoutX="52.0" layoutY="176.0" onMouseClicked="#withdraw" text="withdraw" />
     <RadioButton layoutX="52.0" layoutY="209.0" onMouseClicked="#move" text="move" />
-    <Label fx:id="toggleGroupError" layoutX="291.0" layoutY="170.0" prefHeight="30.0" prefWidth="286.0">
+    <Label fx:id="toggleGroupError" layoutX="316.0" layoutY="170.0" prefHeight="30.0" prefWidth="275.0">
         <font>
             <Font size="20.0" />
         </font>
     </Label>
     <TextField fx:id="sourceIDField" layoutX="54.0" layoutY="270.0" prefHeight="25.0" prefWidth="243.0" promptText="source ID" />
+    <Label fx:id="sourceIDError" layoutX="317.0" layoutY="266.0" prefHeight="30.0" prefWidth="275.0">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
     <TextField fx:id="destinationIDField" layoutX="54.0" layoutY="325.0" prefHeight="25.0" prefWidth="243.0" promptText="destination ID" />
+    <Label fx:id="destinationIDError" layoutX="316.0" layoutY="323.0" prefHeight="30.0" prefWidth="275.0">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
     <TextField fx:id="moneyField" layoutX="54.0" layoutY="379.0" prefHeight="25.0" prefWidth="243.0" promptText="amount" />
+    <Label fx:id="amountError" layoutX="316.0" layoutY="377.0" prefHeight="30.0" prefWidth="275.0">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
     <TextField fx:id="descriptionField" layoutX="54.0" layoutY="435.0" prefHeight="25.0" prefWidth="243.0" promptText="description (optional)" />
     <JFXButton fx:id="doneButton" layoutX="265.0" layoutY="516.0" onAction="#createReceipt" prefHeight="39.0" prefWidth="70.0" text=" ">
         <graphic>
