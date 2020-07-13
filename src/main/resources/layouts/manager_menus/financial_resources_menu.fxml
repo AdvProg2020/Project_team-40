@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.manager_view.FinancialResourcesManager">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Financial Resources" textAlignment="CENTER">
+        <font>
+            <Font size="35.0" />
+        </font>
+    </Label>
+    <GridPane layoutX="83.0" layoutY="111.0" prefHeight="500.0" prefWidth="700.0">
+      <columnConstraints>
+        <ColumnConstraints maxWidth="190.0" minWidth="117.0" prefWidth="180.0" />
+          <ColumnConstraints maxWidth="379.0" minWidth="180.0" prefWidth="251.0" />
+          <ColumnConstraints maxWidth="170.0" minWidth="19.0" prefWidth="21.0" />
+         <ColumnConstraints maxWidth="114.0" minWidth="53.0" prefWidth="62.0" />
+          <ColumnConstraints maxWidth="186.0" minWidth="125.0" prefWidth="186.0" />
+      </columnConstraints>
+        <rowConstraints>
+            <RowConstraints prefHeight="70.0" />
+            <RowConstraints prefHeight="70.0" />
+            <RowConstraints prefHeight="70.0" />
+            <RowConstraints prefHeight="70.0" />
+            <RowConstraints maxHeight="65.0" minHeight="64.0" prefHeight="64.0" />
+            <RowConstraints maxHeight="103.0" minHeight="15.0" prefHeight="34.0" />
+            <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="69.0" />
+            <RowConstraints maxHeight="65.0" minHeight="50.0" prefHeight="53.0" />
+        </rowConstraints>
+        <children>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="272.0" text="Bank account information:" textAlignment="CENTER">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Username:" textAlignment="CENTER" GridPane.rowIndex="1">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Password:" textAlignment="CENTER" GridPane.rowIndex="2">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="ID:" textAlignment="CENTER" GridPane.rowIndex="3">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Balance:" textAlignment="CENTER" GridPane.rowIndex="4">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Minimum online credit:" textAlignment="CENTER" GridPane.rowIndex="6">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Wage (percentage):" textAlignment="CENTER" GridPane.rowIndex="7">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+
+
+            <Label fx:id="usernameLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="passwordLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="accountIDLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="balanceLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="minCreditLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="wageLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+
+
+
+
+            <Label fx:id="minCreditError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="wageError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+        </children>
+    </GridPane>
+</AnchorPane>
