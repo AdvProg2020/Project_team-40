@@ -47,7 +47,7 @@
                 </Label>
             </children>
         </HBox>
-        <JFXButton fx:id="addCategory" contentDisplay="CENTER" layoutX="853.0" layoutY="63.0" onAction="#handleAddCategory" prefHeight="42.0" prefWidth="50.0" text=" ">
+        <JFXButton fx:id="createReceipt" contentDisplay="CENTER" layoutX="948.0" layoutY="60.0" onAction="#createReceipt" prefHeight="42.0" prefWidth="50.0" text=" ">
             <graphic>
                 <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -56,7 +56,6 @@
                 </ImageView>
             </graphic>
         </JFXButton>
-        <JFXButton fx:id="refreshButton" layoutX="699.0" layoutY="114.0" onAction="#handleRefresh" prefHeight="36.0" prefWidth="37.0" text=" " />
     </children>
 
 </AnchorPane>
