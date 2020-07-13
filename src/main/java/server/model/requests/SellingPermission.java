@@ -7,6 +7,8 @@ public class SellingPermission extends Request{
     private static final long serialVersionUID = 2469735397956364303L;
     private String sellerUsername;
 
+    public SellingPermission(){}
+
     public SellingPermission(String sellerUsername) {
         super("Selling Permission");
         this.sellerUsername = sellerUsername;

@@ -7,6 +7,8 @@ public class RemoveProduct extends Request{
     private static final long serialVersionUID = 4475874827989857321L;
     private String productId;
 
+    public RemoveProduct(){}
+
     public RemoveProduct(String productId) {
         super("Remove Product");
         this.productId = productId;

@@ -8,6 +8,8 @@ public class AddComment extends Request{
     private static final long serialVersionUID = -2090250636759593204L;
     private String commentID;
 
+    public AddComment(){}
+
     public AddComment(String commentID){
         super("Add comment");
         this.commentID = commentID;

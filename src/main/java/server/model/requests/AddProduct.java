@@ -8,6 +8,8 @@ public class AddProduct extends Request{
     private static final long serialVersionUID = 5785371940590984191L;
     private Product product;
 
+    public AddProduct(){}
+
     public AddProduct(Product product) {
         super("Add Product");
         this.product = product;

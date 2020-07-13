@@ -13,6 +13,8 @@ public class EditProduct extends Request{
     private HashMap<String, Double> extraValueProperties;
     private HashMap<String, String> extraStringProperties;
 
+    public EditProduct(){}
+
     public EditProduct(String productId, String field, String newField, HashMap<String, Double> extraValueProperties,
                        HashMap<String, String> extraStringProperties) {
         super("Edit Product");

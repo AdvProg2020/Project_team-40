@@ -11,6 +11,8 @@ public class EditOff extends Request {
     private String field;
     private String newField;
 
+    public EditOff (){}
+
     public EditOff(String offID, String field, String newField) {
         super("Edit Off");
         this.offId = offID;
