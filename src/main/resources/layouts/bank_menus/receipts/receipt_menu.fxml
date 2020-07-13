@@ -13,41 +13,46 @@
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="48.0" layoutY="146.0" prefHeight="400.0" prefWidth="950.0">
+        <ScrollPane layoutX="30.0" layoutY="146.0" prefHeight="400.0" prefWidth="1000.0">
             <content>
-                <VBox fx:id="vBoxItems" prefHeight="400.0" prefWidth="940.0" />
+                <VBox fx:id="vBoxItems" prefHeight="600.0" prefWidth="990.0" />
             </content>
         </ScrollPane>
-        <HBox layoutX="48.0" layoutY="102.0" prefHeight="44.0" prefWidth="950.0">
+        <HBox layoutX="30.0" layoutY="102.0" prefHeight="44.0" prefWidth="1000.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="ID">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="ID">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Source ID">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Source ID">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Destination ID">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Destination ID">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Amount">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Amount">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: #5dade2;" text="Action">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Description">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #5dade2;" text="Action">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
-        <JFXButton fx:id="createReceipt" contentDisplay="CENTER" layoutX="948.0" layoutY="60.0" onAction="#createReceipt" prefHeight="42.0" prefWidth="50.0" text=" ">
+        <JFXButton fx:id="createReceipt" contentDisplay="CENTER" layoutX="979.0" layoutY="60.0" onAction="#createReceipt" prefHeight="42.0" prefWidth="50.0" text=" ">
             <graphic>
                 <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                     <image>
