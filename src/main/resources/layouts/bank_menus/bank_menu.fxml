@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.bank.BankMenuManager">
+<AnchorPane prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.bank.BankMenuManager">
     <children>
         <HBox>
             <VBox layoutX="1.0" layoutY="1.0" prefHeight="600.0" prefWidth="242.0" style="-fx-background-color: #7d3c98;">
@@ -38,17 +38,17 @@
                     </JFXButton>
                 </children>
             </VBox>
-            <Pane fx:id="InnerPane" prefHeight="600.0" prefWidth="958.0" styleClass="bankPane">
+            <Pane fx:id="InnerPane" prefHeight="600.0" prefWidth="1058.0" styleClass="bankPane">
                 <stylesheets>
                     <URL value="@../../stylesheets/bank_pane_background.css" />
                 </stylesheets>
                 <children>
-                    <Label fx:id="nameLabel" alignment="CENTER" layoutX="172.0" layoutY="153.0" prefHeight="48.0" prefWidth="614.0">
+                    <Label fx:id="nameLabel" alignment="CENTER" layoutX="222.0" layoutY="155.0" prefHeight="48.0" prefWidth="614.0">
                         <font>
                             <Font name="Garamond" size="40.0" />
                         </font>
                     </Label>
-                    <Label layoutX="108.0" layoutY="247.0" text="Welcome to your bank account!">
+                    <Label layoutX="158.0" layoutY="248.0" text="Welcome to your bank account!">
                         <font>
                             <Font name="Garamond" size="60.0" />
                         </font>

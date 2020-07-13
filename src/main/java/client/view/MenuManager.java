@@ -105,7 +105,7 @@ public class MenuManager {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/bank_menu.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root, 1200, 600));
+            stage.setScene(new Scene(root, 1300, 600));
             stage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
