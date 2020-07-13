@@ -1,6 +1,10 @@
 package server.model.enumerations;
 
-public enum PropertyType{
+import java.io.Serializable;
+
+public enum PropertyType implements Serializable {
     STRING,
-    RANGE
+    RANGE;
+
+    PropertyType(){}
 }
