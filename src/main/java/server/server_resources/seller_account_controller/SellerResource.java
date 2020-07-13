@@ -2,6 +2,7 @@ package server.server_resources.seller_account_controller;
 
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
+import server.ServerAuthenticator;
 import server.controller.accounts.SellerAccountController;
 
 public class SellerResource extends ServerResource {
@@ -17,6 +18,7 @@ public class SellerResource extends ServerResource {
         double credit = Double.parseDouble(getQueryValue("credit"));
         String company = getQueryValue("companyInfo");
         manager.createSellerAccount(username, password, firstName, lastName, email, phone, credit, company);
+        ServerAuthenticator.getInstance().addToSellerVerifier(username, password);
         return "Successful";
     }
 }

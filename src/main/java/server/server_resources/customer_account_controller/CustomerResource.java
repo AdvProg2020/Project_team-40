@@ -2,6 +2,7 @@ package server.server_resources.customer_account_controller;
 
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
+import server.ServerAuthenticator;
 import server.controller.accounts.CustomerAccountController;
 
 public class CustomerResource extends ServerResource {
@@ -16,6 +17,7 @@ public class CustomerResource extends ServerResource {
         String phone = getQueryValue("phoneNumber");
         double credit = Double.parseDouble(getQueryValue("credit"));
         manager.createCustomerAccount(username, password, firstName, lastName, email, phone, credit);
+        ServerAuthenticator.getInstance().addToCustomerVerifier(username, password);
         return "Successful";
     }
 
