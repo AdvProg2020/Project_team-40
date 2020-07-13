@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.CreateBankAccountController">
+<Pane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.CreateBankAccount">
     <children>
         <TextField fx:id="usernameField" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="219.0" promptText="username">
 

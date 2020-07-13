@@ -12,7 +12,7 @@ import server.model.users.User;
 import java.io.*;
 import java.net.Socket;
 
-public class CreateBankAccountController extends MenuManager {
+public class CreateBankAccount extends MenuManager {
     public Label errorMessage;
     public TextField usernameField;
     public PasswordField passwordField;
