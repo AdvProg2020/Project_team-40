@@ -51,6 +51,11 @@ public class ServerAuthenticator {
         customerVerifier.getLocalSecrets().put(username, password.toCharArray());
     }
 
+    public void removeIdentifier(String username){
+        managerVerifier.getLocalSecrets().remove(username);
+        sellerVerifier.getLocalSecrets().remove(username);
+        customerVerifier.getLocalSecrets().remove(username);
+    }
 
     public  <T extends ServerResource>  ChallengeAuthenticator getNewGuard(Class<T> serverResource){
         ChallengeAuthenticator guard = new ChallengeAuthenticator(null, ChallengeScheme.HTTP_BASIC, "realm");

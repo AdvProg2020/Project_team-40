@@ -115,7 +115,4 @@ public class AccountController{
         return user.getBankAccount();
     }
 
-    public void logout() {
-        //TODO: IMPLEMENT IF NEEDED IN SERVER
-    }
 }
