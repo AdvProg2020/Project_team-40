@@ -7,7 +7,7 @@ import server.controller.accounts.CustomerAccountController;
 
 public class CustomerResource extends ServerResource {
     @Post
-    public String createCustomer(){
+    public void createCustomer(){
         CustomerAccountController manager = CustomerAccountController.getInstance();
         String username = getQueryValue("username");
         String password = getQueryValue("password");
@@ -18,7 +18,6 @@ public class CustomerResource extends ServerResource {
         double credit = Double.parseDouble(getQueryValue("credit"));
         manager.createCustomerAccount(username, password, firstName, lastName, email, phone, credit);
         ServerAuthenticator.getInstance().addToCustomerVerifier(username, password);
-        return "Successful";
     }
 
 }

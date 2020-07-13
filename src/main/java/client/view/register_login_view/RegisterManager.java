@@ -1,18 +1,16 @@
 package client.view.register_login_view;
 
-import server.controller.accounts.AccountController;
-import server.controller.accounts.CustomerAccountController;
-import server.controller.accounts.ManagerAccountController;
-import server.controller.accounts.SellerAccountController;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
+import client.view.ValidInput;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import server.model.users.User;
-import client.view.MenuManager;
-import client.view.ValidInput;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class RegisterManager extends MenuManager implements Initializable {
@@ -44,12 +42,17 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField email;
     public TextField phoneNumber;
     public Label registerLabel;
+    //requestQueries must be cleared before each request
+    private HashMap<String, String> requestQueries;
 
     public void register() {
         try {
             findBlankInput();
             validateInput();
-            if(!AccountController.getInstance().doesUserExistWithThisUsername(username.getText())) {
+            requestQueries.clear();
+            requestQueries.put("username", username.getText());
+            boolean doesUserExist = (boolean) RequestHandler.get("/accounts/account/", requestQueries, false, boolean.class);
+            if(!doesUserExist) {
                 if (customerButton.isSelected()) {
                     registerCustomer();
                 } else if (sellerButton.isSelected()) {
@@ -144,19 +147,40 @@ public class RegisterManager extends MenuManager implements Initializable {
     }
 
     private void registerManager() {
-        ManagerAccountController.getInstance().createManagerAccount(username.getText(), password.getText(),
-                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText());
+        requestQueries.clear();
+        requestQueries.put("username", username.getText());
+        requestQueries.put("password", password.getText());
+        requestQueries.put("firstName", firstName.getText());
+        requestQueries.put("lastName", lastName.getText());
+        requestQueries.put("email", email.getText());
+        requestQueries.put("phoneNumber", phoneNumber.getText());
+        RequestHandler.post("/accounts/manager_account_controller/manager/", null, requestQueries, false, null);
     }
 
     private void registerSeller() {
-        SellerAccountController.getInstance().createSellerAccount(username.getText(), password.getText(),
-                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(),
-                0, companyField.getText());
+        requestQueries.clear();
+        requestQueries.put("username", username.getText());
+        requestQueries.put("password", password.getText());
+        requestQueries.put("firstName", firstName.getText());
+        requestQueries.put("lastName", lastName.getText());
+        requestQueries.put("email", email.getText());
+        requestQueries.put("phoneNumber", phoneNumber.getText());
+        requestQueries.put("credit", "0");
+        requestQueries.put("companyInfo", companyField.getText());
+        RequestHandler.post("/accounts/seller_account_controller/seller/", null, requestQueries, false, null);
     }
 
     private void registerCustomer() {
-        CustomerAccountController.getInstance().createCustomerAccount(username.getText(), password.getText(),
-                firstName.getText(), lastName.getText(), email.getText(), phoneNumber.getText(), 0);
+        requestQueries.clear();
+        requestQueries.put("username", username.getText());
+        requestQueries.put("password", password.getText());
+        requestQueries.put("firstName", firstName.getText());
+        requestQueries.put("lastName", lastName.getText());
+        requestQueries.put("email", email.getText());
+        requestQueries.put("phoneNumber", phoneNumber.getText());
+        requestQueries.put("credit", "0");
+        RequestHandler.post("/accounts/customer_account_controller/customer/", null, requestQueries, false, null);
+
     }
 
     public void clickCustomer() {
@@ -186,6 +210,8 @@ public class RegisterManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        requestQueries = new HashMap<>();
+        boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", null, false, boolean.class);
         if(User.doesManagerExist() && !isByManager) {
            infoPane.getChildren().remove(managerButton);
            managerButton = null;

@@ -7,7 +7,7 @@ import server.controller.accounts.SellerAccountController;
 
 public class SellerResource extends ServerResource {
     @Post
-    public String createSeller(){
+    public void createSeller(){
         SellerAccountController manager = SellerAccountController.getInstance();
         String username = getQueryValue("username");
         String password = getQueryValue("password");
@@ -19,6 +19,5 @@ public class SellerResource extends ServerResource {
         String company = getQueryValue("companyInfo");
         manager.createSellerAccount(username, password, firstName, lastName, email, phone, credit, company);
         ServerAuthenticator.getInstance().addToSellerVerifier(username, password);
-        return "Successful";
     }
 }

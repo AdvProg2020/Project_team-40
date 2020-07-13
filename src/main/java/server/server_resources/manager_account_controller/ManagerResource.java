@@ -1,13 +1,15 @@
 package server.server_resources.manager_account_controller;
 
+import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.ServerAuthenticator;
 import server.controller.accounts.ManagerAccountController;
+import server.model.users.User;
 
 public class ManagerResource extends ServerResource {
     @Post
-    public String createManager(){
+    public void createManager(){
         ManagerAccountController manager = ManagerAccountController.getInstance();
         String username = getQueryValue("username");
         String password = getQueryValue("password");
@@ -17,6 +19,10 @@ public class ManagerResource extends ServerResource {
         String phone = getQueryValue("phoneNumber");
         manager.createManagerAccount(username, password, firstName, lastName, email, phone);
         ServerAuthenticator.getInstance().addToManagerVerifier(username, password);
-        return "Successful";
+    }
+
+    @Get
+    public boolean doesManagerExist(){
+        return User.doesManagerExist();
     }
 }
