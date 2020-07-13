@@ -53,6 +53,11 @@
                             <Font name="Garamond" size="60.0" />
                         </font>
                     </Label>
+                    <Label fx:id="accountIDLabel" layoutX="230.0" layoutY="364.0" prefHeight="71.0" prefWidth="599.0">
+                        <font>
+                            <Font name="Garamond" size="60.0" />
+                        </font>
+                    </Label>
                 </children>
             </Pane>
         </HBox>

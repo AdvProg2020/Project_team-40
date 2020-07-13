@@ -13,9 +13,9 @@
                 <Font size="35.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="48.0" layoutY="146.0" prefHeight="414.0" prefWidth="950.0">
+        <ScrollPane layoutX="48.0" layoutY="146.0" prefHeight="400.0" prefWidth="950.0">
             <content>
-                <VBox fx:id="vBoxItems" prefHeight="411.0" prefWidth="940.0" />
+                <VBox fx:id="vBoxItems" prefHeight="400.0" prefWidth="940.0" />
             </content>
         </ScrollPane>
         <HBox layoutX="48.0" layoutY="102.0" prefHeight="44.0" prefWidth="950.0">
@@ -56,6 +56,10 @@
                 </ImageView>
             </graphic>
         </JFXButton>
+        <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="550.0" prefHeight="44.0" prefWidth="529.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
     </children>
-
 </AnchorPane>

@@ -30,20 +30,11 @@
                 </font>
             </Label>
             <HBox>
-                <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#viewReceipt" prefHeight="40.0" prefWidth="75.0" text=" ">
-                    <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/icons8-purchase-order-48.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </JFXButton>
-                <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#payReceipt" prefHeight="40.0" prefWidth="75.0" text=" ">
+                <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#payReceipt" prefHeight="40.0" prefWidth="150.0" text=" ">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/pay_money.jpg" />
+                                <Image url="@../../../images/icons8-us-dollar-48.png" />
                             </image>
                         </ImageView>
                     </graphic>
