@@ -41,7 +41,7 @@ public class AccountManager extends MenuManager implements Initializable {
         setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
     }
 
-    public void goToSettings() {
+    public void goToFinancialResources() {
         //TODO:
     }
 }
