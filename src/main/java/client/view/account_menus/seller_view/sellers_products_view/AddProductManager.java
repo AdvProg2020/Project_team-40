@@ -1,8 +1,9 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.accounts.SellerAccountController;
 import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,6 +11,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Category;
 import server.model.Product;
 import server.model.enumerations.PropertyType;
@@ -22,7 +25,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddProductManager extends MenuManager implements Initializable {
-    private SellerAccountController sellerAccountController;
     private ToggleGroup toggleGroupCategory;
     private HashMap<String, JFXTextField> valuePropertyField;
     private HashMap<String, JFXTextField> stringPropertyField;
@@ -39,12 +41,13 @@ public class AddProductManager extends MenuManager implements Initializable {
     public Label priceError;
     public Label countError;
     public JFXButton doneButton;
-
+    private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        requestQueries = new HashMap<>();
         toggleGroupCategory = new ToggleGroup();
-        sellerAccountController = SellerAccountController.getInstance();
-        HashMap<String, Category> categoryHashMap = sellerAccountController.getAllCategories();
+        HashMap<String, Category> categoryHashMap = (HashMap) RequestHandler.get("/accounts/seller_account_controller/all_categories/", requestQueries, true, HashMap.class);
+        assert categoryHashMap != null;
         for(Category category : categoryHashMap.values()) {
             RadioButton categoryButton = new RadioButton(category.getName());
             categoryButton.setOnMouseClicked(e -> showCategoryProperties(categoryButton));
@@ -55,8 +58,10 @@ public class AddProductManager extends MenuManager implements Initializable {
     }
 
     private void showCategoryProperties(RadioButton radioButton) {
-        HashMap<String, PropertyType> categoryProperties = sellerAccountController.
-                getCategoryProperties(radioButton.getText());
+        requestQueries.clear();
+        requestQueries.put("category", radioButton.getText());
+        HashMap<String, PropertyType> categoryProperties = (HashMap)RequestHandler.get("/accounts/seller_account_controller/category_properties/", requestQueries, true , HashMap.class);
+        assert categoryProperties != null;
         propertyBox.getChildren().clear();
         constructHashMaps(categoryProperties);
     }
@@ -131,12 +136,29 @@ public class AddProductManager extends MenuManager implements Initializable {
     private void finalizeCreatingProduct() {
         try {
             HashMap<String, Double> extraValueProperties = validateExtraValueProperties();
-            Product product = sellerAccountController.createNewProduct(nameField.getText(), companyField.getText(),
-                    Double.parseDouble(priceField.getText()), Integer.parseInt(priceField.getText()),
-                    ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText(), descriptionField.getText());
+            requestQueries.clear();
+            requestQueries.put("name", nameField.getText());
+            requestQueries.put("price", priceField.getText());
+            requestQueries.put("description", descriptionField.getText());
+            requestQueries.put("company", companyField.getText());
+            requestQueries.put("category", ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText());
+            requestQueries.put("quantity", countField.getText());
+
+            Product product = (Product)RequestHandler.post("/accounts/seller_account_controller/product/", Client.getInstance().getUsername(), requestQueries,
+                    true, Product.class);
+
+            assert product != null;
             product.setExtraValueProperties(extraValueProperties);
             product.setExtraStringProperties(getExtraStringProperties());
             ((Stage)doneButton.getScene().getWindow()).close();
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+            {
+                ((Stage)doneButton.getScene().getWindow()).close();
+                logout();
+            }
+            else
+                e.printStackTrace();
         } catch (AccountsException e) {
             e.printStackTrace();
         }

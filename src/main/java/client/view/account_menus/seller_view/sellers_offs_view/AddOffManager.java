@@ -1,8 +1,9 @@
 package client.view.account_menus.seller_view.sellers_offs_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.accounts.SellerAccountController;
-import exceptions.AccountsException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,12 +16,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
-import client.view.MenuManager;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AddOffManager extends MenuManager implements Initializable{
@@ -33,14 +36,16 @@ public class AddOffManager extends MenuManager implements Initializable{
     private String startDate;
     private String endDate;
     private double percentage;
-
+    private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        requestQueries = new HashMap<>();
         initializeProducts();
     }
 
     private void initializeProducts(){
-        sellerProducts = SellerAccountController.getInstance().getSellerProductIDs();
+        requestQueries.put("username", Client.getInstance().getUsername());
+        sellerProducts = (ArrayList<String>) RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
         chosenProducts = new ArrayList<>();
 
         ObservableList<Item> items = FXCollections.observableArrayList();
@@ -116,11 +121,20 @@ public class AddOffManager extends MenuManager implements Initializable{
         }
 
         try {
-            SellerAccountController.getInstance().addOffToSeller(chosenProducts, startDate, endDate, percentage);
-        } catch(AccountsException e) {
-            e.printStackTrace();
+            requestQueries.clear();
+            requestQueries.put("startDate", startDate);
+            requestQueries.put("endDate", endDate);
+            requestQueries.put("percentage", Double.toString(percentage));
+            RequestHandler.post("/accounts/seller_account_controller/off/", chosenProducts, requestQueries, true, null);
+        } catch(ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+            {
+                ((Stage)startDateField.getScene().getWindow()).close();
+                logout();
+            }
+            else
+                e.printStackTrace();
         }
-
         ((Stage)startDateField.getScene().getWindow()).close();
     }
 

@@ -51,8 +51,12 @@ public class SellerAccountController extends AccountController{
         return logs;
     }
 
-    public ArrayList<String> getSellerProductIDs(String username){
-        return ((Seller)User.getUserByUsername(username)).getProductsId();
+    public ArrayList<Product> getSellerProducts(String username){
+        ArrayList<Product> products = new ArrayList<>();
+        for (String id : ((Seller) User.getUserByUsername(username)).getProductsId()) {
+            products.add(Product.getProductById(id));
+        }
+        return products;
     }
 
     public Product getProductDetails(String username, String productID) throws AccountsException {
@@ -115,7 +119,7 @@ public class SellerAccountController extends AccountController{
     public void decreaseProductCount(int removedQuantity, String productId) throws AccountException {
         Product product = Product.getProductById(productId);
         if(product.getCount() < removedQuantity) {
-            throw new AccountException("Number of products is less than you expectation");
+            throw new AccountException("Number of products is less than your expectation");
         }
         product.setCount(product.getCount() - removedQuantity);
     }

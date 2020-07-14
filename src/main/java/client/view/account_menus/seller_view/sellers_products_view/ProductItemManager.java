@@ -1,9 +1,9 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.SellerAccountController;
-import exceptions.AccountsException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,14 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Product;
-import client.view.MenuManager;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ProductItemManager extends MenuManager {
-    private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
-    private AccountController accountController = AccountController.getInstance();
     public JFXButton viewProductButton;
     public static VBox vBoxItems;
     public AnchorPane itemPane;
@@ -32,10 +32,14 @@ public class ProductItemManager extends MenuManager {
     public void handleDeleteProduct() {
        Product product = getProduct();
         try {
-            sellerAccountController.removeProductFromSeller(product.getProductId());
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("username", Client.getInstance().getUsername());
+            queries.put("productID", product.getProductId());
+            RequestHandler.delete("/accounts/seller_account_controller/product/", queries, true, null);
             vBoxItems.getChildren().remove(itemPane);
-        } catch (AccountsException e) {
-            e.printStackTrace();
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
         }
     }
 
@@ -55,6 +59,6 @@ public class ProductItemManager extends MenuManager {
     private Product getProduct() {
         HBox item = (HBox) viewProductButton.getParent().getParent();
         String productName =((Label)item.getChildren().get(0)).getText();
-        return Product.getProductWithSellerAndName(productName, accountController.getThisUser().getUsername());
+        return Product.getProductWithSellerAndName(productName, Client.getInstance().getUsername());
     }
 }

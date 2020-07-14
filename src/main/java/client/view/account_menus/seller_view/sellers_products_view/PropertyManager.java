@@ -1,12 +1,11 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.SellerAccountController;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import server.model.Product;
-import client.view.MenuManager;
 
 public class PropertyManager extends MenuManager {
     public JFXButton editButton;
@@ -15,7 +14,6 @@ public class PropertyManager extends MenuManager {
     public Label propertyNameLabel;
     public TextField valueTexField;
     private static Product product;
-    private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
 
     public static void setProduct(Product product) {
         PropertyManager.product = product;

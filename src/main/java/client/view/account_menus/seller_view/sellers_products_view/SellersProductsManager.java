@@ -1,8 +1,9 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.SellerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,44 +15,53 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Product;
 import server.model.users.Seller;
-import client.view.MenuManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SellersProductsManager extends MenuManager implements Initializable {
-    private SellerAccountController sellerAccountController;
     public VBox vBoxItems;
     public JFXButton addButton;
     public AnchorPane anchorPane;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sellerAccountController = SellerAccountController.getInstance();
-        if(!((Seller) sellerAccountController.getThisUser()).isManagerPermission())
+        requestQueries = new HashMap<>();
+        if(!((Seller) Client.getInstance().getUser()).isManagerPermission())
             anchorPane.getChildren().remove(addButton);
         loadProducts();
         ProductItemManager.setVBoxItems(vBoxItems);
     }
 
     public void loadProducts() {
-        ArrayList<String> productIds = sellerAccountController.getSellerProductIDs();
-        vBoxItems.getChildren().clear();
-        for(String productId : productIds) {
-            try {
-                Product product = sellerAccountController.getProductDetails(productId);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
+        try {
+            requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
+            ArrayList<Product> products = (ArrayList) RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
+            assert products != null;
+            vBoxItems.getChildren().clear();
+            for (Product product : products) {
+                AnchorPane item = FXMLLoader.load(getClass().
                         getResource("/layouts/seller_menus/manage_product_menus/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);
                 vBoxItems.getChildren().add(item);
-            } catch (AccountsException | IOException e) {
-                e.printStackTrace();
+
             }
+        }
+        catch (ResourceException e){
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

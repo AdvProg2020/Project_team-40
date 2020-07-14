@@ -4,12 +4,13 @@ import exceptions.AuthorizationException;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.SellerAccountController;
+import server.model.Product;
 
 import java.util.ArrayList;
 
 public class SellerProductsResource extends ServerResource {
     @Get
-    public ArrayList<String> getProductIds() throws AuthorizationException {
-        return SellerAccountController.getInstance().getSellerProductIDs(getQueryValue("username"));
+    public ArrayList<Product> getProductIds() throws AuthorizationException {
+        return SellerAccountController.getInstance().getSellerProducts(getQueryValue("username"));
     }
 }

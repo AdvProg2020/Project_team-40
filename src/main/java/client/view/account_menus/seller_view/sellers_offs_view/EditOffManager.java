@@ -1,17 +1,20 @@
 package client.view.account_menus.seller_view.sellers_offs_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.accounts.SellerAccountController;
-import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Off;
-import client.view.MenuManager;
 
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class EditOffManager extends MenuManager implements Initializable{
@@ -24,6 +27,7 @@ public class EditOffManager extends MenuManager implements Initializable{
 
     private static Off currentOff = null;
     private Off off;
+    private HashMap<String, String> requestQueries;
 
     public EditOffManager(){
         off = currentOff;
@@ -31,6 +35,7 @@ public class EditOffManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        requestQueries = new HashMap<>();
         percentageField.setText(off.getDiscountPercentage() + "");
         startDateField.setText(off.getStartDate());
         endDateField.setText(off.getEndDate());
@@ -55,18 +60,38 @@ public class EditOffManager extends MenuManager implements Initializable{
             return;
         }
 
-        try {
-            if(off.getDiscountPercentage() != percentage)
-                SellerAccountController.getInstance().editOff(off.getId(), "discount percentage", percentage + "");
-            if(!off.getStartDate().equals(startDate))
-                SellerAccountController.getInstance().editOff(off.getId(), "start date", startDate);
-            if(!off.getEndDate().equals(endDate))
-                SellerAccountController.getInstance().editOff(off.getId(), "end date", endDate);
-        } catch(AccountsException e) {
-            e.printStackTrace();
-        }
+        handleEditOffRequest();
 
         ((Stage)startDateField.getScene().getWindow()).close();
+    }
+
+    private void handleEditOffRequest() {
+        try {
+            requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
+
+            if(off.getDiscountPercentage() != percentage) {
+                requestQueries.put("field", "discount percentage");
+                requestQueries.put("newField", percentage + "");
+            }
+            if(!off.getStartDate().equals(startDate))
+            {
+                requestQueries.put("field", "start date");
+                requestQueries.put("newField", startDate);
+            }
+            if(!off.getEndDate().equals(endDate)){
+                requestQueries.put("field", "end date");
+                requestQueries.put("newField", endDate);
+            }
+            RequestHandler.put("/accounts/seller_account_controller/off/", off.getId(), requestQueries, true, null);
+        } catch(ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED)) {
+                ((Stage)startDateField.getScene().getWindow()).close();
+                logout();
+            }
+            else
+                e.printStackTrace();
+        }
     }
 
     private void alert(String title, String content){

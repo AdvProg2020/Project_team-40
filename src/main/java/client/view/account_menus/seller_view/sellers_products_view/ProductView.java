@@ -1,7 +1,7 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
-import server.controller.accounts.SellerAccountController;
-import exceptions.AccountsException;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,12 +12,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Product;
-import client.view.MenuManager;
 
-import javax.security.auth.login.AccountException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -59,13 +60,12 @@ public class ProductView extends MenuManager implements Initializable {
 
     public GridPane informationTable;
     public VBox propertyList;
-    private SellerAccountController sellerAccountController;
     private static Product product;
     private Product thisProduct;
-
+    private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sellerAccountController = SellerAccountController.getInstance();
+        requestQueries = new HashMap<>();
         nameLabel.setText(product.getName());
         iDLabel.setText(product.getProductId());
         priceLabel.setText(Double.toString(product.getPrice()));
@@ -124,19 +124,37 @@ public class ProductView extends MenuManager implements Initializable {
         nameField.setText(thisProduct.getName());
     }
 
+    private void handleEditProduct(String field, String newField){
+        requestQueries.clear();
+        ArrayList<HashMap> properties = new ArrayList<>();
+        properties.add(thisProduct.getExtraStringProperties());
+        properties.add(thisProduct.getExtraValueProperties());
+        requestQueries.put("productID", this.thisProduct.getProductId());
+        requestQueries.put("field", field);
+        requestQueries.put("newField", newField);
+        RequestHandler.put("/accounts/seller_account_controller/product/", properties, requestQueries, true, null);
+    }
+
     private void saveName() {
         if(!nameField.getText().isBlank()) {
             editName.setText("edit");
             try {
-                sellerAccountController.editProduct(thisProduct.getProductId(), "name", nameField.getText(),
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("name", nameField.getText());
                 informationTable.getChildren().remove(nameField);
                 nameLabel.setText(nameField.getText());
                 nameField.setText("");
                 editName.setOnMouseClicked(e -> changeName());
                 nameError.setText("Wait for manager's acceptance!");
-            } catch (AccountsException e) {
-                nameError.setText(e.getMessage());
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        nameError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         } else {
             nameError.setText("Fill this field!");
@@ -156,16 +174,24 @@ public class ProductView extends MenuManager implements Initializable {
         if(!companyField.getText().isBlank()) {
             editCompany.setText("edit");
             try {
-                sellerAccountController.editProduct(thisProduct.getProductId(), "company", companyField.getText(),
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("company", companyField.getText());
                 informationTable.getChildren().remove(companyField);
                 companyLabel.setText(companyField.getText());
                 companyField.setText("");
                 editCompany.setOnMouseClicked(e -> changeCompany());
                 nameError.setText("Wait for manager's acceptance!");
-            } catch (AccountsException e) {
-                companyError.setText(e.getMessage());
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        companyError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
+
         } else {
             companyError.setText("Fill this field!");
         }
@@ -181,23 +207,27 @@ public class ProductView extends MenuManager implements Initializable {
     }
 
     private void savePrice() {
-        if(!priceField.getText().isBlank()) {
+        if (!priceField.getText().isBlank()) {
             try {
-                Double.parseDouble(priceField.getText());
-                sellerAccountController.editProduct(thisProduct.getProductId(), "price", priceField.getText(),
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("price", priceField.getText());
                 informationTable.getChildren().remove(priceField);
                 priceLabel.setText(priceField.getText());
                 priceField.setText("");
                 editPrice.setOnMouseClicked(e -> changePrice());
                 priceError.setText("");
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 priceError.setText("Enter a valid number!");
-            } catch (AccountsException e) {
-                priceError.setText(e.getMessage());
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        companyError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
-        } else {
-            priceError.setText("Fill this field!");
         }
     }
 
@@ -218,10 +248,14 @@ public class ProductView extends MenuManager implements Initializable {
             try {
                 int count = Integer.parseInt(quantityField.getText());
                 if(isSubtraction) {
-                    sellerAccountController.decreaseProductCount(count, thisProduct.getProductId());
+                    requestQueries.clear();
+                    requestQueries.put("addedQuantity", Integer.toString(count));
+                    RequestHandler.put("/accounts/seller_account_controller/product_count/decrease/", product.getProductId(), requestQueries, true, null);
                     quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) - count));
                 } else {
-                    sellerAccountController.increaseProductsCount(count, thisProduct.getProductId());
+                    requestQueries.clear();
+                    requestQueries.put("addedQuantity", Integer.toString(count));
+                    RequestHandler.put("/accounts/seller_account_controller/product_count/decrease/", product.getProductId(), requestQueries, true, null);
                     quantityLabel.setText(Integer.toString(Integer.parseInt(quantityLabel.getText()) + count));
                 }
                 informationTable.getChildren().remove(quantityField);
@@ -232,8 +266,16 @@ public class ProductView extends MenuManager implements Initializable {
                 quantityError.setText("");
             } catch(NumberFormatException e) {
                 quantityError.setText("Enter a valid number!");
-            } catch (AccountException e) {
-                quantityError.setText(e.getMessage());
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        quantityError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         } else {
             quantityError.setText("Fill this field!");
@@ -252,23 +294,23 @@ public class ProductView extends MenuManager implements Initializable {
     private void saveStatus() {
         try {
             if (editButton.isSelected()) {
-                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "editing",
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("status", "editing");
                 statusLabel.setText("editing");
             } else if(confirmButton.isSelected()) {
-                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "confirmed",
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("status", "confirmed");
                 statusLabel.setText("confirmed");
             } else {
-                sellerAccountController.editProduct(thisProduct.getProductId(), "status", "creating",
-                        thisProduct.getExtraValueProperties(), thisProduct.getExtraStringProperties());
+                handleEditProduct("status", "creating");
                 statusLabel.setText("creating");
             }
             informationTable.add(statusLabel, 2, 6);
             informationTable.getChildren().remove(radioButtons);
             editStatus.setText("edit");
             editStatus.setOnMouseClicked(e -> changeStatus());
-        } catch (AccountsException e) {}
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+        }
     }
 
     private void initializeStatusOptions() {
