@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import server.model.users.User;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -211,8 +210,8 @@ public class RegisterManager extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", null, false, boolean.class);
-        if(User.doesManagerExist() && !isByManager) {
+        boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
+        if(doesManagerExist && !isByManager) {
            infoPane.getChildren().remove(managerButton);
            managerButton = null;
         }
