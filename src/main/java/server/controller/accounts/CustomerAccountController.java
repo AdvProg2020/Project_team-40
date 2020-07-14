@@ -13,10 +13,7 @@ import java.util.*;
 
 public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
-    private String address;
-    private CustomerAccountController() {
-        resetPurchaseVariables();
-    }
+    private CustomerAccountController() {}
 
     public static CustomerAccountController getInstance(){
         if(customerAccountController == null)
@@ -50,11 +47,7 @@ public class CustomerAccountController extends AccountController{
         return productsWithQuantity;
     }
 
-    public double getCartTotalPrice(String username){
-        return ((Customer) User.getUserByUsername(username)).getTotalPriceOfCart();
-    }
-
-    private Log purchase(String username,String code , double priceWithoutDiscount, double priceAfterDiscount) {
+    private Log purchase(String username,String code ,String address , double priceWithoutDiscount, double priceAfterDiscount) {
         Customer customer = (Customer) User.getUserByUsername(username);
         Log log = new Log(new Date(), priceAfterDiscount, priceWithoutDiscount, customer.getCart(),
                 customer.getUsername(), address,false);
@@ -65,21 +58,13 @@ public class CustomerAccountController extends AccountController{
         addLogToSellers(log);
         customer.removeAllProducts();
         decreaseDiscountCodeCountPerUser(username, code);
-        resetPurchaseVariables();
         return log;
     }
 
-    private void resetPurchaseVariables() {
-        address = null;
-    }
-
-    public void setReceiverInfo(String address){
-        this.address = address;
-    }
 
     //This method checks whether the discount code is valid or not
 
-    public void enterDiscountCode(String code, String username) throws AccountsException{
+    public void checkDiscountCode(String code, String username) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
         DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
         if(!customer.getDiscountCodes().contains(code)) {
@@ -91,7 +76,7 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public Log makePayment(String username, String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
+    public Log makePayment(String username,String address ,String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
 
         if(priceAfterDiscount > customer.getCredit()) {
@@ -99,7 +84,7 @@ public class CustomerAccountController extends AccountController{
         } else {
             //TODO: Not sure if it's correct or not!
             customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
-            return purchase(username, code, priceWithoutDiscount, priceAfterDiscount);
+            return purchase(username, address, code, priceWithoutDiscount, priceAfterDiscount);
         }
     }
 

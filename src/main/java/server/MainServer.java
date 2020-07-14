@@ -47,14 +47,11 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", authenticator.getNewGuard(CustomerAllDiscountsResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/balance/", authenticator.getNewGuard(BalanceResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/cart/", authenticator.getNewGuard(CartResource.class));
-        getDefaultHost().attach("/accounts/customer_account_controller/cart_total_price/", authenticator.getNewGuard(CartTotalPriceResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/discount/", authenticator.getNewGuard(CustomerDiscountResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/product/", authenticator.getNewGuard(CustomerProductResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/order/", authenticator.getNewGuard(OrderResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/orders/", authenticator.getNewGuard(OrdersResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class));
-        getDefaultHost().attach("/accounts/customer_account_controller/price_after_discount/", authenticator.getNewGuard(PriceAfterDiscountResource.class));
-        getDefaultHost().attach("/accounts/customer_account_controller/price_without_discount/", authenticator.getNewGuard(PriceWithoutDiscountResource.class));
         getDefaultHost().attach("/accounts/customer_account_controller/receiver_info/", authenticator.getNewGuard(ReceiverInfoResource.class));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);

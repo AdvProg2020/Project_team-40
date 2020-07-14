@@ -12,7 +12,12 @@ public class PaymentResource extends ServerResource {
     @Put
     public Log purchase() throws  AuthorizationException {
         try {
-            return CustomerAccountController.getInstance().makePayment(getQueryValue("username"));
+            String username = getQueryValue("username");
+            String address = getQueryValue("address");
+            String code = getQueryValue("code");
+            double priceAfterDiscount = Double.parseDouble(getQueryValue("priceAfterDiscount"));
+            double priceWithoutDiscount = Double.parseDouble(getQueryValue("priceWithoutDiscount"));
+            return CustomerAccountController.getInstance().makePayment(username, address,code, priceAfterDiscount, priceWithoutDiscount);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }

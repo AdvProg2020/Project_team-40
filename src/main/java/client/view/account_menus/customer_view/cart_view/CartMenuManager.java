@@ -13,6 +13,7 @@ import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Product;
 import server.model.log.Log;
+import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,8 +61,8 @@ public class CartMenuManager extends MenuManager implements Initializable {
                 discountField.setDisable(true);
                 discountError.setText("");
                 requestQueries.clear();
-                Double priceAfterDiscount = (Double) RequestHandler.get("/accounts/customer_account_controller/price_after_discount/", requestQueries, true, Double.class);
-                priceLabel.setText(String.valueOf(priceAfterDiscount));
+//                Double priceAfterDiscount =
+//                priceLabel.setText(String.valueOf(priceAfterDiscount));
             } catch (ResourceException e) {
                 if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                     logout();
@@ -79,13 +80,10 @@ public class CartMenuManager extends MenuManager implements Initializable {
     private void disableDiscountCode() {
         try {
             requestQueries.clear();
-            RequestHandler.put("/accounts/customer_account_controller/price_without_discount/", Client.getInstance().getUsername(),
-                    requestQueries, true, null);
+            //TODO: Implement details
             discountField.setDisable(false);
             discountButton.setText("apply");
-            requestQueries.clear();
-            requestQueries.put("username", Client.getInstance().getUsername());
-            Double totalPrice = (Double) RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
+            double totalPrice = ((Customer)Client.getInstance().getUser()).getTotalPriceOfCart();
             priceLabel.setText(Double.toString(totalPrice));
             discountButton.setOnMouseClicked(e -> applyDiscount());
         } catch (ResourceException e) {
@@ -103,6 +101,11 @@ public class CartMenuManager extends MenuManager implements Initializable {
             try {
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
+                //TODO: Complete follow
+//                requestQueries.put("code", );
+//                requestQueries.put("address", );
+//                requestQueries.put("priceWithoutDiscount", );
+//                requestQueries.put("priceAfterDiscount", );
                 Log log = (Log) RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
                 setSecondaryInnerPane("/layouts/customer_menus/log_design.fxml");

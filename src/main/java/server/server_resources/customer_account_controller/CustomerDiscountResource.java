@@ -11,7 +11,7 @@ public class CustomerDiscountResource extends ServerResource {
     @Put
     public void enterDiscount(String code) throws  AuthorizationException {
         try {
-            CustomerAccountController.getInstance().enterDiscountCode(code, getQueryValue("username"));
+            CustomerAccountController.getInstance().checkDiscountCode(code, getQueryValue("username"));
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
 
