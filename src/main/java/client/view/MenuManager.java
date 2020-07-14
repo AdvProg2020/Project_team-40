@@ -112,6 +112,11 @@ public class MenuManager {
         }
     }
 
+
+    public void goToWallet() {
+        //TODO: Implement
+    }
+
     public void logout() {
         roots.clear();
         roots.add("/layouts/main.fxml");
