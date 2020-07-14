@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -45,4 +46,45 @@
             </Label>
         </children>
     </HBox>
+    <TextField layoutX="27.0" layoutY="152.0" prefHeight="25.0" prefWidth="232.0" promptText="Deadline" />
+    <Label alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="206.0" prefHeight="25.0" prefWidth="232.0" text="Write the Deadline in this format:">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
+    <Label alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="239.0" prefHeight="18.0" prefWidth="232.0" text="dd/MM/yyyy hh:mm">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="18.0" prefWidth="232.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
+    <JFXButton fx:id="addButton" layoutX="33.0" layoutY="462.0" onAction="#addAuction" prefHeight="39.0" prefWidth="70.0" text=" ">
+        <graphic>
+            <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../images/icons8-checked-160.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </JFXButton>
+    <VBox layoutX="28.0" layoutY="320.0" prefHeight="63.0" prefWidth="232.0">
+        <children>
+            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="31.0" prefWidth="195.0" text="Choose a product:">
+                <font>
+                    <Font size="15" />
+                </font>
+            </Label>
+            <ChoiceBox fx:id="productChoiceBox" prefHeight="26.0" prefWidth="234.0">
+            </ChoiceBox>
+        </children>
+    </VBox>
+    <Label fx:id="productError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="400.0" prefHeight="31.0" prefWidth="232.0">
+        <font>
+            <Font size="15" />
+        </font>
+    </Label>
 </AnchorPane>
