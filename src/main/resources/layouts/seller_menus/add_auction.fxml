@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.AddAuctionManager">
+    <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../images/icons8-auction-100.png" />
+        </image>
+    </ImageView>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="17.0" prefHeight="51.0" prefWidth="290.0" text="Create an Auction">
+        <font>
+            <Font size="35.0" />
+        </font>
+    </Label>
+    <ScrollPane layoutX="317.0" layoutY="152.0" prefHeight="414.0" prefWidth="450.0">
+        <content>
+            <VBox fx:id="vBoxItems" prefHeight="411.0" prefWidth="445.0" />
+        </content>
+    </ScrollPane>
+    <HBox layoutX="317.0" layoutY="108.0" prefHeight="44.0" prefWidth="450.0">
+        <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Product ID">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #5dade2;" text="Name">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #5dade2;" text="Price">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="50.0" style="-fx-background-color: #5dade2;" text="Info">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+        </children>
+    </HBox>
+</AnchorPane>
