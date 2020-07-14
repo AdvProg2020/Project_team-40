@@ -1,7 +1,6 @@
 package client.view.account_menus.manager_view.account_view;
 
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import client.view.MenuManager;
 
@@ -38,7 +37,7 @@ public class AccountManager extends MenuManager implements Initializable {
     }
 
     public void handleGoToCategoriesMenu() {
-        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
+        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/category_menu_design.fxml");
     }
 
     public void goToFinancialResources() {

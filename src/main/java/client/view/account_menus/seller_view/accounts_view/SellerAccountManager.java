@@ -1,7 +1,6 @@
 package client.view.account_menus.seller_view.accounts_view;
 
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import client.view.MenuManager;
 
@@ -30,7 +29,7 @@ public class SellerAccountManager extends MenuManager implements Initializable {
     }
 
     public void goToCategories() {
-        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/CategoryMenuDesign.fxml");
+        setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/category_menu_design.fxml");
     }
 
     public void goToSalesHistory() {
