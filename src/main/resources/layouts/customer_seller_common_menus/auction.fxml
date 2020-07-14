@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_seller_common_view.AuctionManager">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_seller_common_view.AuctionManager">
 
     <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
         <image>
