@@ -1,6 +1,5 @@
 package server;
 
-import exceptions.AuthorizationException;
 import org.restlet.Component;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -8,7 +7,6 @@ import org.restlet.data.Protocol;
 import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
-import org.restlet.resource.Resource;
 import org.restlet.service.StatusService;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
@@ -27,14 +25,9 @@ public class MainServer extends Component {
         setStatusService(new StatusService(){
             @Override
             public Representation getRepresentation(Status status, Request request, Response response) {
-                return new StringRepresentation(status.getThrowable().getMessage());
-            }
-
-            @Override
-            public Status getStatus(Throwable throwable, Resource resource) {
-                if (throwable instanceof AuthorizationException)
-                    return Status.CLIENT_ERROR_UNAUTHORIZED;
-                return Status.CLIENT_ERROR_FORBIDDEN;
+                if (status.getThrowable() != null)
+                    return new StringRepresentation(status.getThrowable().getMessage());
+                return null;
             }
         });
         getServers().add(Protocol.HTTP, DEFAULT_PORT);

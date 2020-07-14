@@ -3,6 +3,7 @@ package server.server_resources.accounts;
 import exceptions.AccountsException;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.AccountController;
 import server.model.users.User;
@@ -10,9 +11,13 @@ import server.model.users.User;
 public class AccountResource extends ServerResource {
 
     @Post
-    public void login(String username) throws AccountsException {
+    public void login(String username)  {
         String password = getQueryValue("password");
-        AccountController.getInstance().login(username, password);
+        try {
+            AccountController.getInstance().login(username, password);
+        } catch (AccountsException e) {
+            throw new ResourceException(403, e);
+        }
     }
 
     @Get

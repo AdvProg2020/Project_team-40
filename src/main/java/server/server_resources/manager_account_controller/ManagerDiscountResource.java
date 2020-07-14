@@ -15,24 +15,36 @@ public class ManagerDiscountResource extends ServerResource {
     }
 
     @Post
-    public void createDiscount(ArrayList<String> customers) throws AccountsException {
+    public void createDiscount(ArrayList<String> customers)  {
         String startDate = getQueryValue("startDate");
         String endDate = getQueryValue("endDate");
         int percentage = Integer.parseInt(getQueryValue("percentage"));
         double maxPrice = Double.parseDouble(getQueryValue("maxDiscount"));
         int countPerUser = Integer.parseInt(getQueryValue("countPerUser"));
-        ManagerAccountController.getInstance().createDiscount(startDate, endDate, percentage, maxPrice, countPerUser, customers);
+        try {
+            ManagerAccountController.getInstance().createDiscount(startDate, endDate, percentage, maxPrice, countPerUser, customers);
+        } catch (AccountsException e) {
+            throw new ResourceException(403, e);
+        }
     }
 
     @Put
-    public void editDiscount(HashMap<String, String> toEdit) throws AccountsException {
-        ManagerAccountController.getInstance().editDiscount(getQueryValue("code"), toEdit);
+    public void editDiscount(HashMap<String, String> toEdit) {
+        try {
+            ManagerAccountController.getInstance().editDiscount(getQueryValue("code"), toEdit);
+        } catch (AccountsException e) {
+            throw new ResourceException(403, e);
+        }
     }
 
     @Delete
-    public void removeDiscount() throws AccountsException {
+    public void removeDiscount()  {
 
-        ManagerAccountController.getInstance().removeDiscount(getQueryValue("code"));
+        try {
+            ManagerAccountController.getInstance().removeDiscount(getQueryValue("code"));
+        } catch (AccountsException e) {
+            throw new ResourceException(403, e);
+        }
     }
 
 }
