@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="client.view.account_menus.seller_view.auction_view.AuctionItem"
+            prefHeight="40.0" prefWidth="445.0">
+    <children>
+        <HBox prefHeight="40.0" prefWidth="445.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="45.0" text="">
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons8-view-64.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

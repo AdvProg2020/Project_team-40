@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.AddAuctionManager">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.accounts_view.AddAuctionManager">
     <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
         <image>
-            <Image url="@../../images/icons8-auction-100.png" />
+            <Image url="@../../../images/icons8-auction-100.png" />
         </image>
     </ImageView>
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="17.0" prefHeight="51.0" prefWidth="290.0" text="Create an Auction">
@@ -66,7 +66,7 @@
         <graphic>
             <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../images/icons8-checked-160.png" />
+                    <Image url="@../../../images/icons8-checked-160.png" />
                 </image>
             </ImageView>
         </graphic>

@@ -33,6 +33,7 @@ public class MainServer extends Component {
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
         ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/support/", ManagerResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(ManagerUserResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/users/", authenticator.getNewGuard(ManagerUsersResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));

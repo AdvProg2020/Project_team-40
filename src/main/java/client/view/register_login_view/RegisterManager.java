@@ -22,6 +22,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public RadioButton customerButton;
     public RadioButton sellerButton;
     public RadioButton managerButton;
+    public RadioButton supportButton;
     public Button register;
     public Button account;
     public Label companyLabel;
@@ -58,6 +59,8 @@ public class RegisterManager extends MenuManager implements Initializable {
                     registerSeller();
                 } else if (managerButton.isSelected()) {
                     registerManager();
+                }else if (supportButton.isSelected()) {
+                    registerSupport();
                 }
                 finishRegister();
             } else {
@@ -156,6 +159,17 @@ public class RegisterManager extends MenuManager implements Initializable {
         RequestHandler.post("/accounts/manager_account_controller/manager/", null, requestQueries, false, null);
     }
 
+    private void registerSupport() {
+        requestQueries.clear();
+        requestQueries.put("username", username.getText());
+        requestQueries.put("password", password.getText());
+        requestQueries.put("firstName", firstName.getText());
+        requestQueries.put("lastName", lastName.getText());
+        requestQueries.put("email", email.getText());
+        requestQueries.put("phoneNumber", phoneNumber.getText());
+        RequestHandler.post("/accounts/manager_account_controller/manager/", null, requestQueries, false, null);
+    }
+
     private void registerSeller() {
         requestQueries.clear();
         requestQueries.put("username", username.getText());
@@ -196,6 +210,11 @@ public class RegisterManager extends MenuManager implements Initializable {
     }
 
     public void clickManager() {
+        companyLabel.setText("");
+        removeCompany();
+    }
+
+    public void clickSupport(){
         companyLabel.setText("");
         removeCompany();
     }
