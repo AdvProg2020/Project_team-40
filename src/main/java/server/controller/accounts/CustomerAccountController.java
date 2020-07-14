@@ -14,10 +14,6 @@ import java.util.*;
 public class CustomerAccountController extends AccountController{
     private static CustomerAccountController customerAccountController = new CustomerAccountController();
     private String address;
-    private double priceAfterDiscount;
-    private double priceWithoutDiscount;
-    private String discountCode;
-
     private CustomerAccountController() {
         resetPurchaseVariables();
     }
@@ -54,45 +50,12 @@ public class CustomerAccountController extends AccountController{
         return productsWithQuantity;
     }
 
-    public Product getChosenProduct(String productId, String username) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(username);
-        if(customer.getCart().containsKey(productId)) {
-            return customer.getProductById(productId);
-        } else {
-            throw new AccountsException("Product has not been chosen by customer");
-        }
-    }
-
-    public void increaseChosenProductsQuantity(String productId, String username) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(username);
-        if(customer.getCart().containsKey(productId)) {
-            customer.addProductsQuantity(productId);
-        } else {
-            throw new AccountsException("Product has not been chosen by customer");
-        }
-    }
-
-    public void decreaseChosenProductQuantity(String productId, String username) throws AccountsException {
-        Customer customer = (Customer) User.getUserByUsername(username);
-        if(customer.getCart().containsKey(productId)) {
-            customer.decreaseProductsQuantity(productId);
-        } else {
-            throw new AccountsException("Product has not been chosen by customer");
-        }
-    }
-
     public double getCartTotalPrice(String username){
         return ((Customer) User.getUserByUsername(username)).getTotalPriceOfCart();
     }
 
-    private Log purchase(String username) {
+    private Log purchase(String username,String code , double priceWithoutDiscount, double priceAfterDiscount) {
         Customer customer = (Customer) User.getUserByUsername(username);
-        if(priceWithoutDiscount == 0 || priceWithoutDiscount == -1) {
-            priceWithoutDiscount = customer.getTotalPriceOfCart();
-        }
-        if(priceAfterDiscount == 0 || priceAfterDiscount == -1) {
-            priceAfterDiscount = priceWithoutDiscount;
-        }
         Log log = new Log(new Date(), priceAfterDiscount, priceWithoutDiscount, customer.getCart(),
                 customer.getUsername(), address,false);
         decreaseProductsCountAfterPurchase(log);
@@ -101,25 +64,20 @@ public class CustomerAccountController extends AccountController{
         customer.addLog(log);
         addLogToSellers(log);
         customer.removeAllProducts();
-        decreaseDiscountCodeCountPerUser(username);
+        decreaseDiscountCodeCountPerUser(username, code);
         resetPurchaseVariables();
         return log;
     }
 
     private void resetPurchaseVariables() {
         address = null;
-        priceAfterDiscount = -1;
-        priceWithoutDiscount = -1;
     }
 
     public void setReceiverInfo(String address){
         this.address = address;
     }
 
-    //If customer doesn't have any discount this method must be called:
-    public void setPriceWithoutDiscount(String username) {
-        this.priceAfterDiscount = ((Customer) User.getUserByUsername(username)).getTotalPriceOfCart();
-    }
+    //This method checks whether the discount code is valid or not
 
     public void enterDiscountCode(String code, String username) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
@@ -130,28 +88,18 @@ public class CustomerAccountController extends AccountController{
             throw new AccountsException("Discount code has been used.");
         } else if(DiscountCode.isExpired(discountCode.getEndDate())) {
             throw new AccountsException("Date Expire");
-        } else {
-            priceWithoutDiscount = customer.getTotalPriceOfCart();
-            priceAfterDiscount = discountCode.calculatePriceAfterDiscount(customer.getTotalPriceOfCart());
-            this.discountCode = discountCode.getCode();
         }
     }
 
-    public double getPriceAfterDiscount() {
-        return priceAfterDiscount;
-    }
-
-    public Log makePayment(String username) throws AccountsException{
+    public Log makePayment(String username, String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
-        if(priceAfterDiscount == -1 || priceWithoutDiscount == -1) {
-            priceWithoutDiscount = customer.getTotalPriceOfCart();
-            priceAfterDiscount = priceWithoutDiscount;
-        }
-        if(this.priceAfterDiscount > customer.getCredit()) {
+
+        if(priceAfterDiscount > customer.getCredit()) {
             throw new AccountsException("Credit not enough.");
         } else {
+            //TODO: Not sure if it's correct or not!
             customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
-            return purchase(username);
+            return purchase(username, code, priceWithoutDiscount, priceAfterDiscount);
         }
     }
 
@@ -184,15 +132,15 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    private void decreaseDiscountCodeCountPerUser(String username) {
-        if(this.discountCode != null) {
-            DiscountCode discountCode;
-            if((discountCode = DiscountCode.getDiscountCodeByCode(this.discountCode)) != null) {
-                discountCode.decreaseCountPerUser((Customer) User.getUserByUsername(username));
+    private void decreaseDiscountCodeCountPerUser(String username, String code) {
+            if (code != null){
+                DiscountCode discountCode;
+                if((discountCode = DiscountCode.getDiscountCodeByCode(code)) != null) {
+                    discountCode.decreaseCountPerUser((Customer) User.getUserByUsername(username));
+                }
             }
         }
-        this.discountCode = null;
-    }
+
 
     public void addToCredit(double money, String username) {
         Customer customer = (Customer) User.getUserByUsername(username);
