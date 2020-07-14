@@ -37,6 +37,8 @@ module sample {
     exports server.model.log;
     exports server.server_resources.manager_account_controller;
     exports server.server_resources.customer_account_controller;
+    exports server.server_resources.seller_account_controller;
+    exports server.server_resources.accounts;
     exports exceptions;
     exports server.model;
     exports server.model.users;
