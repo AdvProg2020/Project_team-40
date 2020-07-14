@@ -1,44 +1,57 @@
 package client.view.account_menus.manager_view.manage_users_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
+import client.view.register_login_view.RegisterManager;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.users.User;
-import client.view.MenuManager;
-import client.view.register_login_view.RegisterManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ManageUsersManager extends MenuManager implements Initializable {
 
     public VBox vBoxItems;
-    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadUsers();
     }
 
     private void loadUsers() {
-        for (String userName : managerAccountController.getAllUserNames()) {
+        try{
+        ArrayList<?> users = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/users/", new HashMap<>(), true, ArrayList.class);
+        assert users != null;
+        for (Object obj : users) {
             try {
-                User user = managerAccountController.getUser(userName);
+                User user = (User) obj;
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(user, hBox);
                 vBoxItems.getChildren().add(item);
-            }
-             catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+        catch (ResourceException e){
+        if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+            logout();
+    }
     }
 
     private void setLabelsContent(User user, HBox hBox) {

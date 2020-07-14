@@ -1,7 +1,7 @@
 package client.view.account_menus.manager_view.manage_users_view;
 
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import server.model.users.User;
-import client.view.MenuManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,13 +23,10 @@ public class UserMenu extends MenuManager implements Initializable {
     public JFXButton backButton;
     public AnchorPane pane;
     public Label roleLabel;
-    private ManagerAccountController managerAccountController;
     private User user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
-
     }
 
     public void setUsernameLabel(String username) {

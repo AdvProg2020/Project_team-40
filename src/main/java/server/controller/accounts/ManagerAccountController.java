@@ -35,16 +35,10 @@ public class ManagerAccountController extends AccountController{
         new Manager(username, password, firstName, lastName, email, phoneNumber);
     }
 
+    public ArrayList<User> getAllUsers(){return new ArrayList<>(User.getAllUsers().values());}
+
     public ArrayList<String> getAllUserNames(){
         return new ArrayList<>(User.getAllUsernames());
-    }
-
-    public User getUser(String username) throws AccountsException {
-        User user = User.getUserByUsername(username);
-        if(user == null)
-            throw new AccountsException("User not found");
-        return user;
-
     }
 
     public void deleteUser(String username) throws AccountsException {

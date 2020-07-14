@@ -1,8 +1,8 @@
 package client.view.account_menus.manager_view.manage_users_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.ManagerAccountController;
-import exceptions.AccountsException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,34 +13,44 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.users.User;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class UserItem implements Initializable {
+public class UserItem extends MenuManager implements Initializable {
     public JFXButton deleteUserButton;
     public JFXButton viewUserButton;
-    private ManagerAccountController managerAccountController;
-
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = ManagerAccountController.getInstance();
+        requestQueries = new HashMap<>();
     }
     private void loadUsers(VBox vBoxItems) {
-        vBoxItems.getChildren().clear();
-        for (String userName : managerAccountController.getAllUserNames()) {
-            try {
-                User user = managerAccountController.getUser(userName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
-                HBox hBox = (HBox) item.getChildren().get(0);
-                setLabelsContent(user, hBox);
-                vBoxItems.getChildren().add(item);
+        try {
+            vBoxItems.getChildren().clear();
+            ArrayList<?> users = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/users/", requestQueries, true, ArrayList.class);
+            assert users != null;
+            for (Object obj : users) {
+                try {
+                    User user = (User) obj;
+                    AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
+                    HBox hBox = (HBox) item.getChildren().get(0);
+                    setLabelsContent(user, hBox);
+                    vBoxItems.getChildren().add(item);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+        }
+        catch (ResourceException e){
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
         }
     }
 
@@ -78,9 +88,12 @@ public class UserItem implements Initializable {
         VBox items =(VBox)(item.getParent()).getParent();
         String username =((Label)item.getChildren().get(0)).getText();
         try {
-            managerAccountController.deleteUser(username);
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+            requestQueries.clear();
+            requestQueries.put("username", username);
+            RequestHandler.delete("/accounts/manager_account_controller/user/", requestQueries, true, null);
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
         }
         Platform.runLater(() -> loadUsers(items));
 
@@ -91,7 +104,9 @@ public class UserItem implements Initializable {
         String username =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_users_menus/user.fxml"));
         try {
-            User user = managerAccountController.getUser(username);
+            requestQueries.clear();
+            requestQueries.put("username", username);
+            User user = (User) RequestHandler.get("/accounts/user/", requestQueries, true, User.class);
             AnchorPane pane = loader.load();
             UserMenu userMenu = loader.getController();
             setLabelsContent(userMenu, user);
