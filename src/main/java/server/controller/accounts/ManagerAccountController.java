@@ -9,6 +9,7 @@ import server.model.enumerations.Status;
 import server.model.requests.Request;
 import server.model.users.Customer;
 import server.model.users.Manager;
+import server.model.users.Support;
 import server.model.users.User;
 
 import java.text.SimpleDateFormat;
@@ -33,6 +34,12 @@ public class ManagerAccountController extends AccountController{
     public void createManagerAccount(String username, String password, String firstName, String lastName,
                                      String email, String phoneNumber) {
         new Manager(username, password, firstName, lastName, email, phoneNumber);
+    }
+
+    public void createSupportAccount(String username, String password, String firstName, String lastName,
+                                     String email, String phoneNumber){
+        Support support = new Support(username, password, firstName, lastName, email, phoneNumber);
+        Support.getAllSupports().add(support);
     }
 
     public ArrayList<String> getAllUserNames(){

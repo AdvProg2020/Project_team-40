@@ -6,6 +6,11 @@ public class Support extends User{
 
     private static ArrayList<Support> allSupports = new ArrayList<>();
 
+    public Support(String username, String password, String firstName,
+                   String lastName, String email, String phoneNo){
+        super(username, password, firstName, lastName, email, phoneNo);
+    }
+
     @Override
     public String getRole(){
         return "Support";
