@@ -55,6 +55,7 @@
             </toggleGroup></RadioButton>
           <RadioButton fx:id="sellerButton" onMouseClicked="#clickSeller" text="Seller" toggleGroup="$roleGroup" GridPane.rowIndex="8" />
           <RadioButton fx:id="managerButton" onMouseClicked="#clickManager" text="Manager" toggleGroup="$roleGroup" GridPane.rowIndex="9" />
+          <RadioButton fx:id="supportButton" onMouseClicked="#clickSupport" text="Support" toggleGroup="$roleGroup" GridPane.rowIndex="10" />
           <Label text="I am a:" GridPane.rowIndex="6" />
           <Label fx:id="companyLabel" GridPane.rowIndex="10" />
            <TextField fx:id="username" GridPane.columnIndex="1" />
