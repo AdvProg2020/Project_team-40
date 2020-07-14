@@ -32,20 +32,20 @@
                 </Label>
                 <HBox fx:id="buttons" prefHeight="42.0" prefWidth="144.0">
                     <children>
-                        <JFXButton fx:id="chatRoomButton" contentDisplay="CENTER" onAction="#goToChatRoom" prefHeight="42.0" prefWidth="83.0">
+                        <JFXButton fx:id="chatRoomButton" contentDisplay="CENTER" onAction="#goToChatRoom" prefHeight="42.0" prefWidth="83.0" text="">
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../images/icons8-delete-64.png" />
+                                        <Image url="@../../images/icons8-chat-room-64.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="viewAuctionButton" contentDisplay="CENTER" onAction="#viewAuctionInfo" prefHeight="48.0" prefWidth="83.0">
+                        <JFXButton fx:id="viewAuctionButton" contentDisplay="CENTER" onAction="#viewAuctionInfo" prefHeight="48.0" prefWidth="83.0" text="">
                             <graphic>
                                 <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../images/icons8-edit-144.png" />
+                                        <Image url="@../../images/icons8-purchase-order-48.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
