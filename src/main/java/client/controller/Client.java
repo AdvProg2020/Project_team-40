@@ -23,7 +23,9 @@ public class Client {
     }
 
     public String getUsername(){
-        return user.getUsername();
+        if (user != null)
+            return user.getUsername();
+        return null;
     }
 
     public String getPassword(){
