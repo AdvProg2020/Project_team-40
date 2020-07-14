@@ -5,12 +5,13 @@
 
 <AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.AuctionChatManager">
     <children>
-        <TextArea accessibleRole="PARENT" layoutX="21.0" layoutY="593.0" prefHeight="30.0" prefWidth="737.0" promptText="Type your message" wrapText="true" />
+        <TextArea accessibleRole="PARENT" layoutX="21.0" layoutY="593.0" prefHeight="37.0" prefWidth="673.0" promptText="Type your message" wrapText="true" />
         <ScrollPane fx:id="scrollPane" accessibleRole="PARENT" hbarPolicy="NEVER" layoutX="14.0" layoutY="41.0" prefHeight="516.0" prefWidth="819.0" vvalue="1.0">
             <content>
                 <VBox fx:id="chatBox" alignment="TOP_RIGHT" prefHeight="512.0" prefWidth="816.0" />
             </content>
         </ScrollPane>
-        <Button accessibleRole="PARENT" layoutX="766.0" layoutY="592.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="38.0" prefWidth="67.0" text="send" />
+        <Button accessibleRole="PARENT" layoutX="703.0" layoutY="592.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="37.0" prefWidth="59.0" text="send" />
+        <Button accessibleRole="PARENT" layoutX="774.0" layoutY="592.0" mnemonicParsing="false" onAction="#refresh" prefHeight="37.0" prefWidth="59.0" text="refresh" />
     </children>
 </AnchorPane>

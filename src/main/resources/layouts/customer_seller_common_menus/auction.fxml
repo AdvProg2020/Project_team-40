@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_seller_common_view.AuctionManager">
+
+    <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../images/icons8-auction-100.png" />
+        </image>
+    </ImageView>
+    <Label alignment="BASELINE_LEFT" layoutX="110.0" layoutY="13.0" prefHeight="51.0" prefWidth="162.0" text="Auction" textAlignment="CENTER">
+        <font>
+            <Font size="35.0" />
+        </font>
+    </Label>
+    <GridPane fx:id="auctionPane" layoutX="50.0" layoutY="109.0" prefHeight="300.0" prefWidth="350.0">
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="50.0" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" />
+      </rowConstraints>
+      <columnConstraints>
+          <ColumnConstraints minWidth="10.0" prefWidth="175.0" />
+          <ColumnConstraints minWidth="10.0" prefWidth="175.0" />
+      </columnConstraints>
+        <children>
+            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="ID:">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Latest Price:">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Ends at:">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="statusLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+        </children>
+    </GridPane>
+    <GridPane fx:id="productPane" layoutX="415.0" layoutY="109.0" prefHeight="350.0" prefWidth="350.0">
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" />
+        </rowConstraints>
+        <columnConstraints>
+            <ColumnConstraints minWidth="10.0" prefWidth="175.0" />
+            <ColumnConstraints minWidth="10.0" prefWidth="175.0" />
+        </columnConstraints>
+    </GridPane>
+</AnchorPane>

@@ -30,7 +30,7 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Current Price">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Latest Price">
                     <font>
                         <Font size="15.0" />
                     </font>
