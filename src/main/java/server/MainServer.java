@@ -34,6 +34,7 @@ public class MainServer extends Component {
         ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(ManagerUserResource.class));
+        getDefaultHost().attach("/accounts/manager_account_controller/users/", authenticator.getNewGuard(ManagerUsersResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/products/", authenticator.getNewGuard(ManagerProductsResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class));
