@@ -1,37 +1,46 @@
 package client.view.account_menus.manager_view.manage_products_view;
 
+import client.controller.RequestHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.Product;
 import client.view.MenuManager;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ManageProductsManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
-    private server.controller.accounts.ManagerAccountController managerAccountController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        managerAccountController = server.controller.accounts.ManagerAccountController.getInstance();
         loadProducts();
     }
 
     private void loadProducts() {
-        for (String productId : managerAccountController.getAllProducts()) {
+        ArrayList<?> products =(ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/products/", new HashMap<>(), true, ArrayList.class);
+        assert products != null;
+        for (Object obj : products) {
             try {
-                Product product = Product.getProductById(productId);
+                Product product = (Product)obj;
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);
                 vBoxItems.getChildren().add(item);
             }
-            catch (Exception e) {
+            catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

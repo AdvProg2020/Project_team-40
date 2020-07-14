@@ -54,8 +54,8 @@ public class ManagerAccountController extends AccountController{
         User.deleteUser(user);
     }
 
-    public ArrayList<String> getAllProducts(){
-        return new ArrayList<>(Product.getAllProductIds());
+    public ArrayList<Product> getAllProducts(){
+        return new ArrayList<>(Product.getAllProducts().values());
     }
 
     public void removeProduct(String productID) throws AccountsException {
