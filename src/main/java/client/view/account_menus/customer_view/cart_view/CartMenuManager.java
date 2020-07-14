@@ -1,21 +1,25 @@
 package client.view.account_menus.customer_view.cart_view;
 
-import server.controller.accounts.CustomerAccountController;
-import exceptions.AccountsException;
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
+import server.model.Product;
 import server.model.log.Log;
-import client.view.MenuManager;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CartMenuManager extends MenuManager implements Initializable {
-    private CustomerAccountController customerAccountController;
     public GridPane purchaseInformationPane;
     public AnchorPane mainPane;
     public Label emptyCartLabel;
@@ -26,54 +30,92 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public TextField discountField;
     public TextField addressField;
     public Button discountButton;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerAccountController = CustomerAccountController.getInstance();
-        if(customerAccountController.getCart().isEmpty()) {
+        requestQueries = new HashMap<>();
+        requestQueries.put("username", Client.getInstance().getUsername());
+        HashMap<Product, Integer> cart = (HashMap) RequestHandler.get("/accounts/customer_account_controller/cart/", requestQueries, true, HashMap.class);
+        assert cart != null;
+        if (cart.isEmpty()) {
             mainPane.getChildren().remove(purchaseInformationPane);
             emptyCartLabel.setText("You have not chosen any product\nDo you want to see our offers?\nGo to products' Menu...");
         } else {
-            priceLabel.setText(Double.toString(customerAccountController.getCartTotalPrice()));
+            Double totalPrice = (Double) RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
+            priceLabel.setText(Double.toString(totalPrice));
         }
     }
 
     public void applyDiscount() {
-        if(discountField.getText().isBlank()) {
+        if (discountField.getText().isBlank()) {
             discountError.setText("Enter a code!");
         } else {
             try {
-                customerAccountController.enterDiscountCode(discountField.getText());
+                requestQueries.clear();
+                requestQueries.put("username", Client.getInstance().getUsername());
+                RequestHandler.put("/accounts/customer_account_controller/discount/", discountField.getText(), requestQueries, true, null);
                 discountButton.setOnMouseClicked(e -> disableDiscountCode());
                 discountButton.setText("disable discount code");
                 discountField.setDisable(true);
                 discountError.setText("");
-                priceLabel.setText(String.valueOf(customerAccountController.getPriceAfterDiscount()));
-            } catch (AccountsException e) {
-                discountError.setText(e.getMessage());
+                requestQueries.clear();
+                Double priceAfterDiscount = (Double) RequestHandler.get("/accounts/customer_account_controller/price_after_discount/", requestQueries, true, Double.class);
+                priceLabel.setText(String.valueOf(priceAfterDiscount));
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        discountError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         }
     }
 
     private void disableDiscountCode() {
-        customerAccountController.setPriceWithoutDiscount();
-        discountField.setDisable(false);
-        discountButton.setText("apply");
-        priceLabel.setText(String.valueOf(customerAccountController.getCartTotalPrice()));
-        discountButton.setOnMouseClicked(e -> applyDiscount());
+        try {
+            requestQueries.clear();
+            RequestHandler.put("/accounts/customer_account_controller/price_without_discount/", Client.getInstance().getUsername(),
+                    requestQueries, true, null);
+            discountField.setDisable(false);
+            discountButton.setText("apply");
+            requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
+            Double totalPrice = (Double) RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
+            priceLabel.setText(Double.toString(totalPrice));
+            discountButton.setOnMouseClicked(e -> applyDiscount());
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
+        }
     }
 
     public void purchase() {
-        if(addressField.getText().isBlank()) {
+        if (addressField.getText().isBlank()) {
             addressError.setText("Write you address!");
         } else {
-            customerAccountController.setReceiverInfo(addressField.getText());
+            requestQueries.clear();
+            RequestHandler.put("/accounts/customer_account_controller/receiver_info/", addressField.getText(), requestQueries, true, null);
             try {
-                Log log = customerAccountController.makePayment();
+                requestQueries.clear();
+                requestQueries.put("username", Client.getInstance().getUsername());
+                Log log = (Log) RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
                 setSecondaryInnerPane("/layouts/customer_menus/log_design.fxml");
-            } catch (AccountsException e) {
-                purchaseError.setText(e.getMessage());
+            } catch (ResourceException e) {
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+                else {
+                    try {
+                        purchaseError.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         }
     }

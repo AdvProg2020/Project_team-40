@@ -1,34 +1,50 @@
 package client.view.account_menus.customer_view.orders_view;
 
-import server.controller.accounts.AccountController;
-import server.controller.accounts.CustomerAccountController;
-import server.controller.accounts.SellerAccountController;
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 import server.model.log.Log;
 import server.model.users.Customer;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class OrdersMenuManager implements Initializable {
+public class OrdersMenuManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
     public HBox topHBox;
     public Label titleLabel;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AccountController accountController = AccountController.getInstance();
-        if (accountController.getThisUser() instanceof Customer) {
-            loadLogs(CustomerAccountController.getInstance().getOrders().values());
-        } else {
-            titleLabel.setText("Sales History");
-            loadLogs(SellerAccountController.getInstance().getSalesHistory());
+        requestQueries = new HashMap<>();
+        try {
+            if (Client.getInstance().getUser() instanceof Customer) {
+                requestQueries.put("username", Client.getInstance().getUsername());
+                HashMap<String, Log> orders = (HashMap<String, Log>) RequestHandler.get("/accounts/customer_account_controller/orders/", requestQueries, true, HashMap.class);
+                assert orders != null;
+                loadLogs(orders.values());
+            } else {
+                titleLabel.setText("Sales History");
+                requestQueries.clear();
+                requestQueries.put("username", Client.getInstance().getUsername());
+                ArrayList<Log> logs = (ArrayList<Log>) RequestHandler.get("/accounts/seller_account_controller/sales_history/", requestQueries, true, ArrayList.class);
+                loadLogs(logs);
+            }
+        } catch (ResourceException e){
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                logout();
         }
     }
 

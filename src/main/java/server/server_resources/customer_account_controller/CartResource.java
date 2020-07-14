@@ -10,6 +10,6 @@ import java.util.HashMap;
 public class CartResource extends ServerResource {
     @Get
     public HashMap<Product, Integer> getCart(){
-        return CustomerAccountController.getInstance().getCart();
+        return CustomerAccountController.getInstance().getCart(getQueryValue("username"));
     }
 }

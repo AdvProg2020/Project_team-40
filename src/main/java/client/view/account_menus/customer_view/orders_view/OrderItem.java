@@ -1,24 +1,15 @@
 package client.view.account_menus.customer_view.orders_view;
 
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.AccountController;
-import server.controller.accounts.CustomerAccountController;
-import server.controller.accounts.SellerAccountController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.log.Log;
-import server.model.users.Customer;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class OrderItem {
     public JFXButton viewLogButton;

@@ -1,7 +1,6 @@
 package client.view.account_menus.customer_view.orders_view;
 
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.CustomerAccountController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +31,10 @@ public class OrderMenu implements Initializable {
     public Label statusLabel;
     public Label addressLabel;
     public ListView<String> productsList;
-    private CustomerAccountController customerAccountController;
     private Log log;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerAccountController = CustomerAccountController.getInstance();
         productsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -77,10 +74,6 @@ public class OrderMenu implements Initializable {
 
     public void setDiscountLabel(String costBeforeDiscount) {
         discountLabel.setText(costBeforeDiscount);
-    }
-
-    public void setStatusLabel(String status) {
-        statusLabel.setText(status);
     }
 
     public void setAddressLabel(String address){

@@ -1,24 +1,26 @@
 package client.view.account_menus.customer_view.orders_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.accounts.CustomerAccountController;
-import exceptions.AccountsException;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
+import org.restlet.data.Status;
+import org.restlet.resource.ResourceException;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class RateMenu implements Initializable {
+public class RateMenu extends MenuManager implements Initializable {
     public JFXButton submitButton;
     public Rating rateBar;
-    private CustomerAccountController customerAccountController;
     private String productId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerAccountController = CustomerAccountController.getInstance();
     }
 
     public void setProductId(String productId) {
@@ -27,9 +29,19 @@ public class RateMenu implements Initializable {
 
     public void handleRateProduct() {
         try {
-            customerAccountController.rateProduct(productId, (int)rateBar.getRating());
-        } catch (AccountsException e) {
-            System.err.println(e.getMessage());
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("username", Client.getInstance().getUsername());
+            queries.put("rate", Integer.toString((int)rateBar.getRating()));
+            queries.put("productID", productId);
+            RequestHandler.put("/accounts/customer_account_controller/product/", null, queries, true, null);
+        } catch (ResourceException e) {
+            if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED)) {
+                ((Stage) submitButton.getScene().getWindow()).close();
+                logout();
+            }
+            else {
+                e.printStackTrace();
+            }
         }
         finally {
             ((Stage) submitButton.getScene().getWindow()).close();
