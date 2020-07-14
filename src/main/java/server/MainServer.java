@@ -17,6 +17,7 @@ import server.server_resources.seller_account_controller.*;
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
     public static void main(String[] args) throws Exception {
+        ServerAuthenticator.getInstance().initVerifier();
         new MainServer().start();
     }
 
@@ -33,7 +34,7 @@ public class MainServer extends Component {
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
         ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
-        getDefaultHost().attach("/accounts/manager_account_controller/support/", ManagerResource.class);
+//        getDefaultHost().attach("/accounts/manager_account_controller/support/", ManagerResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(ManagerUserResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/users/", authenticator.getNewGuard(ManagerUsersResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));
