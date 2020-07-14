@@ -17,6 +17,8 @@ public class Category implements Serializable {
     private ArrayList<String> subCategoriesNames;
     private HashMap<String, PropertyType> extraProperties;
 
+    public Category(){}
+
     public Category(String name, String parentCategory) {
         this.name = name;
         this.parentCategoryName = parentCategory;
