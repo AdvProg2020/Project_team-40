@@ -110,6 +110,10 @@
                     <Font size="15.0" />
                 </font>
             </Label>
+
+
+            <Button fx:id="minCreditButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="wageButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="7" />
         </children>
     </GridPane>
 </AnchorPane>
