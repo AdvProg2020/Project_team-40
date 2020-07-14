@@ -1,6 +1,7 @@
 package client.view.account_menus;
 
 import client.controller.Client;
+import client.controller.RequestHandler;
 import client.view.MenuManager;
 import client.view.ValidInput;
 import javafx.fxml.Initializable;
@@ -9,18 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import server.controller.accounts.CustomerAccountController;
-import server.controller.accounts.SellerAccountController;
 import server.model.users.Seller;
 import server.model.users.User;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class PersonalInfo extends MenuManager implements Initializable {
 
     private User user = Client.getInstance().getUser();
     private CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
-    private SellerAccountController sellerAccountController = SellerAccountController.getInstance();
     public GridPane gridPane;
     public Label companyLabel;
     public Label passwordLabel;
@@ -62,7 +62,9 @@ public class PersonalInfo extends MenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(user instanceof Seller) {
             companyLabel.setText("Company: ");
-            company.setText(sellerAccountController.getCompanyInfo());
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("username", user.getUsername());
+            company.setText((String) RequestHandler.get("/accounts/seller_account_controller/company_info/", queries, true, String.class));
             editCompany = new Button("edit");
             gridPane.add(editCompany, 3, 6);
             editCompany.setOnMouseClicked(e -> editCompany());
