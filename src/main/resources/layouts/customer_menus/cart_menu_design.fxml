@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="mainPane" prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.cart_view.CartMenuManager">
-    <GridPane fx:id="purchaseInformationPane" layoutX="32.0" layoutY="65.0" prefHeight="541.0" prefWidth="200.0">
+    <GridPane fx:id="purchaseInformationPane" layoutX="32.0" layoutY="106.0" prefHeight="541.0" prefWidth="200.0">
       <columnConstraints>
          <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="400.0" />
       </columnConstraints>
@@ -69,4 +69,33 @@
             <Font size="40.0" />
         </font>
     </Label>
+    <ScrollPane layoutX="317.0" layoutY="152.0" prefHeight="435.0" prefWidth="500.0">
+        <content>
+            <VBox fx:id="vBoxItems" minHeight="431.0" prefWidth="495.0" />
+        </content>
+    </ScrollPane>
+    <HBox layoutX="317.0" layoutY="108.0" prefHeight="44.0" prefWidth="500.0">
+        <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #5dade2;" text="Product Name">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #5dade2;" text="Price">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #5dade2;" text="cuont">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #5dade2;" text="Remove">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+        </children>
+    </HBox>
 </AnchorPane>
