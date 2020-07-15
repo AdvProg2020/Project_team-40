@@ -1,10 +1,12 @@
 package server.model.users;
 
+import server.model.Auction;
 import server.model.Off;
 import server.model.Product;
 import server.model.log.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Seller extends User{
     private String companyInfo;
@@ -12,6 +14,7 @@ public class Seller extends User{
     private ArrayList<String> offsId;
     private double credit;
     private ArrayList<String> logsName;
+    private ArrayList<String> auctions;
     private boolean managerPermission;
 
     public Seller(){}
