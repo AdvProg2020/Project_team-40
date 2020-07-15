@@ -1,7 +1,6 @@
 package server.model;
 
 import exceptions.DataException;
-import server.model.chat.Chat;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -32,6 +31,10 @@ public class Auction {
 
     public static Auction getAuctionById(String id) {
         return auctions.get(id);
+    }
+
+    public static HashMap<String, Auction> getAuctions() {
+        return auctions;
     }
 
     public Date getDeadline() {
