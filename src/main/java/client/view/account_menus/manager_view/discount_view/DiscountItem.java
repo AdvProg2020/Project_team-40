@@ -20,9 +20,7 @@ import server.model.DiscountCode;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DiscountItem extends MenuManager implements Initializable {
     public JFXButton deleteDiscountButton;
@@ -75,19 +73,20 @@ public class DiscountItem extends MenuManager implements Initializable {
         percentageLabel.setText(Integer.toString(discountCode.getPercentage()));
     }
 
-    private void setLabelsContent(DiscountView discountView, DiscountCode discountCode) {
+    private void setLabelsContent(DiscountView discountView, LinkedHashMap<?, ?> discountCode) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                discountView.setDiscountCode(discountCode);
-                discountView.setCodeLabel(discountCode.getCode());
-                discountView.setStartLabel(discountCode.getStartDate().toString());
-                discountView.setEndLabel(discountCode.getEndDate().toString());
-                discountView.setCountLabel(Integer.toString(discountCode.getCountPerUser()));
-                discountView.setMaxLabel(Double.toString(discountCode.getMaxAmount()));
-                discountView.setPercentageLabel(Integer.toString(discountCode.getPercentage()));
-                discountView.setStatusLabel(discountCode.getStatus());
-                discountView.setUsersList(discountCode.getIncludedCostumers());
+                discountView.setCodeLabel((String) discountCode.get("code"));
+                Date start = new Date((Long) discountCode.get("startDate"));
+                Date end = new Date((Long)discountCode.get("endDate"));
+                discountView.setStartLabel(start.toString());
+                discountView.setEndLabel(end.toString());
+                discountView.setCountLabel(String.valueOf(discountCode.get("countPerUser")));
+                discountView.setMaxLabel(String.valueOf(discountCode.get("maxAmount")));
+                discountView.setPercentageLabel(String.valueOf((discountCode.get("percentage"))));
+                discountView.setStatusLabel((String) discountCode.get("status"));
+                discountView.setUsersList((ArrayList<String>) discountCode.get("includedCostumers"));
             }
         });
     }
@@ -117,10 +116,11 @@ public class DiscountItem extends MenuManager implements Initializable {
         try {
             requestQueries.clear();;
             requestQueries.put("code", code);
-            DiscountCode discount = (DiscountCode) RequestHandler.get("/accounts/manager_account_controller/discount/", requestQueries, true, DiscountCode.class);
+            ArrayList<?> discount = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/discount/", requestQueries, true, ArrayList.class);
             AnchorPane pane = loader.load();
             DiscountView discountView = loader.getController();
-            setLabelsContent(discountView, discount);
+            assert discount != null;
+            setLabelsContent(discountView, (LinkedHashMap<?, ?>) discount.get(0));
             Stage userWindow = new Stage();
             userWindow.setScene(new Scene(pane, 900, 550));
             userWindow.initModality(Modality.APPLICATION_MODAL);

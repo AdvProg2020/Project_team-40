@@ -11,7 +11,6 @@ import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
-import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,8 +36,10 @@ public class AddDiscount extends MenuManager implements Initializable {
         requestQueries = new HashMap<>();
         usersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customers = new ArrayList<>();
-        for (String customer : Customer.getAllCustomers()) {
-            usersList.getItems().add(customer);
+        ArrayList<?> allCustomers = (ArrayList<?>) RequestHandler.get("/accounts/customer_account_controller/all_customers/", requestQueries, true, ArrayList.class);
+        assert allCustomers != null;
+        for (Object customer : allCustomers) {
+            usersList.getItems().add((String)customer);
         }
     }
 

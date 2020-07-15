@@ -10,8 +10,11 @@ import java.util.HashMap;
 
 public class ManagerDiscountResource extends ServerResource {
     @Get
-    public DiscountCode getDiscount() throws AccountsException {
-       return ManagerAccountController.getInstance().getDiscount(getQueryValue("code"));
+    public ArrayList<DiscountCode> getDiscount() throws AccountsException {
+        ArrayList<DiscountCode> code = new ArrayList<>();
+        DiscountCode discountCode =  ManagerAccountController.getInstance().getDiscount(getQueryValue("code"));
+        code.add(discountCode);
+        return code;
     }
 
     @Post

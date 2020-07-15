@@ -27,7 +27,7 @@ public abstract class  User implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
-        this.bankAccount = null;
+        this.bankAccount = -1;
         allUsers.put(this.username, this);
     }
 
