@@ -9,6 +9,7 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
 import server.server_resources.accounts.AccountResource;
+import server.server_resources.accounts.BankAccountResource;
 import server.server_resources.accounts.UserResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
@@ -72,6 +73,7 @@ public class MainServer extends Component {
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);
+        getDefaultHost().attach("/accounts/bank_account", BankAccountResource.class);
 
 
 

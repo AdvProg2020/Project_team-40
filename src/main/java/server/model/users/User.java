@@ -17,7 +17,6 @@ public abstract class  User implements Serializable {
     protected String email;
     protected String phoneNo;
     protected Integer bankAccount;
-
     public User(){}
 
     public User(String username, String password, String firstName,
