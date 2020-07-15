@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Customer extends User{
     private ArrayList<String> discountCodes;
-    private double credit;
+    private double creditInWallet;
     private ArrayList<String> logsId;
     private HashMap<String, Integer> cart;
     //Key Of cart is the products ID, the value is the quantity
@@ -18,24 +18,24 @@ public class Customer extends User{
     public Customer(){}
 
     public Customer(String username, String password, String firstName, String lastName,
-                    String email, String phoneNo, double credit) {
+                    String email, String phoneNo, double creditInWallet) {
         super(username, password, firstName, lastName, email, phoneNo);
-        this.credit = credit;
+        this.creditInWallet = creditInWallet;
         logsId = new ArrayList<>();
         cart = new HashMap<>();
         discountCodes = new ArrayList<>();
     }
 
-    public void setCredit(double credit) {
-        this.credit = credit;
+    public void setCreditInWallet(double creditInWallet) {
+        this.creditInWallet = creditInWallet;
     }
 
     public ArrayList<String> getDiscountCodes() {
         return discountCodes;
     }
 
-    public double getCredit() {
-        return credit;
+    public double getCreditInWallet() {
+        return creditInWallet;
     }
 
     public ArrayList<String> getLogsId() {
@@ -136,6 +136,6 @@ public class Customer extends User{
                 "Username: " + username + "\n" +
                 "Email Address: " + email + "\n" +
                 "Phone Number: " + phoneNo + "\n" +
-                "Credit: " + credit;
+                "Credit: " + creditInWallet;
     }
 }

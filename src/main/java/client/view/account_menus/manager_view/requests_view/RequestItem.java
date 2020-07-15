@@ -68,7 +68,7 @@ public class RequestItem extends MenuManager implements Initializable {
                 requestMenu.setUsernameLabel(seller.getUsername());
                 requestMenu.setNameLabel(seller.getFirstName());
                 requestMenu.setCompanyLabel(seller.getCompanyInfo());
-                requestMenu.setCreditLabel(Double.toString(seller.getCredit()));
+                requestMenu.setCreditLabel(Double.toString(seller.getCreditInWallet()));
                 requestMenu.setEmailLabel(seller.getEmail());
                 requestMenu.setPhoneLabel(seller.getPhoneNo());
             }

@@ -11,6 +11,7 @@ import java.util.Map;
 public class Auction {
     private static final String PATH = "src/main/resources/auctions/";
     private static HashMap<String, Auction> auctions = new HashMap<>();
+    private static ArrayList<String> onGoingAuctions = new ArrayList<>();
     private Date deadline;
     private String productId;
     private int highestPrice;
@@ -63,6 +64,10 @@ public class Auction {
 
     public String getChatId() {
         return chatId;
+    }
+
+    public static ArrayList<String> getOnGoingAuctions() {
+        return onGoingAuctions;
     }
 
     public void setHighestPrice(int highestPrice) {

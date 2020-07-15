@@ -6,13 +6,12 @@ import server.model.Product;
 import server.model.log.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Seller extends User{
     private String companyInfo;
     private ArrayList<String> productsId;
     private ArrayList<String> offsId;
-    private double credit;
+    private double creditInWallet;
     private ArrayList<String> logsName;
     private ArrayList<String> auctions;
     private boolean managerPermission;
@@ -21,9 +20,9 @@ public class Seller extends User{
 
     public Seller(String username, String password, String firstName,
                   String lastName, String email, String phoneNo,
-                  double credit, String companyInfo) {
+                  double creditInWallet, String companyInfo) {
         super(username, password, firstName, lastName, email, phoneNo);
-        this.credit = credit;
+        this.creditInWallet = creditInWallet;
         this.companyInfo = companyInfo;
         productsId = new ArrayList<>();
         offsId = new ArrayList<>();
@@ -34,8 +33,8 @@ public class Seller extends User{
         this.companyInfo = companyInfo;
     }
 
-    public void setCredit(double credit) {
-        this.credit = credit;
+    public void setCreditInWallet(double creditInWallet) {
+        this.creditInWallet = creditInWallet;
     }
 
     public ArrayList<String> getProductsId() {
@@ -46,8 +45,8 @@ public class Seller extends User{
         return offsId;
     }
 
-    public double getCredit() {
-        return credit;
+    public double getCreditInWallet() {
+        return creditInWallet;
     }
 
     public String getCompanyInfo() {
@@ -131,11 +130,11 @@ public class Seller extends User{
     }
 
     public void increaseCredit(int credit){
-        this.credit += credit;
+        this.creditInWallet += credit;
     }
 
     public void decreaseCredit(int credit){
-        this.credit -= credit;
+        this.creditInWallet -= credit;
     }
 
     @Override

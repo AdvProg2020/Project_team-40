@@ -79,11 +79,11 @@ public class CustomerAccountController extends AccountController{
     public Log makePayment(String username,String address ,String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
 
-        if(priceAfterDiscount > customer.getCredit()) {
+        if(priceAfterDiscount > customer.getCreditInWallet()) {
             throw new AccountsException("Credit not enough.");
         } else {
             //TODO: Not sure if it's correct or not!
-            customer.setCredit(customer.getCredit() - customer.getTotalPriceOfCart());
+            customer.setCreditInWallet(customer.getCreditInWallet() - customer.getTotalPriceOfCart());
             return purchase(username, address, code, priceWithoutDiscount, priceAfterDiscount);
         }
     }
@@ -105,7 +105,7 @@ public class CustomerAccountController extends AccountController{
             }
             seller.addLog( new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
                     sellersProfit, productsId, log.getBuyerName(), log.getAddress(),false));
-            seller.setCredit(seller.getCredit() + sellersProfit);
+            seller.setCreditInWallet(seller.getCreditInWallet() + sellersProfit);
         }
     }
 
@@ -129,7 +129,7 @@ public class CustomerAccountController extends AccountController{
 
     public void addToCredit(double money, String username) {
         Customer customer = (Customer) User.getUserByUsername(username);
-        customer.setCredit(customer.getCredit() + money);
+        customer.setCreditInWallet(customer.getCreditInWallet() + money);
     }
 
     public HashMap<String, Log> getOrders(String username) {
@@ -173,7 +173,7 @@ public class CustomerAccountController extends AccountController{
     }
 
     public double getBalance(String username){
-        return ((Customer) User.getUserByUsername(username)).getCredit();
+        return ((Customer) User.getUserByUsername(username)).getCreditInWallet();
     }
 
     public ArrayList<DiscountCode> getCustomersDiscountCodes(String username) {

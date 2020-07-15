@@ -1,7 +1,6 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
-import server.model.Auction;
 import server.model.Category;
 import server.model.Off;
 import server.model.Product;
@@ -9,7 +8,6 @@ import server.model.enumerations.PropertyType;
 import server.model.enumerations.SetUpStatus;
 import server.model.log.Log;
 import server.model.requests.*;
-import server.model.users.Customer;
 import server.model.users.Manager;
 import server.model.users.Seller;
 import server.model.users.User;
@@ -176,7 +174,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public double getBalance(String username){
-        return ((Seller) User.getUserByUsername(username)).getCredit();
+        return ((Seller) User.getUserByUsername(username)).getCreditInWallet();
     }
 
     public boolean getHasPermission(String username) {
