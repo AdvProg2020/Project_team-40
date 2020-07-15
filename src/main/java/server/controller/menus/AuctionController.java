@@ -3,6 +3,7 @@ package server.controller.menus;
 import server.model.Auction;
 import server.model.users.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AuctionController {
@@ -16,10 +17,22 @@ public class AuctionController {
         new Thread() {
             @Override
             public void run() {
+                ArrayList<Auction> passedAuctions = new ArrayList<>();
                 while(true) {
-                    HashMap<String, Auction> auctions = Auction.getAuctions();
-                    for(Auction auction : auctions.values()) {
-
+                    ArrayList<String> auctions = Auction.getOnGoingAuctions();
+                    passedAuctions.clear();
+                    for(String auctionID : auctions) {
+                        Auction auction = Auction.getAuctionById(auctionID);
+                        if(auction.hasReachedDeadline())
+                            passedAuctions.add(auction);
+                    }
+                    for(Auction auction : passedAuctions) {
+                        auction.finish();
+                    }
+                    try {
+                        sleep(60000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
             }

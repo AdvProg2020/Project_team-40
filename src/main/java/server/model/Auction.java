@@ -122,4 +122,8 @@ public class Auction {
             }
         }
     }
+
+    public void finish() {
+        //TODO
+    }
 }
