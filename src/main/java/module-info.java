@@ -7,6 +7,7 @@ module sample {
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
     requires org.restlet;
+    opens server.model;
     opens client.view.register_login_view;
     opens client.view.main_menu;
     opens client.view.account_menus;
