@@ -1,11 +1,9 @@
 package client.controller;
 
-import server.model.users.User;
-
 import java.util.HashMap;
 
 public class Client {
-    private User user;
+    private boolean isLoggedIn;
     private String username;
     private String password;
     private String firstName;
@@ -20,26 +18,21 @@ public class Client {
 
     private Client(){}
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public boolean isLoggedIn(){
-        return user != null;
+        return isLoggedIn;
     }
 
     public String getUsername(){
-        if (user != null)
-            return user.getUsername();
+        if (username != null)
+            return username;
         return null;
     }
 
     public String getPassword(){
-        return user.getPassword();
+        if (password != null)
+            return password;
+        return null;
     }
 
     public String getFirstName() {
@@ -103,11 +96,21 @@ public class Client {
     }
 
     public void logout(){
-        user = null;
+        isLoggedIn = false;
+        username = null;
+        password = null;
+        firstName = null;
+        lastName = null;
+        email = null;
+        phoneNo = null;
+        role = null;
+        bankAccount = null;
+        company = null;
     }
 
 
     public void  setParameters(HashMap<?, ?> values){
+        this.isLoggedIn = true;
         this.username =(String) values.get("username");
         this.password = (String) values.get("password");
         this.bankAccount = Integer.parseInt((String) values.get("bankAccount"));
