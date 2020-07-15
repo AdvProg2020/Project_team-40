@@ -1,7 +1,6 @@
 package client.view.account_menus.customer_view.account_view;
 
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import client.view.MenuManager;
 
@@ -22,7 +21,7 @@ public class CustomerAccountManager extends MenuManager implements Initializable
     }
 
     public void goToCart() {
-        setSecondaryInnerPane("/layouts/customer_menus/cart_menu_design.fxml");
+        setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/cart_menu_design.fxml");
     }
 
     public void goToDiscountCode() {

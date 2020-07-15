@@ -109,7 +109,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
 //                requestQueries.put("priceAfterDiscount", );
                 Log log = (Log) RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
-                setSecondaryInnerPane("/layouts/customer_menus/log_design.fxml");
+                setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/log_design.fxml");
             } catch (ResourceException e) {
                 if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                     logout();
