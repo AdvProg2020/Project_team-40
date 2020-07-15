@@ -42,6 +42,14 @@ public class Chat implements Serializable{
         return allChats;
     }
 
+    public static Chat getChat(String id){
+        for(Map.Entry<String, Chat> entry : allChats.entrySet()) {
+            if(entry.getKey().equals(id))
+                return entry.getValue();
+        }
+        return null;
+    }
+
     public static void loadData() throws DataException{
         File directory = new File(PATH);
         String[] pathNames = directory.list();
