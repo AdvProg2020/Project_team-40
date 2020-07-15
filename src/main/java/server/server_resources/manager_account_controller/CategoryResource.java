@@ -3,11 +3,17 @@ package server.server_resources.manager_account_controller;
 import exceptions.AccountsException;
 import org.restlet.resource.*;
 import server.controller.accounts.ManagerAccountController;
+import server.model.Category;
 import server.model.enumerations.PropertyType;
 
 import java.util.HashMap;
 
 public class CategoryResource extends ServerResource {
+    @Get
+    public Category getCategory(){
+        return Category.getCategoryByName(getQueryValue("name"));
+    }
+
     @Post
     public void createCategory(HashMap<String, PropertyType> properties)  {
         try {
