@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Product;
-import server.model.users.Seller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +34,9 @@ public class SellersProductsManager extends MenuManager implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        if(!((Seller) Client.getInstance().getUser()).isManagerPermission())
+        requestQueries.put("username", Client.getInstance().getUsername());
+        boolean permission = (boolean) RequestHandler.get("/accounts/seller_account_controller/manager_permission/", requestQueries, true, boolean.class);
+        if(!permission)
             anchorPane.getChildren().remove(addButton);
         loadProducts();
         ProductItemManager.setVBoxItems(vBoxItems);

@@ -129,6 +129,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
                     requestQueries.put("field", "lastName");
                     requestQueries.put("newAmount", newLastName.getText());
                     RequestHandler.put("/accounts/user/", Client.getInstance().getUsername(), requestQueries, true, null);
+                    Client.getInstance().setLastName(newLastName.getText());
                     gridPane.getChildren().remove(newLastName);
                     lastName.setText(newLastName.getText());
                     newLastName.setText("");
@@ -165,6 +166,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
                     requestQueries.put("field", "email");
                     requestQueries.put("newAmount", newEmail.getText());
                     RequestHandler.put("/accounts/user/", Client.getInstance().getUsername(), requestQueries, true, null);
+                    Client.getInstance().setEmail(newEmail.getText());
                     gridPane.getChildren().remove(newEmail);
                     email.setText(newEmail.getText());
                     newEmail.setText("");
@@ -201,6 +203,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
                     requestQueries.put("field", "phoneNumber");
                     requestQueries.put("newAmount", newPhoneNumber.getText());
                     RequestHandler.put("/accounts/user/", Client.getInstance().getUsername(), requestQueries, true, null);
+                    Client.getInstance().setPhoneNo(newPhoneNumber.getText());
                     gridPane.getChildren().remove(newPhoneNumber);
                     phone.setText(newPhoneNumber.getText());
                     editPhoneNumber.setOnMouseClicked(e -> editPhoneNumber());
@@ -234,6 +237,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
                 requestQueries.put("field", "companyInfo");
                 requestQueries.put("newAmount", newCompany.getText());
                 RequestHandler.put("/accounts/user/", Client.getInstance().getUsername(), requestQueries, true, null);
+                Client.getInstance().setCompany(newCompany.getText());
                 gridPane.getChildren().remove(newCompany);
                 company.setText(newCompany.getText());
                 editCompany.setOnMouseClicked(e -> editCompany());
@@ -270,6 +274,7 @@ public class PersonalInfo extends MenuManager implements Initializable {
         requestQueries.put("field", "password");
         requestQueries.put("newAmount", newPassword.getText());
         RequestHandler.put("/accounts/user/", Client.getInstance().getUsername(), requestQueries, true, null);
+        Client.getInstance().setPassword(newPassword.getText());
         newPassword.setText("");
     }
 }

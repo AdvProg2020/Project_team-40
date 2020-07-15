@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.log.Log;
-import server.model.users.Customer;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class OrdersMenuManager extends MenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
         try {
-            if (Client.getInstance().getUser() instanceof Customer) {
+            if (Client.getInstance().getRole().equals("Customer")) {
                 requestQueries.put("username", Client.getInstance().getUsername());
                 HashMap<String, Log> orders = (HashMap<String, Log>) RequestHandler.get("/accounts/customer_account_controller/orders/", requestQueries, true, HashMap.class);
                 assert orders != null;

@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.Off;
-import server.model.users.Seller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,14 +21,12 @@ import java.util.ResourceBundle;
 public class SellersOffsManager implements Initializable{
 
     public VBox offsVBox;
-    private Seller seller;
 
     private static SellersOffsManager sellersOffsManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         sellersOffsManager = this;
-        seller = (Seller) Client.getInstance().getUser();
         initializeOffs();
     }
 

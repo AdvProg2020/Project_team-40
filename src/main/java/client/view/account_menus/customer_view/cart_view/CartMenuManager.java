@@ -13,7 +13,6 @@ import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Product;
 import server.model.log.Log;
-import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,7 +82,10 @@ public class CartMenuManager extends MenuManager implements Initializable {
             //TODO: Implement details
             discountField.setDisable(false);
             discountButton.setText("apply");
-            double totalPrice = ((Customer)Client.getInstance().getUser()).getTotalPriceOfCart();
+            requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
+
+            Double totalPrice = (Double)RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
             priceLabel.setText(Double.toString(totalPrice));
             discountButton.setOnMouseClicked(e -> applyDiscount());
         } catch (ResourceException e) {

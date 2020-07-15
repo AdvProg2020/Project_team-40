@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Category;
-import server.model.users.Seller;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ public class CategoryItem extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        if(Client.getInstance().getUser() instanceof Seller) {
+        if(Client.getInstance().getRole().equals("Seller")) {
             buttons.getChildren().remove(deleteCategoryButton);
             buttons.getChildren().remove(editCategoryButton);
         }

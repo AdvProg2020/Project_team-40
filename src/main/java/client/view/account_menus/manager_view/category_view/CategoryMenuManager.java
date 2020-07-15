@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.Category;
-import server.model.users.Seller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class CategoryMenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        if(Client.getInstance().getUser() instanceof Seller) {
+        if(Client.getInstance().getRole().equals("Seller")) {
             initializeForSeller();
         }
         loadCategories();

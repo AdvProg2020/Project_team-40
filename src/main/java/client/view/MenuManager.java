@@ -10,9 +10,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.Loader;
-import server.model.users.Manager;
-import server.model.users.Seller;
-import server.model.users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,12 +79,14 @@ public class MenuManager {
 
     public void goToAccountsMenu() {
         setButtonsVisible();
-        if(Client.getInstance().getUsername() != null) {
-            if (User.getUserByUsername(Client.getInstance().getUsername()) instanceof Manager)
+        String username = Client.getInstance().getUsername();
+        String role = Client.getInstance().getRole();
+        if(username != null) {
+            if (role.equals("Manager"))
                 setMainInnerPane("/layouts/manager_menus/manager_account_design.fxml");
-            else if (User.getUserByUsername(Client.getInstance().getUsername()) instanceof Seller)
+            else if (role.equals("Seller"))
                 setMainInnerPane("/layouts/seller_menus/seller_account_design.fxml");
-            else
+            else if (role.equals("Customer"))
                 setMainInnerPane("/layouts/customer_menus/customer_account_design.fxml");
         } else {
             setMainInnerPane("/layouts/login_menu.fxml");

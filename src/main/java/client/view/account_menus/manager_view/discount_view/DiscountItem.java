@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.DiscountCode;
-import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class DiscountItem extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        if(Client.getInstance().getUser() instanceof Customer) {
+        if(Client.getInstance().getRole().equals("Customer")) {
             controlButtons.getChildren().remove(deleteDiscountButton);
             controlButtons.getChildren().remove(editDiscountButton);
         }

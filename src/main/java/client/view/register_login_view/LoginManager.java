@@ -9,7 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.restlet.resource.ResourceException;
 import server.controller.accounts.AccountController;
-import server.model.users.User;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,9 +32,10 @@ public class LoginManager extends MenuManager {
 
                 HashMap<String, String> userQueries = new HashMap<>();
                 userQueries.put("username", usernameField.getText());
-                User user = (User)RequestHandler.get("/accounts/account/",userQueries, false, User.class);
-                Client.getInstance().setUser(user);
-                if(Client.getInstance().getUser().getBankAccount() == null)
+                HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/",userQueries, false, HashMap.class);
+                assert userParameters != null;
+                Client.getInstance().setParameters(userParameters);
+                if(Client.getInstance().getBankAccount() == null)
                     setMainInnerPane("/layouts/create_bank_account.fxml");
                 else
                     goToAccountsMenu();
