@@ -1,7 +1,6 @@
 package server.model.chat;
 
 import exceptions.DataException;
-import server.model.Category;
 import server.model.Utility;
 
 import java.io.*;
