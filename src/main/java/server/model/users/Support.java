@@ -11,6 +11,14 @@ public class Support extends User{
         super(username, password, firstName, lastName, email, phoneNo);
     }
 
+    public static Support getSupport(String username){
+        for(Support support : Support.getAllSupports()) {
+            if(support.getUsername().equals(username))
+                return support;
+        }
+        return null;
+    }
+
     @Override
     public String getRole(){
         return "Support";

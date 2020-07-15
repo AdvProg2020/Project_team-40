@@ -73,10 +73,10 @@ public class AccountController{
             if(field.equals("companyInfo")) {
                 seller.setCompanyInfo(newAmount);
             } else if(field.equals("credit")) {
-                seller.setCredit(Double.parseDouble(newAmount));
+                seller.setCreditInWallet(Double.parseDouble(newAmount));
             }
         } else if(user instanceof Customer) {
-            ((Customer) user).setCredit(Double.parseDouble(newAmount));
+            ((Customer) user).setCreditInWallet(Double.parseDouble(newAmount));
         }
     }
 

@@ -1,7 +1,6 @@
 package server.model.chat;
 
 import exceptions.DataException;
-import server.model.Category;
 import server.model.Utility;
 
 import java.io.*;
@@ -14,7 +13,7 @@ public class Chat implements Serializable{
     private static HashMap<String, Chat> allChats = new HashMap<>();
 
     private ArrayList<Message> messages = new ArrayList<>();
-    private ArrayList<String> users = new ArrayList<>();
+    private ArrayList<String> members = new ArrayList<>();
     private String name;
     private String id;
 
@@ -27,6 +26,7 @@ public class Chat implements Serializable{
         return name;
     }
 
+
     public String getId(){
         return id;
     }
@@ -35,12 +35,20 @@ public class Chat implements Serializable{
         return messages;
     }
 
-    public ArrayList<String> getUsers(){
-        return users;
+    public ArrayList<String> getMembers(){
+        return members;
     }
 
     public static HashMap<String, Chat> getAllChats(){
         return allChats;
+    }
+
+    public static Chat getChat(String id){
+        for(Map.Entry<String, Chat> entry : allChats.entrySet()) {
+            if(entry.getKey().equals(id))
+                return entry.getValue();
+        }
+        return null;
     }
 
     public static void loadData() throws DataException{

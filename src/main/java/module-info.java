@@ -1,3 +1,4 @@
+
 module sample {
     requires javafx.controls;
     requires javafx.fxml;
@@ -15,6 +16,7 @@ module sample {
     opens client.view.account_menus.seller_view.sellers_offs_view;
     opens client.view.account_menus.seller_view.accounts_view;
     opens client.view.account_menus.seller_view.sellers_products_view;
+    opens client.view.account_menus.seller_view.auction_view;
     opens client.view.account_menus.customer_view.cart_view;
     opens client.view.account_menus.customer_view.orders_view;
     opens client.view.account_menus.customer_view.account_view;
@@ -24,7 +26,10 @@ module sample {
     opens client.view.account_menus.manager_view.manage_products_view;
     opens client.view.account_menus.manager_view.manage_users_view;
     opens client.view.account_menus.manager_view.requests_view;
+    opens client.view.account_menus.customer_seller_common_view;
     opens client.view.bank;
+    opens client.view.bank.receipts;
+    opens client.view.bank.transactions;
     opens client.view.shopping_menus.product.comment_view;
     opens client.view.shopping_menus.product.product_digest_view;
     opens client.view.shopping_menus.product.product_view;

@@ -6,7 +6,9 @@ import client.view.MenuManager;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.restlet.data.Status;
@@ -28,7 +30,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public Label addressError;
     public Label purchaseError;
     public TextField discountField;
-    public TextField addressField;
+    public TextArea addressField;
     public Button discountButton;
     private HashMap<String, String> requestQueries;
 
@@ -94,7 +96,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
         }
     }
 
-    public void purchase() {
+    public void payByWallet() {
         if (addressField.getText().isBlank()) {
             addressError.setText("Write you address!");
         } else {
@@ -110,7 +112,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
 //                requestQueries.put("priceAfterDiscount", );
                 Log log = (Log) RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
-                setSecondaryInnerPane("/layouts/customer_menus/log_design.fxml");
+                setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/log_design.fxml");
             } catch (ResourceException e) {
                 if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                     logout();
@@ -123,5 +125,8 @@ public class CartMenuManager extends MenuManager implements Initializable {
                 }
             }
         }
+    }
+
+    public void payThroughBank() {
     }
 }

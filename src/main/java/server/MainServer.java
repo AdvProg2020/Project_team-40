@@ -11,6 +11,10 @@ import org.restlet.service.StatusService;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.BankAccountResource;
 import server.server_resources.accounts.UserResource;
+import server.server_resources.chat.ChatResource;
+import server.server_resources.chat.MembersResource;
+import server.server_resources.chat.MessageResource;
+import server.server_resources.chat.SupportsResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
@@ -35,7 +39,7 @@ public class MainServer extends Component {
         getServers().add(Protocol.HTTP, DEFAULT_PORT);
         ServerAuthenticator authenticator = ServerAuthenticator.getInstance();
         getDefaultHost().attach("/accounts/manager_account_controller/manager/", ManagerResource.class);
-//        getDefaultHost().attach("/accounts/manager_account_controller/support/", ManagerResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/support/", SupportResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/user/", authenticator.getNewGuard(ManagerUserResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/users/", authenticator.getNewGuard(ManagerUsersResource.class));
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class));
@@ -78,8 +82,10 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/user/", UserResource.class);
         getDefaultHost().attach("/accounts/bank_account", BankAccountResource.class);
 
-
-
+        getDefaultHost().attach("/chat/chat/", ChatResource.class);
+        getDefaultHost().attach("/chat/message/", MessageResource.class);
+        getDefaultHost().attach("/chat/members/", MembersResource.class);
+        getDefaultHost().attach("/chat/supports/", SupportsResource.class);
 
     }
 }

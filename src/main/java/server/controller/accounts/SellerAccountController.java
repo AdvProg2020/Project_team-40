@@ -174,7 +174,7 @@ public class SellerAccountController extends AccountController{
     }
 
     public double getBalance(String username){
-        return ((Seller) User.getUserByUsername(username)).getCredit();
+        return ((Seller) User.getUserByUsername(username)).getCreditInWallet();
     }
 
     public boolean getHasPermission(String username) {
