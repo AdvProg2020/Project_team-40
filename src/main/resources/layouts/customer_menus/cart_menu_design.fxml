@@ -5,23 +5,16 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="mainPane" prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.cart_view.CartMenuManager">
-    <Label fx:id="emptyCartLabel" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="167.0" prefHeight="193.0" prefWidth="594.0" textAlignment="CENTER" GridPane.rowIndex="7">
-        <font>
-            <Font size="40.0" />
-        </font>
-    </Label>
-    <GridPane fx:id="purchaseInformationPane" layoutX="229.0" layoutY="37.0" prefHeight="548.0" prefWidth="400.0">
+    <GridPane fx:id="purchaseInformationPane" layoutX="32.0" layoutY="65.0" prefHeight="541.0" prefWidth="200.0">
       <columnConstraints>
          <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="400.0" />
       </columnConstraints>
       <rowConstraints>
-         <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" />
-         <RowConstraints maxHeight="42.0" minHeight="21.0" prefHeight="21.0" />
          <RowConstraints prefHeight="50.0" />
           <RowConstraints prefHeight="50.0" />
           <RowConstraints prefHeight="50.0" />
-          <RowConstraints prefHeight="50.0" />
-          <RowConstraints prefHeight="50.0" />
+          <RowConstraints maxHeight="79.0" minHeight="52.0" prefHeight="68.0" />
+          <RowConstraints maxHeight="42.0" minHeight="15.0" prefHeight="26.0" />
           <RowConstraints prefHeight="50.0" />
           <RowConstraints prefHeight="50.0" />
           <RowConstraints prefHeight="50.0" />
@@ -30,50 +23,50 @@
          <RowConstraints minHeight="10.0" prefHeight="50.0" />
       </rowConstraints>
       <children>
-          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="409.0" text="My Cart" textAlignment="CENTER">
-              <font>
-                  <Font size="40.0" />
-              </font>
-          </Label>
-          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="402.0" text="Home address:" textAlignment="CENTER" GridPane.rowIndex="4">
+          <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="402.0" text="Home address:" textAlignment="CENTER" GridPane.rowIndex="2">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <TextField fx:id="addressField" alignment="CENTER" prefWidth="200.0" promptText="address" GridPane.rowIndex="5" />
-          <Label fx:id="addressError" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="415.0" textAlignment="CENTER" GridPane.rowIndex="6">
+          <TextArea fx:id="addressField" prefHeight="78.0" prefWidth="257.0" promptText="address" GridPane.rowIndex="3" />
+          <Label fx:id="addressError" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="415.0" textAlignment="CENTER" GridPane.rowIndex="4">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="403.0" text="Final price:" textAlignment="CENTER" GridPane.rowIndex="2">
+          <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="403.0" text="Final price:" textAlignment="CENTER">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="3">
+          <Label fx:id="priceLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="1">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="405.0" text="Discount Code:" textAlignment="CENTER" GridPane.rowIndex="7">
+          <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="405.0" text="Discount Code:" textAlignment="CENTER" GridPane.rowIndex="5">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <Button fx:id="discountButton" onMouseClicked="#applyDiscount" prefHeight="25.0" prefWidth="200.0" text="apply" textAlignment="CENTER" GridPane.rowIndex="9" />
-          <Button onMouseClicked="#purchase" prefHeight="25.0" prefWidth="200.0" text="purchase" GridPane.rowIndex="11" />
-          <Label fx:id="discountError" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="10">
+          <Button fx:id="discountButton" onMouseClicked="#applyDiscount" prefHeight="25.0" prefWidth="250.0" text="apply" textAlignment="CENTER" GridPane.rowIndex="7" />
+          <Button onMouseClicked="#purchase" prefHeight="25.0" prefWidth="200.0" text="purchase" GridPane.rowIndex="9" />
+          <Label fx:id="discountError" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="8">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <TextField fx:id="discountField" alignment="CENTER" prefHeight="25.0" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="8" />
-          <Label fx:id="purchaseError" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="12">
+          <TextField fx:id="discountField" alignment="CENTER" prefHeight="25.0" prefWidth="200.0" promptText="discount code" GridPane.rowIndex="6" />
+          <Label fx:id="purchaseError" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="407.0" textAlignment="CENTER" GridPane.rowIndex="10">
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
       </children>
     </GridPane>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="14.0" prefHeight="65.0" prefWidth="409.0" text="My Cart" textAlignment="CENTER">
+        <font>
+            <Font size="40.0" />
+        </font>
+    </Label>
 </AnchorPane>
