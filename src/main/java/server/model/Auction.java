@@ -1,6 +1,8 @@
 package server.model;
 
 import exceptions.DataException;
+import server.model.users.Seller;
+import server.model.users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,19 +17,21 @@ public class Auction {
     private Date deadline;
     private String productId;
     private int highestPrice;
-    private String seller;
+    private String sellerID;
     private ArrayList<String> customers = new ArrayList<>();
     private String highestPriceCustomer;
     private String id;
     private String chatId;
 
-    public Auction(Date deadline, String productId, int highestPrice, String seller, String chatId) {
+    public Auction(Date deadline, String productId, int highestPrice, String sellerID, String chatId) {
         this.deadline = deadline;
         this.productId = productId;
         this.highestPrice = highestPrice;
-        this.seller = seller;
+        this.sellerID = sellerID;
         this.chatId = chatId;
         id = Utility.generateId();
+        auctions.put(id, this);
+        onGoingAuctions.add(id);
     }
 
     public static Auction getAuctionById(String id) {
@@ -50,8 +54,8 @@ public class Auction {
         return highestPrice;
     }
 
-    public String getSeller() {
-        return seller;
+    public String getSellerID() {
+        return sellerID;
     }
 
     public String getHighestPriceCustomer() {
@@ -124,6 +128,12 @@ public class Auction {
     }
 
     public void finish() {
-        //TODO
+        onGoingAuctions.remove(id);
+        Seller seller = (Seller) User.getUserByUsername(sellerID);
+        seller.setCreditInWallet(seller.getCreditInWallet() + highestPrice);
+        Product product = Product.getProductById(productId);
+        product.setCount(product.getCount() - 1);
+
+        //TODO: consider wage...
     }
 }
