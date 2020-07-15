@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.restlet.data.Status;
@@ -93,7 +94,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
         }
     }
 
-    public void purchase() {
+    public void payByWallet() {
         if (addressField.getText().isBlank()) {
             addressError.setText("Write you address!");
         } else {
@@ -122,5 +123,8 @@ public class CartMenuManager extends MenuManager implements Initializable {
                 }
             }
         }
+    }
+
+    public void payThroughBank() {
     }
 }

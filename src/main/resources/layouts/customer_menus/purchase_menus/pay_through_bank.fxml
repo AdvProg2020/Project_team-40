@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.cart_view.PayBankManager">
+    <children>
+        <TextField fx:id="usernameField" layoutX="338.0" layoutY="293.0" prefHeight="25.0" prefWidth="219.0" promptText="username">
+
+        </TextField>
+        <PasswordField fx:id="passwordField" layoutX="337.0" layoutY="347.0" prefHeight="25.0" prefWidth="219.0" promptText="password">
+
+        </PasswordField>
+        <Label alignment="BASELINE_CENTER" layoutX="170.0" layoutY="130.0" prefHeight="42.0" prefWidth="564.0" text="Cart's total price is:">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label alignment="BASELINE_CENTER" layoutX="170.0" layoutY="189.0" prefHeight="42.0" prefWidth="564.0">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label alignment="BASELINE_CENTER" layoutX="170.0" layoutY="239.0" prefHeight="42.0" prefWidth="564.0" text="Enter your bank account's information:">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+        <Label fx:id="errorMessage" alignment="BASELINE_CENTER" layoutX="235.0" layoutY="453.0" prefHeight="32.0" prefWidth="426.0">
+
+        </Label>
+        <Button fx:id="payButton" layoutX="337.0" layoutY="400.0" onMouseClicked="#pay" prefHeight="25.0" prefWidth="219.0" text="pay">
+
+        </Button>
+    </children>
+</AnchorPane>
