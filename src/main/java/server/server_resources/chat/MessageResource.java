@@ -14,26 +14,28 @@ import java.util.ArrayList;
 public class MessageResource extends ServerResource{
     private ChatController controller = ChatController.getInstance();
 
+    //QUERIES : chatId, username, content
     @Put
-    public void sendMessage(String chatId, String username, String content){
+    public void sendMessage(){
         try {
-            AccountController.getInstance().getUser(username);
+            AccountController.getInstance().getUser(getQueryValue("username"));
         }catch(AccountsException e){
             System.out.println(e.getMessage());
         }
 
         try {
-            controller.addMessage(chatId, new Message(username, content, System.currentTimeMillis()));
+            controller.addMessage(getQueryValue("chatId"), new Message(getQueryValue("username"), getQueryValue("content"), System.currentTimeMillis()));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
     }
 
+    //QUERIES : chatId, size (= index of the last message the user has received)
     @Get
-    public ArrayList<Message> getMessages(String chatId, int size){
+    public ArrayList<Message> getMessages(){
         ArrayList<Message> messages = new ArrayList<>();
         try {
-            messages.addAll(controller.getNewMessages(chatId, size));
+            messages.addAll(controller.getNewMessages(getQueryValue("chatId"), Integer.parseInt(getQueryValue("size"))));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
