@@ -1,15 +1,16 @@
 package client.view.main_menu;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
+import client.view.register_login_view.RegisterManager;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import server.model.users.User;
-import client.view.MenuManager;
-import client.view.register_login_view.RegisterManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainMenuManager extends MenuManager implements Initializable {
@@ -22,7 +23,8 @@ public class MainMenuManager extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         mainInnerPane = InnerPane;
-        if (User.doesManagerExist()){
+        boolean doesManagerExist = (boolean) RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
+        if (doesManagerExist){
             backButton.setDisable(false);
             productsButton.setDisable(false);
             accountButton.setDisable(false);
