@@ -58,6 +58,14 @@ public class Seller extends User{
         return logsName;
     }
 
+    public ArrayList<String> getAuctions() {
+        return auctions;
+    }
+
+    public void addAuction(Auction auction) {
+        auctions.add(auction.getChatId());
+    }
+
     public boolean doesHaveManagerPermission() {
         return managerPermission;
     }
