@@ -13,7 +13,7 @@ public class Chat implements Serializable{
     private static HashMap<String, Chat> allChats = new HashMap<>();
 
     private ArrayList<Message> messages = new ArrayList<>();
-    private ArrayList<String> users = new ArrayList<>();
+    private ArrayList<String> members = new ArrayList<>();
     private String name;
     private String id;
 
@@ -26,6 +26,7 @@ public class Chat implements Serializable{
         return name;
     }
 
+
     public String getId(){
         return id;
     }
@@ -34,8 +35,8 @@ public class Chat implements Serializable{
         return messages;
     }
 
-    public ArrayList<String> getUsers(){
-        return users;
+    public ArrayList<String> getMembers(){
+        return members;
     }
 
     public static HashMap<String, Chat> getAllChats(){

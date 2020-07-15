@@ -40,20 +40,14 @@ public class ChatController{
             throw new MenuException("No chat with such id.");
         if(User.getUserByUsername(username) == null)
             throw new MenuException("No user with such username.");
-        chat.getUsers().add(username);
+        chat.getMembers().add(username);
     }
 
-    public ArrayList<User> getUsers(String id) throws MenuException{
+    public ArrayList<String> getMembers(String id) throws MenuException{
         Chat chat = Chat.getChat(id);
         if(chat == null)
             throw new MenuException("No chat with such id.");
-        ArrayList<User> users = new ArrayList<>();
-        for(String s : chat.getUsers()) {
-            User user = User.getUserByUsername(s);
-            if(user != null)
-                users.add(user);
-        }
-        return users;
+        return chat.getMembers();
     }
 
     public ArrayList<String> getSupports(){
