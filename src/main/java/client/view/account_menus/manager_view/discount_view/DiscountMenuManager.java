@@ -15,13 +15,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.DiscountCode;
-import server.model.users.Customer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DiscountMenuManager implements Initializable {
     public VBox vBoxItems;
@@ -34,7 +31,7 @@ public class DiscountMenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
-        if(Client.getInstance().getUser() instanceof Customer) {
+        if(Client.getInstance().getRole().equals("Customer")) {
             mainPane.getChildren().remove(addDiscount);
             mainPane.getChildren().remove(refreshButton);
             title.setText("My Discount Codes");
@@ -55,10 +52,22 @@ public class DiscountMenuManager implements Initializable {
 
     public void loadAllDiscounts() {
         requestQueries.clear();
-        ArrayList<DiscountCode> discountCodes = (ArrayList)RequestHandler.get("/accounts/customer_account_controller/all_discounts/", requestQueries, true, ArrayList.class);
+        ArrayList<?> discountCodes = (ArrayList<?>)RequestHandler.get("/accounts/manager_account_controller/all_discounts/", requestQueries, true, ArrayList.class);
         assert discountCodes != null;
-        for (DiscountCode discountCode : discountCodes) {
+        for (Object obj : discountCodes) {
+            LinkedHashMap<?,?> discountCode = (LinkedHashMap<?, ?>) obj;
             addDiscountToList(discountCode);
+        }
+    }
+
+    private void addDiscountToList(LinkedHashMap<?, ?> discountCode){
+        try {
+            AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount_item.fxml"));
+            HBox hBox = (HBox) item.getChildren().get(0);
+            setLabelsContent(discountCode, hBox);
+            vBoxItems.getChildren().add(item);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,7 +81,6 @@ public class DiscountMenuManager implements Initializable {
             e.printStackTrace();
         }
     }
-
     private void setLabelsContent(DiscountCode discountCode, HBox hBox) {
         Label codeLabel =((Label) hBox.getChildren().get(0));
         Label startLabel =((Label) hBox.getChildren().get(1));
@@ -82,6 +90,19 @@ public class DiscountMenuManager implements Initializable {
         startLabel.setText(discountCode.getStartDate().toString());
         endLabel.setText(discountCode.getEndDate().toString());
         percentageLabel.setText(Integer.toString(discountCode.getPercentage()));
+    }
+
+    private void setLabelsContent(LinkedHashMap<?, ?> discountCode, HBox hBox) {
+        Label codeLabel =((Label) hBox.getChildren().get(0));
+        Label startLabel =((Label) hBox.getChildren().get(1));
+        Label endLabel =((Label) hBox.getChildren().get(2));
+        Label percentageLabel =((Label) hBox.getChildren().get(3));
+        codeLabel.setText((String) discountCode.get("code"));
+        Date start = new Date((Long) discountCode.get("startDate"));
+        Date end = new Date((Long)discountCode.get("endDate"));
+        startLabel.setText(start.toString());
+        endLabel.setText(end.toString());
+        percentageLabel.setText(String.valueOf((discountCode.get("percentage"))));
     }
 
     public void handleAddDiscount() {

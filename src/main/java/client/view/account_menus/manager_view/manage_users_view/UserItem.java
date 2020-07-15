@@ -69,16 +69,16 @@ public class UserItem extends MenuManager implements Initializable {
         phoneLabel.setText(user.getPhoneNo());
     }
 
-    private void setLabelsContent(UserMenu userMenu, User user) {
+    private void setLabelsContent(UserMenu userMenu, HashMap<?, ?> userParams) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                userMenu.setUsernameLabel(user.getUsername());
-                userMenu.setFirstNameLabel(user.getFirstName());
-                userMenu.setLastNameLabel(user.getLastName());
-                userMenu.setEmailLabel(user.getEmail());
-                userMenu.setPhoneLabel(user.getPhoneNo());
-                userMenu.setRoleLabel(user.getRole());
+                userMenu.setUsernameLabel((String) userParams.get("username"));
+                userMenu.setFirstNameLabel((String) userParams.get("firstName"));
+                userMenu.setLastNameLabel((String) userParams.get("lastName"));
+                userMenu.setEmailLabel((String) userParams.get("email"));
+                userMenu.setPhoneLabel((String) userParams.get("phoneNumber"));
+                userMenu.setRoleLabel((String) userParams.get("role"));
             }
         });
     }
@@ -106,10 +106,10 @@ public class UserItem extends MenuManager implements Initializable {
         try {
             requestQueries.clear();
             requestQueries.put("username", username);
-            User user = (User) RequestHandler.get("/accounts/user/", requestQueries, true, User.class);
+            HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/",requestQueries, false, HashMap.class);
             AnchorPane pane = loader.load();
             UserMenu userMenu = loader.getController();
-            setLabelsContent(userMenu, user);
+            setLabelsContent(userMenu, userParameters);
             Stage userWindow = new Stage();
             userWindow.setScene(new Scene(pane, 520, 600));
             userWindow.initModality(Modality.APPLICATION_MODAL);
