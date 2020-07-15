@@ -2,14 +2,13 @@ package client.view;
 
 import client.controller.Client;
 import com.jfoenix.controls.JFXButton;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import server.controller.accounts.AccountController;
 import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import server.model.Loader;
 import server.model.users.Manager;
 import server.model.users.Seller;
@@ -28,7 +27,6 @@ public class MenuManager {
     protected static final int BANK_PORT = 8080;
     protected static final String IP = "127.0.0.1";
 
-    protected AccountController accountController = AccountController.getInstance();
     static {
         roots = new ArrayList<>();
         roots.add("/layouts/main.fxml");
