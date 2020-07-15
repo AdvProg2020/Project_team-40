@@ -21,11 +21,20 @@ public class ChatController{
         return chatController;
     }
 
-    public void createChat(String name){
+    public Chat createChat(String name){
         Chat chat = new Chat(name);
+        Chat.getAllChats().put(chat.getId(), chat);
+        return chat;
     }
 
-    public void addUser(String id, String username) throws MenuException{
+    public Chat getChat(String id) throws MenuException{
+        Chat chat = Chat.getChat(id);
+        if(chat == null)
+            throw new MenuException("No chat with such id.");
+        return chat;
+    }
+
+    public void addMember(String id, String username) throws MenuException{
         Chat chat = Chat.getChat(id);
         if(chat == null)
             throw new MenuException("No chat with such id.");
@@ -47,15 +56,20 @@ public class ChatController{
         return users;
     }
 
-    public Support getSupport(String username) throws MenuException{
-        Support result = null;
-        for(Support support : Support.getAllSupports()) {
-            if(support.getUsername().equals(username))
-                result = support;
+    public ArrayList<String> getSupports(){
+        ArrayList<String> supports = new ArrayList<>();
+        ArrayList<Support> allSupports = Support.getAllSupports();
+        for(Support support : allSupports) {
+            supports.add(support.getUsername());
         }
-        if(result == null)
+        return supports;
+    }
+
+    public Support getSupport(String username) throws MenuException{
+        Support support = Support.getSupport(username);
+        if(support == null)
             throw new MenuException("No support with such name exists.");
-        return result;
+        return support;
     }
 
     public void addMessage(String id, Message message) throws MenuException{
@@ -63,13 +77,6 @@ public class ChatController{
         if(chat == null)
             throw new MenuException("No chat with such id.");
         chat.getMessages().add(message);
-    }
-
-    public ArrayList<Message> getMessages(String id) throws MenuException{
-        Chat chat = Chat.getChat(id);
-        if(chat == null)
-            throw new MenuException("No chat with such id.");
-        return chat.getMessages();
     }
 
     //index is the number of messages a user has already received
