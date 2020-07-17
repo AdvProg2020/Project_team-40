@@ -1,10 +1,14 @@
 package server.server_resources.bank;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.ValidInput;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
 
 import static server.server_resources.bank.BankInformation.BANK_PORT;
 import static server.server_resources.bank.BankInformation.IP;
@@ -22,12 +26,21 @@ public class BankRegisterResource extends ServerResource {
                     + " " + getQueryValue("repeat password"));
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-          //  banksResponse = handleResponse(inputStream.readUTF(), getQueryValue("username"));
+            banksResponse = handleResponse(inputStream.readUTF(), getQueryValue("username"));
             socket.close();
         } catch (IOException e) {
             banksResponse = e.getMessage();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return banksResponse;
+    }
+
+    private String handleResponse(String response, String username) throws Exception {
+        if(!ValidInput.INTEGER.getStringMatcher(response).matches())
+            throw new Exception(response);
+        //TODO
+        return null;
     }
 
     /*

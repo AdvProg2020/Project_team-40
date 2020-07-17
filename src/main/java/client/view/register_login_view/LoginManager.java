@@ -34,8 +34,9 @@ public class LoginManager extends MenuManager {
                 userQueries.put("username", usernameField.getText());
                 HashMap<String, String> userParameters = RequestHandler.get("/accounts/user/",userQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
                 assert userParameters != null;
-                Client.getInstance().setParameters(userParameters);
-                if(Client.getInstance().getBankAccount() == null)
+                Client client = Client.getInstance();
+                client.setParameters(userParameters);
+                if(client.getBankAccount() == null || client.getBankAccount() < 0)
                     setMainInnerPane("/layouts/create_bank_account.fxml");
                 else
                     goToAccountsMenu();

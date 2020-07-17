@@ -39,7 +39,7 @@ public class CreateBankAccount extends MenuManager {
         queries.put("repeat password", repeatPasswordField.getText());
         queries.put("username", client.getUsername());
         String response = RequestHandler.get("/bank/register/", queries, true, String.class);
-
+//TODO
     }
     /*
     try {
@@ -58,9 +58,7 @@ public class CreateBankAccount extends MenuManager {
 
      */
 
-    private void handleResponse(String response, String username) throws Exception {
-        if(!ValidInput.INTEGER.getStringMatcher(response).matches())
-            throw new Exception(response);
+    private void successfullyLogin(String response) {
         usernameField.setDisable(true);
         passwordField.setDisable(true);
         repeatPasswordField.setDisable(true);
@@ -68,8 +66,6 @@ public class CreateBankAccount extends MenuManager {
         createBankAccount.setText("let's go to my account!");
         createBankAccount.setOnMouseClicked(e -> goToAccountsMenu());
         Client.getInstance().setBankAccount(Integer.parseInt(response));
-        HashMap<String, String> queries = new HashMap<>();
-        queries.put("bankAccount", response.toString());
-        RequestHandler.put("/accounts/bank_account", username, queries, false, null);
+//TODO
     }
 }
