@@ -53,7 +53,6 @@ public class AllProductsController {
             productsToShow = products;
         }
     }
-
     public ArrayList<String> getAllCategories(){
         ArrayList<String> allCategories = new ArrayList<>();
         for(Category value : Category.getAllCategories().values()) {
@@ -61,7 +60,6 @@ public class AllProductsController {
         }
         return allCategories;
     }
-
     public ArrayList<String> getAllSubCategories(String parentName) throws AccountsException{
         ArrayList<String> allSubCategories = new ArrayList<>();
 
