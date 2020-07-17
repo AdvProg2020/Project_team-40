@@ -18,7 +18,6 @@ public class Client {
 
     private Client(){}
 
-
     public boolean isLoggedIn(){
         return isLoggedIn;
     }

@@ -9,7 +9,8 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
 import server.server_resources.accounts.AccountResource;
-import server.server_resources.accounts.BankAccountResource;
+import server.server_resources.bank.BankLoginResource;
+import server.server_resources.bank.BankRegisterResource;
 import server.server_resources.accounts.UserResource;
 import server.server_resources.chat.ChatResource;
 import server.server_resources.chat.MembersResource;
@@ -78,14 +79,15 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class, RoleAccessibility.SELLER));
 
+        getDefaultHost().attach("/bank/register/", BankRegisterResource.class);
+        getDefaultHost().attach("/bank/login/", BankLoginResource.class);
+
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);
-        getDefaultHost().attach("/accounts/bank_account", BankAccountResource.class);
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
         getDefaultHost().attach("/chat/message/", MessageResource.class);
         getDefaultHost().attach("/chat/members/", MembersResource.class);
         getDefaultHost().attach("/chat/supports/", SupportsResource.class);
-
     }
 }

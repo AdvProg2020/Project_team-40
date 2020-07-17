@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class LoginManager extends MenuManager {
-    private AccountController accountController = AccountController.getInstance();
     public Label errorMessage;
     public TextField usernameField;
     public PasswordField passwordField;
