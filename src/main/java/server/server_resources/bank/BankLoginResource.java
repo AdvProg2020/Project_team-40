@@ -2,6 +2,7 @@ package server.server_resources.bank;
 
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
+import server.controller.menus.BankController;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,12 +25,12 @@ public class BankLoginResource extends ServerResource {
             outputStream.flush();
             String bankResponse = inputStream.readUTF();
             if(!bankResponse.equals("invalid username or password")) {
-
+                BankController.getBankController().getUsersTokens().put(getQueryValue("username"), bankResponse);
             }
             socket.close();
+            return bankResponse;
         } catch (Exception e) {
             return e.getMessage();
         }
-        return null;
     }
 }
