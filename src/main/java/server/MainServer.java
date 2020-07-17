@@ -8,7 +8,6 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
-import server.server_resources.RoleAccessibility;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.BankAccountResource;
 import server.server_resources.accounts.UserResource;

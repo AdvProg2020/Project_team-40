@@ -5,7 +5,6 @@ import org.restlet.resource.ServerResource;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.MapVerifier;
 import server.model.users.*;
-import server.server_resources.RoleAccessibility;
 
 import java.util.HashMap;
 
