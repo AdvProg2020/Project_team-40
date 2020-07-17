@@ -85,7 +85,7 @@ public class CategoryItem extends MenuManager implements Initializable {
         try {
             requestQueries.clear();
             requestQueries.put("name", name);
-            RequestHandler.delete("/accounts/manager_account_controller/category/", requestQueries, true, String.class);
+            RequestHandler.delete("/accounts/manager_account_controller/category/", requestQueries, true, null);
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                 logout();
@@ -98,7 +98,9 @@ public class CategoryItem extends MenuManager implements Initializable {
         String name =((Label)item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/category.fxml"));
         try {
-            Category category = Category.getCategoryByName(name);
+            requestQueries.clear();
+            requestQueries.put("name", name);
+            Category category = RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, true, Category.class);
             AnchorPane pane = loader.load();
             CategoryView categoryView = loader.getController();
             setLabelsContent(categoryView, category);
@@ -116,8 +118,9 @@ public class CategoryItem extends MenuManager implements Initializable {
         String name = ((Label) item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_category_menus/edit_category.fxml"));
         try {
-            Category category = Category.getCategoryByName(name);
-            AnchorPane pane = loader.load();
+            requestQueries.clear();
+            requestQueries.put("name", name);
+            Category category = RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, true, Category.class);            AnchorPane pane = loader.load();
             CategoryEdit editCategoryController = loader.getController();
             editCategoryController.setCategory(category);
             editCategoryController.setOldValues();

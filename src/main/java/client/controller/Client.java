@@ -109,18 +109,18 @@ public class Client {
     }
 
 
-    public void  setParameters(HashMap<?, ?> values){
+    public void  setParameters(HashMap<String, String> values){
         this.isLoggedIn = true;
-        this.username =(String) values.get("username");
-        this.password = (String) values.get("password");
-        this.bankAccount = Integer.parseInt((String) values.get("bankAccount"));
-        this.firstName = (String) values.get("firstName");
-        this.lastName = (String) values.get("lastName");
-        this.role = (String) values.get("role");
-        this.email = (String) values.get("email");
-        this.phoneNo = (String) values.get("phoneNumber");
+        this.username = values.get("username");
+        this.password = values.get("password");
+        this.bankAccount = Integer.parseInt(values.get("bankAccount"));
+        this.firstName = values.get("firstName");
+        this.lastName = values.get("lastName");
+        this.role = values.get("role");
+        this.email = values.get("email");
+        this.phoneNo = values.get("phoneNumber");
         if (role.equals("Seller")){
-            this.company = (String) values.get("company");
+            this.company = values.get("company");
         }
     }
 
