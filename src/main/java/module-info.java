@@ -10,6 +10,12 @@ module sample {
     requires org.restlet;
     requires yagson;
     opens server.model;
+    opens server.model.users;
+    opens server.model.log;
+    opens server.model.requests;
+    opens server.model.chat;
+    opens server.model.enumerations;
+    opens server.model.search;
     opens client.view.register_login_view;
     opens client.view.main_menu;
     opens client.view.account_menus;
