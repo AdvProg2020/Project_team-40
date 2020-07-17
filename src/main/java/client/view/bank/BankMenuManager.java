@@ -17,6 +17,6 @@ public class BankMenuManager extends MenuManager {
     public void viewBalance() {
     }
 
-    public void exitBankAccount(MouseEvent event) {
+    public void exitBankAccount() {
     }
 }

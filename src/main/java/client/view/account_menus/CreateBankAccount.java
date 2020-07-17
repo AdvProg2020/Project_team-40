@@ -15,6 +15,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Queue;
 
 public class CreateBankAccount extends MenuManager {
     public Label errorMessage;
@@ -24,14 +25,28 @@ public class CreateBankAccount extends MenuManager {
     public Button createBankAccount;
 
     public void createAccount() {
-        if(usernameField.getText().isBlank() || passwordField.getText().isBlank() || repeatPasswordField.getText().isBlank()) {
+        if(usernameField.getText().isBlank() || passwordField.getText().isBlank()
+                || repeatPasswordField.getText().isBlank()) {
             errorMessage.setText("Fill all the above Fields!");
         } else {
-            try {
+            HashMap<String, String> queries = new HashMap<>();
+            Client client = Client.getInstance();
+            queries.put("first name", client.getFirstName());
+            queries.put("last name", client.getLastName());
+            queries.put("bank username", usernameField.getText());
+            queries.put("bank password", passwordField.getText());
+            queries.put("repeat password", repeatPasswordField.getText());
+            String response = RequestHandler.get("/accounts/seller_account_controller/company_info/", queries,
+                    true, String.class);
+        }
+    }
+    /*
+    try {
                 Socket socket = new Socket(IP, BANK_PORT);
                 DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));;
-                outputStream.writeUTF("create_account " + Client.getInstance().getFirstName() + " " + Client.getInstance().getLastName() + " " +
-                        usernameField.getText() + " " + passwordField.getText() + " " + repeatPasswordField.getText());
+                outputStream.writeUTF("create_account " + Client.getInstance().getFirstName() + " " +
+                Client.getInstance().getLastName() + " " + usernameField.getText() + " " + passwordField.getText() + " "
+                + repeatPasswordField.getText());
                 outputStream.flush();
                 DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 handleResponse(inputStream.readUTF(), Client.getInstance().getUsername());
@@ -39,8 +54,8 @@ public class CreateBankAccount extends MenuManager {
             } catch (Exception e) {
                 errorMessage.setText(e.getMessage());
             }
-        }
-    }
+
+     */
 
     private void handleResponse(String response, String username) throws Exception {
         if(!ValidInput.INTEGER.getStringMatcher(response).matches())
