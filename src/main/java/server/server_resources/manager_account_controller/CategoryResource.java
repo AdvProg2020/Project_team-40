@@ -21,7 +21,6 @@ public class CategoryResource extends ServerResource {
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }
-        ;
     }
 
     @Put

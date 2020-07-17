@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class LoginManager extends MenuManager {
-    private AccountController accountController = AccountController.getInstance();
     public Label errorMessage;
     public TextField usernameField;
     public PasswordField passwordField;
@@ -32,7 +31,7 @@ public class LoginManager extends MenuManager {
 
                 HashMap<String, String> userQueries = new HashMap<>();
                 userQueries.put("username", usernameField.getText());
-                HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/",userQueries, false, HashMap.class);
+                HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/", userQueries, false, HashMap.class);
                 assert userParameters != null;
                 Client.getInstance().setParameters(userParameters);
                 if(Client.getInstance().getBankAccount() == null)
