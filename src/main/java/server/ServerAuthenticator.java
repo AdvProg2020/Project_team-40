@@ -4,10 +4,8 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.MapVerifier;
-import server.model.users.Customer;
-import server.model.users.Manager;
-import server.model.users.Seller;
-import server.model.users.User;
+import server.model.users.*;
+import server.server_resources.RoleAccessibility;
 
 import java.util.HashMap;
 
@@ -15,6 +13,7 @@ public class ServerAuthenticator {
     private  MapVerifier managerVerifier;
     private MapVerifier customerVerifier;
     private MapVerifier sellerVerifier;
+    private MapVerifier supportVerifier;
     private static ServerAuthenticator serverAuthenticator = new ServerAuthenticator();
 
     private ServerAuthenticator(){}
@@ -27,6 +26,7 @@ public class ServerAuthenticator {
         managerVerifier = new MapVerifier();
         sellerVerifier = new MapVerifier();
         customerVerifier = new MapVerifier();
+        supportVerifier = new MapVerifier();
         HashMap<String, User> allUsers = User.getAllUsers();
         for (String username : allUsers.keySet()) {
             User user = allUsers.get(username);
@@ -36,6 +36,8 @@ public class ServerAuthenticator {
                 customerVerifier.getLocalSecrets().put(username, user.getPassword().toCharArray());
             else if (user instanceof Seller)
                 sellerVerifier.getLocalSecrets().put(username, user.getPassword().toCharArray());
+            else if (user instanceof Support)
+                supportVerifier.getLocalSecrets().put(username, user.getPassword().toCharArray());
         }
     }
 
