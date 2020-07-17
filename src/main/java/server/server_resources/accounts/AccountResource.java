@@ -1,5 +1,6 @@
 package server.server_resources.accounts;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.AccountsException;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
@@ -21,8 +22,9 @@ public class AccountResource extends ServerResource {
     }
 
     @Get
-    public boolean doesUserExist(){
-        return User.doesUserExist(getQueryValue("username"));
+    public String doesUserExist(){
+        boolean doesUserExist =  User.doesUserExist(getQueryValue("username"));
+        return new YaGson().toJson(doesUserExist, boolean.class);
     }
 
 }

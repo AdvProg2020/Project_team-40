@@ -1,5 +1,6 @@
 package server.server_resources.manager_account_controller;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.AccountsException;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
@@ -9,10 +10,11 @@ import server.model.requests.Request;
 
 public class RequestResource extends ServerResource {
     @Get
-    public Request getRequestObject()  {
+    public String getRequestObject()  {
 
         try {
-            return ManagerAccountController.getInstance().getRequest(getQueryValue("requestID"));
+            Request request =  ManagerAccountController.getInstance().getRequest(getQueryValue("requestID"));
+            return new YaGson().toJson(request, Request.class);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
 

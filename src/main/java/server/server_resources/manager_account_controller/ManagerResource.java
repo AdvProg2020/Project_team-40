@@ -1,5 +1,6 @@
 package server.server_resources.manager_account_controller;
 
+import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
@@ -22,7 +23,8 @@ public class ManagerResource extends ServerResource {
     }
 
     @Get
-    public boolean doesManagerExist(){
-        return User.doesManagerExist();
+    public String doesManagerExist(){
+        boolean doesManagerExist =  User.doesManagerExist();
+        return new YaGson().toJson(doesManagerExist, boolean.class);
     }
 }

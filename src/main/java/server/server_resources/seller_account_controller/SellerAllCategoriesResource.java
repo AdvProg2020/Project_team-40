@@ -1,5 +1,7 @@
 package server.server_resources.seller_account_controller;
 
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.AuthorizationException;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
@@ -11,7 +13,8 @@ import java.util.HashMap;
 public class SellerAllCategoriesResource extends ServerResource {
 
     @Get
-    public HashMap<String, Category> getAllCategories() throws AuthorizationException {
-        return SellerAccountController.getInstance().getAllCategories();
+    public String getAllCategories() throws AuthorizationException {
+        HashMap<String, Category> categories = SellerAccountController.getInstance().getAllCategories();
+        return new YaGson().toJson(categories, new TypeToken<HashMap<String, Category>>(){}.getType());
     }
 }

@@ -1,5 +1,7 @@
 package server.server_resources.seller_account_controller;
 
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.AuthorizationException;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
@@ -10,7 +12,8 @@ import java.util.ArrayList;
 
 public class SalesHistoryResource extends ServerResource {
     @Get
-    public ArrayList<Log> getSalesHistory() throws AuthorizationException {
-        return SellerAccountController.getInstance().getSalesHistory(getQueryValue("username"));
+    public String getSalesHistory() throws AuthorizationException {
+        ArrayList<Log> salesHistory =  SellerAccountController.getInstance().getSalesHistory(getQueryValue("username"));
+        return new YaGson().toJson(salesHistory, new TypeToken<ArrayList<Log>>(){}.getType());
     }
 }

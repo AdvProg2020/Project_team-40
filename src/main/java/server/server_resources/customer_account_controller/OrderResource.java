@@ -1,5 +1,6 @@
 package server.server_resources.customer_account_controller;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.AccountsException;
 import exceptions.AuthorizationException;
 import org.restlet.resource.Get;
@@ -10,9 +11,11 @@ import server.model.log.Log;
 
 public class OrderResource extends ServerResource {
     @Get
-    public Log getOrder() throws  AuthorizationException {
+    public String getOrder() throws  AuthorizationException {
+        YaGson mapper = new YaGson();
         try {
-            return CustomerAccountController.getInstance().getOrder(getQueryValue("orderID"), getQueryValue("username"));
+            Log log = CustomerAccountController.getInstance().getOrder(getQueryValue("orderID"), getQueryValue("username"));
+            return mapper.toJson(log, Log.class);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }
