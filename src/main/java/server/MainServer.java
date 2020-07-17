@@ -79,8 +79,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class));
 
-        getDefaultHost().attach("/accounts/bank_account/register", authenticator.getNewGuard(BankRegisterResource.class));
-        getDefaultHost().attach("/accounts/bank_account/login", authenticator.getNewGuard(BankLoginResource.class));
+        getDefaultHost().attach("/bank/register/", BankRegisterResource.class);
+        getDefaultHost().attach("/bank/login/", BankLoginResource.class);
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);
@@ -89,6 +89,5 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/message/", MessageResource.class);
         getDefaultHost().attach("/chat/members/", MembersResource.class);
         getDefaultHost().attach("/chat/supports/", SupportsResource.class);
-
     }
 }

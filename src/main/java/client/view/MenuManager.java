@@ -21,8 +21,6 @@ public class MenuManager {
     private static JFXButton mainMenuProductButton;
     private static JFXButton mainMenuBackButton;
     protected static ArrayList<String> roots;
-    protected static final int BANK_PORT = 8080;
-    protected static final String IP = "127.0.0.1";
 
     static {
         roots = new ArrayList<>();

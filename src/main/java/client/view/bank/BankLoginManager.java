@@ -22,8 +22,10 @@ public class BankLoginManager extends MenuManager {
             return;
         }
         HashMap<String, String> queries = new HashMap<>();
-        queries.put("password", passwordField.getText());
-        RequestHandler.post("/accounts/account/", usernameField.getText(), queries, true, null);
+        queries.put("bank password", passwordField.getText());
+        queries.put("username", Client.getInstance().getUsername());
+        String response = (String) RequestHandler.post("/bank/login/", usernameField.getText(), queries, true, null);
+
     }
     /*
 
