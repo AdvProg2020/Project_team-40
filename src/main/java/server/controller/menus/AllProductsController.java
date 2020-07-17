@@ -37,7 +37,7 @@ public class AllProductsController {
 
         return allProductsController;
     }
-
+    @Deprecated
     public void setIsOffsOnly(boolean offOnly){
         if(offOnly){
             products.clear();
@@ -73,7 +73,7 @@ public class AllProductsController {
 
         return allSubCategories;
     }
-
+    @Deprecated
     public void filterAndSort(){
         productFilter.filter();
         productsToShow = productFilter.getFilteredProducts();
@@ -81,6 +81,7 @@ public class AllProductsController {
         productsToShow = productSort.getSortedProducts();
     }
 
+    @Deprecated
     public ArrayList<Product> getAllProducts(){
         return productsToShow;
     }
@@ -92,19 +93,21 @@ public class AllProductsController {
         return product;
     }
 
+    @Deprecated
     public ArrayList<String> getAvailableStringFilters(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(productFilter.getStringProperties().keySet());
         return arrayList;
     }
 
+    @Deprecated
     public ArrayList<String> getAvailableValueFilters(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(productFilter.getRangeProperties().keySet());
         return arrayList;
     }
 
-
+    @Deprecated
     public void addFilter(String name, String value) {
         switch(name){
             case "productName" :
@@ -126,12 +129,14 @@ public class AllProductsController {
         }
     }
 
+    @Deprecated
     public void addFilter(String name, ArrayList<String> values) throws MenuException {
         if(!getAvailableStringFilters().contains(name))
             throw new MenuException("This filter is not available.");
         productFilter.setStringProperty(name, values);
     }
 
+    @Deprecated
     public void addFilter(String name, double min, double max) throws MenuException {
         if(!getAvailableValueFilters().contains(name) && !name.equals("price"))
             throw new MenuException("This filter is not available.");
@@ -140,10 +145,12 @@ public class AllProductsController {
         productFilter.setRangeProperty(name, new Range(min, max));
     }
 
+    @Deprecated
     public void disableFilter(String name){
         productFilter.disableFilter(name);
     }
 
+    @Deprecated
     public ArrayList<String> getAvailableSorts(){
         ArrayList<String> sorts = new ArrayList<>();
         sorts.add("MOST_EXPENSIVE");
@@ -154,23 +161,18 @@ public class AllProductsController {
         return sorts;
     }
 
+    @Deprecated
     public void setSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
         currentSort = SortTypes.valueOf(sort);
     }
 
+    @Deprecated
     public double getRangeCap(String rangeProperty) throws MenuException{
         if(!productFilter.getRangeProperties().containsKey(rangeProperty) && !rangeProperty.equals("price"))
             throw new MenuException("No such range property");
         return productFilter.getMaxCap(rangeProperty);
     }
 
-    public void disableSort() {
-        currentSort = null;
-    }
-
-    public String getCurrentSort(){
-        return currentSort.toString();
-    }
 }
