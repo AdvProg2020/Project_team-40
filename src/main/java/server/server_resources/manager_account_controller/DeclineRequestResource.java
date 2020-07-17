@@ -8,9 +8,9 @@ import server.controller.accounts.ManagerAccountController;
 
 public class DeclineRequestResource extends ServerResource {
     @Put
-    public void acceptRequest()  {
+    public void declineRequest(String requestId)  {
         try {
-            ManagerAccountController.getInstance().declineRequest(getQueryValue("requestID"));
+            ManagerAccountController.getInstance().declineRequest(requestId);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }

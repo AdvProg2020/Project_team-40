@@ -1,5 +1,7 @@
 package server.server_resources.manager_account_controller;
 
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.AccountsException;
 import org.restlet.resource.*;
 import server.controller.accounts.ManagerAccountController;
@@ -10,15 +12,14 @@ import java.util.HashMap;
 
 public class ManagerDiscountResource extends ServerResource {
     @Get
-    public ArrayList<DiscountCode> getDiscount() throws AccountsException {
-        ArrayList<DiscountCode> code = new ArrayList<>();
+    public String getDiscount() throws AccountsException {
         DiscountCode discountCode =  ManagerAccountController.getInstance().getDiscount(getQueryValue("code"));
-        code.add(discountCode);
-        return code;
+        return new YaGson().toJson(discountCode, DiscountCode.class);
     }
 
     @Post
-    public void createDiscount(ArrayList<String> customers)  {
+    public void createDiscount(String customersJson)  {
+        ArrayList<String> customers = new YaGson().fromJson(customersJson, new TypeToken<ArrayList<String>>(){}.getType());
         String startDate = getQueryValue("startDate");
         String endDate = getQueryValue("endDate");
         int percentage = Integer.parseInt(getQueryValue("percentage"));
@@ -32,7 +33,8 @@ public class ManagerDiscountResource extends ServerResource {
     }
 
     @Put
-    public void editDiscount(HashMap<String, String> toEdit) {
+    public void editDiscount(String toEditJson) {
+        HashMap<String, String> toEdit = new YaGson().fromJson(toEditJson, new TypeToken<HashMap<String, String>>(){}.getType());
         try {
             ManagerAccountController.getInstance().editDiscount(getQueryValue("code"), toEdit);
         } catch (AccountsException e) {

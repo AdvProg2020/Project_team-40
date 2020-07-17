@@ -1,5 +1,7 @@
 package server.server_resources.manager_account_controller;
 
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.AccountsException;
 import org.restlet.resource.*;
 import server.controller.accounts.ManagerAccountController;
@@ -10,12 +12,14 @@ import java.util.HashMap;
 
 public class CategoryResource extends ServerResource {
     @Get
-    public Category getCategory(){
-        return Category.getCategoryByName(getQueryValue("name"));
+    public String getCategory(){
+        Category category = Category.getCategoryByName(getQueryValue("name"));
+        return new YaGson().toJson(category, String.class);
     }
 
     @Post
-    public void createCategory(HashMap<String, PropertyType> properties)  {
+    public void createCategory(String propertiesJson)  {
+        HashMap<String, PropertyType> properties = new YaGson().fromJson(propertiesJson, new TypeToken<HashMap<String, PropertyType>>(){}.getType());
         try {
             ManagerAccountController.getInstance().createCategory(getQueryValue("name"), getQueryValue("parentName"), properties);
         } catch (AccountsException e) {
@@ -25,7 +29,8 @@ public class CategoryResource extends ServerResource {
     }
 
     @Put
-    public void editCategory(HashMap<String, String> toEdit)  {
+    public void editCategory(String toEditJson)  {
+        HashMap<String, String > toEdit = new YaGson().fromJson(toEditJson, new TypeToken<HashMap<String, String>>(){}.getType());
         try {
             ManagerAccountController.getInstance().editCategory(getQueryValue("name"), toEdit);
         } catch (AccountsException e) {

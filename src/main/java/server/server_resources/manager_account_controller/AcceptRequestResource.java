@@ -10,7 +10,7 @@ public class AcceptRequestResource extends ServerResource {
     @Put
     public void acceptRequest(String requestId)  {
         try {
-            ManagerAccountController.getInstance().acceptRequest(getQueryValue("requestID"));
+            ManagerAccountController.getInstance().acceptRequest(requestId);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
 
