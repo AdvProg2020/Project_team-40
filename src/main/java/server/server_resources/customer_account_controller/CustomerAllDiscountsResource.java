@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class CustomerAllDiscountsResource extends ServerResource {
     @Get
     public String getAllDiscounts() throws AuthorizationException {
-        HashMap<String, DiscountCode> allDiscounts =  CustomerAccountController.getInstance().getDiscountCodes(getAttribute("username"));
+        HashMap<String, DiscountCode> allDiscounts =  CustomerAccountController.getInstance().getDiscountCodes(getQueryValue("username"));
         return new YaGson().toJson(allDiscounts, new TypeToken<HashMap<String, DispositionWriter>>(){}.getType());
     }
 }

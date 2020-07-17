@@ -44,6 +44,7 @@ public class DiscountMenuManager implements Initializable {
 
     private void loadCustomersDiscounts() {
         requestQueries.clear();
+        requestQueries.put("username", Client.getInstance().getUsername());
         HashMap<String, DiscountCode> discountCodes = RequestHandler.get("/accounts/customer_account_controller/all_discounts/",
                 requestQueries, true, new TypeToken<HashMap<String, DiscountCode>>(){}.getType());
         assert discountCodes != null;
