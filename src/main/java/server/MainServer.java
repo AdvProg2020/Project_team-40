@@ -19,6 +19,7 @@ import server.server_resources.chat.SupportsResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
+import server.server_resources.shop.*;
 
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
@@ -84,6 +85,15 @@ public class MainServer extends Component {
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);
+
+        getDefaultHost().attach("/shop/all_categories/", AllCategoriesResource.class);
+        getDefaultHost().attach("/shop/all_sub_categories/", AllSubCategoriesResource.class);
+        getDefaultHost().attach("/shop/comment/", CommentResource.class);
+        getDefaultHost().attach("/shop/all_comments/", CommentsResource.class);
+        getDefaultHost().attach("/shop/product/attributes/", ProductAttributesResource.class);
+        getDefaultHost().attach("/shop/product/sellers/", ProductSellersResource.class);
+        getDefaultHost().attach("/shop/all_products/", ProductsResource.class);
+        getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
         getDefaultHost().attach("/chat/message/", MessageResource.class);
