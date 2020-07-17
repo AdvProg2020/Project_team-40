@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class Manager extends User {
     private static ArrayList<Request> requests = new ArrayList<>();
+    private static Double wage;
+    private static Double minWalletBalance;
 
     public Manager(){}
 
@@ -13,6 +15,10 @@ public class Manager extends User {
                    String lastName, String email, String phoneNo) {
         super(username, password, firstName, lastName, email, phoneNo);
         setCommonBankAccount();
+        if(wage == null)
+            wage = Double.valueOf(0);
+        if(minWalletBalance == null)
+            minWalletBalance = Double.valueOf(0);
     }
 
     private void setCommonBankAccount() {
@@ -23,6 +29,22 @@ public class Manager extends User {
                 break;
             }
         }
+    }
+
+    public static void setWage(Double wage) {
+        Manager.wage = wage;
+    }
+
+    public static void setMinWalletBalance(Double minWalletBalance) {
+        Manager.minWalletBalance = minWalletBalance;
+    }
+
+    public static double subtractWage(double money) {
+        return money * ((100 - wage) / 100);
+    }
+
+    public static boolean isWalletBalanceEnough(double money) {
+        return money >= minWalletBalance;
     }
 
     @Override
