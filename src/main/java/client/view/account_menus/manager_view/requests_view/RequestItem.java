@@ -153,7 +153,7 @@ public class RequestItem extends MenuManager implements Initializable {
         try {
             HashMap<String, String> queries = new HashMap<>();
             queries.put("requestID", requestId);
-            Request request = (Request) RequestHandler.get("/accounts/manager_account_controller/request/", queries, true, Request.class);
+            Request request =  RequestHandler.get("/accounts/manager_account_controller/request/", queries, true, Request.class);
             AnchorPane pane = loader.load();
             RequestMenu requestMenu = loader.getController();
             setLabelsContent(requestMenu, type, request);

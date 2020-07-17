@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.sellers_offs_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -34,7 +35,7 @@ public class SellersOffsManager implements Initializable{
         offsVBox.getChildren().clear();
         HashMap<String, String> queries = new HashMap<>();
         queries.put("username", Client.getInstance().getUsername());
-        HashMap<String, Off> offs = (HashMap) RequestHandler.get("/accounts/seller_account_controller/all_offs/", queries, true, HashMap.class);
+        HashMap<String, Off> offs =  RequestHandler.get("/accounts/seller_account_controller/all_offs/", queries, true, new TypeToken<HashMap<String, Off>>(){}.getType());
         assert offs != null;
         for(Map.Entry<String, Off> entry : offs.entrySet()) {
             OffItemManager.setLastOff(entry.getValue());

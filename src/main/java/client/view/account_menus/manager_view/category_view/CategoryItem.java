@@ -41,7 +41,7 @@ public class CategoryItem extends MenuManager implements Initializable {
     private void loadCategories(VBox vBoxItems) {
         vBoxItems.getChildren().clear();
         requestQueries.clear();
-        Set<String> allCategories =(Set) RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
+        Set<String> allCategories = RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
         assert allCategories != null;
         for (String categoryName : allCategories) {
             try {

@@ -2,6 +2,7 @@ package client.view.account_menus.manager_view.discount_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,8 @@ public class DiscountMenuManager implements Initializable {
 
     private void loadCustomersDiscounts() {
         requestQueries.clear();
-        HashMap<String, DiscountCode> discountCodes = (HashMap)RequestHandler.get("/accounts/customer_account_controller/all_discounts/", requestQueries, true, HashMap.class);
+        HashMap<String, DiscountCode> discountCodes = RequestHandler.get("/accounts/customer_account_controller/all_discounts/",
+                requestQueries, true, new TypeToken<HashMap<String, DiscountCode>>(){}.getType());
         assert discountCodes != null;
         for(DiscountCode discountCode : discountCodes.values()) {
             addDiscountToList(discountCode);
@@ -52,22 +54,11 @@ public class DiscountMenuManager implements Initializable {
 
     public void loadAllDiscounts() {
         requestQueries.clear();
-        ArrayList<?> discountCodes = (ArrayList<?>)RequestHandler.get("/accounts/manager_account_controller/all_discounts/", requestQueries, true, ArrayList.class);
+        ArrayList<DiscountCode> discountCodes = RequestHandler.get("/accounts/manager_account_controller/all_discounts/",
+                requestQueries, true, new TypeToken<ArrayList<DiscountCode>>(){}.getType());
         assert discountCodes != null;
-        for (Object obj : discountCodes) {
-            LinkedHashMap<?,?> discountCode = (LinkedHashMap<?, ?>) obj;
+        for (DiscountCode discountCode : discountCodes) {
             addDiscountToList(discountCode);
-        }
-    }
-
-    private void addDiscountToList(LinkedHashMap<?, ?> discountCode){
-        try {
-            AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount_item.fxml"));
-            HBox hBox = (HBox) item.getChildren().get(0);
-            setLabelsContent(discountCode, hBox);
-            vBoxItems.getChildren().add(item);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

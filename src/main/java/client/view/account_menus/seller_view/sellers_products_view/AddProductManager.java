@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.sellers_products_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import exceptions.AccountsException;
@@ -46,7 +47,8 @@ public class AddProductManager extends MenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
         toggleGroupCategory = new ToggleGroup();
-        HashMap<String, Category> categoryHashMap = (HashMap) RequestHandler.get("/accounts/seller_account_controller/all_categories/", requestQueries, true, HashMap.class);
+        HashMap<String, Category> categoryHashMap =  RequestHandler.get("/accounts/seller_account_controller/all_categories/",
+                requestQueries, true, new TypeToken<HashMap<String, Category>>(){}.getType());
         assert categoryHashMap != null;
         for(Category category : categoryHashMap.values()) {
             RadioButton categoryButton = new RadioButton(category.getName());
@@ -60,7 +62,8 @@ public class AddProductManager extends MenuManager implements Initializable {
     private void showCategoryProperties(RadioButton radioButton) {
         requestQueries.clear();
         requestQueries.put("category", radioButton.getText());
-        HashMap<String, PropertyType> categoryProperties = (HashMap)RequestHandler.get("/accounts/seller_account_controller/category_properties/", requestQueries, true , HashMap.class);
+        HashMap<String, PropertyType> categoryProperties = RequestHandler.get("/accounts/seller_account_controller/category_properties/",
+                requestQueries, true , new TypeToken<HashMap<String, PropertyType>>(){}.getType());
         assert categoryProperties != null;
         propertyBox.getChildren().clear();
         constructHashMaps(categoryProperties);
@@ -144,7 +147,7 @@ public class AddProductManager extends MenuManager implements Initializable {
             requestQueries.put("category", ((RadioButton) toggleGroupCategory.getSelectedToggle()).getText());
             requestQueries.put("quantity", countField.getText());
 
-            Product product = (Product)RequestHandler.post("/accounts/seller_account_controller/product/", Client.getInstance().getUsername(), requestQueries,
+            Product product = RequestHandler.post("/accounts/seller_account_controller/product/", Client.getInstance().getUsername(), requestQueries,
                     true, Product.class);
 
             assert product != null;

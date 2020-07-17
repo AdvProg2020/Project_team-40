@@ -2,6 +2,7 @@ package client.view.account_menus.manager_view.manage_users_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -34,11 +35,11 @@ public class UserItem extends MenuManager implements Initializable {
     private void loadUsers(VBox vBoxItems) {
         try {
             vBoxItems.getChildren().clear();
-            ArrayList<?> users = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/users/", requestQueries, true, ArrayList.class);
+            ArrayList<User> users =  RequestHandler.get("/accounts/manager_account_controller/users/",
+                    requestQueries, true, new TypeToken<ArrayList<User>>(){}.getType());
             assert users != null;
-            for (Object obj : users) {
+            for (User user : users) {
                 try {
-                    User user = (User) obj;
                     AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
                     HBox hBox = (HBox) item.getChildren().get(0);
                     setLabelsContent(user, hBox);
@@ -106,7 +107,8 @@ public class UserItem extends MenuManager implements Initializable {
         try {
             requestQueries.clear();
             requestQueries.put("username", username);
-            HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/",requestQueries, false, HashMap.class);
+            HashMap<String, String> userParameters = RequestHandler.get("/accounts/user/",requestQueries,
+                    false, new TypeToken<HashMap<String, String>>(){}.getType());
             AnchorPane pane = loader.load();
             UserMenu userMenu = loader.getController();
             setLabelsContent(userMenu, userParameters);

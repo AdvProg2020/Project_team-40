@@ -3,6 +3,7 @@ package client.view.account_menus.seller_view.sellers_offs_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.YaGson;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -45,7 +46,7 @@ public class AddOffManager extends MenuManager implements Initializable{
 
     private void initializeProducts(){
         requestQueries.put("username", Client.getInstance().getUsername());
-        sellerProducts = (ArrayList<String>) RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
+        sellerProducts =  RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
         chosenProducts = new ArrayList<>();
 
         ObservableList<Item> items = FXCollections.observableArrayList();
@@ -125,7 +126,10 @@ public class AddOffManager extends MenuManager implements Initializable{
             requestQueries.put("startDate", startDate);
             requestQueries.put("endDate", endDate);
             requestQueries.put("percentage", Double.toString(percentage));
-            RequestHandler.post("/accounts/seller_account_controller/off/", chosenProducts, requestQueries, true, null);
+
+            YaGson mapper = new YaGson();
+            String entity = mapper.toJson(chosenProducts, ArrayList.class);
+            RequestHandler.post("/accounts/seller_account_controller/off/", entity, requestQueries, true, null);
         } catch(ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
             {

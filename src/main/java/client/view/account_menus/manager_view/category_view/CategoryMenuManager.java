@@ -48,13 +48,13 @@ public class CategoryMenuManager implements Initializable {
     private void loadCategories() {
         vBoxItems.getChildren().clear();
         requestQueries.clear();
-        Set<String> allCategories =(Set) RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
+        Set<String> allCategories = RequestHandler.get("/accounts/manager_account_controller/all_categories/", requestQueries, true, Set.class);
         assert allCategories != null;
         for (String categoryName : allCategories) {
             try {
                 requestQueries.clear();
                 requestQueries.put("name", categoryName);
-                Category category =(Category) RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, true, Category.class);
+                Category category = RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, true, Category.class);
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().
                         getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);

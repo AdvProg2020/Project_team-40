@@ -23,7 +23,7 @@ public class MainMenuManager extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         mainInnerPane = InnerPane;
-        boolean doesManagerExist = (boolean) RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
+        boolean doesManagerExist =  RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
         if (doesManagerExist){
             backButton.setDisable(false);
             productsButton.setDisable(false);

@@ -2,6 +2,8 @@ package client.view.account_menus.seller_view.sellers_products_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -132,7 +134,9 @@ public class ProductView extends MenuManager implements Initializable {
         requestQueries.put("productID", this.thisProduct.getProductId());
         requestQueries.put("field", field);
         requestQueries.put("newField", newField);
-        RequestHandler.put("/accounts/seller_account_controller/product/", properties, requestQueries, true, null);
+
+        String entity = new YaGson().toJson(properties, new TypeToken<ArrayList<HashMap>>(){}.getType());
+        RequestHandler.put("/accounts/seller_account_controller/product/", entity, requestQueries, true, null);
     }
 
     private void saveName() {

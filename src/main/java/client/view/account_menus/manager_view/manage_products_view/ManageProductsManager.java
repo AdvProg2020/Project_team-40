@@ -1,6 +1,7 @@
 package client.view.account_menus.manager_view.manage_products_view;
 
 import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -27,7 +28,8 @@ public class ManageProductsManager extends MenuManager implements Initializable 
     }
 
     private void loadProducts() {
-        ArrayList<?> products =(ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/products/", new HashMap<>(), true, ArrayList.class);
+        ArrayList<Product> products = RequestHandler.get("/accounts/manager_account_controller/products/",
+                new HashMap<>(), true, new TypeToken<ArrayList<Product>>(){}.getType());
         assert products != null;
         for (Object obj : products) {
             try {

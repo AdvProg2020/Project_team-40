@@ -3,6 +3,7 @@ package client.view.account_menus.manager_view.manage_users_view;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import client.view.register_login_view.RegisterManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -15,12 +16,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
+import server.model.users.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 
 public class ManageUsersManager extends MenuManager implements Initializable {
@@ -34,14 +35,14 @@ public class ManageUsersManager extends MenuManager implements Initializable {
 
     private void loadUsers() {
         try{
-        ArrayList<?> users = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/users/", new HashMap<>(), true, ArrayList.class);
+        ArrayList<User> users =  RequestHandler.get("/accounts/manager_account_controller/users/",
+                new HashMap<>(), true, new TypeToken<ArrayList<User>>(){}.getType());
         assert users != null;
-        for (Object obj : users) {
+        for (User obj : users) {
             try {
-//                User user = (User) obj;
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_users_menus/user_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
-                setLabelsContent((LinkedHashMap<String, String>)obj, hBox);
+                setLabelsContent(obj, hBox);
                 vBoxItems.getChildren().add(item);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -54,19 +55,19 @@ public class ManageUsersManager extends MenuManager implements Initializable {
     }
     }
 
-    private void setLabelsContent(LinkedHashMap<String, String> user, HBox hBox) {
+    private void setLabelsContent(User user, HBox hBox) {
         Label usernameLabel =((Label) hBox.getChildren().get(0));
         Label roleLabel =((Label) hBox.getChildren().get(1));
         Label firsNameLabel =((Label) hBox.getChildren().get(2));
         Label lastNameLabel =((Label) hBox.getChildren().get(3));
         Label emailLabel =((Label) hBox.getChildren().get(4));
         Label phoneLabel =((Label) hBox.getChildren().get(5));
-        usernameLabel.setText(user.get("username"));
-        firsNameLabel.setText(user.get("firstName"));
-        lastNameLabel.setText(user.get("lastName"));
-        roleLabel.setText(user.get("role"));
-        emailLabel.setText(user.get("email"));
-        phoneLabel.setText(user.get("phoneNumber"));
+        usernameLabel.setText(user.getUsername());
+        firsNameLabel.setText(user.getFirstName());
+        lastNameLabel.setText(user.getLastName());
+        roleLabel.setText(user.getRole());
+        emailLabel.setText(user.getEmail());
+        phoneLabel.setText(user.getPhoneNo());
     }
 
 

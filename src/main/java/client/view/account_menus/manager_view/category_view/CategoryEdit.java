@@ -2,6 +2,7 @@ package client.view.account_menus.manager_view.category_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.YaGson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -69,7 +70,10 @@ public class CategoryEdit extends MenuManager implements Initializable {
         try {
             HashMap<String, String> queries = new HashMap<>();
             queries.put("name", oldName);
-            RequestHandler.put("/accounts/manager_account_controller/category/", toEdit, queries, true, null);
+
+            YaGson mapper = new YaGson();
+            String entity = mapper.toJson(toEdit, HashMap.class);
+            RequestHandler.put("/accounts/manager_account_controller/category/", entity, queries, true, null);
             ((Stage)cancelButton.getScene().getWindow()).close();
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED)){

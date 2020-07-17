@@ -3,6 +3,7 @@ package client.view.account_menus.manager_view.discount_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -41,8 +42,8 @@ public class DiscountItem extends MenuManager implements Initializable {
         vBoxItems.getChildren().clear();
         requestQueries.clear();
         try {
-            ArrayList<DiscountCode> allDiscounts = (ArrayList<DiscountCode>) RequestHandler.get("/accounts/manager_account_controller/all_discounts/",
-                    requestQueries, true, ArrayList.class);
+            ArrayList<DiscountCode> allDiscounts = RequestHandler.get("/accounts/manager_account_controller/all_discounts/",
+                    requestQueries, true, new TypeToken<ArrayList<DiscountCode>>(){}.getType());
             assert allDiscounts != null;
             for (DiscountCode discountCode : allDiscounts) {
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_discount_menus/discount_item.fxml"));
@@ -73,20 +74,18 @@ public class DiscountItem extends MenuManager implements Initializable {
         percentageLabel.setText(Integer.toString(discountCode.getPercentage()));
     }
 
-    private void setLabelsContent(DiscountView discountView, LinkedHashMap<?, ?> discountCode) {
+    private void setLabelsContent(DiscountView discountView, DiscountCode discountCode) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                discountView.setCodeLabel((String) discountCode.get("code"));
-                Date start = new Date((Long) discountCode.get("startDate"));
-                Date end = new Date((Long)discountCode.get("endDate"));
-                discountView.setStartLabel(start.toString());
-                discountView.setEndLabel(end.toString());
-                discountView.setCountLabel(String.valueOf(discountCode.get("countPerUser")));
-                discountView.setMaxLabel(String.valueOf(discountCode.get("maxAmount")));
-                discountView.setPercentageLabel(String.valueOf((discountCode.get("percentage"))));
-                discountView.setStatusLabel((String) discountCode.get("status"));
-                discountView.setUsersList((ArrayList<String>) discountCode.get("includedCostumers"));
+                discountView.setCodeLabel( discountCode.getCode());
+                discountView.setStartLabel(discountCode.getStartDate().toString());
+                discountView.setEndLabel(discountCode.getEndDate().toString());
+                discountView.setCountLabel(String.valueOf(discountCode.getCountPerUser()));
+                discountView.setMaxLabel(String.valueOf(discountCode.getMaxAmount()));
+                discountView.setPercentageLabel(String.valueOf((discountCode.getPercentage())));
+                discountView.setStatusLabel(discountCode.getStatus());
+                discountView.setUsersList((discountCode.getIncludedCostumers()));
             }
         });
     }
@@ -116,11 +115,12 @@ public class DiscountItem extends MenuManager implements Initializable {
         try {
             requestQueries.clear();;
             requestQueries.put("code", code);
-            ArrayList<?> discount = (ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/discount/", requestQueries, true, ArrayList.class);
+            DiscountCode discount =  RequestHandler.get("/accounts/manager_account_controller/discount/",
+                    requestQueries, true, DiscountCode.class);
             AnchorPane pane = loader.load();
             DiscountView discountView = loader.getController();
             assert discount != null;
-            setLabelsContent(discountView, (LinkedHashMap<?, ?>) discount.get(0));
+            setLabelsContent(discountView, discount);
             Stage userWindow = new Stage();
             userWindow.setScene(new Scene(pane, 900, 550));
             userWindow.initModality(Modality.APPLICATION_MODAL);

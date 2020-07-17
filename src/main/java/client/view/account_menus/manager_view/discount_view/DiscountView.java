@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import server.model.DiscountCode;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class DiscountView implements Initializable {
     public Label codeLabel;
@@ -59,7 +59,7 @@ public class DiscountView implements Initializable {
         maxLabel.setText(maxPrice);
     }
 
-    public void setUsersList(ArrayList<String> users) {
+    public void setUsersList(Set<String> users) {
         for (String user : users) {
             usersList.getItems().add(user);
         }

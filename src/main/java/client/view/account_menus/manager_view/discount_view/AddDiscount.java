@@ -2,6 +2,8 @@ package client.view.account_menus.manager_view.discount_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.Initializable;
@@ -36,10 +38,10 @@ public class AddDiscount extends MenuManager implements Initializable {
         requestQueries = new HashMap<>();
         usersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customers = new ArrayList<>();
-        ArrayList<?> allCustomers = (ArrayList<?>) RequestHandler.get("/accounts/customer_account_controller/all_customers/", requestQueries, true, ArrayList.class);
+        ArrayList<String> allCustomers = RequestHandler.get("/accounts/customer_account_controller/all_customers/", requestQueries, true, ArrayList.class);
         assert allCustomers != null;
-        for (Object customer : allCustomers) {
-            usersList.getItems().add((String)customer);
+        for (String customer : allCustomers) {
+            usersList.getItems().add(customer);
         }
     }
 
@@ -52,7 +54,10 @@ public class AddDiscount extends MenuManager implements Initializable {
             requestQueries.put("percentage", percentageField.getText());
             requestQueries.put("maxDiscount", maxPriceField.getText());
             requestQueries.put("countPerUser", countField.getText());
-            RequestHandler.post("/accounts/manager_account_controller/discount/", customers, requestQueries, true, null);
+
+            YaGson mapper = new YaGson();
+            String entity = mapper.toJson(customers, new TypeToken<ArrayList<String>>(){}.getType());
+            RequestHandler.post("/accounts/manager_account_controller/discount/", entity, requestQueries, true, null);
             ((Stage)(doneButton.getScene().getWindow())).close();
         }
         catch (ResourceException e) {

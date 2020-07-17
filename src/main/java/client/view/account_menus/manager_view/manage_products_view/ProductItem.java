@@ -2,6 +2,7 @@ package client.view.account_menus.manager_view.manage_products_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +33,10 @@ public class ProductItem extends MenuManager implements Initializable {
 
     private void loadProducts(VBox vBoxItems) {
         vBoxItems.getChildren().clear();
-        ArrayList<?> products =(ArrayList<?>) RequestHandler.get("/accounts/manager_account_controller/products/", requestQueries, true, ArrayList.class);
+        ArrayList<Product> products = RequestHandler.get("/accounts/manager_account_controller/products/", requestQueries, true, new TypeToken<ArrayList<Product>>(){}.getType());
         assert products != null;
-        for (Object obj : products) {
+        for (Product product : products) {
             try {
-                Product product = (Product)obj;
                 AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);

@@ -2,6 +2,8 @@ package client.view.account_menus.manager_view.category_view;
 
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -68,7 +70,10 @@ public class AddCategory extends MenuManager implements Initializable {
             requestQueries.clear();
             requestQueries.put("name", nameField.getText());
             requestQueries.put("parentName",parent);
-            RequestHandler.post("/accounts/manager_account_controller/category/", properties, requestQueries, true, null);
+
+            YaGson mapper = new YaGson();
+            String entity = mapper.toJson(properties, new TypeToken<HashMap<String, PropertyType>>(){}.getType());
+            RequestHandler.post("/accounts/manager_account_controller/category/", entity, requestQueries, true, null);
             ((Stage)(doneButton.getScene().getWindow())).close();
         }
         catch (ResourceException e) {

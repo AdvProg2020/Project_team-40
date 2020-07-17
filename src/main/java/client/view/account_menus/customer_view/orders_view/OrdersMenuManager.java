@@ -3,6 +3,7 @@ package client.view.account_menus.customer_view.orders_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -31,14 +32,16 @@ public class OrdersMenuManager extends MenuManager implements Initializable {
         try {
             if (Client.getInstance().getRole().equals("Customer")) {
                 requestQueries.put("username", Client.getInstance().getUsername());
-                HashMap<String, Log> orders = (HashMap<String, Log>) RequestHandler.get("/accounts/customer_account_controller/orders/", requestQueries, true, HashMap.class);
+                HashMap<String, Log> orders =  RequestHandler.get("/accounts/customer_account_controller/orders/",
+                        requestQueries, true, new TypeToken<HashMap<String, Log>>(){}.getType());
                 assert orders != null;
                 loadLogs(orders.values());
             } else {
                 titleLabel.setText("Sales History");
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
-                ArrayList<Log> logs = (ArrayList<Log>) RequestHandler.get("/accounts/seller_account_controller/sales_history/", requestQueries, true, ArrayList.class);
+                ArrayList<Log> logs = RequestHandler.get("/accounts/seller_account_controller/sales_history/",
+                        requestQueries, true, new TypeToken<ArrayList<Log>>(){}.getType());
                 loadLogs(logs);
             }
         } catch (ResourceException e){

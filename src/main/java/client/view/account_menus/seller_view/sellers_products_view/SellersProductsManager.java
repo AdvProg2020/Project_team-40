@@ -3,6 +3,7 @@ package client.view.account_menus.seller_view.sellers_products_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,7 @@ public class SellersProductsManager extends MenuManager implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
         requestQueries.put("username", Client.getInstance().getUsername());
-        boolean permission = (boolean) RequestHandler.get("/accounts/seller_account_controller/manager_permission/", requestQueries, true, boolean.class);
+        boolean permission =  RequestHandler.get("/accounts/seller_account_controller/manager_permission/", requestQueries, true, boolean.class);
         if(!permission)
             anchorPane.getChildren().remove(addButton);
         loadProducts();
@@ -46,7 +47,8 @@ public class SellersProductsManager extends MenuManager implements Initializable
         try {
             requestQueries.clear();
             requestQueries.put("username", Client.getInstance().getUsername());
-            ArrayList<Product> products = (ArrayList) RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
+            ArrayList<Product> products =  RequestHandler.get("/accounts/seller_account_controller/products/",
+                    requestQueries, true, new TypeToken<ArrayList<Product>>(){}.getType());
             assert products != null;
             vBoxItems.getChildren().clear();
             for (Product product : products) {
