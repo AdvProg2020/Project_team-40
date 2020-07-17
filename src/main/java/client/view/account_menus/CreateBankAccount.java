@@ -28,17 +28,18 @@ public class CreateBankAccount extends MenuManager {
         if(usernameField.getText().isBlank() || passwordField.getText().isBlank()
                 || repeatPasswordField.getText().isBlank()) {
             errorMessage.setText("Fill all the above Fields!");
-        } else {
-            HashMap<String, String> queries = new HashMap<>();
-            Client client = Client.getInstance();
-            queries.put("first name", client.getFirstName());
-            queries.put("last name", client.getLastName());
-            queries.put("bank username", usernameField.getText());
-            queries.put("bank password", passwordField.getText());
-            queries.put("repeat password", repeatPasswordField.getText());
-            String response = RequestHandler.get("/accounts/seller_account_controller/company_info/", queries,
-                    true, String.class);
+            return;
         }
+        HashMap<String, String> queries = new HashMap<>();
+        Client client = Client.getInstance();
+        queries.put("first name", client.getFirstName());
+        queries.put("last name", client.getLastName());
+        queries.put("bank username", usernameField.getText());
+        queries.put("bank password", passwordField.getText());
+        queries.put("repeat password", repeatPasswordField.getText());
+        queries.put("username", client.getUsername());
+        String response = RequestHandler.get("/bank/register/", queries, true, String.class);
+
     }
     /*
     try {
