@@ -59,9 +59,16 @@ public class ServerAuthenticator {
         customerVerifier.getLocalSecrets().remove(username);
     }
 
-    public  <T extends ServerResource>  ChallengeAuthenticator getNewGuard(Class<T> serverResource){
+    public  <T extends ServerResource>  ChallengeAuthenticator getNewGuard(Class<T> serverResource, RoleAccessibility role){
         ChallengeAuthenticator guard = new ChallengeAuthenticator(null, ChallengeScheme.HTTP_BASIC, "realm");
-        guard.setVerifier(managerVerifier);
+        if (role.equals(RoleAccessibility.MANAGER))
+            guard.setVerifier(managerVerifier);
+        else if (role.equals(RoleAccessibility.CUSTOMER))
+            guard.setVerifier(customerVerifier);
+        else if (role.equals(RoleAccessibility.SELLER))
+            guard.setVerifier(sellerVerifier);
+        else if (role.equals(RoleAccessibility.SUPPORT))
+            guard.setVerifier(supportVerifier);
         guard.setNext(serverResource);
         return guard;
     }
