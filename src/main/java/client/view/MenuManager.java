@@ -111,7 +111,7 @@ public class MenuManager {
 
 
     public void goToWallet() {
-        //TODO: Implement
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menu_design.fxml");
     }
 
     public void logout() {

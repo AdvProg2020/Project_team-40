@@ -124,7 +124,6 @@ public class Client {
         }
     }
 
-
     public static Client getInstance() {
         return client;
     }

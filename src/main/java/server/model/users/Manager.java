@@ -16,9 +16,9 @@ public class Manager extends User {
         super(username, password, firstName, lastName, email, phoneNo);
         setCommonBankAccount();
         if(wage == null)
-            wage = Double.valueOf(0);
+            wage = (double) 0;
         if(minWalletBalance == null)
-            minWalletBalance = Double.valueOf(0);
+            minWalletBalance = (double) 0;
     }
 
     private void setCommonBankAccount() {
