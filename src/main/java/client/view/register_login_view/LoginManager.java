@@ -3,6 +3,7 @@ package client.view.register_login_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -32,7 +33,7 @@ public class LoginManager extends MenuManager {
 
                 HashMap<String, String> userQueries = new HashMap<>();
                 userQueries.put("username", usernameField.getText());
-                HashMap<?, ?> userParameters = (HashMap<?, ?>) RequestHandler.get("/accounts/user/",userQueries, false, HashMap.class);
+                HashMap<String, String> userParameters = RequestHandler.get("/accounts/user/",userQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
                 assert userParameters != null;
                 Client.getInstance().setParameters(userParameters);
                 if(Client.getInstance().getBankAccount() == null)

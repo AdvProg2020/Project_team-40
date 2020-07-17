@@ -167,6 +167,7 @@ public class RegisterManager extends MenuManager implements Initializable {
         requestQueries.put("lastName", lastName.getText());
         requestQueries.put("email", email.getText());
         requestQueries.put("phoneNumber", phoneNumber.getText());
+        //TODO: It shouldn't post to "manager"!
         RequestHandler.post("/accounts/manager_account_controller/manager/", null, requestQueries, false, null);
     }
 
