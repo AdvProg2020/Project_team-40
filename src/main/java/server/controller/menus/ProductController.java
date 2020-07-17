@@ -39,7 +39,7 @@ public class ProductController{
             throw new MenuException("No product with such name exists.");
         return product;
     }
-
+    //Server
     public void addProductToCart(String productID, int count) throws MenuException{
         Product product = Product.getProductById(productID);
         if(product == null)
@@ -55,7 +55,7 @@ public class ProductController{
             customer.getCart().put(productID, count);
         }
     }
-
+    //Server
     public ArrayList<String> getSellersForProduct(String productName){
         ArrayList<String> sellers = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class ProductController{
 
         return productAttributes;
     }
-
+    //Server
     public HashMap<String, String> getProductAttributes(String productID) throws MenuException{
         Product product = Product.getProductById(productID);
 
@@ -143,7 +143,7 @@ public class ProductController{
 
         return productAttributes;
     }
-
+    //Server
     public ArrayList<Comment> getComments(String productID) throws MenuException{
         Product product = Product.getProductById(productID);
 
