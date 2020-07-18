@@ -10,7 +10,7 @@
             <Font name="Garamond" size="40.0" />
         </font>
     </Label>
-    <Label fx:id="balanceLabel" alignment="CENTER" layoutX="222.0" layoutY="245.0" prefHeight="48.0" prefWidth="614.0">
+    <Label fx:id="balanceLabel" alignment="CENTER" layoutX="93.0" layoutY="252.0" prefHeight="105.0" prefWidth="873.0">
         <font>
             <Font name="Garamond" size="40.0" />
         </font>

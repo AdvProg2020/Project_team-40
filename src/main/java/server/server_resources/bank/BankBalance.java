@@ -1,5 +1,6 @@
 package server.server_resources.bank;
 
+import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import server.controller.menus.BankController;
@@ -22,10 +23,9 @@ public class BankBalance extends ServerResource {
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             String bankResponse = inputStream.readUTF();
             socket.close();
-            return bankResponse;
+            return new YaGson().toJson(bankResponse, String.class);
         } catch (IOException e) {
-            return e.getMessage();
+            return new YaGson().toJson(e.getMessage(), String.class);
         }
-
     }
 }
