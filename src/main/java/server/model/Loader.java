@@ -28,6 +28,8 @@ public class Loader {
         Score.loadData();
         Cart.loadData();
         Chat.loadData();
+        Auction.loadData();
+        Receipt.loadData();
     }
 
     public void saveData() throws DataException {
@@ -42,6 +44,8 @@ public class Loader {
         Off.saveData();
         Cart.saveData();
         Chat.saveData();
+        Auction.saveData();
+        Receipt.saveData();
     }
 
     public static Loader getLoader() {
