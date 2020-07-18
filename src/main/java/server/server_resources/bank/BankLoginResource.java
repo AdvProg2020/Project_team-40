@@ -26,7 +26,6 @@ public class BankLoginResource extends ServerResource {
             outputStream.writeUTF("get_token " + bankUsername + " " + password);
             outputStream.flush();
             String bankResponse = inputStream.readUTF();
-            System.out.println("token = " + bankResponse);
             if(!bankResponse.equals("invalid username or password")) {
                 BankController.getBankController().getUsersTokens().put(getQueryValue("username"), bankResponse);
             }
