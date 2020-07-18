@@ -1,5 +1,6 @@
 package client.view.account_menus.seller_view.sellers_products_view;
 
+import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
@@ -131,6 +132,7 @@ public class ProductView extends MenuManager implements Initializable {
         ArrayList<HashMap> properties = new ArrayList<>();
         properties.add(thisProduct.getExtraStringProperties());
         properties.add(thisProduct.getExtraValueProperties());
+        requestQueries.put("username", Client.getInstance().getUsername());
         requestQueries.put("productID", this.thisProduct.getProductId());
         requestQueries.put("field", field);
         requestQueries.put("newField", newField);

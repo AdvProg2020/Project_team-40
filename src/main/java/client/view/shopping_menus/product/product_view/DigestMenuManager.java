@@ -1,11 +1,12 @@
 package client.view.shopping_menus.product.product_view;
 
+import client.controller.RequestHandler;
+import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import server.controller.menus.ProductController;
-import exceptions.MenuException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -16,8 +17,9 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
-import client.view.MenuManager;
+import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class DigestMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-
+        HashMap<String, String> requestQueries = new HashMap<>();
         JFXTreeTableColumn<Attribute, String> nameCol = new JFXTreeTableColumn<>("Attribute name");
         nameCol.setPrefWidth(500);
         nameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
@@ -50,13 +52,20 @@ public class DigestMenuManager extends MenuManager implements Initializable{
 
         ObservableList<Attribute> attributes = FXCollections.observableArrayList();
         try {
-            HashMap<String, String> attributesHashMap = ProductController.getInstance().getProductAttributes(ProductMenuManager.getProduct().getProductId());
+            requestQueries.put("productID", ProductMenuManager.getProduct().getProductId());
+            HashMap<String, String> attributesHashMap = RequestHandler.get("/shop/product/attributes/",
+                    requestQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
+            assert attributesHashMap != null;
             for(Map.Entry<String, String> entry : attributesHashMap.entrySet()) {
                 Attribute attribute = new Attribute(entry.getKey(), entry.getValue());
                 attributes.add(attribute);
             }
-        } catch(MenuException e) {
-            e.printStackTrace();
+        } catch(ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         final TreeItem<Attribute> root = new RecursiveTreeItem<>(attributes, RecursiveTreeObject::getChildren);

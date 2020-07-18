@@ -32,7 +32,7 @@ public class SellerProductResource extends ServerResource {
         String description = getQueryValue("description");
         try {
             Product product = SellerAccountController.getInstance().createNewProduct(username, name, company, price, quantity, category, description);
-            return new YaGson().toJson(price, Product.class);
+            return new YaGson().toJson(product, Product.class);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }

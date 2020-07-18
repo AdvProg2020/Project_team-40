@@ -1,7 +1,7 @@
 package client.view.shopping_menus.products_and_offs_menus.products_view;
 
+import client.controller.products_menu.ProductsMenuController;
 import com.jfoenix.controls.JFXTextField;
-import server.controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -36,10 +36,10 @@ public class FilterTextItemManager implements Initializable{
                     value = null;
             }
 
-            AllProductsController.getInstance().disableFilter(property);
+            ProductsMenuController.getInstance().disableFilter(property);
 
             try {
-                AllProductsController.getInstance().addFilter(property, values);
+                ProductsMenuController.getInstance().addFilter(property, values);
             } catch(MenuException e) {
                 e.printStackTrace();
             }

@@ -1,20 +1,20 @@
 package client.view.shopping_menus.product.product_view;
 
 import client.controller.Client;
+import client.controller.RequestHandler;
+import client.view.MenuManager;
 import com.jfoenix.controls.JFXButton;
-import server.controller.menus.ProductController;
-import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import server.model.users.Customer;
-import server.model.users.User;
-import client.view.MenuManager;
+import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class GeneralMenuManager extends MenuManager implements Initializable{
@@ -34,8 +34,7 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
         descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
         priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
-        if (User.getUserByUsername(Client.getInstance().getUsername()) == null ||
-                User.getUserByUsername(Client.getInstance().getUsername()) instanceof Customer) {
+        if (!Client.getInstance().isLoggedIn() || Client.getInstance().getRole().equals("Customer")) {
             //Work the functionality of product count
             SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
             countSpinner.setValueFactory(spinnerValueFactory);
@@ -55,9 +54,16 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
 
     public void handleCart(){
         try {
-            ProductController.getInstance().addProductToCart(ProductMenuManager.getProduct().getProductId(), (Integer)countSpinner.getValueFactory().getValue());
-        } catch(MenuException e) {
-            e.printStackTrace();
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("username", Client.getInstance().getUsername());
+            queries.put("count", Integer.toString(countSpinner.getValueFactory().getValue()));
+            RequestHandler.put("/shop/cart/", ProductMenuManager.getProduct().getProductId(), queries, false, null);
+        } catch(ResourceException e) {
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
