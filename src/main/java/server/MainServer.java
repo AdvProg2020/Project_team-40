@@ -8,13 +8,9 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
-import server.controller.accounts.ManagerAccountController;
-import server.model.Product;
-import server.model.enumerations.PropertyType;
-import server.model.users.Seller;
 import server.server_resources.accounts.AccountResource;
-import server.server_resources.bank.BankBalance;
 import server.server_resources.accounts.UserResource;
+import server.server_resources.bank.BankBalance;
 import server.server_resources.bank.BankLoginResource;
 import server.server_resources.bank.BankRegisterResource;
 import server.server_resources.chat.ChatResource;
@@ -25,8 +21,6 @@ import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
 import server.server_resources.shop.*;
-
-import java.util.HashMap;
 
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
