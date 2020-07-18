@@ -81,6 +81,7 @@ public class ManageUsersManager extends MenuManager implements Initializable {
             registerManager.registerLabel.setText("New Manager");
             registerManager.sellerButton.setDisable(true);
             registerManager.customerButton.setDisable(true);
+            registerManager.supportButton.setDisable(true);
             registerManager.managerButton.setSelected(true);
             Stage stage = new Stage();
             stage.setScene(new Scene(pane, 1100, 610));
