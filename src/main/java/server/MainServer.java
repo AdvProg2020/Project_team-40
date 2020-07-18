@@ -67,6 +67,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.CUSTOMER));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", authenticator.getNewGuard(AllOffsResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/company_info/", authenticator.getNewGuard(CompanyInfoResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/off/", authenticator.getNewGuard(OffResource.class, RoleAccessibility.SELLER));
