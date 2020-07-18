@@ -44,13 +44,4 @@ public class BankRegisterResource extends ServerResource {
         User.getUserByUsername(username).setBankAccount(Integer.parseInt(response));
         return response;
     }
-
-    /*
-    @Put
-    public void setBankAccount(String username){
-
-        User.getUserByUsername(username).setBankAccount(Integer.parseInt(getQueryValue("bankAccount")));
-    }
-
-     */
 }

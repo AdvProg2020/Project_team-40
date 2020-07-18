@@ -31,7 +31,7 @@
                             <Font size="16.0" />
                         </font>
                     </JFXButton>
-                    <JFXButton onMouseClicked="#exitBankAccount" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Exit" textFill="WHITE">
+                    <JFXButton fx:id="exitButton" onMouseClicked="#exitBankAccount" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Exit" textFill="WHITE">
                         <font>
                             <Font size="16.0" />
                         </font>

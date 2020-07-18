@@ -32,27 +32,4 @@ public class BankLoginManager extends MenuManager {
             goToAccountsMenu();
         }
     }
-    /*
-
-        try {
-            Socket socket = new Socket(IP, BANK_PORT);
-            DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            outputStream.writeUTF("get_token " + usernameField.getText() + " " + passwordField.getText());
-            outputStream.flush();
-            String response = inputStream.readUTF();
-            if(response.equals("invalid username or password")) {
-                errorMessage.setText(response);
-            } else {
-                Client.getInstance().setLatestToken(response);
-                goToBank();
-                goToAccountsMenu();
-            }
-            socket.close();
-        } catch (Exception e) {
-            errorMessage.setText(e.getMessage());
-        }
-     */
-
-    //TODO: Can't work with the main stage after going to the bank, fix it
 }
