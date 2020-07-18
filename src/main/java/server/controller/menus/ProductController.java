@@ -47,10 +47,11 @@ public class ProductController{
         if(count > product.getCount())
             throw new MenuException("Not enough goods available in stock.");
 
-        Customer customer = (Customer)User.getUserByUsername(username);
-        if(customer == null)
+        if(username == null) {
             Cart.getThisCart().addProduct(productID, count);
+        }
         else {
+            Customer customer = (Customer)User.getUserByUsername(username);
             customer.getCart().put(productID, count);
         }
     }
