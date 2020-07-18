@@ -7,7 +7,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="client.view.bank.DefaultMenuManager"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="1058.0">
     <children>
         <Label fx:id="nameLabel" alignment="CENTER" layoutX="222.0" layoutY="155.0" prefHeight="48.0" prefWidth="614.0">
             <font>
@@ -19,9 +19,9 @@
                 <Font name="Garamond" size="60.0" />
             </font>
         </Label>
-        <Label fx:id="accountIDLabel" layoutX="230.0" layoutY="364.0" prefHeight="71.0" prefWidth="599.0">
+        <Label fx:id="accountIDLabel" alignment="CENTER" layoutX="230.0" layoutY="364.0" prefHeight="71.0" prefWidth="599.0">
             <font>
-                <Font name="Garamond" size="60.0" />
+                <Font name="Garamond" size="40.0" />
             </font>
         </Label>
     </children>

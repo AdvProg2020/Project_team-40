@@ -21,17 +21,19 @@ public class BankMenuManager implements Initializable {
     }
 
     public void goToHome() {
-
+        setInnerPane("/layouts/bank_menus/default_bank_menu.fxml");
     }
 
     public void goToReceipts() {
+        setInnerPane("/layouts/bank_menus/receipts/receipts_menu.fxml");
     }
 
     public void goToTransactions() {
+        setInnerPane("/layouts/bank_menus/transactions/transactions.fxml");
     }
 
     public void viewBalance() {
-
+        setInnerPane("/layouts/bank_menus/balance_menu.fxml");
     }
 
     public void exitBankAccount() {
