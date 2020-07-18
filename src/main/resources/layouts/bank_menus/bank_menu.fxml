@@ -38,26 +38,11 @@
                     </JFXButton>
                 </children>
             </VBox>
-            <Pane fx:id="InnerPane" prefHeight="600.0" prefWidth="1058.0" styleClass="bankPane">
+            <Pane fx:id="innerPane" prefHeight="600.0" prefWidth="1058.0" styleClass="bankPane">
                 <stylesheets>
                     <URL value="@../../stylesheets/bank_pane_background.css" />
                 </stylesheets>
                 <children>
-                    <Label fx:id="nameLabel" alignment="CENTER" layoutX="222.0" layoutY="155.0" prefHeight="48.0" prefWidth="614.0">
-                        <font>
-                            <Font name="Garamond" size="40.0" />
-                        </font>
-                    </Label>
-                    <Label layoutX="158.0" layoutY="248.0" text="Welcome to your bank account!">
-                        <font>
-                            <Font name="Garamond" size="60.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="accountIDLabel" layoutX="230.0" layoutY="364.0" prefHeight="71.0" prefWidth="599.0">
-                        <font>
-                            <Font name="Garamond" size="60.0" />
-                        </font>
-                    </Label>
                 </children>
             </Pane>
         </HBox>
