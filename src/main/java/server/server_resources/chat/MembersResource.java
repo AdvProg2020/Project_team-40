@@ -1,5 +1,6 @@
 package server.server_resources.chat;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.MenuException;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
@@ -22,14 +23,15 @@ public class MembersResource extends ServerResource{
     }
 
     //QUERIES : id
+    //Returns all members as a json string
     @Get
-    public ArrayList<String> getMembers(){
+    public String getMembers(){
         ArrayList<String> members = new ArrayList<>();
         try {
             members.addAll(controller.getMembers(getQueryValue("id")));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
-        return members;
+        return new YaGson().toJson(members, ArrayList.class);
     }
 }
