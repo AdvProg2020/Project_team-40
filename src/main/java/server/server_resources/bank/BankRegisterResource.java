@@ -3,8 +3,10 @@ package server.server_resources.bank;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.ValidInput;
+import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
+import server.model.users.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -18,6 +20,7 @@ public class BankRegisterResource extends ServerResource {
     @Get
     public String registerBankAccount() {
         String banksResponse = null;
+        String rawBankResponse = null;
         try {
             Socket socket = new Socket(IP, BANK_PORT);
             DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));;
@@ -26,21 +29,20 @@ public class BankRegisterResource extends ServerResource {
                     + " " + getQueryValue("repeat password"));
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            banksResponse = handleResponse(inputStream.readUTF(), getQueryValue("username"));
+            rawBankResponse = inputStream.readUTF();
+            banksResponse = handleResponse(rawBankResponse, getQueryValue("username"));
             socket.close();
         } catch (IOException e) {
             banksResponse = e.getMessage();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            banksResponse = rawBankResponse;
         }
-        return banksResponse;
+        return new YaGson().toJson(banksResponse, String.class);
     }
 
-    private String handleResponse(String response, String username) throws Exception {
-        if(!ValidInput.INTEGER.getStringMatcher(response).matches())
-            throw new Exception(response);
-        //TODO
-        return null;
+    private String handleResponse(String response, String username) throws NumberFormatException  {
+        User.getUserByUsername(username).setBankAccount(Integer.parseInt(response));
+        return response;
     }
 
     /*

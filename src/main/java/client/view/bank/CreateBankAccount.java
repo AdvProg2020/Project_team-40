@@ -1,4 +1,4 @@
-package client.view.account_menus;
+package client.view.bank;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
@@ -39,7 +39,8 @@ public class CreateBankAccount extends MenuManager {
         queries.put("repeat password", repeatPasswordField.getText());
         queries.put("username", client.getUsername());
         String response = RequestHandler.get("/bank/register/", queries, true, String.class);
-//TODO
+        System.out.println(response);
+        successfullyLogin(response);
     }
     /*
     try {
@@ -59,13 +60,17 @@ public class CreateBankAccount extends MenuManager {
      */
 
     private void successfullyLogin(String response) {
-        usernameField.setDisable(true);
-        passwordField.setDisable(true);
-        repeatPasswordField.setDisable(true);
-        errorMessage.setText("Your account number is: " + response);
-        createBankAccount.setText("let's go to my account!");
-        createBankAccount.setOnMouseClicked(e -> goToAccountsMenu());
-        Client.getInstance().setBankAccount(Integer.parseInt(response));
-//TODO
+        try {
+            int accountNumber = Integer.parseInt(response);
+            usernameField.setDisable(true);
+            passwordField.setDisable(true);
+            repeatPasswordField.setDisable(true);
+            errorMessage.setText("Your account number is: " + response);
+            createBankAccount.setText("let's go to my account!");
+            createBankAccount.setOnMouseClicked(e -> goToAccountsMenu());
+            Client.getInstance().setBankAccount(accountNumber);
+        } catch (Exception e) {
+            errorMessage.setText(e.getMessage());
+        }
     }
 }
