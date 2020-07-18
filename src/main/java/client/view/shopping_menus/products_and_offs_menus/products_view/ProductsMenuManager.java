@@ -63,11 +63,11 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
         TreeItem root = new TreeItem("all categories");
         requestQueries.clear();
-        ArrayList<Category> allCategoryNames = RequestHandler.get("/shop/all_categories/", requestQueries,
-                false, new TypeToken<ArrayList<String>>(){}.getType());
+        ArrayList<Category> allCategories = RequestHandler.get("/shop/all_categories/", requestQueries,
+                false, new TypeToken<ArrayList<Category>>(){}.getType());
         ArrayList<TreeItem> rootCategories = new ArrayList<>();
 
-        for(Category category : allCategoryNames) {
+        for(Category category : allCategories) {
             if(category.getParentCategory() == null){
                 rootCategories.add(new TreeItem(category));
             }

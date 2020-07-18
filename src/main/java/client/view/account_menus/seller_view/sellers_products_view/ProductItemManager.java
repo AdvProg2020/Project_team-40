@@ -24,6 +24,7 @@ public class ProductItemManager extends MenuManager {
     public JFXButton viewProductButton;
     public static VBox vBoxItems;
     public AnchorPane itemPane;
+    private HashMap<String, String> requestQueries = new HashMap<>();
 
     public static void setVBoxItems(VBox vBoxItems) {
         ProductItemManager.vBoxItems = vBoxItems;
@@ -32,10 +33,10 @@ public class ProductItemManager extends MenuManager {
     public void handleDeleteProduct() {
        Product product = getProduct();
         try {
-            HashMap<String, String> queries = new HashMap<>();
-            queries.put("username", Client.getInstance().getUsername());
-            queries.put("productID", product.getProductId());
-            RequestHandler.delete("/accounts/seller_account_controller/product/", queries, true, null);
+            requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
+            requestQueries.put("productID", product.getProductId());
+            RequestHandler.delete("/accounts/seller_account_controller/product/", requestQueries, true, null);
             vBoxItems.getChildren().remove(itemPane);
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
@@ -59,6 +60,10 @@ public class ProductItemManager extends MenuManager {
     private Product getProduct() {
         HBox item = (HBox) viewProductButton.getParent().getParent();
         String productName =((Label)item.getChildren().get(0)).getText();
-        return Product.getProductWithSellerAndName(productName, Client.getInstance().getUsername());
+
+        requestQueries.clear();
+        requestQueries.put("name", productName);
+        requestQueries.put("sellerName", Client.getInstance().getUsername());
+        return RequestHandler.get("/shop/product/seller", requestQueries, false, Product.class);
     }
 }
