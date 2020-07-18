@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ProductSellersResource extends ServerResource {
     @Get
     public String getProductSellers(){
-        ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(getQueryValue("productID"));
+        ArrayList<String> sellers = ProductController.getInstance().getSellersForProduct(getQueryValue("name"));
         return new YaGson().toJson(sellers, new TypeToken<ArrayList<String>>(){}.getType());
     }
 }
