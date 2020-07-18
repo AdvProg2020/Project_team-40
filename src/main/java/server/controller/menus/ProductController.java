@@ -1,6 +1,5 @@
 package server.controller.menus;
 
-import client.controller.Client;
 import exceptions.MenuException;
 import server.model.Cart;
 import server.model.Comment;
@@ -39,8 +38,8 @@ public class ProductController{
             throw new MenuException("No product with such name exists.");
         return product;
     }
-
-    public void addProductToCart(String productID, int count) throws MenuException{
+    //Server
+    public void addProductToCart(String username, String productID, int count) throws MenuException{
         Product product = Product.getProductById(productID);
         if(product == null)
             throw new MenuException("No product with such name exists.");
@@ -48,14 +47,15 @@ public class ProductController{
         if(count > product.getCount())
             throw new MenuException("Not enough goods available in stock.");
 
-        Customer customer;
-        if((customer = (Customer) User.getUserByUsername(Client.getInstance().getUsername())) == null) {
+        if(username == null) {
             Cart.getThisCart().addProduct(productID, count);
-        } else {
+        }
+        else {
+            Customer customer = (Customer)User.getUserByUsername(username);
             customer.getCart().put(productID, count);
         }
     }
-
+    //Server
     public ArrayList<String> getSellersForProduct(String productName){
         ArrayList<String> sellers = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class ProductController{
 
         return productAttributes;
     }
-
+    //Server
     public HashMap<String, String> getProductAttributes(String productID) throws MenuException{
         Product product = Product.getProductById(productID);
 
@@ -143,7 +143,7 @@ public class ProductController{
 
         return productAttributes;
     }
-
+    //Server
     public ArrayList<Comment> getComments(String productID) throws MenuException{
         Product product = Product.getProductById(productID);
 
@@ -153,18 +153,16 @@ public class ProductController{
         return product.getComments();
     }
 
-    public void addComment(String productID, String title, String content) throws MenuException{
+    //Server
+    public void addComment(String username, String productID, String title, String content) throws MenuException{
         Product product = Product.getProductById(productID);
-        User user = User.getUserByUsername(Client.getInstance().getUsername());
+        User user = User.getUserByUsername(username);
 
         if(product == null)
             throw new MenuException("No product with such name exists.");
-
         if(user == null)
             throw new MenuException("You are not logged in.");
-
         Comment comment = null;
-
         for(Comment comment1 : product.getComments()) {
             if(comment1.getUsername().equals(user.getUsername())) {
                 comment = comment1;

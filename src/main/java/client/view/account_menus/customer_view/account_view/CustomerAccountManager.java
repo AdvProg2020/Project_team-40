@@ -31,4 +31,12 @@ public class CustomerAccountManager extends MenuManager implements Initializable
     public void goToOrdersMenu() {
         setSecondaryInnerPane("/layouts/customer_menus/customer_orders_menus/orders_menu_design.fxml");
     }
+
+    public void goToChats() {
+        setSecondaryInnerPane("/layouts/customer_menus/chats_menu.fxml");
+    }
+
+    public void goToSupports() {
+        setSecondaryInnerPane("/layouts/customer_menus/supports_menu.fxml");
+    }
 }

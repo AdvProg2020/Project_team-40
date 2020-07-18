@@ -43,8 +43,10 @@ public class CartMenuManager extends MenuManager implements Initializable {
         assert cart != null;
         if (cart.isEmpty()) {
             mainPane.getChildren().remove(purchaseInformationPane);
+            emptyCartLabel.setVisible(true);
             emptyCartLabel.setText("You have not chosen any product\nDo you want to see our offers?\nGo to products' Menu...");
         } else {
+            emptyCartLabel.setVisible(false);
             Double totalPrice = RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
             priceLabel.setText(Double.toString(totalPrice));
         }

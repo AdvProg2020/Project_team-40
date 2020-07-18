@@ -6,10 +6,13 @@ import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,13 +24,16 @@ import server.model.DiscountCode;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class DiscountItem extends MenuManager implements Initializable {
     public JFXButton deleteDiscountButton;
     public JFXButton viewDiscountButton;
     public JFXButton editDiscountButton;
     public HBox controlButtons;
+    public JFXButton copyButton;
     private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,9 +71,9 @@ public class DiscountItem extends MenuManager implements Initializable {
 
     private void setLabelsContent(DiscountCode discountCode, HBox hBox) {
         Label codeLabel =((Label) hBox.getChildren().get(0));
-        Label startLabel =((Label) hBox.getChildren().get(1));
-        Label endLabel =((Label) hBox.getChildren().get(2));
-        Label percentageLabel =((Label) hBox.getChildren().get(3));
+        Label startLabel =((Label) hBox.getChildren().get(2));
+        Label endLabel =((Label) hBox.getChildren().get(3));
+        Label percentageLabel =((Label) hBox.getChildren().get(4));
         codeLabel.setText(discountCode.getCode());
         startLabel.setText(discountCode.getStartDate().toString());
         endLabel.setText(discountCode.getEndDate().toString());
@@ -162,5 +168,14 @@ public class DiscountItem extends MenuManager implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void handleCopyToClipboard(ActionEvent event) {
+         Clipboard clipboard = Clipboard.getSystemClipboard();
+         ClipboardContent content = new ClipboardContent();
+        HBox item = (HBox)((viewDiscountButton.getParent()).getParent());
+        String code =((Label)item.getChildren().get(0)).getText();
+        content.putString(code);
+        clipboard.setContent(content);
     }
 }

@@ -75,26 +75,13 @@ public class DiscountMenuManager implements Initializable {
     }
     private void setLabelsContent(DiscountCode discountCode, HBox hBox) {
         Label codeLabel =((Label) hBox.getChildren().get(0));
-        Label startLabel =((Label) hBox.getChildren().get(1));
-        Label endLabel =((Label) hBox.getChildren().get(2));
-        Label percentageLabel =((Label) hBox.getChildren().get(3));
+        Label startLabel =((Label) hBox.getChildren().get(2));
+        Label endLabel =((Label) hBox.getChildren().get(3));
+        Label percentageLabel =((Label) hBox.getChildren().get(4));
         codeLabel.setText(discountCode.getCode());
         startLabel.setText(discountCode.getStartDate().toString());
         endLabel.setText(discountCode.getEndDate().toString());
         percentageLabel.setText(Integer.toString(discountCode.getPercentage()));
-    }
-
-    private void setLabelsContent(LinkedHashMap<?, ?> discountCode, HBox hBox) {
-        Label codeLabel =((Label) hBox.getChildren().get(0));
-        Label startLabel =((Label) hBox.getChildren().get(1));
-        Label endLabel =((Label) hBox.getChildren().get(2));
-        Label percentageLabel =((Label) hBox.getChildren().get(3));
-        codeLabel.setText((String) discountCode.get("code"));
-        Date start = new Date((Long) discountCode.get("startDate"));
-        Date end = new Date((Long)discountCode.get("endDate"));
-        startLabel.setText(start.toString());
-        endLabel.setText(end.toString());
-        percentageLabel.setText(String.valueOf((discountCode.get("percentage"))));
     }
 
     public void handleAddDiscount() {

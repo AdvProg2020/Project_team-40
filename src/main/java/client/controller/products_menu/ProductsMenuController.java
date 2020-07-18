@@ -1,6 +1,7 @@
-package server.controller.menus;
+package client.controller.products_menu;
 
-import exceptions.AccountsException;
+import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.MenuException;
 import server.model.Category;
 import server.model.Off;
@@ -12,65 +13,51 @@ import server.model.search.ProductSort;
 import server.model.search.Range;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class AllProductsController {
-
-    private static AllProductsController allProductsController;
-
+public class ProductsMenuController {
     private ArrayList<Product> products;
     private ArrayList<Product> productsToShow;
     private ProductFilter productFilter;
     private ProductSort productSort;
     private SortTypes currentSort;
+    private HashMap<String, String> requestQueries;
+    private static ProductsMenuController controller = new ProductsMenuController();
 
-    private AllProductsController(){
-        products = new ArrayList<Product>();
-        products.addAll(Product.getAllProducts().values());
+    private ProductsMenuController(){
+        requestQueries = new HashMap<>();
+        products = RequestHandler.get("/shop/all_products/", requestQueries, false,
+                new TypeToken<ArrayList<Product>>(){}.getType());
         productsToShow = products;
+        assert products != null;
         productFilter = new ProductFilter(products);
         productSort = new ProductSort(products, null);
     }
 
-    public static AllProductsController getInstance(){
-        if(allProductsController == null)
-            allProductsController = new AllProductsController();
-
-        return allProductsController;
-    }
-    @Deprecated
     public void setIsOffsOnly(boolean offOnly){
         if(offOnly){
             products.clear();
-            for (Off off : Off.getAllOffs().values()) {
+            requestQueries.clear();
+            ArrayList<Off> offs = RequestHandler.get("/shop/all_offs/", requestQueries, false,
+                    new TypeToken<ArrayList<Off>>(){}.getType());
+            assert offs != null;
+            for (Off off : offs) {
                 products.addAll(off.getProducts());
             }
             productFilter.setProducts(products);
             productsToShow = products;
         }else{
             products.clear();
+            requestQueries.clear();
+            products = RequestHandler.get("/shop/all_products/", requestQueries, false,
+                    new TypeToken<ArrayList<Product>>(){}.getType());
+            assert products != null;
             products.addAll(Product.getAllProducts().values());
             productFilter.setProducts(products);
             productsToShow = products;
         }
     }
-    public ArrayList<Category> getAllCategories(){
-        return new ArrayList<>(Category.getAllCategories().values());
-    }
 
-    public ArrayList<String> getAllSubCategories(String parentName) throws AccountsException{
-        ArrayList<String> allSubCategories = new ArrayList<>();
-
-        Category category = Category.getCategoryByName(parentName);
-        if(category == null)
-            throw new AccountsException("No category with such name exists.");
-
-        for(Category subCategory : category.getSubCategories()) {
-            allSubCategories.add(subCategory.getName());
-        }
-
-        return allSubCategories;
-    }
-    @Deprecated
     public void filterAndSort(){
         productFilter.filter();
         productsToShow = productFilter.getFilteredProducts();
@@ -78,33 +65,26 @@ public class AllProductsController {
         productsToShow = productSort.getSortedProducts();
     }
 
-    @Deprecated
     public ArrayList<Product> getAllProducts(){
         return productsToShow;
     }
 
-    public Product getProduct(String productID) throws MenuException{
-        Product product = Product.getProductById(productID);
-        if (product == null)
-            throw new MenuException("Product not found.");
-        return product;
+    public static ProductsMenuController getInstance() {
+        return controller;
     }
 
-    @Deprecated
     public ArrayList<String> getAvailableStringFilters(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(productFilter.getStringProperties().keySet());
         return arrayList;
     }
 
-    @Deprecated
     public ArrayList<String> getAvailableValueFilters(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(productFilter.getRangeProperties().keySet());
         return arrayList;
     }
 
-    @Deprecated
     public void addFilter(String name, String value) {
         switch(name){
             case "productName" :
@@ -126,14 +106,12 @@ public class AllProductsController {
         }
     }
 
-    @Deprecated
     public void addFilter(String name, ArrayList<String> values) throws MenuException {
         if(!getAvailableStringFilters().contains(name))
             throw new MenuException("This filter is not available.");
         productFilter.setStringProperty(name, values);
     }
 
-    @Deprecated
     public void addFilter(String name, double min, double max) throws MenuException {
         if(!getAvailableValueFilters().contains(name) && !name.equals("price"))
             throw new MenuException("This filter is not available.");
@@ -142,12 +120,10 @@ public class AllProductsController {
         productFilter.setRangeProperty(name, new Range(min, max));
     }
 
-    @Deprecated
     public void disableFilter(String name){
         productFilter.disableFilter(name);
     }
 
-    @Deprecated
     public ArrayList<String> getAvailableSorts(){
         ArrayList<String> sorts = new ArrayList<>();
         sorts.add("MOST_EXPENSIVE");
@@ -158,14 +134,12 @@ public class AllProductsController {
         return sorts;
     }
 
-    @Deprecated
     public void setSort(String sort) throws MenuException {
         if (!getAvailableSorts().contains(sort))
             throw new MenuException("This sort is not available.");
         currentSort = SortTypes.valueOf(sort);
     }
 
-    @Deprecated
     public double getRangeCap(String rangeProperty) throws MenuException{
         if(!productFilter.getRangeProperties().containsKey(rangeProperty) && !rangeProperty.equals("price"))
             throw new MenuException("No such range property");
