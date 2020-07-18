@@ -1,5 +1,6 @@
 package server.server_resources.chat;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.AccountsException;
 import exceptions.MenuException;
 import org.restlet.resource.Get;
@@ -31,14 +32,15 @@ public class MessageResource extends ServerResource{
     }
 
     //QUERIES : chatId, size (= index of the last message the user has received)
+    //Returns all messages as a json string
     @Get
-    public ArrayList<Message> getMessages(){
+    public String getMessages(){
         ArrayList<Message> messages = new ArrayList<>();
         try {
             messages.addAll(controller.getNewMessages(getQueryValue("chatId"), Integer.parseInt(getQueryValue("size"))));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
-        return messages;
+        return new YaGson().toJson(messages, ArrayList.class);
     }
 }

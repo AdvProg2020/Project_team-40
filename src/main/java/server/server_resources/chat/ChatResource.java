@@ -1,5 +1,6 @@
 package server.server_resources.chat;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.MenuException;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
@@ -39,14 +40,15 @@ public class ChatResource extends ServerResource{
     }
 
     //QUERIES : id
+    //Returns chat as a json string
     @Get
-    public Chat getChat(){
+    public String getChat(){
         Chat chat = null;
         try {
             chat = controller.getChat(getQueryValue("id"));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }
-        return chat;
+        return new YaGson().toJson(chat, Chat.class);
     }
 }
