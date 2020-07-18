@@ -9,6 +9,8 @@ import org.restlet.resource.ServerResource;
 import server.controller.menus.ChatController;
 import server.model.chat.Chat;
 
+import java.util.ArrayList;
+
 public class ChatResource extends ServerResource{
     private ChatController controller = ChatController.getInstance();
 
@@ -39,16 +41,9 @@ public class ChatResource extends ServerResource{
         }
     }
 
-    //QUERIES : id
-    //Returns chat as a json string
+    //Returns chats as a json string
     @Get
-    public String getChat(){
-        Chat chat = null;
-        try {
-            chat = controller.getChat(getQueryValue("id"));
-        }catch(MenuException e){
-            System.out.println(e.getMessage());
-        }
-        return new YaGson().toJson(chat, Chat.class);
+    public String getChats(){
+        return new YaGson().toJson(controller.getAllChats(), ArrayList.class);
     }
 }
