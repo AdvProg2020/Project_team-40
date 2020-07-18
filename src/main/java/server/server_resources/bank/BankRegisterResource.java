@@ -25,8 +25,8 @@ public class BankRegisterResource extends ServerResource {
             Socket socket = new Socket(IP, BANK_PORT);
             DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));;
             outputStream.writeUTF("create_account " + getQueryValue("first name") + " " +
-                    getQueryValue("last name") + " " + getQueryValue("bank username") + " " + "bank password"
-                    + " " + getQueryValue("repeat password"));
+                    getQueryValue("last name") + " " + getQueryValue("bank username") + " " +
+                    getQueryValue("bank password") + " " + getQueryValue("repeat password"));
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             rawBankResponse = inputStream.readUTF();

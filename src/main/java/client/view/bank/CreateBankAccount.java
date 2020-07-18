@@ -39,6 +39,7 @@ public class CreateBankAccount extends MenuManager {
 
     private void goToAccount(String response) {
         try {
+            System.out.println(response);
             int accountNumber = Integer.parseInt(response);
             usernameField.setDisable(true);
             passwordField.setDisable(true);
@@ -48,7 +49,7 @@ public class CreateBankAccount extends MenuManager {
             createBankAccount.setOnMouseClicked(e -> goToAccountsMenu());
             Client.getInstance().setBankAccount(accountNumber);
         } catch (Exception e) {
-            errorMessage.setText(e.getMessage());
+            errorMessage.setText(response);
         }
     }
 }
