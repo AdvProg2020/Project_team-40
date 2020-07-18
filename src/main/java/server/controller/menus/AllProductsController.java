@@ -53,13 +53,10 @@ public class AllProductsController {
             productsToShow = products;
         }
     }
-    public ArrayList<String> getAllCategories(){
-        ArrayList<String> allCategories = new ArrayList<>();
-        for(Category value : Category.getAllCategories().values()) {
-            allCategories.add(value.getName());
-        }
-        return allCategories;
+    public ArrayList<Category> getAllCategories(){
+        return new ArrayList<>(Category.getAllCategories().values());
     }
+
     public ArrayList<String> getAllSubCategories(String parentName) throws AccountsException{
         ArrayList<String> allSubCategories = new ArrayList<>();
 
