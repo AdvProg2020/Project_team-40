@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -45,7 +46,11 @@ public class AddCommentMenuManager extends MenuManager implements Initializable{
             RequestHandler.put("/shop/comment/", productId, queries, false, null);
             ((Stage) titleField.getScene().getWindow()).close();
         } catch(ResourceException e) {
-            e.printStackTrace();
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

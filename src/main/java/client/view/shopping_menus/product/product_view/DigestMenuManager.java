@@ -19,6 +19,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +28,10 @@ import java.util.ResourceBundle;
 public class DigestMenuManager extends MenuManager implements Initializable{
 
     public JFXTreeTableView<Attribute> treeView;
-    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        requestQueries = new HashMap<>();
+        HashMap<String, String> requestQueries = new HashMap<>();
         JFXTreeTableColumn<Attribute, String> nameCol = new JFXTreeTableColumn<>("Attribute name");
         nameCol.setPrefWidth(500);
         nameCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Attribute, String>, ObservableValue<String>>(){
@@ -52,7 +52,6 @@ public class DigestMenuManager extends MenuManager implements Initializable{
 
         ObservableList<Attribute> attributes = FXCollections.observableArrayList();
         try {
-            requestQueries.clear();
             requestQueries.put("productID", ProductMenuManager.getProduct().getProductId());
             HashMap<String, String> attributesHashMap = RequestHandler.get("/shop/product/attributes/",
                     requestQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
@@ -62,7 +61,11 @@ public class DigestMenuManager extends MenuManager implements Initializable{
                 attributes.add(attribute);
             }
         } catch(ResourceException e) {
-            e.printStackTrace();
+            try {
+                System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         final TreeItem<Attribute> root = new RecursiveTreeItem<>(attributes, RecursiveTreeObject::getChildren);
