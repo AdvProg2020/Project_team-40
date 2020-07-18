@@ -52,6 +52,8 @@ module sample {
     exports server.server_resources.customer_account_controller;
     exports server.server_resources.seller_account_controller;
     exports server.server_resources.accounts;
+    exports server.server_resources.bank;
+    exports server.server_resources.chat;
     exports exceptions;
     exports server.model;
     exports server.model.users;
