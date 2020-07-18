@@ -1,5 +1,6 @@
 package server.server_resources.bank;
 
+import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.controller.menus.BankController;
@@ -17,6 +18,7 @@ public class BankLoginResource extends ServerResource {
     @Post
     public String login(String bankUsername) {
         String password = getQueryValue("bank password");
+        String response = null;
         try {
             Socket socket = new Socket(IP, BANK_PORT);
             DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -24,13 +26,15 @@ public class BankLoginResource extends ServerResource {
             outputStream.writeUTF("get_token " + bankUsername + " " + password);
             outputStream.flush();
             String bankResponse = inputStream.readUTF();
+            System.out.println("token = " + bankResponse);
             if(!bankResponse.equals("invalid username or password")) {
                 BankController.getBankController().getUsersTokens().put(getQueryValue("username"), bankResponse);
             }
             socket.close();
-            return bankResponse;
+            response = bankResponse;
         } catch (Exception e) {
-            return e.getMessage();
+            response = e.getMessage();
         }
+        return new YaGson().toJson(response, String.class);
     }
 }

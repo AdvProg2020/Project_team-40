@@ -24,7 +24,7 @@ public class BankLoginManager extends MenuManager {
         HashMap<String, String> queries = new HashMap<>();
         queries.put("bank password", passwordField.getText());
         queries.put("username", Client.getInstance().getUsername());
-        String response = (String) RequestHandler.post("/bank/login/", usernameField.getText(), queries, true, null);
+        String response = (String) RequestHandler.post("/bank/login/", usernameField.getText(), queries, true, String.class);
         if (response.equals("invalid username or password")) {
             errorMessage.setText(response);
         } else {
