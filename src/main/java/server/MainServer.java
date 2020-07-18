@@ -8,11 +8,15 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
+import server.controller.accounts.ManagerAccountController;
+import server.model.Product;
+import server.model.enumerations.PropertyType;
+import server.model.users.Seller;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.bank.BankBalance;
+import server.server_resources.accounts.UserResource;
 import server.server_resources.bank.BankLoginResource;
 import server.server_resources.bank.BankRegisterResource;
-import server.server_resources.accounts.UserResource;
 import server.server_resources.chat.ChatResource;
 import server.server_resources.chat.MembersResource;
 import server.server_resources.chat.MessageResource;
@@ -20,6 +24,9 @@ import server.server_resources.chat.SupportsResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
+import server.server_resources.shop.*;
+
+import java.util.HashMap;
 
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
@@ -49,6 +56,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/category/", authenticator.getNewGuard(CategoryResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/request/", authenticator.getNewGuard(RequestResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/requests/", authenticator.getNewGuard(RequestsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/accept_request/",authenticator.getNewGuard( AcceptRequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", authenticator.getNewGuard(DeclineRequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/discount/", authenticator.getNewGuard(ManagerDiscountResource.class, RoleAccessibility.MANAGER));
@@ -64,9 +72,10 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/order/", authenticator.getNewGuard(OrderResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/orders/", authenticator.getNewGuard(OrdersResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class, RoleAccessibility.CUSTOMER));
-        getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.CUSTOMER));
+        getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.MANAGER));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
+        getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", authenticator.getNewGuard(AllOffsResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/company_info/", authenticator.getNewGuard(CompanyInfoResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/off/", authenticator.getNewGuard(OffResource.class, RoleAccessibility.SELLER));
@@ -86,6 +95,19 @@ public class MainServer extends Component {
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);
+
+        getDefaultHost().attach("/shop/all_categories/", AllCategoriesResource.class);
+        getDefaultHost().attach("/shop/all_sub_categories/", AllSubCategoriesResource.class);
+        getDefaultHost().attach("/shop/comment/", CommentResource.class);
+        getDefaultHost().attach("/shop/all_comments/", CommentsResource.class);
+        getDefaultHost().attach("/shop/product/", ProductResource.class);
+        getDefaultHost().attach("/shop/product/seller", ProductSellerResource.class);
+        getDefaultHost().attach("/shop/product/attributes/", ProductAttributesResource.class);
+        getDefaultHost().attach("/shop/product/sellers/", ProductSellersResource.class);
+        getDefaultHost().attach("/shop/all_products/", ProductsResource.class);
+        getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
+        getDefaultHost().attach("/shop/all_offs/", OffsResource.class);
+
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
         getDefaultHost().attach("/chat/message/", MessageResource.class);

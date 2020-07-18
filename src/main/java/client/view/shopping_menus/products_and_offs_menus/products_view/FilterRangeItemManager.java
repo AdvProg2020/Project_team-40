@@ -1,7 +1,7 @@
 package client.view.shopping_menus.products_and_offs_menus.products_view;
 
+import client.controller.products_menu.ProductsMenuController;
 import com.jfoenix.controls.JFXSlider;
-import server.controller.menus.AllProductsController;
 import exceptions.MenuException;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -40,9 +40,9 @@ public class FilterRangeItemManager implements Initializable{
 
         minSlider.setOnMouseReleased(mouseEvent -> {
             min = minSlider.getValue();
-            AllProductsController.getInstance().disableFilter(property);
+            ProductsMenuController.getInstance().disableFilter(property);
             try {
-                AllProductsController.getInstance().addFilter(property, min, max);
+                ProductsMenuController.getInstance().addFilter(property, min, max);
             } catch(MenuException e) {
                 e.printStackTrace();
             }
@@ -51,9 +51,9 @@ public class FilterRangeItemManager implements Initializable{
 
         maxSlider.setOnMouseReleased(mouseEvent -> {
             max = maxSlider.getValue();
-            AllProductsController.getInstance().disableFilter(property);
+            ProductsMenuController.getInstance().disableFilter(property);
             try {
-                AllProductsController.getInstance().addFilter(property, min, max);
+                ProductsMenuController.getInstance().addFilter(property, min, max);
             } catch(MenuException e) {
                 e.printStackTrace();
             }

@@ -54,6 +54,7 @@ module sample {
     exports server.server_resources.accounts;
     exports server.server_resources.bank;
     exports server.server_resources.chat;
+    exports server.server_resources.shop;
     exports exceptions;
     exports server.model;
     exports server.model.users;

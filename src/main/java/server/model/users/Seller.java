@@ -45,6 +45,14 @@ public class Seller extends User{
         return offsId;
     }
 
+    public ArrayList<Off> getOffs() {
+        ArrayList<Off> offs = new ArrayList<>();
+        for (String id : offsId) {
+            offs.add(Off.getOffByID(id));
+        }
+        return offs;
+    }
+
     public double getCreditInWallet() {
         return creditInWallet;
     }
