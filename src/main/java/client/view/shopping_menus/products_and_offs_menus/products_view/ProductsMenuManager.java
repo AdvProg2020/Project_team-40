@@ -69,7 +69,7 @@ public class ProductsMenuManager extends MenuManager implements Initializable{
 
         for(Category category : allCategories) {
             if(category.getParentCategory() == null){
-                rootCategories.add(new TreeItem(category));
+                rootCategories.add(new TreeItem(category.getName()));
             }
             try {
                 requestQueries.clear();
