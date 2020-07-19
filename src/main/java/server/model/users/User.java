@@ -17,6 +17,8 @@ public abstract class  User implements Serializable {
     protected String email;
     protected String phoneNo;
     protected Integer bankAccount;
+    protected boolean isOnline;
+
     public User(){}
 
     public User(String username, String password, String firstName,
@@ -28,6 +30,7 @@ public abstract class  User implements Serializable {
         this.email = email;
         this.phoneNo = phoneNo;
         this.bankAccount = -1;
+        this.isOnline = false;
         allUsers.put(this.username, this);
     }
 
@@ -89,10 +92,13 @@ public abstract class  User implements Serializable {
         this.phoneNo = phoneNo;
     }
 
-    public boolean checkPassword(String password){
-        return password.equals(this.password);
+    public boolean isOnline() {
+        return isOnline;
     }
 
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
     @Override
     public abstract String toString();
 

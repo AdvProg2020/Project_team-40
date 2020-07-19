@@ -1,6 +1,7 @@
 package client.view;
 
 import client.controller.Client;
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
 import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import server.model.Loader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuManager {
     public static Pane mainInnerPane;
@@ -116,6 +118,10 @@ public class MenuManager {
         roots.clear();
         roots.add("/layouts/main.fxml");
         roots.add("");
+        HashMap<String, String> queries = new HashMap<>();
+        queries.put("username", Client.getInstance().getUsername());
+        RequestHandler.delete("/accounts/account/", queries, false, null);
+
         Client.getInstance().logout();
         back();
     }

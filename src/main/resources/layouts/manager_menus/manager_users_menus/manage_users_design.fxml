@@ -24,37 +24,37 @@
       </ScrollPane>
       <HBox layoutX="56.0" layoutY="134.0" prefHeight="44.0" prefWidth="746.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Username">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="137.0" style="-fx-background-color: #5dade2;" text="Username">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Role">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="Role">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="First Name">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="First Name">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Last Name">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="Last Name">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Email">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="Email">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Phone No">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="Phone No">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #5dade2;" text="Action">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #5dade2;" text="Action">
                <font>
                   <Font size="15.0" />
                </font>

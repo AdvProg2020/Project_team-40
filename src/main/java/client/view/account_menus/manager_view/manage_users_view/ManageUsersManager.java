@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.restlet.data.Status;
@@ -56,12 +57,15 @@ public class ManageUsersManager extends MenuManager implements Initializable {
     }
 
     private void setLabelsContent(User user, HBox hBox) {
-        Label usernameLabel =((Label) hBox.getChildren().get(0));
-        Label roleLabel =((Label) hBox.getChildren().get(1));
-        Label firsNameLabel =((Label) hBox.getChildren().get(2));
-        Label lastNameLabel =((Label) hBox.getChildren().get(3));
-        Label emailLabel =((Label) hBox.getChildren().get(4));
-        Label phoneLabel =((Label) hBox.getChildren().get(5));
+        Label usernameLabel =((Label) hBox.getChildren().get(1));
+        Circle isOnlineCircle =((Circle) hBox.getChildren().get(0));
+        Label roleLabel =((Label) hBox.getChildren().get(2));
+        Label firsNameLabel =((Label) hBox.getChildren().get(3));
+        Label lastNameLabel =((Label) hBox.getChildren().get(4));
+        Label emailLabel =((Label) hBox.getChildren().get(5));
+        Label phoneLabel =((Label) hBox.getChildren().get(6));
+        if (user.isOnline())
+            isOnlineCircle.setStyle("-fx-fill:#23C25C;");
         usernameLabel.setText(user.getUsername());
         firsNameLabel.setText(user.getFirstName());
         lastNameLabel.setText(user.getLastName());
