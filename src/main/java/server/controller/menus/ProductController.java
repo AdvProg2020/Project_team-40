@@ -178,7 +178,7 @@ public class ProductController{
         }
 
 
-        Manager.addRequest(new AddComment(comment.getCommentID()));
+        Manager.addRequest(new AddComment(comment));
 
     }
 

@@ -6,27 +6,27 @@ import server.model.enumerations.Status;
 public class AddComment extends Request{
 
     private static final long serialVersionUID = -2090250636759593204L;
-    private String commentID;
+    private Comment comment;
 
     public AddComment(){}
 
-    public AddComment(String commentID){
+    public AddComment(Comment comment){
         super("Add comment");
-        this.commentID = commentID;
+        this.comment = comment;
     }
 
     public Comment getComment(){
-        return Comment.getComment(commentID);
+        return comment;
     }
 
     @Override
     public void action(){
         if(status == Status.Confirmed)
-            Comment.getComment(commentID).setStatus(Status.Confirmed);
+            comment.setStatus(Status.Confirmed);
     }
 
     @Override
     public String toString(){
-        return super.toString() + "Comment : \n" + Comment.getComment(commentID);
+        return super.toString() + "Comment : \n" + comment;
     }
 }

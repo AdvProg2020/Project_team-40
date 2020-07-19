@@ -40,7 +40,6 @@ public class AddCommentMenuManager extends MenuManager implements Initializable{
         try {
             HashMap<String, String> queries = new HashMap<>();
             queries.put("username", Client.getInstance().getUsername());
-            //TODO: check if the user must have logged in/check post argument
             queries.put("title", titleField.getText());
             queries.put("content", contentField.getText());
             RequestHandler.put("/shop/comment/", productId, queries, false, null);
