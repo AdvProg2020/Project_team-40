@@ -51,6 +51,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setAddProductLabels(AddProductMenu addProductMenu, Request request){
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    addProductMenu.acceptButton.setDisable(true);
+                    addProductMenu.declineButton.setDisable(true);
+                }
                 Product product = ((AddProduct)request).getProduct();
                 addProductMenu.setAddProduct((AddProduct) request);
                 addProductMenu.setProductIdLabel(product.getProductId());
@@ -63,6 +67,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setSellingPermissionLabels(SellingPermissionMenu requestMenu, Request request) {
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    requestMenu.acceptButton.setDisable(true);
+                    requestMenu.declineButton.setDisable(true);
+                }
                 Seller seller = ((SellingPermission)request).getSeller();
                 requestMenu.setSellingPermission((SellingPermission)request);
                 requestMenu.setUsernameLabel(seller.getUsername());
@@ -74,6 +82,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setRemoveProductLabel(RemoveProductMenu removeProductMenu, Request request){
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    removeProductMenu.acceptButton.setDisable(true);
+                    removeProductMenu.declineButton.setDisable(true);
+                }
                 Product product = ((RemoveProduct)request).getProduct();
                 removeProductMenu.setRemoveProduct((RemoveProduct) request);
                 removeProductMenu.setProductIdLabel(product.getProductId());
@@ -85,6 +97,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setEditOffLabels(EditOffMenu requestMenu, Request request) {
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    requestMenu.acceptButton.setDisable(true);
+                    requestMenu.declineButton.setDisable(true);
+                }
                 EditOff editOffRequest = (EditOff) request;
                 Off off = editOffRequest.getOff();
                 requestMenu.setEditOff((EditOff)request);
@@ -93,6 +109,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setEditProductLabels(EditProductMenu requestMenu, Request request) {
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    requestMenu.acceptButton.setDisable(true);
+                    requestMenu.declineButton.setDisable(true);
+                }
                 EditProduct editProductRequest = (EditProduct)request;
                 Product product = editProductRequest.getProduct();
                 requestMenu.setEditProduct((EditProduct)request);
@@ -102,6 +122,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setAddOffLabels(AddOffMenu requestMenu, Request request) {
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    requestMenu.acceptButton.setDisable(true);
+                    requestMenu.declineButton.setDisable(true);
+                }
                 Off off = ((AddOff)request).getOff();
                 requestMenu.setAddOff((AddOff)request);
                 requestMenu.setOffIdLabel(off.getId());
@@ -112,6 +136,10 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setAddCommentLabels(AddCommentMenu requestMenu, Request request) {
+                if (!request.getStatus().equalsIgnoreCase("Waiting")) {
+                    requestMenu.acceptButton.setDisable(true);
+                    requestMenu.declineButton.setDisable(true);
+                }
                 AddComment addCommentRequest = (AddComment)request;
                 Comment comment = addCommentRequest.getComment();
                 requestMenu.setAddComment(addCommentRequest);

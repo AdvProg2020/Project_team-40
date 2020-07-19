@@ -1,6 +1,7 @@
 package client.view.account_menus.manager_view.requests_view;
 
 import client.controller.RequestHandler;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,6 +22,8 @@ public class SellingPermissionMenu extends RequestMenu implements Initializable 
     public Label phoneLabel;
     public Label companyLabel;
     public Label creditLabel;
+    public JFXButton acceptButton;
+    public JFXButton declineButton;
     private SellingPermission sellingPermission;
     private HashMap<String, String> requestQueries;
     @Override
