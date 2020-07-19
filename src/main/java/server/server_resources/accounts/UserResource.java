@@ -28,6 +28,7 @@ public class UserResource extends ServerResource {
             response.put("phoneNumber", user.getPhoneNo());
             response.put("role", user.getRole());
             response.put("bankAccount", Integer.toString(user.getBankAccount()));
+            response.put("bankUsername", user.getBankUsername());
             if (user instanceof Seller)
                 response.put("company", ((Seller)user).getCompanyInfo());
             return mapper.toJson(response, new TypeToken<HashMap<String, String>>(){}.getType());

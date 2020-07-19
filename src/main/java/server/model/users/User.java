@@ -17,6 +17,7 @@ public abstract class  User implements Serializable {
     protected String email;
     protected String phoneNo;
     protected Integer bankAccount;
+    protected String bankUsername;
     public User(){}
 
     public User(String username, String password, String firstName,
@@ -28,6 +29,7 @@ public abstract class  User implements Serializable {
         this.email = email;
         this.phoneNo = phoneNo;
         this.bankAccount = -1;
+        this.bankUsername = null;
         allUsers.put(this.username, this);
     }
 
@@ -59,6 +61,14 @@ public abstract class  User implements Serializable {
 
     public Integer getBankAccount() {
         return bankAccount;
+    }
+
+    public String getBankUsername() {
+        return bankUsername;
+    }
+
+    public void setBankUsername(String bankUsername) {
+        this.bankUsername = bankUsername;
     }
 
     public void setBankAccount(Integer bankAccount) {

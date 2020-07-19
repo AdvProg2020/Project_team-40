@@ -30,6 +30,8 @@ public class ReceiptMenuManger implements Initializable {
         for(Receipt receipt : receipts.values()) {
             createReceiptItem(receipt);
         }
+        //TODO: Test createReceiptItem
+        //TODO: Consider the case where token is expired...
     }
 
     private void createReceiptItem(Receipt receipt) {

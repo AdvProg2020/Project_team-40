@@ -30,7 +30,8 @@ public class BankRegisterResource extends ServerResource {
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             rawBankResponse = inputStream.readUTF();
-            banksResponse = handleResponse(rawBankResponse, getQueryValue("username"));
+            banksResponse = handleResponse(rawBankResponse, getQueryValue("username"),
+                    getQueryValue("bank username"));
             socket.close();
         } catch (IOException e) {
             banksResponse = e.getMessage();
@@ -40,8 +41,10 @@ public class BankRegisterResource extends ServerResource {
         return new YaGson().toJson(banksResponse, String.class);
     }
 
-    private String handleResponse(String response, String username) throws NumberFormatException  {
-        User.getUserByUsername(username).setBankAccount(Integer.parseInt(response));
+    private String handleResponse(String response, String username, String bank_username) throws NumberFormatException  {
+        User user = User.getUserByUsername(username);
+        user.setBankAccount(Integer.parseInt(response));
+        user.setBankUsername(bank_username);
         return response;
     }
 }
