@@ -125,7 +125,7 @@ public class RegisterManager extends MenuManager implements Initializable {
         isBlank = isFieldBlank(isBlank, lastName, lastNameError);
         isBlank = isFieldBlank(isBlank, phoneNumber, phoneNumberError);
         isBlank = isFieldBlank(isBlank, email, emailError);
-        if(customerButton.isSelected()) {} else if(sellerButton.isSelected()) {
+        if(customerButton.isSelected() || supportButton.isSelected()) {} else if(sellerButton.isSelected()) {
             isBlank = isFieldBlank(isBlank, companyField, companyError);
         } else if(managerButton == null) {
             isBlank = true;

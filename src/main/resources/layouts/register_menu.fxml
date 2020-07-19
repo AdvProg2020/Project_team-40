@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.register_login_view.RegisterManager">
+<AnchorPane fx:id="mainInnerPane" prefHeight="610.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.register_login_view.RegisterManager">
     <GridPane fx:id="infoPane" layoutX="264.0" layoutY="120.0" prefHeight="445.0" prefWidth="710.0">
       <columnConstraints>
          <ColumnConstraints maxWidth="287.0" minWidth="10.0" prefWidth="180.0" />
@@ -30,9 +22,9 @@
          <RowConstraints maxHeight="191.0" minHeight="30.0" prefHeight="51.0" />
          <RowConstraints maxHeight="179.0" minHeight="13.0" prefHeight="25.0" />
          <RowConstraints maxHeight="195.0" minHeight="16.0" prefHeight="22.0" />
-         <RowConstraints maxHeight="195.0" minHeight="19.0" prefHeight="25.0" />
-         <RowConstraints maxHeight="195.0" minHeight="36.0" prefHeight="36.0" />
-         <RowConstraints maxHeight="195.0" minHeight="44.0" prefHeight="44.0" />
+         <RowConstraints maxHeight="195.0" minHeight="16.0" prefHeight="21.0" />
+         <RowConstraints maxHeight="195.0" minHeight="19.0" prefHeight="23.0" />
+         <RowConstraints maxHeight="195.0" minHeight="44.0" prefHeight="61.0" />
       </rowConstraints>
       <children>
            <Label text="Username:" />
@@ -54,8 +46,8 @@
                <ToggleGroup fx:id="roleGroup" />
             </toggleGroup></RadioButton>
           <RadioButton fx:id="sellerButton" onMouseClicked="#clickSeller" text="Seller" toggleGroup="$roleGroup" GridPane.rowIndex="8" />
-          <RadioButton fx:id="managerButton" onMouseClicked="#clickManager" text="Manager" toggleGroup="$roleGroup" GridPane.rowIndex="9" />
-          <RadioButton fx:id="supportButton" onMouseClicked="#clickSupport" text="Support" toggleGroup="$roleGroup" GridPane.rowIndex="10" />
+          <RadioButton fx:id="managerButton" onMouseClicked="#clickManager" text="Manager" toggleGroup="$roleGroup" GridPane.rowIndex="10" />
+          <RadioButton fx:id="supportButton" onMouseClicked="#clickSupport" text="Support" toggleGroup="$roleGroup" GridPane.rowIndex="9" />
           <Label text="I am a:" GridPane.rowIndex="6" />
           <Label fx:id="companyLabel" GridPane.rowIndex="10" />
            <TextField fx:id="username" GridPane.columnIndex="1" />
