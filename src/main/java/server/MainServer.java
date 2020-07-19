@@ -49,7 +49,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/products/", authenticator.getNewGuard(ManagerProductsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class, RoleAccessibility.MANAGER));
-        getDefaultHost().attach("/accounts/manager_account_controller/category/", authenticator.getNewGuard(CategoryResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/category/", CategoryResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/request/", authenticator.getNewGuard(RequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/requests/", authenticator.getNewGuard(RequestsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/accept_request/",authenticator.getNewGuard( AcceptRequestResource.class, RoleAccessibility.MANAGER));
