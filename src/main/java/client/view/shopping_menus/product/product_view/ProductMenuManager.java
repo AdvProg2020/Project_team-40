@@ -14,7 +14,8 @@ public class ProductMenuManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        product.increaseVisitCount();
+        if (product != null)
+            product.increaseVisitCount();
         setSecondaryPane(secondaryInnerPane);
         setSecondaryInnerPane("/layouts/shopping_menus/general_menu.fxml");
     }

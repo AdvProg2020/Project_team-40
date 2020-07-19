@@ -10,6 +10,7 @@ public class EditProduct extends Request{
     private String productId;
     private String field;
     private String newField;
+    private transient Product product;
     private HashMap<String, Double> extraValueProperties;
     private HashMap<String, String> extraStringProperties;
 
@@ -18,6 +19,7 @@ public class EditProduct extends Request{
     public EditProduct(String productId, String field, String newField, HashMap<String, Double> extraValueProperties,
                        HashMap<String, String> extraStringProperties) {
         super("Edit Product");
+        product = Product.getProductById(productId);
         this.productId = productId;
         this.field = field;
         this.newField = newField;
@@ -75,7 +77,7 @@ public class EditProduct extends Request{
     }
 
     public Product getProduct() {
-        return Product.getProductById(productId);
+        return product;
     }
 
     public String getField() {
