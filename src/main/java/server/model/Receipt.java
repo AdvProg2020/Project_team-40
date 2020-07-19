@@ -14,13 +14,15 @@ public class Receipt {
     private String description;
     private int origin;
     private int destination;
+    private int money;
     private boolean isPaid;
     private ReceiptTypes type;
     private int ID;
 
-    public Receipt(int ID, String username, String description, int origin, int destination, ReceiptTypes type) {
+    public Receipt(int ID, String username, String description, int money, int origin, int destination, ReceiptTypes type) {
         this.username = username;
         this.description = description;
+        this.money = money;
         this.origin = origin;
         this.destination = destination;
         this.type = type;
@@ -57,6 +59,10 @@ public class Receipt {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public int getOrigin() {

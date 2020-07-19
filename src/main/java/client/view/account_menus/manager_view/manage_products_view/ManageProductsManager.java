@@ -34,7 +34,7 @@ public class ManageProductsManager extends MenuManager implements Initializable 
         for (Object obj : products) {
             try {
                 Product product = (Product)obj;
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
+                AnchorPane item = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(product, hBox);
                 vBoxItems.getChildren().add(item);

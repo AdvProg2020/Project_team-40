@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.bank.receipts.ReceiptMenuManger">
     <children>
-        <Label fx:id="mainLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="375.0" layoutY="-1.0" prefHeight="94.0" prefWidth="309.0" text="Receipts" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="375.0" layoutY="-1.0" prefHeight="94.0" prefWidth="309.0" text="Receipts" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
