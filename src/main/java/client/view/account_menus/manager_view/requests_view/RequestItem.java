@@ -107,7 +107,7 @@ public class RequestItem extends MenuManager implements Initializable {
                 requestMenu.setOffIdLabel(off.getId());
                 requestMenu.setStartDateLabel(off.getStartDate());
                 requestMenu.setEndDateLabel(off.getEndDate());
-                requestMenu.setSellerLabel(off.getSeller().getUsername());
+                requestMenu.setSellerLabel(off.getSellerUsername());
                 requestMenu.setPercentageLabel(Double.toString(off.getDiscountPercentage()));
             }
 

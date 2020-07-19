@@ -7,6 +7,7 @@ import server.model.enumerations.Status;
 
 public class EditOff extends Request {
     private static final long serialVersionUID = -6075817828788614480L;
+    private transient Off off;
     private String offId;
     private String field;
     private String newField;
@@ -15,6 +16,7 @@ public class EditOff extends Request {
 
     public EditOff(String offID, String field, String newField) {
         super("Edit Off");
+        this.off = Off.getOffByID(offID);
         this.offId = offID;
         this.field = field;
         this.newField = newField;
@@ -47,7 +49,7 @@ public class EditOff extends Request {
     }
 
     public Off getOff() {
-        return Off.getOffByID(offId);
+        return off;
     }
 
     public String getField() {

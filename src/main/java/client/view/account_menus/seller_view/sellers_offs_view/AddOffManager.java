@@ -4,6 +4,7 @@ import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
+import server.model.Product;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -41,12 +43,17 @@ public class AddOffManager extends MenuManager implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         requestQueries = new HashMap<>();
+        sellerProducts = new ArrayList<>();
         initializeProducts();
     }
 
     private void initializeProducts(){
         requestQueries.put("username", Client.getInstance().getUsername());
-        sellerProducts =  RequestHandler.get("/accounts/seller_account_controller/products/", requestQueries, true, ArrayList.class);
+        ArrayList<Product> products = RequestHandler.get("/accounts/seller_account_controller/products/",
+                requestQueries, true, new TypeToken<ArrayList<Product>>(){}.getType());
+        assert products != null;
+        for (Product product : products)
+            sellerProducts.add(product.getProductId());
         chosenProducts = new ArrayList<>();
 
         ObservableList<Item> items = FXCollections.observableArrayList();
@@ -123,6 +130,7 @@ public class AddOffManager extends MenuManager implements Initializable{
 
         try {
             requestQueries.clear();
+            requestQueries.put("username", Client.getInstance().getUsername());
             requestQueries.put("startDate", startDate);
             requestQueries.put("endDate", endDate);
             requestQueries.put("percentage", Double.toString(percentage));

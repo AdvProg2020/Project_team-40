@@ -37,11 +37,7 @@ module sample {
     opens client.view.bank;
     opens client.view.bank.receipts;
     opens client.view.bank.transactions;
-    opens client.view.shopping_menus.product.comment_view;
-    opens client.view.shopping_menus.product.product_digest_view;
     opens client.view.shopping_menus.product.product_view;
-    opens client.view.shopping_menus.products_and_offs_menus.filter_view;
-    opens client.view.shopping_menus.products_and_offs_menus.offs_view;
     opens client.view.shopping_menus.products_and_offs_menus.products_view;
     opens client.view.shopping_menus.products_and_offs_menus.sorts_view;
     opens client.view;

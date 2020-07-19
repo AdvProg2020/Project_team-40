@@ -68,6 +68,9 @@ public class Comment implements Serializable{
     }
 
     public boolean hasBought (){
+        User user = User.getUserByUsername(username);
+        if (!(user instanceof Customer))
+            return false;
         return ((Customer)User.getUserByUsername(username)).hasBought(productID);
     }
 

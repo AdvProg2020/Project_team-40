@@ -18,6 +18,7 @@ import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Category;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -45,8 +46,10 @@ public class CategoryItem extends MenuManager implements Initializable {
         assert allCategories != null;
         for (String categoryName : allCategories) {
             try {
-                Category category = Category.getCategoryByName(categoryName);
-                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+                requestQueries.clear();
+                requestQueries.put("name", categoryName);
+                Category category = RequestHandler.get("/accounts/manager_account_controller/category/", requestQueries, false, Category.class);                AnchorPane item = (AnchorPane) FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+                assert category != null;
                 HBox hBox = (HBox) item.getChildren().get(0);
                 setLabelsContent(category, hBox);
                 vBoxItems.getChildren().add(item);
@@ -89,6 +92,13 @@ public class CategoryItem extends MenuManager implements Initializable {
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                 logout();
+            else {
+                try {
+                    System.err.println(RequestHandler.getClientResource().getResponseEntity().getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
         Platform.runLater(() -> loadCategories(items));
     }

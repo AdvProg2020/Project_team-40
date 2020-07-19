@@ -4,7 +4,6 @@ import client.controller.RequestHandler;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import exceptions.MenuException;
 import server.model.Category;
-import server.model.Off;
 import server.model.Product;
 import server.model.enumerations.SortTypes;
 import server.model.enumerations.StockStatus;
@@ -38,12 +37,10 @@ public class ProductsMenuController {
         if(offOnly){
             products.clear();
             requestQueries.clear();
-            ArrayList<Off> offs = RequestHandler.get("/shop/all_offs/", requestQueries, false,
-                    new TypeToken<ArrayList<Off>>(){}.getType());
-            assert offs != null;
-            for (Off off : offs) {
-                products.addAll(off.getProducts());
-            }
+            ArrayList<Product> productsInOff = RequestHandler.get("/shop/all_offs/products/", requestQueries,
+                    false, new TypeToken<ArrayList<Product>>(){}.getType());
+            assert productsInOff != null;
+            products.addAll(productsInOff);
             productFilter.setProducts(products);
             productsToShow = products;
         }else{
@@ -52,7 +49,6 @@ public class ProductsMenuController {
             products = RequestHandler.get("/shop/all_products/", requestQueries, false,
                     new TypeToken<ArrayList<Product>>(){}.getType());
             assert products != null;
-            products.addAll(Product.getAllProducts().values());
             productFilter.setProducts(products);
             productsToShow = products;
         }

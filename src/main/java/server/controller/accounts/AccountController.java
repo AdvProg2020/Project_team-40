@@ -7,7 +7,6 @@ import server.model.users.Seller;
 import server.model.users.User;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class AccountController{
     private static AccountController accountController = new AccountController();
@@ -23,17 +22,22 @@ public class AccountController{
     }
 
     public void login(String username, String password) throws AccountsException {
-        Set<String> usernames = User.getAllUsernames();
-        if(!usernames.contains(username)) {
+        User user = User.getUserByUsername(username);
+        if(user == null) {
             throw new AccountsException("User with this name doesn't exist.");
         }
-        User tempUser = User.getUserByUsername(username);
-        if(!tempUser.getPassword().equals(password)) {
+        if(!user.getPassword().equals(password)) {
             throw new AccountsException("Wrong password");
         }
-        if(tempUser instanceof Customer) {
-            Cart.getThisCart().moveProductsToCustomerCart((Customer) tempUser);
+        if(user instanceof Customer) {
+            Cart.getThisCart().moveProductsToCustomerCart((Customer) user);
         }
+        user.setOnline(true);
+    }
+
+    public void logout(String username){
+        User user  = User.getUserByUsername(username);
+        user.setOnline(false);
     }
 
     public boolean isLogin() {

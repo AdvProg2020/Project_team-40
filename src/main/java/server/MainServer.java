@@ -46,7 +46,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/product/", authenticator.getNewGuard(ManagerProductResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/products/", authenticator.getNewGuard(ManagerProductsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/all_categories/", authenticator.getNewGuard(ManagerAllCategoriesResource.class, RoleAccessibility.MANAGER));
-        getDefaultHost().attach("/accounts/manager_account_controller/category/", authenticator.getNewGuard(CategoryResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/category/", CategoryResource.class);
         getDefaultHost().attach("/accounts/manager_account_controller/request/", authenticator.getNewGuard(RequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/requests/", authenticator.getNewGuard(RequestsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/accept_request/",authenticator.getNewGuard( AcceptRequestResource.class, RoleAccessibility.MANAGER));
@@ -61,6 +61,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/cart_total_price/", authenticator.getNewGuard(CartTotalPriceResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/discount/", authenticator.getNewGuard(CustomerDiscountResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/product/", authenticator.getNewGuard(CustomerProductResource.class, RoleAccessibility.CUSTOMER));
+        getDefaultHost().attach("/accounts/customer_account_controller/product/purchase_status/", CustomerPurchaseStatusResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/order/", authenticator.getNewGuard(OrderResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/orders/", authenticator.getNewGuard(OrdersResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class, RoleAccessibility.CUSTOMER));
@@ -102,6 +103,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/shop/all_products/", ProductsResource.class);
         getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
         getDefaultHost().attach("/shop/all_offs/", OffsResource.class);
+        getDefaultHost().attach("/shop/all_offs/products/", ProductsInOffResource.class);
+
 
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);

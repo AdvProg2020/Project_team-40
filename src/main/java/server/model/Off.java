@@ -118,8 +118,29 @@ public class Off implements Serializable{
         return status.equals(SetUpStatus.Confirmed) && now.compareTo(start) > 0 && now.compareTo(end) < 0;
     }
 
+    public String getActivationStatus(){
+        try {
+            Date today = new Date();
+            Date start = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(startDate);
+            Date end = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(endDate);
+            if (today.before(start) && today.before(start))
+                return "NOT STARTED";
+            if (today.after(start) && today.before(end))
+                return "ACTIVE";
+            if (today.after(end))
+                return "EXPIRED";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Seller getSeller() {
         return (Seller)Seller.getUserByUsername(seller);
+    }
+
+    public String getSellerUsername(){
+        return seller;
     }
 
     public ArrayList<String> getProductIDs() {
