@@ -64,6 +64,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/cart_total_price/", authenticator.getNewGuard(CartTotalPriceResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/discount/", authenticator.getNewGuard(CustomerDiscountResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/product/", authenticator.getNewGuard(CustomerProductResource.class, RoleAccessibility.CUSTOMER));
+        getDefaultHost().attach("/accounts/customer_account_controller/product/purchase_status/", CustomerPurchaseStatusResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/order/", authenticator.getNewGuard(OrderResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/orders/", authenticator.getNewGuard(OrdersResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class, RoleAccessibility.CUSTOMER));

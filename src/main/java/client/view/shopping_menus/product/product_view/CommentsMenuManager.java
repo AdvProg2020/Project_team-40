@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 import org.restlet.resource.ResourceException;
 import server.model.Comment;
 import server.model.enumerations.Status;
-import server.model.users.Customer;
-import server.model.users.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -94,16 +92,21 @@ public class CommentsMenuManager extends MenuManager implements Initializable{
         }
         requestQueries.clear();
         requestQueries.put("username", Client.getInstance().getUsername());
-        User user = RequestHandler.get("/accounts/user/", requestQueries, false, User.class);
-        if (!(user instanceof Customer)){
+        HashMap<String, String> userParams = RequestHandler.get("/accounts/user/", requestQueries,
+                false, new TypeToken<HashMap<String, String>>(){}.getType());
+        assert userParams != null;
+        if (!(userParams.get("role").equals("Customer"))){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Rating forbidden.");
             alert.setContentText("You can't rate this product.");
             alert.showAndWait();
             return;
         }
-
-        if(!((Customer)user).hasBought(ProductMenuManager.getProduct().getProductId())){
+        requestQueries.clear();
+        requestQueries.put("username", userParams.get("username"));
+        requestQueries.put("productID", ProductMenuManager.getProduct().getProductId());
+        boolean hasBought = (boolean) RequestHandler.get("/accounts/customer_account_controller/product/purchase_status/", requestQueries, false, boolean.class);
+        if(!hasBought){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Rating forbidden.");
             alert.setContentText("You must buy this product first to rate it.");
