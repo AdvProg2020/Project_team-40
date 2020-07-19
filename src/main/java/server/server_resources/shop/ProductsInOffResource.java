@@ -14,7 +14,8 @@ public class ProductsInOffResource extends ServerResource {
     public String getProductsInOff(){
         ArrayList<Product> productsInOff = new ArrayList<>();
         for (Off off : Off.getAllOffs().values()) {
-            productsInOff.addAll(off.getProducts());
+            if (off.getActivationStatus().equals("ACTIVE"))
+                productsInOff.addAll(off.getProducts());
         }
         return new YaGson().toJson(productsInOff, new TypeToken<ArrayList<Product>>(){}.getType());
     }
