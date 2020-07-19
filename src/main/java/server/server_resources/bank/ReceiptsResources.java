@@ -12,7 +12,9 @@ public class ReceiptsResources extends ServerResource {
 
     @Post
     public String getUsersReceipts(String username) {
+        System.out.println("ho");
         HashMap<Integer, Receipt> usersReceipts = Receipt.getUsersReceipts(username);
+        System.out.println("hi");
         return new YaGson().toJson(username, new TypeToken<HashMap<Integer, Receipt>>(){}.getType());
     }
 }
