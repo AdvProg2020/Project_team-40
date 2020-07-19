@@ -33,6 +33,7 @@ public class ReceiptMenuManger implements Initializable {
         for(Receipt receipt : receipts.values()) {
             createReceiptItem(receipt);
         }
+        System.out.println(receipts.size());
         //TODO: Test createReceiptItem
         //TODO: Consider the case where token is expired...
     }
@@ -49,6 +50,7 @@ public class ReceiptMenuManger implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("hi");
     }
 
     public void createReceipt() {

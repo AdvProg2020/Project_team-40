@@ -5,10 +5,7 @@ import client.controller.RequestHandler;
 import client.view.ValidInput;
 import com.gilecode.yagson.stream.StringOutputLimitExceededException;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -29,6 +26,8 @@ public class CreateReceiptManager implements Initializable {
     public Label destinationIDError;
     public Label amountError;
     public Label serverError;
+
+    public Button doneButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -87,6 +86,7 @@ public class CreateReceiptManager implements Initializable {
         destinationIDField.setDisable(true);
         descriptionField.setDisable(true);
         moneyField.setDisable(true);
+        doneButton.setDisable(true);
         toggleGroupError.setText("");
         sourceIDError.setText("");
         destinationIDError.setText("");
