@@ -3,6 +3,7 @@ package client.view.bank.receipts;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.ValidInput;
+import com.gilecode.yagson.stream.StringOutputLimitExceededException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -41,10 +42,12 @@ public class CreateReceiptManager implements Initializable {
         sourceIDField.setDisable(true);
         destinationIDField.setDisable(false);
         sourceIDField.setText("-1");
+        destinationIDField.setText("");
     }
 
     public void withdraw() {
         sourceIDField.setDisable(false);
+        sourceIDField.setText("");
         destinationIDField.setDisable(true);
         destinationIDField.setText("-1");
     }
@@ -52,6 +55,8 @@ public class CreateReceiptManager implements Initializable {
     public void move() {
         sourceIDField.setDisable(false);
         destinationIDField.setDisable(false);
+        sourceIDField.setText("");
+        destinationIDField.setText("");
     }
 
     public void createReceipt() {
@@ -66,10 +71,26 @@ public class CreateReceiptManager implements Initializable {
             queries.put("description", descriptionField.getText());
             String response = RequestHandler.get("/bank/create_receipt_resources/", queries, true,
                     String.class);
-            System.out.println(response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            if(!ValidInput.INTEGER.getStringMatcher(response).matches())
+                serverError.setText(response);
+            else
+                successfullyCreatedReceipt(response);
+        } catch (Exception ignored) {}
+    }
+
+    private void successfullyCreatedReceipt(String response) {
+        serverError.setText("Successfully created receipt with ID " + response);
+        deposit.setDisable(true);
+        withdraw.setDisable(true);
+        move.setDisable(true);
+        sourceIDField.setDisable(true);
+        destinationIDField.setDisable(true);
+        descriptionField.setDisable(true);
+        moneyField.setDisable(true);
+        toggleGroupError.setText("");
+        sourceIDError.setText("");
+        destinationIDError.setText("");
+        amountError.setText("");
     }
 
     private String getType() throws Exception {
@@ -80,17 +101,17 @@ public class CreateReceiptManager implements Initializable {
         if(move.isSelected())
             return "move";
         toggleGroupError.setText("Choose a type!");
-        throw new Exception();
+        throw new Exception("");
     }
 
     private void validateFieldsInput() throws Exception {
         if(moneyField.getText().isBlank()) {
             amountError.setText(BLANK_ERROR);
-            throw new Exception();
+            throw new Exception("");
         }
         if(!ValidInput.INTEGER.getStringMatcher(moneyField.getText()).matches()) {
             amountError.setText("Enter a number!");
-            throw new Exception();
+            throw new Exception("");
         }
         validateFieldsInput(sourceIDField, sourceIDError);
         validateFieldsInput(destinationIDField, destinationIDError);
@@ -100,7 +121,7 @@ public class CreateReceiptManager implements Initializable {
         if(!idField.isDisable() && (idField.getText().isBlank() ||
                 !ValidInput.INTEGER.getStringMatcher(idField.getText()).matches())) {
             idError.setText("Enter a number!");
-            throw new Exception();
+            throw new Exception("");
         }
     }
 }

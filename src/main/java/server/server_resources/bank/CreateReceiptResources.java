@@ -23,7 +23,6 @@ public class CreateReceiptResources extends ServerResource {
                     getQueryValue("money") + " " + getQueryValue("source") + " " +
                     getQueryValue("destination") + " " + getQueryValue("description");
             outputStream.writeUTF(message.trim());
-            System.out.println(message);
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             bankResponse = inputStream.readUTF();
