@@ -40,11 +40,13 @@ public class CreateReceiptManager implements Initializable {
     public void deposit() {
         sourceIDField.setDisable(true);
         destinationIDField.setDisable(false);
+        sourceIDField.setText("-1");
     }
 
     public void withdraw() {
         sourceIDField.setDisable(false);
         destinationIDField.setDisable(true);
+        destinationIDField.setText("-1");
     }
 
     public void move() {
@@ -64,7 +66,7 @@ public class CreateReceiptManager implements Initializable {
             queries.put("description", descriptionField.getText());
             String response = RequestHandler.get("/bank/create_receipt_resources/", queries, true,
                     String.class);
-
+            System.out.println(response);
         } catch (Exception e) {
             e.printStackTrace();
         }
