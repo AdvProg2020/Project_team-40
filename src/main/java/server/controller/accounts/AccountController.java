@@ -37,7 +37,8 @@ public class AccountController{
 
     public void logout(String username){
         User user  = User.getUserByUsername(username);
-        user.setOnline(false);
+        if (user != null)
+            user.setOnline(false);
     }
 
     public boolean isLogin() {

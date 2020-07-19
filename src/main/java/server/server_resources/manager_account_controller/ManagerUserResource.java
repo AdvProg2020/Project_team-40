@@ -4,6 +4,7 @@ import exceptions.AccountsException;
 import org.restlet.resource.Delete;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
+import server.ServerAuthenticator;
 import server.controller.accounts.ManagerAccountController;
 
 public class ManagerUserResource extends ServerResource {
@@ -12,6 +13,7 @@ public class ManagerUserResource extends ServerResource {
         String username = getQueryValue("username");
         try {
             ManagerAccountController.getInstance().deleteUser(username);
+            ServerAuthenticator.getInstance().removeIdentifier(username);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }

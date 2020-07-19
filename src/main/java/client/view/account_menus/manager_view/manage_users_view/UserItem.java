@@ -91,7 +91,7 @@ public class UserItem extends MenuManager implements Initializable {
     public void handleDeleteUser() {
         HBox item = (HBox)((deleteUserButton.getParent()).getParent());
         VBox items =(VBox)(item.getParent()).getParent();
-        String username =((Label)item.getChildren().get(0)).getText();
+        String username =((Label)item.getChildren().get(1)).getText();
         try {
             requestQueries.clear();
             requestQueries.put("username", username);

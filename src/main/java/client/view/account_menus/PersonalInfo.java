@@ -63,7 +63,12 @@ public class PersonalInfo extends MenuManager implements Initializable {
             companyLabel.setText("Company: ");
             HashMap<String, String> queries = new HashMap<>();
             queries.put("username", Client.getInstance().getUsername());
-            company.setText(RequestHandler.get("/accounts/seller_account_controller/company_info/", queries, true, String.class));
+            try {
+                company.setText(RequestHandler.get("/accounts/seller_account_controller/company_info/", queries, true, String.class));
+            }catch (ResourceException e){
+                if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
+                    logout();
+            }
             editCompany = new Button("edit");
             gridPane.add(editCompany, 3, 6);
             editCompany.setOnMouseClicked(e -> editCompany());
