@@ -4,6 +4,7 @@ import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.controller.menus.BankController;
+import server.model.users.User;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,6 +18,9 @@ import static server.server_resources.bank.BankInformation.IP;
 public class BankLoginResource extends ServerResource {
     @Post
     public String login(String bankUsername) {
+        String username = getQueryValue("username");
+        if(!User.getUserByUsername(username).getBankUsername().equals(bankUsername))
+            return new YaGson().toJson("You must enter your own account!", String.class);
         String password = getQueryValue("bank password");
         String response = null;
         try {
@@ -27,7 +31,7 @@ public class BankLoginResource extends ServerResource {
             outputStream.flush();
             String bankResponse = inputStream.readUTF();
             if(!bankResponse.equals("invalid username or password")) {
-                BankController.getBankController().getUsersTokens().put(getQueryValue("username"), bankResponse);
+                BankController.getBankController().getUsersTokens().put(username, bankResponse);
             }
             socket.close();
             response = bankResponse;

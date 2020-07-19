@@ -26,6 +26,7 @@ public class Manager extends User {
             User user = User.getUserByUsername(username);
             if(user instanceof Manager) {
                 this.setBankAccount(user.getBankAccount());
+                this.setBankUsername(user.getBankUsername());
                 break;
             }
         }

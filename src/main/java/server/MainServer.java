@@ -10,10 +10,7 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
-import server.server_resources.bank.BankBalance;
-import server.server_resources.bank.BankLoginResource;
-import server.server_resources.bank.BankRegisterResource;
-import server.server_resources.bank.ReceiptsResources;
+import server.server_resources.bank.*;
 import server.server_resources.chat.ChatResource;
 import server.server_resources.chat.MembersResource;
 import server.server_resources.chat.MessageResource;
@@ -89,6 +86,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/bank/login/", BankLoginResource.class);
         getDefaultHost().attach("/bank/balance/", BankBalance.class);
         getDefaultHost().attach("/bank/receipts/", ReceiptsResources.class);
+        getDefaultHost().attach("/bank/transactions/", transactionsResources.class);
+        getDefaultHost().attach("/bank/create_receipt_resources/", CreateReceiptResources.class);
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
         getDefaultHost().attach("/accounts/user/", UserResource.class);

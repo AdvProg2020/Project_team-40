@@ -25,7 +25,7 @@ public class BankLoginManager extends MenuManager {
         queries.put("bank password", passwordField.getText());
         queries.put("username", Client.getInstance().getUsername());
         String response = RequestHandler.post("/bank/login/", usernameField.getText(), queries, true, String.class);
-        if (response.equals("invalid username or password")) {
+        if (response.equals("invalid username or password") || response.equals("You must enter your own account!")) {
             errorMessage.setText(response);
         } else {
             goToBank();

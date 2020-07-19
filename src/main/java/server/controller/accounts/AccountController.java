@@ -102,21 +102,4 @@ public class AccountController{
         }
         return fields;
     }
-
-    public void setBankAccount(int bankAccount) throws AccountsException {
-        //TODO:Fix getUserByUsername null argument
-        User user = User.getUserByUsername(null);
-        if(user.getBankAccount() != null)
-            throw new AccountsException("You already have an account in this bank!");
-        user.setBankAccount(bankAccount);
-    }
-
-    public Integer getBankAccount() throws AccountsException {
-        //TODO:Fix getUserByUsername null argument
-        User user = User.getUserByUsername(null);
-        if(user.getBankAccount() == null)
-            throw new AccountsException("You don't have any account in this bank.");
-        return user.getBankAccount();
-    }
-
 }
