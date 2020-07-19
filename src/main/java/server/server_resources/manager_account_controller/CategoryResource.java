@@ -40,7 +40,7 @@ public class CategoryResource extends ServerResource {
     @Delete
     public void removeCategory(){
         try {
-            ManagerAccountController.getInstance().removeCategory(getQueryValue("categoryName"));
+            ManagerAccountController.getInstance().removeCategory(getQueryValue("name"));
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }
