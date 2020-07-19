@@ -29,7 +29,6 @@ public class ProductItemManager extends MenuManager implements Initializable{
     public Label score;
     public Text offText;
     public Button digest;
-    private HashMap<String, String> requestQueries;
 
     public ProductItemManager(){
         initializeProduct();
@@ -41,7 +40,7 @@ public class ProductItemManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-
+        HashMap<String, String> requestQueries = new HashMap<>();
         try {
             Image frame = new Image(getClass().getResourceAsStream("/product_images/" + product.getName() + ".jpg"));
             image.setImage(frame);
@@ -64,7 +63,6 @@ public class ProductItemManager extends MenuManager implements Initializable{
 
         offText.setText("-");
         if(product.isInOff()){
-            requestQueries.clear();
             requestQueries.put("username", product.getSellerUsername());
             ArrayList<Off> offs = RequestHandler.get("/accounts/seller_account_controller/seller/offs",
                     requestQueries, false, new TypeToken<ArrayList<Off>>(){}.getType());

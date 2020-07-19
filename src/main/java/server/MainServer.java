@@ -104,6 +104,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/shop/all_products/", ProductsResource.class);
         getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
         getDefaultHost().attach("/shop/all_offs/", OffsResource.class);
+        getDefaultHost().attach("/shop/all_offs/products/", ProductsInOffResource.class);
+
 
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
