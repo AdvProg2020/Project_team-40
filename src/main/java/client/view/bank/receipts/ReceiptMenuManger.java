@@ -7,9 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import server.model.Product;
 import server.model.Receipt;
 
@@ -49,6 +52,14 @@ public class ReceiptMenuManger implements Initializable {
     }
 
     public void createReceipt() {
-
+        Stage stage = new Stage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/receipts/create_receipt.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root, 600, 600));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
