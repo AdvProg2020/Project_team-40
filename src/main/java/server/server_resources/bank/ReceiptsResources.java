@@ -15,6 +15,6 @@ public class ReceiptsResources extends ServerResource {
         System.out.println("ho");
         HashMap<Integer, Receipt> usersReceipts = Receipt.getUsersReceipts(username);
         System.out.println("hi");
-        return new YaGson().toJson(username, new TypeToken<HashMap<Integer, Receipt>>(){}.getType());
+        return new YaGson().toJson(usersReceipts, new TypeToken<HashMap<Integer, Receipt>>(){}.getType());
     }
 }
