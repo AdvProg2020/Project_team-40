@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,6 +31,7 @@ public class ReceiptMenuManger implements Initializable {
         HashMap<Integer, Receipt> receipts = RequestHandler.post("/bank/receipts/",
                 Client.getInstance().getUsername(), new HashMap<>(), true,
                 new TypeToken<HashMap<Integer, Receipt>>(){}.getType());
+        System.out.println(receipts.size());
         for(Receipt receipt : receipts.values()) {
             createReceiptItem(receipt);
         }
@@ -39,7 +41,9 @@ public class ReceiptMenuManger implements Initializable {
 
     private void createReceiptItem(Receipt receipt) {
         try {
-            AnchorPane item = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/receipts/receipt_item.fxml"));
+            System.out.println("ho");
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/receipts/receipt_item.fxml"));
+            HBox item = (HBox) pane.getChildren().get(0);
             ((Label)item.getChildren().get(0)).setText(String.valueOf(receipt.getID()));
             ((Label)item.getChildren().get(1)).setText(String.valueOf(receipt.getOrigin()));
             ((Label)item.getChildren().get(2)).setText(String.valueOf(receipt.getDestination()));
@@ -49,6 +53,7 @@ public class ReceiptMenuManger implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("hi");
     }
 
     public void createReceipt() {
