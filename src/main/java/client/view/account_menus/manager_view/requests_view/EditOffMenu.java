@@ -75,17 +75,17 @@ public class EditOffMenu extends RequestMenu implements Initializable{
     }
 
     public void handleViewOff() {
+        try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/manager_menus/manager_request_menus/view_off.fxml"));
+        Pane pane = loader.load();
         OffMenu offMenu = loader.getController();
         Off off = editOff.getOff();
         offMenu.setOff(off);
         offMenu.setOffIdLabel(off.getId());
-        offMenu.setSellerLabel(off.getSeller().getUsername());
+        offMenu.setSellerLabel(off.getSellerUsername());
         offMenu.setStartDateLabel(off.getStartDate());
         offMenu.setEndDateLabel(off.getEndDate());
         offMenu.setProductIdsListView();
-        try {
-            Pane pane = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(pane, 600, 600));
             stage.initModality(Modality.APPLICATION_MODAL);

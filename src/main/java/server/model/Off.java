@@ -122,6 +122,10 @@ public class Off implements Serializable{
         return (Seller)Seller.getUserByUsername(seller);
     }
 
+    public String getSellerUsername(){
+        return seller;
+    }
+
     public ArrayList<String> getProductIDs() {
         return productIDs;
     }
