@@ -63,7 +63,7 @@ public class RequestItem extends MenuManager implements Initializable {
             }
 
             private void setSellingPermissionLabels(SellingPermissionMenu requestMenu, Request request) {
-                Seller seller = (Seller) Seller.getUserByUsername(((SellingPermission)request).getSellerUsername());
+                Seller seller = ((SellingPermission)request).getSeller();
                 requestMenu.setSellingPermission((SellingPermission)request);
                 requestMenu.setUsernameLabel(seller.getUsername());
                 requestMenu.setNameLabel(seller.getFirstName());

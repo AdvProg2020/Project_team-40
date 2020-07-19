@@ -163,7 +163,7 @@ public class AddProductManager extends MenuManager implements Initializable {
             else
                 e.printStackTrace();
         } catch (AccountsException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
