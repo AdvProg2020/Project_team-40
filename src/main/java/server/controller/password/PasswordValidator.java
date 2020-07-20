@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator {
     private ArrayList<String> theWorstPasswords;
+    private final String NUMERICAL = "[0-9]";
+    private final String ALPHABETICAL = "[[a-z][A-Z]]";
     private boolean enabled;
     private final int MINIMUM_CHARS_NUMBER = 5;
     private static PasswordValidator validator = new PasswordValidator();
@@ -30,8 +32,8 @@ public class PasswordValidator {
             theWorstPasswords.add(scanner.nextLine());
     }
 
-    private Matcher getDigitMatcher(String text){
-        Pattern pattern = Pattern.compile("[0-9]");
+    private Matcher getMatcher(String regex, String text){
+        Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(text);
     }
 
@@ -43,8 +45,10 @@ public class PasswordValidator {
         if (enabled) {
             if (password.length() < MINIMUM_CHARS_NUMBER)
                 throw new WeakPasswordException("Too short password");
-            if (!(getDigitMatcher(password)).find())
+            if (!(getMatcher(NUMERICAL, password)).find())
                 throw new WeakPasswordException("The password should contain at least one digit");
+            if (!(getMatcher(ALPHABETICAL, password)).find())
+                throw new WeakPasswordException("The password should contain at least one alphabet");
             if (theWorstPasswords.contains(password))
                 throw new WeakPasswordException("The password is easy to guess!");
         }
