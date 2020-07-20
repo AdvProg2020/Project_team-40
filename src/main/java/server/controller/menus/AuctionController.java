@@ -19,10 +19,9 @@ public class AuctionController {
             public void run() {
                 ArrayList<Auction> passedAuctions = new ArrayList<>();
                 while(true) {
-                    ArrayList<String> auctions = Auction.getOnGoingAuctions();
+                    ArrayList<Auction> auctions = Auction.getOnGoingAuctions();
                     passedAuctions.clear();
-                    for(String auctionID : auctions) {
-                        Auction auction = Auction.getAuctionById(auctionID);
+                    for(Auction auction : auctions) {
                         if(auction.hasReachedDeadline())
                             passedAuctions.add(auction);
                     }

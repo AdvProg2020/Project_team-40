@@ -76,8 +76,12 @@ public class Auction {
         return chatId;
     }
 
-    public static ArrayList<String> getOnGoingAuctions() {
-        return onGoingAuctions;
+    public static ArrayList<Auction> getOnGoingAuctions() {
+        ArrayList<Auction> auctions = new ArrayList<>();
+        for (String auctionId : onGoingAuctions) {
+            auctions.add(Auction.auctions.get(auctionId));
+        }
+        return auctions;
     }
 
     public void setHighestPrice(int highestPrice) {
