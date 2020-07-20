@@ -64,7 +64,11 @@ public class Seller extends User{
         return logsName;
     }
 
-    public ArrayList<String> getAuctions() {
+    public ArrayList<Auction> getAuctions() {
+        ArrayList<Auction> auctions = new ArrayList<>();
+        for(String auctionID : this.auctions) {
+            auctions.add(Auction.getAuctionById(auctionID));
+        }
         return auctions;
     }
 
