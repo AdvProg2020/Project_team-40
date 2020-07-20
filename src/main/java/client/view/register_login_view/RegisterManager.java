@@ -246,7 +246,8 @@ public class RegisterManager extends MenuManager implements Initializable {
         lastName.textProperty().addListener(new ChangeListener(40, lastName));
         email.textProperty().addListener(new ChangeListener(256, email));
         phoneNumber.textProperty().addListener(new ChangeListener(15, phoneNumber));
-        companyField.textProperty().addListener(new ChangeListener(50, companyField));
+        if (companyField != null)
+            companyField.textProperty().addListener(new ChangeListener(50, companyField));
     }
 
     @Override

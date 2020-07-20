@@ -18,6 +18,10 @@ public enum ValidInput {
         return this.commandPattern.matcher(input);
     }
 
+    public boolean isInputInvalid(String string){
+        return !getStringMatcher(string).find();
+    }
+
     ValidInput(String commandPattern) {
         this.commandPattern = Pattern.compile(commandPattern);
     }

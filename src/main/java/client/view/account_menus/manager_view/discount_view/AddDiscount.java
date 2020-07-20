@@ -1,11 +1,14 @@
 package client.view.account_menus.manager_view.discount_view;
 
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
+import client.view.ValidInput;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import exceptions.InvalidInputException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -35,6 +38,7 @@ public class AddDiscount extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         usersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customers = new ArrayList<>();
@@ -45,9 +49,16 @@ public class AddDiscount extends MenuManager implements Initializable {
         }
     }
 
+    private void addTextFieldsListeners() {
+        percentageField.textProperty().addListener(new ChangeListener(2, percentageField));
+        countField.textProperty().addListener(new ChangeListener(1, countField));
+        maxPriceField.textProperty().addListener(new ChangeListener(20, maxPriceField));
+    }
+
     public void handleCreateDiscount() throws IOException {
         addSelectedItemsToList();
         try {
+            validateInputs();
             requestQueries.clear();
             requestQueries.put("startDate", startField.getText());
             requestQueries.put("endDate", endField.getText());
@@ -60,6 +71,9 @@ public class AddDiscount extends MenuManager implements Initializable {
             RequestHandler.post("/accounts/manager_account_controller/discount/", entity, requestQueries, true, null);
             ((Stage)(doneButton.getScene().getWindow())).close();
         }
+        catch (InvalidInputException e) {
+            errorLabel.setText(e.getMessage());
+        }
         catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
             {
@@ -68,6 +82,15 @@ public class AddDiscount extends MenuManager implements Initializable {
             }
             errorLabel.setText(RequestHandler.getClientResource().getResponseEntity().getText());
         }
+    }
+
+    private void validateInputs() throws InvalidInputException {
+        if (ValidInput.INTEGER.isInputInvalid(percentageField.getText()))
+            throw new InvalidInputException("Invalid percentage input.");
+        if (ValidInput.DOUBLE.isInputInvalid(maxPriceField.getText()))
+            throw new InvalidInputException("Invalid maximum price input");
+        if (ValidInput.INTEGER.isInputInvalid(countField.getText()))
+            throw new InvalidInputException("Invalid count per user input.");
     }
 
     private void addSelectedItemsToList() {
