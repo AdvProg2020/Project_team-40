@@ -5,6 +5,7 @@ import client.controller.RequestHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import server.model.Receipt;
 import server.model.requests.Request;
@@ -20,5 +21,14 @@ public class ReceiptItemManager {
         HashMap<String, String> queries = new HashMap<>();
         queries.put("receipt ID", idLabel.getText());
         String response = RequestHandler.get("/bank/receipts/", queries, true, String.class);
+        Label errorLabel = (Label)
+                ((Pane)idLabel.getParent().getParent().getParent().getParent().getParent().getParent()).getChildren().get(4);
+        if(response.equals("done successfully")) {
+            VBox receiptsBox = (VBox) idLabel.getParent().getParent().getParent();
+            receiptsBox.getChildren().remove(idLabel.getParent().getParent());
+            errorLabel.setText("");
+        } else {
+            errorLabel.setText(response);
+        }
     }
 }
