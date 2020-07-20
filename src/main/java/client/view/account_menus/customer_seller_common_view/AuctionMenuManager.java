@@ -24,6 +24,10 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadAuctions();
+    }
+
+    private void loadAuctions() {
         HashMap<String, String> queries = new HashMap<>();
         Client client = Client.getInstance();
         if(client.getRole().equals("Seller"))
@@ -31,6 +35,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
         else
             queries.put("role", "customer");
         queries.put("username", client.getUsername());
+
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
                 true, new TypeToken<ArrayList<Auction>>(){}.getType());
         for(Auction auction : response){
@@ -41,7 +46,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     private void setAuctionItem(Auction auction) {
         try {
             AnchorPane item = FXMLLoader.load(getClass().
-                    getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+                    getResource("/layouts/customer_seller_common_menus/auctions_menus/auction_item.fxml"));
             HBox hBox = (HBox) item.getChildren().get(0);
             ((Label) hBox.getChildren().get(0)).setText(auction.getProductName());
             ((Label) hBox.getChildren().get(1)).setText(auction.getDeadline().toString());
@@ -53,8 +58,10 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     public void handleRefresh() {
+        loadAuctions();
     }
 
     public void handleAddAuction() {
+        setSecondaryInnerPane("/layouts/seller_menus/seller_auctions_menus/add_auction.fxml");
     }
 }
