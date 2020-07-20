@@ -2,6 +2,7 @@ package client.view.account_menus.customer_view.cart_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        validateInputs();
         requestQueries = new HashMap<>();
         requestQueries.put("username", Client.getInstance().getUsername());
         HashMap<Product, Integer> cart =  RequestHandler.get("/accounts/customer_account_controller/cart/",
@@ -51,6 +53,12 @@ public class CartMenuManager extends MenuManager implements Initializable {
             priceLabel.setText(Double.toString(totalPrice));
         }
     }
+
+    private void validateInputs() {
+        if (discountField != null && !discountField.isDisable())
+            discountField.textProperty().addListener(new ChangeListener(20, discountField));
+    }
+
 
     public void applyDiscount() {
         if (discountField.getText().isBlank()) {
