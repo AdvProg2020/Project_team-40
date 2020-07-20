@@ -45,7 +45,7 @@ public class ReceiptMenuManger implements Initializable {
             ((Label)item.getChildren().get(1)).setText(String.valueOf(receipt.getOrigin()));
             ((Label)item.getChildren().get(2)).setText(String.valueOf(receipt.getDestination()));
             ((Label)item.getChildren().get(3)).setText(String.valueOf(receipt.getMoney()));
-            ((Label)item.getChildren().get(4)).setText(String.valueOf(receipt.getDestination()));
+            ((Label)item.getChildren().get(4)).setText(String.valueOf(receipt.getDescription()));
             vBoxItems.getChildren().add(item);
         } catch (IOException e) {
             e.printStackTrace();
