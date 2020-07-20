@@ -15,9 +15,8 @@ public class SellerResource extends ServerResource {
         String lastName = getQueryValue("lastName");
         String email = getQueryValue("email");
         String phone = getQueryValue("phoneNumber");
-        double credit = Double.parseDouble(getQueryValue("credit"));
         String company = getQueryValue("companyInfo");
-        manager.createSellerAccount(username, password, firstName, lastName, email, phone, credit, company);
+        manager.createSellerAccount(username, password, firstName, lastName, email, phone, 0, company);
         ServerAuthenticator.getInstance().addToSellerVerifier(username, password);
     }
 }
