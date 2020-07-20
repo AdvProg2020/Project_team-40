@@ -10,14 +10,14 @@
             <Font size="35.0" />
         </font>
     </Label>
-    <GridPane layoutX="83.0" layoutY="111.0" prefHeight="500.0" prefWidth="700.0">
-      <columnConstraints>
-        <ColumnConstraints maxWidth="190.0" minWidth="117.0" prefWidth="180.0" />
+    <GridPane fx:id="gridPane" layoutX="83.0" layoutY="111.0" prefHeight="500.0" prefWidth="700.0">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="190.0" minWidth="117.0" prefWidth="180.0" />
           <ColumnConstraints maxWidth="379.0" minWidth="180.0" prefWidth="251.0" />
           <ColumnConstraints maxWidth="170.0" minWidth="19.0" prefWidth="21.0" />
-         <ColumnConstraints maxWidth="114.0" minWidth="53.0" prefWidth="62.0" />
+          <ColumnConstraints maxWidth="114.0" minWidth="53.0" prefWidth="62.0" />
           <ColumnConstraints maxWidth="186.0" minWidth="125.0" prefWidth="186.0" />
-      </columnConstraints>
+        </columnConstraints>
         <rowConstraints>
             <RowConstraints prefHeight="70.0" />
             <RowConstraints prefHeight="70.0" />
@@ -97,9 +97,6 @@
                 </font>
             </Label>
 
-
-
-
             <Label fx:id="minCreditError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
@@ -110,7 +107,6 @@
                     <Font size="15.0" />
                 </font>
             </Label>
-
 
             <Button fx:id="minCreditButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Button fx:id="wageButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="7" />

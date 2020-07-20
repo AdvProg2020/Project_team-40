@@ -35,18 +35,23 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
         else
             queries.put("role", "customer");
         queries.put("username", client.getUsername());
-
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
                 true, new TypeToken<ArrayList<Auction>>(){}.getType());
         for(Auction auction : response){
-            setAuctionItem(auction);
+            setAuctionItem(auction, client.getRole().equals("Seller"));
         }
     }
 
-    private void setAuctionItem(Auction auction) {
+    private void setAuctionItem(Auction auction, boolean isSeller) {
         try {
-            AnchorPane item = FXMLLoader.load(getClass().
-                    getResource("/layouts/customer_seller_common_menus/auctions_menus/auction_item.fxml"));
+            AnchorPane item;
+            if(isSeller) {
+                item = FXMLLoader.load(getClass().
+                        getResource("/layouts/seller_menus/sellers_auctions_menus/auction_item.fxml"));
+            } else {
+                item = FXMLLoader.load(getClass().
+                        getResource("/layouts/customer_seller_common_menus/auctions_menus/auction_item.fxml"));
+            }
             HBox hBox = (HBox) item.getChildren().get(0);
             ((Label) hBox.getChildren().get(0)).setText(auction.getProductName());
             ((Label) hBox.getChildren().get(1)).setText(auction.getDeadline().toString());
