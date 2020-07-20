@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -42,6 +44,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField email;
     public TextField phoneNumber;
     public Label registerLabel;
+    public Label passwordValidationLabel;
     //requestQueries must be cleared before each request
     private HashMap<String, String> requestQueries;
 
@@ -53,16 +56,24 @@ public class RegisterManager extends MenuManager implements Initializable {
             requestQueries.put("username", username.getText());
             boolean doesUserExist = (boolean) RequestHandler.get("/accounts/account/", requestQueries, false, boolean.class);
             if(!doesUserExist) {
-                if (customerButton.isSelected()) {
-                    registerCustomer();
-                } else if (sellerButton.isSelected()) {
-                    registerSeller();
-                } else if (managerButton.isSelected()) {
-                    registerManager();
-                }else if (supportButton.isSelected()) {
-                    registerSupport();
+                try {
+                    if (customerButton.isSelected()) {
+                        registerCustomer();
+                    } else if (sellerButton.isSelected()) {
+                        registerSeller();
+                    } else if (managerButton.isSelected()) {
+                        registerManager();
+                    } else if (supportButton.isSelected()) {
+                        registerSupport();
+                    }
+                    finishRegister();
+                }catch (ResourceException e){
+                    try {
+                        passwordValidationLabel.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-                finishRegister();
             } else {
                 usernameError.setText("This username has been used!");
             }

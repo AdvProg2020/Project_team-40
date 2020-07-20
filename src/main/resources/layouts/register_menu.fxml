@@ -64,6 +64,11 @@
           <TextField fx:id="lastName" prefHeight="20.0" prefWidth="257.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
            <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
            <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <Label fx:id="passwordValidationLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="265.0" textFill="#ff0d0d" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <font>
+               <Font name="Calibri Italic" size="17.0" />
+            </font>
+         </Label>
       </children>
     </GridPane>
      <Button fx:id="register" layoutX="487.0" layoutY="570.0" onMouseClicked="#register" prefHeight="22.0" prefWidth="155.0" text="Sign Up!">
