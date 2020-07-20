@@ -1,6 +1,7 @@
 package client.view.register_login_view;
 
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import client.view.ValidInput;
 import javafx.fxml.Initializable;
@@ -238,8 +239,19 @@ public class RegisterManager extends MenuManager implements Initializable {
         }
     }
 
+    private void addTextFieldsListeners() {
+        username.textProperty().addListener(new ChangeListener(40, username));
+        password.textProperty().addListener(new ChangeListener(40, password));
+        firstName.textProperty().addListener(new ChangeListener(30, firstName));
+        lastName.textProperty().addListener(new ChangeListener(40, lastName));
+        email.textProperty().addListener(new ChangeListener(256, email));
+        phoneNumber.textProperty().addListener(new ChangeListener(15, phoneNumber));
+        companyField.textProperty().addListener(new ChangeListener(50, companyField));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
         if(doesManagerExist && !isByManager) {

@@ -2,24 +2,38 @@ package client.view.register_login_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.restlet.resource.ResourceException;
-import server.controller.accounts.AccountController;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class LoginManager extends MenuManager {
+public class LoginManager extends MenuManager implements Initializable {
     public Label errorMessage;
     public TextField usernameField;
     public PasswordField passwordField;
     public Button login;
     public Button register;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
+
+    }
+
+    private void addTextFieldsListeners() {
+        usernameField.textProperty().addListener(new ChangeListener(40, usernameField));
+        passwordField.textProperty().addListener(new ChangeListener(40, passwordField));
+    }
 
     public void login() throws IOException {
         if(usernameField.getText().isBlank() || passwordField.getText().isBlank()) {
