@@ -18,8 +18,7 @@ public class Seller extends User{
 
     public Seller(){}
 
-    public Seller(String username, String password, String firstName,
-                  String lastName, String email, String phoneNo,
+    public Seller(String username, String password, String firstName, String lastName, String email, String phoneNo,
                   double creditInWallet, String companyInfo) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.creditInWallet = creditInWallet;
@@ -65,7 +64,11 @@ public class Seller extends User{
         return logsName;
     }
 
-    public ArrayList<String> getAuctions() {
+    public ArrayList<Auction> getAuctions() {
+        ArrayList<Auction> auctions = new ArrayList<>();
+        for(String auctionID : this.auctions) {
+            auctions.add(Auction.getAuctionById(auctionID));
+        }
         return auctions;
     }
 

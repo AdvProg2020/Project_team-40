@@ -90,10 +90,6 @@ public class Client {
         this.bankAccount = bankAccount;
     }
 
-    public  void setLatestToken(String latestToken) {
-        Client.latestToken = latestToken;
-    }
-
     public void logout(){
         isLoggedIn = false;
         username = null;

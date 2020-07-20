@@ -16,22 +16,24 @@ public class WalletManager extends MenuManager implements Initializable {
     public Label walletCredit;
     public Button toBankButton;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HashMap<String, String> queries = new HashMap<>();
         queries.put("username", Client.getInstance().getUsername());
-        String response = RequestHandler.get("/accounts/seller_customer_common/wallet", queries, true,
-                String.class);
+        String response = RequestHandler.get("/accounts/seller_customer_common/wallet/", queries,
+                true, String.class);
         if(response.startsWith("customer"))
             ((Pane) toBankButton.getParent()).getChildren().remove(toBankButton);
-
+        walletCredit.setText(response.split("\\s")[1]);
     }
 
     public void moveCreditToBank() {
-
+        ManageCreditMenuManager.setIsToWallet(false);
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/wallet_menu_design.fxml");
     }
 
     public void moveCreditToWallet() {
+        ManageCreditMenuManager.setIsToWallet(true);
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/wallet_menu_design.fxml");
     }
 }

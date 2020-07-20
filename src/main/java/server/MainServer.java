@@ -18,6 +18,7 @@ import server.server_resources.chat.SupportsResource;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
+import server.server_resources.seller_customer_common.AuctionsResource;
 import server.server_resources.seller_customer_common.WalletResource;
 import server.server_resources.shop.*;
 
@@ -27,7 +28,6 @@ public class MainServer extends Component {
         ServerAuthenticator.getInstance().initVerifier();
         new MainServer().start();
     }
-
 
     public MainServer() {
         setStatusService(new StatusService(){
@@ -83,7 +83,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class, RoleAccessibility.SELLER));
 
-        getDefaultHost().attach("/accounts/seller_customer_common/wallet", WalletResource.class);
+        getDefaultHost().attach("/accounts/seller_customer_common/wallet/", WalletResource.class);
+        getDefaultHost().attach("/accounts/seller_customer_common/auctions/", AuctionsResource.class);
 
         getDefaultHost().attach("/bank/register/", BankRegisterResource.class);
         getDefaultHost().attach("/bank/login/", BankLoginResource.class);
@@ -107,8 +108,6 @@ public class MainServer extends Component {
         getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
         getDefaultHost().attach("/shop/all_offs/", OffsResource.class);
         getDefaultHost().attach("/shop/all_offs/products/", ProductsInOffResource.class);
-
-
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
         getDefaultHost().attach("/chat/message/", MessageResource.class);

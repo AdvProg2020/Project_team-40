@@ -16,6 +16,7 @@ public class Auction {
     private static ArrayList<String> onGoingAuctions = new ArrayList<>();
     private Date deadline;
     private String productId;
+    private String productName;
     private int highestPrice;
     private String sellerID;
     private ArrayList<String> customers = new ArrayList<>();
@@ -26,6 +27,7 @@ public class Auction {
     public Auction(Date deadline, String productId, int highestPrice, String sellerID, String chatId) {
         this.deadline = deadline;
         this.productId = productId;
+        this.productName = Product.getProductById(productId).getName();
         this.highestPrice = highestPrice;
         this.sellerID = sellerID;
         this.chatId = chatId;
@@ -50,6 +52,10 @@ public class Auction {
         return productId;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
     public int getHighestPrice() {
         return highestPrice;
     }
@@ -70,8 +76,12 @@ public class Auction {
         return chatId;
     }
 
-    public static ArrayList<String> getOnGoingAuctions() {
-        return onGoingAuctions;
+    public static ArrayList<Auction> getOnGoingAuctions() {
+        ArrayList<Auction> auctions = new ArrayList<>();
+        for (String auctionId : onGoingAuctions) {
+            auctions.add(Auction.auctions.get(auctionId));
+        }
+        return auctions;
     }
 
     public void setHighestPrice(int highestPrice) {

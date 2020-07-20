@@ -10,26 +10,26 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="client.view.account_menus.seller_view.auction_view.AuctionItem"
-            prefHeight="40.0" prefWidth="445.0">
+            prefHeight="40.0" prefWidth="744.0">
     <children>
-        <HBox prefHeight="40.0" prefWidth="445.0">
+        <HBox prefHeight="40.0" prefWidth="744.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="14.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="14.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="14.0" />
                     </font>
                 </Label>
-                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="45.0" text="">
+                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="144.0" text="">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <image>

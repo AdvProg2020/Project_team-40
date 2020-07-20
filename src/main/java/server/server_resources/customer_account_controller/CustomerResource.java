@@ -24,8 +24,7 @@ public class CustomerResource extends ServerResource {
         String lastName = getQueryValue("lastName");
         String email = getQueryValue("email");
         String phone = getQueryValue("phoneNumber");
-        double credit = Double.parseDouble(getQueryValue("credit"));
-        manager.createCustomerAccount(username, password, firstName, lastName, email, phone, credit);
+        manager.createCustomerAccount(username, password, firstName, lastName, email, phone, 0);
         ServerAuthenticator.getInstance().addToCustomerVerifier(username, password);
     }
 

@@ -7,6 +7,7 @@ import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -53,11 +54,6 @@ public class MenuManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        secondaryPane.getChildren().clear();
-        secondaryPane.getChildren().add(root);
-    }
-
-    protected void setSecondaryInnerPane(Parent root) {
         secondaryPane.getChildren().clear();
         secondaryPane.getChildren().add(root);
     }
@@ -109,9 +105,12 @@ public class MenuManager {
         }
     }
 
-
     public void goToWallet() {
-        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menu_design.fxml");
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/wallet_menu_design.fxml");
+    }
+
+    public void goToAuctions() {
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/auctions_menus/auctions_menu.fxml");
     }
 
     public void logout() {
