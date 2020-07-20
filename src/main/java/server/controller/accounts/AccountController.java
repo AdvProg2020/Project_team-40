@@ -23,11 +23,8 @@ public class AccountController{
 
     public void login(String username, String password) throws AccountsException {
         User user = User.getUserByUsername(username);
-        if(user == null) {
-            throw new AccountsException("User with this name doesn't exist.");
-        }
-        if(!user.getPassword().equals(password)) {
-            throw new AccountsException("Wrong password");
+        if(user == null || !user.getPassword().equals(password)) {
+            throw new AccountsException("Invalid username and/or password.");
         }
         if(user instanceof Customer) {
             Cart.getThisCart().moveProductsToCustomerCart((Customer) user);
