@@ -5,15 +5,23 @@ import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import server.model.Auction;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AuctionMenuManager extends MenuManager implements Initializable {
+    public VBox vBoxItems;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HashMap<String, String> queries = new HashMap<>();
@@ -25,6 +33,23 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
         queries.put("username", client.getUsername());
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
                 true, new TypeToken<ArrayList<Auction>>(){}.getType());
+        for(Auction auction : response){
+            setAuctionItem(auction);
+        }
+    }
+
+    private void setAuctionItem(Auction auction) {
+        try {
+            AnchorPane item = FXMLLoader.load(getClass().
+                    getResource("/layouts/manager_menus/manager_category_menus/category_item.fxml"));
+            HBox hBox = (HBox) item.getChildren().get(0);
+            ((Label) hBox.getChildren().get(0)).setText(auction.getProductName());
+            ((Label) hBox.getChildren().get(1)).setText(auction.getDeadline().toString());
+            ((Label) hBox.getChildren().get(2)).setText(String.valueOf(auction.getHighestPrice()));
+            vBoxItems.getChildren().add(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleRefresh() {
