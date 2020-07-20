@@ -14,7 +14,12 @@
                         <Font size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton onAction="#goToOrdersMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
+             <JFXButton onMouseClicked="#goToAuctions" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Auctions" textFill="WHITE">
+                 <font>
+                     <Font size="16.0" />
+                 </font>
+             </JFXButton>
+             <JFXButton onAction="#goToOrdersMenu" prefHeight="62.0" prefWidth="340.0" stylesheets="@../../stylesheets/top_buttons_account.css" text="Orders" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
