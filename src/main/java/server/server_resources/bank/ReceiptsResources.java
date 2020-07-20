@@ -37,6 +37,6 @@ public class ReceiptsResources extends ServerResource {
         } catch (IOException e) {
             bankResponse = e.getMessage();
         }
-        return bankResponse;
+        return new YaGson().toJson(bankResponse, String.class);
     }
 }

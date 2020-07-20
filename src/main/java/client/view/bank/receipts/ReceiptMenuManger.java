@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class ReceiptMenuManger implements Initializable {
     public VBox vBoxItems;
+    public Label errorLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
