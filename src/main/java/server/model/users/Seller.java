@@ -18,8 +18,7 @@ public class Seller extends User{
 
     public Seller(){}
 
-    public Seller(String username, String password, String firstName,
-                  String lastName, String email, String phoneNo,
+    public Seller(String username, String password, String firstName, String lastName, String email, String phoneNo,
                   double creditInWallet, String companyInfo) {
         super(username, password, firstName, lastName, email, phoneNo);
         this.creditInWallet = creditInWallet;
