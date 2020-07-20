@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.sellers_products_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
@@ -68,6 +69,7 @@ public class ProductView extends MenuManager implements Initializable {
     private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         nameLabel.setText(product.getName());
         iDLabel.setText(product.getProductId());
@@ -82,6 +84,12 @@ public class ProductView extends MenuManager implements Initializable {
         thisProduct = product;
 
         addPropertiesToVBox();
+    }
+
+    private void addTextFieldsListeners() {
+        nameField.textProperty().addListener(new ChangeListener(30, nameField));
+        companyField.textProperty().addListener(new ChangeListener(50, companyField));
+        priceField.textProperty().addListener(new ChangeListener(20, priceField));
     }
 
     public static void setProduct(Product product) {

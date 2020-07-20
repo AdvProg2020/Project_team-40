@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.sellers_products_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -45,6 +46,7 @@ public class AddProductManager extends MenuManager implements Initializable {
     private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         toggleGroupCategory = new ToggleGroup();
         HashMap<String, Category> categoryHashMap =  RequestHandler.get("/accounts/seller_account_controller/all_categories/",
@@ -57,6 +59,13 @@ public class AddProductManager extends MenuManager implements Initializable {
             informationBox.getChildren().add(categoryButton);
         }
         informationBox.getChildren().add(propertyBox = new VBox());
+    }
+
+    private void addTextFieldsListeners() {
+        nameField.textProperty().addListener(new ChangeListener(30, nameField));
+        companyField.textProperty().addListener(new ChangeListener(50, companyField));
+        priceField.textProperty().addListener(new ChangeListener(20, priceField));
+        countField.textProperty().addListener(new ChangeListener(10, countField));
     }
 
     private void showCategoryProperties(RadioButton radioButton) {
