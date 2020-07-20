@@ -1,13 +1,16 @@
 package client.view.register_login_view;
 
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import client.view.ValidInput;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.restlet.resource.ResourceException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -42,6 +45,7 @@ public class RegisterManager extends MenuManager implements Initializable {
     public TextField email;
     public TextField phoneNumber;
     public Label registerLabel;
+    public Label passwordValidationLabel;
     //requestQueries must be cleared before each request
     private HashMap<String, String> requestQueries;
 
@@ -53,16 +57,24 @@ public class RegisterManager extends MenuManager implements Initializable {
             requestQueries.put("username", username.getText());
             boolean doesUserExist = (boolean) RequestHandler.get("/accounts/account/", requestQueries, false, boolean.class);
             if(!doesUserExist) {
-                if (customerButton.isSelected()) {
-                    registerCustomer();
-                } else if (sellerButton.isSelected()) {
-                    registerSeller();
-                } else if (managerButton.isSelected()) {
-                    registerManager();
-                }else if (supportButton.isSelected()) {
-                    registerSupport();
+                try {
+                    if (customerButton.isSelected()) {
+                        registerCustomer();
+                    } else if (sellerButton.isSelected()) {
+                        registerSeller();
+                    } else if (managerButton.isSelected()) {
+                        registerManager();
+                    } else if (supportButton.isSelected()) {
+                        registerSupport();
+                    }
+                    finishRegister();
+                }catch (ResourceException e){
+                    try {
+                        passwordValidationLabel.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-                finishRegister();
             } else {
                 usernameError.setText("This username has been used!");
             }
@@ -227,8 +239,20 @@ public class RegisterManager extends MenuManager implements Initializable {
         }
     }
 
+    private void addTextFieldsListeners() {
+        username.textProperty().addListener(new ChangeListener(40, username));
+        password.textProperty().addListener(new ChangeListener(40, password));
+        firstName.textProperty().addListener(new ChangeListener(30, firstName));
+        lastName.textProperty().addListener(new ChangeListener(40, lastName));
+        email.textProperty().addListener(new ChangeListener(256, email));
+        phoneNumber.textProperty().addListener(new ChangeListener(15, phoneNumber));
+        if (companyField != null)
+            companyField.textProperty().addListener(new ChangeListener(50, companyField));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
         if(doesManagerExist && !isByManager) {

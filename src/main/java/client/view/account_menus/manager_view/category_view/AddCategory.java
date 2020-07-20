@@ -1,6 +1,7 @@
 package client.view.account_menus.manager_view.category_view;
 
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
@@ -36,6 +37,7 @@ public class AddCategory extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         propertyTypeChoiceBox.getItems().add("Range");
         propertyTypeChoiceBox.getItems().add("String");
@@ -46,6 +48,10 @@ public class AddCategory extends MenuManager implements Initializable {
         }
     }
 
+    private void addTextFieldsListeners() {
+        nameField.textProperty().addListener(new ChangeListener(30, nameField));
+        propertyField.textProperty().addListener(new ChangeListener(30, propertyField));
+    }
 
 
     private void addSelectedItemsToList() {

@@ -1,6 +1,7 @@
 package client.view.account_menus.manager_view.category_view;
 
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
 import com.jfoenix.controls.JFXButton;
@@ -34,9 +35,14 @@ public class CategoryEdit extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addTextFieldsListeners();
         oldProperties = new ArrayList<>();
         propertiesListView.setEditable(true);
         propertiesListView.setCellFactory(TextFieldListCell.forListView());
+    }
+
+    private void addTextFieldsListeners() {
+        nameField.textProperty().addListener(new ChangeListener(30, nameField));
     }
 
     public void setCategory(Category category) {

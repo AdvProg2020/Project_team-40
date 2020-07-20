@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.sellers_offs_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
@@ -42,9 +43,16 @@ public class AddOffManager extends MenuManager implements Initializable{
     private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         sellerProducts = new ArrayList<>();
         initializeProducts();
+    }
+
+    private void addTextFieldsListeners() {
+        percentageField.textProperty().addListener(new ChangeListener(2, percentageField));
+        startDateField.textProperty().addListener(new ChangeListener(50, startDateField));
+        endDateField.textProperty().addListener(new ChangeListener(50, endDateField));
     }
 
     private void initializeProducts(){
