@@ -11,8 +11,7 @@ public class TransactionsMenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String response = RequestHandler.post("/bank/transactions/", Client.getInstance().getUsername(),
+        String response = RequestHandler.put("/bank/transactions/", Client.getInstance().getUsername(),
                 new HashMap<>(), true, String.class);
-        System.out.println(response);
     }
 }

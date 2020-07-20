@@ -30,5 +30,6 @@ public class ReceiptItemManager {
         } else {
             errorLabel.setText(response);
         }
+        //TODO: Figure out why receipts are not removed after paying
     }
 }

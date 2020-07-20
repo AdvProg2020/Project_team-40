@@ -1,8 +1,8 @@
 package server.server_resources.bank;
 
 import com.gilecode.yagson.YaGson;
-import javafx.scene.chart.PieChart;
 import org.restlet.resource.Post;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 import server.controller.menus.BankController;
 
@@ -12,9 +12,10 @@ import java.net.Socket;
 import static server.server_resources.bank.BankInformation.BANK_PORT;
 import static server.server_resources.bank.BankInformation.IP;
 
-public class transactionsResources extends ServerResource {
-    @Post
+public class TransactionsResources extends ServerResource {
+    @Put
     public String getTransactions(String username) {
+        System.out.println("hi");
         String bankResponse = null;
         try {
             Socket socket = new Socket(IP, BANK_PORT);
@@ -24,6 +25,7 @@ public class transactionsResources extends ServerResource {
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             bankResponse = inputStream.readUTF();
+            System.out.println(bankResponse);
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();

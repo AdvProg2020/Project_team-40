@@ -86,7 +86,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/bank/login/", BankLoginResource.class);
         getDefaultHost().attach("/bank/balance/", BankBalance.class);
         getDefaultHost().attach("/bank/receipts/", ReceiptsResources.class);
-        getDefaultHost().attach("/bank/transactions/", transactionsResources.class);
+        getDefaultHost().attach("/bank/transactions/", TransactionsResources.class);
         getDefaultHost().attach("/bank/create_receipt_resources/", CreateReceiptResources.class);
 
         getDefaultHost().attach("/accounts/account/", AccountResource.class);
