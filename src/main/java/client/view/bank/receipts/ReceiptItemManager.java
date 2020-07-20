@@ -19,9 +19,6 @@ public class ReceiptItemManager implements Initializable {
 
     }
 
-    public void viewReceipt() {
-    }
-
     public void payReceipt() {
     }
 }

@@ -31,7 +31,6 @@ public class ReceiptMenuManger implements Initializable {
         HashMap<Integer, Receipt> receipts = RequestHandler.post("/bank/receipts/",
                 Client.getInstance().getUsername(), new HashMap<>(), true,
                 new TypeToken<HashMap<Integer, Receipt>>(){}.getType());
-        System.out.println(receipts.size());
         for(Receipt receipt : receipts.values()) {
             createReceiptItem(receipt);
         }
@@ -41,7 +40,6 @@ public class ReceiptMenuManger implements Initializable {
 
     private void createReceiptItem(Receipt receipt) {
         try {
-            System.out.println("ho");
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/receipts/receipt_item.fxml"));
             HBox item = (HBox) pane.getChildren().get(0);
             ((Label)item.getChildren().get(0)).setText(String.valueOf(receipt.getID()));
@@ -53,7 +51,6 @@ public class ReceiptMenuManger implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("hi");
     }
 
     public void createReceipt() {

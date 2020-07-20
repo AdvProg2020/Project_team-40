@@ -38,7 +38,7 @@ public class Receipt {
     public static HashMap<Integer, Receipt> getUsersReceipts(String username) {
         HashMap<Integer, Receipt> usersReceipts = new HashMap<>();
         for(Receipt receipt : receipts.values()) {
-            if(receipt.getUsername().equals(username)) {
+            if(receipt.getUsername().equals(username) && !receipt.isPaid()) {
                 usersReceipts.put(receipt.ID, receipt);
             }
         }
