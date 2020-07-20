@@ -28,9 +28,12 @@ public class WalletManager extends MenuManager implements Initializable {
     }
 
     public void moveCreditToBank() {
-
+        ManageCreditMenuManager.setIsToWallet(false);
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menu_design.fxml");
     }
 
     public void moveCreditToWallet() {
+        ManageCreditMenuManager.setIsToWallet(true);
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menu_design.fxml");
     }
 }

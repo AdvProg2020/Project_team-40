@@ -4,7 +4,12 @@ import client.view.MenuManager;
 import javafx.scene.input.MouseEvent;
 
 public class ManageCreditMenuManager extends MenuManager {
+    private static boolean isToWallet;
 
     public void moveCredit() {
+    }
+
+    public static void setIsToWallet(boolean isToWallet) {
+        ManageCreditMenuManager.isToWallet = isToWallet;
     }
 }
