@@ -23,6 +23,7 @@ public class ChatResource extends ServerResource{
             controller.addMember(chat.getId(), getQueryValue("username"));
             if(getQueryValue("hasSupport").equals("true")){
                 controller.addMember(chat.getId(), getQueryValue("support"));
+                chat.setIsSupport(true);
             }
         }catch(MenuException e){
             System.out.println(e.getMessage());

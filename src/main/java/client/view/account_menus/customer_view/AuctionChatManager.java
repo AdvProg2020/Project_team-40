@@ -9,7 +9,9 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,11 +28,13 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     private static Chat last;
 
     private Chat chat;
+    public AnchorPane root;
     public VBox chatBox;
     public JFXTextArea text;
     public Text name;
     public Text idText;
     public Text number;
+    public Button moreButton;
 
     private int size;
     private ArrayList<String> members = new ArrayList<>();

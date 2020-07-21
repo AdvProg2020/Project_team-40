@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="client.view.account_menus.customer_view.SupportManager"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.SupportManager">
+    <children>
+        <Label layoutX="41.0" layoutY="59.0" text="Supports">
+            <font>
+                <Font size="35.0" />
+            </font>
+        </Label>
+        <HBox layoutX="41.0" layoutY="143.0" prefHeight="51.0" prefWidth="738.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="655.0" style="-fx-background-color: #3498DB;" text="Name">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="484.0" layoutY="10.0" prefHeight="51.0" prefWidth="86.0" style="-fx-background-color: #3498DB;" text="Action">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <ScrollPane hbarPolicy="NEVER" layoutX="41.0" layoutY="191.0" prefHeight="461.0" prefWidth="738.0">
+            <content>
+                <VBox fx:id="content" prefHeight="458.0" prefWidth="738.0" />
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>

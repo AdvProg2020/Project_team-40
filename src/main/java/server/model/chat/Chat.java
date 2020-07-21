@@ -16,6 +16,7 @@ public class Chat implements Serializable{
     private ArrayList<String> members = new ArrayList<>();
     private String name;
     private String id;
+    private boolean isSupport;
 
     public Chat(String name){
         this.id = Utility.generateId();
@@ -25,7 +26,6 @@ public class Chat implements Serializable{
     public String getName(){
         return name;
     }
-
 
     public String getId(){
         return id;
@@ -49,6 +49,14 @@ public class Chat implements Serializable{
                 return entry.getValue();
         }
         return null;
+    }
+
+    public void setIsSupport(boolean isSupport){
+        this.isSupport = isSupport;
+    }
+
+    public boolean isSupport(){
+        return isSupport;
     }
 
     public static void loadData() throws DataException{
