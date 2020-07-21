@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.AuctionChatManager">
+<AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.AuctionChatManager">
     <children>
-        <TextArea accessibleRole="PARENT" layoutX="21.0" layoutY="593.0" prefHeight="37.0" prefWidth="673.0" promptText="Type your message" wrapText="true" />
-        <ScrollPane fx:id="scrollPane" accessibleRole="PARENT" hbarPolicy="NEVER" layoutX="14.0" layoutY="41.0" prefHeight="516.0" prefWidth="819.0" vvalue="1.0">
+        <JFXTextArea fx:id="text" accessibleRole="PARENT" layoutX="14.0" layoutY="610.0" prefHeight="38.0" prefWidth="674.0" promptText="Type your message" wrapText="true" />
+        <ScrollPane fx:id="scrollPane" accessibleRole="PARENT" hbarPolicy="NEVER" layoutX="14.0" layoutY="80.0" prefHeight="507.0" prefWidth="819.0" vvalue="1.0">
             <content>
-                <VBox fx:id="chatBox" alignment="TOP_RIGHT" prefHeight="512.0" prefWidth="816.0" />
+                <VBox fx:id="chatBox" alignment="TOP_RIGHT" prefHeight="495.0" prefWidth="819.0" />
             </content>
         </ScrollPane>
-        <Button accessibleRole="PARENT" layoutX="703.0" layoutY="592.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="37.0" prefWidth="59.0" text="send" />
-        <Button accessibleRole="PARENT" layoutX="774.0" layoutY="592.0" mnemonicParsing="false" onAction="#refresh" prefHeight="37.0" prefWidth="59.0" text="refresh" />
+        <JFXButton accessibleRole="PARENT" layoutX="703.0" layoutY="629.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="37.0" prefWidth="59.0" text="send" />
+        <JFXButton accessibleRole="PARENT" layoutX="773.0" layoutY="629.0" mnemonicParsing="false" onAction="#refresh" prefHeight="37.0" prefWidth="59.0" text="refresh" />
+      <Text fx:id="name" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="214.13669204711914">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="idText" layoutX="275.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="214.13669204711914">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="number" layoutX="520.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" wrappingWidth="188.5366554260254">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="showMembers" contentDisplay="GRAPHIC_ONLY" layoutX="771.0" layoutY="11.0">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/more.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
     </children>
 </AnchorPane>

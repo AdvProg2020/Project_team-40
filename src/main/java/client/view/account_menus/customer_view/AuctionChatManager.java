@@ -1,19 +1,25 @@
 package client.view.account_menus.customer_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
 import client.view.MenuManager;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import server.model.chat.Chat;
 import server.model.chat.Message;
+import server.model.requests.Request;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AuctionChatManager extends MenuManager implements Initializable{
+    private static final int REFRESH_DELAY = 1000;
+
     private static Chat last;
+
     private Chat chat;
     public VBox chatBox;
     public JFXTextArea text;
@@ -22,6 +28,7 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     public Text number;
 
     private int size;
+    private ArrayList<String> members = new ArrayList<>();
 
     public AuctionChatManager() {
         chat = last;
@@ -46,7 +53,7 @@ public class AuctionChatManager extends MenuManager implements Initializable{
                 refresh();
             }
         };
-        timer.schedule(timerTask, 1000);
+        timer.schedule(timerTask, REFRESH_DELAY);
     }
 
     private void addMessage(Message message){
@@ -67,15 +74,37 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     }
 
     public void sendMessage() {
+        String chadId = chat.getId();
+        String content = text.getText();
+        String sender = Client.getInstance().getUsername();
 
+        HashMap<String, String> requestQueries = new HashMap<>();
+        requestQueries.put("chatId", chadId);
+        requestQueries.put("content", content);
+        requestQueries.put("username", sender);
+        RequestHandler.put("/chat/message/", null, requestQueries, true, null);
     }
 
     public void refresh() {
+        HashMap<String, String> requestQueries = new HashMap<>();
+        requestQueries.put("chatId", chat.getId());
+        requestQueries.put("size", size + "");
 
+        ArrayList<Message> messages = RequestHandler.get("/chat/message/", requestQueries, true, new TypeToken<ArrayList<Message>>(){}.getType());
+
+        size += messages.size();
+        for(Message message : messages) {
+            addMessage(message);
+        }
+
+        requestQueries.clear();
+        requestQueries.put("id", chat.getId());
+        members = RequestHandler.get("/chat/members/", requestQueries, true, new TypeToken<ArrayList<String>>(){}.getType());
+        number.setText(members.size() + "");
     }
 
     public void showMembers() {
-
+        //TODO
     }
 
     public static void setLast(Chat last){
