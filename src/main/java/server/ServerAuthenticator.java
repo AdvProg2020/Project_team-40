@@ -1,11 +1,13 @@
 package server;
 
+import exceptions.BlockedIPException;
 import org.restlet.data.ChallengeScheme;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.MapVerifier;
 import server.model.users.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ServerAuthenticator {
@@ -13,6 +15,7 @@ public class ServerAuthenticator {
     private MapVerifier customerVerifier;
     private MapVerifier sellerVerifier;
     private MapVerifier supportVerifier;
+    private ArrayList<String> blockedIPs;
     private static ServerAuthenticator serverAuthenticator = new ServerAuthenticator();
 
     private ServerAuthenticator(){}
@@ -22,6 +25,7 @@ public class ServerAuthenticator {
     }
 
     public  void initVerifier(){
+        blockedIPs = new ArrayList<>();
         managerVerifier = new MapVerifier();
         sellerVerifier = new MapVerifier();
         customerVerifier = new MapVerifier();
@@ -70,5 +74,14 @@ public class ServerAuthenticator {
             guard.setVerifier(supportVerifier);
         guard.setNext(serverResource);
         return guard;
+    }
+
+    public void addToBlockedIPs(String ip){
+        blockedIPs.add(ip);
+    }
+
+    public void checkIP(String ip) throws BlockedIPException {
+        if (blockedIPs.contains(ip))
+            throw new BlockedIPException("This IP address has been blocked");
     }
 }

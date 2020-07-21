@@ -1,16 +1,18 @@
 package client.view.register_login_view;
 
 import client.controller.Client;
+import client.controller.LoginGuard;
 import client.controller.RequestHandler;
 import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import exceptions.InvalidInputException;
+import exceptions.TooMuchLoginAttemptsException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.restlet.resource.ResourceException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,8 +44,8 @@ public class LoginManager extends MenuManager implements Initializable {
             try {
                 HashMap<String, String> queries = new HashMap<>();
                 queries.put("password", passwordField.getText());
-                RequestHandler.post("/accounts/account/", usernameField.getText(), queries, false, null);
-
+                LoginGuard.login(usernameField.getText(), queries);
+//                RequestHandler.post("/accounts/account/", usernameField.getText(), queries, false, null);
                 HashMap<String, String> userQueries = new HashMap<>();
                 userQueries.put("username", usernameField.getText());
                 HashMap<String, String> userParameters = RequestHandler.get("/accounts/user/",userQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
@@ -54,8 +56,9 @@ public class LoginManager extends MenuManager implements Initializable {
                     setMainInnerPane("/layouts/create_bank_account.fxml");
                 else
                     goToAccountsMenu();
-            } catch (ResourceException e) {
-                errorMessage.setText(RequestHandler.getClientResource().getResponseEntity().getText());
+            }
+            catch (InvalidInputException | TooMuchLoginAttemptsException e) {
+                errorMessage.setText(e.getMessage());
             }
         }
     }
