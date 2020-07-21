@@ -84,6 +84,8 @@ public class MenuManager {
                 setMainInnerPane("/layouts/seller_menus/seller_account_design.fxml");
             else if (role.equals("Customer"))
                 setMainInnerPane("/layouts/customer_menus/customer_account_design.fxml");
+            else if (role.equals("Support"))
+                setMainInnerPane("/layouts/support_menus/support_account_design.fxml");
         } else {
             setMainInnerPane("/layouts/login_menu.fxml");
         }

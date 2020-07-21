@@ -41,6 +41,7 @@ module sample {
     opens client.view.shopping_menus.products_and_offs_menus.products_view;
     opens client.view.shopping_menus.products_and_offs_menus.sorts_view;
     opens client.view;
+    opens client.view.account_menus.support_view;
 
     exports client.view;
     exports server.model.log;
