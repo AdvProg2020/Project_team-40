@@ -15,8 +15,10 @@ public abstract class LoginGuard {
     private static boolean locked;
     private static int timeConstant = 60;
     private static int remainedTime;
+    private static int failedAttempts;
     static {
         counter = 0;
+        failedAttempts = 0;
         locked = false;
     }
 
@@ -45,12 +47,19 @@ public abstract class LoginGuard {
         if ((lastAttempt - firstAttempt) < 10000)
         {
             locked = true;
+            failedAttempts ++;
             startTimer();
         }
         else {
             counter = 0;
             firstAttempt = new Date().getTime();
         }
+        if (failedAttempts == 5)
+            sendIPBlockingRequest();
+    }
+
+    private static void sendIPBlockingRequest() {
+        RequestHandler.put("/accounts/account/", null, new HashMap<>(), false, null);
     }
 
     private static void startTimer() {
