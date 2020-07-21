@@ -4,10 +4,15 @@ import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import server.model.chat.Chat;
 import server.model.chat.Message;
 import server.model.requests.Request;
@@ -104,7 +109,30 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     }
 
     public void showMembers() {
-        //TODO
+        Stage stage = new Stage();
+        VBox vBox = new VBox();
+        JFXTextField userField = new JFXTextField("Enter username to add");
+        JFXButton addButton = new JFXButton("Add member");
+        addButton.setOnAction(e -> {
+            if(!userField.getText().isEmpty()){
+                HashMap<String, String> requestQueries = new HashMap<>();
+                requestQueries.put("id", chat.getId());
+                requestQueries.put("username", userField.getText());
+                RequestHandler.put("/chat/message/", null, requestQueries, true, null);
+            }
+        });
+
+        ScrollPane membersScroll = new ScrollPane();
+        VBox membersBox = new VBox();
+        for(String member : members) {
+            membersBox.getChildren().add(new Text(member));
+        }
+        membersScroll.setContent(membersBox);
+
+        vBox.getChildren().addAll(userField, addButton, membersScroll);
+        stage.setTitle("Members");
+        stage.setScene(new Scene(vBox, 400, 800));
+        stage.showAndWait();
     }
 
     public static void setLast(Chat last){

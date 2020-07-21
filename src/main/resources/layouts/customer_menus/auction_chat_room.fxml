@@ -12,14 +12,20 @@
 
 <AnchorPane prefHeight="684.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.customer_view.AuctionChatManager">
     <children>
-        <JFXTextArea fx:id="text" accessibleRole="PARENT" layoutX="14.0" layoutY="610.0" prefHeight="38.0" prefWidth="674.0" promptText="Type your message" wrapText="true" />
-        <ScrollPane fx:id="scrollPane" accessibleRole="PARENT" hbarPolicy="NEVER" layoutX="14.0" layoutY="80.0" prefHeight="507.0" prefWidth="819.0" vvalue="1.0">
+        <JFXTextArea fx:id="text" accessibleRole="PARENT" layoutX="15.0" layoutY="598.0" prefHeight="68.0" prefWidth="762.0" promptText="Type your message" wrapText="true" />
+        <ScrollPane fx:id="scrollPane" accessibleRole="PARENT" hbarPolicy="NEVER" layoutX="14.0" layoutY="80.0" prefHeight="507.0" prefWidth="819.0" style="-fx-background-color: white;" vvalue="1.0">
             <content>
-                <VBox fx:id="chatBox" alignment="TOP_RIGHT" prefHeight="495.0" prefWidth="819.0" />
+                <VBox fx:id="chatBox" alignment="TOP_RIGHT" prefHeight="495.0" prefWidth="819.0" style="-fx-background-color: white;" />
             </content>
         </ScrollPane>
-        <JFXButton accessibleRole="PARENT" layoutX="703.0" layoutY="629.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="37.0" prefWidth="59.0" text="send" />
-        <JFXButton accessibleRole="PARENT" layoutX="773.0" layoutY="629.0" mnemonicParsing="false" onAction="#refresh" prefHeight="37.0" prefWidth="59.0" text="refresh" />
+        <JFXButton accessibleRole="PARENT" contentDisplay="GRAPHIC_ONLY" layoutX="780.0" layoutY="620.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="56.0" prefWidth="64.0" text="send">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-email-send-96.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
       <Text fx:id="name" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="214.13669204711914">
          <font>
             <Font size="24.0" />
@@ -39,7 +45,7 @@
          <graphic>
             <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/more.png" />
+                  <Image url="@../../images/icons8-more-96.png" />
                </image>
             </ImageView>
          </graphic>
