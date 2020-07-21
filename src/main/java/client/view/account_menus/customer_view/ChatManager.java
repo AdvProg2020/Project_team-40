@@ -1,12 +1,17 @@
 package client.view.account_menus.customer_view;
 
+import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import server.model.chat.Chat;
 
 import java.io.IOException;
@@ -43,6 +48,24 @@ public class ChatManager extends MenuManager implements Initializable{
     }
 
     public void add() {
-        //TODO : add chat room
+        Stage stage = new Stage();
+        VBox vBox = new VBox();
+        JFXTextField field = new JFXTextField();
+        field.setPromptText("Enter name");
+        JFXButton button = new JFXButton("Create");
+        button.setOnAction(e -> {
+            if(!field.getText().isEmpty()){
+                requestQueries.clear();
+                requestQueries.put("name", field.getText());
+                requestQueries.put("username", Client.getInstance().getUsername());
+                requestQueries.put("hasSupport", "false");
+                requestQueries.put("support", "null");
+                RequestHandler.post("/chat/chat/", null, requestQueries, true, null);
+                stage.close();
+            }
+        });
+        vBox.getChildren().addAll(field, button);
+        stage.setScene(new Scene(vBox, 400, 400));
+        stage.showAndWait();
     }
 }

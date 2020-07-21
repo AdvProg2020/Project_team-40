@@ -1,10 +1,12 @@
 package client.view.account_menus.customer_view;
 
 import client.view.MenuManager;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import server.model.chat.Chat;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,6 +28,13 @@ public class ChatItemManager extends MenuManager implements Initializable{
     }
 
     public void choose(){
-        //TODO : open a chat room
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/layouts/customer_menus/auction_chat_room.fxml"));
+        AuctionChatManager.setLast(chat);
+        try {
+            loader.load();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
