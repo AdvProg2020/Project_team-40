@@ -18,8 +18,8 @@ public abstract class  User implements Serializable {
     protected String phoneNo;
     protected Integer bankAccount;
     protected boolean isOnline;
-
     protected String bankUsername;
+
     public User(){}
 
     public User(String username, String password, String firstName,

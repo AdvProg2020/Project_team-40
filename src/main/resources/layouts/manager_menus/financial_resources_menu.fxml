@@ -10,7 +10,7 @@
             <Font size="35.0" />
         </font>
     </Label>
-    <GridPane fx:id="gridPane" layoutX="83.0" layoutY="111.0" prefHeight="500.0" prefWidth="700.0">
+    <GridPane fx:id="gridPane" layoutX="83.0" layoutY="111.0" prefHeight="429.0" prefWidth="700.0">
         <columnConstraints>
           <ColumnConstraints maxWidth="190.0" minWidth="117.0" prefWidth="180.0" />
           <ColumnConstraints maxWidth="379.0" minWidth="180.0" prefWidth="251.0" />
@@ -19,7 +19,6 @@
           <ColumnConstraints maxWidth="186.0" minWidth="125.0" prefWidth="186.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints prefHeight="70.0" />
             <RowConstraints prefHeight="70.0" />
             <RowConstraints prefHeight="70.0" />
             <RowConstraints prefHeight="70.0" />
@@ -34,82 +33,62 @@
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Username:" textAlignment="CENTER" GridPane.rowIndex="1">
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Username:" textAlignment="CENTER" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Password:" textAlignment="CENTER" GridPane.rowIndex="2">
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="ID:" textAlignment="CENTER" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="ID:" textAlignment="CENTER" GridPane.rowIndex="3">
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Minimum online credit:" textAlignment="CENTER" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Balance:" textAlignment="CENTER" GridPane.rowIndex="4">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Minimum online credit:" textAlignment="CENTER" GridPane.rowIndex="6">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
-            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Wage (percentage):" textAlignment="CENTER" GridPane.rowIndex="7">
+            <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" text="Wage (percentage):" textAlignment="CENTER" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
 
-            <Label fx:id="usernameLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="usernameLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="passwordLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="accountIDLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="accountIDLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="minCreditLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="balanceLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
-            <Label fx:id="minCreditLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
-            <Label fx:id="wageLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="wageLabel" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
-            <Label fx:id="minCreditError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
+            <Label fx:id="minCreditError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="wageError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="7">
+            <Label fx:id="wageError" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="242.0" layoutY="33.0" prefHeight="51.0" prefWidth="374.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
-            <Button fx:id="minCreditButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Button fx:id="wageButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button fx:id="minCreditButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button fx:id="wageButton" text="change" GridPane.columnIndex="3" GridPane.rowIndex="6" />
         </children>
     </GridPane>
 </AnchorPane>

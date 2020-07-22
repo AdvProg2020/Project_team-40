@@ -36,6 +36,14 @@ public class Manager extends User {
         Manager.wage = wage;
     }
 
+    public static Double getWage() {
+        return wage;
+    }
+
+    public static Double getMinWalletBalance() {
+        return minWalletBalance;
+    }
+
     public static void setMinWalletBalance(Double minWalletBalance) {
         Manager.minWalletBalance = minWalletBalance;
     }
