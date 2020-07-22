@@ -26,6 +26,7 @@ public class Seller extends User{
         productsId = new ArrayList<>();
         offsId = new ArrayList<>();
         logsName = new ArrayList<>();
+        auctions = new ArrayList<>();
     }
 
     public void setCompanyInfo(String companyInfo) {
