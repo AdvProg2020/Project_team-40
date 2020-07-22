@@ -21,8 +21,9 @@ public class TransactionsMenuManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String response = RequestHandler.put("/bank/transactions/", Client.getInstance().getUsername(),
                 new HashMap<>(), true, String.class);
-        System.out.println(response);
-        String[] transactions = response.split("/*");
+        if(response.isBlank())
+            return;
+        String[] transactions = response.split("\\*");
         for(String transaction : transactions) {
             showTransactions(transaction);
         }
@@ -30,12 +31,11 @@ public class TransactionsMenuManager implements Initializable {
 
     private void showTransactions(String transaction) {
         //TODO: the line below: Caused by: java.lang.StringIndexOutOfBoundsException: begin 1, end -2, length 0
-        transaction = transaction.substring(1, transaction.length() - 2);
-        System.out.println(transaction);
+        transaction = transaction.substring(1, transaction.length() - 1);
         String[] information = transaction.split(",");
         AnchorPane pane = null;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/receipts/receipt_item.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/layouts/bank_menus/transactions/transaction.fxml"));
             HBox item = (HBox) pane.getChildren().get(0);
             for(int i = 0; i < 6; i++) {
                 setInformationInLabel(5 - i, information[i], item);
@@ -46,13 +46,13 @@ public class TransactionsMenuManager implements Initializable {
     }
 
     private void setInformationInLabel(int index, String information, HBox item) {
+        System.out.println("information = " + information);
         String data = information.split(":")[1];
+        System.out.println("data = " + data);
         if(!ValidInput.INTEGER.getStringMatcher(data).matches()) {
-            data = data.substring(1, data.length() - 2);
+            data = data.substring(1, data.length() - 1);
         }
+        System.out.println("data = " + data);
         ((Label) item.getChildren().get(index)).setText(information);
-    }
-
-    public void createReceipt() {
     }
 }
