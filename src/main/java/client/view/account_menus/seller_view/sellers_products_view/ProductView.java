@@ -69,7 +69,6 @@ public class ProductView extends MenuManager implements Initializable {
     private HashMap<String, String> requestQueries;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addTextFieldsListeners();
         requestQueries = new HashMap<>();
         nameLabel.setText(product.getName());
         iDLabel.setText(product.getProductId());
@@ -84,12 +83,6 @@ public class ProductView extends MenuManager implements Initializable {
         thisProduct = product;
 
         addPropertiesToVBox();
-    }
-
-    private void addTextFieldsListeners() {
-        nameField.textProperty().addListener(new ChangeListener(30, nameField));
-        companyField.textProperty().addListener(new ChangeListener(50, companyField));
-        priceField.textProperty().addListener(new ChangeListener(20, priceField));
     }
 
     public static void setProduct(Product product) {
@@ -129,8 +122,10 @@ public class ProductView extends MenuManager implements Initializable {
     public void changeName() {
         editName.setText("save");
         editName.setOnMouseClicked(e -> saveName());
-        if(nameField == null)
+        if(nameField == null) {
             nameField = new TextField();
+            nameField.textProperty().addListener(new ChangeListener(30, nameField));
+        }
         informationTable.add(nameField, 2, 0);
         nameField.setText(thisProduct.getName());
     }
@@ -178,8 +173,11 @@ public class ProductView extends MenuManager implements Initializable {
     public void changeCompany() {
         editCompany.setText("save");
         editCompany.setOnMouseClicked(e -> saveCompany());
-        if(companyField == null)
+        if(companyField == null) {
             companyField = new TextField();
+            companyField.textProperty().addListener(new ChangeListener(50, companyField));
+
+        }
         informationTable.add(companyField, 2, 2);
         companyField.setText(thisProduct.getCompany());
     }
@@ -214,8 +212,10 @@ public class ProductView extends MenuManager implements Initializable {
     public void changePrice() {
         editPrice.setText("save");
         editPrice.setOnMouseClicked(e -> savePrice());
-        if(priceField == null)
+        if(priceField == null) {
             priceField = new TextField();
+            priceField.textProperty().addListener(new ChangeListener(20, priceField));
+        }
         informationTable.add(priceField, 2, 4);
         priceField.setText(Double.toString(thisProduct.getPrice()));
     }
