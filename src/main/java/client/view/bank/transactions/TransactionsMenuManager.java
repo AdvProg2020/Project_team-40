@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class TransactionsMenuManager implements Initializable {
+    public VBox vBoxItems;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,6 +42,7 @@ public class TransactionsMenuManager implements Initializable {
             for(int i = 0; i < 6; i++) {
                 setInformationInLabel(5 - i, information[i], item);
             }
+            vBoxItems.getChildren().add(item);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,7 +55,6 @@ public class TransactionsMenuManager implements Initializable {
         if(!ValidInput.INTEGER.getStringMatcher(data).matches()) {
             data = data.substring(1, data.length() - 1);
         }
-        System.out.println("data = " + data);
-        ((Label) item.getChildren().get(index)).setText(information);
+        ((Label) item.getChildren().get(index)).setText(data);
     }
 }
