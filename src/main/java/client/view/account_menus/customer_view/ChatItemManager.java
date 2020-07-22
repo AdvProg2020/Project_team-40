@@ -14,13 +14,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChatItemManager extends MenuManager implements Initializable{
-    private static Chat chat;
+    private static Chat last;
+    private Chat chat;
     public Text name;
     public Text id;
     public Text number;
 
-    public static void setChat(Chat chat){
-        ChatItemManager.chat = chat;
+    public ChatItemManager() {
+        chat = last;
+    }
+
+    public static void setLast(Chat last){
+        ChatItemManager.last = last;
     }
 
     @Override

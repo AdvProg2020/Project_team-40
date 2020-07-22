@@ -39,7 +39,7 @@ public class ChatManager extends MenuManager implements Initializable{
         chats = RequestHandler.get("/chat/chat/", requestQueries, true, new TypeToken<ArrayList<Chat>>(){}.getType());
 
         for(Chat chat : chats) {
-            ChatItemManager.setChat(chat);
+            ChatItemManager.setLast(chat);
             Node node = null;
             try {
                 node = FXMLLoader.load(getClass().getResource("/layouts/customer_menus/chat_item.fxml"));

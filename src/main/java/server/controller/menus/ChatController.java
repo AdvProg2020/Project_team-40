@@ -45,6 +45,12 @@ public class ChatController{
         return chats;
     }
 
+    public ArrayList<Chat> getAllChats(){
+        ArrayList<Chat> chats = new ArrayList<>();
+        chats.addAll(Chat.getAllChats().values());
+        return chats;
+    }
+
     public void addMember(String id, String username) throws MenuException{
         Chat chat = Chat.getChat(id);
         if(chat == null)

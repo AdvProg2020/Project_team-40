@@ -98,6 +98,8 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         requestQueries.put("content", content);
         requestQueries.put("username", sender);
         RequestHandler.put("/chat/message/", null, requestQueries, true, null);
+        text.setText("");
+        refresh();
     }
 
     public void refresh() {
