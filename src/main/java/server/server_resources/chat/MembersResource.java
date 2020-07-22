@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class MembersResource extends ServerResource{
     private ChatController controller = ChatController.getInstance();
 
-    //QUERIES : id, username
+    //QUERIES : id, name
     @Put
     public void addMember(){
         try {
-            controller.addMember(getQueryValue("id"), getQueryValue("username"));
+            controller.addMember(getQueryValue("id"), getQueryValue("name"));
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }

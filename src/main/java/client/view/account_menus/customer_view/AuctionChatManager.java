@@ -38,6 +38,8 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     public Text number;
     public Button moreButton;
 
+    private boolean exit;
+
     private int size = 0;
     private ArrayList<String> members = new ArrayList<>();
 
@@ -68,12 +70,16 @@ public class AuctionChatManager extends MenuManager implements Initializable{
                         refresh();
                     }
                 };
-                while(true){
+                loop:
+                while(!exit){
                     try {
                         Thread.sleep(1000);
                     } catch(InterruptedException e) {
                         e.printStackTrace();
                     }
+                    text.getScene().getWindow().setOnCloseRequest(e -> {
+                        exit = true;
+                    });
                     Platform.runLater(refresher);
                 }
             }
@@ -128,7 +134,7 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         requestQueries.clear();
         requestQueries.put("id", chat.getId());
         members = RequestHandler.get("/chat/members/", requestQueries, true, new TypeToken<ArrayList<String>>(){}.getType());
-        number.setText(members.size() + "");
+        number.setText("Members : " + chat.getMembers().size());
     }
 
     public void showMembers() {
@@ -140,8 +146,8 @@ public class AuctionChatManager extends MenuManager implements Initializable{
             if(!userField.getText().isEmpty()){
                 HashMap<String, String> requestQueries = new HashMap<>();
                 requestQueries.put("id", chat.getId());
-                requestQueries.put("username", userField.getText());
-                RequestHandler.put("/chat/message/", null, requestQueries, true, null);
+                requestQueries.put("name", userField.getText());
+                RequestHandler.put("/chat/message/", null, requestQueries, false, null);
             }
         });
 
