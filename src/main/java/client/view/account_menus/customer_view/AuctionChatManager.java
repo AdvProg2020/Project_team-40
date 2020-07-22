@@ -36,7 +36,7 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     public Text number;
     public Button moreButton;
 
-    private int size;
+    private int size = 0;
     private ArrayList<String> members = new ArrayList<>();
 
     public AuctionChatManager() {

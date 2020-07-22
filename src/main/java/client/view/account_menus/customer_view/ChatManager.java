@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -52,7 +54,9 @@ public class ChatManager extends MenuManager implements Initializable{
         VBox vBox = new VBox();
         JFXTextField field = new JFXTextField();
         field.setPromptText("Enter name");
+        field.setStyle("-fx-font-size: 14");
         JFXButton button = new JFXButton("Create");
+        button.setStyle("-fx-font-size: 16");
         button.setOnAction(e -> {
             if(!field.getText().isEmpty()){
                 requestQueries.clear();
@@ -65,7 +69,10 @@ public class ChatManager extends MenuManager implements Initializable{
             }
         });
         vBox.getChildren().addAll(field, button);
-        stage.setScene(new Scene(vBox, 400, 400));
+        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setPadding(new Insets(20,20,20,20));
+        stage.setScene(new Scene(vBox, 400, 200));
         stage.showAndWait();
     }
 }

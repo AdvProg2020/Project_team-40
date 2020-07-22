@@ -35,6 +35,7 @@ module sample {
     opens client.view.account_menus.manager_view.manage_users_view;
     opens client.view.account_menus.manager_view.requests_view;
     opens client.view.account_menus.customer_seller_common_view;
+    opens client.view.account_menus.customer_view;
     opens client.view.bank;
     opens client.view.bank.receipts;
     opens client.view.bank.transactions;
