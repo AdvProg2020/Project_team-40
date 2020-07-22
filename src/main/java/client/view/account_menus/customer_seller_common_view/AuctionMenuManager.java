@@ -47,7 +47,8 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     private void removeAddAuctionButton() {
-        ((Pane) addAuction.getParent()).getChildren().remove(addAuction);
+        if (addAuction.getParent() != null)
+            ((Pane)addAuction.getParent()).getChildren().remove(addAuction);
     }
 
     private void setAuctionItem(Auction auction, boolean isSeller) {
