@@ -41,6 +41,6 @@ public class AccountManager extends MenuManager implements Initializable {
     }
 
     public void goToFinancialResources() {
-        //TODO:
+        setSecondaryInnerPane("/layouts/manager_menus/financial_resources_menu.fxml");
     }
 }

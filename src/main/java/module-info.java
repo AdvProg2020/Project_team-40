@@ -27,6 +27,7 @@ module sample {
     opens client.view.account_menus.customer_view.cart_view;
     opens client.view.account_menus.customer_view.orders_view;
     opens client.view.account_menus.customer_view.account_view;
+    opens client.view.account_menus.manager_view;
     opens client.view.account_menus.manager_view.account_view;
     opens client.view.account_menus.manager_view.category_view;
     opens client.view.account_menus.manager_view.discount_view;
@@ -55,6 +56,7 @@ module sample {
     exports server.server_resources.shop;
     exports exceptions;
     exports server.model;
+    exports server.model.chat;
     exports server.model.users;
     exports server.model.requests;
     exports server.model.search;

@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
 public class FinancialResourcesManager implements Initializable {
     public Label usernameLabel;
     public Label accountIDLabel;
-    public Label balanceLabel;
     public Label minCreditLabel;
     public Label wageLabel;
 
@@ -35,6 +34,9 @@ public class FinancialResourcesManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HashMap<String, String> information = RequestHandler.get("/accounts/customer_account_controller/bank_account/",
                 new HashMap<>(), true, new TypeToken<HashMap<String, String>>(){}.getType());
-
+        usernameLabel.setText(information.get("bank username"));
+        accountIDLabel.setText(information.get("bank id"));
+        wageLabel.setText(information.get("wage"));
+        minCreditLabel.setText(information.get("min balance"));
     }
 }
