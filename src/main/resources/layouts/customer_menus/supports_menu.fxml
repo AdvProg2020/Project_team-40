@@ -13,12 +13,13 @@
         </Label>
         <HBox layoutX="41.0" layoutY="143.0" prefHeight="51.0" prefWidth="738.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="655.0" style="-fx-background-color: #3498DB;" text="Name">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="327.0" style="-fx-background-color: #3498DB;" text="Name">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="484.0" layoutY="10.0" prefHeight="51.0" prefWidth="86.0" style="-fx-background-color: #3498DB;" text="Action">
+            <Region prefHeight="51.0" prefWidth="346.0" style="-fx-background-color: #3498DB;" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="484.0" layoutY="10.0" prefHeight="51.0" prefWidth="102.0" style="-fx-background-color: #3498DB;" text="Action">
                     <font>
                         <Font size="16.0" />
                     </font>
