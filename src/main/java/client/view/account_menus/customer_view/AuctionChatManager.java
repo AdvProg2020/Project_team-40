@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -50,6 +51,8 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         idText.setText("ID : " + chat.getId());
         number.setText("Members : " + chat.getMembers().size());
 
+        chatBox.setPadding(new Insets(20,20,20,20));
+        chatBox.setSpacing(10);
         ArrayList<Message> messages = chat.getMessages();
         for(Message message : messages) {
             addMessage(message);
@@ -85,12 +88,13 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         Text contentText = new Text(message.getContent());
         Text dateText = new Text((new Date(message.getTime())).toString());
 
-        senderText.setStyle("-fx-text-fill: #002A45");
-        senderText.setStyle("-fx-font-size: 16");
-        senderText.setStyle("-fx-font-style: bold");
-        contentText.setStyle("-fx-font-size: 14");
+        senderText.setStyle("-fx-font-size: 24;"
+            + "-fx-text-fill: #181242;");
+        contentText.setStyle("-fx-font-size: 18");
         dateText.setStyle("-fx-font-size: 10");
-        messageBox.setStyle("-fx-background-color: #5DBEFC");
+        messageBox.setSpacing(5);
+        messageBox.setStyle("-fx-border-width: 2;"
+            + "-fx-background-color: #a3deff");
 
         messageBox.getChildren().addAll(senderText, contentText, dateText);
         chatBox.getChildren().add(messageBox);
