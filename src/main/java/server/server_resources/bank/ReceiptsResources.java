@@ -33,7 +33,7 @@ public class ReceiptsResources extends ServerResource {
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             bankResponse = inputStream.readUTF();
             if(bankResponse.equals("done successfully"))
-                Receipt.getReceipts().get(getQueryValue("receipt ID")).setPaid(true);
+                Receipt.getReceipts().get(Integer.parseInt(getQueryValue("receipt ID"))).setPaid(true);
         } catch (IOException e) {
             bankResponse = e.getMessage();
         }
