@@ -14,7 +14,7 @@ public class AuctionsResource extends ServerResource {
     @Get
     public String getAuctions() {
         ArrayList<Auction> auctions;
-        if(getQueryValue("role").equals("Seller")) {
+        if(getQueryValue("role").equals("seller")) {
             auctions = ((Seller) User.getUserByUsername(getQueryValue("username"))).getAuctions();
         } else {
             auctions = Auction.getOnGoingAuctions();

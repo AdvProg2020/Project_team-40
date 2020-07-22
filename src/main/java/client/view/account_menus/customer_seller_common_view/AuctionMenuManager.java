@@ -4,12 +4,13 @@ import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import server.model.Auction;
 
@@ -21,25 +22,32 @@ import java.util.ResourceBundle;
 
 public class AuctionMenuManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
+    public Button addAuction;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadAuctions();
+         loadAuctions();
     }
 
     private void loadAuctions() {
         HashMap<String, String> queries = new HashMap<>();
         Client client = Client.getInstance();
-        if(client.getRole().equals("Seller"))
+        if(client.getRole().equals("Seller")) {
             queries.put("role", "seller");
-        else
+            removeAddAuctionButton();
+        } else {
             queries.put("role", "customer");
+        }
         queries.put("username", client.getUsername());
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
                 true, new TypeToken<ArrayList<Auction>>(){}.getType());
         for(Auction auction : response){
             setAuctionItem(auction, client.getRole().equals("Seller"));
         }
+    }
+
+    private void removeAddAuctionButton() {
+        ((Pane) addAuction.getParent()).getChildren().remove(addAuction);
     }
 
     private void setAuctionItem(Auction auction, boolean isSeller) {
