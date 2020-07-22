@@ -34,9 +34,14 @@ public class ChatController{
         return chat;
     }
 
-    public ArrayList<Chat> getAllChats(){
+    public ArrayList<Chat> getAllChats(String username){
         ArrayList<Chat> chats = new ArrayList<>();
-        chats.addAll(Chat.getAllChats().values());
+        ArrayList<Chat> allChats = new ArrayList<>();
+        allChats.addAll(Chat.getAllChats().values());
+        for(Chat chat : allChats) {
+            if(chat.getMembers().contains(username))
+                chats.add(chat);
+        }
         return chats;
     }
 

@@ -42,9 +42,10 @@ public class ChatResource extends ServerResource{
         }
     }
 
+    //QUERIES : username
     //Returns chats as a json string
     @Get
     public String getChats(){
-        return new YaGson().toJson(controller.getAllChats(), ArrayList.class);
+        return new YaGson().toJson(controller.getAllChats(getQueryValue("username")), ArrayList.class);
     }
 }

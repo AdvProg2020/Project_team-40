@@ -45,9 +45,9 @@ public class AuctionChatManager extends MenuManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        name.setText(chat.getName());
-        idText.setText(chat.getId());
-        number.setText(chat.getMembers().size() + "");
+        name.setText("Name : " + chat.getName());
+        idText.setText("ID : " + chat.getId());
+        number.setText("Members : " + chat.getMembers().size());
 
         ArrayList<Message> messages = chat.getMessages();
         for(Message message : messages) {
@@ -55,14 +55,20 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         }
         size = messages.size();
 
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask(){
+        Thread refreshT = new Thread(new Runnable(){
             @Override
             public void run(){
-                refresh();
+                while(true){
+                    refresh();
+                    try {
+                        Thread.sleep(1000);
+                    } catch(InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        };
-        timer.schedule(timerTask, REFRESH_DELAY);
+        });
+        refreshT.start();
     }
 
     private void addMessage(Message message){

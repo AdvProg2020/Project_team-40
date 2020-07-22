@@ -35,7 +35,8 @@ public class ChatManager extends MenuManager implements Initializable{
     private void getChats(){
         chats = new ArrayList<>();
         requestQueries = new HashMap<>();
-        chats = RequestHandler.get("/chat/chat/", requestQueries, false, new TypeToken<ArrayList<Chat>>(){}.getType());
+        requestQueries.put("username", Client.getInstance().getUsername());
+        chats = RequestHandler.get("/chat/chat/", requestQueries, true, new TypeToken<ArrayList<Chat>>(){}.getType());
 
         for(Chat chat : chats) {
             ChatItemManager.setChat(chat);
