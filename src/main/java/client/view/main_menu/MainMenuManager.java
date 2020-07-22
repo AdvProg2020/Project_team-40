@@ -45,6 +45,7 @@ public class MainMenuManager extends MenuManager implements Initializable {
             RegisterManager registerManager = loader.getController();
             registerManager.customerButton.setDisable(true);
             registerManager.sellerButton.setDisable(true);
+            registerManager.supportButton.setDisable(true);
             registerManager.managerButton.setSelected(true);
             mainInnerPane.getChildren().clear();
             mainInnerPane.getChildren().add(pane);
