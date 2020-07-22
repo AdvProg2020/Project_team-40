@@ -62,10 +62,10 @@ public class RegisterManager extends MenuManager implements Initializable {
                         registerCustomer();
                     } else if (sellerButton.isSelected()) {
                         registerSeller();
-                    } else if (managerButton.isSelected()) {
-                        registerManager();
                     } else if (supportButton.isSelected()) {
                         registerSupport();
+                    } else if (managerButton.isSelected()) {
+                        registerManager();
                     }
                     finishRegister();
                 }catch (ResourceException e){
