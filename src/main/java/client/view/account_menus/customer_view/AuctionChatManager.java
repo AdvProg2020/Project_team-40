@@ -7,6 +7,7 @@ import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,16 +59,23 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         Thread refreshT = new Thread(new Runnable(){
             @Override
             public void run(){
+                Runnable refresher = new Runnable(){
+                    @Override
+                    public void run(){
+                        refresh();
+                    }
+                };
                 while(true){
-                    refresh();
                     try {
                         Thread.sleep(1000);
                     } catch(InterruptedException e) {
                         e.printStackTrace();
                     }
+                    Platform.runLater(refresher);
                 }
             }
         });
+        refreshT.setDaemon(true);
         refreshT.start();
     }
 
@@ -99,7 +107,6 @@ public class AuctionChatManager extends MenuManager implements Initializable{
         requestQueries.put("username", sender);
         RequestHandler.put("/chat/message/", null, requestQueries, true, null);
         text.setText("");
-        refresh();
     }
 
     public void refresh() {
