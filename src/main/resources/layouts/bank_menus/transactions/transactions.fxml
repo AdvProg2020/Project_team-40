@@ -25,7 +25,7 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Source ID">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Description">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -35,12 +35,12 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Amount">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Source ID">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Description">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #5dade2;" text="Money">
                     <font>
                         <Font size="15.0" />
                     </font>
