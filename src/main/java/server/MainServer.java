@@ -112,5 +112,6 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/members/", MembersResource.class);
         getDefaultHost().attach("/chat/supports/", SupportsResource.class);
         getDefaultHost().attach("/chat/support_chat/", SupportChatResource.class);
+        getDefaultHost().attach("/chat/support_customers/", SupportCustomersResource.class);
     }
 }
