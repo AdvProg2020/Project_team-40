@@ -76,6 +76,6 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     public void handleAddAuction() {
-        setSecondaryInnerPane("/layouts/seller_menus/seller_auctions_menus/add_auction.fxml");
+        setSecondaryInnerPane("/layouts/seller_menus/sellers_auctions_menus/add_auction.fxml");
     }
 }
