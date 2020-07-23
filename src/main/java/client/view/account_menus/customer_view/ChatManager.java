@@ -39,6 +39,8 @@ public class ChatManager extends MenuManager implements Initializable{
         chats = RequestHandler.get("/chat/chat/", requestQueries, true, new TypeToken<ArrayList<Chat>>(){}.getType());
 
         for(Chat chat : chats) {
+            if(chat.isSupport())
+                continue;
             ChatItemManager.setLast(chat);
             Node node = null;
             try {

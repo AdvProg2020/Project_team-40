@@ -6,7 +6,10 @@ import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import server.model.chat.Chat;
 
 import java.io.IOException;
@@ -35,20 +38,12 @@ public class SupportItemManager extends MenuManager implements Initializable{
         requestQueries.put("support", support);
         Chat chat = RequestHandler.get("/chat/support_chat/", requestQueries, true, new TypeToken<Chat>(){}.getType());
 
-        if(chat == null){
-            requestQueries.put("hasSupport", "true");
-            requestQueries.put("name", "Support : " + support);
-            RequestHandler.post("/chat/chat/", null, requestQueries, true, null);
-            requestQueries.remove("hasSupport");
-            requestQueries.remove("name");
-            chat = RequestHandler.get("/chat/support_chat/", requestQueries, true, new TypeToken<Chat>(){}.getType());
-        }
-
         AuctionChatManager.setLast(chat);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/layouts/customer_view/auction_chat_room.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/layouts/customer_menus/auction_chat_room.fxml"));
+        Parent parent = null;
         try {
-            fxmlLoader.load();
+            parent = fxmlLoader.load();
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -56,6 +51,10 @@ public class SupportItemManager extends MenuManager implements Initializable{
         auctionChatManager.root.getChildren().remove(auctionChatManager.idText);
         auctionChatManager.root.getChildren().remove(auctionChatManager.number);
         auctionChatManager.root.getChildren().remove(auctionChatManager.moreButton);
+        Stage stage = new Stage();
+        stage.setTitle(chat.getName());
+        stage.setScene(new Scene(parent, 868, 680));
+        stage.show();
     }
 
     public static void setLast(String last){

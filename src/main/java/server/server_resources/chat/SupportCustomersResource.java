@@ -17,7 +17,7 @@ public class SupportCustomersResource extends ServerResource{
         ArrayList<Chat> chats = new ArrayList<>();
         ArrayList<Chat> all = ChatController.getInstance().getAllChats();
         for(Chat chat : all) {
-            if(chat.getName().equals("Support : " + getQueryValue("support")))
+            if(chat.getName().equals("Support : " + getQueryValue("support")) && chat.isSupport())
                 chats.add(chat);
         }
         return new YaGson().toJson(chats, ArrayList.class);
