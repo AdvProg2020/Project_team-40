@@ -1,5 +1,6 @@
 package server;
 
+import exceptions.DataException;
 import org.restlet.Component;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -8,6 +9,7 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
+import server.model.Loader;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
 import server.server_resources.bank.*;
@@ -19,9 +21,24 @@ import server.server_resources.seller_customer_common.AuctionsResource;
 import server.server_resources.seller_customer_common.WalletResource;
 import server.server_resources.shop.*;
 
+import java.io.File;
+
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
+    private static final String PATH = "src/main/resources";
     public static void main(String[] args) throws Exception {
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.err.println("Saving data ...");
+                try {
+                    Loader.getLoader().saveData();
+                } catch (DataException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        initializeLoading();
         ServerAuthenticator.getInstance().initVerifier();
         new MainServer().start();
     }
@@ -124,5 +141,26 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/support_customers/", SupportCustomersResource.class);
 
         getDefaultHost().attach("/shop/file/", FileResource.class);
+    }
+
+    private static void resourcesInitialization() throws DataException {
+        File resourcesDirectory = new File(PATH);
+        if (!resourcesDirectory.exists())
+            if (!resourcesDirectory.mkdir())
+                throw new DataException("System loading failed.");
+    }
+
+    private static void initializeLoading(){
+        try {
+            resourcesInitialization();
+        } catch (DataException e) {
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+        try {
+            Loader.getLoader().loadData();
+        } catch (DataException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
