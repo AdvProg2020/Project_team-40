@@ -3,6 +3,7 @@ package client.view.account_menus.seller_view.sellers_products_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import client.view.ChangeListener;
+import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -23,6 +24,9 @@ import client.view.MenuManager;
 import client.view.ValidInput;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +50,8 @@ public class AddProductManager extends MenuManager implements Initializable {
     public Label countError;
     public JFXButton doneButton;
     private HashMap<String, String> requestQueries;
+
+    private String productId;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addTextFieldsListeners();
@@ -160,6 +166,7 @@ public class AddProductManager extends MenuManager implements Initializable {
 
             Product product = RequestHandler.post("/accounts/seller_account_controller/product/", Client.getInstance().getUsername(), requestQueries,
                     true, Product.class);
+            productId = product.getProductId();
 
             assert product != null;
             product.setExtraValueProperties(extraValueProperties);
@@ -216,8 +223,31 @@ public class AddProductManager extends MenuManager implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(propertyBox.getScene().getWindow());
         if(file != null){
-            //TODO complete
+            try {
+                FileInputStream fis = new FileInputStream(file.getPath());
+                byte[] bytes = fis.readAllBytes();
+                String entity = new YaGson().toJson(bytes, byte[].class);
+                String fileName = file.getName();
+
+                HashMap<String, String> requestQueries = new HashMap<>();
+                requestQueries.put("username", Client.getInstance().getUsername());
+                requestQueries.put("productId", productId);
+                requestQueries.put("fileName", fileName);
+
+                RequestHandler.post("/shop/file/", entity, requestQueries, true, null);
+            } catch(FileNotFoundException e) {
+                e.printStackTrace();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
         }
     }
 
+    public void detach(){
+        HashMap<String, String> requestQueries = new HashMap<>();
+        requestQueries.put("username", Client.getInstance().getUsername());
+        requestQueries.put("productId", productId);
+
+        RequestHandler.delete("/shop/file/", requestQueries, true, null);
+    }
 }

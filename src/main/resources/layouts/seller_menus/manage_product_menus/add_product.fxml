@@ -55,7 +55,7 @@
             </VBox>
         </content>
     </ScrollPane>
-    <JFXButton fx:id="doneButton" layoutX="14.0" layoutY="258.0" onAction="#createProduct" prefHeight="39.0" prefWidth="70.0" text=" ">
+    <JFXButton fx:id="doneButton" layoutX="14.0" layoutY="327.0" onAction="#createProduct" prefHeight="39.0" prefWidth="70.0" text=" ">
         <graphic>
             <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="30.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -69,6 +69,15 @@
          <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="30.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../images/icons8-attach-96.png" />
+            </image>
+         </ImageView>
+      </graphic>
+   </JFXButton>
+   <JFXButton fx:id="detachButton" contentDisplay="BOTTOM" layoutX="14.0" layoutY="242.0" onAction="#detach" prefHeight="39.0" prefWidth="70.0" text="Detach" textFill="#4059a9">
+      <graphic>
+         <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="30.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../images/icons8-remove-document-64.png" />
             </image>
          </ImageView>
       </graphic>
