@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class FileManager implements Initializable{
+public class FileManager{
     private static String last;
     private String productId;
 
@@ -24,11 +24,6 @@ public class FileManager implements Initializable{
 
     public FileManager(){
         productId = last;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        ((Stage)nameText.getScene().getWindow()).setTitle(productId);
     }
 
     public static void setLast(String last){
