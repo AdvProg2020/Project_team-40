@@ -162,4 +162,8 @@ public class Seller extends User{
                 "Phone Number: " + phoneNo + "\n" +
                 "Company: " + companyInfo + "\n";
     }
+
+    public void changeWalletCredit(double amount) {
+            creditInWallet += amount;
+    }
 }

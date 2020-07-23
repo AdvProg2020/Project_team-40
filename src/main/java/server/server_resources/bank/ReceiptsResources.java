@@ -28,12 +28,13 @@ public class ReceiptsResources extends ServerResource {
         try {
             Socket socket = new Socket(IP, BANK_PORT);
             DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            outputStream.writeUTF("pay " + getQueryValue("receipt ID"));
+            String id = getQueryValue("receipt ID");
+            outputStream.writeUTF("pay " + id);
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             bankResponse = inputStream.readUTF();
             if(bankResponse.equals("done successfully"))
-                Receipt.getReceipts().get(Integer.parseInt(getQueryValue("receipt ID"))).setPaid(true);
+                Receipt.getReceipts().get(Integer.parseInt(id)).setPaid(true);
         } catch (IOException e) {
             bankResponse = e.getMessage();
         }

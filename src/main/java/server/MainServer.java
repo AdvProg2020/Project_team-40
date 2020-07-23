@@ -51,6 +51,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", authenticator.getNewGuard(DeclineRequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/discount/", authenticator.getNewGuard(ManagerDiscountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", authenticator.getNewGuard(ManagerAllDiscountsResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/store_bank_account/", StoreBankAccountResource.class);
 
         getDefaultHost().attach("/accounts/customer_account_controller/customer/", CustomerResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", authenticator.getNewGuard(CustomerAllDiscountsResource.class, RoleAccessibility.CUSTOMER));
@@ -65,6 +66,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/payment/", authenticator.getNewGuard(PaymentResource.class, RoleAccessibility.CUSTOMER));
         getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/bank_account/", authenticator.getNewGuard(StoreBankAccountResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/customer_account_controller/wallet/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
@@ -81,6 +83,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", authenticator.getNewGuard(AddAuctionResource.class, RoleAccessibility.SELLER));
+        getDefaultHost().attach("/accounts/seller_account_controller/wallet/", authenticator.getNewGuard(SellerWalletResource.class, RoleAccessibility.SELLER));
+
 
         getDefaultHost().attach("/accounts/seller_customer_common/wallet/", WalletResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/auctions/", AuctionsResource.class);
