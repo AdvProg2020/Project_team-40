@@ -2,6 +2,7 @@ package client.view.account_menus.seller_view.auction_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
+import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,7 +60,12 @@ public class AddAuctionManager implements Initializable {
         try {
             verifyInput();
             Date date = verifyDate();
-
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("product ID", (String) productChoiceBox.getSelectionModel().getSelectedItem());
+            queries.put("seller ID", Client.getInstance().getUsername());
+            String entity = new YaGson().toJson(date, Date.class);
+            RequestHandler.post("/accounts/seller_account_controller/add_auction/", entity, queries,
+                    true, null);
         } catch(ParseException e) {
             dateError.setText("Enter date based on given format");
         } catch (Exception ignored) {}
