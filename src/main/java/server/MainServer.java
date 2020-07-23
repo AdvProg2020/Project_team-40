@@ -82,7 +82,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/category_properties/", authenticator.getNewGuard(SellerCategoryPropertiesResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class, RoleAccessibility.SELLER));
-        getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", authenticator.getNewGuard(AddAuctionResource.class, RoleAccessibility.SELLER));
+        getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", AddAuctionResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/wallet/", authenticator.getNewGuard(SellerWalletResource.class, RoleAccessibility.SELLER));
 
 
