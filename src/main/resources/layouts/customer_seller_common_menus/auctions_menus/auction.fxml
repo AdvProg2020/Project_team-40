@@ -31,17 +31,17 @@
           <ColumnConstraints maxWidth="188.0" minWidth="10.0" prefWidth="188.0" />
       </columnConstraints>
         <children>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="ID:">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="ID:">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Latest Price:" GridPane.rowIndex="1">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Latest Price:" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Deadline:" GridPane.rowIndex="2">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Deadline:" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -51,35 +51,35 @@
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="errorLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.rowIndex="5">
+            <Label fx:id="errorLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
 
-            <Label fx:id="auctionIDLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <Label fx:id="auctionIDLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="auctionPriceLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="auctionPriceLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="auctionDeadlineLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="auctionDeadlineLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="proposedPriceLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="proposedPriceLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
-            <Spinner fx:id="countSpinner" layoutX="586.0" layoutY="117.0" prefHeight="42.0" prefWidth="98.0" GridPane.rowIndex="4" />
+            <Spinner fx:id="priceSpinner" layoutX="586.0" layoutY="117.0" prefHeight="42.0" prefWidth="98.0" GridPane.rowIndex="4" />
             <Button fx:id="proposeHigherPrice" prefHeight="25.0" prefWidth="150.0" text="propose a price" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         </children>
     </GridPane>
@@ -98,37 +98,37 @@
             <ColumnConstraints minWidth="10.0" prefWidth="175.0" />
         </columnConstraints>
         <children>
-            <Label fx:id="productNameLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0">
+            <Label fx:id="productNameLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Product ID:" GridPane.rowIndex="1">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Product ID:" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Default Price:" GridPane.rowIndex="2">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Default Price:" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Category:" GridPane.rowIndex="3">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Category:" GridPane.rowIndex="3">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Company:" GridPane.rowIndex="4">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Company:" GridPane.rowIndex="4">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Seller:" GridPane.rowIndex="5">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Seller:" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Ratings:" GridPane.rowIndex="6">
+            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Ratings:" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -137,32 +137,32 @@
 
 
 
-            <Label fx:id="idLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="productIdLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="defaultPriceLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="defaultPriceLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="categoryLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="categoryLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="companyLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="companyLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="sellerLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label fx:id="sellerLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="RatingLabel" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Label fx:id="ratingLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
