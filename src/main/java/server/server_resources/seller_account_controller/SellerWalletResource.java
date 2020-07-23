@@ -9,7 +9,7 @@ public class SellerWalletResource extends ServerResource {
     @Put
     public void increaseWalletCredit(String username){
         double amount = Double.parseDouble(getQueryValue("amount"));
-        Seller seller = (Seller) User.getUserByUsername(getQueryValue("username"));
+        Seller seller = (Seller) User.getUserByUsername(username);
         seller.changeWalletCredit(amount);
     }
 }

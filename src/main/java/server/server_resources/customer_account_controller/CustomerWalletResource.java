@@ -7,9 +7,9 @@ import server.model.users.User;
 
 public class CustomerWalletResource extends ServerResource {
     @Put
-    public void increaseWalletCredit(String username){
+    public void changeWalletCredit(String username){
         double amount = Double.parseDouble(getQueryValue("amount"));
-        Customer customer = (Customer) User.getUserByUsername(getQueryValue("username"));
+        Customer customer = (Customer) User.getUserByUsername(username);
         customer.changeWalletCredit(amount);
     }
 }

@@ -51,6 +51,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/decline_request/", authenticator.getNewGuard(DeclineRequestResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/discount/", authenticator.getNewGuard(ManagerDiscountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", authenticator.getNewGuard(ManagerAllDiscountsResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/store_bank_account/", StoreBankAccountResource.class);
 
         getDefaultHost().attach("/accounts/customer_account_controller/customer/", CustomerResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", authenticator.getNewGuard(CustomerAllDiscountsResource.class, RoleAccessibility.CUSTOMER));
