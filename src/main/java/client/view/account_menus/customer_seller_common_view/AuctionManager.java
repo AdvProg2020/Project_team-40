@@ -1,11 +1,13 @@
 package client.view.account_menus.customer_seller_common_view;
 
 import client.controller.Client;
+import client.controller.RequestHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.GridPane;
+import server.model.Auction;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,8 +37,12 @@ public class AuctionManager implements Initializable {
     public Button proposeHigherPrice;
     public Spinner priceSpinner;
 
+    private Auction auction;
+    private static String auctionID;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //auction = RequestHandler.get()
         commonLoad();
         if(Client.getInstance().getRole().equalsIgnoreCase("Seller")) {
             loadForSeller();
@@ -50,10 +56,16 @@ public class AuctionManager implements Initializable {
     }
 
     private void loadForSeller() {
-
+        auctionPane.getChildren().remove(priceSpinner);
+        auctionPane.getChildren().remove(proposeHigherPrice);
+        //TODO:
     }
 
     private void commonLoad() {
 
+    }
+
+    public static void setAuctionID(String auctionID) {
+        AuctionManager.auctionID = auctionID;
     }
 }

@@ -14,7 +14,7 @@
     <children>
         <HBox prefHeight="40.0" prefWidth="744.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0">
+                <Label  fx:id="idLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>

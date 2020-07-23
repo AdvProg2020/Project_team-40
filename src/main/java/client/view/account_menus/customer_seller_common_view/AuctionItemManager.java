@@ -4,14 +4,17 @@ import client.view.MenuManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AuctionItemManager extends MenuManager {
+    public Label idLabel;
 
     public void viewAuctionInfo() {
+        AuctionManager.setAuctionID(idLabel.getText());
         Stage stage = new Stage();
         try {
             Parent root = FXMLLoader.load(getClass().
