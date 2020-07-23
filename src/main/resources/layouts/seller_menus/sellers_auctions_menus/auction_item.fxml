@@ -29,7 +29,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="144.0" text="">
+                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewAuction" prefHeight="35.0" prefWidth="144.0" text="">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <image>
