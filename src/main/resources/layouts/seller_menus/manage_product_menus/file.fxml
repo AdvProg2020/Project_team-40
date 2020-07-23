@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="223.0" prefWidth="373.0" style="-fx-background-color: #ffffa1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.sellers_products_view.FileManager">
+   <children>
+      <JFXButton contentDisplay="TOP" layoutX="14.0" layoutY="14.0" onAction="#attach" prefHeight="84.0" prefWidth="136.0" text="Attach">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/icons8-attach-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="16.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/icons8-opened-folder-144.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="16.0" layoutY="164.0" mnemonicParsing="false" onAction="#finish" prefHeight="26.0" prefWidth="339.0" style="-fx-background-color: #40ff00;" text="Finish">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text fx:id="nameText" layoutX="54.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No files selected." wrappingWidth="264.53673553466797" />
+      <JFXButton contentDisplay="TOP" layoutX="202.0" layoutY="14.0" onAction="#detach" prefHeight="84.0" prefWidth="136.0" text="Detach">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/icons8-remove-document-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

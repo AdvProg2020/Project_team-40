@@ -8,7 +8,10 @@ import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import exceptions.AccountsException;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -172,6 +175,18 @@ public class AddProductManager extends MenuManager implements Initializable {
             product.setExtraValueProperties(extraValueProperties);
             product.setExtraStringProperties(getExtraStringProperties());
             ((Stage)doneButton.getScene().getWindow()).close();
+
+            //open file manager to attach files or skip
+            try {
+                Stage stage = new Stage();
+                FileManager.setLast(productId);
+                Parent parent = FXMLLoader.load(getClass().getResource("/layouts/seller_menus/manage_product_menus/file.fxml"));
+                stage.setScene(new Scene(parent, 373, 223));
+                stage.show();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
             {
@@ -217,37 +232,5 @@ public class AddProductManager extends MenuManager implements Initializable {
                 isEmpty = true;
         }
         return isEmpty;
-    }
-
-    public void attach(){
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(propertyBox.getScene().getWindow());
-        if(file != null){
-            try {
-                FileInputStream fis = new FileInputStream(file.getPath());
-                byte[] bytes = fis.readAllBytes();
-                String entity = new YaGson().toJson(bytes, byte[].class);
-                String fileName = file.getName();
-
-                HashMap<String, String> requestQueries = new HashMap<>();
-                requestQueries.put("username", Client.getInstance().getUsername());
-                requestQueries.put("productId", productId);
-                requestQueries.put("fileName", fileName);
-
-                RequestHandler.post("/shop/file/", entity, requestQueries, true, null);
-            } catch(FileNotFoundException e) {
-                e.printStackTrace();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void detach(){
-        HashMap<String, String> requestQueries = new HashMap<>();
-        requestQueries.put("username", Client.getInstance().getUsername());
-        requestQueries.put("productId", productId);
-
-        RequestHandler.delete("/shop/file/", requestQueries, true, null);
     }
 }
