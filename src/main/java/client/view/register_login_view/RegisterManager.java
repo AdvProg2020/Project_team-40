@@ -256,9 +256,8 @@ public class RegisterManager extends MenuManager implements Initializable {
         boolean doesManagerExist = (boolean)RequestHandler.get("/accounts/manager_account_controller/manager/", new HashMap<>(), false, boolean.class);
         if(doesManagerExist && !isByManager) {
            infoPane.getChildren().remove(managerButton);
-           infoPane.getChildren().remove(supportButton);
+           supportButton.setDisable(true);
            managerButton = null;
-           supportButton = null;
         }
     }
 
