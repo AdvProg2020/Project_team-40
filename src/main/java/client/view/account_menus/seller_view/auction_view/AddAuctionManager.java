@@ -1,4 +1,4 @@
-package client.view.account_menus.seller_view.accounts_view;
+package client.view.account_menus.seller_view.auction_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
@@ -6,7 +6,9 @@ import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import server.model.Product;
 
@@ -34,6 +36,11 @@ public class AddAuctionManager implements Initializable {
         try {
             AnchorPane item = FXMLLoader.load(getClass().
                     getResource("/layouts/seller_menus/sellers_auctions_menus/product_item.fxml"));
+            HBox hBox = (HBox) item.getChildren().get(0);
+            ((Label) hBox.getChildren().get(0)).setText(product.getProductId());
+            ((Label) hBox.getChildren().get(1)).setText(product.getName());
+            ((Label) hBox.getChildren().get(2)).setText(String.valueOf(product.getPrice()));
+            vBoxItems.getChildren().add(hBox);
         } catch (IOException e) {
             e.printStackTrace();
         }
