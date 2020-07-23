@@ -104,9 +104,10 @@ public class ManageUsersManager extends MenuManager implements Initializable {
             Pane pane = loader.load();
             RegisterManager registerManager = loader.getController();
             registerManager.registerLabel.setText("New Support");
-//            registerManager.sellerButton.setDisable(true);
-//            registerManager.customerButton.setDisable(true);
-//            registerManager.managerButton.setSelected(true);
+            registerManager.sellerButton.setDisable(true);
+            registerManager.customerButton.setDisable(true);
+            registerManager.managerButton.setDisable(true);
+            registerManager.supportButton.setSelected(true);
             Stage stage = new Stage();
             stage.setScene(new Scene(pane, 1100, 610));
             stage.initModality(Modality.APPLICATION_MODAL);
