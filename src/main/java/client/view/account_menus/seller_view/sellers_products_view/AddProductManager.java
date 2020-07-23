@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
@@ -21,6 +22,7 @@ import server.model.enumerations.PropertyType;
 import client.view.MenuManager;
 import client.view.ValidInput;
 
+import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -209,4 +211,13 @@ public class AddProductManager extends MenuManager implements Initializable {
         }
         return isEmpty;
     }
+
+    public void attach(){
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(propertyBox.getScene().getWindow());
+        if(file != null){
+            //TODO complete
+        }
+    }
+
 }

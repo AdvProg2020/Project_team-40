@@ -1,6 +1,7 @@
 package server.model;
 
 import exceptions.DataException;
+import javafx.util.Pair;
 import server.model.enumerations.PropertyType;
 import server.model.enumerations.SetUpStatus;
 import server.model.users.Seller;
@@ -31,6 +32,8 @@ public class Product implements Serializable{
     private HashMap<String, Double> extraValueProperties;
     private int visitCount;
 
+    private Pair<String, byte[]> file;
+
     public Product(){}
 
     public Product(String name, String company, double price, int count, String seller, String category) {
@@ -57,6 +60,22 @@ public class Product implements Serializable{
         }
         this.status = SetUpStatus.Creating;
         productId = Utility.generateId();
+    }
+
+    public void attachFile(Pair<String, byte[]> file){
+        this.file = file;
+    }
+
+    public void detachFile(){
+        this.file = file;
+    }
+
+    public Pair<String, byte[]> getFile(){
+        return file;
+    }
+
+    public boolean hasFile(){
+        return file != null;
     }
 
     public static void addProduct(Product product){

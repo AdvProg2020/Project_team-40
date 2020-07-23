@@ -1,6 +1,7 @@
 package server.controller.accounts;
 
 import exceptions.AccountsException;
+import javafx.util.Pair;
 import server.model.Category;
 import server.model.Off;
 import server.model.Product;
@@ -15,6 +16,7 @@ import server.model.users.User;
 import javax.security.auth.login.AccountException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class SellerAccountController extends AccountController{
@@ -109,6 +111,36 @@ public class SellerAccountController extends AccountController{
             throw new AccountsException("Seller doesn't have a product with this ID.");
         }
         Manager.addRequest(new RemoveProduct(productID));
+    }
+
+    public void attachFile(String username, String productId, String fileName, byte[] fileData) throws AccountsException{
+        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productId)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
+        }
+        Product product = Product.getProductById(productId);
+        Pair<String, byte[]> file = new Pair<>(fileName, fileData);
+        product.attachFile(file);
+    }
+
+    public void detachFile(String username, String productId) throws AccountsException{
+        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productId)) {
+            throw new AccountsException("Seller doesn't have a product with this ID.");
+        }
+        Product product = Product.getProductById(productId);
+        product.detachFile();
+    }
+
+    public Pair<String, byte[]> getFile(String productId) throws AccountsException{
+        if(Product.getProductById(productId) == null)
+            throw new AccountsException("There is no product with such ID.");
+        Product product = Product.getProductById(productId);
+        return product.getFile();
+    }
+
+    public boolean hasFile(String productId) throws AccountsException{
+        if(Product.getProductById(productId) == null)
+            throw new AccountsException("There is no product with such ID.");
+        return Product.getProductById(productId).hasFile();
     }
 
     public void increaseProductsCount(int addedQuantity, String productId) {
