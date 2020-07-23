@@ -32,6 +32,7 @@ public class Auction {
         this.sellerID = sellerID;
         this.chatId = chatId;
         id = Utility.generateId();
+        ((Seller) User.getUserByUsername(sellerID)).addAuction(this);
         auctions.put(id, this);
         onGoingAuctions.add(id);
     }
