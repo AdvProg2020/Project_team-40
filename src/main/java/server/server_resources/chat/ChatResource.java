@@ -15,16 +15,12 @@ public class ChatResource extends ServerResource{
     private ChatController controller = ChatController.getInstance();
 
     //The creator (username) should be added to the chat and if there is a support involved, them as well
-    //QUERIES : name, username, hasSupport, support
+    //QUERIES : name, username
     @Post
     public void createChat(){
         Chat chat = controller.createChat(getQueryValue("name"));
         try {
             controller.addMember(chat.getId(), getQueryValue("username"));
-            if(getQueryValue("hasSupport").equals("true")){
-                controller.addMember(chat.getId(), getQueryValue("support"));
-                chat.setIsSupport(true);
-            }
         }catch(MenuException e){
             System.out.println(e.getMessage());
         }

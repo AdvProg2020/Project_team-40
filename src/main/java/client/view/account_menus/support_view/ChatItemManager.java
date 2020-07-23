@@ -26,7 +26,7 @@ public class ChatItemManager implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        name.setText(chat.getName());
+        name.setText("Customer : " + chat.getMembers().get(0));
     }
 
     public void choose(){
@@ -40,6 +40,7 @@ public class ChatItemManager implements Initializable{
             e.printStackTrace();
         }
         AuctionChatManager manager = loader.getController();
+        manager.name.setText("Customer : " + chat.getMembers().get(0));
         manager.root.getChildren().remove(manager.moreButton);
         manager.root.getChildren().remove(manager.idText);
         manager.root.getChildren().remove(manager.number);

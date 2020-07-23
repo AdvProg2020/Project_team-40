@@ -15,11 +15,17 @@ public class SupportChatResource extends ServerResource{
         Chat chat = null;
         ArrayList<Chat> allChats = ChatController.getInstance().getAllChats();
         for(Chat chat1 : allChats) {
-            ArrayList<String> members = chat.getMembers();
-            if(members.size() == 2 && members.contains(getQueryValue("username")) && members.contains(getQueryValue("support"))){
+            if(chat1.isSupport() && chat1.getMembers().contains(getQueryValue("username")) && chat1.getMembers().contains(getQueryValue("support")))
                 chat = chat1;
-            }
         }
+
+        if(chat == null){
+            chat = ChatController.getInstance().createChat("Support : " + getQueryValue("support"));
+            chat.getMembers().add(getQueryValue("username"));
+            chat.getMembers().add(getQueryValue("support"));
+            chat.setIsSupport(true);
+        }
+
         return new YaGson().toJson(chat, Chat.class);
     }
 }
