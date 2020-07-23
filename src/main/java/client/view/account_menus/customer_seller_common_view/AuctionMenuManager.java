@@ -6,12 +6,16 @@ import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import server.model.Auction;
 
 import java.io.IOException;
@@ -34,9 +38,9 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
         Client client = Client.getInstance();
         if(client.getRole().equals("Seller")) {
             queries.put("role", "seller");
-            removeAddAuctionButton();
         } else {
             queries.put("role", "customer");
+            removeAddAuctionButton();
         }
         queries.put("username", client.getUsername());
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
@@ -76,6 +80,14 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     public void handleAddAuction() {
-        setSecondaryInnerPane("/layouts/seller_menus/sellers_auctions_menus/add_auction.fxml");
+        Stage stage = new Stage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/layouts/seller_menus/sellers_auctions_menus/add_auction.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root, 800, 600));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
