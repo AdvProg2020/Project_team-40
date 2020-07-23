@@ -1,6 +1,10 @@
 package client.view.account_menus.customer_view.orders_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
+import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +22,7 @@ import server.model.log.Log;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -31,10 +36,29 @@ public class OrderMenu implements Initializable {
     public Label statusLabel;
     public Label addressLabel;
     public ListView<String> productsList;
+    public Label transitionLabel;
+    public JFXComboBox<String> transitionComboBox;
     private Log log;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        transitionComboBox.getItems().addAll("Delivered", "Not Delivered");
+        transitionComboBox.setOnAction(e -> {
+
+            HashMap<String, String> requestQueries = new HashMap<>();
+            requestQueries.put("logId", log.getId());
+
+            if(transitionComboBox.getValue().equals("Delivered"))
+                RequestHandler.post("/accounts/manager_account_controller/manager_sales_history/", null, requestQueries, true, null);
+            if(transitionComboBox.getValue().equals("Not Delivered"))
+                RequestHandler.delete("/accounts/manager_account_controller/manager_sales_history/", requestQueries, true, null);
+            statusLabel.setText(transitionComboBox.getValue());
+
+        });
+
+        if(!Client.getInstance().getRole().equals("Manager"))
+            disableManagerOnly();
         productsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -92,5 +116,10 @@ public class OrderMenu implements Initializable {
 
     public void handleCloseWindow(ActionEvent event) {
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    }
+
+    public void disableManagerOnly(){
+        pane.getChildren().remove(transitionComboBox);
+        pane.getChildren().remove(transitionLabel);
     }
 }

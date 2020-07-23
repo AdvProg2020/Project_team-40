@@ -143,6 +143,8 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/support_customers/", SupportCustomersResource.class);
 
         getDefaultHost().attach("/shop/file/", FileResource.class);
+
+        getDefaultHost().attach("/accounts/manager_account_controller/manager_sales_history/", ManagerSalesHistoryResource.class);
     }
 
     private static void resourcesInitialization() throws DataException {

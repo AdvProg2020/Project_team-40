@@ -36,11 +36,17 @@ public class OrdersMenuManager extends MenuManager implements Initializable {
                         requestQueries, true, new TypeToken<HashMap<String, Log>>(){}.getType());
                 assert orders != null;
                 loadLogs(orders.values());
-            } else {
+            } else if (Client.getInstance().getRole().equals("Seller")) {
                 titleLabel.setText("Sales History");
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
                 ArrayList<Log> logs = RequestHandler.get("/accounts/seller_account_controller/sales_history/",
+                        requestQueries, true, new TypeToken<ArrayList<Log>>(){}.getType());
+                loadLogs(logs);
+            }else{
+                titleLabel.setText("Sales Status");
+                requestQueries.clear();
+                ArrayList<Log> logs = RequestHandler.get("/accounts/manager_account_controller/manager_sales_history/",
                         requestQueries, true, new TypeToken<ArrayList<Log>>(){}.getType());
                 loadLogs(logs);
             }

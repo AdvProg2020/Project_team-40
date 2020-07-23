@@ -40,6 +40,10 @@ public class AccountManager extends MenuManager implements Initializable {
         setSecondaryInnerPane("/layouts/manager_menus/manager_category_menus/category_menu_design.fxml");
     }
 
+    public void handleGoToSalesMenu() {
+        setSecondaryInnerPane("/layouts/customer_menus/customer_orders_menus/orders_menu_design.fxml");
+    }
+
     public void goToFinancialResources() {
         setSecondaryInnerPane("/layouts/manager_menus/financial_resources_menu.fxml");
     }

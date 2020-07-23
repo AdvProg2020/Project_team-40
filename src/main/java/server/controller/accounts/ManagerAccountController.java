@@ -6,6 +6,7 @@ import server.model.DiscountCode;
 import server.model.Product;
 import server.model.enumerations.PropertyType;
 import server.model.enumerations.Status;
+import server.model.log.Log;
 import server.model.requests.Request;
 import server.model.users.Customer;
 import server.model.users.Manager;
@@ -246,5 +247,16 @@ public class ManagerAccountController extends AccountController{
         if (Category.getCategoryByName(categoryName) == null)
             throw new AccountsException("Category not found.");
         Category.removeCategory(Category.getCategoryByName(categoryName));
+    }
+
+    public ArrayList<Log> getLogs(){
+        return new ArrayList<>(Log.getLogs().values());
+    }
+
+    public void setDelivered(String logId, boolean delivered) throws AccountsException{
+        Log log = Log.getLogById(logId);
+        if(log == null)
+            throw new AccountsException("Log not found.");
+        log.setDelivered(delivered);
     }
 }
