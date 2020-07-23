@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,9 @@ import java.util.ResourceBundle;
 public class AddAuctionManager implements Initializable {
     public VBox vBoxItems;
     public ChoiceBox productChoiceBox;
+    public Label dateError;
+    public Label productError;
+    public TextField deadlineField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +54,24 @@ public class AddAuctionManager implements Initializable {
     }
 
     public void addAuction() {
+        try {
+            verifyInput();
 
+        } catch (Exception ignored) {}
     }
 
+    private void verifyInput() throws Exception {
+        if(deadlineField.getText().isBlank()) {
+            dateError.setText("Fill this field!");
+            throw new Exception();
+        } else {
+            dateError.setText("");
+        }
+        if(productChoiceBox.getSelectionModel().getSelectedItem() == null) {
+            productError.setText("Choose a product!");
+            throw new Exception();
+        } else {
+            productError.setText("");
+        }
+    }
 }
