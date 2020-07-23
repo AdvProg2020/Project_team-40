@@ -47,6 +47,7 @@ public class BankRegisterResource extends ServerResource {
         if (user instanceof Manager){
             BankController.setManagerUsername(bankUsername);
             BankController.setManagerPassword(bankPassword);
+            BankController.setManagerBankId(response);
         }
         return response;
     }

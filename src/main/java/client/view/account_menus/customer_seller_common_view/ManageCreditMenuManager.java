@@ -75,7 +75,7 @@ public class ManageCreditMenuManager extends MenuManager implements Initializabl
             requestQueries.put("destination", bankAccountInfo.get("bank id"));
         }
         else {
-            requestQueries.put("source", bankAccountInfo.get("bank id"));
+            requestQueries.put("source", "SHOP_ACCOUNT");
             requestQueries.put("destination", String.valueOf(Client.getInstance().getBankAccount()));
         }
         requestQueries.put("description", description);

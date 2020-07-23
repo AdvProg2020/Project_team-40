@@ -16,6 +16,9 @@ public class BankController {
     private static String managerUsername;
     private static String managerPassword;
 
+
+    private static String managerBankId;
+
     //Key is a users username and value is his token:
     private HashMap<String, String> usersTokens = new HashMap<>();
 
@@ -44,10 +47,18 @@ public class BankController {
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             outputStream.writeUTF("get_token " + managerUsername + " " + managerPassword);
             outputStream.flush();
-            String bankResponse = inputStream.readUTF();
+            shopBankAccountToken = inputStream.readUTF();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setManagerBankId(String managerBankId) {
+        BankController.managerBankId = managerBankId;
+    }
+
+    public static String getManagerBankId() {
+        return managerBankId;
     }
 
     public HashMap<String, String> getUsersTokens() {
