@@ -174,7 +174,6 @@ public class AddProductManager extends MenuManager implements Initializable {
             assert product != null;
             product.setExtraValueProperties(extraValueProperties);
             product.setExtraStringProperties(getExtraStringProperties());
-            ((Stage)doneButton.getScene().getWindow()).close();
 
             //open file manager to attach files or skip
             try {
@@ -182,10 +181,12 @@ public class AddProductManager extends MenuManager implements Initializable {
                 FileManager.setLast(productId);
                 Parent parent = FXMLLoader.load(getClass().getResource("/layouts/seller_menus/manage_product_menus/file.fxml"));
                 stage.setScene(new Scene(parent, 373, 223));
-                stage.show();
+                stage.showAndWait();
             } catch(IOException e) {
                 e.printStackTrace();
             }
+
+            ((Stage)doneButton.getScene().getWindow()).close();
 
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
