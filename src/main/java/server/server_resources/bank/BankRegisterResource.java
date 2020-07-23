@@ -1,16 +1,14 @@
 package server.server_resources.bank;
 
-import client.controller.Client;
-import client.controller.RequestHandler;
-import client.view.ValidInput;
 import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
+import server.controller.menus.BankController;
+import server.model.users.Manager;
 import server.model.users.User;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.HashMap;
 
 import static server.server_resources.bank.BankInformation.BANK_PORT;
 import static server.server_resources.bank.BankInformation.IP;
@@ -23,15 +21,16 @@ public class BankRegisterResource extends ServerResource {
         String rawBankResponse = null;
         try {
             Socket socket = new Socket(IP, BANK_PORT);
-            DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));;
+            String bankUsername = getQueryValue("bank username");
+            DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             outputStream.writeUTF("create_account " + getQueryValue("first name") + " " +
-                    getQueryValue("last name") + " " + getQueryValue("bank username") + " " +
+                    getQueryValue("last name") + " " + bankUsername + " " +
                     getQueryValue("bank password") + " " + getQueryValue("repeat password"));
             outputStream.flush();
             DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             rawBankResponse = inputStream.readUTF();
             banksResponse = handleResponse(rawBankResponse, getQueryValue("username"),
-                    getQueryValue("bank username"));
+                    bankUsername, getQueryValue("bank password"));
             socket.close();
         } catch (IOException e) {
             banksResponse = e.getMessage();
@@ -41,10 +40,14 @@ public class BankRegisterResource extends ServerResource {
         return new YaGson().toJson(banksResponse, String.class);
     }
 
-    private String handleResponse(String response, String username, String bank_username) throws NumberFormatException  {
+    private String handleResponse(String response, String username, String bankUsername, String bankPassword) throws NumberFormatException  {
         User user = User.getUserByUsername(username);
         user.setBankAccount(Integer.parseInt(response));
-        user.setBankUsername(bank_username);
+        user.setBankUsername(bankUsername);
+        if (user instanceof Manager){
+            BankController.setManagerUsername(bankUsername);
+            BankController.setManagerPassword(bankPassword);
+        }
         return response;
     }
 }
