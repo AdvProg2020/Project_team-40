@@ -3,15 +3,12 @@ package client.view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
-import exceptions.DataException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import server.model.Loader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -150,11 +147,6 @@ public class MenuManager {
     }
 
     public void exit() {
-        try {
-            Loader.getLoader().saveData();
-        } catch (DataException e) {
-            e.printStackTrace();
-        }
         System.exit(1);
     }
 

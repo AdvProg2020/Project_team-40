@@ -45,6 +45,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
         queries.put("username", client.getUsername());
         ArrayList<Auction> response = RequestHandler.get("/accounts/seller_customer_common/auctions/", queries,
                 true, new TypeToken<ArrayList<Auction>>(){}.getType());
+        System.out.println(response.size());
         for(Auction auction : response){
             setAuctionItem(auction, client.getRole().equals("Seller"));
         }
@@ -76,6 +77,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     public void handleRefresh() {
+        vBoxItems.getChildren().clear();
         loadAuctions();
     }
 

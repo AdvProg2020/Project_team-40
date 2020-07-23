@@ -20,9 +20,17 @@ public class CreateReceiptResources extends ServerResource {
         try {
             Socket socket = new Socket(IP, BANK_PORT);
             DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            String message = "create_receipt " + BankController.getBankController().getUsersTokens().
-                    get(getQueryValue("username")) + " " +  getQueryValue("receipt type") + " " +
-                    getQueryValue("money") + " " + getQueryValue("source") + " " +
+            String token = null;
+            String source = getQueryValue("source");
+            if (source.equals("SHOP_ACCOUNT")){
+                BankController.setShopBankAccountToken();
+                token = BankController.getShopBankAccountToken();
+                source = BankController.getManagerBankId();
+            }
+            else
+                token = BankController.getBankController().getUsersTokens().get(getQueryValue("username"));
+            String message = "create_receipt " + token + " " +  getQueryValue("receipt type") + " " +
+                    getQueryValue("money") + " " + source + " " +
                     getQueryValue("destination") + " " + getQueryValue("description");
             outputStream.writeUTF(message.trim());
             outputStream.flush();
@@ -30,7 +38,7 @@ public class CreateReceiptResources extends ServerResource {
             bankResponse = inputStream.readUTF();
             socket.close();
             new Receipt(Integer.parseInt(bankResponse), getQueryValue("username"), getQueryValue("description"),
-                    Integer.parseInt(getQueryValue("money")), Integer.parseInt(getQueryValue("source")),
+                    Integer.parseInt(getQueryValue("money")), Integer.parseInt(source),
                     Integer.parseInt(getQueryValue("destination")), getReceiptType(getQueryValue("receipt type")));
         } catch (IOException e) {
             bankResponse =  e.getMessage();

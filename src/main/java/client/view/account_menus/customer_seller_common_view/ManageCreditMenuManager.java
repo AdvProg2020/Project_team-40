@@ -23,10 +23,14 @@ public class ManageCreditMenuManager extends MenuManager implements Initializabl
     public TextField amountField;
     public Label messageLabel;
     private HashMap<String, String> requestQueries;
+    private HashMap<String, String> bankAccountInfo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         requestQueries = new HashMap<>();
+        bankAccountInfo = RequestHandler.get("/accounts/manager_account_controller/store_bank_account/",
+                requestQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
+        assert bankAccountInfo != null;
     }
 
     public void moveCredit() {
@@ -37,10 +41,6 @@ public class ManageCreditMenuManager extends MenuManager implements Initializabl
     }
 
     private void moveCreditFromWallet() {
-        requestQueries.clear();
-        HashMap<String, String> bankAccountInfo = RequestHandler.get("/accounts/manager_account_controller/store_bank_account/",
-                requestQueries, false, new TypeToken<HashMap<String, String>>(){}.getType());
-        assert bankAccountInfo != null;
         double minWalletCredit = Double.parseDouble(bankAccountInfo.get("min balance"));
         requestQueries.put("username", Client.getInstance().getUsername());
         String response = RequestHandler.get("/accounts/seller_customer_common/wallet/", requestQueries, false, String.class);
@@ -55,26 +55,27 @@ public class ManageCreditMenuManager extends MenuManager implements Initializabl
             messageLabel.setText("Remained credit would be less than the minimum valid credit (" + minWalletCredit + ")");
             return;
         }
-        handleTransaction("deposit", "Move credit to user's bank account.", false);
+        handleTransaction("Move credit to user's bank account.", false);
 
 
     }
 
     private void moveCreditToWallet() {
-        handleTransaction("withdraw", "Move credit to user's wallet.", true);
+        handleTransaction( "Move credit to user's wallet.", true);
     }
 
-    private void handleTransaction(String type, String description, boolean doIncrease) {
+    private void handleTransaction(String description, boolean doIncrease)
+    {
         requestQueries.clear();
         requestQueries.put("username", Client.getInstance().getUsername());
-        requestQueries.put("receipt type", type);
+        requestQueries.put("receipt type", "move");
         requestQueries.put("money", amountField.getText());
         if (isToWallet){
             requestQueries.put("source", String.valueOf(Client.getInstance().getBankAccount()));
-            requestQueries.put("destination", "-1");
+            requestQueries.put("destination", bankAccountInfo.get("bank id"));
         }
         else {
-            requestQueries.put("source", "-1");
+            requestQueries.put("source", "SHOP_ACCOUNT");
             requestQueries.put("destination", String.valueOf(Client.getInstance().getBankAccount()));
         }
         requestQueries.put("description", description);

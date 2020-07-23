@@ -1,5 +1,6 @@
 package server;
 
+import exceptions.DataException;
 import org.restlet.Component;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -8,6 +9,8 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
+import server.controller.menus.AuctionController;
+import server.model.Loader;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
 import server.server_resources.bank.*;
@@ -19,10 +22,26 @@ import server.server_resources.seller_customer_common.AuctionsResource;
 import server.server_resources.seller_customer_common.WalletResource;
 import server.server_resources.shop.*;
 
+import java.io.File;
+
 public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
+    private static final String PATH = "src/main/resources";
     public static void main(String[] args) throws Exception {
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.err.println("Saving data ...");
+                try {
+                    Loader.getLoader().saveData();
+                } catch (DataException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        initializeLoading();
         ServerAuthenticator.getInstance().initVerifier();
+        AuctionController.checkDeadlines();
         new MainServer().start();
     }
 
@@ -52,6 +71,9 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/manager_account_controller/discount/", authenticator.getNewGuard(ManagerDiscountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/all_discounts/", authenticator.getNewGuard(ManagerAllDiscountsResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/manager_account_controller/store_bank_account/", StoreBankAccountResource.class);
+        getDefaultHost().attach("/accounts/manager_account_controller/wage/", authenticator.getNewGuard(WageResource.class, RoleAccessibility.MANAGER));
+        getDefaultHost().attach("/accounts/manager_account_controller/min_wallet_credit/", authenticator.getNewGuard(MinimumWalletCreditResource.class, RoleAccessibility.MANAGER));
+
 
         getDefaultHost().attach("/accounts/customer_account_controller/customer/", CustomerResource.class);
         getDefaultHost().attach("/accounts/customer_account_controller/all_discounts/", authenticator.getNewGuard(CustomerAllDiscountsResource.class, RoleAccessibility.CUSTOMER));
@@ -68,6 +90,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/bank_account/", authenticator.getNewGuard(StoreBankAccountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/wallet/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
 
+
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/all_offs/", authenticator.getNewGuard(AllOffsResource.class, RoleAccessibility.SELLER));
@@ -82,7 +105,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/category_properties/", authenticator.getNewGuard(SellerCategoryPropertiesResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/balance/", authenticator.getNewGuard(SellerBalanceResource.class, RoleAccessibility.SELLER));
         getDefaultHost().attach("/accounts/seller_account_controller/manager_permission/", authenticator.getNewGuard(SellingPermissionResource.class, RoleAccessibility.SELLER));
-        getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", authenticator.getNewGuard(AddAuctionResource.class, RoleAccessibility.SELLER));
+        getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", AddAuctionResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/wallet/", authenticator.getNewGuard(SellerWalletResource.class, RoleAccessibility.SELLER));
 
 
@@ -120,5 +143,26 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/support_customers/", SupportCustomersResource.class);
 
         getDefaultHost().attach("/shop/file/", FileResource.class);
+    }
+
+    private static void resourcesInitialization() throws DataException {
+        File resourcesDirectory = new File(PATH);
+        if (!resourcesDirectory.exists())
+            if (!resourcesDirectory.mkdir())
+                throw new DataException("System loading failed.");
+    }
+
+    private static void initializeLoading(){
+        try {
+            resourcesInitialization();
+        } catch (DataException e) {
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+        try {
+            Loader.getLoader().loadData();
+        } catch (DataException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
