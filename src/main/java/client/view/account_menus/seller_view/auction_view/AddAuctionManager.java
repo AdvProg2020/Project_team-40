@@ -3,7 +3,6 @@ package client.view.account_menus.seller_view.auction_view;
 import client.controller.Client;
 import client.controller.RequestHandler;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -16,7 +15,10 @@ import server.model.Product;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -56,8 +58,21 @@ public class AddAuctionManager implements Initializable {
     public void addAuction() {
         try {
             verifyInput();
+            Date date = verifyDate();
 
+        } catch(ParseException e) {
+            dateError.setText("Enter date based on given format");
         } catch (Exception ignored) {}
+    }
+
+    private Date verifyDate() throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Date date = dateFormat.parse(deadlineField.getText());
+        if(date.before(new Date())) {
+            dateError.setText("Choose a date in the future!");
+            throw new Exception();
+        }
+        return date;
     }
 
     private void verifyInput() throws Exception {
