@@ -57,7 +57,7 @@
             <Font size="15.0" />
         </font>
     </Label>
-    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="18.0" prefWidth="232.0">
+    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="269.0" prefHeight="31.0" prefWidth="232.0">
         <font>
             <Font size="15.0" />
         </font>

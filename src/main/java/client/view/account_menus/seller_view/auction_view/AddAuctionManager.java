@@ -6,6 +6,7 @@ import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class AddAuctionManager implements Initializable {
     public VBox vBoxItems;
+    public ChoiceBox productChoiceBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,6 +43,7 @@ public class AddAuctionManager implements Initializable {
             ((Label) hBox.getChildren().get(1)).setText(product.getName());
             ((Label) hBox.getChildren().get(2)).setText(String.valueOf(product.getPrice()));
             vBoxItems.getChildren().add(hBox);
+            productChoiceBox.getItems().add(product.getProductId());
         } catch (IOException e) {
             e.printStackTrace();
         }
