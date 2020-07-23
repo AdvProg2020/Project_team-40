@@ -74,7 +74,7 @@ public class Seller extends User{
     }
 
     public void addAuction(Auction auction) {
-        auctions.add(auction.getChatId());
+        auctions.add(auction.getId());
     }
 
     public boolean doesHaveManagerPermission() {

@@ -10,7 +10,6 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
 import server.controller.menus.AuctionController;
-import server.model.Auction;
 import server.model.Loader;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
