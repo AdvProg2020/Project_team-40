@@ -8,6 +8,8 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.service.StatusService;
+import server.controller.menus.AuctionController;
+import server.model.Auction;
 import server.server_resources.accounts.AccountResource;
 import server.server_resources.accounts.UserResource;
 import server.server_resources.bank.*;
@@ -23,6 +25,7 @@ public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
     public static void main(String[] args) throws Exception {
         ServerAuthenticator.getInstance().initVerifier();
+        AuctionController.checkDeadlines();
         new MainServer().start();
     }
 

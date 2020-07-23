@@ -78,6 +78,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
     }
 
     public void handleRefresh() {
+        vBoxItems.getChildren().clear();
         loadAuctions();
     }
 
