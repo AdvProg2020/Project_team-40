@@ -8,8 +8,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -21,6 +23,7 @@ import server.model.chat.Chat;
 import server.model.chat.Message;
 import server.model.requests.Request;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -138,31 +141,16 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     }
 
     public void showMembers() {
-        Stage stage = new Stage();
-        VBox vBox = new VBox();
-        JFXTextField userField = new JFXTextField();
-        userField.setPromptText("Enter username");
-        JFXButton addButton = new JFXButton("Add member");
-        addButton.setOnAction(e -> {
-            if(!userField.getText().isEmpty()){
-                HashMap<String, String> requestQueries = new HashMap<>();
-                requestQueries.put("id", chat.getId());
-                requestQueries.put("name", userField.getText());
-                RequestHandler.put("/chat/members/", null, requestQueries, true, null);
-            }
-        });
-
-        ScrollPane membersScroll = new ScrollPane();
-        VBox membersBox = new VBox();
-        for(String member : members) {
-            membersBox.getChildren().add(new Text(member));
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Members");
+            MembersManager.setLast(chat);
+            Parent parent = FXMLLoader.load(getClass().getResource("/layouts/customer_menus/members.fxml"));
+            stage.setScene(new Scene(parent, 280, 556));
+            stage.showAndWait();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
-        membersScroll.setContent(membersBox);
-
-        vBox.getChildren().addAll(userField, addButton, membersScroll);
-        stage.setTitle("Members");
-        stage.setScene(new Scene(vBox, 400, 800));
-        stage.showAndWait();
     }
 
     public static void setLast(Chat last){
