@@ -34,6 +34,10 @@ public class Customer extends User{
         return discountCodes;
     }
 
+    public void changeWalletCredit(double amount){
+        creditInWallet += amount;
+    }
+
     public double getCreditInWallet() {
         return creditInWallet;
     }
