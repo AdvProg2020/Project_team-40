@@ -113,20 +113,28 @@ public class SellerAccountController extends AccountController{
         Manager.addRequest(new RemoveProduct(productID));
     }
 
-    public void attachFile(String username, String productId, String fileName, byte[] fileData) throws AccountsException{
-        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productId)) {
-            throw new AccountsException("Seller doesn't have a product with this ID.");
+    private Product getUnacceptedProduct(String productId) throws AccountsException{
+        Product product = null;
+        product = Product.getProductById(productId);
+        if(product != null)
+            return product;
+        ArrayList<Request> requests = Manager.getRequests();
+        for(Request request : requests) {
+            if(request instanceof AddProduct)
+                if(((AddProduct)request).getProduct().getProductId().equals(productId))
+                    return ((AddProduct)request).getProduct();
         }
-        Product product = Product.getProductById(productId);
+        throw new AccountsException("Seller doesn't have a product with this ID.");
+    }
+
+    public void attachFile(String username, String productId, String fileName, byte[] fileData) throws AccountsException{
+        Product product = getUnacceptedProduct(productId);
         Pair<String, byte[]> file = new Pair<>(fileName, fileData);
         product.attachFile(file);
     }
 
     public void detachFile(String username, String productId) throws AccountsException{
-        if(!((Seller)User.getUserByUsername(username)).getProductsId().contains(productId)) {
-            throw new AccountsException("Seller doesn't have a product with this ID.");
-        }
-        Product product = Product.getProductById(productId);
+        Product product = getUnacceptedProduct(productId);
         product.detachFile();
     }
 
