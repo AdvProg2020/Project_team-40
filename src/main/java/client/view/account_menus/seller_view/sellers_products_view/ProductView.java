@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -339,5 +341,18 @@ public class ProductView extends MenuManager implements Initializable {
         radioButtons.getChildren().add(0, createButton);
         radioButtons.getChildren().add(1, editButton);
         radioButtons.getChildren().add(2, confirmButton);
+    }
+
+    public void handleFile() {
+        //open file manager to attach files or skip
+        try {
+            Stage stage = new Stage();
+            FileManager.setLast(thisProduct.getProductId());
+            Parent parent = FXMLLoader.load(getClass().getResource("/layouts/seller_menus/manage_product_menus/file.fxml"));
+            stage.setScene(new Scene(parent, 373, 223));
+            stage.showAndWait();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

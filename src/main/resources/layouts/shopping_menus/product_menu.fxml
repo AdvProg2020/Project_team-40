@@ -42,7 +42,7 @@
             <Text fx:id="descriptionText" layoutX="23.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-fill: #36383A;" text="description" AnchorPane.leftAnchor="23.0" />
             <Text fx:id="priceText" layoutX="251.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Price :" />
             <Text fx:id="rating1" layoutX="345.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Price" wrappingWidth="125.336669921875" />
-            <JFXButton fx:id="downloadButton" layoutX="693.0" layoutY="178.0" onAction="#download" style="-fx-font-size: 16;" text="Download">
+            <JFXButton fx:id="downloadButton" layoutX="693.0" layoutY="178.0" style="-fx-font-size: 16;" text="Download">
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
