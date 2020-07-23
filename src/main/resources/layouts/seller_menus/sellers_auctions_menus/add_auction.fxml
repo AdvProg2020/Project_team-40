@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.accounts_view.AddAuctionManager">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffea5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.account_menus.seller_view.auction_view.AddAuctionManager">
     <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@../../../images/icons8-auction-100.png" />
@@ -46,7 +46,7 @@
             </Label>
         </children>
     </HBox>
-    <TextField layoutX="27.0" layoutY="152.0" prefHeight="25.0" prefWidth="232.0" promptText="Deadline" />
+    <TextField fx:id="deadlineField" layoutX="27.0" layoutY="152.0" prefHeight="25.0" prefWidth="232.0" promptText="Deadline" />
     <Label alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="206.0" prefHeight="25.0" prefWidth="232.0" text="Write the Deadline in this format:">
         <font>
             <Font size="15.0" />
@@ -57,7 +57,7 @@
             <Font size="15.0" />
         </font>
     </Label>
-    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="18.0" prefWidth="232.0">
+    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="269.0" prefHeight="31.0" prefWidth="232.0">
         <font>
             <Font size="15.0" />
         </font>

@@ -20,7 +20,7 @@
         </ScrollPane>
         <HBox layoutX="55.0" layoutY="150.0" prefHeight="44.0" prefWidth="750.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Product Name">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="ID">
                     <font>
                         <Font size="15.0" />
                     </font>

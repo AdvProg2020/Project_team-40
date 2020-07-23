@@ -1,4 +1,71 @@
 package client.view.account_menus.customer_seller_common_view;
 
-public class AuctionManager {
+import client.controller.Client;
+import client.controller.RequestHandler;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.layout.GridPane;
+import server.model.Auction;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AuctionManager implements Initializable {
+    //Product's information:
+    public GridPane productPane;
+    public Label productNameLabel;
+    public Label productIdLabel;
+    public Label defaultPriceLabel;
+    public Label categoryLabel;
+    public Label companyLabel;
+    public Label sellerLabel;
+    public Label ratingLabel;
+
+    //Auction's information:
+    public GridPane auctionPane;
+    public Label auctionIDLabel;
+    public Label auctionDeadlineLabel;
+    public Label statusLabel;
+    //statusLabel tells if auction has ended to seller and its text will be "Price you've proposed" to customer
+    public Label proposedPriceLabel;
+    //proposedPriceLabel is the price proposed by this customer
+    public Label auctionPriceLabel;
+    public Label errorLabel;
+
+    public Button proposeHigherPrice;
+    public Spinner priceSpinner;
+
+    private Auction auction;
+    private static String auctionID;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //auction = RequestHandler.get()
+        commonLoad();
+        if(Client.getInstance().getRole().equalsIgnoreCase("Seller")) {
+            loadForSeller();
+        } else {
+            loadForCustomer();
+        }
+    }
+
+    private void loadForCustomer() {
+
+    }
+
+    private void loadForSeller() {
+        auctionPane.getChildren().remove(priceSpinner);
+        auctionPane.getChildren().remove(proposeHigherPrice);
+        //TODO:
+    }
+
+    private void commonLoad() {
+
+    }
+
+    public static void setAuctionID(String auctionID) {
+        AuctionManager.auctionID = auctionID;
+    }
 }
