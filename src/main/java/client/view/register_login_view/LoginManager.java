@@ -52,7 +52,7 @@ public class LoginManager extends MenuManager implements Initializable {
                 assert userParameters != null;
                 Client client = Client.getInstance();
                 client.setParameters(userParameters);
-                if(client.getBankAccount() == null || client.getBankAccount() < 0)
+                if((!Client.getInstance().getRole().equals("Support")) && (client.getBankAccount() == null || client.getBankAccount() < 0))
                     setMainInnerPane("/layouts/create_bank_account.fxml");
                 else
                     goToAccountsMenu();
