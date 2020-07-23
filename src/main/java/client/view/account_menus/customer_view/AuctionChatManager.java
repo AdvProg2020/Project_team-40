@@ -140,14 +140,15 @@ public class AuctionChatManager extends MenuManager implements Initializable{
     public void showMembers() {
         Stage stage = new Stage();
         VBox vBox = new VBox();
-        JFXTextField userField = new JFXTextField("Enter username to add");
+        JFXTextField userField = new JFXTextField();
+        userField.setPromptText("Enter username");
         JFXButton addButton = new JFXButton("Add member");
         addButton.setOnAction(e -> {
             if(!userField.getText().isEmpty()){
                 HashMap<String, String> requestQueries = new HashMap<>();
                 requestQueries.put("id", chat.getId());
                 requestQueries.put("name", userField.getText());
-                RequestHandler.put("/chat/message/", null, requestQueries, false, null);
+                RequestHandler.put("/chat/members/", null, requestQueries, true, null);
             }
         });
 

@@ -9,8 +9,6 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import server.controller.accounts.SellerAccountController;
 
-import java.io.IOException;
-
 public class FileResource extends ServerResource{
 
     //QUERIES : productId
