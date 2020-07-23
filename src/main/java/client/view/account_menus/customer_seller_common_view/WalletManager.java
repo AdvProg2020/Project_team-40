@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 public class WalletManager extends MenuManager implements Initializable {
     public Label walletCredit;
     public Button toBankButton;
+    public Button toWalletButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,11 +30,13 @@ public class WalletManager extends MenuManager implements Initializable {
 
     public void moveCreditToBank() {
         ManageCreditMenuManager.setIsToWallet(false);
-        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/wallet_menu_design.fxml");
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/manage_credit_menu.fxml");
     }
 
     public void moveCreditToWallet() {
         ManageCreditMenuManager.setIsToWallet(true);
-        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/wallet_menu_design.fxml");
+        setSecondaryInnerPane("/layouts/customer_seller_common_menus/wallet_menus/manage_credit_menu.fxml");
     }
+
+
 }
