@@ -17,12 +17,12 @@
             <Font size="35.0" />
         </font>
     </Label>
-    <ScrollPane layoutX="317.0" layoutY="152.0" prefHeight="414.0" prefWidth="450.0">
+    <ScrollPane layoutX="329.0" layoutY="152.0" prefHeight="414.0" prefWidth="450.0">
         <content>
             <VBox fx:id="vBoxItems" prefHeight="411.0" prefWidth="445.0" />
         </content>
     </ScrollPane>
-    <HBox layoutX="317.0" layoutY="108.0" prefHeight="44.0" prefWidth="450.0">
+    <HBox layoutX="329.0" layoutY="108.0" prefHeight="44.0" prefWidth="450.0">
         <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #5dade2;" text="Product ID">
                 <font>
@@ -57,7 +57,7 @@
             <Font size="15.0" />
         </font>
     </Label>
-    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="269.0" prefHeight="31.0" prefWidth="232.0">
+    <Label fx:id="dateError" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="27.0" layoutY="269.0" prefHeight="31.0" prefWidth="302.0">
         <font>
             <Font size="15.0" />
         </font>
