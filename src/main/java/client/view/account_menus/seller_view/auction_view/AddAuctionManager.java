@@ -67,7 +67,6 @@ public class AddAuctionManager implements Initializable {
             queries.put("product ID", (String) productChoiceBox.getSelectionModel().getSelectedItem());
             queries.put("seller ID", Client.getInstance().getUsername());
             String entity = new YaGson().toJson(date, Date.class);
-            System.out.println(new YaGson().fromJson(entity, Date.class));
             RequestHandler.post("/accounts/seller_account_controller/add_auction/", entity, queries,
                     true, null);
             ((Stage)addButton.getScene().getWindow()).close();

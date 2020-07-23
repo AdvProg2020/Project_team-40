@@ -9,11 +9,9 @@ import java.util.HashMap;
 public class AuctionController {
     private static AuctionController auctionController = new AuctionController();
 
-    private AuctionController() {
-        checkDeadlines();
-    }
+    private AuctionController() {}
 
-    private void checkDeadlines() {
+    public static void checkDeadlines() {
         new Thread() {
             @Override
             public void run() {
