@@ -67,7 +67,7 @@ public class AuctionMenuManager extends MenuManager implements Initializable {
                         getResource("/layouts/customer_seller_common_menus/auctions_menus/auction_item.fxml"));
             }
             HBox hBox = (HBox) item.getChildren().get(0);
-            ((Label) hBox.getChildren().get(0)).setText(auction.getProductName());
+            ((Label) hBox.getChildren().get(0)).setText(auction.getId());
             ((Label) hBox.getChildren().get(1)).setText(auction.getDeadline().toString());
             ((Label) hBox.getChildren().get(2)).setText(String.valueOf(auction.getHighestPrice()));
             vBoxItems.getChildren().add(item);
