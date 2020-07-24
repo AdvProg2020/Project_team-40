@@ -5,6 +5,10 @@ import javafx.scene.chart.PieChart;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
+import server.controller.menus.BankController;
+import server.model.users.Customer;
+import server.model.users.Manager;
+import server.model.users.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,11 +21,23 @@ public class PayByBankResource extends ServerResource {
     public String payCartByBank() throws ResourceException {
         try {
             String token = loginBankAccount(getQueryValue("bank username"), getQueryValue("bank password"));
-
+            int bankAccountId = ((Customer) User.getUserByUsername(getQueryValue("username"))).getBankAccount();
+            int receiptId = createReceipt(token, getQueryValue("amount"), bankAccountId);
         } catch (Exception e) {
              throw new ResourceException(e);
         }
         return null;
+    }
+
+    private int createReceipt(String token, String amount, int bankAccountId) throws Exception {
+        int intAmount = (int) Double.parseDouble(amount);
+        String response = sendMessageToBank("create_receipt " + token + " move " + amount + " " + bankAccountId + " " +
+                BankController.getManagerBankId());
+        try {
+            return Integer.parseInt(response);
+        } catch (NumberFormatException e) {
+            throw new Exception(response);
+        }
     }
 
     private String loginBankAccount(String bankUsername, String bankPassword) throws Exception {
