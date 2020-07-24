@@ -65,7 +65,8 @@ public class CartMenuManager extends MenuManager implements Initializable {
 
     private void load(Product product, Integer quantity) {
         try {
-            AnchorPane item = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
+            AnchorPane item = FXMLLoader.load(getClass()
+                    .getResource("/layouts/customer_menus/purchase_menus/cart_product_item.fxml"));
             HBox hBox = (HBox) item.getChildren().get(0);
             ((Label) hBox.getChildren().get(0)).setText(product.getName());
             ((Label) hBox.getChildren().get(1)).setText(String.valueOf(product.getPrice()));
