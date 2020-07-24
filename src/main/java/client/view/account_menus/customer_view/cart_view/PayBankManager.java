@@ -6,6 +6,7 @@ import client.view.MenuManager;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.restlet.resource.ResourceException;
 import server.model.requests.Request;
 
 import java.net.URL;
@@ -52,8 +53,12 @@ public class PayBankManager extends MenuManager implements Initializable {
             queries.put("amount", amountLabel.getText());
             queries.put("username", Client.getInstance().getUsername());
             queries.put("discount code", code);
-            String response = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
-                    true, String.class);
+            try {
+                String response = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
+                        true, String.class);
+            } catch (ResourceException e) {
+                errorLabel.setText(e.getMessage());
+            }
         }
     }
 }
