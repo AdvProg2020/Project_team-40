@@ -43,7 +43,8 @@ public class ManageCreditMenuManager extends MenuManager implements Initializabl
     private void moveCreditFromWallet() {
         double minWalletCredit = Double.parseDouble(bankAccountInfo.get("min balance"));
         requestQueries.put("username", Client.getInstance().getUsername());
-        String response = RequestHandler.get("/accounts/seller_customer_common/wallet/", requestQueries, false, String.class);
+        String response = RequestHandler.get("/accounts/seller_customer_common/wallet/", requestQueries,
+                false, String.class);
         assert response != null;
         double walletCredit = Double.parseDouble((response.split("\\s")[1]));
         double amount = Double.parseDouble(amountField.getText());

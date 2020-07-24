@@ -1,10 +1,15 @@
 package client.view.account_menus.customer_view.cart_view;
 
+import client.controller.Client;
+import client.controller.RequestHandler;
 import client.view.MenuManager;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import server.model.requests.Request;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class PayBankManager extends MenuManager implements Initializable {
@@ -12,14 +17,17 @@ public class PayBankManager extends MenuManager implements Initializable {
     private static double priceWithDiscount;
     private static String code;
 
-    public Label priceLabel;
+    public Label amountLabel;
+    public TextField usernameField;
+    public TextField passwordField;
+    public Label errorLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(priceWithDiscount == -1)
-            priceLabel.setText(String.valueOf(priceWithoutDiscount));
+            amountLabel.setText(String.valueOf(priceWithoutDiscount));
         else
-            priceLabel.setText(String.valueOf(priceWithDiscount));
+            amountLabel.setText(String.valueOf(priceWithDiscount));
     }
 
     public static void setPriceWithoutDiscount(double priceWithoutDiscount) {
@@ -35,6 +43,17 @@ public class PayBankManager extends MenuManager implements Initializable {
     }
 
     public void pay() {
-
+        if(usernameField.getText().isBlank() || passwordField.getText().isBlank()) {
+            errorLabel.setText("Fill all the above fields!");
+        } else {
+            HashMap<String, String> queries = new HashMap<>();
+            queries.put("bank username", usernameField.getText());
+            queries.put("bank password", passwordField.getText());
+            queries.put("amount", amountLabel.getText());
+            queries.put("username", Client.getInstance().getUsername());
+            queries.put("discount code", code);
+            String response = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
+                    true, String.class);
+        }
     }
 }

@@ -154,7 +154,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/bank_account/", authenticator.getNewGuard(StoreBankAccountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/wallet/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
-
+        getDefaultHost().attach("/accounts/customer_account_controller/pay_by_bank/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
