@@ -30,18 +30,18 @@ public class MainServer extends Component {
     private final int DEFAULT_PORT = 8080;
     private static final String PATH = "src/main/resources";
     public static void main(String[] args) throws Exception {
-//        Runtime.getRuntime().addShutdownHook(new Thread(){
-//            @Override
-//            public void run() {
-//                System.err.println("Saving data ...");
-//                try {
-//                    Loader.getLoader().saveData();
-//                } catch (DataException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        initializeLoading();
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.err.println("Saving data ...");
+                try {
+                    Loader.getLoader().saveData();
+                } catch (DataException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        initializeLoading();
 //        addTempVariables();
         ServerAuthenticator.getInstance().initVerifier();
         AuctionController.checkDeadlines();
@@ -154,7 +154,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/customer_account_controller/all_customers/", authenticator.getNewGuard(AllCustomersResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/bank_account/", authenticator.getNewGuard(StoreBankAccountResource.class, RoleAccessibility.MANAGER));
         getDefaultHost().attach("/accounts/customer_account_controller/wallet/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
-        getDefaultHost().attach("/accounts/customer_account_controller/pay_by_bank/", authenticator.getNewGuard(CustomerWalletResource.class, RoleAccessibility.CUSTOMER));
+        getDefaultHost().attach("/accounts/customer_account_controller/pay_by_bank/", authenticator.getNewGuard(PayByBankResource.class, RoleAccessibility.CUSTOMER));
 
         getDefaultHost().attach("/accounts/seller_account_controller/seller/", SellerResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/seller/offs", SellerOffsResource.class);
@@ -200,6 +200,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/shop/cart/", ShoppingCartResource.class);
         getDefaultHost().attach("/shop/all_offs/", OffsResource.class);
         getDefaultHost().attach("/shop/all_offs/products/", ProductsInOffResource.class);
+        getDefaultHost().attach("/shop/log/", LogResource.class);
 
         getDefaultHost().attach("/chat/chat/", ChatResource.class);
         getDefaultHost().attach("/chat/message/", MessageResource.class);
