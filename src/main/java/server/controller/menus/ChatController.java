@@ -39,7 +39,7 @@ public class ChatController{
         ArrayList<Chat> allChats = new ArrayList<>();
         allChats.addAll(Chat.getAllChats().values());
         for(Chat chat : allChats) {
-            if(chat.getMembers().contains(username))
+            if(chat.getMembers().contains(username) || chat.getName().startsWith("Auction for"))
                 chats.add(chat);
         }
         return chats;
