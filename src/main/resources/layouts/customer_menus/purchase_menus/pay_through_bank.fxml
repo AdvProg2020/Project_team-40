@@ -17,7 +17,7 @@
                 <Font size="20" />
             </font>
         </Label>
-        <Label alignment="BASELINE_CENTER" layoutX="170.0" layoutY="189.0" prefHeight="42.0" prefWidth="564.0">
+        <Label fx:id="priceLabel" alignment="BASELINE_CENTER" layoutX="170.0" layoutY="189.0" prefHeight="42.0" prefWidth="564.0">
             <font>
                 <Font size="20" />
             </font>
