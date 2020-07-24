@@ -64,7 +64,7 @@ public class PayBankManager extends MenuManager implements Initializable {
             try {
                 Log log = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
                         true, Log.class);
-
+                LogMenuManager.setLog(log);
             } catch (ResourceException e) {
                 errorLabel.setText(e.getMessage());
             }
