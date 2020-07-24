@@ -39,9 +39,13 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public VBox vBoxItems;
     private HashMap<String, String> requestQueries;
 
+    private double priceWithoutDiscount;
+    private double priceWithDiscount;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         validateInputs();
+        priceWithDiscount = -1;
         requestQueries = new HashMap<>();
         requestQueries.put("username", Client.getInstance().getUsername());
         HashMap<Product, Integer> cart =  RequestHandler.get("/accounts/customer_account_controller/cart/",
@@ -57,6 +61,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
             Double totalPrice = RequestHandler.get("/accounts/customer_account_controller/cart_total_price/",
                     requestQueries, true, Double.class);
             priceLabel.setText(Double.toString(totalPrice));
+            priceWithoutDiscount = totalPrice;
             for(Product product : cart.keySet()) {
                 load(product, cart.get(product));
             }
@@ -138,11 +143,10 @@ public class CartMenuManager extends MenuManager implements Initializable {
             try {
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
-                //TODO: Complete follow
-//                requestQueries.put("code", );
-//                requestQueries.put("address", );
-//                requestQueries.put("priceWithoutDiscount", );
-//                requestQueries.put("priceAfterDiscount", );
+                requestQueries.put("code", getDiscountCode());
+                requestQueries.put("address", addressField.getText());
+             //   requestQueries.put("priceWithoutDiscount", );
+            //    requestQueries.put("priceAfterDiscount", );
                 Log log =  RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
                 setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/log_design.fxml");
@@ -160,6 +164,11 @@ public class CartMenuManager extends MenuManager implements Initializable {
         }
     }
 
+    private String getDiscountCode() {
+        return null;
+    }
+
     public void payThroughBank() {
+        //TODO:
     }
 }
