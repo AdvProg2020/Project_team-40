@@ -2,6 +2,7 @@ package server.model;
 
 import exceptions.DataException;
 import server.model.users.Customer;
+import server.model.users.Manager;
 import server.model.users.Seller;
 import server.model.users.User;
 
@@ -153,10 +154,9 @@ public class Auction {
     public void finish() {
         onGoingAuctions.remove(id);
         Seller seller = (Seller) User.getUserByUsername(sellerID);
-        seller.setCreditInWallet(seller.getCreditInWallet() + highestPrice);
+        seller.setCreditInWallet(seller.getCreditInWallet() + Manager.subtractWage(highestPrice));
         Product product = Product.getProductById(productId);
         product.setCount(product.getCount() - 1);
-
-        //TODO: consider wage...
+        //TODO: Create log...
     }
 }
