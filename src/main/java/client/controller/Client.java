@@ -3,7 +3,7 @@ package client.controller;
 import java.util.HashMap;
 
 public class Client {
-    private boolean isLoggedIn;
+    private boolean isLoggedIn = false;
     private String username;
     private String password;
     private String firstName;
@@ -13,7 +13,6 @@ public class Client {
     private Integer bankAccount;
     private String role;
     private String company;
-    private static String latestToken;
     private static Client client = new Client();
 
     private Client(){}
@@ -55,7 +54,9 @@ public class Client {
     }
 
     public String getRole() {
-        return role;
+        if (role != null)
+            return role;
+        return null;
     }
 
     public String getCompany() {
