@@ -1,5 +1,6 @@
 package server.server_resources.manager_account_controller;
 
+import com.gilecode.yagson.YaGson;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
@@ -13,6 +14,6 @@ public class MinimumWalletCreditResource extends ServerResource {
 
     @Get
     public String getMinWalletCredit() {
-        return String.valueOf(Manager.getMinWalletBalance());
+        return new YaGson().toJson(Manager.getMinWalletBalance(), Double.class);
     }
 }
