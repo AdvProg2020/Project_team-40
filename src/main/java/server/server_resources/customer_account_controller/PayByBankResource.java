@@ -5,7 +5,9 @@ import javafx.scene.chart.PieChart;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
+import server.controller.accounts.CustomerAccountController;
 import server.controller.menus.BankController;
+import server.model.log.Log;
 import server.model.users.Customer;
 import server.model.users.Manager;
 import server.model.users.User;
@@ -21,12 +23,25 @@ public class PayByBankResource extends ServerResource {
     public String payCartByBank() throws ResourceException {
         try {
             String token = loginBankAccount(getQueryValue("bank username"), getQueryValue("bank password"));
-            int bankAccountId = ((Customer) User.getUserByUsername(getQueryValue("username"))).getBankAccount();
+            int bankAccountId = (User.getUserByUsername(getQueryValue("username"))).getBankAccount();
             int receiptId = createReceipt(token, getQueryValue("amount"), bankAccountId);
+            Log log = pay(receiptId);
+            return new YaGson().toJson(log, Log.class);
         } catch (Exception e) {
              throw new ResourceException(e);
         }
-        return null;
+    }
+
+    private server.model.log.Log pay(int receiptId) throws Exception {
+        String response = sendMessageToBank("pay " + receiptId);
+        if(response.equals("done successfully")) {
+            return CustomerAccountController.getInstance().makePayment(getQueryValue("username"),
+                    getQueryValue("address"), getQueryValue("discount code"),
+                    Double.parseDouble(getQueryValue("amount")),
+                    Double.parseDouble(getQueryValue("price without discount")));
+        } else {
+            throw new Exception(response);
+        }
     }
 
     private int createReceipt(String token, String amount, int bankAccountId) throws Exception {

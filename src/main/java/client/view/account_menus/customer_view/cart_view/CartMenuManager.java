@@ -175,8 +175,11 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public void payThroughBank() {
         if(discountField.isDisable())
             PayBankManager.setCode(discountField.getText());
+        else
+            PayBankManager.setCode(null);
         PayBankManager.setPriceWithDiscount(priceWithDiscount);
         PayBankManager.setPriceWithoutDiscount(priceWithoutDiscount);
+        PayBankManager.setAddress(addressField.getText());
         setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/pay_through_bank.fxml");
     }
 }

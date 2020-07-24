@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.restlet.resource.ResourceException;
+import server.model.log.Log;
 import server.model.requests.Request;
 
 import java.net.URL;
@@ -17,6 +18,7 @@ public class PayBankManager extends MenuManager implements Initializable {
     private static double priceWithoutDiscount;
     private static double priceWithDiscount;
     private static String code;
+    private static String address;
 
     public Label amountLabel;
     public TextField usernameField;
@@ -43,6 +45,10 @@ public class PayBankManager extends MenuManager implements Initializable {
         PayBankManager.code = code;
     }
 
+    public static void setAddress(String address) {
+        PayBankManager.address = address;
+    }
+
     public void pay() {
         if(usernameField.getText().isBlank() || passwordField.getText().isBlank()) {
             errorLabel.setText("Fill all the above fields!");
@@ -53,9 +59,12 @@ public class PayBankManager extends MenuManager implements Initializable {
             queries.put("amount", amountLabel.getText());
             queries.put("username", Client.getInstance().getUsername());
             queries.put("discount code", code);
+            queries.put("address", address);
+            queries.put("price without discount", String.valueOf(priceWithoutDiscount));
             try {
-                String response = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
-                        true, String.class);
+                Log log = RequestHandler.get("/accounts/customer_account_controller/pay_by_bank/", queries,
+                        true, Log.class);
+
             } catch (ResourceException e) {
                 errorLabel.setText(e.getMessage());
             }
