@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Auction {
+public class Auction implements Serializable{
     private static final String PATH = "src/main/resources/auctions/";
     private static HashMap<String, Auction> auctions = new HashMap<>();
     private static ArrayList<String> onGoingAuctions = new ArrayList<>();
@@ -140,7 +140,7 @@ public class Auction {
         for(Map.Entry<String, Auction> entry : auctions.entrySet()) {
             try {
                 Auction auction = entry.getValue();
-                FileOutputStream file = new FileOutputStream(entry.getKey());
+                FileOutputStream file = new FileOutputStream(PATH + entry.getKey());
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(auction);
                 file.close();
