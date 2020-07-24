@@ -38,6 +38,8 @@ public class FinancialResourcesManager implements Initializable {
                 new HashMap<>(), true, new TypeToken<HashMap<String, String>>(){}.getType());
         usernameLabel.setText(information.get("bank username"));
         accountIDLabel.setText(information.get("bank id"));
+        minCreditTextField.setText(information.get("min balance"));
+        wageTextField.setText(information.get("wage"));
     }
 
 
