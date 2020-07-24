@@ -86,7 +86,7 @@ public class CustomerAccountController extends AccountController{
                 customer.setCreditInWallet(customer.getCreditInWallet() - customer.getTotalPriceOfCart());
             }
         }
-            return purchase(username, address, code, priceWithoutDiscount, priceAfterDiscount);
+            return purchase(username, code, address, priceWithoutDiscount, priceAfterDiscount);
 
     }
 

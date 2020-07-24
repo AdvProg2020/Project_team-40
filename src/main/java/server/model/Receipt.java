@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Receipt {
+public class Receipt implements Serializable{
     private static HashMap<Integer, Receipt> receipts = new HashMap<>();
     private static final String PATH = "src/main/resources/receipts/";
     private String username;
