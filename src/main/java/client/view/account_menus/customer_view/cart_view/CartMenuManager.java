@@ -68,7 +68,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
             AnchorPane item = FXMLLoader.load(getClass()
                     .getResource("/layouts/customer_menus/purchase_menus/cart_product_item.fxml"));
             HBox hBox = (HBox) item.getChildren().get(0);
-            ((Label) hBox.getChildren().get(0)).setText(product.getName());
+            ((Label) hBox.getChildren().get(0)).setText(product.getProductId());
             ((Label) hBox.getChildren().get(1)).setText(String.valueOf(product.getPrice()));
             ((Label) hBox.getChildren().get(2)).setText(String.valueOf(quantity));
             vBoxItems.getChildren().add(item);
@@ -81,7 +81,6 @@ public class CartMenuManager extends MenuManager implements Initializable {
         if (discountField != null && !discountField.isDisable())
             discountField.textProperty().addListener(new ChangeListener(20, discountField));
     }
-
 
     public void applyDiscount() {
         if (discountField.getText().isBlank()) {

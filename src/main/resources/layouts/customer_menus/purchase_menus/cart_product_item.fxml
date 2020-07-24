@@ -10,7 +10,7 @@
     <children>
         <HBox prefHeight="40.0" prefWidth="495.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0">
+                <Label fx:id="productIDLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -25,16 +25,7 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="45.0" text="">
-                    <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/icons8-view-64.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </JFXButton>
-                <JFXButton fx:id="removeButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="45.0" text="">
+                <JFXButton fx:id="removeButton" alignment="CENTER" contentDisplay="CENTER" onAction="#removeProduct" prefHeight="35.0" prefWidth="45.0" text="">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <image>
