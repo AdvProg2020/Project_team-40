@@ -1,6 +1,7 @@
 package server.model;
 
 import exceptions.DataException;
+import server.model.users.Customer;
 import server.model.users.Seller;
 import server.model.users.User;
 
@@ -20,6 +21,7 @@ public class Auction {
     private int highestPrice;
     private String sellerID;
     private String highestPriceCustomer;
+    private HashMap<String, Integer> customers;
     private String id;
     private String chatId;
 
@@ -28,9 +30,11 @@ public class Auction {
         this.productId = productId;
         this.productName = Product.getProductById(productId).getName();
         this.highestPrice = highestPrice;
+        this.highestPriceCustomer = null;
         this.sellerID = sellerID;
         this.chatId = chatId;
         id = Utility.generateId();
+        customers = new HashMap<>();
         ((Seller) User.getUserByUsername(sellerID)).addAuction(this);
         auctions.put(id, this);
         onGoingAuctions.add(id);
@@ -90,6 +94,13 @@ public class Auction {
 
     public void setHighestPriceCustomer(String highestPriceCustomer) {
         this.highestPriceCustomer = highestPriceCustomer;
+        customers.put(highestPriceCustomer, highestPrice);
+        for(Map.Entry<String, Integer> customer : customers.entrySet()) {
+            if(!customer.getKey().equals(highestPriceCustomer)) {
+                Customer buyer = (Customer) User.getUserByUsername(customer.getKey());
+                buyer.setCreditInWallet(buyer.getCreditInWallet() + customer.getValue());
+            }
+        }
     }
 
     public boolean hasReachedDeadline() {

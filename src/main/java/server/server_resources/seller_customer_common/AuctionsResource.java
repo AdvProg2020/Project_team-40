@@ -3,6 +3,7 @@ package server.server_resources.seller_customer_common;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 import server.model.Auction;
 import server.model.users.Seller;
