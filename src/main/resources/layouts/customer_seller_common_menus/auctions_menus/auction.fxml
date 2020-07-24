@@ -17,7 +17,7 @@
             <Font size="35.0" />
         </font>
     </Label>
-    <GridPane fx:id="auctionPane" layoutX="34.0" layoutY="104.0" prefHeight="300.0" prefWidth="391.0">
+    <GridPane fx:id="auctionPane" layoutX="34.0" layoutY="104.0" prefHeight="298.0" prefWidth="409.0">
       <rowConstraints>
          <RowConstraints minHeight="10.0" prefHeight="50.0" />
           <RowConstraints minHeight="10.0" prefHeight="50.0" />
@@ -27,8 +27,8 @@
           <RowConstraints minHeight="10.0" prefHeight="50.0" />
       </rowConstraints>
       <columnConstraints>
-          <ColumnConstraints maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
-          <ColumnConstraints maxWidth="188.0" minWidth="10.0" prefWidth="188.0" />
+          <ColumnConstraints maxWidth="203.0" minWidth="10.0" prefWidth="220.0" />
+          <ColumnConstraints maxWidth="199.0" minWidth="10.0" prefWidth="280.0" />
       </columnConstraints>
         <children>
             <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="ID:">

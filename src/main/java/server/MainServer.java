@@ -18,6 +18,7 @@ import server.server_resources.chat.*;
 import server.server_resources.customer_account_controller.*;
 import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
+import server.server_resources.seller_customer_common.AuctionsProductResource;
 import server.server_resources.seller_customer_common.AuctionsResource;
 import server.server_resources.seller_customer_common.GetAuctionResource;
 import server.server_resources.seller_customer_common.WalletResource;
@@ -112,6 +113,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_customer_common/auction/", GetAuctionResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/wallet/", WalletResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/auctions/", AuctionsResource.class);
+        getDefaultHost().attach("/accounts/seller_customer_common/auctions_product/", AuctionsProductResource.class);
 
         getDefaultHost().attach("/bank/register/", BankRegisterResource.class);
         getDefaultHost().attach("/bank/login/", BankLoginResource.class);

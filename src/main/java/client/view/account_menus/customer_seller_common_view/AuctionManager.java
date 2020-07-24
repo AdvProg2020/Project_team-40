@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.GridPane;
 import server.model.Auction;
+import server.model.Product;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class AuctionManager implements Initializable {
     public Spinner priceSpinner;
 
     private Auction auction;
+    private Product product;
     private static String auctionID;
 
     @Override
@@ -47,6 +49,8 @@ public class AuctionManager implements Initializable {
         queries.put("auction ID", auctionID);
         auction = RequestHandler.get("/accounts/seller_customer_common/auction/", queries, true,
                 Auction.class);
+        product = RequestHandler.get("/accounts/seller_customer_common/auctions_product/", queries, true,
+                Product.class);
         commonLoad();
         if(Client.getInstance().getRole().equalsIgnoreCase("Seller")) {
             loadForSeller();
@@ -66,6 +70,8 @@ public class AuctionManager implements Initializable {
     }
 
     private void commonLoad() {
+        auctionIDLabel.setText(auction.getId());
+        auctionDeadlineLabel.setText(auction.getDeadline().toString());
 
     }
 
