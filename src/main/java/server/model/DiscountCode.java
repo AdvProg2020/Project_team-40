@@ -100,7 +100,7 @@ public class DiscountCode implements Serializable {
     public double calculatePriceAfterDiscount(double price){
         double newPrice = price * (1 - this.percentage*0.01);
         if (newPrice > this.maxAmount)
-            newPrice = this.maxAmount;
+            newPrice = price - this.maxAmount;
         return newPrice;
     }
 
