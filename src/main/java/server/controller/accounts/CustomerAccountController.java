@@ -6,6 +6,7 @@ import server.model.Product;
 import server.model.Score;
 import server.model.log.Log;
 import server.model.users.Customer;
+import server.model.users.Manager;
 import server.model.users.Seller;
 import server.model.users.User;
 
@@ -57,7 +58,8 @@ public class CustomerAccountController extends AccountController{
         customer.addLog(log);
         addLogToSellers(log);
         customer.removeAllProducts();
-        decreaseDiscountCodeCountPerUser(username, code);
+        if(code != null)
+            decreaseDiscountCodeCountPerUser(username, code);
         return log;
     }
 
@@ -79,7 +81,7 @@ public class CustomerAccountController extends AccountController{
     public Log makePayment(String username,String address ,String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
 
-        if(priceAfterDiscount > customer.getCreditInWallet()) {
+        if(priceAfterDiscount > customer.getCreditInWallet() - Manager.getMinWalletBalance()) {
             throw new AccountsException("Credit not enough.");
         } else {
             //TODO: Not sure if it's correct or not!
