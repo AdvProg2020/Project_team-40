@@ -207,6 +207,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/chat/supports/", SupportsResource.class);
         getDefaultHost().attach("/chat/support_chat/", SupportChatResource.class);
         getDefaultHost().attach("/chat/support_customers/", SupportCustomersResource.class);
+        getDefaultHost().attach("/chat/chat_id/", ChatIdResource.class);
 
         getDefaultHost().attach("/shop/file/", FileResource.class);
 
