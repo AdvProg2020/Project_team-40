@@ -35,7 +35,7 @@ public class AuctionItemManager extends MenuManager {
     }
 
     public void goToChatRoom() {
-        String auctionId = idLabel.getId();
+        String auctionId = idLabel.getText();
         HashMap<String, String> requestQueries = new HashMap<>();
         requestQueries.put("auction ID", auctionId);
         Auction auction = RequestHandler.get("/accounts/seller_customer_common/auction/", requestQueries, true, new TypeToken<Auction>(){}.getType());
