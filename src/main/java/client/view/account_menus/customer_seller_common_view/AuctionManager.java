@@ -72,7 +72,14 @@ public class AuctionManager implements Initializable {
     private void commonLoad() {
         auctionIDLabel.setText(auction.getId());
         auctionDeadlineLabel.setText(auction.getDeadline().toString());
+        defaultPriceLabel.setText(String.valueOf(product.getPrice()));
+        auctionPriceLabel.setText(String.valueOf(auction.getHighestPrice()));
 
+        categoryLabel.setText(product.getCategory());
+        companyLabel.setText(product.getCompany());
+        productIdLabel.setText(product.getProductId());
+        sellerLabel.setText(product.getSellerUsername());
+        productNameLabel.setText(product.getName());
     }
 
     public static void setAuctionID(String auctionID) {

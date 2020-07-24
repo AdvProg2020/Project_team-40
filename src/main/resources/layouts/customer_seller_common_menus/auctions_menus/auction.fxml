@@ -128,11 +128,6 @@
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Ratings:" GridPane.rowIndex="6">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
 
 
 
@@ -158,11 +153,6 @@
                 </font>
             </Label>
             <Label fx:id="sellerLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                <font>
-                    <Font size="15.0" />
-                </font>
-            </Label>
-            <Label fx:id="ratingLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                 <font>
                     <Font size="15.0" />
                 </font>
