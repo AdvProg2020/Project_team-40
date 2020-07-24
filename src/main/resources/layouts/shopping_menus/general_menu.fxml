@@ -47,7 +47,7 @@
       </ScrollPane>
       <Text fx:id="priceText" layoutX="354.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Price" wrappingWidth="125.336669921875" />
       <Text layoutX="271.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Price :" />
-      <JFXButton fx:id="downloadButton" layoutX="674.0" layoutY="203.0" onAction="#download" style="-fx-font-size: 16;" text="Download">
+      <JFXButton fx:id="downloadButton" disable="true" layoutX="674.0" layoutY="203.0" onAction="#download" style="-fx-font-size: 16;" text="Download">
          <graphic>
             <ImageView fitHeight="49.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>

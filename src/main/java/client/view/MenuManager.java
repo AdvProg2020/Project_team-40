@@ -21,6 +21,7 @@ public class MenuManager {
     private static JFXButton mainMenuProductButton;
     private static JFXButton mainMenuBackButton;
     protected static ArrayList<String> roots;
+    private HashMap<String, String> requestQueries = new HashMap<>();
 
     static {
         roots = new ArrayList<>();
@@ -116,9 +117,9 @@ public class MenuManager {
         roots.clear();
         roots.add("/layouts/main.fxml");
         roots.add("");
-        HashMap<String, String> queries = new HashMap<>();
-        queries.put("username", Client.getInstance().getUsername());
-        RequestHandler.delete("/accounts/account/", queries, false, null);
+        requestQueries.clear();
+        requestQueries.put("username", Client.getInstance().getUsername());
+        RequestHandler.delete("/accounts/account/", requestQueries, false, null);
 
         Client.getInstance().logout();
         back();
@@ -147,6 +148,9 @@ public class MenuManager {
     }
 
     public void exit() {
+        requestQueries.clear();
+        requestQueries.put("username", Client.getInstance().getUsername());
+        RequestHandler.delete("/accounts/account/", requestQueries, false, null);
         System.exit(1);
     }
 
