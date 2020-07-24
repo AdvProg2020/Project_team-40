@@ -88,7 +88,7 @@ public class Chat implements Serializable{
         for(Map.Entry<String, Chat> entry : allChats.entrySet()) {
             try {
                 Chat chat = entry.getValue();
-                FileOutputStream file = new FileOutputStream(entry.getKey());
+                FileOutputStream file = new FileOutputStream(PATH + entry.getKey());
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(chat);
                 file.close();
