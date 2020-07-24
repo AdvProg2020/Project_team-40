@@ -145,9 +145,10 @@ public class CartMenuManager extends MenuManager implements Initializable {
                 requestQueries.put("username", Client.getInstance().getUsername());
                 requestQueries.put("code", getDiscountCode());
                 requestQueries.put("address", addressField.getText());
-             //   requestQueries.put("priceWithoutDiscount", );
-            //    requestQueries.put("priceAfterDiscount", );
-                Log log =  RequestHandler.put("/accounts/customer_account_controller/payment/", null, requestQueries, true, Log.class);
+                requestQueries.put("priceWithoutDiscount", String.valueOf(priceWithoutDiscount));
+                requestQueries.put("priceAfterDiscount", String.valueOf(priceWithDiscount));
+                Log log =  RequestHandler.put("/accounts/customer_account_controller/payment/", null,
+                        requestQueries, true, Log.class);
                 LogMenuManager.setLog(log);
                 setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/log_design.fxml");
             } catch (ResourceException e) {
@@ -165,7 +166,11 @@ public class CartMenuManager extends MenuManager implements Initializable {
     }
 
     private String getDiscountCode() {
-        return null;
+        if(discountField.isDisable())
+            return discountField.getText();
+        else
+            return null;
+
     }
 
     public void payThroughBank() {
