@@ -101,6 +101,8 @@ public class Auction {
                 buyer.setCreditInWallet(buyer.getCreditInWallet() + customer.getValue());
             }
         }
+        Customer customer = (Customer) User.getUserByUsername(highestPriceCustomer);
+        customer.setCreditInWallet(customer.getCreditInWallet() - highestPrice);
     }
 
     public boolean hasReachedDeadline() {
