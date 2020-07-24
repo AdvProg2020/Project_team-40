@@ -28,6 +28,7 @@ public class PayByBankResource extends ServerResource {
             Log log = pay(receiptId);
             return new YaGson().toJson(log, Log.class);
         } catch (Exception e) {
+            e.printStackTrace();
              throw new ResourceException(e);
         }
     }
