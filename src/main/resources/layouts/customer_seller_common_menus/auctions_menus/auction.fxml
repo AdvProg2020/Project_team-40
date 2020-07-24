@@ -73,14 +73,14 @@
                     <Font size="15.0" />
                 </font>
             </Label>
-            <Label fx:id="proposedPriceLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="winnerLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
 
             <Spinner fx:id="priceSpinner" layoutX="586.0" layoutY="117.0" prefHeight="42.0" prefWidth="98.0" GridPane.rowIndex="4" />
-            <Button fx:id="proposeHigherPrice" prefHeight="25.0" prefWidth="150.0" text="propose a price" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="proposeHigherPrice" onMouseClicked="#proposePrice" prefHeight="25.0" prefWidth="150.0" text="propose a price" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         </children>
     </GridPane>
     <GridPane fx:id="productPane" layoutX="455.0" layoutY="104.0" prefHeight="350.0" prefWidth="329.0">

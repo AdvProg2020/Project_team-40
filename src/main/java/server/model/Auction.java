@@ -19,7 +19,6 @@ public class Auction {
     private String productName;
     private int highestPrice;
     private String sellerID;
-    private ArrayList<String> customers = new ArrayList<>();
     private String highestPriceCustomer;
     private String id;
     private String chatId;

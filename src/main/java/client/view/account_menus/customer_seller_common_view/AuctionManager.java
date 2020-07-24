@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import server.model.Auction;
 import server.model.Product;
@@ -31,7 +32,7 @@ public class AuctionManager implements Initializable {
     public Label auctionDeadlineLabel;
     public Label statusLabel;
     //statusLabel tells if auction has ended to seller and its text will be "Price you've proposed" to customer
-    public Label proposedPriceLabel;
+    public Label winnerLabel;
     //proposedPriceLabel is the price proposed by this customer
     public Label auctionPriceLabel;
     public Label errorLabel;
@@ -60,13 +61,19 @@ public class AuctionManager implements Initializable {
     }
 
     private void loadForCustomer() {
-
+        priceSpinner.getValueFactory().setValue(auction.getHighestPrice());
+        statusLabel.setText("Winner till now:");
+        winnerLabel.setText(auction.getHighestPriceCustomer());
     }
 
     private void loadForSeller() {
         auctionPane.getChildren().remove(priceSpinner);
         auctionPane.getChildren().remove(proposeHigherPrice);
-        //TODO:
+
+        if(auction.hasReachedDeadline())
+            statusLabel.setText("Auction has ended!");
+        else
+            statusLabel.setText("Auction continues!");
     }
 
     private void commonLoad() {
@@ -84,5 +91,9 @@ public class AuctionManager implements Initializable {
 
     public static void setAuctionID(String auctionID) {
         AuctionManager.auctionID = auctionID;
+    }
+
+    public void proposePrice() {
+
     }
 }
