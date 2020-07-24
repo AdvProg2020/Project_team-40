@@ -27,7 +27,9 @@ public class OrderItem {
                 orderMenu.setCostLabel(Double.toString(log.getCost()));
                 orderMenu.setDiscountLabel(Double.toString(log.getCostWithoutDiscount()));
                 orderMenu.setAddressLabel(log.getAddress());
+                orderMenu.setStatusLabel(log.getStatus());
                 orderMenu.setProductsList(log.getProductsId().keySet());
+
             }
         });
     }

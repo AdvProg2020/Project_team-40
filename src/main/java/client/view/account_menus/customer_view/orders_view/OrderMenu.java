@@ -2,7 +2,6 @@ package client.view.account_menus.customer_view.orders_view;
 
 import client.controller.Client;
 import client.controller.RequestHandler;
-import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
@@ -102,6 +101,10 @@ public class OrderMenu implements Initializable {
 
     public void setAddressLabel(String address){
         addressLabel.setText(address);
+    }
+
+    public void setStatusLabel(String status){
+        statusLabel.setText(status);
     }
 
     public void setLog(Log log) {
