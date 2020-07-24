@@ -94,14 +94,14 @@ public class CartMenuManager extends MenuManager implements Initializable {
             try {
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
-                RequestHandler.put("/accounts/customer_account_controller/discount/", discountField.getText(), requestQueries, true, null);
+                priceWithDiscount = RequestHandler.put("/accounts/customer_account_controller/discount/",
+                        discountField.getText(), requestQueries, true, Double.class);
                 discountButton.setOnMouseClicked(e -> disableDiscountCode());
                 discountButton.setText("disable discount code");
                 discountField.setDisable(true);
                 discountError.setText("");
                 requestQueries.clear();
-//                Double priceAfterDiscount =
-//                priceLabel.setText(String.valueOf(priceAfterDiscount));
+                priceLabel.setText(String.valueOf(priceWithDiscount));
             } catch (ResourceException e) {
                 if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                     logout();
@@ -125,8 +125,8 @@ public class CartMenuManager extends MenuManager implements Initializable {
             requestQueries.clear();
             requestQueries.put("username", Client.getInstance().getUsername());
 
-            Double totalPrice = RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
-            priceLabel.setText(Double.toString(totalPrice));
+            priceLabel.setText(Double.toString(priceWithoutDiscount));
+            priceWithDiscount = -1;
             discountButton.setOnMouseClicked(e -> applyDiscount());
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))

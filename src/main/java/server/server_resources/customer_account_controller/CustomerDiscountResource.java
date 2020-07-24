@@ -1,5 +1,6 @@
 package server.server_resources.customer_account_controller;
 
+import com.gilecode.yagson.YaGson;
 import exceptions.AccountsException;
 import exceptions.AuthorizationException;
 import org.restlet.resource.Put;
@@ -12,13 +13,14 @@ import server.model.users.User;
 
 public class CustomerDiscountResource extends ServerResource {
     @Put
-    public double enterDiscount(String code) throws  AuthorizationException {
+    public String enterDiscount(String code) throws  AuthorizationException {
         try {
             String username = getQueryValue("username");
             CustomerAccountController.getInstance().checkDiscountCode(code, username);
             DiscountCode discountCode = DiscountCode.getDiscountCodeByCode(code);
-            return discountCode.
+            Double priceAfterDiscount =  discountCode.
                     calculatePriceAfterDiscount(((Customer) User.getUserByUsername(username)).getTotalPriceOfCart());
+            return new YaGson().toJson(priceAfterDiscount, Double.class);
         } catch (AccountsException e) {
             throw new ResourceException(403, e);
         }
