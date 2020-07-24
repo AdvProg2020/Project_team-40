@@ -26,6 +26,7 @@ public class Auction {
     private String id;
     private String chatId;
 
+    //TODO: If you had time, Consider count limitation of products
     public Auction(Date deadline, String productId, int highestPrice, String sellerID, String chatId) {
         this.deadline = deadline;
         this.productId = productId;
@@ -153,10 +154,12 @@ public class Auction {
 
     public void finish() {
         onGoingAuctions.remove(id);
-        Seller seller = (Seller) User.getUserByUsername(sellerID);
-        seller.setCreditInWallet(seller.getCreditInWallet() + Manager.subtractWage(highestPrice));
-        Product product = Product.getProductById(productId);
-        product.setCount(product.getCount() - 1);
+        if(!customers.isEmpty()) {
+            Seller seller = (Seller) User.getUserByUsername(sellerID);
+            seller.setCreditInWallet(seller.getCreditInWallet() + Manager.subtractWage(highestPrice));
+            Product product = Product.getProductById(productId);
+            product.setCount(product.getCount() - 1);
+        }
         //TODO: Create log...
     }
 }
