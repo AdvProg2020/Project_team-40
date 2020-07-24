@@ -71,7 +71,7 @@
          </Label>
       </children>
     </GridPane>
-     <Button fx:id="register" layoutX="487.0" layoutY="570.0" onMouseClicked="#register" prefHeight="22.0" prefWidth="155.0" text="Sign Up!">
+     <Button fx:id="register" layoutX="487.0" layoutY="570.0" onAction="#register" prefHeight="22.0" prefWidth="155.0" text="Sign Up!">
 
         </Button>
      <Label fx:id="registerLabel" layoutX="473.0" layoutY="38.0" text="Register">

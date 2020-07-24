@@ -77,12 +77,8 @@ public class OrdersMenuManager extends MenuManager implements Initializable {
         Label discountLabel =((Label) hBox.getChildren().get(3));
 
         logIdLabel.setText(log.getId());
-        System.out.println(log.getId());
         dateLabel.setText(log.getDate().toString());
-        System.out.println(log.getDate().toString());
         costLabel.setText(Double.toString(log.getCost()));
-        System.out.println(log.getCost());
         discountLabel.setText(Double.toString(log.getCostWithoutDiscount()));
-        System.out.println(log.getCostWithoutDiscount());
     }
 }

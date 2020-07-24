@@ -80,11 +80,11 @@ public class Log implements Serializable {
         return productsId;
     }
 
-    private String getStatus(){
+    public String getStatus(){
         if(isDelivered){
             return "Delivered";
         } else {
-            return "Still not delivered";
+            return "Still, not delivered";
         }
     }
 

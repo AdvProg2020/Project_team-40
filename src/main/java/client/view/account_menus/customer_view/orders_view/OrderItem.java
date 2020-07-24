@@ -1,5 +1,6 @@
 package client.view.account_menus.customer_view.orders_view;
 
+import client.controller.RequestHandler;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.model.log.Log;
+
+import java.util.HashMap;
 
 public class OrderItem {
     public JFXButton viewLogButton;
@@ -24,7 +27,9 @@ public class OrderItem {
                 orderMenu.setCostLabel(Double.toString(log.getCost()));
                 orderMenu.setDiscountLabel(Double.toString(log.getCostWithoutDiscount()));
                 orderMenu.setAddressLabel(log.getAddress());
+                orderMenu.setStatusLabel(log.getStatus());
                 orderMenu.setProductsList(log.getProductsId().keySet());
+
             }
         });
     }
@@ -34,7 +39,9 @@ public class OrderItem {
         String logId = ((Label) item.getChildren().get(0)).getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/customer_menus/customer_orders_menus/order.fxml"));
         try {
-            Log log = Log.getLogById(logId);
+            HashMap<String, String > queries = new HashMap<>();
+            queries.put("logID", logId);
+            Log log = RequestHandler.get("/shop/log/", queries, false, Log.class);
             AnchorPane pane = loader.load();
             OrderMenu orderMenu = loader.getController();
             setLabelsContent(orderMenu, log);

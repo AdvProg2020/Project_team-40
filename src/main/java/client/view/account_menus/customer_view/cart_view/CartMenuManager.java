@@ -45,7 +45,6 @@ public class CartMenuManager extends MenuManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         validateInputs();
-        priceWithDiscount = -1;
         requestQueries = new HashMap<>();
         requestQueries.put("username", Client.getInstance().getUsername());
         HashMap<Product, Integer> cart =  RequestHandler.get("/accounts/customer_account_controller/cart/",
@@ -62,6 +61,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
                     requestQueries, true, Double.class);
             priceLabel.setText(Double.toString(totalPrice));
             priceWithoutDiscount = totalPrice;
+            priceWithDiscount = priceWithoutDiscount;
             for(Product product : cart.keySet()) {
                 load(product, cart.get(product));
             }
@@ -94,7 +94,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
             try {
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
-                priceWithDiscount = RequestHandler.put("/accounts/customer_account_controller/discount/",
+                priceWithDiscount = (double) RequestHandler.put("/accounts/customer_account_controller/discount/",
                         discountField.getText(), requestQueries, true, Double.class);
                 discountButton.setOnMouseClicked(e -> disableDiscountCode());
                 discountButton.setText("disable discount code");
@@ -119,14 +119,13 @@ public class CartMenuManager extends MenuManager implements Initializable {
     private void disableDiscountCode() {
         try {
             requestQueries.clear();
-            //TODO: Implement details
             discountField.setDisable(false);
             discountButton.setText("apply");
             requestQueries.clear();
             requestQueries.put("username", Client.getInstance().getUsername());
 
             priceLabel.setText(Double.toString(priceWithoutDiscount));
-            priceWithDiscount = -1;
+            priceWithDiscount = priceWithoutDiscount;
             discountButton.setOnMouseClicked(e -> applyDiscount());
         } catch (ResourceException e) {
             if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
@@ -138,8 +137,6 @@ public class CartMenuManager extends MenuManager implements Initializable {
         if (addressField.getText().isBlank()) {
             addressError.setText("Write you address!");
         } else {
-            requestQueries.clear();
-            RequestHandler.put("/accounts/customer_account_controller/receiver_info/", addressField.getText(), requestQueries, true, null);
             try {
                 requestQueries.clear();
                 requestQueries.put("username", Client.getInstance().getUsername());
@@ -149,8 +146,6 @@ public class CartMenuManager extends MenuManager implements Initializable {
                 requestQueries.put("priceAfterDiscount", String.valueOf(priceWithDiscount));
                 Log log =  RequestHandler.put("/accounts/customer_account_controller/payment/", null,
                         requestQueries, true, Log.class);
-                LogMenuManager.setLog(log);
-                setSecondaryInnerPane("/layouts/customer_menus/purchase_menus/log_design.fxml");
             } catch (ResourceException e) {
                 if (e.getStatus().equals(Status.CLIENT_ERROR_UNAUTHORIZED))
                     logout();
