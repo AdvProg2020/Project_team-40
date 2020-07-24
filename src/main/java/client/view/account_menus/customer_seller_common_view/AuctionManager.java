@@ -10,6 +10,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import server.model.Auction;
 import server.model.Product;
+import server.model.users.Manager;
 
 import java.net.URL;
 import java.util.HashMap;
