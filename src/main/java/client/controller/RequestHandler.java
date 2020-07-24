@@ -8,7 +8,8 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class RequestHandler {
-    private static final String ENDPOINT = "http://localhost:8080";
+    private static  String endpoint;
+
     private static ClientResource clientResource;
     private static YaGson mapper;
     static {
@@ -16,14 +17,12 @@ public class RequestHandler {
     }
 
 
-    //TODO: Configure the endpoint from vmf file
-
     public static ClientResource getClientResource() {
         return clientResource;
     }
 
     public static <T> T get(String path, HashMap<String, String> queries, boolean mustBeLoggedIn, Type outputType) {
-        clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(endpoint + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -40,7 +39,7 @@ public class RequestHandler {
     }
 
     public static <T> T put(String path, String entity, HashMap<String, String> queries, boolean mustBeLoggedIn, Type outputType) {
-        clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(endpoint + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -57,7 +56,7 @@ public class RequestHandler {
     }
 
     public static <T> T post(String path, String entity, HashMap<String, String> queries, boolean mustBeLoggedIn, Type outputType) {
-        clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(endpoint + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -74,7 +73,7 @@ public class RequestHandler {
     }
 
     public static <T> T delete(String path, HashMap<String, String> queries, boolean mustBeLoggedIn, Type outputType) {
-        clientResource = new ClientResource(ENDPOINT + path);
+        clientResource = new ClientResource(endpoint + path);
         if (mustBeLoggedIn) {
             Client client = Client.getInstance();
             clientResource.setChallengeResponse(ChallengeScheme.HTTP_BASIC, client.getUsername(), client.getPassword());
@@ -88,6 +87,10 @@ public class RequestHandler {
         }
         String response = clientResource.delete(String.class);
         return mapper.fromJson(response, outputType);
+    }
+
+    public static void setEndpoint(String endpoint) {
+        RequestHandler.endpoint = endpoint;
     }
 
 
