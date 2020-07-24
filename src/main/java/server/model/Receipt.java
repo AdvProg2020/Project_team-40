@@ -96,7 +96,7 @@ public class Receipt {
                 inputStream.close();
                 new File(PATH + path).delete();
             } catch (Exception e) {
-                throw new DataException("Loading chats failed.");
+                throw new DataException("Loading receipts failed.");
             }
         }
     }
@@ -105,19 +105,19 @@ public class Receipt {
         File directory = new File(PATH);
         if(!directory.exists())
             if(!directory.mkdir())
-                throw new DataException("Saving chats failed.");
+                throw new DataException("Saving receipts failed.");
 
         for(Map.Entry<Integer, Receipt> entry : receipts.entrySet()) {
             try {
                 Receipt receipt = entry.getValue();
-                FileOutputStream file = new FileOutputStream(String.valueOf(entry.getKey()));
+                FileOutputStream file = new FileOutputStream(PATH + entry.getKey());
                 ObjectOutputStream outputStream = new ObjectOutputStream(file);
                 outputStream.writeObject(receipt);
                 file.close();
                 outputStream.close();
 
             } catch (Exception e) {
-                throw new DataException("Saving chats failed.");
+                throw new DataException("Saving receipts failed.");
             }
         }
     }

@@ -67,7 +67,7 @@ public class Product implements Serializable{
     }
 
     public void detachFile(){
-        this.file = file;
+        this.file = null;
     }
 
     public Pair<String, byte[]> getFile(){

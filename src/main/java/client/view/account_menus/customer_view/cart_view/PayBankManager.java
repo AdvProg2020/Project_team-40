@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.restlet.resource.ResourceException;
 import server.model.log.Log;
-import server.model.requests.Request;
 
 import java.net.URL;
 import java.util.HashMap;

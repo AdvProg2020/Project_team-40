@@ -55,10 +55,9 @@ public class CustomerAccountController extends AccountController{
         decreaseProductsCountAfterPurchase(log);
         customer.getLogsId().add(log.getId());
         Log.getLogs().put(log.getId(), log);
-        customer.addLog(log);
         addLogToSellers(log);
         customer.removeAllProducts();
-        if(code != null)
+        if(!code.equals(""))
             decreaseDiscountCodeCountPerUser(username, code);
         return log;
     }
@@ -78,16 +77,17 @@ public class CustomerAccountController extends AccountController{
         }
     }
 
-    public Log makePayment(String username,String address ,String code,double priceAfterDiscount, double priceWithoutDiscount) throws AccountsException{
+    public Log makePayment(String username,String address ,String code,double priceAfterDiscount, double priceWithoutDiscount, boolean isFromWallet) throws AccountsException{
         Customer customer = (Customer) User.getUserByUsername(username);
-
-        if(priceAfterDiscount > customer.getCreditInWallet() - Manager.getMinWalletBalance()) {
-            throw new AccountsException("Credit not enough.");
-        } else {
-            //TODO: Not sure if it's correct or not!
-            customer.setCreditInWallet(customer.getCreditInWallet() - customer.getTotalPriceOfCart());
-            return purchase(username, address, code, priceWithoutDiscount, priceAfterDiscount);
+        if (isFromWallet) {
+            if (priceAfterDiscount > customer.getCreditInWallet() - Manager.getMinWalletBalance()) {
+                throw new AccountsException("Credit not enough.");
+            } else {
+                customer.setCreditInWallet(customer.getCreditInWallet() - customer.getTotalPriceOfCart());
+            }
         }
+            return purchase(username, address, code, priceWithoutDiscount, priceAfterDiscount);
+
     }
 
     private void addLogToSellers(Log log) {
@@ -107,7 +107,6 @@ public class CustomerAccountController extends AccountController{
             }
             seller.addLog( new Log(log.getDate(), log.getCost() / log.getCostWithoutDiscount() * sellersProfit,
                     sellersProfit, productsId, log.getBuyerName(), log.getAddress(),false));
-            seller.setCreditInWallet(seller.getCreditInWallet() + sellersProfit);
         }
     }
 
