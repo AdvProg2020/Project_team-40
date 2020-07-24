@@ -26,7 +26,7 @@ public class PayBankManager extends MenuManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(priceWithDiscount == -1)
+        if(priceWithDiscount != priceWithoutDiscount)
             amountLabel.setText(String.valueOf(priceWithoutDiscount));
         else
             amountLabel.setText(String.valueOf(priceWithDiscount));
