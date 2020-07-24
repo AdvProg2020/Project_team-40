@@ -5,6 +5,7 @@ import client.controller.RequestHandler;
 import client.view.ChangeListener;
 import client.view.MenuManager;
 import com.gilecode.yagson.com.google.gson.reflect.TypeToken;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 import server.model.Product;
@@ -33,6 +36,7 @@ public class CartMenuManager extends MenuManager implements Initializable {
     public TextField discountField;
     public TextArea addressField;
     public Button discountButton;
+    public VBox vBoxItems;
     private HashMap<String, String> requestQueries;
 
     @Override
@@ -50,8 +54,25 @@ public class CartMenuManager extends MenuManager implements Initializable {
                     "Go to products' Menu...");
         } else {
             emptyCartLabel.setVisible(false);
-            Double totalPrice = RequestHandler.get("/accounts/customer_account_controller/cart_total_price/", requestQueries, true, Double.class);
+            Double totalPrice = RequestHandler.get("/accounts/customer_account_controller/cart_total_price/",
+                    requestQueries, true, Double.class);
             priceLabel.setText(Double.toString(totalPrice));
+            for(Product product : cart.keySet()) {
+                load(product, cart.get(product));
+            }
+        }
+    }
+
+    private void load(Product product, Integer quantity) {
+        try {
+            AnchorPane item = FXMLLoader.load(getClass().getResource("/layouts/manager_menus/manager_products_menu/product_item.fxml"));
+            HBox hBox = (HBox) item.getChildren().get(0);
+            ((Label) hBox.getChildren().get(0)).setText(product.getName());
+            ((Label) hBox.getChildren().get(1)).setText(String.valueOf(product.getPrice()));
+            ((Label) hBox.getChildren().get(2)).setText(String.valueOf(quantity));
+            vBoxItems.getChildren().add(item);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

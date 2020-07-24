@@ -20,9 +20,11 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <VBox alignment="CENTER" prefHeight="38.0" prefWidth="125">
-                    <Spinner fx:id="countSpinner" prefHeight="35.0" prefWidth="125.0" />
-                </VBox>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="130.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
                 <JFXButton fx:id="viewProductButton" alignment="CENTER" contentDisplay="CENTER" onAction="#viewProduct" prefHeight="35.0" prefWidth="45.0" text="">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
