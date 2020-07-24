@@ -20,7 +20,7 @@ import server.server_resources.manager_account_controller.*;
 import server.server_resources.seller_account_controller.*;
 import server.server_resources.seller_customer_common.AuctionsProductResource;
 import server.server_resources.seller_customer_common.AuctionsResource;
-import server.server_resources.seller_customer_common.GetAuctionResource;
+import server.server_resources.seller_customer_common.AuctionResource;
 import server.server_resources.seller_customer_common.WalletResource;
 import server.server_resources.shop.*;
 
@@ -109,7 +109,7 @@ public class MainServer extends Component {
         getDefaultHost().attach("/accounts/seller_account_controller/add_auction/", AddAuctionResource.class);
         getDefaultHost().attach("/accounts/seller_account_controller/wallet/", authenticator.getNewGuard(SellerWalletResource.class, RoleAccessibility.SELLER));
 
-        getDefaultHost().attach("/accounts/seller_customer_common/auction/", GetAuctionResource.class);
+        getDefaultHost().attach("/accounts/seller_customer_common/auction/", AuctionResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/wallet/", WalletResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/auctions/", AuctionsResource.class);
         getDefaultHost().attach("/accounts/seller_customer_common/auctions_product/", AuctionsProductResource.class);

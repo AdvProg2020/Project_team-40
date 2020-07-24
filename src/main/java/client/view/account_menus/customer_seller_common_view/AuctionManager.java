@@ -10,6 +10,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import server.model.Auction;
 import server.model.Product;
+import server.model.users.Manager;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -107,7 +108,12 @@ public class AuctionManager implements Initializable {
         if(balance - priceSpinner.getValue() < minWalletCredit) {
             errorLabel.setText("You need to increase your credit!");
         } else {
-            //TODO:
+            queries.put("auction ID", auctionID);
+            queries.put("proposed price", String.valueOf(priceSpinner.getValue()));
+            String response = RequestHandler.put("/accounts/seller_customer_common/auction/", new String(),
+                    queries, true, String.class);
+            if(!response.equals("successful"))
+                errorLabel.setText("Something went wrong!");
         }
     }
 }
