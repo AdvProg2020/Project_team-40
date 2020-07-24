@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import server.model.Auction;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AuctionManager implements Initializable {
@@ -42,7 +43,10 @@ public class AuctionManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //auction = RequestHandler.get()
+        HashMap<String, String> queries = new HashMap<>();
+        queries.put("auction ID", auctionID);
+        auction = RequestHandler.get("/accounts/seller_customer_common/auction/", queries, true,
+                Auction.class);
         commonLoad();
         if(Client.getInstance().getRole().equalsIgnoreCase("Seller")) {
             loadForSeller();
