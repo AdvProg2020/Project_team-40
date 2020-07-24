@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import server.model.Auction;
 import server.model.Product;
@@ -38,7 +38,7 @@ public class AuctionManager implements Initializable {
     public Label errorLabel;
 
     public Button proposeHigherPrice;
-    public Spinner priceSpinner;
+    public Spinner<Integer> priceSpinner;
 
     private Auction auction;
     private Product product;
@@ -61,7 +61,11 @@ public class AuctionManager implements Initializable {
     }
 
     private void loadForCustomer() {
-        priceSpinner.getValueFactory().setValue(auction.getHighestPrice());
+        int leastPossiblePriceProposal = auction.getHighestPrice() + 1;
+        SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.
+                IntegerSpinnerValueFactory(leastPossiblePriceProposal, leastPossiblePriceProposal * 2 + 100,
+                leastPossiblePriceProposal);
+        priceSpinner.setValueFactory(spinnerValueFactory);
         statusLabel.setText("Winner till now:");
         winnerLabel.setText(auction.getHighestPriceCustomer());
     }
