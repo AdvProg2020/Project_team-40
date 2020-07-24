@@ -98,6 +98,16 @@ public class AuctionManager implements Initializable {
     }
 
     public void proposePrice() {
-
+        HashMap<String, String> queries = new HashMap<>();
+        queries.put("username", Client.getInstance().getUsername());
+        double balance = RequestHandler.get("/accounts/customer_account_controller/balance/", queries,
+                true, Double.class);
+        double minWalletCredit = RequestHandler.get("/accounts/manager_account_controller/min_wallet_credit/",
+                new HashMap<>(), false, Double.class);
+        if(balance - priceSpinner.getValue() < minWalletCredit) {
+            errorLabel.setText("You need to increase your credit!");
+        } else {
+            //TODO:
+        }
     }
 }
