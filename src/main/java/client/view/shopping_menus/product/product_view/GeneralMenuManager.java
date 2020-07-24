@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import org.restlet.resource.ResourceException;
+import server.model.Product;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,38 +31,40 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
     public Spinner<Integer> countSpinner;
     public ImageView imageView;
     public JFXButton cartButton, downloadButton;
+    private HashMap<String, String> requestQueries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         //Set texts using product information
-        productName.setText(ProductMenuManager.getProduct().getName());
-        sellerName.setText(ProductMenuManager.getProduct().getSellerUsername());
-        companyName.setText(ProductMenuManager.getProduct().getCompany());
-        category.setText(ProductMenuManager.getProduct().getCategory());
-        rating.setText(ProductMenuManager.getProduct().getAverageScore() + " / " + "5.0");
-        descriptionText.setText(ProductMenuManager.getProduct().getExplanation());
-        priceText.setText(ProductMenuManager.getProduct().getPrice() + " / " + ProductMenuManager.getProduct().getBasePrice());
+        requestQueries = new HashMap<>();
+        Product product = ProductMenuManager.getProduct();
+        productName.setText(product.getName());
+        sellerName.setText(product.getSellerUsername());
+        companyName.setText(product.getCompany());
+        category.setText(product.getCategory());
+        rating.setText(product.getAverageScore() + " / " + "5.0");
+        descriptionText.setText(product.getExplanation());
+        priceText.setText(product.getPrice() + " / " + product.getBasePrice());
 
-        if(!ProductMenuManager.getProduct().hasFile())
+        String role = Client.getInstance().getRole();
+        String username = Client.getInstance().getUsername();
+        boolean isLoggedIn = Client.getInstance().isLoggedIn();
+        if(!product.hasFile())
             root.getChildren().remove(downloadButton);
 
-        HashMap<String, String> requestQueries = new HashMap<>();
-        requestQueries.put("username", Client.getInstance().getUsername());
-        HashMap<String, String> userParams = RequestHandler.get("/accounts/user/", requestQueries,
-                false, new TypeToken<HashMap<String, String>>(){}.getType());
-        assert userParams != null;
-
-        requestQueries.clear();
-        requestQueries.put("username", userParams.get("username"));
-        requestQueries.put("productID", ProductMenuManager.getProduct().getProductId());
-        boolean hasBought = (boolean) RequestHandler.get("/accounts/customer_account_controller/product/purchase_status/", requestQueries, false, boolean.class);
-        if(!hasBought)
-            downloadButton.setDisable(true);
-
-        if (!Client.getInstance().isLoggedIn() || Client.getInstance().getRole().equals("Customer")) {
-            //Work the functionality of product count
-            SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, ProductMenuManager.getProduct().getCount(), 0);
+        if (!isLoggedIn){
+            SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getCount(), 0);
             countSpinner.setValueFactory(spinnerValueFactory);
+        }
+        else if (role.equals("Customer")){
+            SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getCount(), 0);
+            countSpinner.setValueFactory(spinnerValueFactory);
+            requestQueries.clear();
+            requestQueries.put("username", username);
+            requestQueries.put("productID", product.getProductId());
+            boolean hasBought = (boolean) RequestHandler.get("/accounts/customer_account_controller/product/purchase_status/", requestQueries, false, boolean.class);
+            if(hasBought)
+                downloadButton.setDisable(false);
         }
         else {
             cartButton.setDisable(true);
@@ -69,7 +72,7 @@ public class GeneralMenuManager extends MenuManager implements Initializable{
         }
         //Set image
         try {
-            Image image = new Image(getClass().getResourceAsStream("/product_images/" + ProductMenuManager.getProduct().getName() + ".jpg"));
+            Image image = new Image(getClass().getResourceAsStream("/product_images/" + product.getName() + ".jpg"));
             imageView.setImage(image);
         }catch(Exception e){
             e.printStackTrace();
