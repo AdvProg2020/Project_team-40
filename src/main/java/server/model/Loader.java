@@ -1,6 +1,7 @@
 package server.model;
 
 import exceptions.DataException;
+import server.controller.menus.BankController;
 import server.model.chat.Chat;
 import server.model.log.Log;
 import server.model.requests.Request;
@@ -30,6 +31,7 @@ public class Loader {
         Chat.loadData();
         Auction.loadData();
         Receipt.loadData();
+        BankController.loadData();
     }
 
     public void saveData() throws DataException {
@@ -46,6 +48,7 @@ public class Loader {
         Chat.saveData();
         Auction.saveData();
         Receipt.saveData();
+        BankController.saveData();
     }
 
     public static Loader getLoader() {

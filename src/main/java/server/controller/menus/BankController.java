@@ -1,17 +1,19 @@
 package server.controller.menus;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import com.gilecode.yagson.YaGson;
+import exceptions.DataException;
+
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static server.server_resources.bank.BankInformation.BANK_PORT;
 import static server.server_resources.bank.BankInformation.IP;
 
-public class BankController {
+public class BankController implements Serializable{
     private static BankController bankController = new BankController();
+    private static final String PATH = "src/main/resources/";
     private static String shopBankAccountToken;
     private static String managerUsername;
     private static String managerPassword;
@@ -63,5 +65,41 @@ public class BankController {
 
     public HashMap<String, String> getUsersTokens() {
         return usersTokens;
+    }
+
+    public static void saveData() throws DataException{
+        try {
+            ArrayList<String> data = new ArrayList<>();
+            data.add(shopBankAccountToken);
+            data.add(managerUsername);
+            data.add(managerPassword);
+            String dataJson = new YaGson().toJson(data, ArrayList.class);
+            FileOutputStream fileOutputStream = new FileOutputStream(PATH + "BankController");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(dataJson);
+            fileOutputStream.close();
+            objectOutputStream.close();
+        }catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void loadData() throws DataException{
+        try {
+            FileInputStream fileInputStream = new FileInputStream(PATH + "BankController");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            String dataJson = (String) objectInputStream.readObject();
+            fileInputStream.close();
+            objectInputStream.close();
+            new File(PATH + "BankController").delete();
+            ArrayList<String> data = new YaGson().fromJson(dataJson, ArrayList.class);
+            shopBankAccountToken = data.get(0);
+            managerUsername = data.get(1);
+            managerPassword = data.get(2);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
