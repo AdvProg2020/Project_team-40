@@ -50,6 +50,7 @@ public class MainServer extends Component {
         AuctionController.checkDeadlines();
         new MainServer().start();
     }
+
     private static void setConfigurations() throws IOException {
         FileInputStream fis = null;
         Properties prop = null;

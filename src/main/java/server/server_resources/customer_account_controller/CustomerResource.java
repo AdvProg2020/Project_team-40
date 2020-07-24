@@ -14,7 +14,7 @@ public class CustomerResource extends ServerResource {
         CustomerAccountController manager = CustomerAccountController.getInstance();
         String username = getQueryValue("username");
         String password = getQueryValue("password");
-        PasswordValidator.getInstance().setEnabled(false);
+//        PasswordValidator.getInstance().setEnabled(false);
         try {
             PasswordValidator.getInstance().validatePassword(password);
         } catch (WeakPasswordException e) {

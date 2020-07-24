@@ -17,7 +17,7 @@ public class ManagerResource extends ServerResource {
         ManagerAccountController manager = ManagerAccountController.getInstance();
         String username = getQueryValue("username");
         String password = getQueryValue("password");
-        PasswordValidator.getInstance().setEnabled(false);
+//        PasswordValidator.getInstance().setEnabled(false);
         try {
             PasswordValidator.getInstance().validatePassword(password);
         } catch (WeakPasswordException e) {
