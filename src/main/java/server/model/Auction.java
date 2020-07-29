@@ -96,13 +96,11 @@ public class Auction implements Serializable{
 
     public void setHighestPriceCustomer(String highestPriceCustomer) {
         this.highestPriceCustomer = highestPriceCustomer;
-        customers.put(highestPriceCustomer, highestPrice);
         for(Map.Entry<String, Integer> customer : customers.entrySet()) {
-            if(!customer.getKey().equals(highestPriceCustomer)) {
-                Customer buyer = (Customer) User.getUserByUsername(customer.getKey());
-                buyer.setCreditInWallet(buyer.getCreditInWallet() + customer.getValue());
-            }
+            Customer buyer = (Customer) User.getUserByUsername(customer.getKey());
+            buyer.setCreditInWallet(buyer.getCreditInWallet() + customer.getValue());
         }
+        customers.put(highestPriceCustomer, highestPrice);
         Customer customer = (Customer) User.getUserByUsername(highestPriceCustomer);
         customer.setCreditInWallet(customer.getCreditInWallet() - highestPrice);
     }
